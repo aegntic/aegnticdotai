@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables */
+:root {
+  --primary-glow: #00E5FF;
+}
+
+/* Base Styles */
+@layer base {
+  body {
+    @apply bg-dark-bg overflow-x-hidden font-inter;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Background Grid */
+  .arch-grid {
+    background-size: 60px 60px;
+    background-image: var(--grid-pattern);
+    transform: perspective(1000px) rotateX(60deg) translateY(-200px) scale(3);
+    @apply opacity-10 fixed top-0 left-0 right-0 bottom-0 -z-10 pointer-events-none;
+  }
+
+  /* Typography Effects */
+  .text-liquid-glass {
+    @apply text-transparent relative;
+    background: linear-gradient(135deg, #fff 0%, #a5f3fc 40%, #00B0FF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.6));
+  }
+
+  .text-liquid-glass::after {
+    content: attr(data-text);
+    @apply absolute left-0 top-0 -z-10 text-transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+    @apply opacity-70;
+  }
+
+  /* Holo Card Component */
+  .holo-card {
+    @apply bg-card-bg backdrop-blur-xs border border-border-glow overflow-hidden transition-all duration-300 relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(0, 229, 255, 0.03);
+  }
+
+  .holo-card::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-px;
+    background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.6), transparent);
+  }
+
+  .holo-card:hover {
+    @apply border-opacity-30;
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.2), inset 0 0 30px rgba(0, 229, 255, 0.05);
+  }
+
+  /* Corner Decorations */
+  .corner-tl {
+    @apply absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2;
+    border-color: rgba(0,229,255,0.5);
+  }
+
+  .corner-tr {
+    @apply absolute top-0 right-0 w-2.5 h-2.5 border-t-2 border-r-2;
+    border-color: rgba(0,229,255,0.5);
+  }
+
+  .corner-bl {
+    @apply absolute bottom-0 left-0 w-2.5 h-2.5 border-b-2 border-l-2;
+    border-color: rgba(0,229,255,0.5);
+  }
+
+  .corner-br {
+    @apply absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2;
+    border-color: rgba(0,229,255,0.5);
+  }
+
+  /* Navigation Components */
+  .nav-item {
+    @apply relative px-4 py-2 text-gray-300 hover:text-primary-glow transition-colors duration-200 cursor-pointer;
+  }
+
+  .nav-item::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-primary-glow transform scale-x-0 transition-transform duration-200;
+  }
+
+  .nav-item:hover::after,
+  .nav-item.active::after {
+    @apply scale-x-100;
+  }
+
+  /* Button Components */
+  .btn-primary {
+    @apply px-6 py-3 bg-primary-glow text-dark-bg font-semibold rounded-lg
+           hover:bg-opacity-80 transition-all duration-200 transform hover:scale-105
+           focus:outline-none focus:ring-2 focus:ring-primary-glow focus:ring-opacity-50;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 border border-primary-glow text-primary-glow font-semibold rounded-lg
+           hover:bg-primary-glow hover:text-dark-bg transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-primary-glow focus:ring-opacity-50;
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    @apply fixed top-0 right-0 h-full w-80 bg-card-bg backdrop-blur-md
+           transform translate-x-full transition-transform duration-300 z-50;
+  }
+
+  .mobile-menu.open {
+    @apply translate-x-0;
+  }
+
+  /* Loading States */
+  .loading-skeleton {
+    @apply animate-pulse bg-gray-800 rounded;
+  }
+
+  /* Responsive Containers */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Grid Layouts */
+  .grid-auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* Animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .backdrop-glass {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+}
