@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Component Gallery - AE Foundation</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <!-- External Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <style>
+        .component-card {
+            background: rgba(10, 20, 40, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .component-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00E5FF, #00B0FF);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .component-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 229, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.2);
+        }
+
+        .component-card:hover::before {
+            opacity: 1;
+        }
+
+        .preview-container {
+            height: 200px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .component-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #00E5FF;
+            margin-right: 0.5rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: rgba(10, 20, 40, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            margin: 2rem auto;
+            max-width: 900px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(0, 229, 255, 0.2);
+            border-color: rgba(0, 229, 255, 0.5);
+        }
+
+        .live-preview {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 2rem;
+            min-height: 300px;
+        }
+
+        /* Component-specific preview styles */
+        .quantum-grid-preview {
+            background: radial-gradient(circle at center, #001525 0%, #000511 100%);
+        }
+
+        .terminal-preview {
+            background: #0a0a0a;
+            font-family: 'Courier New', monospace;
+        }
+
+        .audio-player-preview {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .cursor-preview {
+            background: #0a0a0a;
+            cursor: none;
+        }
+
+        .preloader-preview {
+            background: #050510;
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-gray-200 font-sans min-h-screen">
+    <!-- Background Effects -->
+    <div class="arch-grid"></div>
+    <div class="fixed inset-0 bg-radial-fade z-[-1] pointer-events-none"></div>
+
+    <!-- Gallery Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-dark-bg/90 backdrop-blur-xl border-b border-white/10">
+        <div class="px-6 py-4 flex items-center justify-between">
+            <h1 class="text-xl font-bold text-white tracking-tighter">
+                <span class="text-liquid-glass" data-text="ae.">ae.</span>Component Gallery
+            </h1>
+            <div class="flex items-center gap-4">
+                <input type="text" id="search-components" placeholder="Search components..."
+                       class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder-white/40 focus:outline-none focus:border-primary/50">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Gallery Container -->
+    <main class="pt-20 pb-8 min-h-screen">
+        <div class="container mx-auto px-6">
+            <!-- Filters -->
+            <div class="mb-8">
+                <div class="flex flex-wrap gap-2">
+                    <button class="filter-btn active" data-category="all">All Components</button>
+                    <button class="filter-btn" data-category="background">Backgrounds</button>
+                    <button class="filter-btn" data-category="ui">UI Elements</button>
+                    <button class="filter-btn" data-category="interactive">Interactive</button>
+                    <button class="filter-btn" data-category="utility">Utilities</button>
+                </div>
+            </div>
+
+            <!-- Component Grid -->
+            <div id="component-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Components will be inserted here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden text-center py-20">
+                <div class="w-24 h-24 border border-white/10 rounded-full mx-auto mb-6 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-4xl text-white/20">search_off</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">No components found</h3>
+                <p class="text-gray-400">Try adjusting your filters or search terms</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Component Detail Modal -->
+    <div id="component-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex items-center justify-between mb-6">
+                <h2 id="modal-title" class="text-2xl font-bold text-white"></h2>
+                <button onclick="closeModal()" class="text-white/70 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Live Preview</h3>
+                    <div id="live-preview" class="live-preview">
+                        <!-- Live component preview will be inserted here -->
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Configuration</h3>
+                    <div id="component-config" class="space-y-4">
+                        <!-- Configuration options will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="js/components/QuantumGrid.js"></script>
+    <script src="js/components/AudioPlayer.js"></script>
+    <script src="js/components/Terminal.js"></script>
+    <script src="js/components/CustomCursor.js"></script>
+    <script src="js/components/PreLoader.js"></script>
+    <script src="js/components/VisualizerToggle.js"></script>
+
+    <script>
+        // Component data with different variations from subdirectories
+        const COMPONENTS = [
+            {
+                id: 'quantum-grid',
+                name: 'Quantum Grid',
+                category: 'background',
+                description: 'Interactive animated particle grid with mouse tracking',
+                variations: [
+                    { name: 'Standard', config: { particleCount: 50, connectionDistance: 100, speed: 0.5 } },
+                    { name: 'Minimal', config: { particleCount: 20, connectionDistance: 150, speed: 0.3 } },
+                    { name: 'Intense', config: { particleCount: 100, connectionDistance: 75, speed: 1.0 } }
+                ],
+                source: 'Main components'
+            },
+            {
+                id: 'terminal',
+                name: 'Terminal',
+                category: 'ui',
+                description: 'Interactive command-line interface with demo commands',
+                variations: [
+                    { name: 'Matrix Theme', config: { theme: 'matrix', glowEffect: true } },
+                    { name: 'Cyberpunk', config: { theme: 'cyberpunk', glowEffect: true } },
+                    { name: 'Retro', config: { theme: 'retro', glowEffect: false } }
+                ],
+                source: 'Main components'
+            },
+            {
+                id: 'audio-player',
+                name: 'Audio Player',
+                category: 'ui',
+                description: 'Ambient sound player with real-time visualization',
+                variations: [
+                    { name: 'Default', config: { visualizer: true, controls: 'full' } },
+                    { name: 'Minimal', config: { visualizer: false, controls: 'minimal' } },
+                    { name: 'Full Featured', config: { visualizer: true, controls: 'full', playlist: true } }
+                ],
+                source: 'Main components'
+            },
+            {
+                id: 'custom-cursor',
+                name: 'Custom Cursor',
+                category: 'interactive',
+                description: 'Enhanced cursor with trailing effects and hover states',
+                variations: [
+                    { name: 'Neon Circle', config: { type: 'circle', color: '#00E5FF', trail: true } },
+                    { name: 'Minimal Dot', config: { type: 'dot', color: '#ffffff', trail: false } },
+                    { name: 'Particle Trail', config: { type: 'particles', color: '#00B0FF', trail: true } }
+                ],
+                source: 'Main components'
+            },
+            {
+                id: 'preloader',
+                name: 'PreLoader',
+                category: 'utility',
+                description: 'Futuristic loading screen with progress tracking',
+                variations: [
+                    { name: 'Minimal Spinner', config: { style: 'spinner', text: false } },
+                    { name: 'Progress Bar', config: { style: 'progressbar', text: true } },
+                    { name: 'Pulse Logo', config: { style: 'pulse', text: true, logo: true } }
+                ],
+                source: 'Main components'
+            },
+            {
+                id: 'visualizer-toggle',
+                name: 'Visualizer Toggle',
+                category: 'interactive',
+                description: 'Control panel for toggling visual effects',
+                variations: [
+                    { name: 'Floating Button', config: { position: 'floating', style: 'button' } },
+                    { name: 'Header Toggle', config: { position: 'header', style: 'switch' } },
+                    { name: 'Sidebar Control', config: { position: 'sidebar', style: 'panel' } }
+                ],
+                source: 'Main components'
+            }
+        ];
+
+        let currentFilter = 'all';
+        let currentSearch = '';
+        let activeComponent = null;
+
+        // Initialize gallery
+        function initGallery() {
+            renderComponents();
+            setupEventListeners();
+        }
+
+        function setupEventListeners() {
+            // Category filters
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentFilter = e.target.dataset.category;
+                    renderComponents();
+                });
+            });
+
+            // Search
+            document.getElementById('search-components').addEventListener('input', (e) => {
+                currentSearch = e.target.value.toLowerCase();
+                renderComponents();
+            });
+        }
+
+        function renderComponents() {
+            const grid = document.getElementById('component-grid');
+            const filtered = COMPONENTS.filter(comp => {
+                const matchesCategory = currentFilter === 'all' || comp.category === currentFilter;
+                const matchesSearch = comp.name.toLowerCase().includes(currentSearch) ||
+                                    comp.description.toLowerCase().includes(currentSearch);
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div id="empty-state" class="text-center py-20 col-span-full"><h3 class="text-xl font-bold text-white mb-2">No components found</h3></div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(comp => `
+                <div class="component-card" onclick="openComponent('${comp.id}')">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="component-category">${comp.category}</span>
+                        <span class="text-xs text-gray-400">${comp.variations.length} variations</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">${comp.name}</h3>
+                    <p class="text-gray-400 text-sm mb-3">${comp.description}</p>
+                    <div class="preview-container">
+                        ${getComponentPreview(comp)}
+                    </div>
+                    <div class="text-xs text-gray-500">Source: ${comp.source}</div>
+                </div>
+            `).join('');
+        }
+
+        function getComponentPreview(component) {
+            const previews = {
+                'quantum-grid': '<div class="quantum-grid-preview w-full h-full flex items-center justify-center text-primary"><span class="material-symbols-outlined text-4xl">grid_4x4</span></div>',
+                'terminal': '<div class="terminal-preview w-full h-full flex items-center justify-center text-green-400"><span class="material-symbols-outlined text-4xl">terminal</span></div>',
+                'audio-player': '<div class="audio-player-preview w-full h-full flex items-center justify-center text-primary"><span class="material-symbols-outlined text-4xl">graphic_eq</span></div>',
+                'custom-cursor': '<div class="cursor-preview w-full h-full flex items-center justify-center text-primary"><span class="material-symbols-outlined text-4xl">mouse</span></div>',
+                'preloader': '<div class="preloader-preview w-full h-full flex items-center justify-center text-primary"><span class="material-symbols-outlined text-4xl animate-spin">refresh</span></div>',
+                'visualizer-toggle': '<div class="w-full h-full flex items-center justify-center text-primary"><span class="material-symbols-outlined text-4xl">toggle_on</span></div>'
+            };
+            return previews[component.id] || '<div class="w-full h-full flex items-center justify-center text-gray-400"><span class="material-symbols-outlined text-4xl">extension</span></div>';
+        }
+
+        function openComponent(componentId) {
+            const component = COMPONENTS.find(c => c.id === componentId);
+            if (!component) return;
+
+            activeComponent = component;
+            document.getElementById('modal-title').textContent = component.name;
+
+            // Load live preview
+            loadLivePreview(component);
+
+            // Load configuration options
+            loadConfiguration(component);
+
+            document.getElementById('component-modal').style.display = 'block';
+        }
+
+        function loadLivePreview(component) {
+            const previewContainer = document.getElementById('live-preview');
+
+            // Clear previous instances
+            previewContainer.innerHTML = '';
+
+            switch(component.id) {
+                case 'quantum-grid':
+                    previewContainer.innerHTML = '<div id="quantum-preview" style="width: 100%; height: 300px;"></div>';
+                    const grid = new QuantumGrid('quantum-preview', component.variations[0].config);
+                    grid.init();
+                    break;
+
+                case 'terminal':
+                    previewContainer.innerHTML = '<div id="terminal-preview" style="width: 100%; height: 300px;"></div>';
+                    const terminal = new Terminal('terminal-preview', component.variations[0].config);
+                    terminal.init();
+                    break;
+
+                case 'audio-player':
+                    previewContainer.innerHTML = '<div id="audio-preview" style="width: 100%;"></div>';
+                    const audio = new AudioPlayer('audio-preview', component.variations[0].config);
+                    audio.init();
+                    break;
+
+                case 'custom-cursor':
+                    previewContainer.innerHTML = '<div id="cursor-preview" style="width: 100%; height: 300px; cursor: none; position: relative;">Move your mouse here</div>';
+                    const cursor = new CustomCursor('cursor-preview', component.variations[0].config);
+                    cursor.init();
+                    break;
+
+                case 'preloader':
+                    previewContainer.innerHTML = '<div id="preloader-preview" style="width: 100%; height: 300px;"></div>';
+                    const preloader = new PreLoader('preloader-preview', component.variations[0].config);
+                    preloader.init();
+                    break;
+
+                default:
+                    previewContainer.innerHTML = `<div class="flex items-center justify-center h-full text-gray-400">
+                        <div class="text-center">
+                            <span class="material-symbols-outlined text-6xl mb-4">extension</span>
+                            <p>Live preview coming soon</p>
+                        </div>
+                    </div>`;
+            }
+        }
+
+        function loadConfiguration(component) {
+            const configContainer = document.getElementById('component-config');
+
+            let html = `
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-white mb-2">Variation</label>
+                        <select id="variation-select" class="w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white">
+                            ${component.variations.map((v, i) =>
+                                `<option value="${i}" ${i === 0 ? 'selected' : ''}>${v.name}</option>`
+                            ).join('')}
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-white mb-2">Configuration</label>
+                        <pre class="bg-black/60 border border-white/10 rounded-lg p-3 text-xs text-green-400 overflow-x-auto">${JSON.stringify(component.variations[0].config, null, 2)}</pre>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="exportComponent('${component.id}')" class="px-4 py-2 bg-primary/10 border border-primary/30 rounded-lg text-sm text-primary hover:bg-primary/20 transition-colors">
+                            <span class="material-symbols-outlined align-middle mr-1">download</span>
+                            Export Config
+                        </button>
+                        <button onclick="useComponent('${component.id}')" class="px-4 py-2 bg-accent/10 border border-accent/30 rounded-lg text-sm text-accent hover:bg-accent/20 transition-colors">
+                            <span class="material-symbols-outlined align-middle mr-1">check</span>
+                            Use This Style
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            configContainer.innerHTML = html;
+
+            // Add variation change listener
+            document.getElementById('variation-select').addEventListener('change', (e) => {
+                const variation = component.variations[e.target.value];
+                document.querySelector('#component-config pre').textContent = JSON.stringify(variation.config, null, 2);
+                loadLivePreview({...component, variations: [variation]});
+            });
+        }
+
+        function closeModal() {
+            document.getElementById('component-modal').style.display = 'none';
+            activeComponent = null;
+        }
+
+        function exportComponent(componentId) {
+            const component = COMPONENTS.find(c => c.id === componentId);
+            const config = {
+                component: component.name,
+                id: componentId,
+                category: component.category,
+                variations: component.variations
+            };
+
+            const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${componentId}-config.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function useComponent(componentId) {
+            const component = COMPONENTS.find(c => c.id === componentId);
+            alert(`Component "${component.name}" selected! This will be applied to your pages.`);
+            closeModal();
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', initGallery);
+
+        // Close modal on background click
+        document.getElementById('component-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'component-modal') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

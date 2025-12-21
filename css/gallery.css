@@ -1,0 +1,434 @@
+/* Gallery-specific styles */
+
+/* Category Filters */
+.category-filter {
+    @apply px-4 py-2 border border-white/10 rounded-lg text-sm text-white/70
+           hover:text-white hover:border-white/40 transition-all duration-200
+           hover:bg-white/5 backdrop-blur-sm;
+}
+
+.category-filter.active {
+    @apply bg-primary/10 border-primary/30 text-primary
+           hover:bg-primary/20 hover:border-primary/50;
+}
+
+/* Component Cards */
+.component-card {
+    @apply holo-card group cursor-pointer transition-all duration-300
+           hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10;
+}
+
+.component-card.selected {
+    @apply border-primary/50 bg-primary/5;
+}
+
+.component-card-header {
+    @apply relative bg-gradient-to-br from-black/60 to-black/40 p-6
+           border-b border-white/10 overflow-hidden;
+}
+
+.component-card-body {
+    @apply p-4 space-y-3;
+}
+
+.component-category-badge {
+    @apply inline-block px-2 py-1 text-[8px] font-mono uppercase tracking-wider
+           rounded bg-black/40 text-white/60 border border-white/10;
+}
+
+.component-category-badge.background {
+    @apply text-primary/80 border-primary/20;
+}
+
+.component-category-badge.ui {
+    @apply text-secondary/80 border-secondary/20;
+}
+
+.component-category-badge.interactive {
+    @apply text-accent/80 border-accent/20;
+}
+
+.component-category-badge.utility {
+    @apply text-white/80 border-white/20;
+}
+
+/* Comparison Mode */
+.comparison-slot {
+    @apply bg-black/40 border border-dashed border-white/20 rounded-lg p-6
+           min-h-[200px] flex flex-col items-center justify-center relative;
+}
+
+.comparison-slot.filled {
+    @apply border-solid border-white/10;
+}
+
+.comparison-slot-empty-icon {
+    @apply text-6xl text-white/10 mb-4;
+}
+
+.comparison-slot-title {
+    @apply text-sm text-white/60 mb-2;
+}
+
+.comparison-slot-description {
+    @apply text-xs text-white/40 text-center;
+}
+
+.remove-from-comparison {
+    @apply absolute top-2 right-2 w-8 h-8 bg-red-500/10 border border-red-500/30
+           rounded-full flex items-center justify-center text-red-500/70
+           hover:bg-red-500/20 hover:text-red-500 transition-colors;
+    opacity: 0;
+}
+
+.comparison-slot.filled:hover .remove-from-comparison {
+    opacity: 1;
+}
+
+/* Preview Modal */
+#preview-container {
+    @apply relative overflow-hidden;
+}
+
+.component-demo-area {
+    @apply relative w-full h-full min-h-[300px] border border-white/10 rounded-lg
+           bg-gradient-to-br from-black/40 to-black/60 flex items-center justify-center;
+}
+
+.component-preview-wrapper {
+    @apply relative w-full h-full;
+}
+
+.preview-controls {
+    @apply absolute top-0 left-0 right-0 z-10 bg-black/60 backdrop-blur-sm border-b border-white/10 p-2;
+}
+
+/* Live Component Demo Styles */
+.cursor-demo-area {
+    @apply cursor-none !important;
+}
+
+.cursor-demo-area .custom-cursor {
+    @apply opacity-100;
+}
+
+.demo-button, .demo-link {
+    @apply transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50;
+}
+
+.demo-button:hover, .demo-link:hover {
+    @apply transform scale-105;
+}
+
+/* Component-specific preview styles */
+.terminal-demo {
+    @apply font-mono text-sm;
+}
+
+.quantum-grid-demo {
+    @apply overflow-hidden;
+}
+
+.preloader-demo {
+    @apply overflow-hidden;
+}
+
+.visualizer-demo {
+    @apply relative;
+}
+
+.audio-player-demo {
+    @apply flex items-center justify-center;
+}
+
+/* Component instance containment */
+.component-instance-container {
+    @apply relative w-full h-full overflow-hidden;
+}
+
+/* Error state for component loading */
+.component-error {
+    @apply flex flex-col items-center justify-center text-red-400;
+}
+
+.component-error .material-symbols-outlined {
+    @apply text-4xl mb-2;
+}
+
+/* Loading state for component preview */
+.component-loading {
+    @apply flex items-center justify-center;
+}
+
+.component-loading::before {
+    content: '';
+    @apply w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin;
+}
+
+/* Configuration Editor */
+.config-option {
+    @apply space-y-2;
+}
+
+.config-option label {
+    @apply block text-sm font-medium text-white/80;
+}
+
+.config-option input,
+.config-option select,
+.config-option textarea {
+    @apply w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg
+           text-sm text-white placeholder-white/40 focus:outline-none
+           focus:border-primary/50 transition-colors;
+}
+
+.config-option input[type="range"] {
+    @apply cursor-pointer;
+}
+
+.range-value {
+    @apply text-xs text-primary/80 font-mono ml-2;
+}
+
+.config-checkbox {
+    @apply w-4 h-4 text-primary bg-white/5 border-white/10 rounded
+           focus:ring-primary/50 focus:ring-2 transition-colors;
+}
+
+.color-picker-wrapper {
+    @apply flex items-center gap-2;
+}
+
+.color-preview {
+    @apply w-8 h-8 border border-white/20 rounded cursor-pointer;
+}
+
+.color-input {
+    @apply flex-1;
+}
+
+/* Code Preview */
+.code-preview {
+    @apply bg-black/80 border border-white/10 rounded-lg p-4
+           text-xs font-mono leading-relaxed overflow-x-auto;
+}
+
+.code-preview.json {
+    @apply text-green-400;
+}
+
+.code-preview.js {
+    @apply text-blue-400;
+}
+
+.code-preview.css {
+    @apply text-yellow-400;
+}
+
+.code-preview.html {
+    @apply text-orange-400;
+}
+
+/* Export Modal */
+.export-option {
+    @apply space-y-2;
+}
+
+.export-options-grid {
+    @apply grid grid-cols-2 gap-4 mb-6;
+}
+
+.export-preview {
+    @apply bg-black/60 border border-white/10 rounded-lg p-4
+           max-h-96 overflow-y-auto;
+}
+
+/* Loading States */
+.loading-skeleton {
+    @apply animate-pulse bg-gradient-to-r from-white/5 to-white/10
+           rounded-lg;
+}
+
+.loading-component-card {
+    @apply loading-skeleton h-64;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .component-grid {
+        @apply grid-cols-1;
+    }
+
+    .comparison-container {
+        @apply grid-cols-1;
+    }
+
+    .preview-container {
+        @apply grid-cols-1;
+    }
+
+    .export-options-grid {
+        @apply grid-cols-1;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .component-grid {
+        @apply grid-cols-2;
+    }
+
+    .comparison-container {
+        @apply grid-cols-1;
+    }
+}
+
+@media (min-width: 1025px) {
+    .component-grid {
+        @apply grid-cols-3;
+    }
+
+    .comparison-container {
+        @apply grid-cols-2;
+    }
+}
+
+@media (min-width: 1280px) {
+    .component-grid {
+        @apply grid-cols-4;
+    }
+}
+
+/* Animations */
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.component-card {
+    animation: slideInFromBottom 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    animation: fadeIn 0.2s ease-out;
+}
+
+/* Hover Effects */
+.component-card:hover .component-card-actions {
+    @apply opacity-100;
+}
+
+.component-card-actions {
+    @apply opacity-0 transition-opacity duration-200;
+}
+
+.action-button {
+    @apply w-8 h-8 bg-black/40 border border-white/10 rounded-full
+           flex items-center justify-center text-white/50
+           hover:bg-white/10 hover:text-white hover:border-white/30
+           transition-all duration-200;
+}
+
+/* Tooltip Styles */
+.tooltip {
+    @apply absolute z-50 px-2 py-1 text-xs text-white
+           bg-black/80 border border-white/10 rounded
+           pointer-events-none opacity-0 transition-opacity duration-200;
+}
+
+.tooltip.show {
+    @apply opacity-100;
+}
+
+/* Drag and Drop Styles */
+.drag-over {
+    @apply border-primary/50 bg-primary/5;
+}
+
+.drag-preview {
+    @apply fixed top-0 left-0 z-50 w-32 h-32 bg-black/80 border border-primary/30
+           rounded-lg opacity-50 pointer-events-none;
+}
+
+/* Selection Indicators */
+.selected-indicator {
+    @apply absolute top-2 right-2 w-6 h-6 bg-primary rounded-full
+           flex items-center justify-center text-white text-xs;
+}
+
+.comparison-indicator {
+    @apply absolute top-2 left-2 px-2 py-1 text-xs font-mono
+           bg-black/60 text-primary border border-primary/30 rounded;
+}
+
+/* Search Highlight */
+.search-highlight {
+    @apply bg-primary/20 text-primary px-1 rounded;
+}
+
+/* Filter Badges */
+.active-filters {
+    @apply flex flex-wrap gap-2 mb-4;
+}
+
+.filter-badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 bg-primary/10
+           border border-primary/30 rounded-full text-xs text-primary;
+}
+
+.filter-badge-remove {
+    @apply w-4 h-4 bg-primary/20 rounded-full flex items-center justify-center
+           hover:bg-primary/30 cursor-pointer transition-colors;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .component-card,
+    .modal-content,
+    .tooltip {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* Focus Styles */
+.component-card:focus-within {
+    @apply outline-none ring-2 ring-primary/50 ring-offset-2 ring-offset-dark-bg;
+}
+
+.action-button:focus {
+    @apply outline-none ring-2 ring-primary/50 ring-offset-1 ring-offset-dark-bg;
+}
+
+/* Print Styles */
+@media print {
+    .gallery-header,
+    .gallery-controls,
+    .component-card-actions,
+    .modal {
+        display: none !important;
+    }
+
+    .component-grid {
+        @apply grid-cols-2 gap-4;
+    }
+
+    .component-card {
+        @apply break-inside-avoid;
+        border: 1px solid #000;
+    }
+}

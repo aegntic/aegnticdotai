@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Working Page Comparison Canvas - AE Foundation</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@1,400;1,600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <style>
+        /* Base Styles */
+        body {
+            background: linear-gradient(135deg, #030305 0%, #1a1a2e 100%);
+        }
+
+        .canvas-container {
+            background: rgba(10, 20, 40, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+
+        /* Page Frame Styles */
+        .page-frame {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 600px;
+        }
+
+        .page-frame:hover {
+            transform: scale(1.01);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7);
+        }
+
+        .page-label {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 229, 255, 0.95);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 229, 255, 0.4);
+        }
+
+        /* Element Highlighting */
+        .element-highlight {
+            position: absolute;
+            background: rgba(255, 215, 0, 0.3);
+            border: 2px solid #ffd700;
+            border-radius: 4px;
+            pointer-events: none;
+            z-index: 1000;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .element-highlight.selected {
+            background: rgba(0, 123, 255, 0.3);
+            border-color: #007bff;
+            box-shadow: 0 0 25px rgba(0, 123, 255, 0.6);
+        }
+
+        /* Blue Tick Overlay */
+        .blue-tick-overlay {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 123, 255, 0.8);
+            cursor: pointer;
+        }
+
+        .blue-tick-overlay.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .blue-tick-overlay::after {
+            content: '✓';
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Controls Panel */
+        .controls-panel {
+            background: rgba(10, 20, 40, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(20px);
+        }
+
+        /* Element Styles for Different Pages */
+
+        /* Main Site Styles */
+        .main-site-nav {
+            background: rgba(10, 20, 40, 0.6);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 0;
+            gap: 2rem;
+        }
+
+        .nav-orb {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .nav-orb.active {
+            background: #00E5FF;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
+        }
+
+        .main-content {
+            margin-left: 80px;
+            padding: 4rem 2rem;
+        }
+
+        /* Home Page Styles */
+        .home-navbar {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border: none;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .home-nav-button {
+            background: linear-gradient(135deg, #00f0ff, #00a0aa);
+            transform: skewX(-10deg);
+            border-radius: 4px;
+            padding: 0.75rem 1.5rem;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .home-hero {
+            background: linear-gradient(135deg, #030305 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .tech-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .metallic-text {
+            background: linear-gradient(135deg, #ffffff 0%, #c0c0c0 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 4rem;
+            font-weight: 800;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            margin-bottom: 2rem;
+        }
+
+        /* Blog Main Styles */
+        .blog-navbar {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .blog-content {
+            background: #ffffff;
+            color: #1a1a2e;
+            padding: 4rem 2rem;
+            min-height: 600px;
+        }
+
+        .blog-card {
+            background: rgba(10, 10, 10, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.2);
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+
+        .timeline-indicator {
+            position: absolute;
+            left: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: #00f0ff;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+        }
+
+        /* Blog Article Styles */
+        .article-hero {
+            position: relative;
+            min-height: 400px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+            display: flex;
+            align-items: flex-end;
+            padding: 3rem 2rem;
+        }
+
+        .article-hero img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        .article-content {
+            background: #ffffff;
+            color: #1a1a2e;
+            padding: 4rem 2rem;
+        }
+
+        /* Projects Page Styles */
+        .projects-hero {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+        }
+
+        .projects-grid {
+            background: #0a0a0a;
+            padding: 4rem 2rem;
+        }
+
+        .project-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            margin-bottom: 2rem;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 25px 50px rgba(0, 240, 255, 0.3);
+        }
+
+        .liquid-crystal-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg,
+                rgba(0, 240, 255, 0.1) 0%,
+                transparent 25%,
+                rgba(0, 176, 255, 0.1) 50%,
+                transparent 75%,
+                rgba(0, 240, 255, 0.1) 100%);
+            background-size: 200% 200%;
+            animation: crystalMove 8s ease-in-out infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover .liquid-crystal-overlay {
+            opacity: 1;
+        }
+
+        @keyframes crystalMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Utility Classes */
+        .element-clickable {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .element-clickable:hover {
+            outline: 2px solid rgba(0, 229, 255, 0.5);
+            outline-offset: 2px;
+        }
+
+        .canvas-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .canvas-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .canvas-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 229, 255, 0.5);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-gray-200 font-sans">
+    <!-- Background Effects -->
+    <div class="arch-grid"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-dark-bg/90 backdrop-blur-xl border-b border-white/10">
+        <div class="px-6 py-4 flex items-center justify-between">
+            <h1 class="text-xl font-bold text-white tracking-tighter">
+                <span class="text-liquid-glass" data-text="ae.">ae.</span>Working Page Comparison Canvas
+            </h1>
+            <div class="flex items-center gap-4">
+                <button id="toggle-element-mode" class="px-4 py-2 bg-primary/10 border border-primary/30 rounded-lg text-sm text-primary hover:bg-primary/20 transition-colors">
+                    <span class="material-symbols-outlined align-middle mr-1">touch_app</span>
+                    Element Mode: <span id="mode-status">ON</span>
+                </button>
+                <button id="export-selections" class="px-4 py-2 bg-accent/10 border border-accent/30 rounded-lg text-sm text-accent hover:bg-accent/20 transition-colors">
+                    <span class="material-symbols-outlined align-middle mr-1">download</span>
+                    Export (<span id="selection-count">0</span>)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Canvas Area -->
+    <main class="pt-20 h-screen flex flex-col">
+        <div class="flex-1 flex overflow-hidden">
+            <!-- Left Panel - Controls -->
+            <div class="w-80 p-4 overflow-y-auto canvas-scrollbar">
+                <div class="controls-panel">
+                    <h2 class="text-lg font-semibold text-white mb-4">Controls</h2>
+
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-white mb-2">Instructions</h3>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• Click any element on any page to highlight it</li>
+                            <li>• Click the blue checkmark to select best version</li>
+                            <li>• Scroll horizontally to compare pages</li>
+                            <li>• Element details shown below</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-white mb-2">Pages Being Compared</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-cyan-400 rounded-full"></div>
+                                <span class="text-sm text-gray-300">Main Site (Vanilla JS)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-purple-400 rounded-full"></div>
+                                <span class="text-sm text-gray-300">Home Page (React)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                                <span class="text-sm text-gray-300">Blog Main (React)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                                <span class="text-sm text-gray-300">Blog Article (React)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                                <span class="text-sm text-gray-300">Projects Page (React)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="selected-element-info" id="selected-info" style="display: none;">
+                        <h3 class="text-sm font-medium text-white mb-2">Selected Element</h3>
+                        <div id="element-details"></div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-medium text-white mb-2">Your Selections</h3>
+                        <div class="selection-list" id="selection-list">
+                            <p class="text-gray-400 text-sm">No selections made yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Canvas -->
+            <div class="flex-1 overflow-hidden canvas-scrollbar">
+                <div class="canvas-container h-full p-4">
+                    <div class="h-full overflow-x-auto">
+                        <div class="flex gap-6 h-full min-w-max">
+                            <!-- Main Site -->
+                            <div class="page-frame" style="width: 1200px;" data-page="main">
+                                <div class="page-label">Main Site</div>
+                                <div id="main-site-content">
+                                    <!-- Main Site Navigation -->
+                                    <nav class="main-site-nav element-clickable" data-element-type="navigation">
+                                        <div style="color: white; font-size: 0.75rem; text-align: center;">AE</div>
+                                        <div class="nav-orb active"></div>
+                                        <div class="nav-orb"></div>
+                                        <div class="nav-orb"></div>
+                                        <div class="nav-orb"></div>
+                                    </nav>
+
+                                    <!-- Main Site Content -->
+                                    <div class="main-content">
+                                        <div class="text-center mb-8">
+                                            <h1 class="text-4xl font-bold text-white mb-4">AE Foundation</h1>
+                                            <p class="text-xl text-gray-300 mb-6">Independent Research Foundation</p>
+                                            <div class="bg-black/60 backdrop-blur-xl rounded-2xl p-8 border border-white/10 element-clickable" data-element-type="hero-card">
+                                                <div class="text-2xl font-semibold text-primary mb-2">Building Tomorrow</div>
+                                                <div class="text-gray-400">Synthetic Intelligence Architecture</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Home Page -->
+                            <div class="page-frame" style="width: 1200px;" data-page="home">
+                                <div class="page-label">Home Page</div>
+                                <div id="home-page-content">
+                                    <!-- Home Navigation -->
+                                    <nav class="home-navbar element-clickable" data-element-type="navigation">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-8 h-8 bg-cyan-400 rounded-full animate-pulse"></div>
+                                            <span class="text-white font-bold text-lg">AE</span>
+                                        </div>
+                                        <div class="home-nav-button">Access Lab</div>
+                                    </nav>
+
+                                    <!-- Home Hero -->
+                                    <div class="home-hero element-clickable" data-element-type="hero">
+                                        <div class="tech-grid"></div>
+                                        <div class="relative z-10 text-center">
+                                            <h1 class="metallic-text">Building Tomorrow</h1>
+                                            <p class="text-xl text-gray-300 mb-8">Advanced AI Research Foundation</p>
+                                            <div class="home-nav-button mx-auto">Get Started</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Blog Main -->
+                            <div class="page-frame" style="width: 1200px;" data-page="blog-main">
+                                <div class="page-label">Blog Main</div>
+                                <div id="blog-main-content">
+                                    <!-- Blog Navigation -->
+                                    <nav class="blog-navbar element-clickable" data-element-type="navigation">
+                                        <div class="flex items-center gap-4">
+                                            <span class="text-gray-800 font-medium">Blog</span>
+                                        </div>
+                                        <div class="flex items-center gap-4">
+                                            <div class="flex items-center gap-2 bg-purple-500/20 px-3 py-1 rounded-full">
+                                                <span class="material-symbols-outlined text-purple-600 text-sm">auto_awesome</span>
+                                                <span class="text-purple-600 text-sm">AI Avatars</span>
+                                            </div>
+                                            <div class="w-6 h-6 border border-gray-400 rounded-full flex items-center justify-center">
+                                                <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                                            </div>
+                                        </div>
+                                    </nav>
+
+                                    <!-- Blog Content -->
+                                    <div class="blog-content">
+                                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Research Stream</h2>
+
+                                        <!-- Blog Card -->
+                                        <div class="blog-card ml-8 element-clickable" data-element-type="card">
+                                            <div class="timeline-indicator"></div>
+                                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Latest Research Findings</h3>
+                                            <p class="text-gray-600 mb-4">Excerpt from the blog post content goes here with detailed analysis...</p>
+                                            <div class="flex items-center gap-4 text-sm text-gray-500">
+                                                <span>5 min read</span>
+                                                <span>•</span>
+                                                <span>Nov 14, 2024</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Blog Article -->
+                            <div class="page-frame" style="width: 1200px;" data-page="blog-article">
+                                <div class="page-label">Blog Article</div>
+                                <div id="blog-article-content">
+                                    <!-- Article Hero -->
+                                    <div class="article-hero element-clickable" data-element-type="hero">
+                                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=400&fit=crop" alt="Article hero" />
+                                        <div class="relative z-10 text-white">
+                                            <h1 class="text-4xl font-bold mb-4">Advanced Neural Networks</h1>
+                                            <div class="flex items-center gap-6 text-lg">
+                                                <div class="flex items-center gap-3">
+                                                    <div class="w-12 h-12 bg-gray-600 rounded-full"></div>
+                                                    <span>Dr. Sarah Chen</span>
+                                                </div>
+                                                <div>Nov 15, 2024</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Article Content -->
+                                    <div class="article-content element-clickable" data-element-type="content">
+                                        <div class="max-w-4xl mx-auto">
+                                            <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Projects Page -->
+                            <div class="page-frame" style="width: 1200px;" data-page="projects">
+                                <div class="page-label">Projects Page</div>
+                                <div id="projects-page-content">
+                                    <!-- Projects Hero -->
+                                    <div class="projects-hero element-clickable" data-element-type="hero">
+                                        <div class="text-center text-white">
+                                            <h1 class="text-5xl font-bold mb-4">Projects Gallery</h1>
+                                            <p class="text-xl text-gray-300">Showcasing Our Innovation</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Projects Grid -->
+                                    <div class="projects-grid">
+                                        <!-- Project Card -->
+                                        <div class="project-card element-clickable" data-element-type="card">
+                                            <div class="liquid-crystal-overlay"></div>
+                                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=300&fit=crop"
+                                                 class="w-full h-48 object-cover" />
+                                            <div class="p-6">
+                                                <h3 class="text-2xl font-bold text-white mb-3">Project Alpha</h3>
+                                                <p class="text-gray-400 mb-4">Advanced AI research project with machine learning capabilities and neural network integration...</p>
+                                                <div class="flex gap-2">
+                                                    <span class="px-3 py-1 bg-cyan-500/20 text-cyan-400 text-sm rounded-full">AI/ML</span>
+                                                    <span class="px-3 py-1 bg-purple-500/20 text-purple-400 text-sm rounded-full">Research</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        class WorkingPageComparisonCanvas {
+            constructor() {
+                this.elementMode = true;
+                this.selectedElement = null;
+                this.highlights = [];
+                this.selections = new Map();
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.setupElementDetection();
+            }
+
+            setupEventListeners() {
+                // Toggle element mode
+                document.getElementById('toggle-element-mode').addEventListener('click', () => {
+                    this.elementMode = !this.elementMode;
+                    document.getElementById('mode-status').textContent = this.elementMode ? 'ON' : 'OFF';
+
+                    if (!this.elementMode) {
+                        this.clearHighlights();
+                        document.getElementById('selected-info').style.display = 'none';
+                    }
+                });
+
+                // Export selections
+                document.getElementById('export-selections').addEventListener('click', () => {
+                    this.exportSelections();
+                });
+            }
+
+            setupElementDetection() {
+                // Add click handlers to all clickable elements
+                document.querySelectorAll('.element-clickable').forEach(element => {
+                    element.addEventListener('click', (e) => {
+                        if (!this.elementMode) return;
+
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        this.selectElement(element, e);
+                    });
+
+                    // Add hover effect
+                    element.addEventListener('mouseenter', () => {
+                        if (this.elementMode) {
+                            element.style.outline = '2px solid rgba(0, 229, 255, 0.5)';
+                            element.style.outlineOffset = '2px';
+                        }
+                    });
+
+                    element.addEventListener('mouseleave', () => {
+                        element.style.outline = '';
+                        element.style.outlineOffset = '';
+                    });
+                });
+            }
+
+            selectElement(element, event) {
+                // Remove previous highlights
+                this.clearHighlights();
+
+                // Get element info
+                const elementInfo = this.getElementInfo(element);
+                this.selectedElement = elementInfo;
+
+                // Highlight similar elements across all pages
+                this.highlightSimilarElements(elementInfo);
+
+                // Show element details
+                this.showElementDetails(elementInfo);
+
+                // Add blue tick for selection
+                this.addBlueTick(element, event);
+            }
+
+            getElementInfo(element) {
+                const rect = element.getBoundingClientRect();
+                const elementType = element.dataset.elementType || 'unknown';
+                const tagName = element.tagName.toLowerCase();
+                const className = element.className;
+                const id = element.id;
+
+                // Get text content
+                const textContent = element.textContent?.substring(0, 50) || '';
+
+                return {
+                    elementType,
+                    tagName,
+                    className,
+                    id,
+                    textContent,
+                    rect,
+                    element
+                };
+            }
+
+            highlightSimilarElements(elementInfo) {
+                // Find all elements with the same element type
+                const similarElements = document.querySelectorAll(`[data-element-type="${elementInfo.elementType}"]`);
+
+                similarElements.forEach(element => {
+                    const rect = element.getBoundingClientRect();
+                    const highlight = document.createElement('div');
+                    highlight.className = 'element-highlight';
+                    highlight.style.position = 'fixed';
+                    highlight.style.left = rect.left + 'px';
+                    highlight.style.top = rect.top + 'px';
+                    highlight.style.width = rect.width + 'px';
+                    highlight.style.height = rect.height + 'px';
+                    highlight.style.zIndex = '1000';
+
+                    document.body.appendChild(highlight);
+                    this.highlights.push(highlight);
+                });
+            }
+
+            clearHighlights() {
+                this.highlights.forEach(highlight => {
+                    highlight.remove();
+                });
+                this.highlights = [];
+
+                // Remove blue ticks
+                document.querySelectorAll('.blue-tick-overlay').forEach(tick => {
+                    tick.remove();
+                });
+            }
+
+            addBlueTick(element, event) {
+                const rect = element.getBoundingClientRect();
+                const tick = document.createElement('div');
+                tick.className = 'blue-tick-overlay';
+                tick.style.position = 'fixed';
+                tick.style.left = (rect.right - 20) + 'px';
+                tick.style.top = (rect.top - 20) + 'px';
+                tick.style.zIndex = '2000';
+
+                tick.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.selectBestVersion(element);
+                });
+
+                document.body.appendChild(tick);
+
+                // Animate in
+                setTimeout(() => tick.classList.add('show'), 100);
+            }
+
+            selectBestVersion(element) {
+                const elementInfo = this.getElementInfo(element);
+                const pageFrame = element.closest('.page-frame');
+                const pageName = pageFrame.dataset.page;
+
+                this.selections.set(elementInfo.elementType, {
+                    page: pageName,
+                    element: elementInfo
+                });
+
+                this.updateSelectionList();
+                this.updateSelectionCount();
+
+                // Visual feedback
+                const tick = document.querySelector('.blue-tick-overlay.show');
+                if (tick) {
+                    tick.style.background = '#007bff';
+                    tick.style.boxShadow = '0 0 40px rgba(0, 123, 255, 1)';
+                }
+
+                // Show confirmation
+                this.showConfirmation(`Selected ${pageName} version as best!`);
+            }
+
+            showElementDetails(elementInfo) {
+                const detailsContainer = document.getElementById('element-details');
+                const infoContainer = document.getElementById('selected-info');
+
+                let details = `
+                    <div class="space-y-2">
+                        <div>
+                            <span class="text-xs text-gray-400">Element Type:</span>
+                            <span class="element-tag">${elementInfo.elementType}</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-gray-400">Tag:</span>
+                            <span class="element-tag">${elementInfo.tagName}</span>
+                        </div>
+                `;
+
+                if (elementInfo.id) {
+                    details += `
+                        <div>
+                            <span class="text-xs text-gray-400">ID:</span>
+                            <span class="element-tag">#${elementInfo.id}</span>
+                        </div>
+                    `;
+                }
+
+                if (elementInfo.className) {
+                    details += `
+                        <div>
+                            <span class="text-xs text-gray-400">Classes:</span>
+                            <div class="mt-1">
+                                ${elementInfo.className.split(' ').map(cls =>
+                                    `<span class="element-tag">.${cls}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                if (elementInfo.textContent) {
+                    details += `
+                        <div>
+                            <span class="text-xs text-gray-400">Text:</span>
+                            <p class="text-white text-sm mt-1">${elementInfo.textContent}</p>
+                        </div>
+                    `;
+                }
+
+                details += '</div>';
+
+                detailsContainer.innerHTML = details;
+                infoContainer.style.display = 'block';
+            }
+
+            updateSelectionList() {
+                const listContainer = document.getElementById('selection-list');
+
+                if (this.selections.size === 0) {
+                    listContainer.innerHTML = '<p class="text-gray-400 text-sm">No selections made yet</p>';
+                    return;
+                }
+
+                let listHTML = '';
+                this.selections.forEach((selection, elementType) => {
+                    const pageNames = {
+                        'main': 'Main Site',
+                        'home': 'Home Page',
+                        'blog-main': 'Blog Main',
+                        'blog-article': 'Blog Article',
+                        'projects': 'Projects Page'
+                    };
+
+                    listHTML += `
+                        <div class="selection-item">
+                            <div class="flex justify-between items-start">
+                                <div class="flex-1">
+                                    <div class="text-white font-medium text-sm capitalize">${elementType}</div>
+                                    <div class="text-primary text-xs mt-1">Best version: ${pageNames[selection.page]}</div>
+                                </div>
+                                <button onclick="canvas.removeSelection('${elementType}')" class="text-red-400 hover:text-red-300">
+                                    <span class="material-symbols-outlined text-sm">close</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                listContainer.innerHTML = listHTML;
+            }
+
+            removeSelection(elementType) {
+                this.selections.delete(elementType);
+                this.updateSelectionList();
+                this.updateSelectionCount();
+            }
+
+            updateSelectionCount() {
+                document.getElementById('selection-count').textContent = this.selections.size;
+            }
+
+            showConfirmation(message) {
+                // Create a temporary notification
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-24 right-4 bg-green-500/90 text-white px-4 py-2 rounded-lg z-50';
+                notification.textContent = message;
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+
+            exportSelections() {
+                if (this.selections.size === 0) {
+                    alert('No selections to export');
+                    return;
+                }
+
+                const pageNames = {
+                    'main': 'Main Site',
+                    'home': 'Home Page',
+                    'blog-main': 'Blog Main',
+                    'blog-article': 'Blog Article',
+                    'projects': 'Projects Page'
+                };
+
+                const exportData = {
+                    timestamp: new Date().toISOString(),
+                    selections: Array.from(this.selections.entries()).map(([elementType, selection]) => ({
+                        elementType,
+                        element: {
+                            tagName: selection.element.tagName,
+                            className: selection.element.className,
+                            id: selection.element.id,
+                            textContent: selection.element.textContent
+                        },
+                        bestVersion: {
+                            page: selection.page,
+                            pageName: pageNames[selection.page],
+                            reason: 'User selected as preferred version'
+                        }
+                    }))
+                };
+
+                const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `page-selections-${Date.now()}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+        }
+
+        // Initialize the canvas
+        let canvas;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            canvas = new WorkingPageComparisonCanvas();
+        });
+    </script>
+</body>
+</html>

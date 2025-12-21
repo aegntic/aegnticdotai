@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Component Gallery - AE Foundation</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <!-- External Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body class="bg-dark-bg text-gray-200 font-sans min-h-screen selection:bg-primary selection:text-black overflow-x-hidden">
+    <!-- Background Effects -->
+    <div class="arch-grid"></div>
+    <div class="fixed inset-0 bg-radial-fade z-[-1] pointer-events-none"></div>
+
+    <!-- Gallery Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-dark-bg/90 backdrop-blur-xl border-b border-white/10">
+        <div class="px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <button id="menu-toggle" class="text-white border border-white/10 p-2 lg:hidden">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <h1 class="text-xl font-bold text-white tracking-tighter">
+                    <span class="text-liquid-glass" data-text="ae.">ae.</span>Component Gallery
+                </h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="view-toggle" class="px-4 py-2 border border-white/20 rounded-lg text-sm text-white/70 hover:text-white hover:border-primary/50 transition-colors">
+                    <span class="material-symbols-outlined align-middle mr-2">grid_view</span>
+                    Grid View
+                </button>
+                <button id="compare-toggle" class="px-4 py-2 border border-white/20 rounded-lg text-sm text-white/70 hover:text-white hover:border-primary/50 transition-colors">
+                    <span class="material-symbols-outlined align-middle mr-2">compare</span>
+                    Compare Mode
+                </button>
+                <button id="export-config" class="px-4 py-2 bg-primary/10 border border-primary/30 rounded-lg text-sm text-primary hover:bg-primary/20 transition-colors">
+                    <span class="material-symbols-outlined align-middle mr-2">download</span>
+                    Export Config
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Gallery Container -->
+    <main class="pt-20 pb-8 min-h-screen">
+        <div class="container mx-auto px-6">
+            <!-- Filters and Controls -->
+            <section class="mb-8 flex flex-wrap gap-4 items-center justify-between">
+                <div class="flex flex-wrap gap-2">
+                    <button class="category-filter active" data-category="all">All Components</button>
+                    <button class="category-filter" data-category="background">Backgrounds</button>
+                    <button class="category-filter" data-category="ui">UI Elements</button>
+                    <button class="category-filter" data-category="interactive">Interactive</button>
+                    <button class="category-filter" data-category="utility">Utilities</button>
+                </div>
+                <div class="flex items-center gap-4">
+                    <input type="text" id="search-components" placeholder="Search components..."
+                           class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white placeholder-white/40 focus:outline-none focus:border-primary/50">
+                    <select id="sort-components" class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white focus:outline-none focus:border-primary/50">
+                        <option value="name">Sort by Name</option>
+                        <option value="category">Sort by Category</option>
+                        <option value="recent">Recently Added</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Component Comparison Mode (Hidden by default) -->
+            <section id="comparison-mode" class="hidden mb-8">
+                <div class="holo-card p-6 bg-black/40">
+                    <div class="corner-tl"></div>
+                    <div class="corner-tr"></div>
+                    <div class="corner-bl"></div>
+                    <div class="corner-br"></div>
+
+                    <h2 class="text-xl font-bold text-white mb-4">Component Comparison</h2>
+                    <div id="comparison-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Comparison slots will be dynamically inserted here -->
+                    </div>
+                    <div class="mt-6 flex gap-4">
+                        <button id="clear-comparison" class="px-4 py-2 border border-white/20 rounded-lg text-sm text-white/70 hover:text-white hover:border-white/40 transition-colors">
+                            Clear Selection
+                        </button>
+                        <button id="generate-comparison" class="px-4 py-2 bg-primary/10 border border-primary/30 rounded-lg text-sm text-primary hover:bg-primary/20 transition-colors">
+                            Generate Report
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Component Grid -->
+            <section id="component-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Component cards will be dynamically inserted here -->
+            </section>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden text-center py-20">
+                <div class="w-24 h-24 border border-white/10 rounded-full mx-auto mb-6 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-4xl text-white/20">search_off</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">No components found</h3>
+                <p class="text-gray-400">Try adjusting your filters or search terms</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Component Preview Modal -->
+    <div id="preview-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closePreviewModal()"></div>
+        <div class="relative h-full overflow-y-auto">
+            <div class="container mx-auto px-6 py-20">
+                <div class="holo-card p-8 bg-black/80 max-w-6xl mx-auto">
+                    <div class="corner-tl"></div>
+                    <div class="corner-tr"></div>
+                    <div class="corner-bl"></div>
+                    <div class="corner-br"></div>
+
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 id="preview-title" class="text-2xl font-bold text-white"></h2>
+                        <div class="flex gap-2">
+                            <button id="compare-component" class="px-4 py-2 border border-white/20 rounded-lg text-sm text-white/70 hover:text-white hover:border-white/40 transition-colors">
+                                <span class="material-symbols-outlined align-middle mr-1">compare</span>
+                                Compare
+                            </button>
+                            <button id="select-component" class="px-4 py-2 bg-primary/10 border border-primary/30 rounded-lg text-sm text-primary hover:bg-primary/20 transition-colors">
+                                <span class="material-symbols-outlined align-middle mr-1">check</span>
+                                Select
+                            </button>
+                            <button onclick="closePreviewModal()" class="px-4 py-2 border border-white/20 rounded-lg text-sm text-white/70 hover:text-white hover:border-white/40 transition-colors">
+                                <span class="material-symbols-outlined align-middle mr-1">close</span>
+                                Close
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-4">Preview</h3>
+                            <div id="preview-container" class="bg-black/60 border border-white/10 rounded-lg p-6 min-h-[300px]">
+                                <!-- Component preview will be inserted here -->
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-4">Configuration</h3>
+                            <div id="config-editor" class="space-y-4">
+                                <!-- Configuration options will be inserted here -->
+                            </div>
+                            <div class="mt-6">
+                                <h4 class="text-sm font-semibold text-white mb-2">Code Preview</h4>
+                                <pre id="code-preview" class="bg-black/60 border border-white/10 rounded-lg p-4 text-xs text-green-400 overflow-x-auto"></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Configuration Modal -->
+    <div id="export-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeExportModal()"></div>
+        <div class="relative h-full overflow-y-auto">
+            <div class="container mx-auto px-6 py-20">
+                <div class="holo-card p-8 bg-black/80 max-w-4xl mx-auto">
+                    <div class="corner-tl"></div>
+                    <div class="corner-tr"></div>
+                    <div class="corner-bl"></div>
+                    <div class="corner-br"></div>
+
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-white">Export Configuration</h2>
+                        <button onclick="closeExportModal()" class="text-white/70 hover:text-white transition-colors">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">Export Format</label>
+                            <select id="export-format" class="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white focus:outline-none focus:border-primary/50">
+                                <option value="json">JSON Configuration</option>
+                                <option value="js">JavaScript Module</option>
+                                <option value="css">CSS Custom Properties</option>
+                                <option value="html">HTML Template</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-white mb-2">Configuration Output</label>
+                            <pre id="config-output" class="bg-black/60 border border-white/10 rounded-lg p-4 text-xs text-green-400 overflow-x-auto max-h-96"></pre>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <button id="copy-config" class="px-4 py-2 bg-primary/10 border border-primary/30 rounded-lg text-sm text-primary hover:bg-primary/20 transition-colors">
+                                <span class="material-symbols-outlined align-middle mr-1">content_copy</span>
+                                Copy to Clipboard
+                            </button>
+                            <button id="download-config" class="px-4 py-2 bg-accent/10 border border-accent/30 rounded-lg text-sm text-accent hover:bg-accent/20 transition-colors">
+                                <span class="material-symbols-outlined align-middle mr-1">download</span>
+                                Download File
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- External Scripts -->
+    <script src="js/components/QuantumGrid.js"></script>
+    <script src="js/components/Terminal.js"></script>
+    <script src="js/components/CustomCursor.js"></script>
+    <script src="js/components/PreLoader.js"></script>
+    <script src="js/components/VisualizerToggle.js"></script>
+
+    <!-- Gallery Script -->
+    <script type="module" src="js/gallery/ComponentData.js"></script>
+    <script type="module" src="js/gallery/ConfigGenerator.js"></script>
+    <script type="module" src="js/gallery/ComponentGallery.js"></script>
+</body>
+</html>

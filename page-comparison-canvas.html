@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Page Comparison Canvas - AE Foundation</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <!-- External Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+
+    <style>
+        .canvas-container {
+            background: rgba(10, 20, 40, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+
+        .page-frame {
+            position: relative;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .page-frame:hover {
+            transform: scale(1.02);
+        }
+
+        .page-frame.iframe-container {
+            height: 600px;
+            position: relative;
+        }
+
+        .page-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: white;
+        }
+
+        .page-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 229, 255, 0.9);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+
+        .element-highlight {
+            position: absolute;
+            background: rgba(255, 215, 0, 0.3);
+            border: 2px solid #ffd700;
+            border-radius: 4px;
+            pointer-events: none;
+            z-index: 1000;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .element-highlight.selected {
+            background: rgba(0, 123, 255, 0.3);
+            border-color: #007bff;
+            box-shadow: 0 0 25px rgba(0, 123, 255, 0.6);
+        }
+
+        .blue-tick-overlay {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(0, 123, 255, 0.8);
+            cursor: pointer;
+        }
+
+        .blue-tick-overlay.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .blue-tick-overlay::after {
+            content: '✓';
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .controls-panel {
+            background: rgba(10, 20, 40, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .selected-element-info {
+            background: rgba(0, 123, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .element-tag {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.5);
+            border-radius: 4px;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            color: #ffd700;
+            margin: 0.25rem;
+            font-family: monospace;
+        }
+
+        .selection-list {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .selection-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .selection-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 123, 255, 0.5);
+        }
+
+        .canvas-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        .canvas-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .canvas-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 229, 255, 0.5);
+            border-radius: 4px;
+        }
+
+        .canvas-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 229, 255, 0.7);
+        }
+
+        .zoom-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 3000;
+        }
+
+        .zoom-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(10, 20, 40, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .zoom-btn:hover {
+            background: rgba(0, 229, 255, 0.3);
+            border-color: rgba(0, 229, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-gray-200 font-sans min-h-screen overflow-hidden">
+    <!-- Background Effects -->
+    <div class="arch-grid"></div>
+    <div class="fixed inset-0 bg-radial-fade z-[-1] pointer-events-none"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-dark-bg/90 backdrop-blur-xl border-b border-white/10">
+        <div class="px-6 py-4 flex items-center justify-between">
+            <h1 class="text-xl font-bold text-white tracking-tighter">
+                <span class="text-liquid-glass" data-text="ae.">ae.</span>Page Comparison Canvas
+            </h1>
+            <div class="flex items-center gap-4">
+                <button id="toggle-element-mode" class="px-4 py-2 bg-primary/10 border border-primary/30 rounded-lg text-sm text-primary hover:bg-primary/20 transition-colors">
+                    <span class="material-symbols-outlined align-middle mr-1">touch_app</span>
+                    Element Mode: <span id="mode-status">ON</span>
+                </button>
+                <button id="export-selections" class="px-4 py-2 bg-accent/10 border border-accent/30 rounded-lg text-sm text-accent hover:bg-accent/20 transition-colors">
+                    <span class="material-symbols-outlined align-middle mr-1">download</span>
+                    Export (<span id="selection-count">0</span>)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Canvas Area -->
+    <main class="pt-20 h-screen flex flex-col">
+        <div class="flex-1 flex overflow-hidden">
+            <!-- Left Panel - Controls -->
+            <div class="w-80 p-4 overflow-y-auto canvas-scrollbar">
+                <div class="controls-panel">
+                    <h2 class="text-lg font-semibold text-white mb-4">Controls</h2>
+
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-white mb-2">Instructions</h3>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• Click any element on any page to highlight it across all pages</li>
+                            <li>• Click the blue checkmark to select the best version</li>
+                            <li>• Scroll horizontally to see all pages</li>
+                            <li>• Use zoom controls to adjust view</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-sm font-medium text-white mb-2">Pages Being Compared</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-cyan-400 rounded-full"></div>
+                                <span class="text-sm text-gray-300">Main Site</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-purple-400 rounded-full"></div>
+                                <span class="text-sm text-gray-300">Home Page</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                                <span class="text-sm text-gray-300">Blog Main</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                                <span class="text-sm text-gray-300">Blog Article</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                                <span class="text-sm text-gray-300">Projects Page</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="selected-element-info" id="selected-info" style="display: none;">
+                        <h3 class="text-sm font-medium text-white mb-2">Selected Element</h3>
+                        <div id="element-details"></div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-medium text-white mb-2">Your Selections</h3>
+                        <div class="selection-list" id="selection-list">
+                            <p class="text-gray-400 text-sm">No selections made yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Canvas -->
+            <div class="flex-1 overflow-hidden canvas-scrollbar">
+                <div class="canvas-container h-full p-4">
+                    <div class="h-full overflow-x-auto">
+                        <div class="flex gap-6 h-full min-w-max" style="transform: scale(0.8); transform-origin: top left;">
+                            <!-- Main Site -->
+                            <div class="page-frame iframe-container" style="width: 1200px;">
+                                <div class="page-label">Main Site</div>
+                                <iframe src="index.html" class="page-iframe" data-page="main"></iframe>
+                            </div>
+
+                            <!-- Home Page -->
+                            <div class="page-frame iframe-container" style="width: 1200px;">
+                                <div class="page-label">Home Page</div>
+                                <iframe src="aegnticdotai-home/index.html" class="page-iframe" data-page="home"></iframe>
+                            </div>
+
+                            <!-- Blog Main -->
+                            <div class="page-frame iframe-container" style="width: 1200px;">
+                                <div class="page-label">Blog Main</div>
+                                <iframe src="aegnticdotai-blog-main/index.html" class="page-iframe" data-page="blog-main"></iframe>
+                            </div>
+
+                            <!-- Blog Article -->
+                            <div class="page-frame iframe-container" style="width: 1200px;">
+                                <div class="page-label">Blog Article</div>
+                                <iframe src="aegnticdotai-blog-article/index.html" class="page-iframe" data-page="blog-article"></iframe>
+                            </div>
+
+                            <!-- Projects Page -->
+                            <div class="page-frame iframe-container" style="width: 1200px;">
+                                <div class="page-label">Projects Page</div>
+                                <iframe src="aegnticdotai-projects-page/index.html" class="page-iframe" data-page="projects"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Zoom Controls -->
+    <div class="zoom-controls">
+        <button class="zoom-btn" onclick="zoomIn()">
+            <span class="material-symbols-outlined">add</span>
+        </button>
+        <button class="zoom-btn" onclick="zoomOut()">
+            <span class="material-symbols-outlined">remove</span>
+        </button>
+        <button class="zoom-btn" onclick="resetZoom()">
+            <span class="material-symbols-outlined">fit_screen</span>
+        </button>
+    </div>
+
+    <script>
+        class PageComparisonCanvas {
+            constructor() {
+                this.currentZoom = 0.8;
+                this.elementMode = true;
+                this.selectedElement = null;
+                this.highlights = new Map();
+                this.selections = new Map();
+                this.iframes = [];
+                this.init();
+            }
+
+            init() {
+                this.setupIframes();
+                this.setupEventListeners();
+                this.setupElementDetection();
+            }
+
+            setupIframes() {
+                const iframeElements = document.querySelectorAll('.page-iframe');
+                this.iframes = Array.from(iframeElements);
+
+                // Wait for iframes to load
+                this.iframes.forEach(iframe => {
+                    iframe.addEventListener('load', () => {
+                        this.setupIframeElementDetection(iframe);
+                    });
+                });
+            }
+
+            setupIframeElementDetection(iframe) {
+                try {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+                    // Add click handler to all elements in iframe
+                    iframeDoc.addEventListener('click', (e) => {
+                        if (!this.elementMode) return;
+
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const element = e.target;
+                        this.selectElement(element, iframe);
+                    });
+
+                    // Add hover effect
+                    iframeDoc.addEventListener('mouseover', (e) => {
+                        if (!this.elementMode) return;
+
+                        const element = e.target;
+                        if (element.tagName !== 'HTML' && element.tagName !== 'BODY') {
+                            element.style.outline = '2px solid rgba(0, 229, 255, 0.5)';
+                        }
+                    });
+
+                    iframeDoc.addEventListener('mouseout', (e) => {
+                        const element = e.target;
+                        element.style.outline = '';
+                    });
+
+                } catch (error) {
+                    console.warn('Could not access iframe content:', error);
+                }
+            }
+
+            selectElement(element, iframe) {
+                // Remove previous highlights
+                this.clearHighlights();
+
+                // Get element info
+                const elementInfo = this.getElementInfo(element);
+                this.selectedElement = elementInfo;
+
+                // Highlight element across all iframes
+                this.highlightElementAcrossAllPages(elementInfo.selector);
+
+                // Show element details
+                this.showElementDetails(elementInfo);
+
+                // Add blue tick for selection
+                this.addBlueTick(element, iframe);
+            }
+
+            getElementInfo(element) {
+                const rect = element.getBoundingClientRect();
+                const tagName = element.tagName.toLowerCase();
+                const className = element.className;
+                const id = element.id;
+
+                // Create a selector
+                let selector = tagName;
+                if (id) selector += `#${id}`;
+                if (className) selector += `.${className.split(' ').join('.')}`;
+
+                return {
+                    selector,
+                    tagName,
+                    className,
+                    id,
+                    text: element.textContent?.substring(0, 50) || '',
+                    rect,
+                    element
+                };
+            }
+
+            highlightElementAcrossAllPages(selector) {
+                this.iframes.forEach(iframe => {
+                    try {
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        const elements = iframeDoc.querySelectorAll(selector);
+
+                        elements.forEach(element => {
+                            const rect = element.getBoundingClientRect();
+                            const highlight = document.createElement('div');
+                            highlight.className = 'element-highlight';
+                            highlight.style.position = 'absolute';
+                            highlight.style.left = (rect.left + iframe.offsetLeft) + 'px';
+                            highlight.style.top = (rect.top + iframe.offsetTop + 60) + 'px'; // Account for header
+                            highlight.style.width = rect.width + 'px';
+                            highlight.style.height = rect.height + 'px';
+
+                            document.querySelector('.canvas-container').appendChild(highlight);
+                            this.highlights.set(iframe, highlight);
+                        });
+                    } catch (error) {
+                        console.warn('Could not highlight in iframe:', error);
+                    }
+                });
+            }
+
+            clearHighlights() {
+                this.highlights.forEach(highlight => {
+                    highlight.remove();
+                });
+                this.highlights.clear();
+
+                // Remove blue ticks
+                document.querySelectorAll('.blue-tick-overlay').forEach(tick => {
+                    tick.remove();
+                });
+            }
+
+            addBlueTick(element, iframe) {
+                const rect = element.getBoundingClientRect();
+                const tick = document.createElement('div');
+                tick.className = 'blue-tick-overlay';
+                tick.style.left = (rect.right + iframe.offsetLeft - 20) + 'px';
+                tick.style.top = (rect.top + iframe.offsetTop + 60) + 'px';
+
+                tick.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.selectBestVersion(element, iframe);
+                });
+
+                document.querySelector('.canvas-container').appendChild(tick);
+
+                // Animate in
+                setTimeout(() => tick.classList.add('show'), 100);
+            }
+
+            selectBestVersion(element, iframe) {
+                const pageName = iframe.dataset.page;
+                const elementInfo = this.getElementInfo(element);
+
+                this.selections.set(elementInfo.selector, {
+                    page: pageName,
+                    element: elementInfo
+                });
+
+                this.updateSelectionList();
+                this.updateSelectionCount();
+
+                // Visual feedback
+                const tick = iframe.nextElementSibling?.nextElementSibling;
+                if (tick && tick.classList.contains('blue-tick-overlay')) {
+                    tick.style.background = '#007bff';
+                    tick.style.boxShadow = '0 0 40px rgba(0, 123, 255, 1)';
+                }
+            }
+
+            showElementDetails(elementInfo) {
+                const detailsContainer = document.getElementById('element-details');
+                const infoContainer = document.getElementById('selected-info');
+
+                let details = `
+                    <div class="space-y-2">
+                        <div>
+                            <span class="text-xs text-gray-400">Tag:</span>
+                            <span class="element-tag">${elementInfo.tagName}</span>
+                        </div>
+                `;
+
+                if (elementInfo.id) {
+                    details += `
+                        <div>
+                            <span class="text-xs text-gray-400">ID:</span>
+                            <span class="element-tag">#${elementInfo.id}</span>
+                        </div>
+                    `;
+                }
+
+                if (elementInfo.className) {
+                    details += `
+                        <div>
+                            <span class="text-xs text-gray-400">Classes:</span>
+                            <div class="mt-1">
+                                ${elementInfo.className.split(' ').map(cls =>
+                                    `<span class="element-tag">.${cls}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                details += `
+                    <div>
+                        <span class="text-xs text-gray-400">Text:</span>
+                        <p class="text-white text-sm mt-1">${elementInfo.text || 'No text content'}</p>
+                    </div>
+                </div>
+                `;
+
+                detailsContainer.innerHTML = details;
+                infoContainer.style.display = 'block';
+            }
+
+            updateSelectionList() {
+                const listContainer = document.getElementById('selection-list');
+
+                if (this.selections.size === 0) {
+                    listContainer.innerHTML = '<p class="text-gray-400 text-sm">No selections made yet</p>';
+                    return;
+                }
+
+                let listHTML = '';
+                this.selections.forEach((selection, selector) => {
+                    listHTML += `
+                        <div class="selection-item">
+                            <div class="flex justify-between items-start">
+                                <div class="flex-1">
+                                    <div class="text-white font-medium text-sm">${selection.element.tagName}</div>
+                                    <div class="text-gray-400 text-xs">${selector}</div>
+                                    <div class="text-primary text-xs mt-1">Best version: ${selection.page}</div>
+                                </div>
+                                <button onclick="canvas.removeSelection('${selector}')" class="text-red-400 hover:text-red-300">
+                                    <span class="material-symbols-outlined text-sm">close</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                listContainer.innerHTML = listHTML;
+            }
+
+            removeSelection(selector) {
+                this.selections.delete(selector);
+                this.updateSelectionList();
+                this.updateSelectionCount();
+            }
+
+            updateSelectionCount() {
+                document.getElementById('selection-count').textContent = this.selections.size;
+            }
+
+            setupEventListeners() {
+                // Toggle element mode
+                document.getElementById('toggle-element-mode').addEventListener('click', () => {
+                    this.elementMode = !this.elementMode;
+                    document.getElementById('mode-status').textContent = this.elementMode ? 'ON' : 'OFF';
+
+                    if (!this.elementMode) {
+                        this.clearHighlights();
+                        document.getElementById('selected-info').style.display = 'none';
+                    }
+                });
+
+                // Export selections
+                document.getElementById('export-selections').addEventListener('click', () => {
+                    this.exportSelections();
+                });
+            }
+
+            setupElementDetection() {
+                // Additional setup if needed
+            }
+
+            exportSelections() {
+                if (this.selections.size === 0) {
+                    alert('No selections to export');
+                    return;
+                }
+
+                const exportData = {
+                    timestamp: new Date().toISOString(),
+                    selections: Array.from(this.selections.entries()).map(([selector, selection]) => ({
+                        selector,
+                        element: {
+                            tagName: selection.element.tagName,
+                            className: selection.element.className,
+                            id: selection.element.id,
+                            text: selection.element.text
+                        },
+                        bestVersion: {
+                            page: selection.page,
+                            reason: 'User selected as preferred version'
+                        }
+                    }))
+                };
+
+                const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `page-selections-${Date.now()}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+        }
+
+        // Zoom controls
+        let currentZoom = 0.8;
+
+        function zoomIn() {
+            currentZoom = Math.min(currentZoom + 0.1, 1.5);
+            applyZoom();
+        }
+
+        function zoomOut() {
+            currentZoom = Math.max(currentZoom - 0.1, 0.3);
+            applyZoom();
+        }
+
+        function resetZoom() {
+            currentZoom = 0.8;
+            applyZoom();
+        }
+
+        function applyZoom() {
+            const container = document.querySelector('.min-w-max');
+            container.style.transform = `scale(${currentZoom})`;
+            container.style.transformOrigin = 'top left';
+        }
+
+        // Initialize the canvas
+        let canvas;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            canvas = new PageComparisonCanvas();
+        });
+    </script>
+</body>
+</html>

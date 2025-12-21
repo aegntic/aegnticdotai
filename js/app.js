@@ -9,6 +9,11 @@ class AegnticSite {
         this.isMobileMenuOpen = false;
         this.teamMembers = [];
         this.currentTeamIndex = 0;
+        this.quantumGrid = null;
+        this.audioPlayer = null;
+        this.terminal = null;
+        this.visualizerToggle = null;
+        this.pageManager = null;
 
         this.init();
     }
@@ -21,6 +26,8 @@ class AegnticSite {
         this.setupInteractions();
         this.setupAnimations();
         this.setupAccessibility();
+        this.initializeVisualComponents();
+        this.initializePageManager();
     }
 
     /**
@@ -183,6 +190,91 @@ class AegnticSite {
     }
 
     /**
+     * Initialize page manager
+     */
+    initializePageManager() {
+        if (typeof PageManager !== 'undefined') {
+            this.pageManager = new PageManager(this);
+        }
+    }
+
+    /**
+     * Reinitialize components after page change
+     */
+    reinitializeComponents() {
+        // Re-setup team carousel if present
+        this.setupTeamCarousel();
+
+        // Re-setup animations for new content
+        this.setupAnimations();
+
+        // Re-setup hover effects
+        this.setupHoverEffects();
+
+        // Initialize component gallery if on components page
+        if (this.currentPage === 'components') {
+            this.initializeComponentGallery();
+        }
+    }
+
+    /**
+     * Initialize component gallery
+     */
+    initializeComponentGallery() {
+        // Only initialize if not already initialized
+        if (!window.componentGallery) {
+            // Small delay to ensure DOM is ready
+            setTimeout(() => {
+                if (typeof ComponentGallery !== 'undefined') {
+                    window.componentGallery = new ComponentGallery();
+                }
+            }, 100);
+        }
+    }
+
+    /**
+     * Initialize visual components
+     */
+    initializeVisualComponents() {
+        // Initialize Quantum Grid
+        if (typeof QuantumGrid !== 'undefined') {
+            this.quantumGrid = new QuantumGrid(document.body);
+            window.quantumGrid = this.quantumGrid;
+        }
+
+        // Initialize Audio Player
+        if (typeof AudioPlayer !== 'undefined') {
+            this.audioPlayer = new AudioPlayer(document.body);
+            window.audioPlayer = this.audioPlayer;
+        }
+
+        // Initialize Terminal
+        if (typeof Terminal !== 'undefined') {
+            this.terminal = new Terminal(document.body);
+            window.terminal = this.terminal;
+        }
+
+        // Initialize Visualizer Toggle
+        if (typeof VisualizerToggle !== 'undefined') {
+            this.visualizerToggle = new VisualizerToggle(document.body);
+            window.visualizerToggle = this.visualizerToggle;
+        }
+
+        // Listen for visualizer feature changes
+        window.addEventListener('visualizerFeatureChange', (e) => {
+            this.handleVisualizerChange(e.detail.feature, e.detail.enabled);
+        });
+    }
+
+    /**
+     * Handle visualizer feature changes
+     */
+    handleVisualizerChange(feature, enabled) {
+        console.log(`Feature ${feature} is now ${enabled ? 'enabled' : 'disabled'}`);
+        this.announce(`Visual effect ${feature} ${enabled ? 'enabled' : 'disabled'}`);
+    }
+
+    /**
      * Setup accessibility features
      */
     setupAccessibility() {
@@ -223,8 +315,13 @@ class AegnticSite {
         // Update active states
         this.updateNavigationStates(page);
 
-        // Add page transition
-        this.transitionToPage(page);
+        // Use PageManager if available
+        if (this.pageManager) {
+            this.pageManager.loadPageContent(page);
+        } else {
+            // Fallback transition
+            this.transitionToPage(page);
+        }
 
         this.currentPage = page;
 

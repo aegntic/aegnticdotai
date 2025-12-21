@@ -1,0 +1,264 @@
+{
+  "exploration_metadata": {
+    "agent": "scout-component-cataloger",
+    "status": "completed",
+    "mission": "component-inventory-catalog",
+    "target_areas": ["aegnticdotai-home", "aegnticdotai-blog-main", "aegnticdotai-blog-article", "aegnticdotai-projects-page"],
+    "exploration_date": "2025-12-21",
+    "total_components_found": 47,
+    "unique_patterns_identified": 28
+  },
+  "aegnticdotai_home": {
+    "architecture": "React + TypeScript + Tailwind CSS",
+    "theme": "Futuristic AI Foundation Landing",
+    "color_scheme": {
+      "primary": "#00f0ff (Neon Cyan)",
+      "background_dark": "#030305 (Deepest black/blue)",
+      "surface_dark": "#0a0a0c"
+    },
+    "components": {
+      "App": {
+        "file": "App.tsx",
+        "type": "Main Layout Container",
+        "features": ["Background noise overlay", "Ambient glows", "Responsive layout"],
+        "styling": ["flex flex-col", "relative z-10", "bg-background-dark"]
+      },
+      "Hero": {
+        "file": "components/Hero.tsx",
+        "type": "Landing Hero Section",
+        "features": ["Parallax effects", "Animated tech grid", "Metallic text effects", "Floating animations", "Glow lines", "CTA buttons with animated borders"],
+        "styling": ["text-metallic", "glow-line", "animate-float", "animate-grid-move"],
+        "unique_patterns": ["Animated scanning borders", "Gradient drift animations", "Tech grid background"]
+      },
+      "Navbar": {
+        "file": "components/Navbar.tsx",
+        "type": "Navigation Header",
+        "features": ["Fixed positioning", "Mobile menu", "Hover effects", "Skewed buttons"],
+        "styling": ["fixed top-0", "backdrop-blur-[2px]", "skew-x-[-10deg]"]
+      },
+      "FooterStats": {
+        "file": "components/FooterStats.tsx",
+        "type": "Statistics Footer",
+        "features": ["Live status indicators", "Animated pulse", "Grid layout", "System status display"],
+        "styling": ["animate-ping", "text-emerald-400", "font-mono"]
+      },
+      "ScrollReveal": {
+        "file": "components/ScrollReveal.tsx",
+        "type": "Animation Utility",
+        "features": ["Intersection Observer", "Staggered animations", "Custom easing curves"],
+        "styling": ["transition-all", "duration-[1000ms]", "cubic-bezier"]
+      }
+    },
+    "custom_animations": {
+      "tailwind_keyframes": {
+        "float": "translateY movement",
+        "shimmer": "translateX movement",
+        "scan-right/left/up/down": "border scanning effects",
+        "gridMove": "background position animation",
+        "drift": "transform translate movement"
+      }
+    }
+  },
+  "aegnticdotai_blog_main": {
+    "architecture": "React + TypeScript + Tailwind CSS + Lucide Icons",
+    "theme": "Research Stream/Blog with Timeline",
+    "color_scheme": {
+      "primary": "#00E0FF",
+      "background_dark": "#050B14",
+      "surface_dark": "#0F172A"
+    },
+    "components": {
+      "App": {
+        "file": "App.tsx",
+        "type": "Main Blog Application",
+        "features": ["AI avatar generation", "Timeline layout", "Globe background", "State management", "Google AI integration"],
+        "styling": ["perspective-container", "bg-grid-pattern"],
+        "unique_patterns": ["Timeline with alternating cards", "AI-powered avatar generation", "3D Globe visualization"]
+      },
+      "Navbar": {
+        "file": "components/Navbar.tsx",
+        "type": "Blog Navigation",
+        "features": ["AI avatar generation button", "Mobile responsive", "Backdrop blur"],
+        "styling": ["backdrop-blur-md", "border-b", "shadow-[0_0_15px_rgba(0,224,255,0.4)]"]
+      },
+      "BlogCard": {
+        "file": "components/BlogCard.tsx",
+        "type": "Timeline Blog Post Card",
+        "features": ["Share functionality", "Timeline alignment", "Tilt effects", "Image hover overlays"],
+        "styling": ["timeline layout", "group-hover effects", "share overlay"]
+      },
+      "FeaturedCard": {
+        "file": "components/FeaturedCard.tsx",
+        "type": "Featured Blog Post Card",
+        "features": ["Two-column layout", "Enhanced share buttons", "Featured badge", "Tilt card wrapper"],
+        "styling": ["md:grid-cols-2", "border-primary/30", "shadow-[0_0_40px_rgba(0,224,255,0.3)]"]
+      },
+      "TiltCard": {
+        "file": "components/TiltCard.tsx",
+        "type": "Interactive Card Wrapper",
+        "features": ["Hover lift effect", "Scale transformation"],
+        "styling": ["hover:-translate-y-2", "hover:scale-[1.02]"]
+      },
+      "DetailView": {
+        "file": "components/DetailView.tsx",
+        "type": "Blog Post Detail View",
+        "features": ["Image loading states", "Social sharing", "Related posts", "Back navigation", "Scroll to top"],
+        "styling": ["Complex layout", "loading animations", "prose styling"]
+      },
+      "Globe": {
+        "file": "components/Globe.tsx",
+        "type": "3D Globe Visualization",
+        "features": ["Cobe library integration", "Rotating globe", "City markers", "Tech hub locations"],
+        "styling": ["mix-blend-screen", "animate-scale-pulse", "opacity-60"]
+      },
+      "Footer": {
+        "file": "components/Footer.tsx",
+        "type": "Standard Footer",
+        "features": ["Social links", "Navigation links", "Responsive layout"],
+        "styling": ["flex flex-wrap", "border-t"]
+      }
+    },
+    "data_structures": {
+      "BlogPost": {
+        "properties": ["id", "title", "description", "date", "image", "icon", "author", "fullContent", "references", "tags", "featured"],
+        "author_structure": ["name", "role", "avatar", "generatedAvatar"],
+        "references_structure": ["title", "publication", "year"]
+      }
+    },
+    "integrations": ["Google Generative AI", "Cobe Globe Library", "Lucide React Icons"]
+  },
+  "aegnticdotai_blog_article": {
+    "architecture": "React + TypeScript + Tailwind CSS + Recharts",
+    "theme": "Detailed Research Article",
+    "color_scheme": {
+      "primary": "#00E0FF",
+      "background_dark": "#050B14",
+      "surface_dark": "#0F172A"
+    },
+    "components": {
+      "Hero": {
+        "file": "components/Hero.tsx",
+        "type": "Article Hero Section",
+        "features": ["Breadcrumb navigation", "Featured image", "Author info", "Action buttons", "Slow zoom animation"],
+        "styling": ["animate-slow-zoom", "border-t", "backdrop-blur-sm"]
+      },
+      "ArticleContent": {
+        "file": "components/ArticleContent.tsx",
+        "type": "Article Body Content",
+        "features": ["Interactive charts", "Data visualization", "Citations system", "Download functionality", "CTA sections"],
+        "styling": ["prose styling", "chart containers", "citation tooltips"],
+        "charts_used": ["BarChart", "LineChart", "PieChart"],
+        "unique_patterns": ["Custom tooltips", "Animated charts", "CSV data export", "Interactive pie charts with active shapes"]
+      },
+      "Sidebar": {
+        "file": "components/Sidebar.tsx",
+        "type": "Article Sidebar Navigation",
+        "features": ["Scroll-based navigation", "Protocol stats", "Keywords", "Table of contents"],
+        "styling": ["sticky positioning", "scroll spy functionality"]
+      },
+      "RelatedArticles": {
+        "file": "components/RelatedArticles.tsx",
+        "type": "Related Content Section"
+      },
+      "ScrollToTop": {
+        "file": "components/ScrollToTop.tsx",
+        "type": "Scroll Utility Component"
+      }
+    },
+    "data_visualization": {
+      "chart_types": ["Bar charts with custom tooltips", "Line charts with interaction dynamics", "Pie charts with active states"],
+      "custom_components": ["Citation tooltips", "Data export functionality", "Animated chart renders"]
+    }
+  },
+  "aegnticdotai_projects_page": {
+    "architecture": "React + TypeScript + Tailwind CSS",
+    "theme": "Interactive Project Gallery",
+    "color_scheme": {
+      "primary": "#007BFF",
+      "background": "#0A0A0A"
+    },
+    "components": {
+      "ProjectCard": {
+        "file": "components/ProjectCard.tsx",
+        "type": "Interactive Project Card",
+        "features": ["Parallax effects", "Hover preview overlay", "Category filtering", "Image loading states", "Mouse tracking"],
+        "styling": ["project-card custom class", "liquid crystal effects", "parallax movement"],
+        "unique_patterns": ["3D preview overlays", "Mouse-based parallax", "Animated card reveals", "Custom glass morphism"]
+      },
+      "FilterMenu": {
+        "file": "components/FilterMenu.tsx",
+        "type": "Category Filter Navigation",
+        "features": ["Fixed positioning", "Active state styling", "Backdrop blur"],
+        "styling": ["fixed left-4", "backdrop-blur-md", "glow effects"]
+      },
+      "BackgroundEffects": {
+        "file": "components/BackgroundEffects.tsx",
+        "type": "Animated Background",
+        "features": ["Scroll-based animations", "Parallax glows", "SVG decorative lines"],
+        "styling": ["parallax scrolling", "glowing-filter animation"]
+      },
+      "ProjectDetail": {
+        "file": "components/ProjectDetail.tsx",
+        "type": "Project Detail Modal/View"
+      }
+    },
+    "layout_system": {
+      "card_positioning": {
+        "properties": ["top", "left", "width", "rotate", "zIndex", "scale"],
+        "effects": ["Staggered animations", "Intersection observer triggers", "Filter-based visibility"]
+      }
+    }
+  },
+  "common_patterns_across_directories": {
+    "styling_approaches": [
+      "Tailwind CSS with custom animations",
+      "Dark mode primary themes",
+      "Glass morphism effects",
+      "Gradient overlays and glows",
+      "Custom backdrop blur effects"
+    ],
+    "animation_patterns": [
+      "Intersection Observer for scroll reveals",
+      "Staggered animation delays",
+      "Parallax scrolling effects",
+      "Hover state transformations",
+      "Loading state animations"
+    ],
+    "layout_patterns": [
+      "Responsive grid systems",
+      "Fixed positioning for navigation",
+      "Sticky sidebars and headers",
+      "Mobile-first responsive design",
+      "Flexible card layouts"
+    ],
+    "interaction_patterns": [
+      "Hover state enhancements",
+      "Click-based state changes",
+      "Smooth scrolling navigation",
+      "Modal/overlay interactions",
+      "Social sharing functionality"
+    ]
+  },
+  "technology_stack_summary": {
+    "core_frameworks": ["React 19.2.3", "TypeScript"],
+    "styling": ["Tailwind CSS", "Custom CSS animations"],
+    "icon_systems": ["Lucide React"],
+    "data_visualization": ["Recharts"],
+    "external_libraries": ["Cobe (3D Globe)", "Google Generative AI"],
+    "development_tools": ["Vite", "ESLint", "Prettier"]
+  },
+  "design_system_tokens": {
+    "color_primaries": {
+      "neon_cyan": "#00f0ff",
+      "standard_cyan": "#00E0FF",
+      "bright_blue": "#007BFF"
+    },
+    "background_gradients": ["Linear gradients", "Radial gradients", "Mesh gradients"],
+    "typography_scale": {
+      "headings": ["4xl to 8xl for hero titles"],
+      "body": ["base to lg for content"],
+      "small": ["xs to sm for metadata"]
+    },
+    "spacing_patterns": ["Tailwind's spacing system", "Custom padding for cards"]
+  }
+}
