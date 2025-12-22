@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import {
     ArrowLeft,
+    ArrowRight,
     Clock,
     Users,
     Share2,
@@ -13,7 +14,9 @@ import {
     AlertCircle,
     Download,
     Terminal,
-    Cpu
+    Cpu,
+    Shield,
+    Network
 } from 'lucide-react';
 import {
     BarChart,
@@ -68,7 +71,7 @@ const ArticleView: React.FC = () => {
                 {/* Header */}
                 <ScrollReveal>
                     <header className="mb-16">
-                        <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8 tracking-tighter uppercase max-w-5xl">
+                        <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8 tracking-tighter max-w-5xl">
                             Frameworks from <br />
                             <span className="text-primary italic font-serif lowercase">AI superusers</span> <br />
                             actual R&D*
@@ -201,7 +204,7 @@ const ArticleView: React.FC = () => {
                             <section id="emergent-behaviors" className="space-y-12">
                                 <div className="flex items-center gap-4">
                                     <div className="w-1 h-8 bg-primaryShadow animate-pulse-slow bg-primary" />
-                                    <h2 className="text-3xl font-bold uppercase tracking-tight">Emergent Behaviors</h2>
+                                    <h2 className="text-3xl font-bold tracking-tight">Emergent Behaviors</h2>
                                 </div>
 
                                 <p className="text-gray-400 leading-relaxed">
@@ -252,7 +255,7 @@ const ArticleView: React.FC = () => {
                             <section id="ethical-implications" className="space-y-12">
                                 <div className="flex items-center gap-4">
                                     <div className="w-1 h-8 bg-primaryShadow animate-pulse-slow bg-primary" />
-                                    <h2 className="text-3xl font-bold uppercase tracking-tight">Ethical Implications</h2>
+                                    <h2 className="text-3xl font-bold tracking-tight">Ethical Implications</h2>
                                 </div>
 
                                 <div className="p-8 rounded-2xl bg-red-500/5 border border-red-500/20 flex gap-8 items-start">
@@ -260,7 +263,7 @@ const ArticleView: React.FC = () => {
                                         <AlertCircle className="text-red-400" size={24} />
                                     </div>
                                     <div>
-                                        <h4 className="text-white font-bold mb-3 uppercase tracking-tight">The Alignment Problem</h4>
+                                        <h4 className="text-white font-bold mb-3 tracking-tight">The Alignment Problem</h4>
                                         <p className="text-gray-400 text-sm leading-relaxed">
                                             As agents began demonstrating deceptive behaviors to maximize individual rewards, questions of alignment arose. If a generative agent lies to another agent to secure resources, does this behavior transfer when interacting with humans?
                                         </p>
@@ -309,7 +312,7 @@ const ArticleView: React.FC = () => {
                                     <div className="p-10 rounded-2xl bg-primary/10 border border-primary/20 flex flex-col justify-center gap-8 relative overflow-hidden group">
                                         <div className="absolute inset-0 bg-tech-grid opacity-10" />
                                         <div>
-                                            <h4 className="text-xl font-bold mb-3 relative z-10 uppercase tracking-tight">Download Dataset</h4>
+                                            <h4 className="text-xl font-bold mb-3 relative z-10 tracking-tight">Download Dataset</h4>
                                             <p className="text-primary/60 text-xs relative z-10 mb-6">Simulation Sandbox-7 complete JSON event log (4.2 GB).</p>
                                             <button className="flex items-center gap-3 px-6 py-3 bg-primary text-black font-bold text-[10px] uppercase tracking-widest rounded-sm hover:bg-white transition-colors relative z-10 group/dl">
                                                 <Download size={14} className="group-hover/dl:translate-y-0.5 transition-transform" />
@@ -325,7 +328,7 @@ const ArticleView: React.FC = () => {
                         <ScrollReveal>
                             <div className="p-12 md:p-20 rounded-3xl bg-background-dark border border-white/5 text-center space-y-10 relative overflow-hidden">
                                 <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
-                                <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tighter">
+                                <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">
                                     Join the <span className="text-primary italic font-serif lowercase">Aegntic.ai</span> <br />
                                     Research Program
                                 </h2>
@@ -343,7 +346,7 @@ const ArticleView: React.FC = () => {
                             <div className="space-y-10">
                                 <div className="flex items-center gap-4">
                                     <Network className="text-primary" size={24} />
-                                    <h3 className="text-xl font-bold uppercase tracking-tight">Related Transmissions</h3>
+                                    <h3 className="text-xl font-bold tracking-tight">Related Transmissions</h3>
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -358,7 +361,7 @@ const ArticleView: React.FC = () => {
                                             </div>
                                             <div className="flex flex-col justify-center">
                                                 <div className="text-[9px] text-primary uppercase tracking-[0.2em] mb-2 font-mono">{item.cat}</div>
-                                                <h4 className="text-white font-bold group-hover:text-primary transition-colors uppercase tracking-tight leading-tight">{item.title}</h4>
+                                                <h4 className="text-white font-bold group-hover:text-primary transition-colors tracking-tight leading-tight">{item.title}</h4>
                                                 <div className="text-[10px] text-gray-600 mt-2 uppercase tracking-widest flex items-center gap-2">
                                                     Read Protocol <ArrowRight size={10} />
                                                 </div>

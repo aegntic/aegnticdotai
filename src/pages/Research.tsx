@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Search, Filter, ArrowRight, Play, BookOpen, Clock, Users, Network } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ScrollReveal from '../components/ScrollReveal';
+import { Editable, EditableIcon } from '../components/DevTools';
 
 const Research: React.FC = () => {
     const [filter, setFilter] = useState('All');
@@ -68,8 +69,15 @@ const Research: React.FC = () => {
                 {/* Page Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
                     <div>
-                        <div className="text-primary font-mono text-[10px] uppercase tracking-[0.4em] mb-4">Central Intelligence Archive</div>
-                        <h1 className="text-5xl md:text-6xl font-bold uppercase tracking-tight">aegntic<span className="text-primary">.research</span></h1>
+                        <div className="text-primary font-mono text-[10px] uppercase tracking-[0.4em] mb-4">
+                            <Editable id="research-subtitle" as="span">Central Intelligence Archive</Editable>
+                        </div>
+                        <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+                            <Editable id="research-title-1" as="span">aegntic</Editable>
+                            <span className="text-primary">
+                                <Editable id="research-title-2" as="span">.research</Editable>
+                            </span>
+                        </h1>
                     </div>
 
                     <div className="flex flex-wrap gap-4">
@@ -98,9 +106,13 @@ const Research: React.FC = () => {
                                     <span className="text-primary font-mono text-[10px] tracking-widest uppercase">PROTOCOL_07</span>
                                     <span className="text-gray-600 font-mono text-[10px] tracking-widest uppercase">24.12.20</span>
                                 </div>
-                                <h2 className="text-3xl md:text-4xl font-bold mb-6 group-hover:text-primary transition-colors uppercase leading-tight">Frameworks from AI superusers actual R&D*</h2>
+                                <h2 className="text-3xl md:text-4xl font-bold mb-6 group-hover:text-primary transition-colors leading-tight">
+                                    <Editable id="research-featured-title" as="span">Frameworks from AI superusers actual R&D*</Editable>
+                                </h2>
                                 <p className="text-gray-400 mb-8 leading-relaxed">
-                                    We deployed 1,000 generative agents in a closed-loop social simulation. The emergent behaviors observed challenge our fundamental understanding of digital consciousness.
+                                    <Editable id="research-featured-desc" as="span">
+                                        We deployed 1,000 generative agents in a closed-loop social simulation. The emergent behaviors observed challenge our fundamental understanding of digital consciousness.
+                                    </Editable>
                                 </p>
                                 <Link to="/research/simulation-sandbox-7" className="flex items-center gap-3 text-white text-[10px] uppercase tracking-[0.3em] font-bold group/btn">
                                     Enter Repository <ArrowRight size={14} className="group-hover/btn:translate-x-2 transition-transform" />
@@ -124,7 +136,7 @@ const Research: React.FC = () => {
                                     <div className="text-[10px] font-mono tracking-widest text-gray-600">{node.date}</div>
                                 </div>
 
-                                <h3 className="text-xl font-bold text-white mb-4 group-hover:text-primary transition-colors leading-tight uppercase tracking-tight">
+                                <h3 className="text-xl font-bold text-white mb-4 group-hover:text-primary transition-colors leading-tight tracking-tight">
                                     {node.title}
                                 </h3>
 
@@ -164,7 +176,7 @@ const Research: React.FC = () => {
                             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-8 relative z-10">
                                 <Network className="text-primary animate-pulse" size={32} />
                             </div>
-                            <h3 className="text-2xl font-bold text-white mb-4 relative z-10 uppercase tracking-tight">Subscribe to Signal</h3>
+                            <h3 className="text-2xl font-bold text-white mb-4 relative z-10 tracking-tight">Subscribe to Signal</h3>
                             <p className="text-gray-500 text-sm mb-8 relative z-10">
                                 Get encrypted updates directly to your inbox.
                             </p>

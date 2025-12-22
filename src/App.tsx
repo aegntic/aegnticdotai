@@ -36,7 +36,7 @@ const App: React.FC = () => {
                             <Route path="/research" element={<Research />} />
                             <Route path="/research/:id" element={<ArticleView />} />
                             <Route path="/projects" element={<Projects />} />
-                            <Route path="/colabs" element={<Collaborations />} />
+                            <Route path="/contact" element={<Collaborations />} />
                         </Routes>
                     </AnimatePresence>
                 </main>

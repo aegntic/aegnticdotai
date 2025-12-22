@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Network, Database, Shield, Brain, Globe, Laptop, ArrowRight } from 'lucide-react';
 import ScrollReveal from '../components/ScrollReveal';
+import { Editable, EditableIcon } from '../components/DevTools';
 
 const Projects: React.FC = () => {
     const projects = [
@@ -58,12 +59,21 @@ const Projects: React.FC = () => {
                 {/* Header */}
                 <div className="text-center mb-24">
                     <ScrollReveal>
-                        <div className="text-primary font-mono text-[10px] uppercase tracking-[0.4em] mb-4">Autonomous Entity Generation Network</div>
-                        <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter mb-8">The <span className="text-primary">Ecosystem</span></h1>
+                        <div className="text-primary font-mono text-[10px] uppercase tracking-[0.4em] mb-4">
+                            <Editable id="projects-subtitle" as="span">Autonomous Entity Generation Network</Editable>
+                        </div>
+                        <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8">
+                            <Editable id="projects-title-1" as="span">The</Editable>{' '}
+                            <span className="text-primary">
+                                <Editable id="projects-title-2" as="span">Ecosystem</Editable>
+                            </span>
+                        </h1>
                     </ScrollReveal>
                     <ScrollReveal delay={200}>
                         <p className="max-w-3xl mx-auto text-gray-400 text-lg leading-relaxed">
-                            Discover the core technologies powering the Aegntic.ai ecosystem. From low-latency neural cores to globally distributed data fabrics, our infrastructure is built for the era of synthetic intelligence.
+                            <Editable id="projects-desc" as="span">
+                                Discover the core technologies powering the Aegntic.ai ecosystem. From low-latency neural cores to globally distributed data fabrics, our infrastructure is built for the era of synthetic intelligence.
+                            </Editable>
                         </p>
                     </ScrollReveal>
                 </div>
@@ -119,18 +129,30 @@ const Projects: React.FC = () => {
                     <div className="rounded-3xl bg-background-dark border border-white/5 p-12 lg:p-20 relative overflow-hidden text-center">
                         <div className="absolute inset-0 bg-tech-grid opacity-10" />
                         <div className="relative z-10 max-w-4xl mx-auto">
-                            <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight mb-8">Globally Distributed <span className="text-primary italic font-serif">Intelligence</span></h2>
-                            <p className="text-gray-500 text-lg mb-12 italic">"Scale is the only valid metric for digital life."</p>
+                            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-8">
+                                <Editable id="projects-global-word-1" as="span">Globally</Editable>{' '}
+                                <Editable id="projects-global-word-2" as="span">Distributed</Editable>{' '}
+                                <span className="text-primary italic font-serif">
+                                    <Editable id="projects-global-word-3" as="span">Intelligence</Editable>
+                                </span>
+                            </h2>
+                            <p className="text-gray-500 text-lg mb-12 italic">
+                                <Editable id="projects-global-quote" as="span">"Scale is the only valid metric for digital life."</Editable>
+                            </p>
                             <div className="flex flex-wrap justify-center gap-12">
                                 {[
-                                    { label: 'Cloud Regions', val: '24' },
-                                    { label: 'Edge Nodes', val: '14,000+' },
-                                    { label: 'Daily Simulations', val: '5.2M' },
-                                    { label: 'Uptime Score', val: '99.99%' },
+                                    { id: 'regions', label: 'Cloud Regions', val: '24' },
+                                    { id: 'nodes', label: 'Edge Nodes', val: '14,000+' },
+                                    { id: 'sims', label: 'Daily Simulations', val: '5.2M' },
+                                    { id: 'uptime', label: 'Uptime Score', val: '99.99%' },
                                 ].map(stat => (
-                                    <div key={stat.label}>
-                                        <div className="text-4xl font-mono text-white font-bold mb-2 group-hover:text-primary transition-colors">{stat.val}</div>
-                                        <div className="text-[10px] uppercase tracking-widest text-gray-600">{stat.label}</div>
+                                    <div key={stat.id}>
+                                        <div className="text-4xl font-mono text-white font-bold mb-2 group-hover:text-primary transition-colors">
+                                            <Editable id={`projects-stat-${stat.id}-val`} as="span">{stat.val}</Editable>
+                                        </div>
+                                        <div className="text-[10px] uppercase tracking-widest text-gray-600">
+                                            <Editable id={`projects-stat-${stat.id}-label`} as="span">{stat.label}</Editable>
+                                        </div>
                                     </div>
                                 ))}
                             </div>

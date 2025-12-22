@@ -15,10 +15,10 @@ const Navbar: React.FC = () => {
     }, []);
 
     const navLinks = [
-        { name: 'Research', path: '/research' },
-        { name: 'Ecosystem', path: '/projects' },
         { name: 'About', path: '/about' },
-        { name: 'Colabs', path: '/colabs' },
+        { name: 'Ecosystem', path: '/projects' },
+        { name: 'Research', path: '/research' },
+        { name: 'Contact', path: '/contact' },
     ];
 
     return (
