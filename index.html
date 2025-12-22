@@ -1,322 +1,86 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en" class="dark">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Foundation: About Us</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/component-gallery.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aegntic.ai - Independent Research Foundation</title>
+  <meta name="description"
+    content="Zero knowledge, unlimited insight. Advanced research foundation for AI and cryptographic systems.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,600&family=JetBrains+Mono:wght@300;400&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Custom utility for the metallic text effect */
+    .text-metallic {
+      background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 50%, #b0b0b0 51%, #f0f0f0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Reflection gradient mask */
+    .reflection-mask {
+      mask-image: linear-gradient(transparent 30%, black 100%);
+      -webkit-mask-image: linear-gradient(transparent 30%, black 100%);
+    }
+
+    /* Glow line styling */
+    .glow-line {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) scaleX(1.5);
+      width: 120%;
+      height: 300px;
+      border-radius: 50%;
+      filter: blur(1px);
+      pointer-events: none;
+    }
+
+    /* Tech grid pattern */
+    .bg-tech-grid {
+      background-size: 50px 50px;
+      background-image:
+        linear-gradient(to right, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+    }
+
+    /* Grainy noise */
+    .bg-noise {
+      background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Hide scrollbar for clean look */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 240, 255, 0.3);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 240, 255, 0.5);
+    }
+  </style>
 </head>
 
-<body
-    class="bg-dark-bg text-gray-200 font-sans min-h-screen selection:bg-primary selection:text-black overflow-x-hidden">
-    <!-- Skip Navigation Link for Accessibility (WCAG 2.4.1) -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div class="arch-grid"></div>
-    <div class="fixed inset-0 bg-radial-fade z-[-1] pointer-events-none"></div>
-    <div class="relative flex min-h-screen w-full flex-col">
-        <!-- Navigation -->
-        <div id="navigation"></div>
-
-        <!-- Mobile Header -->
-        <header id="mobile-header"
-            class="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-dark-bg/90 backdrop-blur-xl border-b border-white/10">
-            <div class="text-2xl font-bold text-white tracking-tighter">
-                <span class="text-liquid-glass" data-text="ae.">ae.</span>
-            </div>
-            <button id="mobile-menu-btn" class="text-white border border-white/10 p-2">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
-        </header>
-
-        <div class="lg:pl-24 flex flex-col w-full relative z-10" id="main-content" role="main">
-            <!-- Hero Section -->
-            <section
-                class="min-h-[60vh] flex flex-col justify-center px-6 md:px-12 lg:px-24 relative pt-32 pb-16 border-b border-white/5 overflow-hidden">
-                <div
-                    class="absolute right-0 top-0 bottom-0 w-2/5 border-l border-white/5 hidden lg:block bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 mix-blend-overlay">
-                </div>
-                <div
-                    class="absolute right-24 top-1/3 w-96 h-96 border border-primary/10 rounded-full animate-pulse-slow hidden lg:block">
-                </div>
-                <div
-                    class="absolute right-32 top-[20%] w-[1px] h-3/4 bg-gradient-to-b from-transparent via-primary/20 to-transparent hidden lg:block">
-                </div>
-
-                <div class="relative z-10 max-w-5xl">
-                    <div class="inline-flex items-center gap-3 mb-6 pl-1">
-                        <div class="flex items-center gap-1">
-                            <span class="w-1 h-1 bg-primary rounded-full"></span>
-                            <span class="w-1 h-1 bg-primary/50 rounded-full"></span>
-                            <span class="w-1 h-1 bg-primary/20 rounded-full"></span>
-                        </div>
-                        <span class="text-primary font-mono text-[10px] uppercase tracking-[0.3em]">Independent Research
-                            Foundation</span>
-                    </div>
-
-                    <h1
-                        class="text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-8 leading-[0.85] tracking-tighter mix-blend-screen">
-                        AE <span class="text-liquid-glass" data-text="Foundation">Foundation</span>
-                    </h1>
-
-                    <div class="flex flex-col gap-8 border-t border-primary/20 pt-8 mt-4 max-w-4xl">
-                        <div>
-                            <div class="font-mono text-xs text-primary mb-2">/ MISSION_STATEMENT</div>
-                            <p class="text-gray-400 text-sm md:text-base leading-relaxed mb-4">
-                                To establish the core principles and infrastructure for future technological
-                                advancements. We are dedicated to building a robust and ethical base for autonomous
-                                reasoning systems.
-                            </p>
-                            <p class="text-xl md:text-2xl text-white font-light leading-relaxed">
-                                Aegntic is an ecosystem research entity focused on laying the groundwork for <span
-                                    class="text-primary font-normal">Generative Intelligence</span>. Our work focuses on
-                                foundational architecture, resilient computing, and the ethical bedrock of synthetic
-                                cognition.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Main Content -->
-            <section class="py-24 px-6 md:px-12 lg:px-24 relative min-h-screen bg-scanline">
-                <div class="absolute inset-0 pointer-events-none z-0">
-                    <div class="absolute left-12 lg:left-24 top-0 bottom-0 w-[1px] bg-white/5"></div>
-                    <div class="absolute right-12 lg:right-24 top-0 bottom-0 w-[1px] bg-white/5"></div>
-                    <div class="absolute top-1/4 left-0 right-0 h-[1px] bg-white/5"></div>
-                    <div class="absolute bottom-1/4 left-0 right-0 h-[1px] bg-white/5"></div>
-                </div>
-
-                <div class="grid grid-cols-1 gap-12 relative z-10 max-w-5xl mx-auto">
-                    <div class="lg:col-span-8 holo-card min-h-[500px] flex flex-col group">
-                        <div class="corner-tl"></div>
-                        <div class="corner-tr"></div>
-                        <div class="corner-bl"></div>
-                        <div class="corner-br"></div>
-                        <div
-                            class="w-full relative border-b border-white/10 bg-black/40 holo-projection overflow-hidden aspect-video md:aspect-[3/1]">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="w-40 h-40 border border-primary/20 transform rotate-45 animate-float"></div>
-                                <div class="w-40 h-40 border border-white/10 absolute animate-pulse-slow"></div>
-                                <div
-                                    class="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-primary/10 to-transparent">
-                                </div>
-                                <div class="absolute top-10 left-10 text-[8px] font-mono text-primary/60">NODE_INIT:
-                                    2021</div>
-                                <div class="absolute bottom-10 right-10 text-[8px] font-mono text-white/40">SYS_UPTIME:
-                                    99.9%</div>
-                            </div>
-                        </div>
-                        <div class="w-full p-8 md:p-12 flex flex-col justify-center">
-                            <div class="mb-6 flex items-center gap-2">
-                                <span class="material-symbols-outlined text-primary text-lg">history_edu</span>
-                                <span class="text-[10px] font-mono tracking-widest uppercase text-white/60">The Genesis
-                                    Protocol</span>
-                            </div>
-                            <h2 class="text-3xl font-bold text-white mb-6">Building the Cornerstone of Future Systems
-                            </h2>
-                            <p class="text-gray-400 text-sm leading-7 mb-6">
-                                Established in 2021 by pioneering architects of intelligence, AE Foundation began by
-                                codifying self-organizing principles. Our vision was to create resilient systems that
-                                not only learn but form the very bedrock upon which complex digital life can emerge and
-                                thrive.
-                            </p>
-                            <p class="text-gray-400 text-sm leading-7">
-                                Today, these core principles underpin our global initiative, guiding the development of
-                                robust, adaptable intelligence.
-                            </p>
-                            <div class="mt-8 pt-8 border-t border-white/5 flex items-center gap-8">
-                                <div>
-                                    <div class="text-2xl font-bold text-white">2021</div>
-                                    <div class="text-[10px] font-mono text-gray-500 uppercase">Established</div>
-                                </div>
-                                <div>
-                                    <div class="text-2xl font-bold text-white">4</div>
-                                    <div class="text-[10px] font-mono text-gray-500 uppercase">Global Hubs</div>
-                                </div>
-                                <div>
-                                    <div class="text-2xl font-bold text-white">120+</div>
-                                    <div class="text-[10px] font-mono text-gray-500 uppercase">Publications</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="holo-card p-8 flex-1 bg-gradient-to-br from-panel-bg to-transparent relative group">
-                        <div class="absolute top-0 right-0 p-4 opacity-50">
-                            <span
-                                class="material-symbols-outlined text-4xl text-white/10 group-hover:text-primary/40 transition-colors">psychology</span>
-                        </div>
-                        <div class="corner-tr"></div>
-                        <div class="corner-bl"></div>
-                        <h3 class="text-lg font-bold text-white mb-4 mt-2">Philosophy: <br /><span
-                                class="text-primary">Foundational Resilience</span></h3>
-                        <p class="text-gray-400 text-xs leading-6 mb-6">
-                            We believe lasting intelligence stems from an unbreakable foundation. Our philosophy
-                            emphasizes establishing core architectural integrity and long-term stability over transient
-                            computational power. Quality of base over quantity of fleeting data.
-                        </p>
-                        <div class="space-y-3 mt-auto">
-                            <div
-                                class="flex items-center gap-3 text-xs text-white/80 font-mono border border-white/5 p-2 bg-black/20">
-                                <span class="w-1.5 h-1.5 bg-primary"></span>
-                                <span>Self-Evolving Core Principles</span>
-                            </div>
-                            <div
-                                class="flex items-center gap-3 text-xs text-white/80 font-mono border border-white/5 p-2 bg-black/20">
-                                <span class="w-1.5 h-1.5 bg-secondary"></span>
-                                <span>Adaptive Security Layer</span>
-                            </div>
-                            <div
-                                class="flex items-center gap-3 text-xs text-white/80 font-mono border border-white/5 p-2 bg-black/20">
-                                <span class="w-1.5 h-1.5 bg-accent"></span>
-                                <span>Ethical Design Framework</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-12 mt-12">
-                        <div class="flex items-center justify-between mb-8 border-b border-white/5 pb-4">
-                            <h3 class="text-xl text-white font-light tracking-tight">Core <span
-                                    class="text-primary font-bold">Architects</span></h3>
-                            <div class="flex gap-2">
-                                <button
-                                    class="nav-btn w-8 h-8 flex items-center justify-center border border-white/10 hover:border-primary/50 text-white/50 hover:text-primary transition-colors">
-                                    <span class="material-symbols-outlined text-sm">west</span>
-                                </button>
-                                <button
-                                    class="nav-btn w-8 h-8 flex items-center justify-center border border-white/10 hover:border-primary/50 text-white/50 hover:text-primary transition-colors">
-                                    <span class="material-symbols-outlined text-sm">east</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <div class="holo-card p-1 group hover:border-primary/40 transition-colors team-card">
-                                <div class="bg-black/40 p-6 h-full flex flex-col relative overflow-hidden">
-                                    <div
-                                        class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/10 to-transparent">
-                                    </div>
-                                    <div
-                                        class="w-16 h-16 rounded-full border border-white/10 bg-white/5 mb-4 flex items-center justify-center relative">
-                                        <span class="material-symbols-outlined text-2xl text-white/40">person</span>
-                                        <div
-                                            class="absolute inset-0 border border-primary/30 rounded-full animate-spin [animation-duration:10s]">
-                                        </div>
-                                    </div>
-                                    <h4 class="text-white font-bold text-lg">Dr. Aris Thorne</h4>
-                                    <p class="text-primary text-xs font-mono mb-4">LEAD_SCIENTIST // NEURAL</p>
-                                    <p class="text-gray-500 text-xs leading-relaxed mb-4">
-                                        Pioneered the 'Liquid State' memory retention protocol used in our V4 models.
-                                    </p>
-                                    <div
-                                        class="mt-auto pt-4 border-t border-white/5 flex justify-between items-center opacity-50 group-hover:opacity-100 transition-opacity">
-                                        <span class="text-[10px] font-mono text-gray-400">ID: AT-001</span>
-                                        <span
-                                            class="material-symbols-outlined text-sm text-primary">arrow_outward</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="holo-card p-1 group hover:border-secondary/40 transition-colors team-card">
-                                <div class="bg-black/40 p-6 h-full flex flex-col relative overflow-hidden">
-                                    <div
-                                        class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-secondary/10 to-transparent">
-                                    </div>
-                                    <div
-                                        class="w-16 h-16 rounded-full border border-white/10 bg-white/5 mb-4 flex items-center justify-center relative">
-                                        <span
-                                            class="material-symbols-outlined text-2xl text-white/40">engineering</span>
-                                        <div
-                                            class="absolute inset-0 border border-secondary/30 rounded-full animate-spin [animation-duration:12s] reverse">
-                                        </div>
-                                    </div>
-                                    <h4 class="text-white font-bold text-lg">Elena Voss</h4>
-                                    <p class="text-secondary text-xs font-mono mb-4">SYS_ARCHITECT // INFRA</p>
-                                    <p class="text-gray-500 text-xs leading-relaxed mb-4">
-                                        Architect of the distributed compute grid that powers our real-time synthesis.
-                                    </p>
-                                    <div
-                                        class="mt-auto pt-4 border-t border-white/5 flex justify-between items-center opacity-50 group-hover:opacity-100 transition-opacity">
-                                        <span class="text-[10px] font-mono text-gray-400">ID: EV-004</span>
-                                        <span
-                                            class="material-symbols-outlined text-sm text-secondary">arrow_outward</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="holo-card p-1 group hover:border-accent/40 transition-colors team-card">
-                                <div class="bg-black/40 p-6 h-full flex flex-col relative overflow-hidden">
-                                    <div
-                                        class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-accent/10 to-transparent">
-                                    </div>
-                                    <div
-                                        class="w-16 h-16 rounded-full border border-white/10 bg-white/5 mb-4 flex items-center justify-center relative">
-                                        <span class="material-symbols-outlined text-2xl text-white/40">terminal</span>
-                                        <div
-                                            class="absolute inset-0 border border-accent/30 rounded-full animate-spin [animation-duration:8s]">
-                                        </div>
-                                    </div>
-                                    <h4 class="text-white font-bold text-lg">Kaelen Xy</h4>
-                                    <p class="text-accent text-xs font-mono mb-4">CODE_SYNTHESIS // LOGIC</p>
-                                    <p class="text-gray-500 text-xs leading-relaxed mb-4">
-                                        Developer of the recursive logic gate system for autonomous decision making.
-                                    </p>
-                                    <div
-                                        class="mt-auto pt-4 border-t border-white/5 flex justify-between items-center opacity-50 group-hover:opacity-100 transition-opacity">
-                                        <span class="text-[10px] font-mono text-gray-400">ID: KX-099</span>
-                                        <span class="material-symbols-outlined text-sm text-accent">arrow_outward</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div
-                                class="holo-card p-1 group cursor-pointer border-dashed border-white/20 hover:border-primary/50 transition-all team-card">
-                                <div
-                                    class="bg-transparent p-6 h-full flex flex-col items-center justify-center relative text-center">
-                                    <div
-                                        class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                                        <span
-                                            class="material-symbols-outlined text-white/50 group-hover:text-primary">add</span>
-                                    </div>
-                                    <h4 class="text-white/70 font-bold text-sm mb-2">Join the Collective</h4>
-                                    <p class="text-gray-600 text-xs font-mono">OPEN_ROLES: 4</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Footer -->
-            <footer id="footer"></footer>
-        </div>
-    </div>
-
-    <!-- Component Scripts -->
-    <script src="js/components/QuantumGrid.js"></script>
-    <script src="js/components/AudioPlayer.js"></script>
-    <script src="js/components/Terminal.js"></script>
-    <script src="js/components/CustomCursor.js"></script>
-    <script src="js/components/PreLoader.js"></script>
-    <script src="js/components/VisualizerToggle.js"></script>
-    <script src="js/components/ComponentGallery.js"></script>
-
-    <!-- Page Manager -->
-    <script src="js/pages/PageManager.js"></script>
-
-    <!-- Main Application Script -->
-    <script src="js/app.js"></script>
+<body class="bg-background-dark text-white antialiased selection:bg-primary selection:text-black overflow-x-hidden">
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>

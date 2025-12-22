@@ -1,0 +1,5 @@
+# Cloudflare Pages redirect configuration
+# Handle single page application routing
+
+# Redirect all non-file requests to index.html for SPA routing
+/*    /index.html   200

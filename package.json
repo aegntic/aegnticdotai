@@ -1,76 +1,29 @@
 {
   "name": "aegnticdotai",
+  "private": true,
   "version": "1.0.0",
-  "description": "AE Foundation - Research entity focused on foundational architecture for synthetic intelligence",
-  "main": "index.html",
+  "type": "module",
   "scripts": {
-    "start": "npx serve . -l 3000",
-    "dev": "npx serve . -l 3000 --cors",
-    "build": "npm run build:css && npm run build:js && npm run minify",
-    "build:css": "tailwindcss -i css/input.css -o dist/css/styles.css --minify",
-    "build:js": "terser js/app.js -o dist/js/app.min.js --compress --mangle",
-    "minify": "html-minifier --input-dir . --output-dir dist --file-ext html --remove-comments --collapse-whitespace --minify-css --minify-js --remove-attribute-quotes --remove-empty-attributes",
-    "watch:css": "tailwindcss -i css/input.css -o dist/css/styles.css --watch",
-    "watch:js": "onchange 'js/**/*.js' -- npm run build:js",
-    "watch": "npm-run-all --parallel watch:css watch:js",
-    "lint:css": "stylelint 'css/**/*.css'",
-    "lint:js": "eslint 'js/**/*.js'",
-    "format": "prettier --write .",
-    "clean": "rimraf dist",
-    "dev:build": "npm run clean && npm run build",
-    "test": "node tests/simple-test-runner.js && node tests/accessibility-responsive-test.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [
-    "ai",
-    "research",
-    "foundation",
-    "synthetic-intelligence",
-    "futuristic",
-    "minimal",
-    "vanilla-js",
-    "tailwindcss"
-  ],
-  "author": "AE Foundation",
-  "license": "MIT",
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-router-dom": "^7.0.0",
+    "lucide-react": "^0.562.0",
+    "recharts": "^3.6.0",
+    "framer-motion": "^11.13.1"
+  },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.7",
-    "@tailwindcss/typography": "^0.5.10",
-    "autoprefixer": "^10.4.16",
-    "cssnano": "^6.0.2",
-    "eslint": "^8.55.0",
-    "eslint-config-prettier": "^9.1.0",
-    "html-minifier": "^4.0.0",
-    "npm-run-all": "^4.1.5",
-    "onchange": "^7.1.0",
-    "postcss": "^8.4.32",
-    "postcss-csso": "^6.0.1",
-    "prettier": "^3.1.1",
-    "rimraf": "^5.0.5",
-    "serve": "^14.2.1",
-    "stylelint": "^15.10.0",
-    "stylelint-config-standard": "^34.0.0",
-    "tailwindcss": "^3.4.0",
-    "terser": "^5.26.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aegnticdotai/aegnticdotai.github.io.git"
-  },
-  "homepage": "https://aegntic.ai",
-  "engines": {
-    "node": ">=16.0.0"
-  },
-  "directories": {
-    "test": "tests"
-  },
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/aegnticdotai/aegnticdotai.github.io/issues"
+    "typescript": "~5.6.2",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "vite": "^5.4.10"
   }
 }

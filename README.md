@@ -1,161 +1,145 @@
-# AE Foundation Website
+# Aegntic.ai - Independent Research Foundation
 
-A futuristic, minimalist website for AE Foundation - an independent research entity focused on foundational architecture for synthetic intelligence.
+> Zero knowledge, unlimited insight
 
-## 🚀 Features
+A modern, responsive website showcasing the Aegntic Foundation's research in zero-knowledge cryptography, AI systems, and decentralized technologies.
 
-- **Responsive Design**: Fully responsive layout that works seamlessly on all devices
-- **Interactive Components**: Dynamic navigation, team carousel, and modal systems
-- **Accessibility**: Full keyboard navigation and screen reader support
-- **Performance Optimized**: Lazy loading, efficient animations, and minimal dependencies
-- **Modern Stack**: Uses Tailwind CSS, custom components, and vanilla JavaScript
+## 🌟 Features
+
+- **Dark/Light Theme Toggle** - Smooth theme switching with localStorage persistence
+- **Modular SPA Architecture** - Single-page application with client-side routing
+- **Responsive Design** - Mobile-first approach with Tailwind CSS
+- **Advanced Animations** - Custom CSS animations and visual effects
+- **Cloudflare Pages Ready** - Optimized for static site deployment
+- **SEO Optimized** - Meta tags and semantic HTML structure
+
+## 🚀 Quick Start
+
+### Local Development
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/aegnticdotai.git
+   cd aegnticdotai
+   ```
+
+2. **Start the development server**
+   ```bash
+   npm run dev
+   # or
+   python3 -m http.server 8080
+   ```
+
+3. **Open your browser**
+   Navigate to `http://localhost:8080`
+
+### Deployment
+
+#### Cloudflare Pages
+
+1. Connect your GitHub repository to Cloudflare Pages
+2. Set build command: `npm run build`
+3. Set output directory: `/`
+4. Deploy!
+
+The `_redirects` file ensures proper SPA routing on Cloudflare Pages.
 
 ## 📁 Project Structure
 
 ```
 aegnticdotai/
-├── css/
-│   ├── styles.css          # Main styles and typography
-│   └── components.css      # Component-specific styles
+├── index.html              # Main HTML file with navigation
 ├── js/
-│   └── app.js             # Main application JavaScript
-├── components/
-│   ├── navigation.html    # Navigation component
-│   └── footer.html        # Footer component
-├── images/                # Image assets
-├── assets/                # Other static assets
-├── index.html            # Main HTML file
-├── package.json          # Project configuration
-└── README.md            # This file
-```
-
-## 🛠️ Development
-
-### Prerequisites
-- Node.js 16+
-- npm or yarn
-
-### Installation
-```bash
-npm install
-```
-
-### Development Server
-```bash
-npm run dev
-```
-
-This starts a development server at `http://localhost:3000` with CORS enabled.
-
-### Production Build
-```bash
-npm run build
-```
-
-This will:
-- Minify CSS with PostCSS and CSSO
-- Minify JavaScript with Terser
-- Optimize assets for production
-
-### Code Quality
-```bash
-# Lint CSS
-npm run lint:css
-
-# Lint JavaScript
-npm run lint:js
-
-# Format code
-npm run format
+│   └── app.js             # Main application logic and routing
+├── pages/
+│   ├── home.html          # Home page with hero section
+│   ├── about.html         # About aegntic.foundation
+│   ├── research.html      # aegntic.research blog directory
+│   ├── projects.html      # Project showcase
+│   └── colabs.html        # Collaborations page
+├── _redirects             # Cloudflare Pages routing config
+├── package.json           # Project metadata
+└── README.md             # This file
 ```
 
 ## 🎨 Design System
 
-### Colors
-- **Primary**: `#00E5FF` (Cyan)
-- **Secondary**: `#2979FF` (Blue)
-- **Accent**: `#00B0FF` (Light Blue)
-- **Dark Background**: `#020205`
-- **Panel Background**: `rgba(10, 20, 40, 0.4)`
+- **Primary Color**: `#00f0ff` (Neon Cyan)
+- **Background Dark**: `#030305` (Deepest black/blue)
+- **Surface Dark**: `#0a0a0c`
+- **Typography**: Inter (sans-serif), Playfair Display (serif), JetBrains Mono (monospace)
 
-### Typography
-- **Font Family**: Inter (Google Fonts)
-- **Display Font**: Inter with tracking adjustments
-- **Mono Font**: System monospace
+## 🛠️ Technologies Used
 
-### Components
+- **HTML5** - Semantic markup
+- **Vanilla JavaScript** - No framework dependencies
+- **Tailwind CSS** - Utility-first CSS framework (via CDN)
+- **Font Awesome** - Icons and visual elements
 
-#### Navigation
-- Desktop: Fixed sidebar with orbital indicators
-- Mobile: Slide-out overlay menu
-- Active state with glowing orb animation
+## 📱 Pages Overview
 
-#### Holo Cards
-- Glassmorphism effect with backdrop blur
-- Corner decorations for technical aesthetic
-- Hover effects with enhanced glow
+### Home (`/`)
+Hero page showcasing the foundation's mission and research focus areas with advanced visual effects.
 
-#### Team Carousel
-- Auto-rotating team member display
-- Manual navigation controls
-- Smooth transitions
+### About (`/about`)
+Information about aegntic.foundation with the tagline "zero knowledge, unlimited insight".
 
-## 🌐 Deployment
+### Research (`/research`)
+aegntic.research - Blog directory showcasing research papers and publications with filtering capabilities.
 
-### Static Hosting
-The site is designed for static hosting. Build the project and deploy the `dist/` folder to any static hosting service.
+### Projects (`/projects`)
+Project showcase displaying active and completed research projects with metrics and GitHub links.
 
-### Cloudflare Pages
-```bash
-# Build and deploy to Cloudflare Pages
-npm run build
-npx wrangler pages deploy ./dist --project-name=aegntic-ai
+### Collaborations (`/colabs`)
+Partner collaboration page highlighting industry and academic partnerships.
+
+## 🔧 Configuration
+
+### Adding New Pages
+
+1. Create a new HTML file in the `pages/` directory
+2. Add the page route to the `pages` object in `js/app.js`
+3. Update the navigation menu in `index.html`
+
+### Customizing Theme
+
+Modify the Tailwind configuration in `index.html`:
+
+```javascript
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#00f0ff", // Change primary color
+        // ... other customizations
+      }
+    }
+  }
+}
 ```
-
-### GitHub Pages
-```bash
-# Build and deploy to GitHub Pages
-npm run build
-git add dist/
-git commit -m "Build for deployment"
-git subtree push --prefix dist origin gh-pages
-```
-
-### Netlify/Vercel
-Connect your repository to Netlify or Vercel for automatic deployment on push.
-
-## ♿ Accessibility
-
-- Full keyboard navigation support
-- Screen reader announcements for page changes
-- ARIA labels and landmarks
-- Focus management in modals
-- High contrast support
-- Reduced motion support
 
 ## 🌐 Browser Support
 
-- Chrome 90+
-- Firefox 88+
+- Chrome/Chromium 88+
+- Firefox 85+
 - Safari 14+
-- Edge 90+
+- Edge 88+
 
-## 📝 License
+## 📄 License
 
 MIT License - see LICENSE file for details.
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
+We welcome contributions! Please see our contributing guidelines for more information.
 
-## 📧 Contact
+## 📞 Contact
 
-For inquiries about AE Foundation, visit [aegntic.ai](https://aegntic.ai).
+- Website: [aegntic.ai](https://aegntic.ai)
+- Research: [aegntic.research](https://aegntic.research)
+- Foundation: [aegntic.foundation](https://aegntic.foundation)
 
 ---
 
-*AE Foundation - Building the cornerstone of future synthetic intelligence systems*
+**Zero knowledge, unlimited insight** © 2024 Aegntic Foundation

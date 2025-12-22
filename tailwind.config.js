@@ -1,62 +1,69 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./index.html",
-    "./components/**/*.html",
-    "./js/**/*.js",
-    "./aegnticdotai-home/**/*.html",
-    "./aegnticdotai-blog-main/**/*.html",
-    "./aegnticdotai-blog-article/**/*.html",
-    "./aegnticdotai-projects-page/**/*.html"
-  ],
-  theme: {
-    extend: {
-      colors: {
-        'primary-glow': '#00E5FF',
-        'dark-bg': '#020205',
-        'card-bg': 'rgba(5, 10, 20, 0.4)',
-        'border-glow': 'rgba(0, 229, 255, 0.15)',
-      },
-      fontFamily: {
-        'inter': ['Inter', 'sans-serif'],
-      },
-      backgroundImage: {
-        'gradient-glass': 'linear-gradient(135deg, #fff 0%, #a5f3fc 40%, #00B0FF 100%)',
-      },
-      boxShadow: {
-        'glow': '0 0 20px rgba(0, 229, 255, 0.6)',
-        'card': '0 0 20px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(0, 229, 255, 0.03)',
-        'card-hover': '0 0 30px rgba(0, 229, 255, 0.2), inset 0 0 30px rgba(0, 229, 255, 0.05)',
-      },
-      backdropBlur: {
-        'xs': '2px',
-      },
-      animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-        'slide-up': 'slide-up 0.3s ease-out',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
+export default {
+    content: [
+        "./index.html",
+        "./src/**/*.{js,ts,jsx,tsx}",
+    ],
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                primary: "#00f0ff", // Neon Cyan
+                "primary-dark": "#00a0aa",
+                "background-dark": "#030305", // Deepest black/blue
+                "surface-dark": "#0a0a0c",
+            },
+            fontFamily: {
+                sans: ["Inter", "sans-serif"],
+                serif: ["Playfair Display", "serif"],
+                mono: ["JetBrains Mono", "monospace"],
+            },
+            animation: {
+                'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'float': 'float 6s ease-in-out infinite',
+                'shimmer': 'shimmer 2s linear infinite',
+                'border-top': 'scan-right 2s linear infinite',
+                'border-right': 'scan-down 2s linear infinite',
+                'border-bottom': 'scan-left 2s linear infinite',
+                'border-left': 'scan-up 2s linear infinite',
+                'grid-move': 'gridMove 20s linear infinite',
+                'drift': 'drift 20s ease-in-out infinite alternate',
+            },
+            keyframes: {
+                float: {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-10px)' },
+                },
+                shimmer: {
+                    '0%': { transform: 'translateX(-100%)' },
+                    '100%': { transform: 'translateX(100%)' },
+                },
+                'scan-right': {
+                    '0%': { transform: 'translateX(-100%)' },
+                    '100%': { transform: 'translateX(100%)' }
+                },
+                'scan-down': {
+                    '0%': { transform: 'translateY(-100%)' },
+                    '100%': { transform: 'translateY(100%)' }
+                },
+                'scan-left': {
+                    '0%': { transform: 'translateX(100%)' },
+                    '100%': { transform: 'translateX(-100%)' }
+                },
+                'scan-up': {
+                    '0%': { transform: 'translateY(100%)' },
+                    '100%': { transform: 'translateY(-100%)' }
+                },
+                gridMove: {
+                    '0%': { backgroundPosition: '0 0' },
+                    '100%': { backgroundPosition: '50px 50px' },
+                },
+                drift: {
+                    '0%': { transform: 'translate(0, 0)' },
+                    '100%': { transform: 'translate(30px, -30px)' },
+                }
+            }
         },
-        'pulse-glow': {
-          '0%, 100%': { opacity: '0.6' },
-          '50%': { opacity: '1' },
-        },
-        'slide-up': {
-          '0%': { transform: 'translateY(10px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-      },
     },
-  },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-  ],
-  corePlugins: {
-    preflight: false, // Disable Tailwind's reset to keep custom styles
-  },
+    plugins: [],
 }

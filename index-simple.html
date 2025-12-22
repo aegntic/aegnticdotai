@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aegntic.ai - Independent Research Foundation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: #030305;
+            color: white;
+        }
+        .text-metallic {
+            background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 50%, #b0b0b0 51%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(255,255,255,0.2);
+        }
+        .bg-tech-grid {
+            background-size: 50px 50px;
+            background-image:
+                linear-gradient(to right, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+    <!-- Background Effects -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-[#00f0ff]/5 rounded-full blur-[120px]" />
+        <div class="absolute bottom-[-20%] right-[-10%] w-[40vw] h-[40vw] bg-[#00f0ff]/5 rounded-full blur-[100px]" />
+        <div class="absolute inset-0 bg-tech-grid opacity-30" />
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center bg-transparent backdrop-blur-[2px]">
+        <div class="flex items-center gap-2">
+            <div class="w-6 h-6 bg-[#00f0ff] rounded animate-pulse" />
+            <span class="text-xl font-bold tracking-tight">
+                aegntic<span class="text-[#00f0ff]">.ai</span>
+            </span>
+        </div>
+        <div class="hidden md:flex items-center gap-8">
+            <a href="#about" class="text-xs uppercase tracking-[0.2em] text-gray-400 hover:text-white transition-colors">About</a>
+            <a href="#research" class="text-xs uppercase tracking-[0.2em] text-gray-400 hover:text-white transition-colors">Research</a>
+            <a href="#projects" class="text-xs uppercase tracking-[0.2em] text-gray-400 hover:text-white transition-colors">Projects</a>
+            <a href="#colabs" class="text-xs uppercase tracking-[0.2em] text-gray-400 hover:text-white transition-colors">Colabs</a>
+        </div>
+        <button class="px-6 py-2 text-xs uppercase tracking-widest font-bold text-black bg-[#00f0ff] rounded-sm hover:bg-white transition-colors">
+            Join Research
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center px-4 pt-20">
+        <div class="relative z-10 text-center max-w-6xl mx-auto">
+            <!-- Top Tagline -->
+            <div class="mb-8 animate-float">
+                <span class="text-xs uppercase tracking-[0.3em] text-[#00f0ff] border-b border-[#00f0ff]/30 pb-2">
+                    Independent Research Foundation
+                </span>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter leading-none text-metallic mb-6">
+                aegntic.ai
+            </h1>
+
+            <!-- Subtitle -->
+            <div class="mt-12 mb-12">
+                <p class="text-2xl md:text-4xl text-gray-200 leading-tight font-light">
+                    <span class="italic text-gray-400 pr-2">Zero knowledge,</span>
+                    <span class="text-white font-medium">unlimited</span>
+                    <span class="italic text-[#00f0ff] ml-2">insight</span>
+                </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="#about" class="px-8 py-3 border border-[#00f0ff] text-[#00f0ff] hover:bg-[#00f0ff] hover:text-black transition-all duration-300">
+                    Learn More
+                </a>
+                <a href="#research" class="px-8 py-3 border border-gray-600 text-gray-500 hover:text-white hover:border-white transition-all duration-300">
+                    Explore Research
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="min-h-screen flex items-center justify-center px-4 py-20">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold text-white mb-8">
+                <span class="text-[#00f0ff]">aegntic.foundation</span>
+            </h2>
+            <div class="text-3xl font-light text-[#00f0ff] mb-12 italic">
+                "Zero knowledge, unlimited insight"
+            </div>
+            <p class="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12">
+                An independent research foundation dedicated to advancing the frontiers of
+                cryptography, artificial intelligence, and decentralized systems.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="text-4xl font-bold text-[#00f0ff] mb-3">100+</div>
+                    <div class="text-gray-300">Research Papers</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-[#00f0ff] mb-3">50+</div>
+                    <div class="text-gray-300">Open Source Projects</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-[#00f0ff] mb-3">25+</div>
+                    <div class="text-gray-300">Research Partners</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="min-h-screen flex items-center justify-center px-4 py-20">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-white mb-16">
+                <span class="text-[#00f0ff]">aegntic.research</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="border border-gray-800 rounded-lg p-6 hover:border-[#00f0ff]/50 transition-colors">
+                    <div class="h-1 bg-gradient-to-r from-[#00f0ff] to-transparent mb-4"></div>
+                    <span class="text-purple-400 text-xs font-semibold">Zero Knowledge</span>
+                    <h3 class="text-xl font-bold text-white mt-4 mb-3">Generative Agents in Simulated Societies</h3>
+                    <p class="text-gray-400 text-sm mb-4">Novel framework for simulating multi-agent systems with zero-knowledge proofs.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-sm">15 min read</span>
+                        <span class="text-[#00f0ff]">→</span>
+                    </div>
+                </div>
+                <div class="border border-gray-800 rounded-lg p-6 hover:border-[#00f0ff]/50 transition-colors">
+                    <div class="h-1 bg-gradient-to-r from-blue-500 to-transparent mb-4"></div>
+                    <span class="text-blue-400 text-xs font-semibold">Multi-Agent</span>
+                    <h3 class="text-xl font-bold text-white mt-4 mb-3">Distributed Consensus in Privacy Networks</h3>
+                    <p class="text-gray-400 text-sm mb-4">Novel consensus mechanisms operating entirely within zero-knowledge environments.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-sm">12 min read</span>
+                        <span class="text-[#00f0ff]">→</span>
+                    </div>
+                </div>
+                <div class="border border-gray-800 rounded-lg p-6 hover:border-[#00f0ff]/50 transition-colors">
+                    <div class="h-1 bg-gradient-to-r from-green-500 to-transparent mb-4"></div>
+                    <span class="text-green-400 text-xs font-semibold">Privacy AI</span>
+                    <h3 class="text-xl font-bold text-white mt-4 mb-3">Homomorphic Encryption for ML</h3>
+                    <p class="text-gray-400 text-sm mb-4">Advanced techniques for collaborative model training without exposing data.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-500 text-sm">18 min read</span>
+                        <span class="text-[#00f0ff]">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="min-h-screen flex items-center justify-center px-4 py-20">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-white mb-16">
+                Our <span class="text-[#00f0ff]">Projects</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="border border-gray-800 rounded-lg overflow-hidden hover:border-[#00f0ff]/50 transition-colors">
+                    <div class="h-2 bg-gradient-to-r from-[#00f0ff] to-cyan-400"></div>
+                    <div class="p-8">
+                        <span class="text-green-400 text-xs font-semibold">Production</span>
+                        <h3 class="text-2xl font-bold text-white mt-4 mb-4">Zero-Knowledge Authentication</h3>
+                        <p class="text-gray-300 mb-6">Production-ready authentication framework using advanced ZK-SNARK technology.</p>
+                        <div class="grid grid-cols-3 gap-4 mb-6 text-sm">
+                            <div>
+                                <div class="text-gray-500">Transactions</div>
+                                <div class="text-xl font-bold text-white">1.2M+</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500">Response Time</div>
+                                <div class="text-xl font-bold text-white">&lt;100ms</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500">Accuracy</div>
+                                <div class="text-xl font-bold text-white">99.9%</div>
+                            </div>
+                        </div>
+                        <button class="px-6 py-2 bg-[#00f0ff] text-black rounded-lg font-semibold hover:bg-white transition-colors">
+                            View Demo
+                        </button>
+                    </div>
+                </div>
+                <div class="border border-gray-800 rounded-lg overflow-hidden hover:border-[#00f0ff]/50 transition-colors">
+                    <div class="h-2 bg-gradient-to-r from-purple-500 to-pink-500"></div>
+                    <div class="p-8">
+                        <span class="text-blue-400 text-xs font-semibold">Beta</span>
+                        <h3 class="text-2xl font-bold text-white mt-4 mb-4">Multi-Agent Simulator</h3>
+                        <p class="text-gray-300 mb-6">Comprehensive simulation environment for privacy-preserving multi-agent systems.</p>
+                        <div class="grid grid-cols-3 gap-4 mb-6 text-sm">
+                            <div>
+                                <div class="text-gray-500">Agents</div>
+                                <div class="text-xl font-bold text-white">10k+</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500">Simulations</div>
+                                <div class="text-xl font-bold text-white">500+</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500">Papers</div>
+                                <div class="text-xl font-bold text-white">12</div>
+                            </div>
+                        </div>
+                        <button class="px-6 py-2 bg-[#00f0ff] text-black rounded-lg font-semibold hover:bg-white transition-colors">
+                            Try Demo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Colabs Section -->
+    <section id="colabs" class="min-h-screen flex items-center justify-center px-4 py-20">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-5xl font-bold text-white mb-16">
+                <span class="text-[#00f0ff]">Collaborations</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="border border-gray-800 rounded-lg p-6">
+                    <div class="text-3xl font-bold text-[#00f0ff] mb-2">25+</div>
+                    <div class="text-gray-300">Active Partners</div>
+                </div>
+                <div class="border border-gray-800 rounded-lg p-6">
+                    <div class="text-3xl font-bold text-[#00f0ff] mb-2">8</div>
+                    <div class="text-gray-300">Universities</div>
+                </div>
+                <div class="border border-gray-800 rounded-lg p-6">
+                    <div class="text-3xl font-bold text-[#00f0ff] mb-2">12</div>
+                    <div class="text-gray-300">Industry Partners</div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                <div class="border border-gray-800 rounded-lg p-6 hover:border-[#00f0ff]/50 transition-colors">
+                    <div class="text-2xl font-bold text-[#00f0ff] mb-3">MIT</div>
+                    <div class="text-gray-400 text-sm">ZK Systems Research</div>
+                </div>
+                <div class="border border-gray-800 rounded-lg p-6 hover:border-[#00f0ff]/50 transition-colors">
+                    <div class="text-2xl font-bold text-[#00f0ff] mb-3">ETH</div>
+                    <div class="text-gray-400 text-sm">Cryptography Group</div>
+                </div>
+                <div class="border border-gray-800 rounded-lg p-6 hover:border-[#00f0ff]/50 transition-colors">
+                    <div class="text-2xl font-bold text-[#00f0ff] mb-3">CMU</div>
+                    <div class="text-gray-400 text-sm">AI & Privacy Lab</div>
+                </div>
+                <div class="border border-gray-800 rounded-lg p-6 hover:border-[#00f0ff]/50 transition-colors">
+                    <div class="text-2xl font-bold text-[#00f0ff] mb-3">Stanford</div>
+                    <div class="text-gray-400 text-sm">Security Lab</div>
+                </div>
+            </div>
+            <button class="px-8 py-3 bg-[#00f0ff] text-black rounded-lg font-semibold hover:bg-white transition-colors">
+                Partner With Us
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <span class="text-xl font-bold text-white mb-4 md:mb-0">aegntic<span class="text-[#00f0ff]">.ai</span></span>
+                <div class="flex gap-6">
+                    <a href="#" class="text-gray-400 hover:text-[#00f0ff] transition-colors">GitHub</a>
+                    <a href="#" class="text-gray-400 hover:text-[#00f0ff] transition-colors">Twitter</a>
+                    <a href="#" class="text-gray-400 hover:text-[#00f0ff] transition-colors">LinkedIn</a>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-gray-500 text-sm">
+                © 2024 Aegntic.ai. Zero knowledge, unlimited insight.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Simple JavaScript -->
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add scroll reveal effect
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
