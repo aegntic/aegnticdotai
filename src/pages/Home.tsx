@@ -63,7 +63,11 @@ const Home: React.FC = () => {
                             <div className="absolute -inset-10 bg-gradient-to-r from-transparent via-primary/5 to-transparent blur-xl" />
                             <p className="relative text-2xl md:text-4xl text-gray-200 leading-tight font-light">
                                 <span className="font-serif italic text-gray-400 pr-2">
-                                    <Editable id="home-subtitle-1" as="span">Adaptive Emergence:</Editable>
+                                    <Editable id="home-subtitle-1-a" as="span">A</Editable>
+                                    <Editable id="home-subtitle-1-daptive" as="span">daptive</Editable>
+                                    {' '}
+                                    <Editable id="home-subtitle-1-e" as="span">E</Editable>
+                                    <Editable id="home-subtitle-1-mergence" as="span">mergence:</Editable>
                                 </span>
                                 <Editable id="home-subtitle-2" as="span">Guiding Networks Toward</Editable>{' '}
                                 <span className="text-primary italic font-serif">

@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import React from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -8,11 +6,8 @@ import About from './pages/About';
 import Research from './pages/Research';
 import Projects from './pages/Projects';
 import Collaborations from './pages/Collaborations';
-import ArticleView from './pages/ArticleView';
 
 const App: React.FC = () => {
-    const location = useLocation();
-
     return (
         <div className="relative min-h-screen flex flex-col w-full overflow-hidden bg-background-dark">
             {/* Background Noise Overlay */}
@@ -29,16 +24,30 @@ const App: React.FC = () => {
             <div className="relative z-10 flex flex-col min-h-screen">
                 <Navbar />
                 <main className="flex-grow">
-                    <AnimatePresence mode="wait">
-                        <Routes location={location} key={location.pathname}>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/about" element={<About />} />
-                            <Route path="/research" element={<Research />} />
-                            <Route path="/research/:id" element={<ArticleView />} />
-                            <Route path="/projects" element={<Projects />} />
-                            <Route path="/contact" element={<Collaborations />} />
-                        </Routes>
-                    </AnimatePresence>
+                    {/* Hero Section */}
+                    <section id="home">
+                        <Home />
+                    </section>
+
+                    {/* About Section */}
+                    <section id="about">
+                        <About />
+                    </section>
+
+                    {/* Ecosystem/Projects Section */}
+                    <section id="ecosystem">
+                        <Projects />
+                    </section>
+
+                    {/* Research Section */}
+                    <section id="research">
+                        <Research />
+                    </section>
+
+                    {/* Contact Section */}
+                    <section id="contact">
+                        <Collaborations />
+                    </section>
                 </main>
                 <Footer />
             </div>

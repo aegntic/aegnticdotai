@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Filter, ArrowRight, Play, BookOpen, Clock, Users, Network } from 'lucide-react';
-import { Link } from 'react-router-dom';
+
 import ScrollReveal from '../components/ScrollReveal';
 import { Editable, EditableIcon } from '../components/DevTools';
 
@@ -59,11 +59,8 @@ const Research: React.FC = () => {
     ];
 
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="pt-32 pb-20 px-6"
+        <div
+            className="py-20 px-6"
         >
             <div className="max-w-7xl mx-auto">
                 {/* Page Header */}
@@ -114,9 +111,9 @@ const Research: React.FC = () => {
                                         We deployed 1,000 generative agents in a closed-loop social simulation. The emergent behaviors observed challenge our fundamental understanding of digital consciousness.
                                     </Editable>
                                 </p>
-                                <Link to="/research/simulation-sandbox-7" className="flex items-center gap-3 text-white text-[10px] uppercase tracking-[0.3em] font-bold group/btn">
+                                <a href="#" className="flex items-center gap-3 text-white text-[10px] uppercase tracking-[0.3em] font-bold group/btn">
                                     Enter Repository <ArrowRight size={14} className="group-hover/btn:translate-x-2 transition-transform" />
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -190,7 +187,7 @@ const Research: React.FC = () => {
                     </ScrollReveal>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 

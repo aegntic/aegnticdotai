@@ -17,11 +17,8 @@ const Collaborations: React.FC = () => {
     ];
 
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="pt-32 pb-20 px-6"
+        <div
+            className="py-20 px-6"
         >
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
@@ -104,7 +101,7 @@ const Collaborations: React.FC = () => {
                     </ScrollReveal>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 

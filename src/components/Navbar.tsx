@@ -1,90 +1,107 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Menu, Network, X, Search, Globe } from 'lucide-react';
+import { Menu, Network, X } from 'lucide-react';
 
 const Navbar: React.FC = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState('home');
 
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
+
+            // Detect active section
+            const sections = ['home', 'about', 'ecosystem', 'research', 'contact'];
+            for (const section of sections.reverse()) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 150) {
+                        setActiveSection(section);
+                        break;
+                    }
+                }
+            }
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const navLinks = [
-        { name: 'About', path: '/about' },
-        { name: 'Ecosystem', path: '/projects' },
-        { name: 'Research', path: '/research' },
-        { name: 'Contact', path: '/contact' },
+        { name: 'About', href: '#about' },
+        { name: 'Ecosystem', href: '#ecosystem' },
+        { name: 'Research', href: '#research' },
+        { name: 'Contact', href: '#contact' },
     ];
+
+    const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        const id = href.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        setIsMobileMenuOpen(false);
+    };
+
+    const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     return (
         <nav className={`fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'bg-background-dark/80 backdrop-blur-md border-b border-primary/10 py-3' : 'bg-transparent py-6'}`}>
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 group cursor-pointer">
+            <a href="#home" onClick={scrollToTop} className="flex items-center gap-2 group cursor-pointer">
                 <Network className="text-primary w-6 h-6 animate-pulse-slow group-hover:rotate-180 transition-transform duration-700 ease-in-out" />
                 <span className="text-xl font-bold tracking-tight text-white font-sans">
                     aegntic<span className="text-primary">.ai</span>
                 </span>
-            </Link>
+            </a>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-10">
-                {navLinks.map((link) => (
-                    <NavLink
-                        key={link.name}
-                        to={link.path}
-                        className={({ isActive }) =>
-                            `text-xs uppercase tracking-[0.2em] font-medium transition-colors relative group ${isActive ? 'text-white' : 'text-gray-400 hover:text-white'}`
-                        }
-                    >
-                        {({ isActive }) => (
-                            <>
-                                {link.name}
-                                <span className={`absolute -bottom-1 left-0 h-[1px] bg-primary transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
-                            </>
-                        )}
-                    </NavLink>
-                ))}
+                {navLinks.map((link) => {
+                    const sectionId = link.href.replace('#', '');
+                    const isActive = activeSection === sectionId;
+
+                    return (
+                        <a
+                            key={link.name}
+                            href={link.href}
+                            onClick={(e) => scrollToSection(e, link.href)}
+                            className={`text-xs uppercase tracking-[0.2em] font-medium transition-colors relative group ${isActive ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                        >
+                            {link.name}
+                            <span className={`absolute -bottom-1 left-0 h-[1px] bg-primary transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                        </a>
+                    );
+                })}
             </div>
 
-            {/* Right Actions */}
-            <div className="flex items-center gap-4">
-                <button className="hidden md:flex items-center gap-2 px-6 py-2 text-xs uppercase tracking-widest font-bold text-black bg-primary hover:bg-white hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all duration-300 rounded-sm skew-x-[-10deg] active:scale-95 group">
-                    <span className="skew-x-[10deg] flex items-center gap-2">
-                        Access Lab
-                        <Globe size={14} className="group-hover:rotate-45 transition-transform" />
-                    </span>
-                </button>
+            {/* Mobile Menu Button */}
+            <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
+            >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
 
-                {/* Mobile Menu Toggle */}
-                <button
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="md:hidden text-white hover:text-primary transition-colors p-2"
-                >
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </div>
-
-            {/* Mobile Menu Overlay */}
-            <div className={`fixed inset-0 top-[60px] bg-background-dark/95 backdrop-blur-md md:hidden flex flex-col gap-8 p-8 transition-transform duration-300 z-40 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                {navLinks.map((link) => (
-                    <NavLink
-                        key={link.name}
-                        to={link.path}
-                        className="text-2xl uppercase tracking-widest text-gray-300 hover:text-primary transition-colors"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                        {link.name}
-                    </NavLink>
-                ))}
-                <button className="w-full py-4 text-sm uppercase tracking-widest font-bold text-black bg-primary rounded-sm mt-auto">
-                    Access Lab
-                </button>
-            </div>
+            {/* Mobile Menu */}
+            {isMobileMenuOpen && (
+                <div className="absolute top-full left-0 w-full bg-background-dark/95 backdrop-blur-md border-b border-white/5 py-8 px-6 flex flex-col gap-6 md:hidden">
+                    {navLinks.map((link) => (
+                        <a
+                            key={link.name}
+                            href={link.href}
+                            onClick={(e) => scrollToSection(e, link.href)}
+                            className="text-lg font-medium text-gray-400 hover:text-white transition-colors"
+                        >
+                            {link.name}
+                        </a>
+                    ))}
+                </div>
+            )}
         </nav>
     );
 };

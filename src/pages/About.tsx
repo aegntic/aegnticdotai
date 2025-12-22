@@ -30,12 +30,8 @@ const About: React.FC = () => {
     ];
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="pt-32 pb-20 px-6"
+        <div
+            className="py-20 px-6"
         >
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
@@ -148,7 +144,7 @@ const About: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 

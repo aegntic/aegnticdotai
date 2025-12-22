@@ -46,11 +46,14 @@ const Editable: React.FC<EditableProps> = ({
     const { isDevMode, editMode, saveEdit, getEdit } = useDevTools();
     const [isEditing, setIsEditing] = useState(false);
     const [showStyleMenu, setShowStyleMenu] = useState(false);
-    const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+    const [menuPosition, setMenuPosition] = useState({ x: 100, y: 100 });
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
     const [size, setSize] = useState<{ width?: number; height?: number }>({});
     const [styles, setStyles] = useState<StyleOptions>({});
     const [originalText, setOriginalText] = useState('');
     const contentRef = useRef<HTMLElement>(null);
+    const menuRef = useRef<HTMLDivElement>(null);
     const startPos = useRef({ x: 0, y: 0, width: 0, height: 0 });
 
     // Load saved values
@@ -108,9 +111,42 @@ const Editable: React.FC<EditableProps> = ({
         if (!editMode) return;
         e.preventDefault();
         e.stopPropagation();
-        setMenuPosition({ x: e.clientX, y: e.clientY });
+        // Position menu at center-top of viewport on first open
+        setMenuPosition({ x: window.innerWidth / 2 - 180, y: 80 });
         setShowStyleMenu(true);
     };
+
+    // Drag handlers for the menu
+    const handleDragStart = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setIsDragging(true);
+        setDragOffset({
+            x: e.clientX - menuPosition.x,
+            y: e.clientY - menuPosition.y
+        });
+    };
+
+    useEffect(() => {
+        if (!isDragging) return;
+
+        const handleMouseMove = (e: MouseEvent) => {
+            setMenuPosition({
+                x: e.clientX - dragOffset.x,
+                y: e.clientY - dragOffset.y
+            });
+        };
+
+        const handleMouseUp = () => {
+            setIsDragging(false);
+        };
+
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, [isDragging, dragOffset]);
 
     const handleBlur = () => {
         setIsEditing(false);
@@ -259,177 +295,206 @@ const Editable: React.FC<EditableProps> = ({
                 />
             )}
 
-            {/* Style Menu */}
+            {/* Style Menu - Draggable floating panel */}
             {showStyleMenu && (
                 <div
-                    className="fixed bg-gray-900 border border-gray-700 rounded-lg shadow-2xl z-[9999] p-3 space-y-3"
-                    style={{ left: menuPosition.x, top: menuPosition.y }}
+                    ref={menuRef}
+                    className="fixed bg-gray-900/95 backdrop-blur-md border border-primary/30 rounded-xl shadow-[0_0_40px_rgba(0,240,255,0.15)] p-0 min-w-[360px]"
+                    style={{
+                        left: menuPosition.x,
+                        top: menuPosition.y,
+                        zIndex: 99999,
+                        cursor: isDragging ? 'grabbing' : 'default'
+                    }}
                     onClick={e => e.stopPropagation()}
                 >
-                    {/* Quick Edit Button */}
-                    <button
-                        onClick={() => {
-                            setShowStyleMenu(false);
-                            setIsEditing(true);
-                            setTimeout(() => {
-                                if (contentRef.current) {
-                                    contentRef.current.focus();
-                                    const selection = window.getSelection();
-                                    const range = document.createRange();
-                                    range.selectNodeContents(contentRef.current);
-                                    selection?.removeAllRanges();
-                                    selection?.addRange(range);
-                                }
-                            }, 0);
-                        }}
-                        className="w-full px-3 py-2 bg-primary text-black font-bold text-xs uppercase tracking-wider rounded hover:bg-white transition-colors"
+                    {/* Drag Handle */}
+                    <div
+                        onMouseDown={handleDragStart}
+                        className="flex items-center justify-between px-4 py-3 border-b border-gray-700 cursor-grab active:cursor-grabbing bg-gray-800/50 rounded-t-xl"
                     >
-                        ✏️ Edit Text
-                    </button>
-
-                    <div className="border-t border-gray-700 pt-2">
-                        <div className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-2">Text Style</div>
-                    </div>
-
-                    {/* Font Family */}
-                    <div className="space-y-1">
-                        <div className="text-[10px] text-gray-500 uppercase">Font</div>
-                        <div className="flex gap-1">
-                            {(['sans', 'serif', 'mono'] as const).map(font => (
-                                <button
-                                    key={font}
-                                    onClick={() => updateStyle('fontFamily', font)}
-                                    className={`px-2 py-1 text-xs rounded ${styles.fontFamily === font
-                                        ? 'bg-primary text-black'
-                                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                                        }`}
-                                    style={{ fontFamily: fontOptions[font] }}
-                                >
-                                    Aa
-                                </button>
-                            ))}
+                        <div className="flex items-center gap-2">
+                            <div className="flex gap-1">
+                                <div className="w-2 h-2 rounded-full bg-gray-600" />
+                                <div className="w-2 h-2 rounded-full bg-gray-600" />
+                                <div className="w-2 h-2 rounded-full bg-gray-600" />
+                            </div>
+                            <span className="text-xs text-primary font-bold uppercase tracking-wider">Text Style Editor</span>
                         </div>
+                        <button
+                            onClick={() => setShowStyleMenu(false)}
+                            className="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors"
+                        >
+                            ✕
+                        </button>
                     </div>
 
-                    {/* Font Weight */}
-                    <div className="space-y-1">
-                        <div className="text-[10px] text-gray-500 uppercase">Weight</div>
-                        <div className="flex gap-1">
-                            {(['light', 'normal', 'bold'] as const).map(weight => (
-                                <button
-                                    key={weight}
-                                    onClick={() => updateStyle('fontWeight', weight)}
-                                    className={`px-2 py-1 text-xs rounded capitalize ${styles.fontWeight === weight
-                                        ? 'bg-primary text-black'
-                                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                                        }`}
-                                    style={{ fontWeight: weight === 'light' ? 300 : weight === 'bold' ? 700 : 400 }}
-                                >
-                                    {weight[0].toUpperCase()}
-                                </button>
-                            ))}
+                    <div className="p-4 space-y-4">
+                        {/* Quick Edit Button */}
+                        <button
+                            onClick={() => {
+                                setShowStyleMenu(false);
+                                setIsEditing(true);
+                                setTimeout(() => {
+                                    if (contentRef.current) {
+                                        contentRef.current.focus();
+                                        const selection = window.getSelection();
+                                        const range = document.createRange();
+                                        range.selectNodeContents(contentRef.current);
+                                        selection?.removeAllRanges();
+                                        selection?.addRange(range);
+                                    }
+                                }, 0);
+                            }}
+                            className="w-full px-4 py-3 bg-primary text-black font-bold text-sm uppercase tracking-wider rounded-lg hover:bg-white transition-colors shadow-[0_0_20px_rgba(0,240,255,0.3)]"
+                        >
+                            ✏️ Edit Text
+                        </button>
+
+                        <div className="border-t border-gray-700 pt-3">
+                            <div className="text-xs text-gray-400 font-bold uppercase tracking-wider mb-3">Formatting</div>
                         </div>
-                    </div>
 
-                    {/* Font Style */}
-                    <div className="space-y-1">
-                        <div className="text-[10px] text-gray-500 uppercase">Style</div>
-                        <div className="flex gap-1">
-                            <button
-                                onClick={() => updateStyle('fontStyle', 'normal')}
-                                className={`px-2 py-1 text-xs rounded ${styles.fontStyle !== 'italic'
-                                    ? 'bg-primary text-black'
-                                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                                    }`}
-                            >
-                                Normal
-                            </button>
-                            <button
-                                onClick={() => updateStyle('fontStyle', 'italic')}
-                                className={`px-2 py-1 text-xs rounded italic ${styles.fontStyle === 'italic'
-                                    ? 'bg-primary text-black'
-                                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                                    }`}
-                            >
-                                Italic
-                            </button>
+                        {/* Font Family */}
+                        <div className="space-y-1">
+                            <div className="text-[10px] text-gray-500 uppercase">Font</div>
+                            <div className="flex gap-1">
+                                {(['sans', 'serif', 'mono'] as const).map(font => (
+                                    <button
+                                        key={font}
+                                        onClick={() => updateStyle('fontFamily', font)}
+                                        className={`px-2 py-1 text-xs rounded ${styles.fontFamily === font
+                                            ? 'bg-primary text-black'
+                                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                            }`}
+                                        style={{ fontFamily: fontOptions[font] }}
+                                    >
+                                        Aa
+                                    </button>
+                                ))}
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Text Transform */}
-                    <div className="space-y-1">
-                        <div className="text-[10px] text-gray-500 uppercase">Case</div>
-                        <div className="flex gap-1">
-                            {(['none', 'uppercase', 'capitalize'] as const).map(transform => (
-                                <button
-                                    key={transform}
-                                    onClick={() => updateStyle('textTransform', transform)}
-                                    className={`px-2 py-1 text-xs rounded ${(styles.textTransform || 'none') === transform
-                                        ? 'bg-primary text-black'
-                                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                                        }`}
-                                    style={{ textTransform: transform }}
-                                >
-                                    {transform === 'none' ? 'Aa' : transform === 'uppercase' ? 'AA' : 'Aa'}
-                                </button>
-                            ))}
+                        {/* Font Weight */}
+                        <div className="space-y-1">
+                            <div className="text-[10px] text-gray-500 uppercase">Weight</div>
+                            <div className="flex gap-1">
+                                {(['light', 'normal', 'bold'] as const).map(weight => (
+                                    <button
+                                        key={weight}
+                                        onClick={() => updateStyle('fontWeight', weight)}
+                                        className={`px-2 py-1 text-xs rounded capitalize ${styles.fontWeight === weight
+                                            ? 'bg-primary text-black'
+                                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                            }`}
+                                        style={{ fontWeight: weight === 'light' ? 300 : weight === 'bold' ? 700 : 400 }}
+                                    >
+                                        {weight[0].toUpperCase()}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Text Alignment */}
-                    <div className="space-y-1">
-                        <div className="text-[10px] text-gray-500 uppercase">Align</div>
-                        <div className="flex gap-1">
-                            {(['left', 'center', 'right', 'justify'] as const).map(align => (
+                        {/* Font Style */}
+                        <div className="space-y-1">
+                            <div className="text-[10px] text-gray-500 uppercase">Style</div>
+                            <div className="flex gap-1">
                                 <button
-                                    key={align}
-                                    onClick={() => updateStyle('textAlign', align)}
-                                    className={`px-2 py-1 text-xs rounded ${(styles.textAlign || 'left') === align
+                                    onClick={() => updateStyle('fontStyle', 'normal')}
+                                    className={`px-2 py-1 text-xs rounded ${styles.fontStyle !== 'italic'
                                         ? 'bg-primary text-black'
                                         : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                                         }`}
                                 >
-                                    {align === 'left' ? '⫷' : align === 'center' ? '⫶' : align === 'right' ? '⫸' : '☰'}
+                                    Normal
                                 </button>
-                            ))}
+                                <button
+                                    onClick={() => updateStyle('fontStyle', 'italic')}
+                                    className={`px-2 py-1 text-xs rounded italic ${styles.fontStyle === 'italic'
+                                        ? 'bg-primary text-black'
+                                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                        }`}
+                                >
+                                    Italic
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Font Size */}
-                    <div className="space-y-1">
-                        <div className="text-[10px] text-gray-500 uppercase">Size</div>
-                        <div className="flex gap-1 items-center">
-                            <button
-                                onClick={() => updateStyle('fontSize', String(Math.max(8, (styles.fontSize || 16) - 2)))}
-                                className="px-2 py-1 text-xs rounded bg-gray-700 text-gray-300 hover:bg-gray-600"
-                            >
-                                -
-                            </button>
-                            <span className="text-xs text-white font-mono w-10 text-center">
-                                {styles.fontSize || 'auto'}
-                            </span>
-                            <button
-                                onClick={() => updateStyle('fontSize', String((styles.fontSize || 16) + 2))}
-                                className="px-2 py-1 text-xs rounded bg-gray-700 text-gray-300 hover:bg-gray-600"
-                            >
-                                +
-                            </button>
-                            <button
-                                onClick={() => {
-                                    const newStyles = { ...styles };
-                                    delete newStyles.fontSize;
-                                    setStyles(newStyles);
-                                    saveEdit(id + '-styles', 'size', JSON.stringify(newStyles), '');
-                                }}
-                                className="px-2 py-1 text-[10px] rounded bg-gray-700 text-gray-300 hover:bg-gray-600"
-                            >
-                                Reset
-                            </button>
+                        {/* Text Transform */}
+                        <div className="space-y-1">
+                            <div className="text-[10px] text-gray-500 uppercase">Case</div>
+                            <div className="flex gap-1">
+                                {(['none', 'uppercase', 'capitalize'] as const).map(transform => (
+                                    <button
+                                        key={transform}
+                                        onClick={() => updateStyle('textTransform', transform)}
+                                        className={`px-2 py-1 text-xs rounded ${(styles.textTransform || 'none') === transform
+                                            ? 'bg-primary text-black'
+                                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                            }`}
+                                        style={{ textTransform: transform }}
+                                    >
+                                        {transform === 'none' ? 'Aa' : transform === 'uppercase' ? 'AA' : 'Aa'}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="border-t border-gray-700 pt-2 text-[10px] text-gray-600">
-                        Right-click = styles • Double-click = edit
+                        {/* Text Alignment */}
+                        <div className="space-y-1">
+                            <div className="text-[10px] text-gray-500 uppercase">Align</div>
+                            <div className="flex gap-1">
+                                {(['left', 'center', 'right', 'justify'] as const).map(align => (
+                                    <button
+                                        key={align}
+                                        onClick={() => updateStyle('textAlign', align)}
+                                        className={`px-2 py-1 text-xs rounded ${(styles.textAlign || 'left') === align
+                                            ? 'bg-primary text-black'
+                                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                                            }`}
+                                    >
+                                        {align === 'left' ? '⫷' : align === 'center' ? '⫶' : align === 'right' ? '⫸' : '☰'}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Font Size */}
+                        <div className="space-y-1">
+                            <div className="text-[10px] text-gray-500 uppercase">Size</div>
+                            <div className="flex gap-1 items-center">
+                                <button
+                                    onClick={() => updateStyle('fontSize', String(Math.max(8, (styles.fontSize || 16) - 2)))}
+                                    className="px-2 py-1 text-xs rounded bg-gray-700 text-gray-300 hover:bg-gray-600"
+                                >
+                                    -
+                                </button>
+                                <span className="text-xs text-white font-mono w-10 text-center">
+                                    {styles.fontSize || 'auto'}
+                                </span>
+                                <button
+                                    onClick={() => updateStyle('fontSize', String((styles.fontSize || 16) + 2))}
+                                    className="px-2 py-1 text-xs rounded bg-gray-700 text-gray-300 hover:bg-gray-600"
+                                >
+                                    +
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        const newStyles = { ...styles };
+                                        delete newStyles.fontSize;
+                                        setStyles(newStyles);
+                                        saveEdit(id + '-styles', 'size', JSON.stringify(newStyles), '');
+                                    }}
+                                    className="px-2 py-1 text-[10px] rounded bg-gray-700 text-gray-300 hover:bg-gray-600"
+                                >
+                                    Reset
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="border-t border-gray-700 pt-2 text-[10px] text-gray-600">
+                            Drag header to move • Click × to close
+                        </div>
                     </div>
                 </div>
             )}
