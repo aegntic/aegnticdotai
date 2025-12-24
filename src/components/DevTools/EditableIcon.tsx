@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDevTools } from './DevToolsContext';
 import * as LucideIcons from 'lucide-react';
+import Icon3D from '../Icon3D';
 
 // Get all icon names from lucide-react
 const iconNames = Object.keys(LucideIcons).filter(
@@ -101,7 +102,7 @@ const EditableIcon: React.FC<EditableIconProps> = ({
     const IconComponent = (LucideIcons as any)[currentIcon] || LucideIcons.HelpCircle;
 
     if (!isDevMode) {
-        return <IconComponent size={defaultSize} className={className} />;
+        return <Icon3D icon={currentIcon} size={defaultSize} className={className} />;
     }
 
     return (
@@ -117,7 +118,11 @@ const EditableIcon: React.FC<EditableIconProps> = ({
                 }}
                 title={editMode ? 'Click to change icon' : undefined}
             >
-                <IconComponent size={currentSize} className={className} />
+                {editMode ? (
+                    <IconComponent size={currentSize} className={className} />
+                ) : (
+                    <Icon3D icon={currentIcon} size={currentSize} className={className} />
+                )}
 
                 {/* Edit indicator */}
                 {editMode && (

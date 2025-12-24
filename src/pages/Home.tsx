@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import Icon3D from '../components/Icon3D';
 import ScrollReveal from '../components/ScrollReveal';
 import { Editable, EditableIcon } from '../components/DevTools';
 
@@ -17,23 +17,65 @@ const Home: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="relative flex flex-col items-center"
         >
-            {/* Hero Section */}
-            <section className="relative w-full max-w-7xl mx-auto flex flex-col items-center justify-center px-4 py-20 min-h-[90vh]">
+            {/* Hero Section - Centered Layout */}
+            <section className="relative w-full max-w-7xl mx-auto flex flex-col justify-center px-4 py-20 min-h-[90vh]">
 
                 {/* Dynamic Background Layer */}
                 <div className="absolute inset-0 overflow-visible pointer-events-none select-none z-0">
                     <div className="absolute inset-[-50%] w-[200%] h-[200%] bg-tech-grid animate-grid-move opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_70%)]" />
-                    <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] animate-drift mix-blend-screen" />
-                    <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-900/20 rounded-full blur-[120px] animate-drift delay-[2000ms] mix-blend-screen" />
+
+                    {/* Animated blur circle 1 - cycles in front and behind */}
+                    <motion.div
+                        className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] mix-blend-screen"
+                        animate={{
+                            x: [0, 100, 0, -100, 0],
+                            y: [0, -50, 0, 50, 0],
+                            zIndex: [5, 5, 20, 20, 5]
+                        }}
+                        transition={{
+                            duration: 12,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
+
+                    {/* Animated blur circle 2 - cycles opposite */}
+                    <motion.div
+                        className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-blue-900/20 rounded-full blur-[120px] mix-blend-screen"
+                        animate={{
+                            x: [0, -80, 0, 80, 0],
+                            y: [0, 60, 0, -60, 0],
+                            zIndex: [20, 20, 5, 5, 20]
+                        }}
+                        transition={{
+                            duration: 10,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
+
                     <div className="glow-line top-[20%] border-b-[3px] border-primary/90 shadow-[0_20px_60px_rgba(0,240,255,0.2),inset_0_-2px_20px_rgba(0,240,255,0.5)] animate-[pulse_4s_ease-in-out_infinite]" />
                     <div className="glow-line bottom-[20%] border-t-[3px] border-primary/90 shadow-[0_-20px_60px_rgba(0,240,255,0.2),inset_0_2px_20px_rgba(0,240,255,0.5)] animate-[pulse_4s_ease-in-out_infinite_1s]" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[40vh] bg-primary/10 rounded-full blur-[100px]" />
+
+                    {/* Center blur circle - also cycles */}
+                    <motion.div
+                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[40vh] bg-primary/10 rounded-full blur-[100px]"
+                        animate={{
+                            scale: [1, 1.2, 1, 0.9, 1],
+                            zIndex: [5, 20, 5, 20, 5]
+                        }}
+                        transition={{
+                            duration: 8,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
                 </div>
 
-                {/* Hero Content */}
-                <motion.div style={{ y: yParallax, opacity: opacityFade }} className="relative z-10 flex flex-col items-center text-center">
+                {/* Hero Content - Centered Layout */}
+                <motion.div style={{ y: yParallax, opacity: opacityFade }} className="relative z-10 w-full text-center">
 
-                    {/* Top Tagline */}
+                    {/* Centered Tagline */}
                     <ScrollReveal delay={100}>
                         <div className="mb-8 opacity-70 animate-[float_6s_ease-in-out_infinite]">
                             <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-primary border-b border-primary/30 pb-2">
@@ -42,29 +84,49 @@ const Home: React.FC = () => {
                         </div>
                     </ScrollReveal>
 
-                    {/* Main Title */}
-                    <ScrollReveal delay={300}>
-                        <div className="relative mb-4 group">
-                            <h1 className="text-6xl md:text-8xl lg:text-[11.5rem] font-bold tracking-tighter leading-none text-metallic select-none relative z-10 font-sans">
-                                <Editable id="home-title" as="span">aegntic.ai</Editable>
-                            </h1>
-                            <div
-                                aria-hidden="true"
-                                className="absolute top-[85%] left-0 w-full text-6xl md:text-8xl lg:text-[11.5rem] font-bold tracking-tighter leading-none text-gray-500/10 select-none scale-y-[-1] blur-[3px] reflection-mask pointer-events-none transform origin-top"
-                            >
-                                aegntic.ai
-                            </div>
-                        </div>
-                    </ScrollReveal>
+                    {/* Centered Main Title */}
+                    <motion.div
+                        initial={{
+                            filter: 'blur(20px)',
+                            scale: 0.8,
+                            opacity: 0,
+                            y: 30
+                        }}
+                        animate={{
+                            filter: 'blur(0px)',
+                            scale: 1,
+                            opacity: 1,
+                            y: 0
+                        }}
+                        transition={{
+                            duration: 1.5,
+                            delay: 0.3,
+                            ease: [0.16, 1, 0.3, 1]
+                        }}
+                        className="relative mb-4 group inline-block"
+                    >
+                        <h1 className="text-6xl md:text-8xl lg:text-[11.5rem] font-bold tracking-tighter leading-none text-metallic select-none relative z-10 font-sans">
+                            <Editable id="home-title" as="span">aegntic.ai</Editable>
+                        </h1>
+                        <motion.div
+                            aria-hidden="true"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1, delay: 1.2 }}
+                            className="absolute top-[85%] left-1/2 -translate-x-1/2 w-full text-6xl md:text-8xl lg:text-[11.5rem] font-bold tracking-tighter leading-none text-gray-500/10 select-none scale-y-[-1] blur-[3px] reflection-mask pointer-events-none transform origin-top"
+                        >
+                            aegntic.ai
+                        </motion.div>
+                    </motion.div>
 
-                    {/* Subtitle */}
+                    {/* Centered Subtitle */}
                     <ScrollReveal delay={500}>
                         <div className="mt-16 md:mt-24 max-w-4xl mx-auto relative">
                             <div className="absolute -inset-10 bg-gradient-to-r from-transparent via-primary/5 to-transparent blur-xl" />
                             <p className="relative text-2xl md:text-4xl text-gray-200 leading-tight font-light">
                                 <span className="font-serif italic text-gray-400 pr-2">
                                     <Editable id="home-subtitle-1-a" as="span">A</Editable>
-                                    <Editable id="home-subtitle-1-daptive" as="span">daptive</Editable>
+                                    <Editable id="home-subtitle-1-d" as="span">daptive</Editable>
                                     {' '}
                                     <Editable id="home-subtitle-1-e" as="span">E</Editable>
                                     <Editable id="home-subtitle-1-mergence" as="span">mergence:</Editable>
@@ -80,7 +142,7 @@ const Home: React.FC = () => {
                         </div>
                     </ScrollReveal>
 
-                    {/* Action Buttons */}
+                    {/* Centered Action Buttons */}
                     <ScrollReveal delay={700}>
                         <div className="mt-12 flex flex-col sm:flex-row gap-8 items-center justify-center">
                             <button className="group relative px-10 py-4 bg-transparent overflow-hidden text-primary transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(0,240,255,0.4)] hover:bg-primary/10">
@@ -90,7 +152,7 @@ const Home: React.FC = () => {
                                 <span className="absolute left-0 bottom-0 h-full w-[1px] bg-gradient-to-t from-transparent via-primary to-transparent animate-border-left" style={{ animationDelay: '1.5s' }}></span>
                                 <span className="relative flex items-center gap-3 font-mono text-sm tracking-widest uppercase font-bold">
                                     <Editable id="home-btn-1" as="span">Initialize</Editable>
-                                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                    <Icon3D icon="ArrowRight" size={16} className="group-hover:translate-x-1 transition-transform" />
                                 </span>
                             </button>
 
@@ -114,19 +176,20 @@ const Home: React.FC = () => {
                     className="absolute bottom-10 left-1/2 -translate-x-1/2 text-primary/40 flex flex-col items-center gap-2"
                 >
                     <span className="text-[10px] uppercase tracking-[0.4em] font-mono">Scroll</span>
-                    <ChevronDown size={20} />
+                    <Icon3D icon="ChevronDown" size={20} />
                 </motion.div>
             </section>
 
-            {/* Featured Research Preview Section */}
+            {/* Featured Research Preview Section - Asymmetrical Layout */}
             <section className="w-full py-32 px-6 border-t border-white/5 relative bg-surface-dark/20">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    {/* Left-aligned Content (Subheading pattern) */}
                     <ScrollReveal>
-                        <div className="space-y-8">
+                        <div className="space-y-8 text-left">
                             <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[10px] uppercase tracking-widest rounded-full">
                                 <Editable id="home-section-badge" as="span">Foundation Protocol</Editable>
                             </div>
-                            <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+                            <h2 className="text-4xl md:text-5xl font-bold leading-tight text-left">
                                 <Editable id="home-section-title-1" as="span">Advancing the architecture of</Editable>{' '}
                                 <span className="text-primary italic font-serif">
                                     <Editable id="home-section-title-2" as="span">synthetic intelligence</Editable>
@@ -154,11 +217,12 @@ const Home: React.FC = () => {
                             </div>
                             <button className="flex items-center gap-4 text-primary text-xs uppercase tracking-widest font-bold group">
                                 <Editable id="home-browse-btn" as="span">Browse Publications</Editable>
-                                <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+                                <Icon3D icon="ArrowRight" size={14} className="group-hover:translate-x-2 transition-transform" />
                             </button>
                         </div>
                     </ScrollReveal>
 
+                    {/* Right-aligned Image */}
                     <ScrollReveal delay={200}>
                         <div className="relative aspect-video rounded-xl overflow-hidden border border-white/10 group">
                             <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-blue-500/10 z-10 opacity-30 group-hover:opacity-50 transition-opacity" />

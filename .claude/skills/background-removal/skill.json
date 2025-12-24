@@ -1,0 +1,64 @@
+{
+  "name": "background-removal",
+  "version": "1.0.0",
+  "description": "AI-powered background removal from images with professional quality",
+  "author": "aegntic",
+  "category": "image-processing",
+  "tags": ["image", "background", "transparency", "automation", "ai"],
+  "triggerable": true,
+  "command": "python3 scripts/remove-backgrounds.py",
+  "parameters": {
+    "input_dir": {
+      "type": "string",
+      "required": true,
+      "description": "Directory containing images to process"
+    },
+    "output_dir": {
+      "type": "string",
+      "required": false,
+      "default": "{input_dir}/processed",
+      "description": "Output directory for transparent images"
+    },
+    "model": {
+      "type": "string",
+      "required": false,
+      "default": "u2net",
+      "enum": ["u2net", "u2netp", "u2net_human_seg", "silueta"],
+      "description": "AI model to use for background removal"
+    },
+    "inplace": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Replace original files (creates backups)"
+    }
+  },
+  "triggers": [
+    "remove background",
+    "transparent images",
+    "process wireframes",
+    "remove backgrounds from",
+    "make images transparent",
+    "false transparency",
+    "checkered background"
+  ],
+  "capabilities": [
+    "batch_processing",
+    "quality_preservation",
+    "alpha_matting",
+    "edge_enhancement",
+    "progress_tracking",
+    "error_recovery"
+  ],
+  "examples": [
+    "Remove backgrounds from public/assets/projects",
+    "Make all wireframes transparent",
+    "Process product images with u2net model",
+    "Remove checkered backgrounds from images"
+  ],
+  "integrations": {
+    "shell": "./scripts/remove-backgrounds.sh",
+    "python": "from scripts.remove_backgrounds import BackgroundRemover",
+    "mcp": "background-removal-tool"
+  }
+}

@@ -5,7 +5,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Research from './pages/Research';
 import Projects from './pages/Projects';
-import Collaborations from './pages/Collaborations';
+import Featured from './pages/Featured';
+import Contact from './pages/Contact';
 
 const App: React.FC = () => {
     return (
@@ -24,29 +25,34 @@ const App: React.FC = () => {
             <div className="relative z-10 flex flex-col min-h-screen">
                 <Navbar />
                 <main className="flex-grow">
-                    {/* Hero Section */}
+                    {/* Hero Section - /home [aegntic.ai] */}
                     <section id="home">
                         <Home />
                     </section>
 
-                    {/* About Section */}
+                    {/* About Section - /aboutus [aegntic.foundation] */}
                     <section id="about">
                         <About />
                     </section>
 
-                    {/* Ecosystem/Projects Section */}
-                    <section id="ecosystem">
+                    {/* Featured Section - /featured [aegntic.update] */}
+                    <section id="featured">
+                        <Featured />
+                    </section>
+
+                    {/* Projects Section - /projects [aegntic.development] */}
+                    <section id="projects">
                         <Projects />
                     </section>
 
-                    {/* Research Section */}
+                    {/* Research Section - /blog [aegntic.research] */}
                     <section id="research">
                         <Research />
                     </section>
 
-                    {/* Contact Section */}
+                    {/* Contact Section - /contact [aegntic.network] */}
                     <section id="contact">
-                        <Collaborations />
+                        <Contact />
                     </section>
                 </main>
                 <Footer />

@@ -132,8 +132,8 @@ const DevToolsPanel: React.FC = () => {
                 <button
                     onClick={() => setEditMode(!editMode)}
                     className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${editMode
-                            ? 'bg-primary text-black shadow-[0_0_15px_rgba(0,240,255,0.5)]'
-                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                        ? 'bg-primary text-black shadow-[0_0_15px_rgba(0,240,255,0.5)]'
+                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                         }`}
                     title="Toggle Edit Mode (Ctrl+Shift+E)"
                 >
@@ -165,11 +165,21 @@ const DevToolsPanel: React.FC = () => {
 
                         {/* Export button */}
                         <button
-                            onClick={() => {
-                                navigator.clipboard.writeText(exportEdits());
-                                alert('Edits copied to clipboard!');
+                            type="button"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                const data = exportEdits();
+                                navigator.clipboard.writeText(data).then(() => {
+                                    alert('Edits copied to clipboard!');
+                                }).catch(err => {
+                                    console.error('Failed to copy:', err);
+                                    // Fallback: show in console
+                                    console.log('Edits:', data);
+                                    alert('Edits logged to console (clipboard failed)');
+                                });
                             }}
-                            className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-white text-[10px] uppercase tracking-wider rounded-full transition-colors"
+                            className="px-3 py-1 bg-gray-700 hover:bg-gray-600 text-white text-[10px] uppercase tracking-wider rounded-full transition-colors pointer-events-auto cursor-pointer"
                             title="Export edits to clipboard"
                         >
                             Export
@@ -177,13 +187,16 @@ const DevToolsPanel: React.FC = () => {
 
                         {/* Clear button */}
                         <button
-                            onClick={() => {
+                            type="button"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                e.preventDefault();
                                 if (confirm('Clear all edits?')) {
                                     clearEdits();
                                     window.location.reload();
                                 }
                             }}
-                            className="px-3 py-1 bg-red-900/50 hover:bg-red-800 text-red-300 text-[10px] uppercase tracking-wider rounded-full transition-colors"
+                            className="px-3 py-1 bg-red-900/50 hover:bg-red-800 text-red-300 text-[10px] uppercase tracking-wider rounded-full transition-colors pointer-events-auto cursor-pointer"
                             title="Clear all edits"
                         >
                             Clear

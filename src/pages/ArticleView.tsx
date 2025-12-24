@@ -1,23 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
-import {
-    ArrowLeft,
-    ArrowRight,
-    Clock,
-    Users,
-    Share2,
-    Bookmark,
-    ChevronRight,
-    FileText,
-    Target,
-    AlertCircle,
-    Download,
-    Terminal,
-    Cpu,
-    Shield,
-    Network
-} from 'lucide-react';
+import Icon3D from '../components/Icon3D';
 import {
     BarChart,
     Bar,
@@ -64,7 +48,7 @@ const ArticleView: React.FC = () => {
                 {/* Breadcrumbs */}
                 <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gray-500 mb-12">
                     <Link to="/research" className="hover:text-primary transition-colors">Insights</Link>
-                    <ChevronRight size={10} />
+                    <Icon3D icon="ChevronRight" size={10} />
                     <span className="text-gray-300">Research Protocol</span>
                 </div>
 
@@ -96,7 +80,7 @@ const ArticleView: React.FC = () => {
                         <div className="flex flex-col md:flex-row justify-between items-center py-8 border-y border-white/5 gap-8">
                             <div className="flex items-center gap-6">
                                 <div className="w-12 h-12 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary">
-                                    <Users size={20} />
+                                    <Icon3D icon="Users" size={20} />
                                 </div>
                                 <div>
                                     <div className="text-white font-bold text-sm tracking-tight uppercase">Dr. Elena Vosk</div>
@@ -111,10 +95,10 @@ const ArticleView: React.FC = () => {
 
                             <div className="flex items-center gap-4">
                                 <button className="p-3 rounded-lg border border-white/10 text-gray-400 hover:text-white hover:border-white/20 transition-all">
-                                    <Bookmark size={18} />
+                                    <Icon3D icon="Bookmark" size={18} />
                                 </button>
                                 <button className="p-3 rounded-lg border border-white/10 text-gray-400 hover:text-white hover:border-white/20 transition-all">
-                                    <Share2 size={18} />
+                                    <Icon3D icon="Share2" size={18} />
                                 </button>
                             </div>
                         </div>
@@ -142,7 +126,7 @@ const ArticleView: React.FC = () => {
                                             </div>
                                         ))}
                                         <div className="flex items-center gap-2 pt-2 text-emerald-400">
-                                            <Shield size={12} />
+                                            <Icon3D icon="Shield" size={12} />
                                             <span className="text-[10px] uppercase tracking-widest font-bold">Peer Reviewed</span>
                                         </div>
                                     </div>
@@ -190,7 +174,7 @@ const ArticleView: React.FC = () => {
                                 </p>
                                 <div className="p-8 rounded-2xl bg-primary/5 border border-primary/20 relative overflow-hidden">
                                     <div className="absolute top-4 left-4 text-primary opacity-20">
-                                        <Target size={40} />
+                                        <Icon3D icon="Target" size={40} />
                                     </div>
                                     <h4 className="text-white font-bold mb-4 uppercase text-xs tracking-[0.2em] relative z-10 pl-12">Key Finding</h4>
                                     <p className="text-gray-400 text-sm leading-relaxed pl-12 relative z-10">
@@ -260,7 +244,7 @@ const ArticleView: React.FC = () => {
 
                                 <div className="p-8 rounded-2xl bg-red-500/5 border border-red-500/20 flex gap-8 items-start">
                                     <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center shrink-0 border border-red-500/20">
-                                        <AlertCircle className="text-red-400" size={24} />
+                                        <Icon3D icon="AlertCircle" className="text-red-400" size={24} />
                                     </div>
                                     <div>
                                         <h4 className="text-white font-bold mb-3 tracking-tight">The Alignment Problem</h4>
@@ -315,7 +299,7 @@ const ArticleView: React.FC = () => {
                                             <h4 className="text-xl font-bold mb-3 relative z-10 tracking-tight">Download Dataset</h4>
                                             <p className="text-primary/60 text-xs relative z-10 mb-6">Simulation Sandbox-7 complete JSON event log (4.2 GB).</p>
                                             <button className="flex items-center gap-3 px-6 py-3 bg-primary text-black font-bold text-[10px] uppercase tracking-widest rounded-sm hover:bg-white transition-colors relative z-10 group/dl">
-                                                <Download size={14} className="group-hover/dl:translate-y-0.5 transition-transform" />
+                                                <Icon3D icon="Download" size={14} className="group-hover/dl:translate-y-0.5 transition-transform" />
                                                 Request Full Access
                                             </button>
                                         </div>
@@ -345,7 +329,7 @@ const ArticleView: React.FC = () => {
                         <ScrollReveal>
                             <div className="space-y-10">
                                 <div className="flex items-center gap-4">
-                                    <Network className="text-primary" size={24} />
+                                    <Icon3D icon="Network" className="text-primary" size={24} />
                                     <h3 className="text-xl font-bold tracking-tight">Related Transmissions</h3>
                                 </div>
 
@@ -363,7 +347,7 @@ const ArticleView: React.FC = () => {
                                                 <div className="text-[9px] text-primary uppercase tracking-[0.2em] mb-2 font-mono">{item.cat}</div>
                                                 <h4 className="text-white font-bold group-hover:text-primary transition-colors tracking-tight leading-tight">{item.title}</h4>
                                                 <div className="text-[10px] text-gray-600 mt-2 uppercase tracking-widest flex items-center gap-2">
-                                                    Read Protocol <ArrowRight size={10} />
+                                                    Read Protocol <Icon3D icon="ArrowRight" size={10} />
                                                 </div>
                                             </div>
                                         </div>

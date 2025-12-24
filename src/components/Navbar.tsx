@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Network, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import Icon3D from './Icon3D';
 
 const Navbar: React.FC = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,8 +11,8 @@ const Navbar: React.FC = () => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
 
-            // Detect active section
-            const sections = ['home', 'about', 'ecosystem', 'research', 'contact'];
+            // Detect active section - updated for new 6-section architecture
+            const sections = ['home', 'about', 'featured', 'projects', 'research', 'contact'];
             for (const section of sections.reverse()) {
                 const element = document.getElementById(section);
                 if (element) {
@@ -29,7 +30,8 @@ const Navbar: React.FC = () => {
 
     const navLinks = [
         { name: 'About', href: '#about' },
-        { name: 'Ecosystem', href: '#ecosystem' },
+        { name: 'Featured', href: '#featured' },
+        { name: 'Projects', href: '#projects' },
         { name: 'Research', href: '#research' },
         { name: 'Contact', href: '#contact' },
     ];
@@ -53,7 +55,7 @@ const Navbar: React.FC = () => {
         <nav className={`fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'bg-background-dark/80 backdrop-blur-md border-b border-primary/10 py-3' : 'bg-transparent py-6'}`}>
             {/* Logo */}
             <a href="#home" onClick={scrollToTop} className="flex items-center gap-2 group cursor-pointer">
-                <Network className="text-primary w-6 h-6 animate-pulse-slow group-hover:rotate-180 transition-transform duration-700 ease-in-out" />
+                <Icon3D icon="Network" size={24} className="text-primary animate-pulse-slow group-hover:rotate-180 transition-transform duration-700 ease-in-out" />
                 <span className="text-xl font-bold tracking-tight text-white font-sans">
                     aegntic<span className="text-primary">.ai</span>
                 </span>

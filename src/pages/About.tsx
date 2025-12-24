@@ -1,8 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import Icon3D from '../components/Icon3D';
 import ScrollReveal from '../components/ScrollReveal';
 import { Editable, EditableIcon } from '../components/DevTools';
+import { motion } from 'framer-motion';
 
 const About: React.FC = () => {
     const visionItems = [
@@ -35,22 +34,22 @@ const About: React.FC = () => {
         >
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
-                <div className="text-center mb-24">
+                <div className="text-right mb-24">
                     <ScrollReveal>
-                        <div className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 text-primary text-[10px] uppercase tracking-[0.4em] rounded-full mb-6">
-                            <Editable id="about-badge" as="span">aegntic.foundation</Editable>
+                        <div className="text-primary font-mono text-[10px] uppercase tracking-[0.4em] mb-4">
+                            <Editable id="about-subtitle" as="span">aegntic.foundation</Editable>
                         </div>
                     </ScrollReveal>
                     <ScrollReveal delay={200}>
-                        <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tighter">
-                            <Editable id="about-heading-1" as="span">Zero knowledge,</Editable><br />
-                            <span className="text-primary italic font-serif">
+                        <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
+                            <Editable id="about-heading-1" as="span">Zero knowledge,</Editable>{' '}
+                            <span className="text-primary">
                                 <Editable id="about-heading-2" as="span">unlimited insight</Editable>
                             </span>
                         </h1>
                     </ScrollReveal>
                     <ScrollReveal delay={400}>
-                        <p className="max-w-3xl mx-auto text-gray-400 text-lg md:text-xl leading-relaxed">
+                        <p className="max-w-3xl ml-auto text-gray-400 text-lg md:text-xl leading-relaxed">
                             <Editable id="about-description" as="span">
                                 We are an independent research collective dedicated to the intersection of zero-knowledge cryptography, autonomous multi-agent systems, and synthetic intelligence architectures.
                             </Editable>
@@ -87,12 +86,13 @@ const About: React.FC = () => {
                     ))}
                 </div>
 
-                {/* Technical Authority Section */}
+                {/* Technical Authority Section - Asymmetrical Layout */}
                 <div className="rounded-3xl bg-background-dark border border-white/5 overflow-hidden relative mb-32">
                     <div className="absolute inset-0 bg-tech-grid opacity-10" />
                     <div className="relative z-10 p-12 lg:p-20 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                        <div>
-                            <h2 className="text-3xl md:text-4xl font-bold mb-8 tracking-tighter">
+                        {/* Left-aligned Content (Subheading pattern) */}
+                        <div className="text-left">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-8 tracking-tighter text-left">
                                 <Editable id="about-section-title" as="span">The Zero-Knowledge</Editable> <br />
                                 <span className="text-primary">
                                     <Editable id="about-section-title-2" as="span">Research Mandate</Editable>
@@ -123,10 +123,11 @@ const About: React.FC = () => {
                                     </div>
                                 </div>
                                 <button className="flex items-center gap-2 px-8 py-3 bg-white text-black font-bold uppercase text-[10px] tracking-widest rounded-sm hover:bg-primary transition-colors">
-                                    <Editable id="about-cta-button" as="span">Download whitepaper</Editable> <ArrowRight size={14} />
+                                    <Editable id="about-cta-button" as="span">Download whitepaper</Editable> <Icon3D icon="ArrowRight" size={14} />
                                 </button>
                             </div>
                         </div>
+                        {/* Right-aligned Grid */}
                         <div className="grid grid-cols-2 gap-4">
                             <div className="aspect-square rounded-2xl bg-surface-dark border border-white/10 flex items-center justify-center group overflow-hidden">
                                 <EditableIcon id="about-grid-icon-1" icon="Fingerprint" size={60} className="text-primary opacity-20 group-hover:opacity-100 transition-opacity duration-500" />

@@ -86,9 +86,20 @@ const Editable: React.FC<EditableProps> = ({
     // Close style menu on click outside
     useEffect(() => {
         if (!showStyleMenu) return;
-        const handleClick = () => setShowStyleMenu(false);
-        document.addEventListener('click', handleClick);
-        return () => document.removeEventListener('click', handleClick);
+        const handleClick = (e: MouseEvent) => {
+            // Only close if click is outside the menu
+            if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+                setShowStyleMenu(false);
+            }
+        };
+        // Use setTimeout to avoid immediate trigger from the context menu event
+        const timeoutId = setTimeout(() => {
+            document.addEventListener('click', handleClick);
+        }, 100);
+        return () => {
+            clearTimeout(timeoutId);
+            document.removeEventListener('click', handleClick);
+        };
     }, [showStyleMenu]);
 
     const handleDoubleClick = (e: React.MouseEvent) => {
