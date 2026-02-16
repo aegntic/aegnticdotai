@@ -1,15 +1,434 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-    body {
-        @apply bg-background-dark text-white;
-    }
+@import './wireframe.css';
+
+/* =============================================================================
+   DESIGN SYSTEM — Swiss Brutalism + Crystal Depth
+   aegntic.ai v3.0  ·  Cyan + Bronze + Polished Silver
+   ============================================================================= */
+
+@theme {
+  /* Palette — Deep Space (dark foundation) */
+  --color-deep-space: #0a0a12;
+  --color-surface: #14141f;
+  --color-surface-raised: #1c1c2a;
+  --color-surface-inset: #0e0e18;
+
+  /* Text */
+  --color-text-primary: #f0eef2;
+  --color-text-muted: #8a8a9a;
+  --color-text-dim: #55556a;
+
+  /* Accent — Cyan + Bronze Orange */
+  --color-accent-blue: #00CFE5;
+  --color-accent-orange: #CD7F32;
+  --color-accent-blue-muted: #009AB0;
+  --color-accent-orange-muted: #A06628;
+
+  /* Silver / Chrome */
+  --color-silver: #C0C0C0;
+  --color-silver-dark: #808080;
+
+  /* Deep Shadows */
+  --shadow-neu-dark: rgba(0, 0, 0, 0.6);
+  --shadow-neu-light: rgba(50, 50, 70, 0.25);
+
+  /* Typography */
+  --font-family-display: "Clash Display", sans-serif;
+  --font-family-body: "Satoshi", sans-serif;
+  --font-family-mono: "JetBrains Mono", monospace;
+
+  /* Animations */
+  --animate-breathe: breathe 2.5s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
 }
 
+/* =============================================================================
+   Keyframes
+   ============================================================================= */
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* =============================================================================
+   AE Logo & Loader Animations
+   ============================================================================= */
+
+.ae-logo {
+  transition: filter 0.3s ease;
+}
+
+.ae-logo:hover,
+.ae-logo--animated {
+  filter: drop-shadow(0 0 12px rgba(0, 207, 229, 0.5));
+}
+
+.ae-dot {
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.ae-logo:hover .ae-dot--lg {
+  transform: translate(2px, -2px);
+}
+
+.ae-logo:hover .ae-dot--sm {
+  transform: translate(3px, -3px);
+}
+
+/* Loader — draw-in */
+.ae-loader__outline {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: ae-draw 1.8s ease-in-out infinite;
+}
+
+.ae-loader__counter {
+  stroke-dasharray: 90;
+  stroke-dashoffset: 90;
+  animation: ae-draw 1.8s ease-in-out 0.3s infinite;
+}
+
+.ae-loader__bar {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: ae-draw 1.8s ease-in-out 0.5s infinite;
+}
+
+.ae-loader__dot-lg {
+  animation: ae-pulse 1.8s ease-in-out 0.8s infinite;
+}
+
+.ae-loader__dot-sm {
+  animation: ae-orbit 2.4s linear infinite;
+  transform-origin: 96px 64px;
+}
+
+@keyframes ae-draw {
+  0% {
+    stroke-dashoffset: 200;
+    opacity: 0.3;
+  }
+
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dashoffset: -200;
+    opacity: 0.3;
+  }
+}
+
+@keyframes ae-pulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes ae-orbit {
+  from {
+    transform: rotate(0deg) translateX(4px) rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg) translateX(4px) rotate(-360deg);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes bronzeGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 12px rgba(205, 127, 50, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 0 24px rgba(205, 127, 50, 0.3);
+  }
+}
+
+/* =============================================================================
+   Base Layer
+   ============================================================================= */
+
+@layer base {
+  body {
+    background-color: var(--color-deep-space);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-family-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  code,
+  pre,
+  .mono {
+    font-family: var(--font-family-mono);
+  }
+}
+
+/* =============================================================================
+   Components Layer — Deep Surface Primitives + Chrome Accents
+   ============================================================================= */
+
 @layer components {
-    .nav-link {
-        @apply text-xs uppercase tracking-[0.2em] font-medium text-gray-400 hover:text-white transition-colors relative group;
-    }
+
+  /* --- Deep Raised Surface --- */
+  .neu-raised {
+    background: var(--color-surface);
+    box-shadow:
+      10px 10px 24px var(--shadow-neu-dark),
+      -6px -6px 16px var(--shadow-neu-light);
+    border: 1px solid rgba(192, 192, 192, 0.06);
+    border-radius: 20px;
+  }
+
+  .neu-raised-sm {
+    background: var(--color-surface);
+    box-shadow:
+      6px 6px 12px var(--shadow-neu-dark),
+      -4px -4px 10px var(--shadow-neu-light);
+    border: 1px solid rgba(192, 192, 192, 0.05);
+    border-radius: 16px;
+  }
+
+  /* --- Inset/Pressed --- */
+  .neu-inset {
+    background: var(--color-surface-inset);
+    box-shadow:
+      inset 4px 4px 8px var(--shadow-neu-dark),
+      inset -4px -4px 8px var(--shadow-neu-light);
+    border-radius: 12px;
+  }
+
+  /* --- Pill Button --- */
+  .neu-pill {
+    background: var(--color-surface);
+    box-shadow:
+      4px 4px 10px var(--shadow-neu-dark),
+      -4px -4px 10px var(--shadow-neu-light);
+    border: 1px solid rgba(192, 192, 192, 0.08);
+    border-radius: 999px;
+    padding: 12px 28px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+
+  .neu-pill:hover {
+    box-shadow:
+      2px 2px 6px var(--shadow-neu-dark),
+      -2px -2px 6px var(--shadow-neu-light);
+    transform: translateY(1px);
+  }
+
+  .neu-pill:active {
+    box-shadow:
+      inset 2px 2px 4px var(--shadow-neu-dark),
+      inset -2px -2px 4px var(--shadow-neu-light);
+    transform: translateY(2px);
+  }
+
+  /* --- Pill — Bronze Filled --- */
+  .neu-pill-orange {
+    background: linear-gradient(135deg, #CD7F32, #B8722C);
+    color: #ffffff;
+    box-shadow:
+      4px 4px 10px var(--shadow-neu-dark),
+      0 0 16px rgba(205, 127, 50, 0.2);
+    border: 1px solid rgba(205, 127, 50, 0.3);
+    border-radius: 999px;
+    padding: 12px 28px;
+    font-family: var(--font-family-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .neu-pill-orange:hover {
+    box-shadow:
+      2px 2px 6px var(--shadow-neu-dark),
+      0 0 28px rgba(205, 127, 50, 0.3);
+    transform: translateY(1px);
+  }
+
+  /* --- Pill — Cyan Filled --- */
+  .neu-pill-blue {
+    background: linear-gradient(135deg, #00CFE5, #00B0C4);
+    color: #0a0a12;
+    box-shadow:
+      4px 4px 10px var(--shadow-neu-dark),
+      0 0 16px rgba(0, 207, 229, 0.15);
+    border: 1px solid rgba(0, 207, 229, 0.2);
+    border-radius: 999px;
+    padding: 12px 28px;
+    font-family: var(--font-family-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  /* --- Deep Card --- */
+  .neu-card {
+    background: var(--color-surface);
+    border: 1px solid rgba(192, 192, 192, 0.08);
+    box-shadow:
+      12px 12px 32px var(--shadow-neu-dark),
+      -8px -8px 20px var(--shadow-neu-light);
+    border-radius: 20px;
+    padding: 2.25rem;
+    transition: all 0.35s ease;
+  }
+
+  .neu-card:hover {
+    border-color: rgba(0, 207, 229, 0.15);
+    box-shadow:
+      16px 16px 40px var(--shadow-neu-dark),
+      -10px -10px 24px var(--shadow-neu-light),
+      0 0 20px rgba(0, 207, 229, 0.06);
+    transform: translateY(-4px);
+  }
+
+  /* --- Navigation Link --- */
+  .nav-link {
+    font-family: var(--font-family-display);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    transition: color 0.2s ease;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  /* --- Section Header — Swiss Editorial --- */
+  .section-header {
+    font-family: var(--font-family-display);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .section-label {
+    font-family: var(--font-family-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--color-accent-blue);
+  }
+
+  /* --- Silver Metallic Text Gradient --- */
+  .text-silver {
+    background: linear-gradient(180deg, #C0C0C0 0%, #808080 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* --- Silver Shimmer Band --- */
+  .shimmer {
+    background: linear-gradient(90deg,
+        rgba(192, 192, 192, 0) 0%,
+        rgba(192, 192, 192, 0.1) 50%,
+        rgba(192, 192, 192, 0) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  /* --- Chrome Border (silver beveled edge) --- */
+  .chrome-border {
+    border: 1px solid transparent;
+    background-image: linear-gradient(var(--color-surface), var(--color-surface)),
+      linear-gradient(180deg, rgba(192, 192, 192, 0.4), rgba(80, 80, 80, 0.15));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  /* --- Bronze Glow Pulse --- */
+  .bronze-glow {
+    animation: bronzeGlow 3s ease-in-out infinite;
+  }
 }

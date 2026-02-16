@@ -1,4 +1,51 @@
 import React from 'react';
+import {
+    Network,
+    ArrowRight,
+    ArrowLeft,
+    ChevronDown,
+    ChevronRight,
+    ChevronLeft,
+    ChevronUp,
+    Home,
+    Info,
+    Laptop,
+    Package,
+    GitFork,
+    Fingerprint,
+    Lock,
+    Clock,
+    Calendar,
+    Tag,
+    BookOpen,
+    Github,
+    Linkedin,
+    Twitter,
+    Mail,
+    MapPin,
+    Send,
+    Globe,
+    X,
+    Users,
+    Bookmark,
+    Share2,
+    Shield,
+    Target,
+    AlertCircle,
+    Download,
+    Database,
+    Cpu,
+    Eye,
+    FileText,
+    Zap,
+    Activity,
+    Server,
+    Settings,
+    Search,
+    Menu,
+    ExternalLink,
+    type LucideIcon
+} from 'lucide-react';
 
 interface Icon3DProps {
     icon: string;
@@ -6,53 +53,81 @@ interface Icon3DProps {
     className?: string;
 }
 
+// Map icon names to Lucide components
+const iconMap: Record<string, LucideIcon> = {
+    Network,
+    ArrowRight,
+    ArrowLeft,
+    ChevronDown,
+    ChevronRight,
+    ChevronLeft,
+    ChevronUp,
+    Home,
+    Info,
+    About: Info,
+    Laptop,
+    Package,
+    GitFork,
+    Fingerprint,
+    Lock,
+    Clock,
+    Calendar,
+    Tag,
+    BookOpen,
+    Github,
+    GitHub: Github,
+    Linkedin,
+    LinkedIn: Linkedin,
+    Twitter,
+    Mail,
+    MapPin,
+    Send,
+    Globe,
+    X,
+    Close: X,
+    Users,
+    Bookmark,
+    Share2,
+    Shield,
+    Target,
+    AlertCircle,
+    Download,
+    Database,
+    Cpu,
+    Eye,
+    FileText,
+    Zap,
+    Activity,
+    Server,
+    Settings,
+    Search,
+    Menu,
+    ExternalLink,
+};
+
 /**
- * Icon3D - Renders a 3D isometric wireframe icon from the assets folder.
- * Falls back to a generic wireframe if the specific icon is not found.
+ * Icon3D - Renders Lucide icons with 3D depth styling.
+ * Replaces the old PNG-based system with SVG icons.
  */
 const Icon3D: React.FC<Icon3DProps> = ({ icon, size = 24, className = '' }) => {
-    // Map Lucide icon names to 3D asset filenames
-    const iconMap: Record<string, string> = {
-        // Navigation / Core
-        'Home': 'nav-home-3d.png',
-        'About': 'nav-about-3d.png',
-        'Laptop': 'icon-laptop-3d.png',
-        'Package': 'icon-package-3d.png',
-        'GitFork': 'icon-git-fork-3d.png',
-        'Fingerprint': 'icon-fingerprint-3d.png',
-        'Lock': 'icon-lock-3d.png',
-        'Clock': 'icon-clock-3d.png',
-        'Calendar': 'icon-calendar-3d.png',
-        'Tag': 'icon-tag-3d.png',
-        'BookOpen': 'icon-book-open-3d.png',
+    const IconComponent = iconMap[icon];
 
-        // Social
-        'Github': 'social-github-3d.png',
-        'Linkedin': 'social-linkedin-3d.png',
-        'Twitter': 'social-twitter-3d.png',
-        'Mail': 'social-mail-3d.png',
-        'MapPin': 'social-map-pin-3d.png',
-    };
-
-    const assetName = iconMap[icon] || 'icon-generic-3d.png';
-    const assetPath = `/assets/icons/${assetName}`;
+    if (!IconComponent) {
+        console.warn(`Icon3D: Unknown icon "${icon}"`);
+        return (
+            <span
+                className={`inline-block ${className}`}
+                style={{ width: size, height: size }}
+            />
+        );
+    }
 
     return (
-        <img
-            src={assetPath}
-            alt={icon}
-            width={size}
-            height={size}
-            className={`select-none pointer-events-none mix-blend-screen opacity-90 transition-opacity duration-300 group-hover:opacity-100 ${className}`}
+        <IconComponent
+            size={size}
+            className={`icon-3d ${className}`}
             style={{
-                width: size,
-                height: size,
-                objectFit: 'contain',
-                filter: 'drop-shadow(0 0 5px rgba(255,255,255,0.2))'
-            }}
-            onError={(e) => {
-                // Fallback if image fails to load
-                (e.target as HTMLImageElement).src = '/assets/icons/icon-generic-3d.png';
+                filter: 'drop-shadow(0 2px 4px rgba(0, 240, 255, 0.2)) drop-shadow(0 0 8px rgba(0, 240, 255, 0.1))',
             }}
         />
     );

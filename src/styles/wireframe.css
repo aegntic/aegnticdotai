@@ -1,0 +1,163 @@
+/* =============================================================================
+   WIREFRAME.CSS — Swiss Grid + Editorial Utilities
+   aegntic.ai Design System v3.0  ·  Cyan + Bronze + Silver
+   ============================================================================= */
+
+/* =============================================================================
+   Fluid Typography Scale (Swiss precision)
+   ============================================================================= */
+
+.text-hero {
+    font-family: var(--font-family-display, "Clash Display", sans-serif);
+    font-size: clamp(3.5rem, 12vw, 11rem);
+    font-weight: 700;
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+.text-headline {
+    font-family: var(--font-family-display, "Clash Display", sans-serif);
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+}
+
+.text-subheadline {
+    font-family: var(--font-family-display, "Clash Display", sans-serif);
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.text-body-lg {
+    font-family: var(--font-family-body, "Satoshi", sans-serif);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.65;
+    color: var(--color-text-muted, #8a8a9a);
+}
+
+.text-mono-label {
+    font-family: var(--font-family-mono, "JetBrains Mono", monospace);
+    font-size: 0.625rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+}
+
+/* =============================================================================
+   Swiss Grid System
+   ============================================================================= */
+
+.swiss-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.swiss-grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+}
+
+.swiss-grid-editorial {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.swiss-grid-editorial-reverse {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+}
+
+.swiss-grid-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.swiss-grid-featured {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+
+    .swiss-grid-editorial,
+    .swiss-grid-editorial-reverse,
+    .swiss-grid-featured {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =============================================================================
+   Section Dividers — Swiss Brutalist
+   ============================================================================= */
+
+.section-divider {
+    height: 1px;
+    background: linear-gradient(to right,
+            transparent,
+            var(--color-text-dim, #55556a) 20%,
+            var(--color-text-dim, #55556a) 80%,
+            transparent);
+    margin: 0;
+    border: none;
+}
+
+.section-divider-accent {
+    height: 2px;
+    background: var(--color-accent-blue, #00CFE5);
+    width: 60px;
+}
+
+/* =============================================================================
+   Swiss Data Annotations
+   ============================================================================= */
+
+.data-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    font-family: var(--font-family-mono, "JetBrains Mono", monospace);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-accent-blue, #00CFE5);
+    background: var(--color-surface-inset, #0e0e18);
+    border-radius: 4px;
+}
+
+.data-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: var(--animate-breathe, breathe 2.5s ease-in-out infinite);
+}
+
+/* =============================================================================
+   Scroll Animations
+   ============================================================================= */
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-breathe {
+    animation: breathe 2.5s ease-in-out infinite;
+}

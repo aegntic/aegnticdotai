@@ -1,94 +1,157 @@
-import Icon3D from '../components/Icon3D';
 import ScrollReveal from '../components/ScrollReveal';
-import { Editable, EditableIcon } from '../components/DevTools';
-import { motion } from 'framer-motion';
+import Magnetic from '../components/Magnetic';
+import { Mail, ArrowRight, Send, Newspaper, Sparkles, Twitter, Github, Linkedin, Rss } from 'lucide-react';
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   Wireframe landmark icons — SVG inline, one per city.
+   Each is a single-stroke minimalist outline of the city's most iconic feature.
+   ────────────────────────────────────────────────────────────────────────────── */
+
+const LandmarkSydney = () => (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+        {/* Opera House sails */}
+        <path d="M 6 36 Q 14 10, 18 36" />
+        <path d="M 14 36 Q 22 6, 26 36" />
+        <path d="M 22 36 Q 30 12, 34 36" />
+        <path d="M 30 36 Q 36 18, 40 36" />
+        {/* Base */}
+        <line x1="4" y1="36" x2="42" y2="36" />
+        {/* Water */}
+        <path d="M 2 42 Q 12 39, 24 42 Q 36 45, 46 42" strokeWidth="1" opacity="0.4" />
+    </svg>
+);
+
+const LandmarkLondon = () => (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+        {/* Big Ben tower */}
+        <rect x="17" y="10" width="14" height="28" rx="1" />
+        {/* Clock face */}
+        <circle cx="24" cy="20" r="4" />
+        <line x1="24" y1="20" x2="24" y2="17" strokeWidth="1" />
+        <line x1="24" y1="20" x2="26" y2="20" strokeWidth="1" />
+        {/* Spire */}
+        <line x1="24" y1="10" x2="24" y2="4" />
+        <circle cx="24" cy="3" r="1" fill="currentColor" />
+        {/* Base */}
+        <line x1="14" y1="38" x2="34" y2="38" />
+    </svg>
+);
+
+const LandmarkBerlin = () => (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+        {/* Brandenburg Gate columns */}
+        <line x1="10" y1="16" x2="10" y2="38" />
+        <line x1="18" y1="16" x2="18" y2="38" />
+        <line x1="24" y1="16" x2="24" y2="38" />
+        <line x1="30" y1="16" x2="30" y2="38" />
+        <line x1="38" y1="16" x2="38" y2="38" />
+        {/* Top beam */}
+        <rect x="8" y="12" width="32" height="4" rx="1" />
+        {/* Quadriga (chariot on top) */}
+        <path d="M 20 12 L 24 6 L 28 12" />
+        {/* Base */}
+        <line x1="6" y1="38" x2="42" y2="38" />
+    </svg>
+);
+
+const LandmarkAmsterdam = () => (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+        {/* Canal houses — stepped gables */}
+        <path d="M 6 38 L 6 20 L 10 14 L 14 20 L 14 38" />
+        <path d="M 16 38 L 16 18 L 20 12 L 24 18 L 24 38" />
+        <path d="M 26 38 L 26 22 L 30 16 L 34 22 L 34 38" />
+        <path d="M 36 38 L 36 20 L 40 14 L 44 20 L 44 38" />
+        {/* Windows */}
+        <rect x="8" y="24" width="4" height="4" rx="0.5" />
+        <rect x="18" y="22" width="4" height="4" rx="0.5" />
+        <rect x="28" y="26" width="4" height="4" rx="0.5" />
+        <rect x="38" y="24" width="4" height="4" rx="0.5" />
+        {/* Canal water */}
+        <path d="M 2 42 Q 12 39, 24 42 Q 36 45, 46 42" strokeWidth="1" opacity="0.4" />
+    </svg>
+);
+
+const LandmarkDublin = () => (
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
+        {/* Ha'penny Bridge arch */}
+        <path d="M 4 32 Q 24 8, 44 32" />
+        {/* Railings */}
+        <line x1="12" y1="25" x2="12" y2="20" />
+        <line x1="18" y1="20" x2="18" y2="15" />
+        <line x1="24" y1="18" x2="24" y2="13" />
+        <line x1="30" y1="20" x2="30" y2="15" />
+        <line x1="36" y1="25" x2="36" y2="20" />
+        {/* Bridge deck */}
+        <line x1="4" y1="32" x2="44" y2="32" />
+        {/* River Liffey */}
+        <path d="M 2 38 Q 12 35, 24 38 Q 36 41, 46 38" strokeWidth="1" opacity="0.4" />
+    </svg>
+);
 
 const Contact: React.FC = () => {
     const contactMethods = [
-        { type: 'Email', value: 'contact@aegntic.ai', label: 'General Inquiries', icon: 'Mail' },
-        { type: 'Twitter', value: '@aegntic_ai', label: 'Latest Updates', icon: 'Twitter' },
-        { type: 'LinkedIn', value: '/company/aegntic', label: 'Company News', icon: 'Linkedin' },
-        { type: 'GitHub', value: '/aegntic', label: 'Open Source', icon: 'Github' }
+        { type: 'Email', value: 'contact@aegntic.ai', label: 'General Inquiries', icon: '✉' },
+        { type: 'Twitter', value: '@aegntic_ai', label: 'Latest Updates', icon: '𝕏' },
+        { type: 'LinkedIn', value: '/company/aegntic', label: 'Company News', icon: 'in' },
+        { type: 'GitHub', value: '/aegntic', label: 'Open Source', icon: '</>' },
     ];
 
     const officeLocations = [
-        { city: 'San Francisco', country: 'United States', focus: 'Headquarters' },
-        { city: 'Zurich', country: 'Switzerland', focus: 'Research Lab' },
-        { city: 'Singapore', country: 'Singapore', focus: 'Asia Pacific' },
-        { city: 'London', country: 'United Kingdom', focus: 'European Operations' }
+        { city: 'Sydney', country: 'Australia', focus: 'Headquarters', Landmark: LandmarkSydney },
+        { city: 'London', country: 'United Kingdom', focus: 'Engineering', Landmark: LandmarkLondon },
+        { city: 'Berlin', country: 'Germany', focus: 'Research', Landmark: LandmarkBerlin },
+        { city: 'Amsterdam', country: 'Netherlands', focus: 'Infrastructure', Landmark: LandmarkAmsterdam },
+        { city: 'Dublin', country: 'Ireland', focus: 'Operations', Landmark: LandmarkDublin },
     ];
 
     return (
-        <div className="py-20 px-6">
+        <div className="py-24 px-6">
             <div className="max-w-7xl mx-auto">
-                {/* Page Header - Right-justified Main Heading */}
-                <div className="text-right mb-24">
-                    <ScrollReveal>
-                        <div className="text-primary font-mono text-[10px] uppercase tracking-[0.4em] mb-4">
-                            <Editable id="contact-subtitle" as="span">aegntic.network</Editable>
-                        </div>
-                    </ScrollReveal>
-                    <ScrollReveal delay={200}>
-                        <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-                            <Editable id="contact-heading-1" as="span">Connect with</Editable>{' '}
-                            <span className="text-primary">
-                                <Editable id="contact-heading-2" as="span">Aegntic</Editable>
-                            </span>
-                        </h1>
-                    </ScrollReveal>
-                    <ScrollReveal delay={400}>
-                        <p className="max-w-3xl ml-auto text-gray-400 text-lg leading-relaxed">
-                            <Editable id="contact-description" as="span">
-                                Whether you're interested in research partnerships, career opportunities, or exploring our technology stack, we'd love to hear from you.
-                            </Editable>
-                        </p>
-                    </ScrollReveal>
-                </div>
+                {/* Header */}
+                <ScrollReveal>
+                    <div className="mb-20">
+                        <span className="section-label">{/* subtle AI pun */}/api/v1/connect</span>
+                        <h2 className="section-header mt-3">
+                            Connect with <span className="text-accent-orange">Aegntic</span>
+                        </h2>
+                        <div className="section-divider-accent mt-6" />
+                    </div>
+                </ScrollReveal>
 
-                {/* Main Contact Section - Asymmetrical Layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32">
-                    {/* Left-aligned Contact Form */}
+                <ScrollReveal delay={100}>
+                    <p className="text-body-lg max-w-3xl mb-16">
+                        Whether you're interested in research partnerships, career opportunities,
+                        or exploring our technology stack — our response time is better than most inference APIs.
+                    </p>
+                </ScrollReveal>
+
+                {/* Contact Grid — Asymmetric editorial */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+                    {/* Contact Form */}
                     <ScrollReveal>
-                        <div className="text-left">
-                            <h2 className="text-3xl md:text-4xl font-bold mb-8 tracking-tight">
-                                <Editable id="contact-form-heading" as="span">Send us a</Editable>{' '}
-                                <span className="text-primary italic font-serif">
-                                    <Editable id="contact-form-heading-2" as="span">message</Editable>
-                                </span>
-                            </h2>
-                            <p className="text-gray-400 mb-8">
-                                <Editable id="contact-form-desc" as="span">
-                                    Fill out the form below and our team will get back to you within 24-48 hours.
-                                </Editable>
+                        <div>
+                            <h3 className="text-headline font-bold mb-8">
+                                Send us a <span className="text-accent-blue">message</span>
+                            </h3>
+                            <p className="text-text-muted mb-8">
+                                Fill out the form below. Our team processes requests faster than batch inference.
                             </p>
-                            <form className="space-y-6">
+                            <form className="space-y-6" onSubmit={e => e.preventDefault()}>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
-                                        <label className="block text-[10px] uppercase tracking-widest text-gray-500 mb-2">
-                                            <Editable id="contact-form-name-label" as="span">Name</Editable>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            placeholder="Your Name"
-                                            className="w-full bg-surface-dark/60 border border-white/10 rounded-lg px-6 py-4 text-sm focus:border-primary/50 transition-colors outline-none"
-                                        />
+                                        <label className="text-mono-label text-text-dim block mb-2">Name</label>
+                                        <input type="text" placeholder="Your Name"
+                                            className="w-full neu-inset px-6 py-4 text-sm outline-none text-text-primary placeholder:text-text-dim" />
                                     </div>
                                     <div>
-                                        <label className="block text-[10px] uppercase tracking-widest text-gray-500 mb-2">
-                                            <Editable id="contact-form-email-label" as="span">Email</Editable>
-                                        </label>
-                                        <input
-                                            type="email"
-                                            placeholder="your@email.com"
-                                            className="w-full bg-surface-dark/60 border border-white/10 rounded-lg px-6 py-4 text-sm focus:border-primary/50 transition-colors outline-none"
-                                        />
+                                        <label className="text-mono-label text-text-dim block mb-2">Email</label>
+                                        <input type="email" placeholder="your@email.com"
+                                            className="w-full neu-inset px-6 py-4 text-sm outline-none text-text-primary placeholder:text-text-dim" />
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="block text-[10px] uppercase tracking-widest text-gray-500 mb-2">
-                                        <Editable id="contact-form-subject-label" as="span">Subject</Editable>
-                                    </label>
-                                    <select className="w-full bg-surface-dark/60 border border-white/10 rounded-lg px-6 py-4 text-sm focus:border-primary/50 transition-colors outline-none">
+                                    <label className="text-mono-label text-text-dim block mb-2">Subject</label>
+                                    <select className="w-full neu-inset px-6 py-4 text-sm outline-none text-text-primary">
                                         <option>General Inquiry</option>
                                         <option>Research Partnership</option>
                                         <option>Career Opportunity</option>
@@ -97,137 +160,145 @@ const Contact: React.FC = () => {
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="block text-[10px] uppercase tracking-widest text-gray-500 mb-2">
-                                        <Editable id="contact-form-message-label" as="span">Message</Editable>
-                                    </label>
-                                    <textarea
-                                        rows={6}
-                                        placeholder="Tell us more..."
-                                        className="w-full bg-surface-dark/60 border border-white/10 rounded-lg px-6 py-4 text-sm focus:border-primary/50 transition-colors outline-none resize-none"
-                                    />
+                                    <label className="text-mono-label text-text-dim block mb-2">Message</label>
+                                    <textarea rows={6} placeholder="Tell us more..."
+                                        className="w-full neu-inset px-6 py-4 text-sm outline-none text-text-primary placeholder:text-text-dim resize-none" />
                                 </div>
-                                <button type="submit" className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-primary text-black font-bold uppercase text-xs tracking-widest rounded-lg hover:bg-primary/90 transition-all hover:shadow-[0_0_30px_rgba(0,240,255,0.3)]">
-                                    <Icon3D icon="Send" size={16} />
-                                    <Editable id="contact-form-submit" as="span">Send Message</Editable>
-                                </button>
+                                <Magnetic strength={0.2}>
+                                    <button type="submit" className="neu-pill-orange w-full flex items-center justify-center gap-3">
+                                        <Send size={16} /> Send Message
+                                    </button>
+                                </Magnetic>
                             </form>
                         </div>
                     </ScrollReveal>
 
-                    {/* Right-aligned Contact Methods */}
+                    {/* Contact Methods */}
                     <ScrollReveal delay={200}>
-                        <div className="text-right">
-                            <h3 className="text-2xl font-bold mb-8 tracking-tight">
-                                <Editable id="contact-methods-heading" as="span">Quick</Editable>{' '}
-                                <span className="text-primary italic font-serif">
-                                    <Editable id="contact-methods-heading-2" as="span">Connections</Editable>
-                                </span>
+                        <div>
+                            <h3 className="text-headline font-bold mb-8 text-right">
+                                Quick <span className="text-accent-blue">Connections</span>
                             </h3>
-                            <div className="space-y-6">
+                            <div className="space-y-4">
                                 {contactMethods.map((method, idx) => (
-                                    <div key={idx} className="group p-6 rounded-2xl bg-surface-dark/40 border border-white/5 hover:border-primary/30 transition-all duration-500 cursor-pointer">
-                                        <div className="flex items-center justify-end gap-4">
-                                            <div className="text-right flex-grow">
-                                                <div className="text-[10px] uppercase tracking-widest text-gray-500 mb-1">{method.label}</div>
-                                                <div className="text-white font-mono group-hover:text-primary transition-colors">{method.value}</div>
-                                            </div>
-                                            <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 group-hover:bg-primary/20 transition-colors">
-                                                <EditableIcon id={`contact-method-${idx}-icon`} icon={method.icon as any} size={20} className="text-primary" />
+                                    <Magnetic key={idx} strength={0.15}>
+                                        <div className="neu-card group cursor-pointer">
+                                            <div className="flex items-center justify-end gap-4">
+                                                <div className="text-right flex-grow">
+                                                    <div className="text-mono-label text-text-dim mb-1">{method.label}</div>
+                                                    <div className="font-mono text-text-primary group-hover:text-accent-blue transition-colors">
+                                                        {method.value}
+                                                    </div>
+                                                </div>
+                                                <div className="w-12 h-12 rounded-xl neu-inset flex items-center justify-center group-hover:bg-accent-blue/10 transition-colors">
+                                                    <span className="text-accent-blue font-mono text-sm">{method.icon}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </Magnetic>
                                 ))}
                             </div>
                         </div>
                     </ScrollReveal>
                 </div>
 
-                {/* Global Offices Section - Asymmetrical Layout */}
-                <div className="rounded-3xl bg-background-dark border border-white/5 overflow-hidden relative mb-32">
-                    <div className="absolute inset-0 bg-tech-grid opacity-10" />
-                    <div className="relative z-10 p-12 lg:p-20">
-                        {/* Right-aligned Section Heading */}
-                        <div className="text-right mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
-                                <Editable id="contact-offices-heading" as="span">Global</Editable>{' '}
-                                <span className="text-primary italic font-serif">
-                                    <Editable id="contact-offices-heading-2" as="span">Presence</Editable>
-                                </span>
-                            </h2>
-                            <p className="text-gray-400">
-                                <Editable id="contact-offices-desc" as="span">
-                                    Our distributed team spans four time zones, ensuring round-the-clock innovation and support.
-                                </Editable>
+                {/* Global Offices — Cities with wireframe landmark icons */}
+                <ScrollReveal>
+                    <div className="neu-raised p-10 lg:p-16 mb-24">
+                        <div className="text-right mb-12">
+                            <h3 className="text-headline font-bold mb-4">
+                                Global <span className="text-accent-orange">Presence</span>
+                            </h3>
+                            <p className="text-text-muted">
+                                Distributing compute across five time zones.
+                                <span className="text-text-dim text-xs ml-2" title="We don't hallucinate our office locations">Zero hallucinations.</span>
                             </p>
                         </div>
 
-                        {/* Left-aligned Office Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                             {officeLocations.map((office, idx) => (
                                 <ScrollReveal key={idx} delay={idx * 100}>
-                                    <div className="group p-8 rounded-2xl bg-surface-dark/40 border border-white/5 hover:border-primary/30 transition-all duration-500">
-                                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 mb-6 group-hover:bg-primary/20 transition-colors">
-                                            <Icon3D icon="MapPin" className="text-primary" size={20} />
+                                    <Magnetic strength={0.12}>
+                                        <div className="neu-card group text-center py-8">
+                                            <div className="text-accent-blue group-hover:text-accent-orange transition-colors duration-300 mb-4 flex justify-center opacity-60 group-hover:opacity-100">
+                                                <office.Landmark />
+                                            </div>
+                                            <h4 className="font-display text-lg font-bold text-text-primary mb-1 tracking-tight">
+                                                {office.city}
+                                            </h4>
+                                            <div className="text-mono-label text-accent-blue text-[9px]">{office.focus}</div>
                                         </div>
-                                        <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
-                                            {office.city}
-                                        </h3>
-                                        <p className="text-gray-500 text-sm mb-4">{office.country}</p>
-                                        <div className="text-[10px] uppercase tracking-widest text-primary/80 font-bold">
-                                            {office.focus}
-                                        </div>
-                                    </div>
+                                    </Magnetic>
                                 </ScrollReveal>
                             ))}
                         </div>
                     </div>
-                </div>
+                </ScrollReveal>
 
-                {/* Media Inquiries - Asymmetrical */}
+                {/* Press & Media + Newsletter/Investor CTA blocks */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Press & Media → Social Feeds */}
                     <ScrollReveal>
-                        <div className="h-full p-12 rounded-3xl bg-primary/5 border border-primary/20 relative overflow-hidden group">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px] -mr-32 -mt-32" />
-                            <h2 className="text-3xl font-bold mb-6 relative z-10 tracking-tight text-left">
-                                <span className="font-serif">
-                                    <Editable id="contact-press-title-1" as="span">Press &</Editable>
-                                </span>{' '}
-                                <span className="text-primary">
-                                    <Editable id="contact-press-title-2" as="span">Media</Editable>
-                                </span>
-                            </h2>
-                            <p className="text-gray-400 leading-relaxed mb-8 relative z-10 text-left">
-                                <Editable id="contact-press-desc" as="span">
-                                    For press inquiries, interview requests, or media resources, please reach out to our communications team directly.
-                                </Editable>
-                            </p>
-                            <button className="flex items-center gap-3 text-white text-[10px] uppercase tracking-[0.3em] font-bold group/btn relative z-10">
-                                <Editable id="contact-press-cta" as="span">press@aegntic.ai</Editable>
-                                <Icon3D icon="ArrowRight" size={14} className="group-hover/btn:translate-x-2 transition-transform" />
-                            </button>
-                        </div>
+                        <Magnetic strength={0.1}>
+                            <div className="neu-card h-full border-l-2 border-accent-orange">
+                                <h3 className="text-headline font-bold mb-6">
+                                    Press & <span className="text-accent-orange">Media</span>
+                                </h3>
+                                <p className="text-text-muted leading-relaxed mb-8">
+                                    Latest announcements, research papers, and media coverage.
+                                    Follow our feeds for real-time updates — no fine-tuning required.
+                                </p>
+                                <div className="flex flex-wrap gap-3 mb-6">
+                                    <a href="#" className="neu-pill !py-2 !px-4 flex items-center gap-2 text-text-muted hover:text-accent-orange transition-colors text-xs">
+                                        <Twitter size={14} /> Twitter
+                                    </a>
+                                    <a href="#" className="neu-pill !py-2 !px-4 flex items-center gap-2 text-text-muted hover:text-accent-orange transition-colors text-xs">
+                                        <Linkedin size={14} /> LinkedIn
+                                    </a>
+                                    <a href="#" className="neu-pill !py-2 !px-4 flex items-center gap-2 text-text-muted hover:text-accent-orange transition-colors text-xs">
+                                        <Github size={14} /> GitHub
+                                    </a>
+                                    <a href="#" className="neu-pill !py-2 !px-4 flex items-center gap-2 text-text-muted hover:text-accent-orange transition-colors text-xs">
+                                        <Rss size={14} /> Blog
+                                    </a>
+                                </div>
+                                <a href="mailto:press@aegntic.ai" className="flex items-center gap-2 text-mono-label text-text-primary hover:text-accent-orange transition-colors">
+                                    press@aegntic.ai <ArrowRight size={14} />
+                                </a>
+                            </div>
+                        </Magnetic>
                     </ScrollReveal>
 
+                    {/* Newsletter + Investor Opportunity */}
                     <ScrollReveal delay={200}>
-                        <div className="h-full p-12 rounded-3xl bg-surface-dark/40 border border-white/5 relative overflow-hidden group">
-                            <h2 className="text-3xl font-bold mb-6 relative z-10 tracking-tight text-left">
-                                <span className="font-serif">
-                                    <Editable id="contact-careers-title-1" as="span">Join the</Editable>
-                                </span>{' '}
-                                <span className="text-primary italic font-serif">
-                                    <Editable id="contact-careers-title-2" as="span">Collective</Editable>
-                                </span>
-                            </h2>
-                            <p className="text-gray-400 leading-relaxed mb-8 relative z-10 text-left">
-                                <Editable id="contact-careers-desc" as="span">
-                                    We're always looking for exceptional researchers, engineers, and visionaries to help build the future of synthetic intelligence.
-                                </Editable>
-                            </p>
-                            <button className="flex items-center gap-3 text-white text-[10px] uppercase tracking-[0.3em] font-bold group/btn relative z-10">
-                                <Editable id="contact-careers-cta" as="span">View Open Positions</Editable>
-                                <Icon3D icon="ArrowRight" size={14} className="group-hover/btn:translate-x-2 transition-transform" />
-                            </button>
-                        </div>
+                        <Magnetic strength={0.1}>
+                            <div className="neu-card h-full border-l-2 border-accent-blue">
+                                <h3 className="text-headline font-bold mb-6">
+                                    Join the <span className="text-accent-blue">Signal</span>
+                                </h3>
+                                <p className="text-text-muted leading-relaxed mb-6">
+                                    Subscribe for research updates, early access to tools, and investor briefings.
+                                    Lower noise ratio than your average Transformer.
+                                </p>
+                                <form className="flex gap-3 mb-6" onSubmit={e => e.preventDefault()}>
+                                    <input
+                                        type="email"
+                                        placeholder="your@email.com"
+                                        className="flex-grow neu-inset px-5 py-3 text-sm outline-none text-text-primary placeholder:text-text-dim"
+                                    />
+                                    <Magnetic strength={0.25}>
+                                        <button type="submit" className="neu-pill-blue !py-3 !px-6 flex items-center gap-2">
+                                            <Sparkles size={14} /> Subscribe
+                                        </button>
+                                    </Magnetic>
+                                </form>
+                                <div className="flex items-center gap-4 pt-4 border-t border-surface-raised">
+                                    <a href="#" className="flex items-center gap-2 text-mono-label text-text-muted hover:text-accent-blue transition-colors">
+                                        <Newspaper size={12} /> Investor Relations <ArrowRight size={12} />
+                                    </a>
+                                </div>
+                            </div>
+                        </Magnetic>
                     </ScrollReveal>
                 </div>
             </div>

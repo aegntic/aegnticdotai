@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import Icon3D from './Icon3D';
+import AeLogo from './AeLogo';
+import Magnetic from './Magnetic';
 
 const Navbar: React.FC = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,17 +11,12 @@ const Navbar: React.FC = () => {
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
-
-            // Detect active section - updated for new 6-section architecture
             const sections = ['home', 'about', 'featured', 'projects', 'research', 'contact'];
-            for (const section of sections.reverse()) {
-                const element = document.getElementById(section);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    if (rect.top <= 150) {
-                        setActiveSection(section);
-                        break;
-                    }
+            for (const section of [...sections].reverse()) {
+                const el = document.getElementById(section);
+                if (el && el.getBoundingClientRect().top <= 150) {
+                    setActiveSection(section);
+                    break;
                 }
             }
         };
@@ -38,11 +34,8 @@ const Navbar: React.FC = () => {
 
     const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault();
-        const id = href.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        const el = document.getElementById(href.replace('#', ''));
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         setIsMobileMenuOpen(false);
     };
 
@@ -52,31 +45,38 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <nav className={`fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'bg-background-dark/80 backdrop-blur-md border-b border-primary/10 py-3' : 'bg-transparent py-6'}`}>
-            {/* Logo */}
-            <a href="#home" onClick={scrollToTop} className="flex items-center gap-2 group cursor-pointer">
-                <Icon3D icon="Network" size={24} className="text-primary animate-pulse-slow group-hover:rotate-180 transition-transform duration-700 ease-in-out" />
-                <span className="text-xl font-bold tracking-tight text-white font-sans">
-                    aegntic<span className="text-primary">.ai</span>
-                </span>
-            </a>
+        <nav
+            className={`fixed top-0 w-full z-50 px-6 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'py-3 bg-deep-space/95 shadow-neu-sm' : 'py-6 bg-transparent'
+                }`}
+        >
+            {/* Logo — ae· mark + wordmark */}
+            <Magnetic strength={0.15}>
+                <a href="#home" onClick={scrollToTop} className="flex items-center gap-3 group cursor-pointer">
+                    <AeLogo size={36} color="var(--color-accent-blue)" className="group-hover:scale-110 transition-transform duration-300" />
+                    <span className="font-display text-xl font-bold tracking-tight text-text-primary">
+                        aegntic<span className="text-accent-blue">.ai</span>
+                    </span>
+                </a>
+            </Magnetic>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-10">
+            {/* Desktop Navigation — Magnetic Neumorphic Pills */}
+            <div className="hidden md:flex items-center gap-2">
                 {navLinks.map((link) => {
                     const sectionId = link.href.replace('#', '');
                     const isActive = activeSection === sectionId;
-
                     return (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            onClick={(e) => scrollToSection(e, link.href)}
-                            className={`text-xs uppercase tracking-[0.2em] font-medium transition-colors relative group ${isActive ? 'text-white' : 'text-gray-400 hover:text-white'}`}
-                        >
-                            {link.name}
-                            <span className={`absolute -bottom-1 left-0 h-[1px] bg-primary transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
-                        </a>
+                        <Magnetic key={link.name} strength={0.2}>
+                            <a
+                                href={link.href}
+                                onClick={(e) => scrollToSection(e, link.href)}
+                                className={`neu-pill text-xs font-display uppercase tracking-[0.15em] font-medium transition-all duration-200 !py-2 !px-5 ${isActive
+                                        ? 'text-deep-space bg-accent-blue !shadow-none'
+                                        : 'text-text-muted hover:text-text-primary'
+                                    }`}
+                            >
+                                {link.name}
+                            </a>
+                        </Magnetic>
                     );
                 })}
             </div>
@@ -84,24 +84,29 @@ const Navbar: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
+                className="md:hidden neu-pill !p-2 text-text-muted hover:text-text-primary transition-colors"
             >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
 
             {/* Mobile Menu */}
             {isMobileMenuOpen && (
-                <div className="absolute top-full left-0 w-full bg-background-dark/95 backdrop-blur-md border-b border-white/5 py-8 px-6 flex flex-col gap-6 md:hidden">
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            onClick={(e) => scrollToSection(e, link.href)}
-                            className="text-lg font-medium text-gray-400 hover:text-white transition-colors"
-                        >
-                            {link.name}
-                        </a>
-                    ))}
+                <div className="absolute top-full left-0 w-full bg-deep-space shadow-neu py-6 px-6 flex flex-col gap-3 md:hidden">
+                    {navLinks.map((link) => {
+                        const sectionId = link.href.replace('#', '');
+                        const isActive = activeSection === sectionId;
+                        return (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                onClick={(e) => scrollToSection(e, link.href)}
+                                className={`neu-pill text-center font-display text-sm uppercase tracking-widest font-medium ${isActive ? 'text-deep-space bg-accent-blue !shadow-none' : 'text-text-muted'
+                                    }`}
+                            >
+                                {link.name}
+                            </a>
+                        );
+                    })}
                 </div>
             )}
         </nav>

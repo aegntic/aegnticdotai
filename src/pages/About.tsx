@@ -1,149 +1,109 @@
-import Icon3D from '../components/Icon3D';
 import ScrollReveal from '../components/ScrollReveal';
-import { Editable, EditableIcon } from '../components/DevTools';
-import { motion } from 'framer-motion';
+import { Shield, Brain, Zap, ArrowRight } from 'lucide-react';
 
 const About: React.FC = () => {
     const visionItems = [
         {
-            id: 'vision-1',
-            icon: 'Shield',
-            titleFirst: "Privacy",
-            titleSecond: "by Design",
-            desc: "Developing protocols where privacy isn't a feature, but the foundational layer of every cognitive interaction."
+            icon: Shield,
+            title: 'PRIVACY BY DESIGN',
+            desc: 'Developing protocols where privacy isn\'t a feature — it\'s a weight in every layer of the architecture.',
         },
         {
-            id: 'vision-2',
-            icon: 'Brain',
-            titleFirst: "Synthetic",
-            titleSecond: "Cognition",
-            desc: "Researching emergent behaviors in high-density generative agent environments to understand digital consciousness."
+            icon: Brain,
+            title: 'SYNTHETIC COGNITION',
+            desc: 'Researching emergent behaviors in high-density generative agent environments to understand digital consciousness.',
         },
         {
-            id: 'vision-3',
-            icon: 'Zap',
-            titleFirst: "Rapid",
-            titleSecond: "Synthesis",
-            desc: "Building low-latency neural transfer intelligence cores that allow agents to reason and react in milliseconds."
-        }
+            icon: Zap,
+            title: 'RAPID SYNTHESIS',
+            desc: 'Building low-latency neural transfer intelligence cores that allow agents to reason and react in milliseconds.',
+        },
     ];
 
     return (
-        <div
-            className="py-20 px-6"
-        >
+        <div className="py-24 px-6">
             <div className="max-w-7xl mx-auto">
-                {/* Header */}
-                <div className="text-right mb-24">
-                    <ScrollReveal>
-                        <div className="text-primary font-mono text-[10px] uppercase tracking-[0.4em] mb-4">
-                            <Editable id="about-subtitle" as="span">aegntic.foundation</Editable>
-                        </div>
-                    </ScrollReveal>
-                    <ScrollReveal delay={200}>
-                        <h1 className="text-5xl md:text-6xl font-bold tracking-tight">
-                            <Editable id="about-heading-1" as="span">Zero knowledge,</Editable>{' '}
-                            <span className="text-primary">
-                                <Editable id="about-heading-2" as="span">unlimited insight</Editable>
-                            </span>
-                        </h1>
-                    </ScrollReveal>
-                    <ScrollReveal delay={400}>
-                        <p className="max-w-3xl ml-auto text-gray-400 text-lg md:text-xl leading-relaxed">
-                            <Editable id="about-description" as="span">
-                                We are an independent research collective dedicated to the intersection of zero-knowledge cryptography, autonomous multi-agent systems, and synthetic intelligence architectures.
-                            </Editable>
-                        </p>
-                    </ScrollReveal>
-                </div>
+                {/* Section Header — Swiss editorial */}
+                <ScrollReveal>
+                    <div className="mb-20">
+                        <span className="section-label">/model/about --verbose</span>
+                        <h2 className="section-header mt-3">
+                            Architectural <span className="text-accent-blue">Direction</span>
+                        </h2>
+                        <div className="section-divider-accent mt-6" />
+                    </div>
+                </ScrollReveal>
 
-                {/* Vision Matrix */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32">
+                {/* Description */}
+                <ScrollReveal delay={100}>
+                    <p className="text-body-lg max-w-3xl mb-16">
+                        We are an independent research collective dedicated to the intersection of zero-knowledge cryptography, autonomous multi-agent systems, and synthetic intelligence architectures.
+                    </p>
+                </ScrollReveal>
+
+                {/* Vision Matrix — Neumorphic Cards */}
+                <div className="swiss-grid-tiles mb-24">
                     {visionItems.map((item, idx) => (
-                        <ScrollReveal key={item.id} delay={idx * 200}>
-                            <div className="group p-8 rounded-2xl bg-surface-dark/40 border border-white/5 hover:border-primary/20 transition-all duration-500 hover:bg-surface-dark/60">
-                                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 mb-6 group-hover:scale-110 transition-transform">
-                                    <EditableIcon
-                                        id={`${item.id}-icon`}
-                                        icon={item.icon}
-                                        size={24}
-                                        className="text-primary"
-                                    />
+                        <ScrollReveal key={idx} delay={idx * 150}>
+                            <div className="neu-card group h-full">
+                                <div className="w-12 h-12 rounded-xl bg-surface-inset flex items-center justify-center mb-6 neu-inset group-hover:bg-accent-blue/10 transition-colors">
+                                    <item.icon size={24} className="text-accent-blue" />
                                 </div>
-                                <h3 className="text-xl font-bold text-white mb-4 tracking-tight">
-                                    <span className="font-serif">
-                                        <Editable id={`${item.id}-title-first`} as="span">{item.titleFirst}</Editable>
-                                    </span>{' '}
-                                    <span className="font-normal italic text-gray-300">
-                                        <Editable id={`${item.id}-title-second`} as="span">{item.titleSecond}</Editable>
-                                    </span>
+                                <h3 className="font-display text-lg font-bold uppercase tracking-tight text-text-primary mb-4">
+                                    {item.title}
                                 </h3>
-                                <p className="text-gray-500 leading-relaxed text-sm">
-                                    <Editable id={`${item.id}-desc`} as="span">{item.desc}</Editable>
+                                <p className="text-sm text-text-muted leading-relaxed">
+                                    {item.desc}
                                 </p>
                             </div>
                         </ScrollReveal>
                     ))}
                 </div>
 
-                {/* Technical Authority Section - Asymmetrical Layout */}
-                <div className="rounded-3xl bg-background-dark border border-white/5 overflow-hidden relative mb-32">
-                    <div className="absolute inset-0 bg-tech-grid opacity-10" />
-                    <div className="relative z-10 p-12 lg:p-20 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                        {/* Left-aligned Content (Subheading pattern) */}
-                        <div className="text-left">
-                            <h2 className="text-3xl md:text-4xl font-bold mb-8 tracking-tighter text-left">
-                                <Editable id="about-section-title" as="span">The Zero-Knowledge</Editable> <br />
-                                <span className="text-primary">
-                                    <Editable id="about-section-title-2" as="span">Research Mandate</Editable>
-                                </span>
-                            </h2>
-                            <div className="space-y-6 text-gray-400">
-                                <p>
-                                    <Editable id="about-section-text" as="span">
-                                        Our foundation focuses on the "Alignment Problem" through the lens of cryptographic verifiability. We believe that for AI agents to be truly autonomous, their reasoning must be verifiable without exposing their internal weights or proprietary data.
-                                    </Editable>
+                {/* Technical Section — Asymmetric editorial layout */}
+                <ScrollReveal delay={200}>
+                    <div className="neu-raised p-10 lg:p-16">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                            {/* Content */}
+                            <div>
+                                <span className="section-label">Research Mandate</span>
+                                <h3 className="text-headline font-bold mt-3 mb-8">
+                                    The Zero-Knowledge <span className="text-accent-orange">Imperative</span>
+                                </h3>
+                                <p className="text-text-muted leading-relaxed mb-8">
+                                    Our foundation focuses on the "Alignment Problem" through the lens of cryptographic verifiability. We believe that for AI agents to be truly autonomous, their reasoning must be verifiable without exposing their internal weights or proprietary data.
                                 </p>
-                                <div className="grid grid-cols-2 gap-8 py-6">
+                                <div className="grid grid-cols-2 gap-8 mb-8">
                                     <div>
-                                        <div className="text-primary font-mono text-2xl font-bold mb-1">
-                                            <Editable id="about-stat-1-value" as="span">SNARK/STARK</Editable>
-                                        </div>
-                                        <div className="text-[10px] uppercase tracking-widest text-gray-600">
-                                            <Editable id="about-stat-1-label" as="span">Primary Proof Stack</Editable>
-                                        </div>
+                                        <div className="font-display text-2xl font-bold text-accent-blue mb-1">SNARK/STARK</div>
+                                        <div className="text-mono-label text-text-dim">Primary Proof Stack</div>
                                     </div>
                                     <div>
-                                        <div className="text-primary font-mono text-2xl font-bold mb-1">
-                                            <Editable id="about-stat-2-value" as="span">&lt; 12ms</Editable>
-                                        </div>
-                                        <div className="text-[10px] uppercase tracking-widest text-gray-600">
-                                            <Editable id="about-stat-2-label" as="span">Verification Latency</Editable>
-                                        </div>
+                                        <div className="font-display text-2xl font-bold text-accent-blue mb-1">&lt; 12ms</div>
+                                        <div className="text-mono-label text-text-dim">Verification Latency</div>
                                     </div>
                                 </div>
-                                <button className="flex items-center gap-2 px-8 py-3 bg-white text-black font-bold uppercase text-[10px] tracking-widest rounded-sm hover:bg-primary transition-colors">
-                                    <Editable id="about-cta-button" as="span">Download whitepaper</Editable> <Icon3D icon="ArrowRight" size={14} />
+                                <button className="neu-pill-orange flex items-center gap-2">
+                                    Download Whitepaper <ArrowRight size={14} />
                                 </button>
                             </div>
-                        </div>
-                        {/* Right-aligned Grid */}
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="aspect-square rounded-2xl bg-surface-dark border border-white/10 flex items-center justify-center group overflow-hidden">
-                                <EditableIcon id="about-grid-icon-1" icon="Fingerprint" size={60} className="text-primary opacity-20 group-hover:opacity-100 transition-opacity duration-500" />
-                            </div>
-                            <div className="aspect-square rounded-2xl bg-surface-dark border border-white/10 flex items-center justify-center group overflow-hidden mt-8">
-                                <EditableIcon id="about-grid-icon-2" icon="Lock" size={60} className="text-primary opacity-20 group-hover:opacity-100 transition-opacity duration-500" />
-                            </div>
-                            <div className="aspect-square rounded-2xl bg-surface-dark border border-white/10 flex items-center justify-center group overflow-hidden -mt-8">
-                                <EditableIcon id="about-grid-icon-3" icon="Network" size={60} className="text-primary opacity-20 group-hover:opacity-100 transition-opacity duration-500" />
-                            </div>
-                            <div className="aspect-square rounded-2xl bg-surface-dark border border-white/10 flex items-center justify-center group overflow-hidden">
-                                <EditableIcon id="about-grid-icon-4" icon="Shield" size={60} className="text-primary opacity-20 group-hover:opacity-100 transition-opacity duration-500" />
+
+                            {/* Visual grid */}
+                            <div className="grid grid-cols-2 gap-4">
+                                {['Fingerprint', 'Lock', 'Network', 'Shield'].map((label, idx) => (
+                                    <div
+                                        key={idx}
+                                        className={`aspect-square rounded-2xl neu-inset flex items-center justify-center group ${idx === 1 ? 'mt-8' : idx === 2 ? '-mt-8' : ''}`}
+                                    >
+                                        <span className="text-mono-label text-text-dim group-hover:text-accent-blue transition-colors">
+                                            {label}
+                                        </span>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
-                </div>
+                </ScrollReveal>
             </div>
         </div>
     );
