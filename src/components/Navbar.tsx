@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
 
     return (
         <nav
-            className={`fixed top-0 w-full z-50 px-6 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'py-3 bg-deep-space/95 shadow-neu-sm' : 'py-6 bg-transparent'
+            className={`fixed top-0 w-full z-50 px-6 flex justify-between items-center transition-all duration-300 ${isScrolled ? 'py-3 glass-nav' : 'py-6 bg-transparent'
                 }`}
         >
             {/* Logo — ae· mark + wordmark */}
@@ -70,8 +70,8 @@ const Navbar: React.FC = () => {
                                 href={link.href}
                                 onClick={(e) => scrollToSection(e, link.href)}
                                 className={`neu-pill text-xs font-display uppercase tracking-[0.15em] font-medium transition-all duration-200 !py-2 !px-5 ${isActive
-                                        ? 'text-deep-space bg-accent-blue !shadow-none'
-                                        : 'text-text-muted hover:text-text-primary'
+                                    ? 'text-deep-space bg-accent-blue !shadow-none'
+                                    : 'text-text-muted hover:text-text-primary'
                                     }`}
                             >
                                 {link.name}

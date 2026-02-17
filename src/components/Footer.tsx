@@ -4,7 +4,7 @@ import Magnetic from './Magnetic';
 
 const Footer: React.FC = () => {
     return (
-        <footer className="relative w-full bg-surface py-16 px-6 z-20 overflow-hidden">
+        <footer className="relative w-full metal-surface py-16 px-6 z-20 overflow-hidden">
             {/* Oversized embossed ae· logo — background watermark */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
                 <AeLogo

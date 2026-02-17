@@ -3,98 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../components/ScrollReveal';
 import { Clock, ArrowRight, X } from 'lucide-react';
 
+import { blogPosts, BlogPost } from '../data/researchData';
+
 const Research: React.FC = () => {
     const [filter, setFilter] = useState('All');
     const [visibleCount, setVisibleCount] = useState(12);
-    const [selectedPost, setSelectedPost] = useState<any>(null);
+    const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
     const [previewMode, setPreviewMode] = useState(false);
-
-    const blogPosts = [
-        {
-            id: '01', date: 'Jan 15 2024', category: 'Vision', readTime: '8 min',
-            title: 'The AI Operating System: Why We Built Aegntic',
-            desc: 'Our founding vision for an AI ecosystem that achieves 97% human authenticity while saving 10x development time.',
-            tags: ['aegntic', 'AI', 'founding-story'],
-            content: `# The AI Operating System: Why We Built Aegntic\n\nEvery day, millions of hours are lost. Developers spend 40% of their time on documentation...`,
-        },
-        {
-            id: '02', date: 'Dec 15 2024', category: 'Growth', readTime: '12 min',
-            title: 'From 0 to 40 Platforms: The Aegntic Growth Story',
-            desc: 'The first year of building Aegntic. From a single idea to 40+ interconnected platforms.',
-            tags: ['growth', 'ecosystem', 'lessons'],
-            content: `# From 0 to 40 Platforms\n\nThe journey began with a simple question: Why can't AI tools work together?`,
-        },
-        {
-            id: '03', date: 'Dec 19 2024', category: 'AI Agents', readTime: '10 min',
-            title: 'Building Reusable AI Agent Skills: A Complete Guide',
-            desc: 'Learn how to create, structure, and manage reusable skills for AI agents.',
-            tags: ['AI', 'agents', 'skills'],
-            content: `# Building Reusable AI Agent Skills\n\nThe future of AI isn't monolithic models—it's composable capabilities.`,
-        },
-        {
-            id: '04', date: 'Dec 01 2024', category: 'Philosophy', readTime: '7 min',
-            title: 'AI-Human Symbiosis: The Path to Augmented Intelligence',
-            desc: 'Not AI vs humans. AI with humans. Exploring the symbiotic relationship.',
-            tags: ['AI', 'philosophy', 'future'],
-            content: `# AI-Human Symbiosis\n\nThe AI discourse is often framed as competition. This framing misses the point.`,
-        },
-        {
-            id: '05', date: 'Jul 20 2024', category: 'Architecture', readTime: '15 min',
-            title: 'Building a 40+ Platform AI Ecosystem: Architecture Lessons',
-            desc: 'How we scaled from one project to 40+ interconnected platforms.',
-            tags: ['architecture', 'scaling', 'ecosystem'],
-            content: `# Building a 40+ Platform AI Ecosystem\n\nScaling from one to forty platforms required rethinking everything.`,
-        },
-        {
-            id: '06', date: 'Apr 28 2024', category: 'Product', readTime: '18 min',
-            title: 'Building DailyDoco: From 40% Time Waste to Zero-Effort Docs',
-            desc: 'The complete product story of DailyDoco, from 3am production crash to automated documentation.',
-            tags: ['documentation', 'automation', 'product'],
-            content: `# Building DailyDoco\n\nIt was 3am when production crashed. The documentation was six months out of date.`,
-        },
-        {
-            id: '07', date: 'Jul 30 2024', category: 'Framework', readTime: '14 min',
-            title: 'The Aegntic MCP Standard Framework',
-            desc: 'A comprehensive framework for building MCP servers with modern auth and cloud-first design.',
-            tags: ['MCP', 'framework', 'standards'],
-            content: `# The Aegntic MCP Standard Framework\n\nModel Context Protocol is revolutionizing AI service integration.`,
-        },
-        {
-            id: '08', date: 'Aug 10 2024', category: 'Enterprise', readTime: '16 min',
-            title: 'Claude-Flow: Enterprise AI Agent Orchestration',
-            desc: 'Building an enterprise-grade system for coordinating multiple AI agents.',
-            tags: ['orchestration', 'enterprise', 'AI'],
-            content: `# Claude-Flow\n\nCoordinating multiple AI agents at scale requires new patterns.`,
-        },
-        {
-            id: '09', date: 'Sep 10 2024', category: 'Market', readTime: '11 min',
-            title: 'The $415 Billion Opportunity: AI Developer Tools',
-            desc: 'Market analysis of the AI developer tools landscape.',
-            tags: ['market', 'AI', 'developer-tools'],
-            content: `# The $415 Billion Opportunity\n\nAI developer tools represent one of the largest market opportunities.`,
-        },
-        {
-            id: '10', date: 'Apr 12 2024', category: 'Automation', readTime: '9 min',
-            title: 'Agent Neo: Automated Ebook Generation in 45 Minutes',
-            desc: 'The complete workflow for autonomous dual-track ebook creation.',
-            tags: ['automation', 'AI', 'ebooks'],
-            content: `# Agent Neo\n\nIn 45 minutes, we built a system that generates complete ebooks.`,
-        },
-        {
-            id: '11', date: 'Oct 18 2024', category: 'Tools', readTime: '6 min',
-            title: 'The Birth of Prologue: Universal MCP Discovery System',
-            desc: 'A personal journal entry on creating Prologue — the intelligent MCP server discovery system.',
-            tags: ['MCP', 'discovery', 'tools'],
-            content: `# The Birth of Prologue\n\nSetting up MCP servers was taking 3 hours. We built Prologue and reduced it to 8 minutes.`,
-        },
-        {
-            id: '12', date: 'Nov 05 2024', category: 'Philosophy', readTime: '8 min',
-            title: 'The Philosophy of No Shortcuts',
-            desc: 'Why we take the hard path. The long-term thinking that guides Aegntic.',
-            tags: ['philosophy', 'long-term', 'values'],
-            content: `# The Philosophy of No Shortcuts\n\nEveryone wants the quick win. We chose the hard path.`,
-        },
-    ];
 
     const categories = ['All', 'Vision', 'AI Agents', 'Architecture', 'Enterprise', 'Framework', 'Product', 'Philosophy'];
     const filteredPosts = filter === 'All' ? blogPosts : blogPosts.filter(p => p.category === filter);
@@ -135,12 +50,20 @@ const Research: React.FC = () => {
                 {/* Featured Post */}
                 <ScrollReveal>
                     <div
-                        className="neu-card mb-12 cursor-pointer group"
+                        className="glass-card mb-12 cursor-pointer group"
                         onClick={() => { setSelectedPost(blogPosts[0]); setPreviewMode(false); }}
                     >
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                            <div className="aspect-video lg:aspect-auto rounded-xl overflow-hidden neu-inset flex items-center justify-center">
-                                <span className="font-display text-6xl font-bold text-surface-raised">01</span>
+                            <div
+                                className="aspect-video lg:aspect-auto rounded-xl overflow-hidden glass-inset flex items-center justify-center relative group-hover:border-accent-blue/30 transition-colors wireframe-slice"
+                                style={{ '--wireframe-mask-url': "url('/assets/visuals/research-crystal.png')" } as React.CSSProperties}
+                            >
+                                <div className="absolute inset-0 bg-accent-blue/5 z-0" />
+                                <img
+                                    src="/assets/visuals/research-crystal.png"
+                                    alt="Data Crystal"
+                                    className="relative z-10 h-[90%] w-auto object-contain transition-transform duration-700 group-hover:scale-105 group-hover:rotate-3"
+                                />
                             </div>
                             <div className="flex flex-col justify-center">
                                 <div className="flex items-center gap-4 mb-6">
@@ -177,7 +100,7 @@ const Research: React.FC = () => {
                                 whileHover={{ y: -6 }}
                                 transition={{ duration: 0.25 }}
                                 onClick={() => { setSelectedPost(post); setPreviewMode(true); }}
-                                className="neu-card group h-full flex flex-col cursor-pointer"
+                                className="glass-card group h-full flex flex-col cursor-pointer"
                             >
                                 <div className="flex justify-between items-start mb-6">
                                     <span className="text-mono-label text-accent-blue group-hover:text-accent-orange transition-colors">{post.category}</span>
@@ -224,7 +147,7 @@ const Research: React.FC = () => {
 
                 {/* Stats Section */}
                 <ScrollReveal delay={200}>
-                    <div className="mt-24 neu-raised p-10 lg:p-14 text-center">
+                    <div className="mt-24 glass-panel metal-surface !p-10 lg:!p-14 text-center">
                         <h3 className="text-headline font-bold mb-12">
                             Research <span className="text-accent-blue">Archive</span>
                         </h3>
@@ -258,7 +181,7 @@ const Research: React.FC = () => {
                             initial={{ opacity: 0, scale: 0.95, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                            className="relative max-w-4xl w-full max-h-[90vh] neu-raised overflow-hidden"
+                            className="relative max-w-4xl w-full max-h-[90vh] glass-panel !rounded-2xl overflow-hidden"
                             onClick={e => e.stopPropagation()}
                         >
                             <div className="sticky top-0 z-10 bg-surface border-b border-white/5 p-6 flex justify-between items-start">

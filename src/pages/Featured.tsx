@@ -1,7 +1,10 @@
 import ScrollReveal from '../components/ScrollReveal';
 import { Award, BookOpen, TrendingUp, Calendar, ArrowRight } from 'lucide-react';
 
+import SubscribeForm from '../components/SubscribeForm';
+
 const Featured: React.FC = () => {
+
     const updates = [
         {
             id: '01', date: '24.12.15', category: 'BREAKTHROUGH',
@@ -65,7 +68,7 @@ const Featured: React.FC = () => {
                 <div className="swiss-grid-tiles">
                     {updates.map((update, idx) => (
                         <ScrollReveal key={update.id} delay={idx * 100}>
-                            <div className="neu-card group h-full flex flex-col cursor-pointer">
+                            <div className="glass-card group h-full flex flex-col cursor-pointer">
                                 {/* Header row */}
                                 <div className="flex items-center gap-3 mb-6">
                                     <div className="w-10 h-10 rounded-xl neu-inset flex items-center justify-center group-hover:bg-accent-blue/10 transition-colors">
@@ -106,36 +109,36 @@ const Featured: React.FC = () => {
                 </div>
 
                 {/* Newsletter — Asymmetric editorial */}
-                <div className="mt-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <ScrollReveal>
-                        <div>
-                            <h3 className="text-headline font-bold mb-6">
-                                Stay <span className="text-accent-orange">Updated</span>
-                            </h3>
-                            <p className="text-body-lg mb-8">
-                                Subscribe to our encrypted newsletter for weekly updates on research breakthroughs and ecosystem developments. No spam, just signal.
-                            </p>
-                            <div className="flex flex-col gap-4 max-w-md">
-                                <input
-                                    type="email"
-                                    placeholder="ENTER_EMAIL"
-                                    className="w-full neu-inset px-6 py-4 text-sm font-mono outline-none text-text-primary placeholder:text-text-dim"
-                                />
-                                <button className="neu-pill-orange flex items-center justify-center gap-3">
-                                    Subscribe to Signal <ArrowRight size={16} />
-                                </button>
-                            </div>
-                        </div>
-                    </ScrollReveal>
+                <div className="mt-24 relative overflow-hidden rounded-3xl glass-panel metal-surface !p-0">
+                    {/* Background Waveform */}
+                    <div className="absolute inset-0 z-0 pointer-events-none opacity-30 mix-blend-overlay">
+                        <img src="/assets/visuals/glass-waveform.png" alt="Glass Waveform" className="w-full h-full object-cover" />
+                    </div>
 
-                    <ScrollReveal delay={200}>
-                        <div className="aspect-square neu-raised flex items-center justify-center">
-                            <div className="text-center">
-                                <div className="text-8xl font-display font-bold text-surface-raised">24</div>
-                                <div className="text-mono-label text-text-dim mt-2">Updates This Year</div>
+                    <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center p-10 lg:p-16">
+                        <ScrollReveal>
+                            <div>
+                                <h3 className="text-headline font-bold mb-6">
+                                    Stay <span className="text-accent-orange">Updated</span>
+                                </h3>
+                                <p className="text-body-lg mb-8">
+                                    Subscribe to our encrypted newsletter for weekly updates on research breakthroughs and ecosystem developments. No spam, just signal.
+                                </p>
+                                <div className="flex flex-col gap-4 max-w-md">
+                                    <SubscribeForm variant="orange" />
+                                </div>
                             </div>
-                        </div>
-                    </ScrollReveal>
+                        </ScrollReveal>
+
+                        <ScrollReveal delay={200}>
+                            <div className="aspect-square glass-panel flex items-center justify-center backdrop-blur-md bg-deep-space/20">
+                                <div className="text-center">
+                                    <div className="text-8xl font-display font-bold text-surface-raised">24</div>
+                                    <div className="text-mono-label text-text-dim mt-2">Updates This Year</div>
+                                </div>
+                            </div>
+                        </ScrollReveal>
+                    </div>
                 </div>
             </div>
         </div>

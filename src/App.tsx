@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CursorGlow from './components/CursorGlow';
+import Preloader from './components/Preloader';
 import Home from './pages/Home';
 import About from './pages/About';
 import Featured from './pages/Featured';
 import Projects from './pages/Projects';
 import Research from './pages/Research';
 import Contact from './pages/Contact';
+import NewsletterModal from './components/NewsletterModal';
 
 const App: React.FC = () => {
+    const [loading, setLoading] = useState(true);
+
     return (
         <div className="relative min-h-screen flex flex-col w-full overflow-hidden bg-deep-space">
+            {/* Pre-loader: dual-layer AEGNTIC.AI reveal */}
+            {loading && <Preloader onComplete={() => setLoading(false)} />}
+
             <CursorGlow />
-            <div className="relative z-10 flex flex-col min-h-screen">
+            <NewsletterModal />
+            <div className={`relative z-10 flex flex-col min-h-screen transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
                 <Navbar />
                 <main className="flex-grow">
                     {/* Hero — aegntic.ai */}

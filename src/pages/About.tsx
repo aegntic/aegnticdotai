@@ -45,7 +45,7 @@ const About: React.FC = () => {
                 <div className="swiss-grid-tiles mb-24">
                     {visionItems.map((item, idx) => (
                         <ScrollReveal key={idx} delay={idx * 150}>
-                            <div className="neu-card group h-full">
+                            <div className="glass-card group h-full">
                                 <div className="w-12 h-12 rounded-xl bg-surface-inset flex items-center justify-center mb-6 neu-inset group-hover:bg-accent-blue/10 transition-colors">
                                     <item.icon size={24} className="text-accent-blue" />
                                 </div>
@@ -62,7 +62,7 @@ const About: React.FC = () => {
 
                 {/* Technical Section — Asymmetric editorial layout */}
                 <ScrollReveal delay={200}>
-                    <div className="neu-raised p-10 lg:p-16">
+                    <div className="metal-surface glass-panel !p-10 lg:!p-16">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                             {/* Content */}
                             <div>
@@ -89,17 +89,17 @@ const About: React.FC = () => {
                             </div>
 
                             {/* Visual grid */}
-                            <div className="grid grid-cols-2 gap-4">
-                                {['Fingerprint', 'Lock', 'Network', 'Shield'].map((label, idx) => (
-                                    <div
-                                        key={idx}
-                                        className={`aspect-square rounded-2xl neu-inset flex items-center justify-center group ${idx === 1 ? 'mt-8' : idx === 2 ? '-mt-8' : ''}`}
-                                    >
-                                        <span className="text-mono-label text-text-dim group-hover:text-accent-blue transition-colors">
-                                            {label}
-                                        </span>
-                                    </div>
-                                ))}
+                            {/* Visual — Neural Mesh */}
+                            <div
+                                className="relative h-full min-h-[300px] flex items-center justify-center wireframe-slice"
+                                style={{ '--wireframe-mask-url': "url('/assets/visuals/about-mesh.png')" } as React.CSSProperties}
+                            >
+                                <div className="absolute inset-0 bg-accent-blue/10 blur-[100px] rounded-full opacity-20" />
+                                <img
+                                    src="/assets/visuals/about-mesh.png"
+                                    alt="Neural Mesh Architecture"
+                                    className="relative z-10 w-full object-contain drop-shadow-2xl animate-float"
+                                />
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,177 @@
+/* ==========================================================================
+   PRELOADER — Dual-layer AEGNTIC.AI reveal
+   Bold dark serif (back) + Clear liquid glass lowercase (front)
+   ========================================================================== */
+
+.preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #060610;
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.preloader--exit {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.98);
+    pointer-events: none;
+}
+
+/* Ambient wireframe grid */
+.preloader__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 207, 229, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 207, 229, 0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0;
+    animation: preloaderGridIn 1.2s ease 0.3s forwards;
+}
+
+/* Reflection floor */
+.preloader__reflection {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35%;
+    background: linear-gradient(to top,
+            rgba(6, 6, 16, 0.95) 0%,
+            rgba(6, 6, 16, 0.5) 40%,
+            transparent 100%);
+    pointer-events: none;
+}
+
+/* Wordmark container */
+.preloader__wordmark {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(80px, 15vw, 200px);
+}
+
+/* ---- Layer 1: Bold serif shadow text ---- */
+.preloader__serif {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    font-family: 'Playfair Display', 'Crimson Pro', 'Times New Roman', serif;
+    font-size: clamp(3rem, 12vw, 10rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: #0e0e1a;
+    text-shadow:
+        1px 1px 0 rgba(40, 40, 60, 0.6),
+        2px 2px 0 rgba(30, 30, 50, 0.4),
+        3px 3px 0 rgba(20, 20, 40, 0.2);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    user-select: none;
+}
+
+.preloader__serif--shrink {
+    transform: scale(0.92);
+    opacity: 0.7;
+}
+
+.preloader__serif-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px) scale(0.85);
+    animation: serifLetterIn 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* ---- Layer 2: Glass lowercase overlay ---- */
+.preloader__glass {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0;
+    font-family: 'Clash Display', 'Satoshi', sans-serif;
+    font-size: clamp(2.8rem, 11.5vw, 9.5rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.preloader__glass-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(40px);
+    /* Glass text properties */
+    background: linear-gradient(180deg,
+            rgba(240, 245, 255, 0.9) 0%,
+            rgba(200, 210, 230, 0.7) 25%,
+            rgba(160, 180, 210, 0.4) 50%,
+            rgba(180, 200, 220, 0.6) 75%,
+            rgba(220, 230, 245, 0.85) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter:
+        drop-shadow(0 1px 2px rgba(255, 255, 255, 0.15)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.preloader__glass--active .preloader__glass-letter {
+    animation: glassLetterIn 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* ---- Tagline ---- */
+.preloader__tagline {
+    position: absolute;
+    bottom: 38%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(0.6rem, 1.2vw, 0.85rem);
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(0, 207, 229, 0);
+    transition: color 0.8s ease 0.3s;
+}
+
+.preloader__tagline--visible {
+    color: rgba(0, 207, 229, 0.5);
+}
+
+/* ==========================================================================
+   KEYFRAMES
+   ========================================================================== */
+
+@keyframes serifLetterIn {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes glassLetterIn {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) rotateX(15deg);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(-4px) rotateX(-2deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+@keyframes preloaderGridIn {
+    to {
+        opacity: 1;
+    }
+}

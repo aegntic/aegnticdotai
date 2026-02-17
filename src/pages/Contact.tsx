@@ -1,11 +1,16 @@
 import ScrollReveal from '../components/ScrollReveal';
 import Magnetic from '../components/Magnetic';
+import SubscribeForm from '../components/SubscribeForm';
 import { Mail, ArrowRight, Send, Newspaper, Sparkles, Twitter, Github, Linkedin, Rss } from 'lucide-react';
 
 /* ──────────────────────────────────────────────────────────────────────────────
    Wireframe landmark icons — SVG inline, one per city.
    Each is a single-stroke minimalist outline of the city's most iconic feature.
    ────────────────────────────────────────────────────────────────────────────── */
+
+import { useState } from 'react';
+import { db } from '../lib/firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const LandmarkSydney = () => (
     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
@@ -104,6 +109,27 @@ const Contact: React.FC = () => {
         { city: 'Dublin', country: 'Ireland', focus: 'Operations', Landmark: LandmarkDublin },
     ];
 
+    const [formData, setFormData] = useState({ name: '', email: '', subject: 'General Inquiry', message: '' });
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!formData.email || !formData.message) return;
+
+        setStatus('loading');
+        try {
+            await addDoc(collection(db, 'messages'), {
+                ...formData,
+                timestamp: serverTimestamp()
+            });
+            setStatus('success');
+            setFormData({ name: '', email: '', subject: 'General Inquiry', message: '' });
+        } catch (error) {
+            console.error('Error sending message:', error);
+            setStatus('error');
+        }
+    };
+
     return (
         <div className="py-24 px-6">
             <div className="max-w-7xl mx-auto">
@@ -136,40 +162,88 @@ const Contact: React.FC = () => {
                             <p className="text-text-muted mb-8">
                                 Fill out the form below. Our team processes requests faster than batch inference.
                             </p>
-                            <form className="space-y-6" onSubmit={e => e.preventDefault()}>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label className="text-mono-label text-text-dim block mb-2">Name</label>
-                                        <input type="text" placeholder="Your Name"
-                                            className="w-full neu-inset px-6 py-4 text-sm outline-none text-text-primary placeholder:text-text-dim" />
-                                    </div>
-                                    <div>
-                                        <label className="text-mono-label text-text-dim block mb-2">Email</label>
-                                        <input type="email" placeholder="your@email.com"
-                                            className="w-full neu-inset px-6 py-4 text-sm outline-none text-text-primary placeholder:text-text-dim" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label className="text-mono-label text-text-dim block mb-2">Subject</label>
-                                    <select className="w-full neu-inset px-6 py-4 text-sm outline-none text-text-primary">
-                                        <option>General Inquiry</option>
-                                        <option>Research Partnership</option>
-                                        <option>Career Opportunity</option>
-                                        <option>Press/Media</option>
-                                        <option>Technical Support</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className="text-mono-label text-text-dim block mb-2">Message</label>
-                                    <textarea rows={6} placeholder="Tell us more..."
-                                        className="w-full neu-inset px-6 py-4 text-sm outline-none text-text-primary placeholder:text-text-dim resize-none" />
-                                </div>
-                                <Magnetic strength={0.2}>
-                                    <button type="submit" className="neu-pill-orange w-full flex items-center justify-center gap-3">
-                                        <Send size={16} /> Send Message
+                            {status === 'success' ? (
+                                <div className="glass-panel border border-accent-blue/30 bg-accent-blue/5 p-8 text-center">
+                                    <div className="text-accent-blue mb-4 flex justify-center"><Send size={32} /></div>
+                                    <h4 className="text-lg font-bold text-text-primary mb-2">Message Transmitted</h4>
+                                    <p className="text-text-muted text-sm">Our neural network is processing your request. We'll be in touch shortly.</p>
+                                    <button
+                                        onClick={() => setStatus('idle')}
+                                        className="mt-6 text-xs text-accent-blue hover:text-accent-blue/80 underline"
+                                    >
+                                        Send another message
                                     </button>
-                                </Magnetic>
-                            </form>
+                                </div>
+                            ) : (
+                                <form className="space-y-6" onSubmit={handleSubmit}>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label className="text-mono-label text-text-dim block mb-2">Name</label>
+                                            <input
+                                                type="text"
+                                                placeholder="Your Name"
+                                                value={formData.name}
+                                                onChange={e => setFormData({ ...formData, name: e.target.value })}
+                                                disabled={status === 'loading'}
+                                                className="w-full glass-inset px-6 py-4 text-sm outline-none text-text-primary placeholder:text-text-dim focus:border-accent-blue/50 transition-colors"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-mono-label text-text-dim block mb-2">Email</label>
+                                            <input
+                                                type="email"
+                                                placeholder="your@email.com"
+                                                value={formData.email}
+                                                onChange={e => setFormData({ ...formData, email: e.target.value })}
+                                                disabled={status === 'loading'}
+                                                className="w-full glass-inset px-6 py-4 text-sm outline-none text-text-primary placeholder:text-text-dim focus:border-accent-blue/50 transition-colors"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="text-mono-label text-text-dim block mb-2">Subject</label>
+                                        <select
+                                            value={formData.subject}
+                                            onChange={e => setFormData({ ...formData, subject: e.target.value })}
+                                            disabled={status === 'loading'}
+                                            className="w-full glass-inset px-6 py-4 text-sm outline-none text-text-primary focus:border-accent-blue/50 transition-colors"
+                                        >
+                                            <option>General Inquiry</option>
+                                            <option>Research Partnership</option>
+                                            <option>Career Opportunity</option>
+                                            <option>Press/Media</option>
+                                            <option>Technical Support</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="text-mono-label text-text-dim block mb-2">Message</label>
+                                        <textarea
+                                            rows={6}
+                                            placeholder="Tell us more..."
+                                            value={formData.message}
+                                            onChange={e => setFormData({ ...formData, message: e.target.value })}
+                                            disabled={status === 'loading'}
+                                            className="w-full neu-inset px-6 py-4 text-sm outline-none text-text-primary placeholder:text-text-dim resize-none focus:border-accent-blue/50 transition-colors"
+                                        />
+                                    </div>
+
+                                    {status === 'error' && (
+                                        <div className="text-red-400 text-xs font-mono">
+                                            Transmission failed. Please verify connection and retry.
+                                        </div>
+                                    )}
+
+                                    <Magnetic strength={0.2}>
+                                        <button
+                                            type="submit"
+                                            disabled={status === 'loading'}
+                                            className="neu-pill-orange w-full flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            {status === 'loading' ? 'Transmitting...' : <><Send size={16} /> Send Message</>}
+                                        </button>
+                                    </Magnetic>
+                                </form>
+                            )}
                         </div>
                     </ScrollReveal>
 
@@ -182,7 +256,7 @@ const Contact: React.FC = () => {
                             <div className="space-y-4">
                                 {contactMethods.map((method, idx) => (
                                     <Magnetic key={idx} strength={0.15}>
-                                        <div className="neu-card group cursor-pointer">
+                                        <div className="glass-card group cursor-pointer">
                                             <div className="flex items-center justify-end gap-4">
                                                 <div className="text-right flex-grow">
                                                     <div className="text-mono-label text-text-dim mb-1">{method.label}</div>
@@ -190,7 +264,7 @@ const Contact: React.FC = () => {
                                                         {method.value}
                                                     </div>
                                                 </div>
-                                                <div className="w-12 h-12 rounded-xl neu-inset flex items-center justify-center group-hover:bg-accent-blue/10 transition-colors">
+                                                <div className="w-12 h-12 rounded-xl glass-inset flex items-center justify-center group-hover:bg-accent-blue/10 transition-colors">
                                                     <span className="text-accent-blue font-mono text-sm">{method.icon}</span>
                                                 </div>
                                             </div>
@@ -204,7 +278,7 @@ const Contact: React.FC = () => {
 
                 {/* Global Offices — Cities with wireframe landmark icons */}
                 <ScrollReveal>
-                    <div className="neu-raised p-10 lg:p-16 mb-24">
+                    <div className="glass-panel metal-surface !p-10 lg:!p-16 mb-24">
                         <div className="text-right mb-12">
                             <h3 className="text-headline font-bold mb-4">
                                 Global <span className="text-accent-orange">Presence</span>
@@ -219,7 +293,7 @@ const Contact: React.FC = () => {
                             {officeLocations.map((office, idx) => (
                                 <ScrollReveal key={idx} delay={idx * 100}>
                                     <Magnetic strength={0.12}>
-                                        <div className="neu-card group text-center py-8">
+                                        <div className="glass-card group text-center py-8">
                                             <div className="text-accent-blue group-hover:text-accent-orange transition-colors duration-300 mb-4 flex justify-center opacity-60 group-hover:opacity-100">
                                                 <office.Landmark />
                                             </div>
@@ -240,7 +314,7 @@ const Contact: React.FC = () => {
                     {/* Press & Media → Social Feeds */}
                     <ScrollReveal>
                         <Magnetic strength={0.1}>
-                            <div className="neu-card h-full border-l-2 border-accent-orange">
+                            <div className="glass-card h-full border-l-2 border-accent-orange">
                                 <h3 className="text-headline font-bold mb-6">
                                     Press & <span className="text-accent-orange">Media</span>
                                 </h3>
@@ -272,7 +346,7 @@ const Contact: React.FC = () => {
                     {/* Newsletter + Investor Opportunity */}
                     <ScrollReveal delay={200}>
                         <Magnetic strength={0.1}>
-                            <div className="neu-card h-full border-l-2 border-accent-blue">
+                            <div className="glass-card h-full border-l-2 border-accent-blue flex flex-col">
                                 <h3 className="text-headline font-bold mb-6">
                                     Join the <span className="text-accent-blue">Signal</span>
                                 </h3>
@@ -280,19 +354,10 @@ const Contact: React.FC = () => {
                                     Subscribe for research updates, early access to tools, and investor briefings.
                                     Lower noise ratio than your average Transformer.
                                 </p>
-                                <form className="flex gap-3 mb-6" onSubmit={e => e.preventDefault()}>
-                                    <input
-                                        type="email"
-                                        placeholder="your@email.com"
-                                        className="flex-grow neu-inset px-5 py-3 text-sm outline-none text-text-primary placeholder:text-text-dim"
-                                    />
-                                    <Magnetic strength={0.25}>
-                                        <button type="submit" className="neu-pill-blue !py-3 !px-6 flex items-center gap-2">
-                                            <Sparkles size={14} /> Subscribe
-                                        </button>
-                                    </Magnetic>
-                                </form>
-                                <div className="flex items-center gap-4 pt-4 border-t border-surface-raised">
+                                <div className="mb-auto">
+                                    <SubscribeForm variant="blue" />
+                                </div>
+                                <div className="flex items-center gap-4 pt-4 border-t border-surface-raised mt-6">
                                     <a href="#" className="flex items-center gap-2 text-mono-label text-text-muted hover:text-accent-blue transition-colors">
                                         <Newspaper size={12} /> Investor Relations <ArrowRight size={12} />
                                     </a>

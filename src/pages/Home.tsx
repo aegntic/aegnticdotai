@@ -1,19 +1,46 @@
 import ScrollReveal from '../components/ScrollReveal';
+import Heading3D from '../components/Heading3D';
 import AeLogo from '../components/AeLogo';
 import { ArrowDown } from 'lucide-react';
 
 const Home: React.FC = () => {
     return (
         <div className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 overflow-hidden">
-            {/* Background — Giant ae· watermark for depth */}
+            {/* Background — Giant ae· watermark with glass opacity */}
             <div
                 className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-                style={{ opacity: 0.025 }}
+                style={{ opacity: 0.02 }}
             >
                 <AeLogo size={900} color="#C0C0C0" />
             </div>
 
-            {/* Subtle gradient overlay from bottom */}
+            {/* Ambient wireframe grid — 27% opacity from SE corner */}
+            <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                    backgroundImage:
+                        'linear-gradient(rgba(0, 207, 229, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 207, 229, 0.02) 1px, transparent 1px)',
+                    backgroundSize: '60px 60px',
+                    maskImage: 'linear-gradient(to bottom left, transparent 40%, rgba(0,0,0,0.27) 70%, rgba(0,0,0,0.12) 100%)',
+                    WebkitMaskImage: 'linear-gradient(to bottom left, transparent 40%, rgba(0,0,0,0.27) 70%, rgba(0,0,0,0.12) 100%)',
+                }}
+            />
+
+
+
+            {/* Hero Visual — Glass Sculpture (with 27% Wireframe Breach) */}
+            <div
+                className="absolute right-[-10%] top-[40%] -translate-y-1/2 w-[70%] h-[90%] pointer-events-none z-0 wireframe-slice"
+                style={{ '--wireframe-mask-url': "url('/assets/visuals/hero-sculpture.png')" } as React.CSSProperties}
+            >
+                <img
+                    src="/assets/visuals/hero-sculpture.png"
+                    alt="Abstract Glass Neural Sculpture"
+                    className="w-full h-full object-contain animate-float-slow opacity-40 mix-blend-screen"
+                />
+            </div>
+
+            {/* Bottom gradient fade */}
             <div
                 className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
                 style={{
@@ -30,12 +57,12 @@ const Home: React.FC = () => {
                     </div>
                 </ScrollReveal>
 
-                {/* Main headline — Oversized with silver/chrome styling */}
+                {/* Primary heading — chrome/glass treatment */}
                 <ScrollReveal delay={100}>
-                    <h1 className="text-hero leading-[0.88]">
-                        <span className="text-silver">AEGNTIC</span>
+                    <Heading3D as="h1" size="large">
+                        <span className="glass-heading">AEGNTIC</span>
                         <span className="text-accent-blue">.AI</span>
-                    </h1>
+                    </Heading3D>
                 </ScrollReveal>
 
                 {/* Bronze accent divider */}
@@ -47,16 +74,27 @@ const Home: React.FC = () => {
                     }} />
                 </ScrollReveal>
 
+                {/* Vogue heading — Advancing the architecture */}
+                <ScrollReveal delay={250}>
+                    <h2 className="text-4xl md:text-5xl font-bold leading-tight text-left max-w-3xl">
+                        <span className="text-chrome">Advancing the architecture of</span>{' '}
+                        <span className="text-accent-blue italic font-serif">
+                            synthetic intelligence
+                        </span>
+                    </h2>
+                </ScrollReveal>
+
                 {/* Subtitle */}
-                <ScrollReveal delay={300}>
-                    <p className="text-subheadline text-text-muted max-w-2xl" style={{ fontStyle: 'italic' }}>
-                        Adaptive Emergence — Guiding Networks
-                        Toward Integrated Confluence
+                <ScrollReveal delay={350}>
+                    <p className="text-lg text-text-muted max-w-2xl mt-6 leading-relaxed">
+                        Aegntic.ai provides the frameworks and neural transfer protocols
+                        necessary for the next generation of cognitive entities to operate
+                        across decentralized environments.
                     </p>
                 </ScrollReveal>
 
-                {/* CTA buttons */}
-                <ScrollReveal delay={400}>
+                {/* CTA buttons — glass treatment */}
+                <ScrollReveal delay={450}>
                     <div className="flex flex-wrap gap-4 mt-12">
                         <a href="#about" className="neu-pill-orange">
                             Initialize →
@@ -67,19 +105,19 @@ const Home: React.FC = () => {
                     </div>
                 </ScrollReveal>
 
-                {/* Data metrics strip — with chrome borders */}
-                <ScrollReveal delay={500}>
-                    <div className="flex flex-wrap gap-8 mt-20">
+                {/* Data metrics strip — glass inset badges */}
+                <ScrollReveal delay={550}>
+                    <div className="flex flex-wrap gap-6 mt-20">
                         {[
                             { label: 'Platforms', value: '40+' },
                             { label: 'Compute', value: '14.2 PF' },
                             { label: 'Loss', value: '0.0042' },
                         ].map((stat, i) => (
-                            <div key={stat.label} className="group cursor-default" style={{ animationDelay: `${i * 100}ms` }}>
-                                <div className="text-mono-label text-text-dim mb-1 group-hover:text-accent-orange transition-colors">
+                            <div key={stat.label} className="glass-card !p-4 !rounded-2xl group cursor-default" style={{ animationDelay: `${i * 100}ms` }}>
+                                <div className="text-mono-label text-text-dim mb-1 group-hover:text-accent-orange transition-colors relative z-10">
                                     {stat.label}
                                 </div>
-                                <div className="font-display text-xl font-bold text-text-primary">
+                                <div className="font-display text-xl font-bold text-text-primary relative z-10">
                                     {stat.value}
                                 </div>
                             </div>

@@ -161,3 +161,129 @@
 .scroll-breathe {
     animation: breathe 2.5s ease-in-out infinite;
 }
+
+/* =============================================================================
+   27% Wireframe Breach Effect
+   ============================================================================= */
+
+/* The Slice Container */
+.wireframe-slice {
+    position: relative;
+    overflow: hidden;
+    /* Ensure masking stays within bounds */
+}
+
+/* 1. Technical Overlay (The "Blueprint" Look) */
+.wireframe-slice::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+
+    /* The Look: Cyan Tint + inverted feel */
+    backdrop-filter: grayscale(100%) contrast(120%) brightness(120%) sepia(100%) hue-rotate(170deg);
+    -webkit-backdrop-filter: grayscale(100%) contrast(120%) brightness(120%) sepia(100%) hue-rotate(170deg);
+    background: rgba(0, 207, 229, 0.05);
+
+    /* COMPOSITE MASK: Slice (Alpha) + Object (Luminance) */
+    mask-image:
+        linear-gradient(to right, transparent 73%, black 73%),
+        var(--wireframe-mask-url);
+    -webkit-mask-image:
+        linear-gradient(to right, transparent 73%, black 73%),
+        var(--wireframe-mask-url);
+
+    mask-mode: alpha, luminance;
+    -webkit-mask-mode: alpha, luminance;
+
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+    /* Webkit mapping for intersect */
+
+    mask-position: center, center;
+    -webkit-mask-position: center, center;
+
+    mask-repeat: no-repeat, no-repeat;
+    -webkit-mask-repeat: no-repeat, no-repeat;
+
+    mask-size: auto, contain;
+    -webkit-mask-size: auto, contain;
+}
+
+/* 2. Grid & Data Lines (The "Structure") */
+.wireframe-slice::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 11;
+
+    /* Grid Pattern */
+    background-image:
+        linear-gradient(rgba(0, 207, 229, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 207, 229, 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: center;
+
+    /* Border Line at the 73% mark - Masked to object only! */
+    /* Note: Border might look weird if masked to object irregular shape. 
+       Let's keep border on the 'Slice' line using a background gradient instead of actual border property */
+    background:
+        linear-gradient(to right, transparent 72.8%, rgba(0, 207, 229, 0.8) 73%, transparent 73.2%),
+        /* The Vertical Line */
+        linear-gradient(rgba(0, 207, 229, 0.3) 1px, transparent 1px),
+        /* Grid H */
+        linear-gradient(90deg, rgba(0, 207, 229, 0.3) 1px, transparent 1px);
+    /* Grid V */
+
+    background-size: 100% 100%, 20px 20px, 20px 20px;
+    background-position: center;
+
+    /* Same Composite Mask */
+    mask-image:
+        linear-gradient(to right, transparent 73%, black 73%),
+        var(--wireframe-mask-url);
+    -webkit-mask-image:
+        linear-gradient(to right, transparent 73%, black 73%),
+        var(--wireframe-mask-url);
+
+    mask-mode: alpha, luminance;
+    -webkit-mask-mode: alpha, luminance;
+
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+
+    mask-position: center, center;
+    -webkit-mask-position: center, center;
+
+    mask-repeat: no-repeat, no-repeat;
+    -webkit-mask-repeat: no-repeat, no-repeat;
+
+    mask-size: auto, contain;
+    -webkit-mask-size: auto, contain;
+}
+
+/* Left-side Variant (for asymmetric layouts) */
+.wireframe-slice-left::after {
+    mask-image: linear-gradient(to left, transparent 73%, black 73%);
+    -webkit-mask-image: linear-gradient(to left, transparent 73%, black 73%);
+}
+
+.wireframe-slice-left::before {
+    border-left: none;
+    border-right: 1px solid rgba(0, 207, 229, 0.8);
+    mask-image: linear-gradient(to left, transparent 73%, black 73%);
+    -webkit-mask-image: linear-gradient(to left, transparent 73%, black 73%);
+}
+
+/* Optional: Scanline animation in the wireframe zone */
+@keyframes scanline {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 100%;
+    }
+}

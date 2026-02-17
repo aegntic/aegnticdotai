@@ -102,43 +102,22 @@ const Projects: React.FC = () => {
         },
     ];
 
-    const loadBlogContent = async (blogFile: string) => {
+    const loadBlogContent = async (project: Project) => {
         setLoadingBlog(true);
-        try {
-            const response = await fetch(`/src/content/blog/${blogFile}`);
-            if (!response.ok) throw new Error('Blog post not found');
-            const markdown = await response.text();
-            const frontmatterMatch = markdown.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-            if (!frontmatterMatch) throw new Error('Invalid blog format');
-
-            const lines = frontmatterMatch[1].split('\n');
-            const result: any = {};
-            let currentKey: string | null = null;
-            let inArray = false;
-            lines.forEach(line => {
-                const match = line.match(/^(\w+):\s*(.*)$/);
-                if (match) {
-                    currentKey = match[1];
-                    if (match[2].startsWith('[')) { result[currentKey] = JSON.parse(match[2]); inArray = false; }
-                    else if (match[2]) { result[currentKey] = match[2].replace(/^['"]|['"]$/g, ''); inArray = false; }
-                    else { result[currentKey] = []; inArray = true; }
-                } else if (inArray && currentKey && line.trim().startsWith('-')) {
-                    result[currentKey].push(line.trim().replace(/^-\s*/, '').replace(/^['"]|['"]$/g, ''));
-                }
-            });
-
-            setBlogContent({
-                title: result.title || '', description: result.description || '',
-                pubDate: result.pubDate || '', tags: result.tags || [],
-                content: frontmatterMatch[2],
-            });
-        } catch { setBlogContent(null); }
-        finally { setLoadingBlog(false); }
+        // Blog content is embedded inline — no file fetch needed
+        setBlogContent({
+            title: project.title,
+            description: project.description,
+            pubDate: '2025',
+            tags: project.tags,
+            content: `${project.description}\n\nThis project is part of the Aegntic.ai ecosystem — an independent research foundation advancing the architecture of synthetic intelligence. Visit the GitHub repository to explore the source code, contribute, or report issues.\n\nBuilt with ${project.language}. Licensed under MIT.`,
+        });
+        setLoadingBlog(false);
     };
 
     const handleProjectClick = async (project: Project) => {
         setSelectedProject(project);
-        if (project.blogFile) await loadBlogContent(project.blogFile);
+        if (project.blogFile) await loadBlogContent(project);
     };
 
     const closeModal = () => { setSelectedProject(null); setBlogContent(null); };
@@ -168,7 +147,7 @@ const Projects: React.FC = () => {
                     {projects.map((project, idx) => (
                         <ScrollReveal key={project.id} delay={idx * 80}>
                             <motion.div
-                                className="neu-card group h-full flex flex-col cursor-pointer"
+                                className="glass-card group h-full flex flex-col cursor-pointer"
                                 onClick={() => handleProjectClick(project)}
                                 whileHover={{ y: -6 }}
                                 transition={{ duration: 0.25, ease: 'easeOut' }}
@@ -222,7 +201,7 @@ const Projects: React.FC = () => {
 
                 {/* GitHub Banner */}
                 <ScrollReveal delay={200}>
-                    <div className="mt-24 neu-raised p-10 lg:p-14">
+                    <div className="mt-24 glass-panel metal-surface !p-10 lg:!p-14">
                         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
                             <div>
                                 <h3 className="text-headline font-bold mb-4">
@@ -256,7 +235,7 @@ const Projects: React.FC = () => {
                             initial={{ opacity: 0, scale: 0.95, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                            className="relative max-w-4xl w-full max-h-[90vh] neu-raised overflow-hidden"
+                            className="relative max-w-4xl w-full max-h-[90vh] glass-panel !rounded-2xl overflow-hidden"
                             onClick={e => e.stopPropagation()}
                         >
                             {/* Header */}
