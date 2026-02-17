@@ -9,8 +9,7 @@ import { Mail, ArrowRight, Send, Newspaper, Sparkles, Twitter, Github, Linkedin,
    ────────────────────────────────────────────────────────────────────────────── */
 
 import { useState } from 'react';
-import { db } from '../lib/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+
 
 const LandmarkSydney = () => (
     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10">
@@ -118,12 +117,18 @@ const Contact: React.FC = () => {
 
         setStatus('loading');
         try {
-            await addDoc(collection(db, 'messages'), {
-                ...formData,
-                timestamp: serverTimestamp()
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
             });
-            setStatus('success');
-            setFormData({ name: '', email: '', subject: 'General Inquiry', message: '' });
+
+            if (response.ok) {
+                setStatus('success');
+                setFormData({ name: '', email: '', subject: 'General Inquiry', message: '' });
+            } else {
+                setStatus('error');
+            }
         } catch (error) {
             console.error('Error sending message:', error);
             setStatus('error');

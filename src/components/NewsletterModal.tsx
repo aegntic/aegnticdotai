@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
-import { db } from '../lib/firebase';
-import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
+
 
 const NewsletterModal: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -37,23 +36,25 @@ const NewsletterModal: React.FC = () => {
         setStatus('loading');
 
         try {
-            // Reference the document using the email as the ID
-            const docRef = doc(db, 'subscribers', email);
-            const docSnap = await getDoc(docRef);
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, source: 'popup' }),
+            });
 
-            if (docSnap.exists()) {
-                setStatus('exists');
-                localStorage.setItem('aegntic_newsletter_status', 'subscribed');
+            const data = await response.json() as { status?: string; error?: string };
+
+            if (response.ok) {
+                if (data.status === 'exists') {
+                    setStatus('exists');
+                    localStorage.setItem('aegntic_newsletter_status', 'subscribed');
+                } else {
+                    setStatus('success');
+                    localStorage.setItem('aegntic_newsletter_status', 'subscribed');
+                }
             } else {
-                // Create new document
-                await setDoc(docRef, {
-                    email,
-                    source: 'popup',
-                    timestamp: serverTimestamp(),
-                    status: 'active'
-                });
-                setStatus('success');
-                localStorage.setItem('aegntic_newsletter_status', 'subscribed');
+                console.error('Subscription failed:', data.error);
+                setStatus('error');
             }
         } catch (error) {
             console.error('Error subscribing:', error);
