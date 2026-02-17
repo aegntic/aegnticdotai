@@ -48,36 +48,16 @@ const Preloader: React.FC<{ onComplete?: () => void }> = ({ onComplete }) => {
             {/* Reflection surface */}
             <div className="preloader__reflection" />
 
-            <div className="preloader__wordmark">
-                {/* Layer 1: Bold serif shadow text */}
-                <div className={`preloader__serif ${phase !== 'enter' ? 'preloader__serif--shrink' : ''}`}>
-                    {LETTERS_UPPER.map((letter, i) => (
-                        <span
-                            key={`serif-${i}`}
-                            className="preloader__serif-letter"
-                            style={{
-                                animationDelay: `${i * 60}ms`,
-                            }}
-                        >
-                            {letter}
-                        </span>
-                    ))}
-                </div>
-
-                {/* Layer 2: Glass lowercase overlay */}
-                <div className={`preloader__glass ${phase === 'glass' || phase === 'exit' ? 'preloader__glass--active' : ''}`}>
-                    {LETTERS_LOWER.map((letter, i) => (
-                        <span
-                            key={`glass-${i}`}
-                            className="preloader__glass-letter"
-                            style={{
-                                animationDelay: `${i * 80 + 200}ms`,
-                            }}
-                        >
-                            {letter}
-                        </span>
-                    ))}
-                </div>
+            {/* Main Brand Asset — 3D Glass Typography */}
+            <div className={`preloader__brand ${phase === 'enter' ? 'preloader__brand--enter' : ''}`}>
+                <img
+                    src="/assets/visuals/hero-typography.png"
+                    alt="AEGNTIC.AI"
+                    className="w-full h-full object-contain drop-shadow-2xl"
+                    style={{
+                        filter: 'drop-shadow(0 0 40px rgba(0, 207, 229, 0.3))'
+                    }}
+                />
             </div>
 
             {/* Tagline */}

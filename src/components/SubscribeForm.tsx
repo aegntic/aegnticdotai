@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import { db } from '../lib/firebase';
-import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { ArrowRight, Sparkles, Check, ShieldAlert } from 'lucide-react';
 import Magnetic from './Magnetic';
 
@@ -19,25 +17,28 @@ const SubscribeForm: React.FC<SubscribeFormProps> = ({ className = '', variant =
 
         setStatus('loading');
         try {
-            const docRef = doc(db, 'subscribers', email);
-            const docSnap = await getDoc(docRef);
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, source: 'newsletter_form' }),
+            });
 
-            if (docSnap.exists()) {
-                setStatus('exists');
+            const data = await response.json();
+
+            if (response.ok) {
+                if (data.status === 'exists') {
+                    setStatus('exists');
+                } else {
+                    setStatus('success');
+                }
                 localStorage.setItem('aegntic_newsletter_status', 'subscribed');
-            } else {
-                await setDoc(docRef, {
-                    email,
-                    source: 'newsletter_form',
-                    timestamp: serverTimestamp(),
-                    status: 'active'
-                });
-                setStatus('success');
                 setEmail('');
-                localStorage.setItem('aegntic_newsletter_status', 'subscribed');
+            } else {
+                console.error('Subscription failed:', data.error);
+                setStatus('error');
             }
         } catch (error) {
-            console.error('Error adding subscriber:', error);
+            console.error('Error submitting form:', error);
             setStatus('error');
         }
     };
@@ -70,7 +71,7 @@ const SubscribeForm: React.FC<SubscribeFormProps> = ({ className = '', variant =
                     disabled={status === 'loading'}
                     className={`${buttonClass} flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
-                    {status === 'loading' ? 'Encrypting...' : <>Subscribe to Signal <ArrowRight size={16} /></>}
+                    {status === 'loading' ? 'Encrypting...' : <>YES, LETS GO <ArrowRight size={16} /></>}
                 </button>
             ) : (
                 <Magnetic strength={0.25}>
@@ -79,7 +80,7 @@ const SubscribeForm: React.FC<SubscribeFormProps> = ({ className = '', variant =
                         disabled={status === 'loading'}
                         className={`${buttonClass} !py-3 !px-6 flex items-center justify-center gap-2 w-full disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
-                        {status === 'loading' ? 'Encrypting...' : <><Sparkles size={14} /> Subscribe</>}
+                        {status === 'loading' ? 'Encrypting...' : <><Sparkles size={14} /> YES, LETS GO</>}
                     </button>
                 </Magnetic>
             )}

@@ -15,6 +15,10 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
+        "types": [
+            "vite/client",
+            "@cloudflare/workers-types"
+        ],
         "jsx": "react-jsx",
         /* Linting */
         "strict": true,

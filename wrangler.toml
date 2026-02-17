@@ -1,0 +1,8 @@
+name = "aegntic-ai"
+compatibility_date = "2024-02-08"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "aegntic-db"
+database_id = "52178e54-2dc7-4e03-83a0-186d72696b24"

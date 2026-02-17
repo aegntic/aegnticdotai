@@ -6,14 +6,6 @@ import { ArrowDown } from 'lucide-react';
 const Home: React.FC = () => {
     return (
         <div className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 overflow-hidden">
-            {/* Background — Giant ae· watermark with glass opacity */}
-            <div
-                className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-                style={{ opacity: 0.02 }}
-            >
-                <AeLogo size={900} color="#C0C0C0" />
-            </div>
-
             {/* Ambient wireframe grid — 27% opacity from SE corner */}
             <div
                 className="absolute inset-0 pointer-events-none"
@@ -21,24 +13,10 @@ const Home: React.FC = () => {
                     backgroundImage:
                         'linear-gradient(rgba(0, 207, 229, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 207, 229, 0.02) 1px, transparent 1px)',
                     backgroundSize: '60px 60px',
-                    maskImage: 'linear-gradient(to bottom left, transparent 40%, rgba(0,0,0,0.27) 70%, rgba(0,0,0,0.12) 100%)',
-                    WebkitMaskImage: 'linear-gradient(to bottom left, transparent 40%, rgba(0,0,0,0.27) 70%, rgba(0,0,0,0.12) 100%)',
+                    maskImage: 'linear-gradient(to bottom, transparent 10%, rgba(0,0,0,0.4) 50%, transparent 90%)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, transparent 10%, rgba(0,0,0,0.4) 50%, transparent 90%)',
                 }}
             />
-
-
-
-            {/* Hero Visual — Glass Sculpture (with 27% Wireframe Breach) */}
-            <div
-                className="absolute right-[-10%] top-[40%] -translate-y-1/2 w-[70%] h-[90%] pointer-events-none z-0 wireframe-slice"
-                style={{ '--wireframe-mask-url': "url('/assets/visuals/hero-sculpture.png')" } as React.CSSProperties}
-            >
-                <img
-                    src="/assets/visuals/hero-sculpture.png"
-                    alt="Abstract Glass Neural Sculpture"
-                    className="w-full h-full object-contain animate-float-slow opacity-40 mix-blend-screen"
-                />
-            </div>
 
             {/* Bottom gradient fade */}
             <div
@@ -48,45 +26,43 @@ const Home: React.FC = () => {
                 }}
             />
 
-            {/* Hero Content */}
-            <div className="max-w-7xl mx-auto w-full relative z-10">
+            {/* Hero Content — Centered "Movie Poster" Layout */}
+            <div className="w-full max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center">
                 {/* Top label */}
                 <ScrollReveal>
-                    <div className="text-mono-label text-accent-blue mb-8">
-                        REF: Independent Research Foundation <span className="text-text-dim/30 ml-2" title="Epoch 1">· epoch_0</span>
+                    <div className="text-mono-label text-accent-blue mb-12 tracking-[0.25em] uppercase opacity-80">
+                        Independent Research Foundation <span className="text-text-dim/30 ml-2">· epoch_0</span>
                     </div>
                 </ScrollReveal>
 
-                {/* Primary heading — chrome/glass treatment */}
+                {/* Primary Visual — 3D Glass Typography */}
                 <ScrollReveal delay={100}>
-                    <Heading3D as="h1" size="large">
-                        <span className="glass-heading">AEGNTIC</span>
-                        <span className="text-accent-blue">.AI</span>
-                    </Heading3D>
-                </ScrollReveal>
-
-                {/* Bronze accent divider */}
-                <ScrollReveal delay={200}>
-                    <div className="my-8" style={{
-                        height: 2,
-                        width: 60,
-                        background: 'linear-gradient(90deg, var(--color-accent-orange), var(--color-accent-orange-muted))',
-                    }} />
+                    <div className="relative w-full max-w-5xl mx-auto mb-10 group">
+                        <div className="absolute inset-0 bg-accent-blue/5 blur-[100px] rounded-full opacity-0 group-hover:opacity-40 transition-opacity duration-1000" />
+                        <img
+                            src="/assets/visuals/hero-typography.png"
+                            alt="AEGNTIC.AI"
+                            className="relative w-full h-auto object-contain drop-shadow-2xl animate-float"
+                            style={{
+                                filter: 'drop-shadow(0 0 50px rgba(0, 207, 229, 0.15))'
+                            }}
+                        />
+                    </div>
                 </ScrollReveal>
 
                 {/* Vogue heading — Advancing the architecture */}
-                <ScrollReveal delay={250}>
-                    <h2 className="text-4xl md:text-5xl font-bold leading-tight text-left max-w-3xl">
+                <ScrollReveal delay={300}>
+                    <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-4xl mx-auto">
                         <span className="text-chrome">Advancing the architecture of</span>{' '}
-                        <span className="text-accent-blue italic font-serif">
+                        <span className="text-accent-blue italic font-serif block mt-2 md:inline md:mt-0">
                             synthetic intelligence
                         </span>
                     </h2>
                 </ScrollReveal>
 
                 {/* Subtitle */}
-                <ScrollReveal delay={350}>
-                    <p className="text-lg text-text-muted max-w-2xl mt-6 leading-relaxed">
+                <ScrollReveal delay={450}>
+                    <p className="text-lg text-text-muted max-w-2xl mx-auto mt-8 leading-relaxed">
                         Aegntic.ai provides the frameworks and neural transfer protocols
                         necessary for the next generation of cognitive entities to operate
                         across decentralized environments.
@@ -94,8 +70,8 @@ const Home: React.FC = () => {
                 </ScrollReveal>
 
                 {/* CTA buttons — glass treatment */}
-                <ScrollReveal delay={450}>
-                    <div className="flex flex-wrap gap-4 mt-12">
+                <ScrollReveal delay={550}>
+                    <div className="flex flex-wrap justify-center gap-6 mt-12">
                         <a href="#about" className="neu-pill-orange">
                             Initialize →
                         </a>
@@ -106,18 +82,18 @@ const Home: React.FC = () => {
                 </ScrollReveal>
 
                 {/* Data metrics strip — glass inset badges */}
-                <ScrollReveal delay={550}>
-                    <div className="flex flex-wrap gap-6 mt-20">
+                <ScrollReveal delay={650}>
+                    <div className="flex flex-wrap justify-center gap-6 mt-24">
                         {[
                             { label: 'Platforms', value: '40+' },
                             { label: 'Compute', value: '14.2 PF' },
                             { label: 'Loss', value: '0.0042' },
                         ].map((stat, i) => (
-                            <div key={stat.label} className="glass-card !p-4 !rounded-2xl group cursor-default" style={{ animationDelay: `${i * 100}ms` }}>
-                                <div className="text-mono-label text-text-dim mb-1 group-hover:text-accent-orange transition-colors relative z-10">
+                            <div key={stat.label} className="glass-card !p-5 !rounded-2xl group cursor-default min-w-[140px]" style={{ animationDelay: `${i * 100}ms` }}>
+                                <div className="text-mono-label text-text-dim mb-2 group-hover:text-accent-orange transition-colors relative z-10 text-xs">
                                     {stat.label}
                                 </div>
-                                <div className="font-display text-xl font-bold text-text-primary relative z-10">
+                                <div className="font-display text-2xl font-bold text-text-primary relative z-10">
                                     {stat.value}
                                 </div>
                             </div>

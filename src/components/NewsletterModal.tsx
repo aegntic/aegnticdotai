@@ -130,7 +130,7 @@ const NewsletterModal: React.FC = () => {
                                             Join the <span className="text-accent-blue">Signal</span>
                                         </h3>
                                         <p className="text-text-muted leading-relaxed">
-                                            Get weekly research updates, architectural breakdowns, and early access to new agent protocols.
+                                            Get significant updates, no spam, architectural breakdowns, and early access to new agent protocols.
                                         </p>
                                     </div>
 
@@ -163,7 +163,7 @@ const NewsletterModal: React.FC = () => {
                                                 'Processing...'
                                             ) : (
                                                 <>
-                                                    Subscribe <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                                    YES, LETS GO <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                                                 </>
                                             )}
                                         </button>
