@@ -8,7 +8,7 @@
    ============================================================================= */
 
 .text-hero {
-    font-family: var(--font-family-display, "Clash Display", sans-serif);
+    font-family: var(--font-family-display, "Instrument Serif", Georgia, serif);
     font-size: clamp(3.5rem, 12vw, 11rem);
     font-weight: 700;
     line-height: 0.88;
@@ -17,7 +17,7 @@
 }
 
 .text-headline {
-    font-family: var(--font-family-display, "Clash Display", sans-serif);
+    font-family: var(--font-family-display, "Instrument Serif", Georgia, serif);
     font-size: clamp(2rem, 6vw, 4.5rem);
     font-weight: 600;
     line-height: 1.05;
@@ -25,7 +25,7 @@
 }
 
 .text-subheadline {
-    font-family: var(--font-family-display, "Clash Display", sans-serif);
+    font-family: var(--font-family-display, "Instrument Serif", Georgia, serif);
     font-size: clamp(1.25rem, 3vw, 2rem);
     font-weight: 500;
     line-height: 1.2;
@@ -33,7 +33,7 @@
 }
 
 .text-body-lg {
-    font-family: var(--font-family-body, "Satoshi", sans-serif);
+    font-family: var(--font-family-body, "Syne", system-ui, sans-serif);
     font-size: clamp(1rem, 2vw, 1.25rem);
     line-height: 1.65;
     color: var(--color-text-muted, #8a8a9a);
