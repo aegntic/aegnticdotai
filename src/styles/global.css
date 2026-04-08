@@ -34,7 +34,7 @@
   --shadow-neu-light: rgba(50, 50, 70, 0.25);
 
   /* Typography */
-  --font-family-display: "Instrument Serif", Georgia, serif;
+  --font-family-display: "Space Grotesk", system-ui, sans-serif;
   --font-family-body: "Syne", system-ui, sans-serif;
   --font-family-mono: "JetBrains Mono", monospace;
 
