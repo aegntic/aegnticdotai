@@ -9,8 +9,7 @@ const Footer: React.FC = () => {
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
                 <AeLogo
                     size={600}
-                    color="rgba(255,255,255,0.015)"
-                    className="!filter-none"
+                    className="opacity-[0.03]"
                 />
             </div>
 
@@ -21,7 +20,7 @@ const Footer: React.FC = () => {
                 {/* Brand + tagline */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                     <div className="flex items-center gap-4">
-                        <AeLogo size={32} color="var(--color-accent-blue)" />
+                        <AeLogo size={32} />
                         <div>
                             <span className="font-display text-lg font-bold tracking-tight text-text-primary">
                                 aegntic<span className="text-accent-blue">.ai</span>
