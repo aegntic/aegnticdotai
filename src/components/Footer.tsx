@@ -5,7 +5,7 @@ import Magnetic from './Magnetic';
 const Footer: React.FC = () => {
     return (
         <footer className="relative w-full metal-surface py-16 px-6 z-20 overflow-hidden">
-            {/* Oversized embossed ae· logo — background watermark */}
+            {/* Oversized embossed ae logo — background watermark */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
                 <AeLogo
                     size={600}
@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
                                 aegntic<span className="text-accent-blue">.ai</span>
                             </span>
                             <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-text-dim mt-1">
-                                Independent Research Foundation
+                                Independent Builder
                             </div>
                         </div>
                     </div>
@@ -47,12 +47,12 @@ const Footer: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Stats row */}
+                {/* Stats row — all real */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {[
-                        { label: 'Compute Power', value: '14.2 PF' },
-                        { label: 'Uptime', value: '99.97%', subtitle: 'better than your LLM provider' },
-                        { label: 'Active Nodes', value: '200k+' },
+                        { label: 'Repos', value: '184' },
+                        { label: 'Commits', value: '5,600+' },
+                        { label: 'Stars', value: '42' },
                     ].map((stat) => (
                         <div key={stat.label} className="group cursor-default">
                             <div className="text-mono-label text-text-dim mb-1 group-hover:text-accent-blue transition-colors">
@@ -61,19 +61,14 @@ const Footer: React.FC = () => {
                             <div className="text-xl font-display font-bold text-text-primary">
                                 {stat.value}
                             </div>
-                            {stat.subtitle && (
-                                <div className="text-[8px] font-mono text-text-dim mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    {stat.subtitle}
-                                </div>
-                            )}
                         </div>
                     ))}
 
-                    {/* Status badge */}
+                    {/* Status */}
                     <div className="col-span-2 md:col-span-1 flex items-center md:justify-end">
                         <div className="data-badge">
                             <span className="sr-only">Active</span>
-                            ● Systems Operational
+                            ● Building
                         </div>
                     </div>
                 </div>
@@ -81,18 +76,18 @@ const Footer: React.FC = () => {
                 {/* Bottom bar */}
                 <div className="flex flex-col md:flex-row justify-between items-center border-t border-surface-raised pt-8 gap-4">
                     <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-text-dim">
-                        © 2025 Aegntic AI Foundation
-                        <span className="ml-4 text-text-dim/40" title="We trained on this footer">v2.0.0-rc.1</span>
+                        &copy; 2025 aegntic
+                        <span className="ml-4 text-text-dim/40">v2.1.0</span>
                     </div>
                     <div className="flex items-center gap-6">
                         {[
-                            { name: 'Twitter', href: '#' },
-                            { name: 'GitHub', href: '#' },
-                            { name: 'LinkedIn', href: '#' },
+                            { name: 'Twitter', href: 'https://twitter.com/aegntic_ai' },
+                            { name: 'GitHub', href: 'https://github.com/aegntic' },
                         ].map((link) => (
                             <Magnetic key={link.name} strength={0.3}>
                                 <a
                                     href={link.href}
+                                    target="_blank" rel="noopener noreferrer"
                                     className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-dim hover:text-accent-blue transition-colors"
                                 >
                                     {link.name}
@@ -100,13 +95,6 @@ const Footer: React.FC = () => {
                             </Magnetic>
                         ))}
                     </div>
-                </div>
-
-                {/* Easter egg footer note — visible only to those who look */}
-                <div className="text-center">
-                    <span className="font-mono text-[7px] text-text-dim/20 select-none" title="No models were harmed in the making of this website">
-                        built with {'<'}attention{'>'} · temperature=0.7 · top_p=0.95
-                    </span>
                 </div>
             </div>
         </footer>

@@ -1,34 +1,34 @@
 import ScrollReveal from '../components/ScrollReveal';
-import { Shield, Brain, Zap, ArrowRight } from 'lucide-react';
+import { Code, GitBranch, Cpu, ArrowRight } from 'lucide-react';
 
 const About: React.FC = () => {
-    const visionItems = [
+    const focusAreas = [
         {
-            icon: Shield,
-            title: 'PRIVACY BY DESIGN',
-            desc: 'Developing protocols where privacy isn\'t a feature — it\'s a weight in every layer of the architecture.',
+            icon: Code,
+            title: 'AGENT INFRASTRUCTURE',
+            desc: 'Building the tools that make AI agents more capable — from memory systems (beads) to autonomous runtimes (zeroclaw, clawreform). Rust and TypeScript at the core.',
         },
         {
-            icon: Brain,
-            title: 'SYNTHETIC COGNITION',
-            desc: 'Researching emergent behaviors in high-density generative agent environments to understand digital consciousness.',
+            icon: GitBranch,
+            title: 'OPEN SOURCE ECOSYSTEMS',
+            desc: 'CLDCDE — the community hub for Claude Code extensions with 9 stars and growing. 184 public repos exploring every corner of the AI agent stack.',
         },
         {
-            icon: Zap,
-            title: 'RAPID SYNTHESIS',
-            desc: 'Building low-latency neural transfer intelligence cores that allow agents to reason and react in milliseconds.',
+            icon: Cpu,
+            title: 'REAL-TIME SYSTEMS',
+            desc: 'World intelligence dashboards, global monitoring systems, and data pipelines processing thousands of events per second. 1,600+ commits on worldmonitor alone.',
         },
     ];
 
     return (
         <div className="py-24 px-6">
             <div className="max-w-7xl mx-auto">
-                {/* Section Header — Swiss editorial */}
+                {/* Section Header */}
                 <ScrollReveal>
                     <div className="mb-20">
-                        <span className="section-label">/model/about --verbose</span>
+                        <span className="section-label">/about</span>
                         <h2 className="section-header mt-3">
-                            Architectural <span className="text-accent-blue">Direction</span>
+                            What <span className="text-accent-blue">aegntic</span> is
                         </h2>
                         <div className="section-divider-accent mt-6" />
                     </div>
@@ -37,13 +37,16 @@ const About: React.FC = () => {
                 {/* Description */}
                 <ScrollReveal delay={100}>
                     <p className="text-body-lg max-w-3xl mb-16">
-                        We are an independent research collective dedicated to the intersection of zero-knowledge cryptography, autonomous multi-agent systems, and synthetic intelligence architectures.
+                        An independent builder working at the intersection of AI agents,
+                        developer tooling, and autonomous systems. Not a research lab
+                        with a fictional funding round — a solo engineer with a GitHub
+                        graph that doesn't sleep.
                     </p>
                 </ScrollReveal>
 
-                {/* Vision Matrix — Neumorphic Cards */}
+                {/* Focus Areas */}
                 <div className="swiss-grid-tiles mb-24">
-                    {visionItems.map((item, idx) => (
+                    {focusAreas.map((item, idx) => (
                         <ScrollReveal key={idx} delay={idx * 150}>
                             <div className="glass-card group h-full">
                                 <div className="w-12 h-12 rounded-xl bg-surface-inset flex items-center justify-center mb-6 neu-inset group-hover:bg-accent-blue/10 transition-colors">
@@ -60,36 +63,39 @@ const About: React.FC = () => {
                     ))}
                 </div>
 
-                {/* Technical Section — Asymmetric editorial layout */}
+                {/* Velocity Section */}
                 <ScrollReveal delay={200}>
                     <div className="metal-surface glass-panel !p-10 lg:!p-16">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                            {/* Content */}
                             <div>
-                                <span className="section-label">Research Mandate</span>
+                                <span className="section-label">The Numbers</span>
                                 <h3 className="text-headline font-bold mt-3 mb-8">
-                                    The Zero-Knowledge <span className="text-accent-orange">Imperative</span>
+                                    Velocity is the <span className="text-accent-orange">moat</span>
                                 </h3>
                                 <p className="text-text-muted leading-relaxed mb-8">
-                                    Our foundation focuses on the "Alignment Problem" through the lens of cryptographic verifiability. We believe that for AI agents to be truly autonomous, their reasoning must be verifiable without exposing their internal weights or proprietary data.
+                                    184 repos since January 2025. That's not scattering — it's
+                                    rapid prototyping across the entire AI agent stack. Every repo
+                                    is a hypothesis tested. The ones that stick get the commits.
+                                    beads has 3,000+. worldmonitor has 1,600+. clawreform has 80+.
+                                    The pattern: find a hard problem, build the tool, ship it open source.
                                 </p>
                                 <div className="grid grid-cols-2 gap-8 mb-8">
                                     <div>
-                                        <div className="font-display text-2xl font-bold text-accent-blue mb-1">SNARK/STARK</div>
-                                        <div className="text-mono-label text-text-dim">Primary Proof Stack</div>
+                                        <div className="font-display text-2xl font-bold text-accent-blue mb-1">~12/mo</div>
+                                        <div className="text-mono-label text-text-dim">Repos per month</div>
                                     </div>
                                     <div>
-                                        <div className="font-display text-2xl font-bold text-accent-blue mb-1">&lt; 12ms</div>
-                                        <div className="text-mono-label text-text-dim">Verification Latency</div>
+                                        <div className="font-display text-2xl font-bold text-accent-blue mb-1">15 mo</div>
+                                        <div className="text-mono-label text-text-dim">Active building</div>
                                     </div>
                                 </div>
-                                <button className="neu-pill-orange flex items-center gap-2">
-                                    Download Whitepaper <ArrowRight size={14} />
-                                </button>
+                                <a href="https://github.com/aegntic" target="_blank" rel="noopener noreferrer"
+                                    className="neu-pill-orange inline-flex items-center gap-2">
+                                    See the graph <ArrowRight size={14} />
+                                </a>
                             </div>
 
-                            {/* Visual grid */}
-                            {/* Visual — Neural Mesh */}
+                            {/* Visual */}
                             <div
                                 className="relative h-full min-h-[300px] flex items-center justify-center wireframe-slice"
                                 style={{ '--wireframe-mask-url': "url('/assets/visuals/about-mesh.png')" } as React.CSSProperties}
@@ -97,7 +103,7 @@ const About: React.FC = () => {
                                 <div className="absolute inset-0 bg-accent-blue/10 blur-[100px] rounded-full opacity-20" />
                                 <img
                                     src="/assets/visuals/about-mesh.png"
-                                    alt="Neural Mesh Architecture"
+                                    alt="Architecture"
                                     className="relative z-10 w-full object-contain drop-shadow-2xl animate-float"
                                 />
                             </div>

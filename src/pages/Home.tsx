@@ -1,12 +1,10 @@
 import ScrollReveal from '../components/ScrollReveal';
-import Heading3D from '../components/Heading3D';
-import AeLogo from '../components/AeLogo';
 import { ArrowDown } from 'lucide-react';
 
 const Home: React.FC = () => {
     return (
         <div className="relative min-h-screen flex flex-col justify-center px-6 pt-24 pb-16 overflow-hidden">
-            {/* Ambient wireframe grid — 27% opacity from SE corner */}
+            {/* Ambient wireframe grid */}
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
@@ -26,16 +24,16 @@ const Home: React.FC = () => {
                 }}
             />
 
-            {/* Hero Content — Centered "Movie Poster" Layout */}
+            {/* Hero Content */}
             <div className="w-full max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center">
                 {/* Top label */}
                 <ScrollReveal>
                     <div className="text-mono-label text-accent-blue mb-12 tracking-[0.25em] uppercase opacity-80">
-                        Independent Research Foundation <span className="text-text-dim/30 ml-2">· epoch_0</span>
+                        Independent Builder <span className="text-text-dim/30 ml-2">· since 2025</span>
                     </div>
                 </ScrollReveal>
 
-                {/* Primary Visual — 3D Glass Typography */}
+                {/* Primary Visual */}
                 <ScrollReveal delay={100}>
                     <div className="relative w-full max-w-5xl mx-auto mb-10 group">
                         <div className="absolute inset-0 bg-accent-blue/5 blur-[100px] rounded-full opacity-0 group-hover:opacity-40 transition-opacity duration-1000" />
@@ -50,12 +48,12 @@ const Home: React.FC = () => {
                     </div>
                 </ScrollReveal>
 
-                {/* Vogue heading — Advancing the architecture */}
+                {/* Main heading */}
                 <ScrollReveal delay={300}>
                     <h2 className="text-3xl md:text-5xl font-bold leading-tight max-w-4xl mx-auto">
-                        <span className="text-chrome">Advancing the architecture of</span>{' '}
+                        <span className="text-chrome">Building at the edge of</span>{' '}
                         <span className="text-accent-blue italic font-serif block mt-2 md:inline md:mt-0">
-                            synthetic intelligence
+                            what agents can do
                         </span>
                     </h2>
                 </ScrollReveal>
@@ -63,31 +61,31 @@ const Home: React.FC = () => {
                 {/* Subtitle */}
                 <ScrollReveal delay={450}>
                     <p className="text-lg text-text-muted max-w-2xl mx-auto mt-8 leading-relaxed">
-                        Aegntic.ai provides the frameworks and neural transfer protocols
-                        necessary for the next generation of cognitive entities to operate
-                        across decentralized environments.
+                        184 public repositories. 5,600+ commits in 15 months. Open source
+                        AI agent infrastructure — from developer tools to autonomous systems,
+                        built by one person shipping relentlessly.
                     </p>
                 </ScrollReveal>
 
-                {/* CTA buttons — glass treatment */}
+                {/* CTA buttons */}
                 <ScrollReveal delay={550}>
                     <div className="flex flex-wrap justify-center gap-6 mt-12">
-                        <a href="#about" className="neu-pill-orange">
-                            Initialize →
+                        <a href="#projects" className="neu-pill-orange">
+                            Explore Work →
                         </a>
-                        <a href="#research" className="neu-pill font-display text-xs uppercase tracking-[0.15em] font-semibold text-text-muted hover:text-text-primary">
-                            Explore Data
+                        <a href="https://github.com/aegntic" target="_blank" rel="noopener noreferrer" className="neu-pill font-display text-xs uppercase tracking-[0.15em] font-semibold text-text-muted hover:text-text-primary">
+                            GitHub
                         </a>
                     </div>
                 </ScrollReveal>
 
-                {/* Data metrics strip — glass inset badges */}
+                {/* Real metrics strip */}
                 <ScrollReveal delay={650}>
                     <div className="flex flex-wrap justify-center gap-6 mt-24">
                         {[
-                            { label: 'Platforms', value: '40+' },
-                            { label: 'Compute', value: '14.2 PF' },
-                            { label: 'Loss', value: '0.0042' },
+                            { label: 'Repos', value: '184' },
+                            { label: 'Commits', value: '5,600+' },
+                            { label: 'Stars', value: '42' },
                         ].map((stat, i) => (
                             <div key={stat.label} className="glass-card !p-5 !rounded-2xl group cursor-default min-w-[140px]" style={{ animationDelay: `${i * 100}ms` }}>
                                 <div className="text-mono-label text-text-dim mb-2 group-hover:text-accent-orange transition-colors relative z-10 text-xs">

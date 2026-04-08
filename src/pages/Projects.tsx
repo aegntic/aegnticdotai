@@ -1,126 +1,172 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../components/ScrollReveal';
-import { ArrowRight, X, Globe, Calendar } from 'lucide-react';
-
-interface BlogPost {
-    title: string;
-    description: string;
-    pubDate: string;
-    tags: string[];
-    content: string;
-}
+import { ArrowRight, X, Globe, Star, GitFork } from 'lucide-react';
 
 interface Project {
     id: string;
     title: string;
     tagline: string;
     description: string;
-    wireframe: string;
     github: string;
     language: string;
-    blogFile?: string;
+    stars: number;
+    forks: number;
+    commits: number;
     tags: string[];
-    stats?: { label: string; value: string }[];
 }
 
 const Projects: React.FC = () => {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-    const [blogContent, setBlogContent] = useState<BlogPost | null>(null);
-    const [loadingBlog, setLoadingBlog] = useState(false);
 
     const projects: Project[] = [
         {
-            id: 'cldcde', title: 'CLDCDE',
-            tagline: 'The unofficial community hub for Claude Code extensions',
-            description: 'A comprehensive ecosystem management platform with 200+ integrated tools, plugins, and agents.',
-            wireframe: '/assets/projects/transparent/cldcde-wireframe_transparent.png',
-            github: 'github.com/aegntic/cldcde', language: 'TypeScript',
-            blogFile: 'why-we-built-aegntic.md',
+            id: 'cldcde',
+            title: 'CLDCDE',
+            tagline: 'The community hub for Claude Code extensions',
+            description: 'Unofficial community hub for Claude Code plugins, skills, extensions, MCP servers, and experimental tools. Open to all contributors.',
+            github: 'github.com/aegntic/cldcde',
+            language: 'TypeScript',
+            stars: 9,
+            forks: 2,
+            commits: 61,
             tags: ['MCP', 'Ecosystem', 'Developer Tools'],
-            stats: [{ label: 'Tools', value: '200+' }, { label: 'Type', value: 'Hub' }],
         },
         {
-            id: 'tld-express', title: 'TLD.Express',
-            tagline: 'AI-powered domain flipping automation platform',
-            description: 'Domain flipping business automation platform powered by AI agent swarm.',
-            wireframe: '/assets/projects/transparent/tld-express-wireframe_transparent.png',
-            github: 'github.com/aegntic/tld', language: 'TypeScript',
-            blogFile: 'aegntic-growth-story.md',
-            tags: ['Business', 'Automation', 'AI Swarm'],
-            stats: [{ label: 'Agents', value: 'Swarm' }, { label: 'Focus', value: 'Business' }],
+            id: 'google-labs-extension',
+            title: 'Google Labs Extension',
+            tagline: 'Google Suite AI tools for Agent Zero',
+            description: 'Seamless integration with Google AI tools — Stitch, Whisk, Flow, MusicFX, ImageFX, VideoFX, TextFX.',
+            github: 'github.com/aegntic/google-labs-extension',
+            language: 'JavaScript',
+            stars: 5,
+            forks: 0,
+            commits: 1,
+            tags: ['AI', 'Google', 'Agent Zero'],
         },
         {
-            id: 'prompt-prompter-dd', title: 'Prompt Prompter DD',
-            tagline: 'Your Prompts Favourite Prompter',
-            description: 'Intelligent prompt debugger with Datadog observability.',
-            wireframe: '/assets/projects/transparent/prompt-prompter-dd-wireframe_transparent.png',
-            github: 'github.com/aegntic/prompt-prompter-dd', language: 'TypeScript',
-            blogFile: 'building-ai-agent-skills.md',
-            tags: ['AI', 'Observability', 'Prompts'],
-            stats: [{ label: 'Focus', value: 'Observability' }, { label: 'Type', value: 'Debugger' }],
+            id: 'claude-code-templates',
+            title: 'Claude Code Templates',
+            tagline: 'Battle-tested Claude Code configurations',
+            description: 'Complete Claude Code configuration collection — agents, skills, hooks, commands, rules, MCPs. From an Anthropic hackathon winner.',
+            github: 'github.com/aegntic/claude-code-templates',
+            language: 'JavaScript',
+            stars: 3,
+            forks: 0,
+            commits: 1,
+            tags: ['Config', 'Templates', 'Claude'],
         },
         {
-            id: 'unltd-cli', title: 'UNLTD-CLI',
-            tagline: 'Choreographing the next wave of synthetic intelligence',
-            description: 'Advanced CLI for AI-powered development workflows.',
-            wireframe: '/assets/projects/transparent/unltd-cli-wireframe_transparent.png',
-            github: 'github.com/aegntic/unltd-cli', language: 'TypeScript',
-            blogFile: 'ultra-swarm-multi-agent-problem-solving.md',
-            tags: ['CLI', 'AI Agents', 'Automation'],
-            stats: [{ label: 'Type', value: 'CLI Tool' }, { label: 'Focus', value: 'AI Agents' }],
+            id: 'clawreform',
+            title: 'ClawReform',
+            tagline: 'The Self-Evolving Agent Operating System',
+            description: 'Open-source agent operating system written in Rust. Autonomous agents that adapt, learn, and improve over time.',
+            github: 'github.com/aegntic/clawreform',
+            language: 'Rust',
+            stars: 2,
+            forks: 1,
+            commits: 83,
+            tags: ['Rust', 'Agents', 'OS'],
         },
         {
-            id: 'prompt-prompter', title: 'Prompt Prompter',
-            tagline: 'Proof of prompt improvement',
-            description: 'Experimental prompt optimization and refinement tools.',
-            wireframe: '/assets/projects/transparent/prompt-prompter-wireframe_transparent.png',
-            github: 'github.com/aegntic/prompt-prompter', language: 'TypeScript',
-            blogFile: 'sequential-thinking-ai-agent-reasoning.md',
-            tags: ['AI', 'Research', 'Prompts'],
-            stats: [{ label: 'Type', value: 'Research' }, { label: 'Focus', value: 'Prompts' }],
+            id: 'notebooklm-pro',
+            title: 'NotebookLM Pro',
+            tagline: 'Advanced conversational research with Gemini',
+            description: 'NotebookLM Pro for Agent Zero — advanced conversational research with Gemini 2.5 Pro, 2.5 Flash, and Gemini 3 models.',
+            github: 'github.com/aegntic/notebooklm-pro',
+            language: 'JavaScript',
+            stars: 2,
+            forks: 0,
+            commits: 1,
+            tags: ['Research', 'Gemini', 'Agent Zero'],
         },
         {
-            id: 'os-wwwrong', title: 'OS WWWrong',
-            tagline: 'Write the wwwrong prompt perfectly',
-            description: 'Advanced prompt engineering studio for optimal AI interactions.',
-            wireframe: '/assets/projects/transparent/os-wwwrong-wireframe_transparent.png',
-            github: 'github.com/aegntic/os-wwwrong-prompt-studio', language: 'TypeScript',
-            blogFile: 'birth-of-prologue-mcp-discovery.md',
-            tags: ['MCP', 'Prompting', 'Tools'],
-            stats: [{ label: 'Type', value: 'Studio' }, { label: 'Focus', value: 'Prompt Eng' }],
+            id: 'prologue',
+            title: 'Prologue',
+            tagline: 'Universal MCP discovery system',
+            description: 'The intelligent MCP server discovery system. Find, validate, and install MCP servers from a unified registry.',
+            github: 'github.com/aegntic/prologue',
+            language: 'TypeScript',
+            stars: 1,
+            forks: 1,
+            commits: 26,
+            tags: ['MCP', 'Discovery', 'Registry'],
         },
         {
-            id: 'zkputer', title: 'ZKputer',
-            tagline: 'The sovereign shadow trader',
-            description: 'Zero-knowledge proof trading system with privacy-preserving transactions.',
-            wireframe: '/assets/projects/transparent/zkputer-wireframe_transparent.png',
-            github: 'github.com/aegntic/zkputer', language: 'Rust',
-            blogFile: 'mcp-revolution-orchestrating-ai-services.md',
-            tags: ['ZK', 'DeFi', 'Privacy'],
-            stats: [{ label: 'Type', value: 'ZK' }, { label: 'Focus', value: 'Trading' }],
+            id: 'prompt-prompter-dd',
+            title: 'Prompt Prompter DD',
+            tagline: 'Prompt debugging with Datadog observability',
+            description: 'Your prompts favourite prompter — intelligent prompt debugger with Datadog-style observability. AI that optimizes AI.',
+            github: 'github.com/aegntic/prompt-prompter-dd',
+            language: 'TypeScript',
+            stars: 2,
+            forks: 1,
+            commits: 22,
+            tags: ['Prompts', 'Observability', 'AI'],
+        },
+        {
+            id: 'aegnt-unltd',
+            title: 'AEGNT-UNLTD',
+            tagline: 'The Sovereign Strategist',
+            description: 'Self-evolving cognitive hypervisor. Advanced CLI for orchestrating AI-powered development workflows and multi-agent planning.',
+            github: 'github.com/aegntic/aegnt-unltd',
+            language: 'Shell',
+            stars: 2,
+            forks: 0,
+            commits: 6,
+            tags: ['CLI', 'AI Agents', 'Strategy'],
+        },
+        {
+            id: 'beads',
+            title: 'Beads',
+            tagline: 'Memory upgrade for your coding agent',
+            description: 'Persistent memory layer for AI coding agents. The most committed-to project in the portfolio with 3,000+ commits.',
+            github: 'github.com/aegntic/beads',
+            language: 'N/A',
+            stars: 1,
+            forks: 0,
+            commits: 3013,
+            tags: ['Memory', 'Agents', 'Infrastructure'],
+        },
+        {
+            id: 'worldmonitor',
+            title: 'WorldMonitor',
+            tagline: 'Real-time global intelligence dashboard',
+            description: 'AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface. 1,600+ commits.',
+            github: 'github.com/aegntic/worldmonitor',
+            language: 'N/A',
+            stars: 0,
+            forks: 0,
+            commits: 1605,
+            tags: ['Dashboard', 'Monitoring', 'AI'],
+        },
+        {
+            id: 'zeroclaw',
+            title: 'ZeroClaw',
+            tagline: 'Fully autonomous AI assistant infrastructure',
+            description: 'Fast, small, and fully autonomous AI assistant infrastructure — deploy anywhere, swap anything. 636 commits of iteration.',
+            github: 'github.com/aegntic/zeroclaw',
+            language: 'N/A',
+            stars: 1,
+            forks: 0,
+            commits: 636,
+            tags: ['Infrastructure', 'Autonomous', 'Deploy'],
+        },
+        {
+            id: 'rapt0r',
+            title: 'Rapt0r',
+            tagline: 'AI offensive/defensive security agent',
+            description: 'Turns Claude Code into a general-purpose AI security agent. Adversarial thinking, attack/defense research and operations. 194 commits.',
+            github: 'github.com/aegntic/rapt0r',
+            language: 'N/A',
+            stars: 2,
+            forks: 0,
+            commits: 194,
+            tags: ['Security', 'Agent', 'Claude'],
         },
     ];
 
-    const loadBlogContent = async (project: Project) => {
-        setLoadingBlog(true);
-        // Blog content is embedded inline — no file fetch needed
-        setBlogContent({
-            title: project.title,
-            description: project.description,
-            pubDate: '2025',
-            tags: project.tags,
-            content: `${project.description}\n\nThis project is part of the Aegntic.ai ecosystem — an independent research foundation advancing the architecture of synthetic intelligence. Visit the GitHub repository to explore the source code, contribute, or report issues.\n\nBuilt with ${project.language}. Licensed under MIT.`,
-        });
-        setLoadingBlog(false);
-    };
-
-    const handleProjectClick = async (project: Project) => {
-        setSelectedProject(project);
-        if (project.blogFile) await loadBlogContent(project);
-    };
-
-    const closeModal = () => { setSelectedProject(null); setBlogContent(null); };
+    const closeModal = () => { setSelectedProject(null); };
 
     return (
         <div className="py-24 px-6 min-h-screen">
@@ -128,9 +174,9 @@ const Projects: React.FC = () => {
                 {/* Header */}
                 <ScrollReveal>
                     <div className="mb-20">
-                        <span className="section-label">/Aegntic.Development</span>
+                        <span className="section-label">/projects</span>
                         <h2 className="section-header mt-3">
-                            Shipped <span className="text-accent-orange">Products</span>
+                            Open Source <span className="text-accent-orange">Portfolio</span>
                         </h2>
                         <div className="section-divider-accent mt-6" />
                     </div>
@@ -138,27 +184,28 @@ const Projects: React.FC = () => {
 
                 <ScrollReveal delay={100}>
                     <p className="text-body-lg max-w-3xl mb-16">
-                        Production-ready software and infrastructure powering the next generation of AI agents.
+                        Real projects with real commit counts. Sorted by GitHub stars —
+                        the projects the community found most useful.
                     </p>
                 </ScrollReveal>
 
-                {/* Project Grid — Neumorphic Cards */}
+                {/* Project Grid */}
                 <div className="swiss-grid-tiles">
                     {projects.map((project, idx) => (
                         <ScrollReveal key={project.id} delay={idx * 80}>
                             <motion.div
                                 className="glass-card group h-full flex flex-col cursor-pointer"
-                                onClick={() => handleProjectClick(project)}
+                                onClick={() => setSelectedProject(project)}
                                 whileHover={{ y: -6 }}
                                 transition={{ duration: 0.25, ease: 'easeOut' }}
                             >
-                                {/* Wireframe Image */}
-                                <div className="relative mb-6 flex items-center justify-center">
-                                    <img
-                                        src={project.wireframe}
-                                        alt={project.title}
-                                        className="w-full h-40 object-contain mix-blend-screen opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                                    />
+                                {/* Stats header */}
+                                <div className="flex items-center justify-between mb-6">
+                                    <span className="text-mono-label text-accent-blue">{project.language}</span>
+                                    <div className="flex items-center gap-3 text-mono-label text-text-dim">
+                                        <span className="flex items-center gap-1"><Star size={12} />{project.stars}</span>
+                                        <span className="flex items-center gap-1"><GitFork size={12} />{project.forks}</span>
+                                    </div>
                                 </div>
 
                                 {/* Tagline */}
@@ -171,17 +218,15 @@ const Projects: React.FC = () => {
                                     {project.title}
                                 </h3>
 
-                                {/* Stats */}
-                                {project.stats && (
-                                    <div className="grid grid-cols-2 gap-4 pb-4 border-b border-white/5 mb-4">
-                                        {project.stats.map((stat, si) => (
-                                            <div key={si} className="text-center">
-                                                <div className="text-mono-label text-text-dim">{stat.label}</div>
-                                                <div className="font-mono text-base text-text-primary font-bold">{stat.value}</div>
-                                            </div>
-                                        ))}
+                                {/* Commit count */}
+                                <div className="grid grid-cols-1 gap-4 pb-4 border-b border-white/5 mb-4">
+                                    <div className="text-center">
+                                        <div className="text-mono-label text-text-dim">Commits</div>
+                                        <div className="font-mono text-base text-text-primary font-bold">
+                                            {project.commits.toLocaleString()}
+                                        </div>
                                     </div>
-                                )}
+                                </div>
 
                                 {/* Tags */}
                                 <div className="flex flex-wrap gap-2 mb-4">
@@ -192,7 +237,7 @@ const Projects: React.FC = () => {
 
                                 {/* CTA */}
                                 <div className="flex items-center justify-center gap-2 mt-auto text-mono-label text-text-muted group-hover:text-accent-orange transition-colors">
-                                    Sounds Interesting <ArrowRight size={12} />
+                                    View Project <ArrowRight size={12} />
                                 </div>
                             </motion.div>
                         </ScrollReveal>
@@ -205,10 +250,10 @@ const Projects: React.FC = () => {
                         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
                             <div>
                                 <h3 className="text-headline font-bold mb-4">
-                                    Explore on <span className="text-accent-blue">GitHub</span>
+                                    All <span className="text-accent-blue">184 repos</span> on GitHub
                                 </h3>
                                 <p className="text-text-muted text-lg max-w-2xl">
-                                    All our projects are open source. Star us on GitHub to stay updated with the latest releases.
+                                    Every project is open source. Fork it, break it, fix it, ship it.
                                 </p>
                             </div>
                             <a
@@ -244,9 +289,11 @@ const Projects: React.FC = () => {
                                     <div className="flex items-center gap-3 mb-3">
                                         <span className="text-mono-label text-accent-blue">{selectedProject.language}</span>
                                         <span className="text-mono-label text-text-dim">{selectedProject.github}</span>
+                                        <span className="flex items-center gap-1 text-text-dim"><Star size={12} />{selectedProject.stars}</span>
+                                        <span className="flex items-center gap-1 text-text-dim"><GitFork size={12} />{selectedProject.forks}</span>
                                     </div>
                                     <h2 className="text-2xl md:text-3xl font-display font-bold text-text-primary leading-tight">
-                                        {blogContent ? blogContent.title : selectedProject.title}
+                                        {selectedProject.title}
                                     </h2>
                                 </div>
                                 <button onClick={closeModal} className="p-2 hover:bg-white/5 rounded-full transition-colors">
@@ -256,48 +303,37 @@ const Projects: React.FC = () => {
 
                             {/* Content */}
                             <div className="p-6 md:p-8 overflow-y-auto max-h-[calc(90vh-120px)]">
-                                {loadingBlog ? (
-                                    <div className="flex items-center justify-center py-20">
-                                        <div className="text-text-muted">Loading article...</div>
+                                <p className="text-text-muted text-lg leading-relaxed mb-8">{selectedProject.description}</p>
+
+                                <div className="grid grid-cols-3 gap-4 mb-8">
+                                    <div className="text-center glass-inset rounded-xl p-4">
+                                        <div className="font-mono text-xl font-bold text-accent-blue">{selectedProject.commits.toLocaleString()}</div>
+                                        <div className="text-mono-label text-text-dim text-xs mt-1">Commits</div>
                                     </div>
-                                ) : blogContent ? (
-                                    <article className="prose prose-invert prose-lg max-w-none">
-                                        <p className="text-text-muted text-lg leading-relaxed mb-8">{blogContent.description}</p>
-                                        <div className="flex items-center gap-4 text-sm text-text-dim mb-8">
-                                            <div className="flex items-center gap-2"><Calendar size={14} /><span>{blogContent.pubDate}</span></div>
-                                        </div>
-                                        <div className="flex flex-wrap gap-2 mb-8">
-                                            {blogContent.tags.map(tag => (
-                                                <span key={tag} className="data-badge">{tag}</span>
-                                            ))}
-                                        </div>
-                                        <div className="text-text-muted leading-relaxed whitespace-pre-line">{blogContent.content}</div>
-                                    </article>
-                                ) : (
-                                    <div>
-                                        <p className="text-text-muted text-lg leading-relaxed mb-8">{selectedProject.description}</p>
-                                        <div className="flex flex-wrap gap-2 mb-8">
-                                            {selectedProject.tags.map(tag => (
-                                                <span key={tag} className="data-badge">{tag}</span>
-                                            ))}
-                                        </div>
-                                        <a href={`https://${selectedProject.github}`} target="_blank" rel="noopener noreferrer"
-                                            className="neu-pill-orange inline-flex items-center gap-3">
-                                            <Globe size={18} /> View on GitHub <ArrowRight size={16} />
-                                        </a>
+                                    <div className="text-center glass-inset rounded-xl p-4">
+                                        <div className="font-mono text-xl font-bold text-accent-blue">{selectedProject.stars}</div>
+                                        <div className="text-mono-label text-text-dim text-xs mt-1">Stars</div>
                                     </div>
-                                )}
+                                    <div className="text-center glass-inset rounded-xl p-4">
+                                        <div className="font-mono text-xl font-bold text-accent-blue">{selectedProject.forks}</div>
+                                        <div className="text-mono-label text-text-dim text-xs mt-1">Forks</div>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-wrap gap-2 mb-8">
+                                    {selectedProject.tags.map(tag => (
+                                        <span key={tag} className="data-badge">{tag}</span>
+                                    ))}
+                                </div>
                             </div>
 
                             {/* Footer */}
                             <div className="sticky bottom-0 bg-surface border-t border-white/5 p-4 flex justify-between items-center">
                                 <button onClick={closeModal} className="text-sm text-text-muted hover:text-text-primary transition-colors">Close</button>
-                                {selectedProject.github && (
-                                    <a href={`https://${selectedProject.github}`} target="_blank" rel="noopener noreferrer"
-                                        className="text-sm text-accent-blue hover:text-accent-blue/80 transition-colors flex items-center gap-2">
-                                        <Globe size={14} /> View Repository
-                                    </a>
-                                )}
+                                <a href={`https://${selectedProject.github}`} target="_blank" rel="noopener noreferrer"
+                                    className="neu-pill-orange inline-flex items-center gap-3">
+                                    <Globe size={18} /> View on GitHub <ArrowRight size={16} />
+                                </a>
                             </div>
                         </motion.div>
                     </motion.div>
