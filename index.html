@@ -132,15 +132,16 @@
     <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#050505]/80 backdrop-blur-xl">
         <div class="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
             <div class="flex items-center gap-x-3">
-                <!-- LOGO - kept exactly as user likes it -->
-                <div class="flex items-center gap-x-2.5">
+                <!-- LOGO - kept exactly as user likes it. 
+                     Wrapped in <a href="/"> so clicking the logo ALWAYS opens in the SAME tab/window (no new tab, no _blank). -->
+                <a href="/" class="flex items-center gap-x-2.5 hover:opacity-80 transition-opacity" aria-label="AEGNTIC home">
                     <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#00d4b8] to-[#b38b5e] flex items-center justify-center">
                         <span class="text-[#050505] font-bold text-lg tracking-tighter">A</span>
                     </div>
                     <div>
                         <div class="font-display text-xl tracking-[-1.5px] font-semibold">AEGNTIC</div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="hidden md:flex items-center gap-x-8 text-sm">
@@ -402,8 +403,7 @@
                     <div class="text-right text-xs text-[#9ca3af]">3★ • Production</div>
                 </div>
                 <div class="mt-6 text-sm text-[#9ca3af]">
-                    27 behavioral patterns for 98%+ resistance to AI detectors across mouse, typing, audio, and visual modalities. Local-first, sub-2ms, MCP server included. Used in DAILYDOCO.
-                </div>
+                    27 behavioral patterns for 98%+ AI detection resistance. The human expression layer.</div>
             </div>
 
             <div class="glass border border-white/10 rounded-3xl p-6 hover:border-[#00d4b8]/30 transition-colors">
