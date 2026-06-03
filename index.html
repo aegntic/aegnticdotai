@@ -148,6 +148,19 @@
         .foundational-text {
             font-feature-settings: "ss01", "ss02";
         }
+
+        /* Real design: respect motion preferences (per gstack design-review + thesis motion as metaphor) */
+        @media (prefers-reduced-motion: reduce) {
+            .motion-canvas,
+            .connection,
+            .organ,
+            .crafted-card,
+            .nav-link:after,
+            svg .connection {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
     </style>
 </head>
 <body>
