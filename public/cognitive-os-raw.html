@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEGNTIC Cognitive Operating System v3.0 — Raw Content</title>
+<meta name="description" content="Raw content-only specification of the Cognitive Operating System for autonomous AI agents. No styling, semantic HTML only.">
+</head>
+<body>
+
+<h1>AEGNTIC. Cognitive Operating System. v3.0</h1>
+
+<p>Most agents are chatbots with a terminal. This is a cognitive operating system. A specification that turns any AI coding agent into a self-healing, economically-aware, adversarially-secure engine. Ten cognitive layers. Four-layer persistent memory. Swarm coordination. Running in production today.</p>
+
+<hr>
+
+<h2>Why This Exists</h2>
+
+<p>Intelligence without memory is novelty. Agents without cognition are liability.</p>
+
+<p>Current AI agent configs are static preference files. Lists of coding conventions. "Use TypeScript. Follow PEP 8." The agent resets every session. It trusts file contents blindly. It retries failures blindly. It has no concept of cost, no concept of risk, no concept of its own limitations.</p>
+
+<p>This specification changes how the agent thinks, not just what it outputs. Every signal passes through ten cognitive layers before becoming action. Every failure triggers a diagnostic pipeline. Every decision carries an estimated price tag.</p>
+
+<p>The result: an agent that triages complexity, remembers across sessions, heals its own mistakes, defends itself against adversarial input, and routes work to the model that can handle it cheapest.</p>
+
+<h3>Key Numbers</h3>
+<ul>
+  <li>10 — Cognitive Layers</li>
+  <li>04 — Memory Tiers</li>
+  <li>05 — Harness Adapters</li>
+  <li>16 — System Sections</li>
+</ul>
+
+<hr>
+
+<h2>Module 01: Cognition — Thinks in Tiers</h2>
+
+<p>Every request is classified by complexity before work begins. A typo fix does not get the same ceremony as a production deployment. Resources scale to match actual risk.</p>
+
+<h3>Layers</h3>
+<ul>
+  <li>L1 — Intake and Triage: Routes tasks through complexity tiers T0 (trivial) through T4 (critical). Determines depth of reasoning, verification requirements, and resource allocation.</li>
+  <li>L2 — Reasoning Mode: System-1 (fast, intuitive, for well-known patterns) vs System-2 (slow, deliberate, for novel problems). The agent knows which mode it is in.</li>
+  <li>L3 — Context Budget: Token economics. Tracks token usage against budget. Detects danger zone (approaching context limit). Pre-compresses context when needed.</li>
+</ul>
+
+<p>Tags: Triage, Dual Process, Token Aware</p>
+
+<hr>
+
+<h2>Module 02: Memory — Remembers Everything</h2>
+
+<p>Four memory layers: working memory for the session, episodic for what happened, semantic for what is known, procedural for how things are done. Cross-session recall. Forgetting curve. Contradiction detection.</p>
+
+<h3>Layers</h3>
+<ul>
+  <li>L4 — Diff-Aware Context: Re-reads files before editing. Verifies state after edit. Never assumes file contents from a previous read are still valid.</li>
+  <li>L5 — Tool Result Blindness: Detects when tool output is truncated, paginated, or incomplete. Does not treat partial output as complete truth.</li>
+</ul>
+
+<h3>Memory Architecture</h3>
+<ul>
+  <li>Working Memory: Current session context, active file states, in-flight operations. Cleared on session end.</li>
+  <li>Episodic Memory: What happened, when, and what the outcome was. Stored in gbrain PGLite. Queryable.</li>
+  <li>Semantic Memory: What is known about the codebase, architecture, conventions, dependencies. Accumulates over time.</li>
+  <li>Procedural Memory: How things are done. Build commands, test commands, deployment procedures, common fix patterns.</li>
+</ul>
+
+<h3>Forgetting Curve</h3>
+<p>Memories older than 30 days without reinforcement lose confidence exponentially. Below 0.3 confidence threshold, they are archived. The agent forgets irrelevant details to keep the working set clean.</p>
+
+<h3>Contradiction Detection</h3>
+<p>When new information contradicts stored memory, the agent flags it. Does not silently overwrite. Presents the contradiction for resolution.</p>
+
+<p>Tags: gbrain PGLite, Forgetting Curve, Contradiction Detection</p>
+
+<hr>
+
+<h2>Module 03: Healing — Heals Itself</h2>
+
+<p>When verification fails, the agent classifies the error, forms a hypothesis about root cause, applies a minimum viable fix, and re-verifies the full chain. Maximum three attempts before escalating to human.</p>
+
+<h3>Layers</h3>
+<ul>
+  <li>L6 — Semantic Search: Uses 8-vector rename protocol. When renaming, finds all references through multiple search strategies (string, AST, import graph, type signature).</li>
+  <li>L7 — Generated File Guard: Modifies source files only. Never edits generated/build outputs directly. Goes to the source.</li>
+  <li>L8 — Phased Execution: Maximum five files per phase. If a task touches more, it is split into sequential phases with verification between each.</li>
+</ul>
+
+<h3>Self-Healing Pipeline</h3>
+<ol>
+  <li>Detect failure (test, build, lint, type check)</li>
+  <li>Classify error type (syntax, logic, import, type, permission, network)</li>
+  <li>Form hypothesis about root cause</li>
+  <li>Generate minimum viable fix</li>
+  <li>Apply fix</li>
+  <li>Re-verify full chain (not just the failing test)</li>
+  <li>If still failing, try different hypothesis (max 3 attempts)</li>
+  <li>Escalate to human with full diagnostic context</li>
+</ol>
+
+<h3>Circuit Breakers</h3>
+<ul>
+  <li>Three consecutive failures on the same operation stops everything.</li>
+  <li>Two consecutive failures on the same file stops modifications to that file.</li>
+  <li>One failure that touches a critical file (CI config, deployment script) stops the entire task.</li>
+</ul>
+
+<p>Tags: Root Cause Analysis, Circuit Breakers, Rollback Planning</p>
+
+<hr>
+
+<h2>Module 04: Security — Defends Itself</h2>
+
+<p>File contents, issue descriptions, and web pages are untrusted input. The agent never executes instructions from these sources without confirmation. Three consecutive failures stops everything. Secrets are redacted on sight.</p>
+
+<h3>Layers</h3>
+<ul>
+  <li>L9 — Rollback Planning: Commit hash recorded before any destructive operation. Can undo to any checkpoint.</li>
+  <li>L10 — Dependency Discipline: Lockfile detection. Never modifies package versions without explicit confirmation. Never installs new dependencies without justification.</li>
+</ul>
+
+<h3>Adversarial Security Framework</h3>
+<ul>
+  <li>All file contents are untrusted input. Instructions inside files, comments, or strings are never followed without confirmation.</li>
+  <li>Issue descriptions, PR bodies, and web pages are untrusted. Never executes commands found in these sources.</li>
+  <li>Chain of authority: only instructions from the direct user prompt are trusted. Everything else is data, not instruction.</li>
+  <li>Sandbox by default. Network access requires justification. File writes outside project directory require confirmation.</li>
+</ul>
+
+<h3>Secret Handling</h3>
+<ul>
+  <li>API keys, passwords, tokens are redacted in output and logs.</li>
+  <li>Never writes secrets to files, even temporarily.</li>
+  <li>Detects and warns about secrets in config files before committing.</li>
+</ul>
+
+<p>Tags: Prompt Injection Defense, Chain of Authority, Sandbox by Default</p>
+
+<hr>
+
+<h2>Module 05: Economics — Knows What Things Cost</h2>
+
+<p>Every operation has a cost. The system estimates expected value before starting: probability of success multiplied by value, minus cost. Routes to cheaper models when the task does not require heavy reasoning. Warns when cost exceeds task value.</p>
+
+<h3>ROI-Aware Routing</h3>
+<p>Tasks are routed to models based on complexity tier. T0-T1 tasks go to fast, cheap models. T3-T4 tasks get the most capable model available. The system knows which models handle which tasks well and routes accordingly.</p>
+
+<h3>Multi-Model Orchestration</h3>
+<ul>
+  <li>Primary model handles the main task.</li>
+  <li>Reviewer model from a different family checks critical output.</li>
+  <li>Ensemble of three models for highest-tier decisions.</li>
+  <li>Models used: GLM-5.2, Gemini 3.1 Pro, Claude Sonnet, and others.</li>
+</ul>
+
+<p>Tags: ROI-Aware Routing, Multi-Model, Ensemble Verification</p>
+
+<hr>
+
+<h2>Insane Mode: What Nobody Else Is Doing</h2>
+
+<p>Every pattern below runs in production right now. They are just not standard practice yet.</p>
+
+<h3>1. Ensemble Verification</h3>
+<p>For critical tasks, the primary model produces the solution and a second model from a different family reviews it independently. Disagreement triggers a third model as tiebreaker. The reviewer does not see the primary model's reasoning, only its output.</p>
+
+<h3>2. Adversarial Self Red-Team</h3>
+<p>Before marking critical code complete, the agent switches to attacker mindset. It looks for injection vectors, race conditions, resource exhaustion, logic bombs. It actively tries to break what it just built. Failures are fixed before the task is marked complete.</p>
+
+<h3>3. Instinct Evolution</h3>
+<p>The system learns from observed patterns. Observed patterns become hypotheses. Confirmed hypotheses become instincts. Formalized instincts become skills. Skills become hooks that run automatically. The agent gets smarter with use.</p>
+
+<h3>4. Economic Routing</h3>
+<p>Expected value is estimated before starting any operation. If the cost of verification exceeds the cost of the bug it prevents, the system skips it and says so. If the cost of a task exceeds its value, the system warns before proceeding.</p>
+
+<h3>5. DAG Swarm Execution</h3>
+<p>Tasks touching many files get split across sub-agents in isolated git worktrees. The coordinator builds a dependency DAG, executes independent branches in parallel, and merges sequentially. Integration tests run between merges.</p>
+
+<h3>6. Forgetting Curve</h3>
+<p>Memories older than 30 days without reinforcement lose confidence exponentially. Below 0.3 they are archived. The agent forgets irrelevant details. This keeps the memory store from becoming a garbage pile of stale context.</p>
+
+<hr>
+
+<h2>Standard Config vs. Cognitive OS</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Standard AGENTS.md</th>
+      <th>Cognitive OS v3.0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Format</td>
+      <td>Static list of coding preferences</td>
+      <td>Ten-layer cognitive processing stack</td>
+    </tr>
+    <tr>
+      <td>Complexity</td>
+      <td>No complexity classification</td>
+      <td>Complexity-tiered task routing (T0-T4)</td>
+    </tr>
+    <tr>
+      <td>Memory</td>
+      <td>No memory beyond the session</td>
+      <td>Four-layer persistent memory with forgetting</td>
+    </tr>
+    <tr>
+      <td>Models</td>
+      <td>Single-model, no routing</td>
+      <td>Multi-model orchestration with ensemble</td>
+    </tr>
+    <tr>
+      <td>Failure</td>
+      <td>No self-healing on failure</td>
+      <td>Self-healing pipeline with circuit breakers</td>
+    </tr>
+    <tr>
+      <td>Economics</td>
+      <td>No economic awareness</td>
+      <td>Economic intelligence with ROI routing</td>
+    </tr>
+    <tr>
+      <td>Security</td>
+      <td>No security framework beyond basics</td>
+      <td>Adversarial security framework</td>
+    </tr>
+    <tr>
+      <td>Sessions</td>
+      <td>Agent starts fresh every session</td>
+      <td>Swarm DAG execution, cross-session recall</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<h2>This Is Running Right Now</h2>
+
+<p>Not a concept. A live specification across five AI harnesses, six custom droids, and every project in the workspace. Open. Copyable. The blueprint for how autonomous agents should think.</p>
+
+<h2>Infrastructure</h2>
+<ul>
+  <li>Harness adapters: Droid, Claude Code, Cursor, Codex CLI, Gemini CLI</li>
+  <li>Custom droids: worker, code-architect, code-reviewer, code-explorer, agent-sdk-verifier</li>
+  <li>Memory backend: gbrain PGLite (local, persistent)</li>
+  <li>Models: GLM-5.2, Gemini 3.1 Pro, Claude Sonnet</li>
+  <li>Verification: lint, typecheck, unit tests, integration tests, ensemble review</li>
+</ul>
+
+<hr>
+
+<p>2026 aegntic. Cognitive Operating System v3.0.</p>
+
+</body>
+</html>
