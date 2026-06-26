@@ -5,9 +5,6 @@ interface AeLogoProps {
     className?: string;
 }
 
-/**
- * AeLogo — Brand mark using the official aegntic logo.
- */
 const AeLogo: React.FC<AeLogoProps> = ({
     size = 40,
     className = '',

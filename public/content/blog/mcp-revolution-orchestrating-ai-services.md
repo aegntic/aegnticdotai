@@ -90,8 +90,6 @@ We've deployed 20+ MCP servers covering the complete AI development lifecycle:
 
 We built specialized servers for Aegntic-specific needs:
 
-- **dailydoco-pro** — Documentation automation
-- **aegnt-27** — Human authenticity processing
 - **aegntic-knowledge-engine** — RAG and knowledge management
 - **ai-collaboration-hub** — Multi-model coordination
 - **firebase-studio-mcp** — Firebase integration
@@ -113,10 +111,6 @@ All servers are configured through a single JSON file:
       "env": {
         "GITHUB_TOKEN": "your-token"
       }
-    },
-    "aegnt-27": {
-      "command": "node",
-      "args": ["/path/to/aegnt-27/dist/index.js"]
     }
   }
 }
@@ -158,10 +152,6 @@ Our MCP deployment handles:
 
 ```
 MCP Server Locations
-├── /home/tabs/.mcp-servers/           (3 servers)
-│   ├── aegnt-27
-│   ├── aegnt-27-lib
-│   └── dailydoco-pro
 ├── /home/tabs/ae-co-system/aegntic-MCP/servers/  (6 servers)
 │   ├── aegntic-knowledge-engine
 │   ├── claude-export-mcp
@@ -220,4 +210,4 @@ The teams that adopt MCP now will have architectural advantages for years to com
 
 ---
 
-*Part 3 of the "Building Aegntic" series. Previous: [Achieving 97% AI Authenticity](/blog/achieving-97-percent-ai-authenticity). Next: [Agent Neo: Autonomous Ebook Generation](/blog/agent-neo-autonomous-ebook-generation)*
+*Part 3 of the "Building Aegntic" series. Next: [Agent Neo: Autonomous Ebook Generation](/blog/agent-neo-autonomous-ebook-generation)*

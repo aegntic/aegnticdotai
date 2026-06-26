@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { ArrowRight, Sparkles, Check, ShieldAlert } from 'lucide-react';
-import Magnetic from './Magnetic';
+import { ArrowRight, Check } from 'lucide-react';
 
 interface SubscribeFormProps {
     className?: string;
-    variant?: 'orange' | 'blue';
+    variant?: 'default';
 }
 
-const SubscribeForm: React.FC<SubscribeFormProps> = ({ className = '', variant = 'orange' }) => {
+const SubscribeForm: React.FC<SubscribeFormProps> = ({ className = '' }) => {
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'exists'>('idle');
 
@@ -23,7 +22,7 @@ const SubscribeForm: React.FC<SubscribeFormProps> = ({ className = '', variant =
                 body: JSON.stringify({ email, source: 'newsletter_form' }),
             });
 
-            const data = await response.json();
+            const data = await response.json() as { status?: string; error?: string };
 
             if (response.ok) {
                 if (data.status === 'exists') {
@@ -44,52 +43,40 @@ const SubscribeForm: React.FC<SubscribeFormProps> = ({ className = '', variant =
     };
 
     if (status === 'success') {
-        const bgClass = variant === 'orange' ? 'bg-accent-orange/5 border-accent-orange/30 text-accent-orange' : 'bg-accent-blue/5 border-accent-blue/30 text-accent-blue';
         return (
-            <div className={`glass-inset px-6 py-4 font-mono text-sm border rounded-lg ${bgClass} ${className}`}>
-                &gt; Transmission received. Welcome to the signal.
+            <div className={`flex items-center gap-2 text-sm ${className}`} style={{ color: '#1a1a18' }}>
+                <Check size={14} />
+                <span>Done.</span>
             </div>
         );
     }
 
-    const buttonClass = variant === 'orange' ? 'neu-pill-orange' : 'neu-pill-blue';
-    const focusClass = variant === 'orange' ? 'focus:border-accent-orange/50' : 'focus:border-accent-blue/50';
+    if (status === 'exists') {
+        return (
+            <div className={`text-sm ${className}`} style={{ color: 'var(--color-text-tertiary)' }}>
+                Already in.
+            </div>
+        );
+    }
 
     return (
-        <form onSubmit={handleSubscribe} className={`flex flex-col gap-4 ${className}`}>
+        <form onSubmit={handleSubscribe} className={`flex gap-3 ${className}`}>
             <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="ENTER_EMAIL"
-                className={`w-full glass-inset px-6 py-4 text-sm font-mono outline-none text-text-primary placeholder:text-text-dim transition-colors ${focusClass}`}
+                placeholder="your@email.com"
+                className="input flex-1"
                 disabled={status === 'loading'}
+                required
             />
-            {variant === 'orange' ? (
-                <button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className={`${buttonClass} flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed`}
-                >
-                    {status === 'loading' ? 'Encrypting...' : <>YES, LETS GO <ArrowRight size={16} /></>}
-                </button>
-            ) : (
-                <Magnetic strength={0.25}>
-                    <button
-                        type="submit"
-                        disabled={status === 'loading'}
-                        className={`${buttonClass} !py-3 !px-6 flex items-center justify-center gap-2 w-full disabled:opacity-50 disabled:cursor-not-allowed`}
-                    >
-                        {status === 'loading' ? 'Encrypting...' : <><Sparkles size={14} /> YES, LETS GO</>}
-                    </button>
-                </Magnetic>
-            )}
-
-            {status === 'error' && (
-                <div className="text-red-400 text-xs font-mono mt-2">
-                    Error establishing connection. Please retry.
-                </div>
-            )}
+            <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="btn-primary whitespace-nowrap disabled:opacity-50"
+            >
+                {status === 'loading' ? '...' : 'Subscribe'}
+            </button>
         </form>
     );
 };

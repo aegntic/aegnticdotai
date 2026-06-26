@@ -658,4 +658,4 @@ Prologue succeeded because it didn't just automate a painful process. It fundame
 
 ---
 
-*For the technical story of our MCP server development journey, see [The MCP Server That Took 47 Iterations to Get Right](/blog/the-mcp-server-that-took-47-iterations-to-get-right). For the broader story of our ecosystem building, see [From 0 to 40 Platforms in 12 Months](/blog/from-0-to-40-platforms-in-12-months).*
+*For the technical story of our MCP server development journey, see [The MCP Server That Took 47 Iterations to Get Right](/blog/the-mcp-server-that-took-47-iterations-to-get-right). For the broader story of our ecosystem building, see [The Aegntic Growth Story](/blog/aegntic-growth-story).*

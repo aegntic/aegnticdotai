@@ -143,4 +143,4 @@ async function smartRoute(prompt: string, data: Data) {
 
 ---
 
-*Local-first is core to our architecture. See [Building 40+ Platforms](/blog/building-40-platform-ai-ecosystem) for the full infrastructure.*
+*Local-first is core to our architecture. See [Building a Platform Ecosystem](/blog/building-40-platform-ai-ecosystem) for the full infrastructure.*

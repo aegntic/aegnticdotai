@@ -77,7 +77,6 @@ We've seen both dynamics. Excellence is more satisfying *and* more sustainable.
 
 We document everything. Not because documentation is required, but because documentation is proof of understanding.
 
-- **DailyDoco** records every coding session
 - **Graphiti** captures knowledge graphs
 - **Hive-mind** preserves institutional memory
 

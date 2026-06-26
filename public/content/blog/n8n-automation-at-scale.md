@@ -8,7 +8,7 @@ tags: ['n8n', 'automation', 'workflow', 'integration', 'AI-pipelines']
 
 # n8n Automation at Scale
 
-When you're orchestrating 40+ platforms, manual processes don't scale. Every repetitive task is a candidate for automation. Every integration point is a potential workflow.
+When you're orchestrating many platforms, manual processes don't scale. Every repetitive task is a candidate for automation. Every integration point is a potential workflow.
 
 **n8n is our automation backbone.**
 
@@ -84,8 +84,6 @@ Fetch: Get PR files and diff
 Analyze: LLM summarizes changes
     ↓
 Generate: Create documentation draft
-    ↓
-Authenticate: aegnt-27 for human feel
     ↓
 Post: Add as PR comment
     ↓

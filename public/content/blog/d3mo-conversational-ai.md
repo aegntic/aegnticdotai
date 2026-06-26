@@ -263,4 +263,4 @@ Context tracking isn't a feature—it's the foundation of natural conversation.
 
 ---
 
-*D3MO represents our approach to AI interaction design. For related projects, see [aegnt-27 authenticity](/blog/achieving-97-percent-ai-authenticity).*
+*D3MO represents our approach to AI interaction design.*

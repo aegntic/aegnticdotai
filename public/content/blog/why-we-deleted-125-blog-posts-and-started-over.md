@@ -1,6 +1,6 @@
 ---
 title: 'Why We Deleted 125 Blog Posts and Started Over: The Quality Revolution'
-description: 'The brutal decision to delete 75% of our content library, the $50,000 mistake that led to quality standards, and how we built a 9/10+ content factory.'
+description: 'The brutal decision to delete most of our content library, the costly mistake that led to quality standards, and how we built a 9/10+ content factory.'
 pubDate: '2024-12-19'
 heroImage: '../../assets/blog-placeholder-5.jpg'
 tags: ['content-quality', 'strategy', 'quality-standards', '9-10-club', 'content-revolution']
@@ -280,9 +280,7 @@ The most surprising result was the business impact:
 
 Only 40 posts made the cut. Here's why:
 
-### The 9/10+ Posts (3 posts)
-- "From 0 to 40 Platforms in 12 Months" - 100/100 score
-- "How We Achieved 97% AI Authenticity" - 100/100 score
+### The 9/10+ Posts (1 post)
 - "The 45-Minute Ebook Factory" - 100/100 score
 
 These had everything: authentic stories, real code, unique insights, compelling narratives.
@@ -290,8 +288,7 @@ These had everything: authentic stories, real code, unique insights, compelling 
 ### The 8/10+ Posts (15 posts)
 - "Building 40 Platform AI Ecosystem" - 89/100 score
 - "The MCP Revolution" - 87/100 score
-- "DailyDoco Zero-Effort Documentation" - 86/100 score
-- And 12 others with similar quality levels
+- And 13 others with similar quality levels
 
 These were solid but missing something—usually authentic personal experience or truly unique insights.
 
@@ -472,4 +469,4 @@ The quality revolution wasn't just about better content. It was about building a
 
 ---
 
-*For the story of how we built the system that guarantees this quality, see [The 45-Minute Ebook Factory: Autonomous Content Systems](/blog/the-45-minute-ebook-factory-autonomous-content-systems). For the technical foundation that enables our authentic storytelling, see [How We Achieved 97% AI Authenticity](/blog/how-we-achieved-97-percent-ai-authenticity).*
+*For the story of how we built the system that guarantees this quality, see [The 45-Minute Ebook Factory: Autonomous Content Systems](/blog/the-45-minute-ebook-factory-autonomous-content-systems).*

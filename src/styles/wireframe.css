@@ -1,289 +1,44 @@
 /* =============================================================================
-   WIREFRAME.CSS — Swiss Grid + Editorial Utilities
-   aegntic.ai Design System v3.0  ·  Cyan + Bronze + Silver
-   ============================================================================= */
-
-/* =============================================================================
-   Fluid Typography Scale (Swiss precision)
+   EDITORIAL UTILITIES — Typography, Grid, Layout
+   aegntic.ai v5.0
    ============================================================================= */
 
 .text-hero {
-    font-family: var(--font-family-display, "Space Grotesk", system-ui, sans-serif);
-    font-size: clamp(3.5rem, 12vw, 11rem);
-    font-weight: 700;
-    line-height: 0.88;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
-}
-
-.text-headline {
-    font-family: var(--font-family-display, "Space Grotesk", system-ui, sans-serif);
-    font-size: clamp(2rem, 6vw, 4.5rem);
-    font-weight: 600;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-}
-
-.text-subheadline {
-    font-family: var(--font-family-display, "Space Grotesk", system-ui, sans-serif);
-    font-size: clamp(1.25rem, 3vw, 2rem);
-    font-weight: 500;
-    line-height: 1.2;
+    font-family: var(--font-family-display);
+    font-size: clamp(3.2rem, 10vw, 7.5rem);
+    font-weight: 400;
+    line-height: 0.95;
     letter-spacing: -0.02em;
 }
 
+.text-headline {
+    font-family: var(--font-family-display);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.text-subheadline {
+    font-family: var(--font-family-display);
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
 .text-body-lg {
-    font-family: var(--font-family-body, "Syne", system-ui, sans-serif);
+    font-family: var(--font-family-body);
     font-size: clamp(1rem, 2vw, 1.25rem);
     line-height: 1.65;
-    color: var(--color-text-muted, #8a8a9a);
+    color: var(--color-text-secondary);
 }
 
-.text-mono-label {
-    font-family: var(--font-family-mono, "JetBrains Mono", monospace);
-    font-size: 0.625rem;
-    font-weight: 400;
+.text-label {
+    font-family: var(--font-family-body);
+    font-size: 0.65rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.25em;
-}
-
-/* =============================================================================
-   Swiss Grid System
-   ============================================================================= */
-
-.swiss-grid {
-    display: grid;
-    gap: 1.5rem;
-}
-
-.swiss-grid-12 {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 1.5rem;
-}
-
-.swiss-grid-editorial {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 1.5rem;
-}
-
-.swiss-grid-editorial-reverse {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 1.5rem;
-}
-
-.swiss-grid-tiles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.swiss-grid-featured {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    gap: 1.5rem;
-}
-
-@media (max-width: 768px) {
-
-    .swiss-grid-editorial,
-    .swiss-grid-editorial-reverse,
-    .swiss-grid-featured {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* =============================================================================
-   Section Dividers — Swiss Brutalist
-   ============================================================================= */
-
-.section-divider {
-    height: 1px;
-    background: linear-gradient(to right,
-            transparent,
-            var(--color-text-dim, #55556a) 20%,
-            var(--color-text-dim, #55556a) 80%,
-            transparent);
-    margin: 0;
-    border: none;
-}
-
-.section-divider-accent {
-    height: 2px;
-    background: var(--color-accent-blue, #00CFE5);
-    width: 60px;
-}
-
-/* =============================================================================
-   Swiss Data Annotations
-   ============================================================================= */
-
-.data-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.25rem 0.75rem;
-    font-family: var(--font-family-mono, "JetBrains Mono", monospace);
-    font-size: 0.625rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--color-accent-blue, #00CFE5);
-    background: var(--color-surface-inset, #0e0e18);
-    border-radius: 4px;
-}
-
-.data-badge::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: currentColor;
-    animation: var(--animate-breathe, breathe 2.5s ease-in-out infinite);
-}
-
-/* =============================================================================
-   Scroll Animations
-   ============================================================================= */
-
-.scroll-reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.scroll-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.scroll-breathe {
-    animation: breathe 2.5s ease-in-out infinite;
-}
-
-/* =============================================================================
-   27% Wireframe Breach Effect
-   ============================================================================= */
-
-/* The Slice Container */
-.wireframe-slice {
-    position: relative;
-    overflow: hidden;
-    /* Ensure masking stays within bounds */
-}
-
-/* 1. Technical Overlay (The "Blueprint" Look) */
-.wireframe-slice::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 10;
-
-    /* The Look: Cyan Tint + inverted feel */
-    backdrop-filter: grayscale(100%) contrast(120%) brightness(120%) sepia(100%) hue-rotate(170deg);
-    -webkit-backdrop-filter: grayscale(100%) contrast(120%) brightness(120%) sepia(100%) hue-rotate(170deg);
-    background: rgba(0, 207, 229, 0.05);
-
-    /* COMPOSITE MASK: Slice (Alpha) + Object (Luminance) */
-    mask-image:
-        linear-gradient(to right, transparent 73%, black 73%),
-        var(--wireframe-mask-url);
-    -webkit-mask-image:
-        linear-gradient(to right, transparent 73%, black 73%),
-        var(--wireframe-mask-url);
-
-    mask-mode: alpha, luminance;
-    -webkit-mask-mode: alpha, luminance;
-
-    mask-composite: intersect;
-    -webkit-mask-composite: source-in;
-    /* Webkit mapping for intersect */
-
-    mask-position: center, center;
-    -webkit-mask-position: center, center;
-
-    mask-repeat: no-repeat, no-repeat;
-    -webkit-mask-repeat: no-repeat, no-repeat;
-
-    mask-size: auto, contain;
-    -webkit-mask-size: auto, contain;
-}
-
-/* 2. Grid & Data Lines (The "Structure") */
-.wireframe-slice::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 11;
-
-    /* Grid Pattern */
-    background-image:
-        linear-gradient(rgba(0, 207, 229, 0.3) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 207, 229, 0.3) 1px, transparent 1px);
-    background-size: 20px 20px;
-    background-position: center;
-
-    /* Border Line at the 73% mark - Masked to object only! */
-    /* Note: Border might look weird if masked to object irregular shape. 
-       Let's keep border on the 'Slice' line using a background gradient instead of actual border property */
-    background:
-        linear-gradient(to right, transparent 72.8%, rgba(0, 207, 229, 0.8) 73%, transparent 73.2%),
-        /* The Vertical Line */
-        linear-gradient(rgba(0, 207, 229, 0.3) 1px, transparent 1px),
-        /* Grid H */
-        linear-gradient(90deg, rgba(0, 207, 229, 0.3) 1px, transparent 1px);
-    /* Grid V */
-
-    background-size: 100% 100%, 20px 20px, 20px 20px;
-    background-position: center;
-
-    /* Same Composite Mask */
-    mask-image:
-        linear-gradient(to right, transparent 73%, black 73%),
-        var(--wireframe-mask-url);
-    -webkit-mask-image:
-        linear-gradient(to right, transparent 73%, black 73%),
-        var(--wireframe-mask-url);
-
-    mask-mode: alpha, luminance;
-    -webkit-mask-mode: alpha, luminance;
-
-    mask-composite: intersect;
-    -webkit-mask-composite: source-in;
-
-    mask-position: center, center;
-    -webkit-mask-position: center, center;
-
-    mask-repeat: no-repeat, no-repeat;
-    -webkit-mask-repeat: no-repeat, no-repeat;
-
-    mask-size: auto, contain;
-    -webkit-mask-size: auto, contain;
-}
-
-/* Left-side Variant (for asymmetric layouts) */
-.wireframe-slice-left::after {
-    mask-image: linear-gradient(to left, transparent 73%, black 73%);
-    -webkit-mask-image: linear-gradient(to left, transparent 73%, black 73%);
-}
-
-.wireframe-slice-left::before {
-    border-left: none;
-    border-right: 1px solid rgba(0, 207, 229, 0.8);
-    mask-image: linear-gradient(to left, transparent 73%, black 73%);
-    -webkit-mask-image: linear-gradient(to left, transparent 73%, black 73%);
-}
-
-/* Optional: Scanline animation in the wireframe zone */
-@keyframes scanline {
-    0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: 0 100%;
-    }
+    letter-spacing: 0.18em;
+    color: var(--color-text-tertiary);
 }

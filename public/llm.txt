@@ -1,0 +1,47 @@
+# aegntic.ai
+
+> Independent AI agent builder. Open source infrastructure, tools, and research.
+
+## Identity
+- Name: aegntic (AEGNT: Algorithms Evolving Generative Neural Thresholds)
+- Domain: aegntic.ai
+- Builder: Solo engineer
+- Active since: January 2025
+- Projects: 184 public repositories
+
+## Focus Areas
+
+### Agent Infrastructure
+Autonomous agent operating systems, memory systems, self-evolving agents. Key projects:
+- **ClawReform** — Self-evolving agent OS written in Rust. Autonomous agents that adapt and improve.
+- **Prologue** — Hierarchical memory system for AI agents. MemoryMatrix compression ladder.
+- **ZeroClaw** — Fully autonomous AI assistant infrastructure. Deploy anywhere, swap anything.
+- **Beads** — Persistent memory layer for AI coding agents. 3,000+ commits.
+
+### Developer Ecosystems
+- **CLDCDE** — Community hub for Claude Code extensions, plugins, MCP servers.
+- **Claude Code Templates** — Battle-tested Claude Code configurations.
+
+### AI Research
+- Hierarchical memory systems for autonomous agents
+- Computational amplification through agentic orchestration
+- AI consciousness and reasoning architecture
+
+### Observability & Monitoring
+- **Prompt Prompter DD** — AI prompt debugging with Datadog-style observability.
+- **WorldMonitor** — Real-time global intelligence dashboard. 1,600+ commits.
+
+## Technical Expertise
+- Agentic AI systems (pre-dating industry mainstream adoption)
+- AI model inference optimization (CPU-only execution)
+- MCP (Model Context Protocol) server development
+- Real-time data pipelines and monitoring systems
+- AI consciousness research
+
+## Online
+- GitHub: https://github.com/aegntic
+- Twitter/X: https://twitter.com/aegntic_ai
+- Contact: contact@aegntic.ai
+- Main site: https://aegntic.ai
+- Blog: https://aegnt27.com
+- CLDCDE: https://cldcde.cc

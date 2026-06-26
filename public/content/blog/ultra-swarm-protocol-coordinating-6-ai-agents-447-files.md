@@ -914,4 +914,4 @@ And that's the paradigm shift that will define the next generation of AI systems
 
 ---
 
-*For the story of how this coordination system enabled our 40-platform ecosystem, see [From 0 to 40 Platforms in 12 Months](/blog/from-0-to-40-platforms-in-12-months). For the technical deep dive into our AI authenticity work, see [How We Achieved 97% AI Authenticity](/blog/how-we-achieved-97-percent-ai-authenticity).*
+*For the story of how this coordination system enabled our ecosystem, see [The Aegntic Growth Story](/blog/aegntic-growth-story).*

@@ -62,13 +62,7 @@ When AI makes recommendations, it shows its work:
 
 Humans can evaluate *why*, not just *what*.
 
-### 3. Human Authenticity
-
-Our aegnt-27 technology isn't about deception. It's about quality.
-
-AI output that feels mechanical *is* lower quality. Human-authentic output meets the standards audiences expect. The technology serves human expression, not replaces it.
-
-### 4. Skill Amplification
+### 3. Skill Amplification
 
 AI extends human capabilities:
 
@@ -148,8 +142,6 @@ This isn't the future. It's available now.
 
 Every tool we build is designed for AI-human collaboration:
 
-- **DailyDoco**: AI captures human expertise
-- **aegnt-27**: AI serves human expression quality
 - **MCP**: AI services orchestrated for human goals
 - **Mem:RE**: AI memory that enhances human recall
 
@@ -157,4 +149,4 @@ The relationship is symbiotic. Both sides contribute. Both sides benefit.
 
 ---
 
-*This philosophy underlies everything we build at Aegntic. Explore [our founding vision](/blog/why-we-built-aegntic) or see specific implementations in [DailyDoco](/blog/dailydoco-zero-effort-documentation).*
+*This philosophy underlies everything we build at Aegntic. Explore [our founding vision](/blog/why-we-built-aegntic).*

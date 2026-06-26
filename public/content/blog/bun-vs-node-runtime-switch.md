@@ -261,4 +261,4 @@ const module = await import(`./dynamic/${name}`);
 
 ---
 
-*Bun powers our development workflow. For the full tech stack, see [Building a 40+ Platform Ecosystem](/blog/building-40-platform-ai-ecosystem).*
+*Bun powers our development workflow. For the full tech stack, see [Building a Platform Ecosystem](/blog/building-40-platform-ai-ecosystem).*

@@ -113,12 +113,12 @@ Easy to modify shortcuts without breaking everything:
 
 ### Time Savings
 
-| Task | Before | After | Savings |
-|------|--------|-------|---------|
-| Context setup | 3 min | 5 sec | 97% |
-| Prompt crafting | 2 min | 0 | 100% |
-| Result integration | 2 min | 10 sec | 92% |
-| Total per interaction | 7+ min | 15 sec | 96% |
+| Task | Before | After |
+|------|--------|-------|
+| Context setup | Minutes | Seconds |
+| Prompt crafting | Minutes | Eliminated |
+| Result integration | Minutes | Seconds |
+| Total per interaction | Several minutes | Seconds |
 
 ### Daily Impact
 
