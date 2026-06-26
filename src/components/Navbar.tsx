@@ -36,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPanel }) => {
                     <Mail size={14} />
                     <span className="hidden md:inline">Contact</span>
                 </button>
-                <div className="w-px h-3 mx-2" style={{ background: '#ddd9d0' }} />
+                <div className="w-px h-3 mx-2" style={{ background: 'var(--color-rule)' }} />
                 <a href="https://github.com/aegntic" target="_blank" rel="noopener noreferrer" className="nav-link" title="GitHub">
                     <Github size={14} />
                 </a>

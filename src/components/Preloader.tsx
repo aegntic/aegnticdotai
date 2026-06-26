@@ -37,7 +37,7 @@ const Preloader: React.FC<{ onComplete?: () => void }> = ({ onComplete }) => {
             </div>
 
             <div className={`preloader__tagline ${phase === 'tagline' || phase === 'exit' ? 'preloader__tagline--visible' : ''}`}>
-                <span>Adaptive Emergence</span>
+                <span>Independent AI agent engineer</span>
             </div>
         </div>
     );

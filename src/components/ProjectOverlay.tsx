@@ -27,11 +27,11 @@ const ProjectOverlay: React.FC<ProjectOverlayProps> = ({ project, isOpen, onClos
                         exit={{ opacity: 0, y: 40 }}
                         transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
                         className="relative w-full h-full overflow-y-auto"
-                        style={{ backgroundColor: '#faf9f6' }}
+                        style={{ backgroundColor: 'var(--color-bg-elevated)' }}
                         onClick={e => e.stopPropagation()}
                     >
                         {/* Header */}
-                        <div className="sticky top-0 z-10 flex items-center justify-between px-6 md:px-12 py-6" style={{ backgroundColor: 'rgba(250,249,246,0.95)', borderBottom: '1px solid #ddd9d0' }}>
+                        <div className="sticky top-0 z-10 flex items-center justify-between px-6 md:px-12 py-6" style={{ backgroundColor: 'rgba(255,255,255,0.92)', borderBottom: '1px solid var(--color-rule)' }}>
                             <button onClick={onClose} className="flex items-center gap-2 nav-link">
                                 <ArrowLeft size={14} />
                                 Back
@@ -47,10 +47,10 @@ const ProjectOverlay: React.FC<ProjectOverlayProps> = ({ project, isOpen, onClos
                         <div className="px-6 md:px-12 py-12 md:py-20 max-w-4xl mx-auto">
                             {/* Preview */}
                             <div className="overflow-hidden mb-12" style={{
-                                border: '1px solid #ddd9d0',
-                                borderRadius: '2px',
+                                border: '1px solid var(--color-rule)',
+                                borderRadius: 'var(--radius-lg)',
                                 aspectRatio: '16/10',
-                                background: '#f0eeea',
+                                background: 'var(--color-bg-elevated)',
                             }}>
                                 <img
                                     src={project.preview}

@@ -27,11 +27,11 @@ const PanelOverlay: React.FC<PanelOverlayProps> = ({ title, isOpen, onClose, chi
                         exit={{ opacity: 0, y: 40 }}
                         transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
                         className="relative w-full h-full overflow-y-auto"
-                        style={{ backgroundColor: '#faf9f6' }}
+                        style={{ backgroundColor: 'var(--color-bg-elevated)' }}
                         onClick={e => e.stopPropagation()}
                     >
                         {/* Header */}
-                        <div className="sticky top-0 z-10 flex items-center justify-between px-6 md:px-12 py-6" style={{ backgroundColor: 'rgba(250,249,246,0.95)', borderBottom: '1px solid #ddd9d0' }}>
+                        <div className="sticky top-0 z-10 flex items-center justify-between px-6 md:px-12 py-6" style={{ backgroundColor: 'rgba(255,255,255,0.92)', borderBottom: '1px solid var(--color-rule)' }}>
                             <span className="text-label">{title}</span>
                             <button onClick={onClose} className="hover:opacity-60 transition-opacity" style={{ color: 'var(--color-text-tertiary)' }}>
                                 <X size={18} />

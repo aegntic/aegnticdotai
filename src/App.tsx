@@ -58,7 +58,7 @@ const App: React.FC = () => {
                     { num: '02', title: 'What I ship', desc: 'Custom AI-agent builds, automation systems, and developer tooling. Real systems in production &mdash; not demos.' },
                     { num: '03', title: 'The proof', desc: '127+ public repositories. A 9-crate Rust trading engine, a large Go backend on Postgres and AWS, edge products on Cloudflare Workers.' },
                 ].map(item => (
-                    <div key={item.num} className="md:border-t pt-6" style={{ borderColor: '#ddd9d0' }}>
+                    <div key={item.num} className="md:border-t pt-6" style={{ borderColor: 'var(--color-rule)' }}>
                         <span className="text-label block mb-6" style={{ opacity: 0.5 }}>{item.num}</span>
                         <h3 style={{
                             fontFamily: 'var(--font-family-display)',
@@ -79,7 +79,7 @@ const App: React.FC = () => {
                 ))}
             </div>
 
-            <div className="py-12 border-t border-b" style={{ borderColor: '#ddd9d0' }}>
+            <div className="py-12 border-t border-b" style={{ borderColor: 'var(--color-rule)' }}>
                 <p style={{
                     fontFamily: 'var(--font-family-display)',
                     fontSize: 'clamp(1.3rem, 2.5vw, 2rem)',
@@ -112,7 +112,7 @@ const App: React.FC = () => {
                 </p>
             </div>
 
-            <div className="pt-10 border-t" style={{ borderColor: '#ddd9d0' }}>
+            <div className="pt-10 border-t" style={{ borderColor: 'var(--color-rule)' }}>
                 <a
                     href="https://github.com/aegntic"
                     target="_blank"
@@ -160,7 +160,7 @@ const App: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-16 md:gap-20">
                 <ContactForm />
-                <div className="md:border-l md:pl-16" style={{ borderColor: '#ddd9d0' }}>
+                <div className="md:border-l md:pl-16" style={{ borderColor: 'var(--color-rule)' }}>
                     <div className="mb-16">
                         <span className="text-label block mb-8">Elsewhere</span>
                         <div className="space-y-6">
@@ -177,7 +177,7 @@ const App: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="pt-8 border-t" style={{ borderColor: '#ddd9d0' }}>
+                    <div className="pt-8 border-t" style={{ borderColor: 'var(--color-rule)' }}>
                         <p style={{ fontSize: '0.8rem', color: 'var(--color-text-tertiary)', lineHeight: 1.6, marginBottom: '1rem' }}>
                             Occasional notes on what I&rsquo;m building.
                         </p>
@@ -189,7 +189,7 @@ const App: React.FC = () => {
     );
 
     return (
-        <div className="min-h-screen flex flex-col w-full" style={{ backgroundColor: '#faf9f6' }}>
+        <div className="min-h-screen flex flex-col w-full" style={{ backgroundColor: 'var(--color-bg)' }}>
             {loading && <Preloader onComplete={() => setLoading(false)} />}
             <NewsletterModal />
             <div className={`flex flex-col min-h-screen transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>

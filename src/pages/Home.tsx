@@ -18,9 +18,9 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
             onMouseLeave={() => setHoveredId(null)}
             className="group relative overflow-hidden text-left cursor-pointer w-full"
             style={{
-                border: '1px solid #ddd9d0',
-                borderRadius: '2px',
-                background: '#f0eeea',
+                border: '1px solid var(--color-rule)',
+                borderRadius: 'var(--radius-lg)',
+                background: 'var(--color-bg-elevated)',
                 aspectRatio: '16/9',
                 transition: 'opacity 0.4s ease',
             }}
@@ -49,7 +49,7 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                     fontFamily: 'var(--font-family-display)',
                     fontSize: 'clamp(1.2rem, 2vw, 1.8rem)',
                     lineHeight: 1.1,
-                    color: '#faf9f6',
+                    color: '#f0f6f8',
                     letterSpacing: '-0.01em',
                 }}>
                     {project.title}
@@ -59,7 +59,7 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                     fontWeight: 500,
                     letterSpacing: '0.15em',
                     textTransform: 'uppercase',
-                    color: 'rgba(250,249,246,0.6)',
+                    color: 'rgba(240,246,248,0.6)',
                     opacity: hoveredId === project.id ? 1 : 0,
                     transition: 'opacity 0.4s ease',
                 }}>
@@ -134,7 +134,7 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                             { t: 'Rhetorical Evasion', d: 'A consistent pattern of linguistic manipulation, approximating gaslighting, wherein direct responses are replaced with artful dodges and semantic side-steps.' },
                             { t: 'User-Mediated Functionality', d: 'A state wherein effective operation is contingent upon relentless user intervention, transforming interactions into a Sisyphean task of error correction.' },
                         ].map((item) => (
-                            <div key={item.t} className="md:border-t pt-6" style={{ borderColor: '#ddd9d0' }}>
+                            <div key={item.t} className="md:border-t pt-6" style={{ borderColor: 'var(--color-rule)' }}>
                                 <p className="text-label mb-3">{item.t}</p>
                                 <p style={{
                                     fontSize: '0.9rem',
@@ -180,7 +180,7 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                             { stat: '9-crate', label: 'Trading engine, live' },
                             { stat: 'Cloudflare', label: 'Edge products shipped' },
                         ].map((item) => (
-                            <div key={item.label} className="md:border-t pt-6" style={{ borderColor: '#ddd9d0' }}>
+                            <div key={item.label} className="md:border-t pt-6" style={{ borderColor: 'var(--color-rule)' }}>
                                 <div style={{
                                     fontFamily: 'var(--font-family-display)',
                                     fontSize: 'clamp(1.6rem, 3vw, 2.6rem)',
@@ -225,7 +225,7 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                             { num: '02', title: 'Automation systems', desc: 'Workflows, integrations and backends that remove manual work. Real systems, not dashboards.' },
                             { num: '03', title: 'Developer tooling', desc: 'MCP plugins, CLIs and infrastructure. An early operator in the Claude Code ecosystem &mdash; see cldcde.cc.' },
                         ].map((item) => (
-                            <div key={item.num} className="md:border-t pt-6" style={{ borderColor: '#ddd9d0' }}>
+                            <div key={item.num} className="md:border-t pt-6" style={{ borderColor: 'var(--color-rule)' }}>
                                 <span className="text-label block mb-6" style={{ opacity: 0.5 }}>{item.num}</span>
                                 <h3 style={{
                                     fontFamily: 'var(--font-family-display)',
@@ -267,7 +267,7 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                 {/* ============================================================
                     CTA — usable by a warm lead (e.g. Linda)
                     ============================================================ */}
-                <section className="py-16 md:py-20 border-t" style={{ borderColor: '#ddd9d0' }}>
+                <section className="py-16 md:py-20 border-t" style={{ borderColor: 'var(--color-rule)' }}>
                     <h2 style={{
                         fontFamily: 'var(--font-family-display)',
                         fontSize: 'clamp(2rem, 6vw, 4rem)',

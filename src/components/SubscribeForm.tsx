@@ -44,7 +44,7 @@ const SubscribeForm: React.FC<SubscribeFormProps> = ({ className = '' }) => {
 
     if (status === 'success') {
         return (
-            <div className={`flex items-center gap-2 text-sm ${className}`} style={{ color: '#1a1a18' }}>
+            <div className={`flex items-center gap-2 text-sm ${className}`} style={{ color: 'var(--color-text-primary)' }}>
                 <Check size={14} />
                 <span>Done.</span>
             </div>
