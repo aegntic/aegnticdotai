@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  AEGNTIC · AE AUDITS  (aegntic.ai/audits)
+  ============================================================================
+  Built on SOHub content-page shell. Single static HTML, GSAP scroll reveals,
+  light-first palette. Zero AI fingerprints. No fabricated metrics.
+  ============================================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AE Audits — Decision review for expensive bets</title>
+<meta name="description" content="A structured adversarial council on your most expensive decision, before you commit. 15 compressed reasoning lenses, deduplicated, delivered as a verdict and a 7-day action plan.">
+<link rel="canonical" href="https://aegntic.ai/audits">
+<link rel="icon" type="image/png" href="/favicon.png">
+<meta name="theme-color" content="#f0f6f8">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aegntic.ai/audits">
+<meta property="og:title" content="AE Audits — Decision review for expensive bets">
+<meta property="og:description" content="15 compressed reasoning lenses on your most expensive decision. Verdict + 7-day plan in 48 hours.">
+<meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f0f6f8;--bg-elevated:#ffffff;--bg-inset:#e7eef0;
+  --text:#11181c;--text-dark:#0c1016;--text-secondary:#4a5258;--text-muted:#a5abad;
+  --rule:rgba(17,24,28,0.08);--rule-strong:rgba(17,24,28,0.14);
+  --accent:#00b39f;--accent-dim:rgba(0,179,158,0.12);
+  --surface-1:#0c1016;--surface-2:#23272d;--surface-3:#3a3e44;--surface-4:#50555a;
+  --radius:1.5rem;--radius-lg:3rem;--radius-pill:999px;
+  --ease-spring:cubic-bezier(.22,.68,0,1);--ease-overshoot:cubic-bezier(.22,.68,0,1.2);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
+.fd{font-family:'Space Grotesk','Inter',sans-serif}
+
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:200;transition:width 80ms linear;will-change:width}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 1rem;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+@media(min-width:1024px){.nav{padding:1.5rem 3rem}}
+.nav-logo{pointer-events:auto;display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.125rem;letter-spacing:-.02em;color:var(--text-dark)}
+.nav-logo .ae{font-family:'Space Grotesk',sans-serif;color:var(--accent)}
+.nav-back{pointer-events:auto;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.6rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;border:none;cursor:pointer;transition:transform .5s var(--ease-spring)}
+.nav-back:hover{transform:scale(1.05)}
+.nav-back svg{width:14px;height:14px;transition:transform .3s var(--ease-spring)}
+.nav-back:hover svg{transform:translateX(-3px)}
+
+.hero{position:relative;min-height:78vh;display:flex;align-items:center;padding:9rem 1rem 5rem;overflow:hidden}
+@media(min-width:768px){.hero{padding:11rem 2rem 6rem}}
+@media(min-width:1024px){.hero{padding:11rem 3rem 7rem}}
+@media(min-width:1280px){.hero{padding:13rem 5rem 9rem}}
+.hero-watermark{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:flex-end;overflow:hidden;pointer-events:none;user-select:none;padding-right:.5rem}
+.hero-watermark span{font-weight:700;font-size:clamp(8rem,28vw,24rem);letter-spacing:-.04em;color:var(--text-dark);opacity:.04;line-height:.85;white-space:nowrap}
+.hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%}
+.hero-eyebrow{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem}
+.hero-eyebrow::before{content:"";width:1.75rem;height:1px;background:var(--accent);opacity:.6}
+.hero-headline{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(2rem,5.2vw,4.25rem);font-weight:500;letter-spacing:-.03em;line-height:1.05;color:var(--text-dark);max-width:20ch;margin-bottom:1.5rem}
+.hero-headline em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:clamp(1rem,1.3vw,1.125rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:2.5rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+
+.btn{display:inline-flex;align-items:center;gap:.75rem;background:var(--text-dark);color:var(--bg);padding:.875rem 2rem;border-radius:var(--radius-pill);font-size:.9375rem;font-weight:500;transition:transform .5s var(--ease-overshoot),box-shadow .4s ease;cursor:pointer;border:none;box-shadow:0 10px 30px -10px rgba(12,16,22,.35)}
+.btn:hover{transform:scale(1.06);box-shadow:0 18px 40px -12px rgba(12,16,22,.45)}
+.btn svg{width:1.125rem;height:1.125rem;transition:transform .3s var(--ease-overshoot)}
+.btn:hover svg{transform:translateX(3px)}
+.btn-ghost{background:transparent;color:var(--text-dark);border:1px solid var(--rule-strong);box-shadow:none}
+.btn-ghost:hover{background:rgba(17,24,28,.04);transform:scale(1.03);box-shadow:none}
+
+section{position:relative}
+.section-pad{padding:6rem 1rem}
+@media(min-width:768px){.section-pad{padding:8rem 2rem}}
+@media(min-width:1024px){.section-pad{padding:8rem 3rem}}
+@media(min-width:1280px){.section-pad{padding:10rem 5rem}}
+.section-inner{max-width:1400px;margin:0 auto}
+.section-label{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:.625rem}
+.section-label::before{content:"";width:1.75rem;height:1px;background:var(--text-muted);opacity:.4}
+.section-heading{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(1.75rem,4vw,3rem);font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-dark);margin-bottom:1rem;max-width:22ch}
+.section-heading em{font-style:normal;color:var(--accent)}
+.section-desc{font-size:clamp(.9375rem,1.2vw,1.0625rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:3rem}
+
+.grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
+@media(min-width:768px){.grid.cols-2{grid-template-columns:1fr 1fr}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius);padding:2.25rem;box-shadow:0 1px 2px rgba(12,16,22,.04);transition:transform .4s var(--ease-spring),box-shadow .4s ease,border-color .4s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 24px -8px rgba(12,16,22,.12);border-color:var(--rule-strong)}
+.card h3{font-family:'Space Grotesk',sans-serif;font-size:1.375rem;font-weight:600;letter-spacing:-.02em;margin-bottom:.625rem;color:var(--text-dark)}
+.card p{font-size:.9375rem;color:var(--text-secondary);line-height:1.6}
+.card .tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+.tag{font-size:.6875rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.4rem .875rem;border-radius:var(--radius-pill);background:var(--accent-dim);color:var(--text-secondary)}
+.card-dark{background:var(--surface-1);color:#fff;border-color:transparent}
+.card-dark h3{color:#fff}.card-dark p{color:rgba(255,255,255,.7)}
+.card-dark .tag{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85)}
+
+/* ADVISER ROSTER GRID */
+.roster{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-top:2rem}
+@media(min-width:768px){.roster{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1024px){.roster{grid-template-columns:repeat(5,1fr)}}
+.adviser{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:.875rem;padding:1.25rem .875rem;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:.8125rem;font-weight:600;letter-spacing:-.01em;color:var(--text-dark);transition:transform .3s var(--ease-spring),border-color .3s ease}
+.adviser:hover{transform:translateY(-2px);border-color:var(--accent)}
+.adviser .lens{display:block;font-family:'Inter',sans-serif;font-size:.6875rem;font-weight:500;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;margin-top:.375rem}
+
+/* VERDICT STRUCTURE BLOCK */
+.verdict-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:2rem}
+@media(min-width:768px){.verdict-grid{grid-template-columns:1fr 1fr}}
+.verdict-block{background:var(--surface-1);color:#fff;border-radius:var(--radius);padding:2rem 1.75rem;display:flex;flex-direction:column;gap:.5rem}
+.verdict-block:nth-child(2n){background:var(--surface-2)}
+.verdict-block:nth-child(3n){background:var(--surface-3)}
+.verdict-block:nth-child(4n){background:var(--surface-4)}
+.verdict-block:nth-child(5n){background:var(--surface-3)}
+.verdict-block .label{font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.verdict-block h4{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600;letter-spacing:-.015em}
+.verdict-block p{font-size:.875rem;color:rgba(255,255,255,.72);line-height:1.55}
+
+/* PRICING TIER */
+.tier{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1rem;height:100%}
+.tier.featured{background:var(--surface-1);color:#fff;border-color:transparent}
+.tier .price{font-family:'Space Grotesk',sans-serif;font-size:2.25rem;font-weight:600;letter-spacing:-.025em}
+.tier .price small{font-size:1rem;font-weight:500;color:var(--text-muted)}
+.tier.featured .price small{color:rgba(255,255,255,.6)}
+.tier ul{list-style:none;padding:0;margin:1rem 0;display:flex;flex-direction:column;gap:.625rem}
+.tier li{font-size:.9375rem;color:var(--text-secondary);line-height:1.5;display:flex;gap:.5rem}
+.tier.featured li{color:rgba(255,255,255,.78)}
+.tier li::before{content:"";flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:.55rem}
+
+/* FAQ */
+.prose{max-width:760px}
+.prose h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.4rem,2.6vw,1.875rem);letter-spacing:-.02em;line-height:1.2;margin:3rem 0 .75rem;color:var(--text-dark)}
+.prose h2:first-child{margin-top:0}
+.prose p{font-size:1rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1rem}
+.prose strong{color:var(--text-dark);font-weight:600}
+.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent-dim)}
+
+/* GUARANTEE STRIP */
+.guarantee{background:var(--accent-dim);border-left:3px solid var(--accent);padding:2rem 2rem;margin:4rem 0;border-radius:0 var(--radius) var(--radius) 0}
+.guarantee p{font-size:1rem;color:var(--text-dark);line-height:1.6;max-width:60ch}
+.guarantee strong{color:var(--text-dark);font-weight:600}
+
+.footer{width:100%;padding:5rem 1.5rem 3rem;display:flex;flex-direction:column;align-items:center;gap:2rem;text-align:center;border-top:1px solid var(--rule)}
+@media(min-width:1024px){.footer{padding:6rem 3rem 4rem}}
+.footer-marquee{width:100%;overflow:hidden;margin-bottom:1rem}
+.footer-marquee-inner{display:flex;gap:3rem;white-space:nowrap;animation:marquee 22s linear infinite;font-size:.8125rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);opacity:.55}
+.footer-marquee-inner span::after{content:'\2022';margin-left:3rem;opacity:.4}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;font-size:.8125rem;font-weight:500;opacity:.65}
+.footer-links a{transition:color .2s}
+.footer-links a:hover{color:var(--accent);opacity:1}
+.footer-copy{font-size:.75rem;color:var(--text-muted);opacity:.6}
+
+.floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.75rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(.9);transition:opacity .5s ease,transform .5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(12,16,22,.15)}
+.floating-cta.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.floating-cta:hover{transform:translateY(-2px) scale(1.05)}
+@media(max-width:767px){.floating-cta span{display:none}.floating-cta{padding:.75rem;border-radius:50%}}
+
+body.gsap-ready .split-mask{display:inline-block;overflow:hidden;vertical-align:top;line-height:inherit;padding-bottom:.05em;margin-bottom:-.05em}
+body.gsap-ready .split-inner{display:inline-block;will-change:transform}
+body.gsap-ready .split-line{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(12,16,22,.15);border-radius:999px}
+::-webkit-scrollbar-thumb:hover{background:rgba(12,16,22,.3)}
+*{scrollbar-width:thin;scrollbar-color:rgba(12,16,22,.15) transparent}
+
+@media(prefers-reduced-motion:reduce){
+  body.gsap-ready .reveal-fade{opacity:1!important;transform:none!important}
+  .btn,.card,.adviser,.verdict-block,.tier{transform:none!important}
+  .footer-marquee-inner{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<a href="#start" class="floating-cta" id="floatingCta">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+  <span>Submit a brief</span>
+</a>
+
+<nav class="nav">
+  <a href="https://aegntic.ai" class="nav-logo">ae<span class="ae">gntic</span></a>
+  <a href="https://aegntic.ai" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    Back to aegntic.ai
+  </a>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-watermark"><span>AUDIT</span></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">AE Audits · Decision review</div>
+    <h1 class="hero-headline" data-split>Pressure-test your most <em>expensive decision</em> before you commit.</h1>
+    <p class="hero-sub">A structured adversarial council on the call you're about to make. 15 compressed reasoning lenses, deduplicated into a verdict and a seven-day action plan. No soft compromise, no consensus theater.</p>
+    <div class="hero-actions">
+      <a href="#start" class="btn">Submit a brief
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a href="#sample" class="btn btn-ghost">Read a sample verdict</a>
+    </div>
+  </div>
+</header>
+
+<!-- WHAT IT IS -->
+<section class="section-pad">
+  <div class="section-inner">
+    <div class="section-label">What it is</div>
+    <h2 class="section-heading" data-split>One decision. Sharpened, <em>pressure-tested</em>, verdict in 48 hours.</h2>
+    <p class="section-desc">You bring a messy, high-stakes fork. We sharpen the brief, run a fifteen-adviser council on it, surface the real tensions, and return a single decision with a seven-day plan. Built for founders and operators who cannot afford the wrong call.</p>
+    <div class="grid cols-3">
+      <article class="card">
+        <h3>Normalize</h3>
+        <p>Your messy input becomes a decision-grade brief. Stakes, options, constraints, gaps surfaced and stated explicitly. You see what was hidden in your own framing.</p>
+        <div class="tag-row"><span class="tag">Step 1</span></div>
+      </article>
+      <article class="card card-dark">
+        <h3>Pressure-test</h3>
+        <p>Fifteen distinct reasoning lenses open on the same brief. Round two forces collision. Overlapping arguments are merged into the stronger frame, weaker duplicates drop out.</p>
+        <div class="tag-row"><span class="tag">Step 2</span></div>
+      </article>
+      <article class="card">
+        <h3>Decide</h3>
+        <p>A single Chairman's Verdict: the call, the consensus, the strongest dissent, the biggest risk, the next seven days. Plus a kill criterion that tells you when to reverse.</p>
+        <div class="tag-row"><span class="tag">Step 3</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- THE COUNCIL -->
+<section class="section-pad" style="background:var(--bg-inset)">
+  <div class="section-inner">
+    <div class="section-label">The council</div>
+    <h2 class="section-heading" data-split>Fifteen lenses. <em>Zero celebrity cosplay.</em></h2>
+    <p class="section-desc">Each adviser applies a distinct decision criterion, risk model, and prioritization logic. Named operators are treated as compressed heuristics, not impersonations. No catchphrases, no public-speaking tics, no meme versions of public figures.</p>
+    <div class="roster">
+      <div class="adviser">Contrarian<span class="lens">Inverse thesis</span></div>
+      <div class="adviser">First-Principles<span class="lens">Decompose</span></div>
+      <div class="adviser">Expansionist<span class="lens">Whole workflow</span></div>
+      <div class="adviser">Outsider<span class="lens">Non-buyer view</span></div>
+      <div class="adviser">Executor<span class="lens">Ship in 7 days</span></div>
+      <div class="adviser">#HORMOZI<span class="lens">Offer engineering</span></div>
+      <div class="adviser">#GARYVEE<span class="lens">Attention leverage</span></div>
+      <div class="adviser">#YCOMBINATOR<span class="lens">Talk to users</span></div>
+      <div class="adviser">#LINDYMODE<span class="lens">Proven path</span></div>
+      <div class="adviser">#8020<span class="lens">Find the wedge</span></div>
+      <div class="adviser">#REDTEAM<span class="lens">Failure modes</span></div>
+      <div class="adviser">#TRUTHMODE<span class="lens">Call the lie</span></div>
+      <div class="adviser">#KARPATHY<span class="lens">Technical moat</span></div>
+      <div class="adviser">#BUFFETT<span class="lens">Durable compounding</span></div>
+      <div class="adviser">#MUSK<span class="lens">First principles</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE VERDICT -->
+<section class="section-pad">
+  <div class="section-inner">
+    <div class="section-label">The verdict</div>
+    <h2 class="section-heading" data-split>Five sections. <em>One decision.</em></h2>
+    <p class="section-desc">Every council-mode output ends with exactly the same structure. No filler, no soft compromise, no vague "consider both options". A verdict you can act on.</p>
+    <div class="verdict-grid">
+      <div class="verdict-block">
+        <span class="label">01</span>
+        <h4>The Decision</h4>
+        <p>A single, clear call. Not a menu. The Chairman is the final decision-maker, not a moderator.</p>
+      </div>
+      <div class="verdict-block">
+        <span class="label">02</span>
+        <h4>Consensus</h4>
+        <p>The load-bearing thesis. What the majority agreed on, and the reasoning that holds it up.</p>
+      </div>
+      <div class="verdict-block">
+        <span class="label">03</span>
+        <h4>Strongest Dissent</h4>
+        <p>The best argument against the decision. Named adviser, not buried. You need to know what could be wrong.</p>
+      </div>
+      <div class="verdict-block">
+        <span class="label">04</span>
+        <h4>Biggest Risk</h4>
+        <p>The single thing that kills this if it goes wrong. Mitigation noted. No long disclaimer lists.</p>
+      </div>
+      <div class="verdict-block">
+        <span class="label">05</span>
+        <h4>Next 7 Days</h4>
+        <p>A concrete action plan, one task per day, plus an explicit kill criterion that tells you when to reverse course.</p>
+      </div>
+    </div>
+    <div class="guarantee">
+      <p><strong>Refund guarantee.</strong> If the audit does not surface a risk you had not considered, the fee is returned in full. No questions, no friction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section-pad" id="start" style="background:var(--bg-inset)">
+  <div class="section-inner">
+    <div class="section-label">Engagement</div>
+    <h2 class="section-heading" data-split>Three ways in. <em>Start where the stakes are.</em></h2>
+    <p class="section-desc">Most engagements begin with the Async Brief. It is the cheapest way to find out whether your decision survives pressure. Retainer is by invitation after the first engagement.</p>
+    <div class="grid cols-3">
+      <article class="tier">
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600;color:var(--text-dark)">Async Brief</h3>
+        <div class="price">$499 <small>one-off</small></div>
+        <p style="font-size:.9375rem;color:var(--text-secondary)">Written report, delivered in 48 hours. The standard engagement.</p>
+        <ul>
+          <li>5-question brief intake</li>
+          <li>Full 15-adviser council run</li>
+          <li>Verdict + 7-day action plan</li>
+          <li>PDF + Notion share</li>
+          <li>One follow-up clarification round</li>
+        </ul>
+        <a href="mailto:hello@aegntic.com?subject=AE%20Audits%20%E2%80%94%20Async%20Brief" class="btn" style="margin-top:auto;align-self:flex-start">Start async brief</a>
+      </article>
+      <article class="tier featured">
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600;color:#fff">Live Council</h3>
+        <div class="price">$1,500 <small>session</small></div>
+        <p style="font-size:.9375rem;color:rgba(255,255,255,.78)">90-minute recorded session. For decisions where the room needs to hear it live.</p>
+        <ul>
+          <li>Pre-session brief sharpening</li>
+          <li>Live council over Zoom, recorded</li>
+          <li>Full written verdict within 24 hours</li>
+          <li>Two follow-up clarification rounds</li>
+          <li>Founding team invited to attend</li>
+        </ul>
+        <a href="mailto:hello@aegntic.com?subject=AE%20Audits%20%E2%80%94%20Live%20Council" class="btn" style="margin-top:auto;align-self:flex-start;background:#fff;color:var(--surface-1)">Book live council</a>
+      </article>
+      <article class="tier">
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600;color:var(--text-dark)">Decision Retainer</h3>
+        <div class="price">$5k <small>/ month</small></div>
+        <p style="font-size:.9375rem;color:var(--text-secondary)">Ongoing decision review. For operators making expensive calls every week.</p>
+        <ul>
+          <li>Up to four audits per month</li>
+          <li>On-call for time-sensitive forks</li>
+          <li>Dedicated Notion workspace</li>
+          <li>Quarterly strategic review session</li>
+          <li>By invitation after first engagement</li>
+        </ul>
+        <a href="mailto:hello@aegntic.com?subject=AE%20Audits%20%E2%80%94%20Retainer" class="btn btn-ghost" style="margin-top:auto;align-self:flex-start">Inquire about retainer</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE -->
+<section class="section-pad" id="sample">
+  <div class="section-inner">
+    <div class="section-label">Proof of work</div>
+    <h2 class="section-heading" data-split>An anonymized <em>real verdict</em>.</h2>
+    <p class="section-desc">A SaaS founder at roughly $180k ARR asked whether to kill the free tier. Below is the abridged verdict. Full write-up available on request.</p>
+    <article class="card card-dark" style="max-width:760px">
+      <h3>The Decision</h3>
+      <p>Kill the free tier. Replace with a 14-day trial requiring a credit card up-front. Grandfather existing free users with high intent for 30 days; email all others a 50%-off-3-months sunset offer.</p>
+      <div class="tag-row"><span class="tag">Consensus</span><span class="tag">14 of 15</span></div>
+    </article>
+    <div style="max-width:760px;margin-top:1.5rem;display:flex;flex-direction:column;gap:1rem">
+      <div style="padding:1.5rem;background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius)">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem">Strongest dissent · #REDTEAM</div>
+        <p style="font-size:.9375rem;color:var(--text-secondary)">If more than 20% of new paid revenue is attributable to free-tier referrals, the kill destroys acquisition. Run referral attribution check before pulling trigger.</p>
+      </div>
+      <div style="padding:1.5rem;background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius)">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem">Biggest risk</div>
+        <p style="font-size:.9375rem;color:var(--text-secondary)">Existing free users churn loudly on social, damaging brand at the moment of funnel change. Mitigation: publish the "why we killed our free tier" essay on the same day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-pad" style="background:var(--bg-inset)">
+  <div class="section-inner">
+    <div class="section-label">Questions</div>
+    <div class="prose">
+      <h2>Is this just an AI prompt?</h2>
+      <p>No. The prompt architecture is the engine; the value is in the brief normalization, the deduplication, the adversarial collision, and the verdict contract. You are paying for a decision review, not a chatbot output.</p>
+      <h2>Why fifteen advisers and not five?</h2>
+      <p>Five is enough for thin briefs (Mode 2). Decisions with multiple tensions get the full fifteen (Mode 3). The system deduplicates aggressively. If two advisers converge on the same argument, the weaker one drops or is forced to add a distinct angle.</p>
+      <h2>Do you actually use named operators like Buffett and Musk?</h2>
+      <p>As <strong>compressed reasoning lenses</strong>, not impersonations. Each named tag applies a distinct strategic heuristic, prioritization logic, and failure model. No catchphrases, no public-speaking tics, no caricature.</p>
+      <h2>What if my decision is too sensitive to share?</h2>
+      <p>Redact what you must. The brief schema accepts placeholders for confidential figures. We can also sign an NDA for Live Council and Retainer engagements.</p>
+      <h2>When should I not use this?</h2>
+      <p>Trivial decisions, purely factual lookups, or anything where you already know the answer and want validation. The council is for expensive calls under genuine uncertainty.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section-pad">
+  <div class="section-inner" style="text-align:center;max-width:760px">
+    <h2 class="section-heading" data-split style="margin:0 auto 1.5rem">Have a decision <em>worth pressure-testing?</em></h2>
+    <p class="section-desc" style="margin:0 auto 2.5rem">Send a one-sentence brief. We will tell you whether it warrants a full council, a reduced council, or a direct answer. No obligation.</p>
+    <a href="mailto:hello@aegntic.com?subject=AE%20Audits%20%E2%80%94%20Brief%20intake" class="btn" style="font-size:1rem;padding:1.1rem 2.25rem">Start a brief
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-marquee">
+    <div class="footer-marquee-inner">
+      <span>Adversarial</span><span>Compressed</span><span>Deduplicated</span><span>Decisive</span><span>Refundable</span>
+      <span>Adversarial</span><span>Compressed</span><span>Deduplicated</span><span>Decisive</span><span>Refundable</span>
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="https://aegntic.ai">aegntic.ai</a>
+    <a href="https://aegntic.ai/audits">AE Audits</a>
+    <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://x.com/AEGNTIC" target="_blank" rel="noopener">X / Twitter</a>
+    <a href="https://aegntic.ai/privacy">Privacy</a>
+    <a href="mailto:hello@aegntic.com">Contact</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 AEGNTIC. AE Audits · Decision review for expensive bets.</div>
+</footer>
+
+<script>
+  const progressBar=document.getElementById('scrollProgress');
+  const floatingCta=document.getElementById('floatingCta');
+  let ctaVisible=false;
+  function updateProgress(){
+    const st=window.scrollY;
+    const dh=document.documentElement.scrollHeight-window.innerHeight;
+    progressBar.style.width=(dh>0?(st/dh)*100:0)+'%';
+    const shouldShow=st>window.innerHeight*0.45;
+    if(shouldShow&&!ctaVisible){floatingCta.classList.add('visible');ctaVisible=true}
+    else if(!shouldShow&&ctaVisible){floatingCta.classList.remove('visible');ctaVisible=false}
+  }
+  window.addEventListener('scroll',updateProgress,{passive:true});
+  updateProgress();
+
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+    });
+  });
+
+  (function(){
+    if(!window.gsap||!window.ScrollTrigger){return}
+    gsap.registerPlugin(ScrollTrigger);
+    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.body.classList.add('gsap-ready');
+    if(reduce){
+      gsap.set('[data-split] .split-inner,.reveal-fade',{clearProps:'all'});
+      return;
+    }
+    function splitWords(el){
+      const nodes=Array.from(el.childNodes);el.innerHTML='';
+      nodes.forEach(n=>{
+        if(n.nodeType===3){
+          n.textContent.split(/(\s+)/).forEach(p=>{
+            if(p==='')return;
+            if(/^\s+$/.test(p)){el.appendChild(document.createTextNode(' '));return}
+            const mask=document.createElement('span');mask.className='split-mask';
+            const inner=document.createElement('span');inner.className='split-inner';inner.textContent=p;
+            mask.appendChild(inner);el.appendChild(mask);
+          });
+        }else if(n.nodeType===1){
+          if(n.tagName.toLowerCase()==='br'){el.appendChild(n);return}
+          const mask=document.createElement('span');mask.className='split-mask';
+          n.classList.add('split-inner');mask.appendChild(n);el.appendChild(mask);
+        }
+      });
+    }
+    document.querySelectorAll('[data-split]').forEach(splitWords);
+    gsap.utils.toArray('[data-split]').forEach(el=>{
+      const inners=el.querySelectorAll('.split-inner');
+      if(inners.length){
+        gsap.fromTo(inners,{yPercent:120},{yPercent:0,duration:1.2,ease:'expo.out',stagger:0.08,
+          scrollTrigger:{trigger:el,start:'top 85%',toggleActions:'play none none reverse'}});
+      }
+    });
+    gsap.utils.toArray('.card,.adviser,.verdict-block,.tier').forEach(el=>{
+      gsap.fromTo(el,{y:30,opacity:0},{y:0,opacity:1,duration:0.9,ease:'power3.out',
+        scrollTrigger:{trigger:el,start:'top 90%',toggleActions:'play none none reverse'}});
+    });
+  })();
+</script>
+</body>
+</html>
