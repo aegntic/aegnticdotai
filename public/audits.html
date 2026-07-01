@@ -3,8 +3,9 @@
   ============================================================================
   AEGNTIC · AE AUDITS  (aegntic.ai/audits)
   ============================================================================
-  Built on SOHub content-page shell. Single static HTML, GSAP scroll reveals,
-  light-first palette. Zero AI fingerprints. No fabricated metrics.
+  Inter-only typography · floating hero (cta-float.webp) · teal #00b39f accent
+  Stacking council cards · GSAP split-text reveal · floating CTA
+  Built on aegntic-sohub-honest design tokens. Zero AI fingerprints.
   ============================================================================
 -->
 <html lang="en">
@@ -24,58 +25,82 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f0f6f8;--bg-elevated:#ffffff;--bg-inset:#e7eef0;
-  --text:#11181c;--text-dark:#0c1016;--text-secondary:#4a5258;--text-muted:#a5abad;
-  --rule:rgba(17,24,28,0.08);--rule-strong:rgba(17,24,28,0.14);
-  --accent:#00b39f;--accent-dim:rgba(0,179,158,0.12);
-  --surface-1:#0c1016;--surface-2:#23272d;--surface-3:#3a3e44;--surface-4:#50555a;
-  --radius:1.5rem;--radius-lg:3rem;--radius-pill:999px;
-  --ease-spring:cubic-bezier(.22,.68,0,1);--ease-overshoot:cubic-bezier(.22,.68,0,1.2);
+  --bg:#f0f6f8;
+  --text:#11181c;
+  --text-dark:#0c1016;
+  --text-secondary:#4a5258;
+  --text-muted:#a5abad;
+  --rule:rgba(17,24,28,0.08);
+  --rule-strong:rgba(17,24,28,0.14);
+  --accent:#00b39f;
+  --accent-dim:rgba(0,179,158,0.12);
+  --surface-1:#0c1016;
+  --surface-2:#23272d;
+  --surface-3:#3a3e44;
+  --surface-4:#50555a;
+  --surface-5:#6b7075;
+  --radius:3rem;
+  --radius-lg:3.25rem;
+  --radius-pill:999px;
+  --ease-spring:cubic-bezier(.22,.68,0,1);
+  --ease-overshoot:cubic-bezier(.22,.68,0,1.2);
+  --ease-strong:cubic-bezier(.22,.68,0,1.5);
 }
 html{scroll-behavior:smooth}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
-img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}button{font-family:inherit}
 ::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
-.fd{font-family:'Space Grotesk','Inter',sans-serif}
 
+/* ============ Scroll progress ============ */
 .scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:200;transition:width 80ms linear;will-change:width}
 
+/* ============ Nav ============ */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 1rem;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
 @media(min-width:1024px){.nav{padding:1.5rem 3rem}}
-.nav-logo{pointer-events:auto;display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.125rem;letter-spacing:-.02em;color:var(--text-dark)}
-.nav-logo .ae{font-family:'Space Grotesk',sans-serif;color:var(--accent)}
-.nav-back{pointer-events:auto;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.6rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;border:none;cursor:pointer;transition:transform .5s var(--ease-spring)}
+.nav-logo{pointer-events:auto;display:flex;align-items:center;gap:.625rem;font-weight:600;font-size:1.0625rem;letter-spacing:-.02em;color:var(--text-dark)}
+.nav-logo img{width:36px;height:36px;object-fit:contain}
+.nav-back{pointer-events:auto;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.625rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;border:none;cursor:pointer;transition:transform .5s var(--ease-spring)}
 .nav-back:hover{transform:scale(1.05)}
 .nav-back svg{width:14px;height:14px;transition:transform .3s var(--ease-spring)}
 .nav-back:hover svg{transform:translateX(-3px)}
 
-.hero{position:relative;min-height:78vh;display:flex;align-items:center;padding:9rem 1rem 5rem;overflow:hidden}
-@media(min-width:768px){.hero{padding:11rem 2rem 6rem}}
+/* ============ Hero ============ */
+.hero{position:relative;min-height:92vh;display:flex;align-items:center;padding:8rem 1rem 5rem;overflow:hidden}
+@media(min-width:768px){.hero{padding:10rem 2rem 6rem}}
 @media(min-width:1024px){.hero{padding:11rem 3rem 7rem}}
-@media(min-width:1280px){.hero{padding:13rem 5rem 9rem}}
+@media(min-width:1280px){.hero{padding:12rem 5rem 8rem}}
 .hero-watermark{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:flex-end;overflow:hidden;pointer-events:none;user-select:none;padding-right:.5rem}
 .hero-watermark span{font-weight:700;font-size:clamp(8rem,28vw,24rem);letter-spacing:-.04em;color:var(--text-dark);opacity:.04;line-height:.85;white-space:nowrap}
+/* Hero render: image bleeds off right edge, anchored at ~75% horizontal, breaks page margin */
+.hero-render{position:absolute;top:0;right:-4vw;bottom:0;width:50vw;z-index:1;display:flex;align-items:center;justify-content:center;pointer-events:none;overflow:visible;animation:heroImgIn 1s var(--ease-spring) 0.3s both}
+@media(max-width:1023px){.hero-render{width:60vw;right:-6vw;opacity:.6}}
+@media(max-width:639px){.hero-render{width:75vw;right:-10vw;opacity:.42}}
+.hero-render img{width:100%;height:auto;max-height:82vh;object-fit:contain;object-position:center;animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) scaleX(-1)}50%{transform:translateY(-1rem) scaleX(-1)}}
+@keyframes heroImgIn{from{opacity:0;transform:translateX(3rem)}to{opacity:1;transform:translateX(0)}}
 .hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%}
 .hero-eyebrow{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem}
 .hero-eyebrow::before{content:"";width:1.75rem;height:1px;background:var(--accent);opacity:.6}
-.hero-headline{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(2rem,5.2vw,4.25rem);font-weight:500;letter-spacing:-.03em;line-height:1.05;color:var(--text-dark);max-width:20ch;margin-bottom:1.5rem}
+.hero-headline{font-size:clamp(2.25rem,6vw,5rem);font-weight:600;letter-spacing:-.035em;line-height:1.02;color:var(--text-dark);max-width:18ch;margin-bottom:1.75rem}
 .hero-headline em{font-style:normal;color:var(--accent)}
-.hero-sub{font-size:clamp(1rem,1.3vw,1.125rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:2.5rem}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-sub{font-size:clamp(1.0625rem,1.4vw,1.25rem);color:var(--text-secondary);line-height:1.6;max-width:48ch;margin-bottom:2.75rem;font-weight:400}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
 
-.btn{display:inline-flex;align-items:center;gap:.75rem;background:var(--text-dark);color:var(--bg);padding:.875rem 2rem;border-radius:var(--radius-pill);font-size:.9375rem;font-weight:500;transition:transform .5s var(--ease-overshoot),box-shadow .4s ease;cursor:pointer;border:none;box-shadow:0 10px 30px -10px rgba(12,16,22,.35)}
+/* ============ Buttons ============ */
+.btn{display:inline-flex;align-items:center;gap:.75rem;background:var(--text-dark);color:var(--bg);padding:1rem 2rem;border-radius:var(--radius-pill);font-size:.9375rem;font-weight:500;transition:transform .5s var(--ease-overshoot),box-shadow .4s ease;cursor:pointer;border:none;box-shadow:0 10px 30px -10px rgba(12,16,22,.35)}
 .btn:hover{transform:scale(1.06);box-shadow:0 18px 40px -12px rgba(12,16,22,.45)}
 .btn svg{width:1.125rem;height:1.125rem;transition:transform .3s var(--ease-overshoot)}
 .btn:hover svg{transform:translateX(3px)}
 .btn-ghost{background:transparent;color:var(--text-dark);border:1px solid var(--rule-strong);box-shadow:none}
 .btn-ghost:hover{background:rgba(17,24,28,.04);transform:scale(1.03);box-shadow:none}
+.btn-accent{background:var(--accent);color:#fff;box-shadow:0 10px 30px -10px rgba(0,179,158,.5)}
+.btn-accent:hover{box-shadow:0 18px 40px -12px rgba(0,179,158,.6)}
 
+/* ============ Sections ============ */
 section{position:relative}
 .section-pad{padding:6rem 1rem}
 @media(min-width:768px){.section-pad{padding:8rem 2rem}}
@@ -84,407 +109,722 @@ section{position:relative}
 .section-inner{max-width:1400px;margin:0 auto}
 .section-label{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:.625rem}
 .section-label::before{content:"";width:1.75rem;height:1px;background:var(--text-muted);opacity:.4}
-.section-heading{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(1.75rem,4vw,3rem);font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-dark);margin-bottom:1rem;max-width:22ch}
+.section-heading{font-size:clamp(1.875rem,4.5vw,3.5rem);font-weight:600;letter-spacing:-.03em;line-height:1.08;color:var(--text-dark);margin-bottom:1.25rem;max-width:20ch}
 .section-heading em{font-style:normal;color:var(--accent)}
-.section-desc{font-size:clamp(.9375rem,1.2vw,1.0625rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:3rem}
+.section-desc{font-size:clamp(1rem,1.3vw,1.125rem);color:var(--text-secondary);line-height:1.65;max-width:54ch;margin-bottom:3.5rem}
 
+/* ============ What It Is cards ============ */
 .grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
 @media(min-width:768px){.grid.cols-2{grid-template-columns:1fr 1fr}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-.card{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius);padding:2.25rem;box-shadow:0 1px 2px rgba(12,16,22,.04);transition:transform .4s var(--ease-spring),box-shadow .4s ease,border-color .4s ease}
+.card{background:#fff;border:1px solid var(--rule);border-radius:var(--radius);padding:2.5rem;box-shadow:0 1px 2px rgba(12,16,22,.04);transition:transform .4s var(--ease-spring),box-shadow .4s ease,border-color .4s ease}
 .card:hover{transform:translateY(-3px);box-shadow:0 8px 24px -8px rgba(12,16,22,.12);border-color:var(--rule-strong)}
-.card h3{font-family:'Space Grotesk',sans-serif;font-size:1.375rem;font-weight:600;letter-spacing:-.02em;margin-bottom:.625rem;color:var(--text-dark)}
+.card h3{font-size:1.375rem;font-weight:600;letter-spacing:-.02em;margin-bottom:.75rem;color:var(--text-dark)}
 .card p{font-size:.9375rem;color:var(--text-secondary);line-height:1.6}
-.card .tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+.card .tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
 .tag{font-size:.6875rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.4rem .875rem;border-radius:var(--radius-pill);background:var(--accent-dim);color:var(--text-secondary)}
-.card-dark{background:var(--surface-1);color:#fff;border-color:transparent}
-.card-dark h3{color:#fff}.card-dark p{color:rgba(255,255,255,.7)}
-.card-dark .tag{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85)}
 
-/* ADVISER ROSTER GRID */
-.roster{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-top:2rem}
-@media(min-width:768px){.roster{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:1024px){.roster{grid-template-columns:repeat(5,1fr)}}
-.adviser{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:.875rem;padding:1.25rem .875rem;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:.8125rem;font-weight:600;letter-spacing:-.01em;color:var(--text-dark);transition:transform .3s var(--ease-spring),border-color .3s ease}
-.adviser:hover{transform:translateY(-2px);border-color:var(--accent)}
-.adviser .lens{display:block;font-family:'Inter',sans-serif;font-size:.6875rem;font-weight:500;color:var(--text-muted);letter-spacing:.04em;text-transform:uppercase;margin-top:.375rem}
+/* ============ Council sticky stack (CSS-only, readable) ============ */
+.council-stack{position:relative;margin-top:3rem;display:flex;flex-direction:column;gap:1.25rem}
+.council-card{position:relative;border-radius:var(--radius-lg);padding:3rem;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;box-shadow:0 25px 50px -15px rgba(12,16,22,.25);min-height:360px}
+@media(min-width:768px){
+  .council-card{position:sticky}
+  /* Each card sticks higher than the previous. Next card scrolls up, stops above previous card's content area. Only the empty bottom whitespace of the previous card gets covered — text stays readable. */
+  .council-card:nth-child(1){top:5rem}
+  .council-card:nth-child(2){top:6.5rem}
+  .council-card:nth-child(3){top:8rem}
+  .council-card:nth-child(4){top:9.5rem}
+  .council-card:nth-child(5){top:11rem}
+}
+@media(max-width:767px){
+  .council-card{padding:2rem;gap:1.25rem;min-height:auto}
+}
+.council-card .tier-label{font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;opacity:.7;color:#fff}
+.council-card .tier-title{font-size:clamp(1.5rem,3vw,2.25rem);font-weight:600;letter-spacing:-.025em;color:#fff;max-width:18ch;line-height:1.1;margin-top:.75rem}
+.council-card .tier-body{font-size:.9375rem;color:rgba(255,255,255,.78);line-height:1.6;max-width:48ch;margin-top:1.25rem}
+.council-card .tier-meta{display:flex;gap:1.5rem;flex-wrap:wrap;font-size:.8125rem;color:rgba(255,255,255,.65);margin-top:1.5rem}
+.council-card .tier-meta strong{color:#fff;font-weight:600}
+.tier-1{background:var(--surface-1)}
+.tier-2{background:var(--surface-2)}
+.tier-3{background:var(--surface-3)}
+.tier-4{background:var(--surface-4)}
+.tier-5{background:var(--surface-5)}
 
-/* VERDICT STRUCTURE BLOCK */
-.verdict-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:2rem}
-@media(min-width:768px){.verdict-grid{grid-template-columns:1fr 1fr}}
-.verdict-block{background:var(--surface-1);color:#fff;border-radius:var(--radius);padding:2rem 1.75rem;display:flex;flex-direction:column;gap:.5rem}
-.verdict-block:nth-child(2n){background:var(--surface-2)}
-.verdict-block:nth-child(3n){background:var(--surface-3)}
-.verdict-block:nth-child(4n){background:var(--surface-4)}
-.verdict-block:nth-child(5n){background:var(--surface-3)}
-.verdict-block .label{font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
-.verdict-block h4{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600;letter-spacing:-.015em}
-.verdict-block p{font-size:.875rem;color:rgba(255,255,255,.72);line-height:1.55}
+/* ============ Verdict arm (above verdict section, enters from left) ============ */
+.verdict-arm{position:relative;width:66vw;margin-left:-5vw;margin-bottom:3rem;line-height:0;pointer-events:none;z-index:1;overflow:visible}
+.verdict-arm img{display:block;width:100%;height:auto;mix-blend-mode:multiply;filter:drop-shadow(0 30px 40px rgba(12,16,22,.18))}
+@media(max-width:768px){.verdict-arm{width:90vw;margin-left:-45vw}}
 
-/* PRICING TIER */
-.tier{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1rem;height:100%}
-.tier.featured{background:var(--surface-1);color:#fff;border-color:transparent}
-.tier .price{font-family:'Space Grotesk',sans-serif;font-size:2.25rem;font-weight:600;letter-spacing:-.025em}
-.tier .price small{font-size:1rem;font-weight:500;color:var(--text-muted)}
-.tier.featured .price small{color:rgba(255,255,255,.6)}
-.tier ul{list-style:none;padding:0;margin:1rem 0;display:flex;flex-direction:column;gap:.625rem}
-.tier li{font-size:.9375rem;color:var(--text-secondary);line-height:1.5;display:flex;gap:.5rem}
-.tier.featured li{color:rgba(255,255,255,.78)}
-.tier li::before{content:"";flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:.55rem}
+/* ============ What it is / isn't (two-column checklist) ============ */
+.what-question{margin-top:2.75rem;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:1.75rem 0;display:grid;grid-template-columns:1fr;gap:.5rem;position:relative}
+@media(min-width:768px){.what-question{grid-template-columns:auto 1fr auto;align-items:center;gap:2rem;padding:2rem 0}}
+.what-question-label{font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--text-muted)}
+.what-question-text{font-family:'Inter',sans-serif;font-size:clamp(1.5rem,1.1rem + 1.8vw,2.25rem);font-weight:500;letter-spacing:-.02em;line-height:1.15;margin:0;color:var(--text)}
+.what-question-text em{font-style:italic;color:var(--accent)}
+.what-question-meta{font-size:.6875rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--text-muted);display:flex;align-items:center;gap:.75rem}
+.what-question-meta::before{content:"";display:inline-block;width:1.25rem;height:1px;background:var(--rule-strong,var(--rule))}
+.what-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-top:0}
+@media(min-width:768px){.what-grid{grid-template-columns:1fr 1fr;gap:1.5rem}}
+.what-col{border-radius:var(--radius-lg);padding:2.5rem;display:flex;flex-direction:column;gap:1.5rem;position:relative}
+.what-col--is{background:var(--surface-1);color:#fff;overflow:hidden}
+.what-col--is::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 0%,rgba(0,179,158,.18),transparent 60%);pointer-events:none}
+.what-col--isnot{background:#fff;border:1px solid var(--rule);color:var(--text)}
+.what-col-tag{position:absolute;top:1.5rem;right:1.5rem;font-size:.6875rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:.375rem .625rem;border-radius:999px;position:relative;z-index:1}
+.what-col--is .what-col-tag{background:rgba(0,179,158,.16);color:var(--accent);border:1px solid rgba(0,179,158,.35)}
+.what-col--isnot .what-col-tag{background:#f7ecee;color:#a4757a;border:1px solid #e6d4d6}
+.what-col-source{font-size:.6875rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;position:relative;z-index:1;padding-bottom:1.25rem;border-bottom:1px solid transparent;display:flex;align-items:center;gap:.625rem}
+.what-col--is .what-col-source{color:rgba(255,255,255,.7);border-bottom-color:rgba(255,255,255,.12)}
+.what-col--isnot .what-col-source{color:var(--text-muted);border-bottom-color:var(--rule)}
+.what-col-source-dot{width:.5rem;height:.5rem;border-radius:50%}
+.what-col--is .what-col-source-dot{background:var(--accent)}
+.what-col--isnot .what-col-source-dot{background:#a4757a}
+.what-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1.5rem;position:relative}
+.what-list li{display:flex;flex-direction:column;gap:.375rem}
+.what-list .what-kicker{font-size:.6875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.5rem}
+.what-col--is .what-kicker{color:var(--accent)}
+.what-col--isnot .what-kicker{color:#a4757a}
+.what-list .what-kicker::before{content:"";display:inline-block;width:.875rem;height:1px}
+.what-col--is .what-kicker::before{background:var(--accent)}
+.what-col--isnot .what-kicker::before{background:#c8a8aa}
+.what-list p{font-size:1rem;line-height:1.55;margin:0}
+.what-col--is .what-list p{color:rgba(255,255,255,.86)}
+.what-col--isnot .what-list p{color:var(--text-muted)}
 
-/* FAQ */
-.prose{max-width:760px}
-.prose h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.4rem,2.6vw,1.875rem);letter-spacing:-.02em;line-height:1.2;margin:3rem 0 .75rem;color:var(--text-dark)}
-.prose h2:first-child{margin-top:0}
-.prose p{font-size:1rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1rem}
-.prose strong{color:var(--text-dark);font-weight:600}
-.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent-dim)}
+/* ============ Verdict blocks ============ */
+.verdict-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+@media(min-width:768px){.verdict-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.verdict-grid{grid-template-columns:repeat(5,1fr)}}
+.verdict-block{background:var(--surface-1);color:#fff;border-radius:var(--radius);padding:2rem;min-height:220px;display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;transition:transform .4s var(--ease-spring)}
+.verdict-block:hover{transform:translateY(-4px)}
+.verdict-block:nth-child(2){background:var(--surface-2)}
+.verdict-block:nth-child(3){background:var(--surface-3)}
+.verdict-block:nth-child(4){background:var(--surface-4)}
+.verdict-block:nth-child(5){background:var(--surface-5)}
+.verdict-block .label{font-size:.6875rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.verdict-block h4{font-size:1.125rem;font-weight:600;letter-spacing:-.015em;line-height:1.3;color:#fff}
+.verdict-block p{font-size:.8125rem;color:rgba(255,255,255,.72);line-height:1.55}
 
-/* GUARANTEE STRIP */
-.guarantee{background:var(--accent-dim);border-left:3px solid var(--accent);padding:2rem 2rem;margin:4rem 0;border-radius:0 var(--radius) var(--radius) 0}
-.guarantee p{font-size:1rem;color:var(--text-dark);line-height:1.6;max-width:60ch}
-.guarantee strong{color:var(--text-dark);font-weight:600}
+/* ============ Pricing ============ */
+.pricing-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-top:1rem}
+@media(min-width:768px){.pricing-grid{grid-template-columns:repeat(3,1fr)}}
+.price-card{background:#fff;border:1px solid var(--rule);border-radius:var(--radius);padding:2.5rem;display:flex;flex-direction:column;gap:1.5rem;transition:transform .4s var(--ease-spring),box-shadow .4s ease,border-color .4s ease}
+.price-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px -10px rgba(12,16,22,.12);border-color:var(--rule-strong)}
+.price-card.featured{background:var(--text-dark);color:#fff;border-color:transparent}
+.price-card.featured .price-name,.price-card.featured .price-headline{color:#fff}
+.price-card.featured .price-desc,.price-card.featured li{color:rgba(255,255,255,.75)}
+.price-card.featured .price-amount{color:#fff}
+.price-card.featured .price-amount span{color:rgba(255,255,255,.6)}
+.price-card.featured .price-rule{background:rgba(255,255,255,.1)}
+.price-head{display:flex;flex-direction:column;gap:.5rem}
+.price-name{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.price-headline{font-size:1.5rem;font-weight:600;letter-spacing:-.02em;color:var(--text-dark)}
+.price-desc{font-size:.875rem;color:var(--text-secondary);line-height:1.55}
+.price-amount{font-size:2.75rem;font-weight:700;letter-spacing:-.03em;color:var(--text-dark);line-height:1}
+.price-amount span{font-size:1rem;font-weight:500;color:var(--text-muted)}
+.price-rule{height:1px;background:var(--rule);margin:.25rem 0}
+.price-card ul{list-style:none;display:flex;flex-direction:column;gap:.75rem;font-size:.9375rem;color:var(--text-secondary);line-height:1.5}
+.price-card ul li{display:flex;gap:.625rem;align-items:flex-start}
+.price-card ul li::before{content:"";flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:.55rem}
+.price-card .btn{width:100%;justify-content:center;margin-top:auto}
 
-.footer{width:100%;padding:5rem 1.5rem 3rem;display:flex;flex-direction:column;align-items:center;gap:2rem;text-align:center;border-top:1px solid var(--rule)}
-@media(min-width:1024px){.footer{padding:6rem 3rem 4rem}}
-.footer-marquee{width:100%;overflow:hidden;margin-bottom:1rem}
-.footer-marquee-inner{display:flex;gap:3rem;white-space:nowrap;animation:marquee 22s linear infinite;font-size:.8125rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);opacity:.55}
-.footer-marquee-inner span::after{content:'\2022';margin-left:3rem;opacity:.4}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;font-size:.8125rem;font-weight:500;opacity:.65}
-.footer-links a{transition:color .2s}
-.footer-links a:hover{color:var(--accent);opacity:1}
-.footer-copy{font-size:.75rem;color:var(--text-muted);opacity:.6}
+/* ============ Sample verdict block ============ */
+.sample{background:var(--surface-1);color:#fff;border-radius:var(--radius-lg);padding:0;overflow:hidden;display:grid;grid-template-columns:1fr}
+@media(min-width:1024px){.sample{grid-template-columns:minmax(320px,1fr) 1.4fr}}
+.sample-meta{padding:2.5rem;display:flex;flex-direction:column;gap:1.25rem;border-right:1px solid rgba(255,255,255,.06)}
+@media(max-width:1023px){.sample-meta{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}}
+.sample-meta .label{font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.sample-meta h3{font-size:1.375rem;font-weight:600;letter-spacing:-.02em;line-height:1.25;color:#fff}
+.sample-meta .audit-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.25rem}
+.sample-meta .chip{font-size:.75rem;font-weight:500;padding:.4rem .875rem;border-radius:var(--radius-pill);background:rgba(255,255,255,.06);color:rgba(255,255,255,.75)}
+.sample-meta .meta-foot{margin-top:auto;padding-top:1.5rem;font-size:.8125rem;color:rgba(255,255,255,.55);line-height:1.5;border-top:1px solid rgba(255,255,255,.06)}
+.sample-body{padding:0;display:flex;flex-direction:column;background:var(--surface-2)}
+.sample-compare{display:flex;flex-direction:column}
 
-.floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.75rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(.9);transition:opacity .5s ease,transform .5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(12,16,22,.15)}
-.floating-cta.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-.floating-cta:hover{transform:translateY(-2px) scale(1.05)}
-@media(max-width:767px){.floating-cta span{display:none}.floating-cta{padding:.75rem;border-radius:50%}}
+/* Generic strip — compact contrast row at top */
+.compare-col.generic{background:#1a1f25;padding:1.75rem 2.5rem;border-bottom:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:.75rem}
+.compare-col.generic h4{font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:500}
+.compare-col.generic .verdict-line{font-size:.9375rem;color:rgba(255,255,255,.55);font-weight:400;font-style:italic;line-height:1.5;padding:0;border:0;margin:0}
+.compare-col.generic ul{list-style:none;display:grid;grid-template-columns:1fr;gap:.4rem;margin-top:.25rem;font-size:.8125rem;line-height:1.45;color:rgba(255,255,255,.5)}
+@media(min-width:700px){.compare-col.generic ul{grid-template-columns:1fr 1fr;gap:.4rem 1.5rem}}
+.compare-col.generic ul li{padding-left:1rem;position:relative}
+.compare-col.generic ul li::before{content:"–";position:absolute;left:0;color:rgba(255,255,255,.3)}
 
-body.gsap-ready .split-mask{display:inline-block;overflow:hidden;vertical-align:top;line-height:inherit;padding-bottom:.05em;margin-bottom:-.05em}
-body.gsap-ready .split-inner{display:inline-block;will-change:transform}
-body.gsap-ready .split-line{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
-body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
+/* Audit main — full body width, primary verdict */
+.compare-col.audit{background:var(--surface-2);padding:2.5rem;display:flex;flex-direction:column;gap:1.5rem}
+.compare-col.audit h4{font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500}
+.compare-col.audit .verdict-line{font-size:1.1875rem;color:#fff;line-height:1.5;font-weight:500;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,.1);letter-spacing:-.005em}
+.compare-col.audit .verdict-line strong{color:var(--accent);font-weight:600}
+.compare-col.audit ul{list-style:none;display:flex;flex-direction:column;gap:1rem;font-size:.9375rem;line-height:1.55;color:rgba(255,255,255,.85)}
+.compare-col.audit ul li{padding-left:1.4rem;position:relative}
+.compare-col.audit ul li::before{content:"▸";position:absolute;left:0;color:var(--accent);font-size:.75rem;top:.3rem}
+.compare-col.audit ul li strong{color:#fff;font-weight:600}
 
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(12,16,22,.15);border-radius:999px}
-::-webkit-scrollbar-thumb:hover{background:rgba(12,16,22,.3)}
-*{scrollbar-width:thin;scrollbar-color:rgba(12,16,22,.15) transparent}
+/* Day-plan — separate full-width block */
+.day-plan{background:#1a1f25;padding:2rem 2.5rem;display:grid;grid-template-columns:1fr;gap:.75rem;border-top:1px solid rgba(255,255,255,.06)}
+@media(min-width:700px){.day-plan{grid-template-columns:1fr 1fr;gap:1rem 2.5rem}}
+.day-plan .day-label{grid-column:1/-1;font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.25rem}
+.day-item{display:flex;gap:.875rem;font-size:.8125rem;color:rgba(255,255,255,.78);line-height:1.5}
+.day-item .day{flex-shrink:0;width:2.75rem;color:var(--accent);font-weight:600;font-size:.6875rem;letter-spacing:.05em;padding-top:.1875rem}
+
+/* ============ FAQ ============ */
+.faq-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule-strong)}
+.faq-item{border-bottom:1px solid var(--rule-strong)}
+.faq-q{width:100%;background:none;border:none;cursor:pointer;padding:2rem 0;display:flex;justify-content:space-between;align-items:center;gap:2rem;text-align:left;font-size:clamp(1.0625rem,1.5vw,1.375rem);font-weight:500;color:var(--text-dark);letter-spacing:-.015em}
+.faq-q .chev{flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;transition:transform .4s var(--ease-spring);color:var(--text-muted)}
+.faq-item.open .faq-q .chev{transform:rotate(45deg);color:var(--accent)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s var(--ease-spring)}
+.faq-a-inner{padding:0 0 2rem;font-size:1rem;color:var(--text-secondary);line-height:1.65;max-width:64ch}
+
+/* ============ Final CTA ============ */
+.cta-section{padding:6rem 1rem 10rem}
+@media(min-width:768px){.cta-section{padding:8rem 2rem 12rem}}
+@media(min-width:1024px){.cta-section{padding:10rem 3rem 14rem}}
+.cta-figure{position:relative;max-width:1100px;margin:0 auto;border-radius:var(--radius-lg);overflow:visible;background:var(--surface-1);padding:4rem 3rem;min-height:520px}
+@media(min-width:1024px){.cta-figure{padding:5rem 4rem;min-height:560px}}
+.cta-figure::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 90% 70%,rgba(0,179,158,.22),transparent 55%);pointer-events:none;border-radius:var(--radius-lg);z-index:0}
+.cta-content{position:relative;z-index:3;max-width:32rem}
+.cta-content .label{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:1rem;display:block}
+.cta-content h2{font-size:clamp(2rem,4.5vw,3.5rem);font-weight:600;letter-spacing:-.03em;line-height:1.05;color:#fff;margin-bottom:1.5rem;max-width:14ch}
+.cta-content p{font-size:1.0625rem;color:rgba(255,255,255,.78);line-height:1.6;margin-bottom:1.75rem;max-width:42ch}
+/* Arm 2.7x scaled. Shoulder exits past viewport-right edge (next to scrollbar), hand grips card bottom-right corner. Static. */
+.cta-arm{position:absolute;top:-54%;right:-108%;width:167%;transform:none;z-index:2;pointer-events:none}
+.cta-arm-flip{line-height:0}
+.cta-arm-flip img{display:block;width:100%;height:auto;mix-blend-mode:screen;filter:drop-shadow(0 40px 60px rgba(0,0,0,.55))}
+@media(max-width:1023px){.cta-arm{top:-30%;right:-120%;width:140%}}
+/* Button sits at the hand grip — right side of card, aligned with heading */
+.cta-arm-button{position:absolute;left:72%;top:28%;transform:translate(-50%,-50%);z-index:4;display:inline-flex;align-items:center;gap:.625rem;background:var(--accent);color:#fff;padding:.9375rem 1.625rem;border-radius:var(--radius-pill);font-size:.9375rem;font-weight:600;border:none;cursor:pointer;text-decoration:none;box-shadow:0 18px 36px -10px rgba(0,179,158,.7),0 0 0 4px rgba(0,179,158,.18);transition:transform .5s var(--ease-overshoot),box-shadow .4s ease;white-space:nowrap}
+.cta-arm-button:hover{transform:translate(-50%,-50%) scale(1.06);box-shadow:0 24px 44px -10px rgba(0,179,158,.8),0 0 0 6px rgba(0,179,158,.25)}
+.cta-arm-button svg{width:1rem;height:1rem}
+@media(max-width:1023px){.cta-arm-button{left:68%;top:32%;font-size:.875rem;padding:.75rem 1.25rem}}
+@media(max-width:639px){
+  .cta-figure{padding:3rem 1.5rem;min-height:auto}
+  .cta-arm{position:relative;width:100%;right:auto;top:auto;transform:none;margin-top:1.5rem}
+  .cta-arm-flip{transform:none}
+  .cta-arm-button{position:relative;left:auto;top:auto;transform:none;margin-top:1.25rem}
+  .cta-arm-button:hover{transform:none}
+}
+
+/* ============ Floating CTA (after 40% scroll) ============ */
+.floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;background:var(--accent);color:#fff;padding:1rem 1.5rem;border-radius:var(--radius-pill);font-size:.875rem;font-weight:500;display:inline-flex;align-items:center;gap:.625rem;box-shadow:0 14px 32px -8px rgba(0,179,158,.55);opacity:0;pointer-events:none;transform:translateY(2rem) scale(.95);transition:opacity .5s var(--ease-spring),transform .5s var(--ease-spring);text-decoration:none}
+.floating-cta.visible{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+.floating-cta:hover{transform:translateY(-2px) scale(1.04)}
+.floating-cta svg{width:16px;height:16px}
+
+/* ============ Footer ============ */
+.footer{background:var(--surface-1);color:rgba(255,255,255,.7);padding:5rem 1rem 2rem}
+@media(min-width:768px){.footer{padding:5rem 2rem 2rem}}
+@media(min-width:1024px){.footer{padding:5rem 3rem 2rem}}
+.footer-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:3rem}
+@media(min-width:768px){.footer-inner{grid-template-columns:2fr 1fr 1fr}}
+.footer-brand{display:flex;flex-direction:column;gap:1rem;max-width:38ch}
+.footer-brand img{width:40px;height:40px}
+.footer-brand p{font-size:.875rem;line-height:1.55}
+.footer-col h5{font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.625rem;font-size:.875rem}
+.footer-col a{transition:color .3s}
+.footer-col a:hover{color:#fff}
+.footer-rule{margin-top:3rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.75rem;color:rgba(255,255,255,.5)}
+
+/* ============ Reveal animation ============ */
+.reveal{opacity:0;transform:translateY(2rem);transition:opacity .9s var(--ease-spring),transform .9s var(--ease-spring)}
+.reveal.in{opacity:1;transform:translateY(0)}
 
 @media(prefers-reduced-motion:reduce){
-  body.gsap-ready .reveal-fade{opacity:1!important;transform:none!important}
-  .btn,.card,.adviser,.verdict-block,.tier{transform:none!important}
-  .footer-marquee-inner{animation:none}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .hero-render img,.cta-figure .cta-img img{animation:none!important}
+  .reveal{opacity:1!important;transform:none!important}
 }
 </style>
 </head>
 <body>
+
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<a href="#start" class="floating-cta" id="floatingCta">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-  <span>Submit a brief</span>
-</a>
-
+<!-- ============ NAV ============ -->
 <nav class="nav">
-  <a href="https://aegntic.ai" class="nav-logo">ae<span class="ae">gntic</span></a>
-  <a href="https://aegntic.ai" class="nav-back">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+  <a href="/" class="nav-logo">
+    <img src="/ae-logo.webp" alt="AE logo">
+    <span>AE Audits</span>
+  </a>
+  <a href="/" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
     Back to aegntic.ai
   </a>
 </nav>
 
-<!-- HERO -->
+<!-- ============ HERO ============ -->
 <header class="hero">
   <div class="hero-watermark"><span>AUDIT</span></div>
+  <div class="hero-render">
+    <img src="/cta-float.webp" alt="AE floating figure" loading="eager">
+  </div>
   <div class="hero-content">
-    <div class="hero-eyebrow">AE Audits · Decision review</div>
-    <h1 class="hero-headline" data-split>Pressure-test your most <em>expensive decision</em> before you commit.</h1>
-    <p class="hero-sub">A structured adversarial council on the call you're about to make. 15 compressed reasoning lenses, deduplicated into a verdict and a seven-day action plan. No soft compromise, no consensus theater.</p>
+    <div class="hero-eyebrow">Decision review · 48-hour turnaround</div>
+    <h1 class="hero-headline">Pressure-test your most expensive decision <em>before you commit.</em></h1>
+    <p class="hero-sub">A structured adversarial council of 15 compressed reasoning lenses — deduplicated, cross-examined, and delivered as a Chairman's verdict with a 7-day action plan. No brainstorming. No theatre. Just the friction that catches the bet you can't afford to lose.</p>
     <div class="hero-actions">
-      <a href="#start" class="btn">Submit a brief
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      <a href="mailto:hello@aegntic.com?subject=AE%20Audit%20request" class="btn">
+        Request an audit
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
-      <a href="#sample" class="btn btn-ghost">Read a sample verdict</a>
+      <a href="#sample" class="btn btn-ghost">See a sample verdict</a>
     </div>
   </div>
 </header>
 
-<!-- WHAT IT IS -->
-<section class="section-pad">
+<!-- ============ WHAT IT IS ============ -->
+<section class="section-pad" id="what">
   <div class="section-inner">
     <div class="section-label">What it is</div>
-    <h2 class="section-heading" data-split>One decision. Sharpened, <em>pressure-tested</em>, verdict in 48 hours.</h2>
-    <p class="section-desc">You bring a messy, high-stakes fork. We sharpen the brief, run a fifteen-adviser council on it, surface the real tensions, and return a single decision with a seven-day plan. Built for founders and operators who cannot afford the wrong call.</p>
-    <div class="grid cols-3">
-      <article class="card">
-        <h3>Normalize</h3>
-        <p>Your messy input becomes a decision-grade brief. Stakes, options, constraints, gaps surfaced and stated explicitly. You see what was hidden in your own framing.</p>
-        <div class="tag-row"><span class="tag">Step 1</span></div>
-      </article>
-      <article class="card card-dark">
-        <h3>Pressure-test</h3>
-        <p>Fifteen distinct reasoning lenses open on the same brief. Round two forces collision. Overlapping arguments are merged into the stronger frame, weaker duplicates drop out.</p>
-        <div class="tag-row"><span class="tag">Step 2</span></div>
-      </article>
-      <article class="card">
-        <h3>Decide</h3>
-        <p>A single Chairman's Verdict: the call, the consensus, the strongest dissent, the biggest risk, the next seven days. Plus a kill criterion that tells you when to reverse.</p>
-        <div class="tag-row"><span class="tag">Step 3</span></div>
-      </article>
+    <h2 class="section-heading">A verdict engine, <em>not a vocabulary.</em></h2>
+    <p class="section-desc">AE Audits is a one-shot adversarial review system for decisions where the cost of being wrong is real. Three things this is — and three things it isn't.</p>
+    <div class="what-question reveal">
+      <span class="what-question-label">The question</span>
+      <h3 class="what-question-text">What is AE Audits, <em>really?</em></h3>
+      <span class="what-question-meta">Two systems · One verdict</span>
+    </div>
+    <div class="what-grid">
+      <div class="what-col what-col--is reveal">
+        <span class="what-col-tag">IS</span>
+        <div class="what-col-source">
+          <span class="what-col-source-dot"></span>
+          <span>From the council</span>
+        </div>
+        <ul class="what-list">
+          <li>
+            <span class="what-kicker">Scope · One decision</span>
+            <p>One decision in, one verdict out. You arrive at a single choice; you leave with a call, a 7-day plan, and the friction that produced both.</p>
+          </li>
+          <li>
+            <span class="what-kicker">Mode · Adversarial</span>
+            <p>Built to break your framing, find the weakest load-bearing assumption, and surface the risk you are actively avoiding.</p>
+          </li>
+          <li>
+            <span class="what-kicker">Format · 48-hour</span>
+            <p>A fixed-scope engagement with one deliverable: the verdict document. No retainer, no follow-on calls, no rolling project.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="what-col what-col--isnot reveal">
+        <span class="what-col-tag">IS NOT</span>
+        <div class="what-col-source">
+          <span class="what-col-source-dot"></span>
+          <span>From the market</span>
+        </div>
+        <ul class="what-list">
+          <li>
+            <span class="what-kicker">Not a brainstorm</span>
+            <p>Brainstorms generate options. AE Audits generates friction. Options are a vocabulary; a verdict is a decision.</p>
+          </li>
+          <li>
+            <span class="what-kicker">Not a vibe-check</span>
+            <p>Vibe-checks ratify what you already believe. The council is built to disagree with you in writing.</p>
+          </li>
+          <li>
+            <span class="what-kicker">Not a workshop</span>
+            <p>Workshops bill by the hour and run for weeks. This is a 48-hour engagement with a fixed deliverable.</p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- THE COUNCIL -->
-<section class="section-pad" style="background:var(--bg-inset)">
+<!-- ============ COUNCIL TIERS (stacking cards) ============ -->
+<section class="section-pad" id="council">
   <div class="section-inner">
     <div class="section-label">The council</div>
-    <h2 class="section-heading" data-split>Fifteen lenses. <em>Zero celebrity cosplay.</em></h2>
-    <p class="section-desc">Each adviser applies a distinct decision criterion, risk model, and prioritization logic. Named operators are treated as compressed heuristics, not impersonations. No catchphrases, no public-speaking tics, no meme versions of public figures.</p>
-    <div class="roster">
-      <div class="adviser">Contrarian<span class="lens">Inverse thesis</span></div>
-      <div class="adviser">First-Principles<span class="lens">Decompose</span></div>
-      <div class="adviser">Expansionist<span class="lens">Whole workflow</span></div>
-      <div class="adviser">Outsider<span class="lens">Non-buyer view</span></div>
-      <div class="adviser">Executor<span class="lens">Ship in 7 days</span></div>
-      <div class="adviser">#HORMOZI<span class="lens">Offer engineering</span></div>
-      <div class="adviser">#GARYVEE<span class="lens">Attention leverage</span></div>
-      <div class="adviser">#YCOMBINATOR<span class="lens">Talk to users</span></div>
-      <div class="adviser">#LINDYMODE<span class="lens">Proven path</span></div>
-      <div class="adviser">#8020<span class="lens">Find the wedge</span></div>
-      <div class="adviser">#REDTEAM<span class="lens">Failure modes</span></div>
-      <div class="adviser">#TRUTHMODE<span class="lens">Call the lie</span></div>
-      <div class="adviser">#KARPATHY<span class="lens">Technical moat</span></div>
-      <div class="adviser">#BUFFETT<span class="lens">Durable compounding</span></div>
-      <div class="adviser">#MUSK<span class="lens">First principles</span></div>
+    <h2 class="section-heading">Five tiers of <em>adversarial pressure.</em></h2>
+    <p class="section-desc">Fifteen advisers, organised in five tiers by the kind of friction they apply. No celebrity cosplay. No catchphrase theatre. Each tier adds a distinct lens — together they cover strategic, operational, financial, and creative risk.</p>
+
+    <div class="council-stack" id="councilStack">
+      <article class="council-card tier-1">
+        <div>
+          <div class="tier-label">Tier 01 · Strategic pressure</div>
+          <h3 class="tier-title">Contrarian · First-Principles · Expansionist</h3>
+        </div>
+        <p class="tier-body">Attacks the framing. Asks whether the decision is even the right question. Probes whether the constraints are real or inherited. This tier exists to break the brief before the brief breaks you.</p>
+        <div class="tier-meta"><span><strong>3</strong> advisers</span><span>Mode: <strong>frame-breaking</strong></span></div>
+      </article>
+
+      <article class="council-card tier-2">
+        <div>
+          <div class="tier-label">Tier 02 · Outsider perspective</div>
+          <h3 class="tier-title">Outsider · Executor · #HORMOZI</h3>
+        </div>
+        <p class="tier-body">Pulls the camera out of your industry. Tests whether the decision is legible to someone who does not share your assumptions. Executor lens pressure-tests whether the plan can actually be shipped.</p>
+        <div class="tier-meta"><span><strong>3</strong> advisers</span><span>Mode: <strong>translation</strong></span></div>
+      </article>
+
+      <article class="council-card tier-3">
+        <div>
+          <div class="tier-label">Tier 03 · Operator reality</div>
+          <h3 class="tier-title">#GARYVEE · #YCOMBINATOR · #LINDYMODE</h3>
+        </div>
+        <p class="tier-body">Grounds the decision in distribution, in build-vs-buy economics, and in what has already survived a hundred cycles. The "is this actually going to work in the market" tier.</p>
+        <div class="tier-meta"><span><strong>3</strong> advisers</span><span>Mode: <strong>distribution</strong></span></div>
+      </article>
+
+      <article class="council-card tier-4">
+        <div>
+          <div class="tier-label">Tier 04 · Compression &amp; leverage</div>
+          <h3 class="tier-title">#8020 · #REDTEAM · #TRUTHMODE</h3>
+        </div>
+        <p class="tier-body">Strips the decision down to the 20% that determines 80% of the outcome. Red-teams the failure modes. Forces truth-mode on every assumption, including the ones you have not written down.</p>
+        <div class="tier-meta"><span><strong>3</strong> advisers</span><span>Mode: <strong>pareto</strong></span></div>
+      </article>
+
+      <article class="council-card tier-5">
+        <div>
+          <div class="tier-label">Tier 05 · Synthesis</div>
+          <h3 class="tier-title">#KARPATHY · #BUFFETT · #MUSK</h3>
+        </div>
+        <p class="tier-body">Used as compressed reasoning lenses, not impersonations. Karpathy on whether the technical premise holds. Buffett on whether the moat compounds. Musk on whether the timeline is honest.</p>
+        <div class="tier-meta"><span><strong>3</strong> advisers</span><span>Mode: <strong>synthesis</strong></span></div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- THE VERDICT -->
-<section class="section-pad">
+<!-- ============ VERDICT ARM ============ -->
+<div class="verdict-arm reveal" aria-hidden="true">
+  <img src="/robotarm-left-33.png" alt="" loading="lazy">
+</div>
+
+<!-- ============ THE VERDICT ============ -->
+<section class="section-pad" id="verdict">
   <div class="section-inner">
     <div class="section-label">The verdict</div>
-    <h2 class="section-heading" data-split>Five sections. <em>One decision.</em></h2>
-    <p class="section-desc">Every council-mode output ends with exactly the same structure. No filler, no soft compromise, no vague "consider both options". A verdict you can act on.</p>
+    <h2 class="section-heading">What you actually <em>get back.</em></h2>
+    <p class="section-desc">A single document. No ongoing retainer. Five sections, fixed contract. Written by the Chairman — the final decision-maker of the council — not by a committee.</p>
     <div class="verdict-grid">
-      <div class="verdict-block">
-        <span class="label">01</span>
+      <div class="verdict-block reveal">
+        <div class="label">01</div>
         <h4>The Decision</h4>
-        <p>A single, clear call. Not a menu. The Chairman is the final decision-maker, not a moderator.</p>
+        <p>A one-line call. Proceed, do not proceed, or proceed-with-conditions. No soft compromise.</p>
       </div>
-      <div class="verdict-block">
-        <span class="label">02</span>
+      <div class="verdict-block reveal">
+        <div class="label">02</div>
         <h4>Consensus</h4>
-        <p>The load-bearing thesis. What the majority agreed on, and the reasoning that holds it up.</p>
+        <p>Where the council converged and why. The arguments strong enough to survive deduplication.</p>
       </div>
-      <div class="verdict-block">
-        <span class="label">03</span>
+      <div class="verdict-block reveal">
+        <div class="label">03</div>
         <h4>Strongest Dissent</h4>
-        <p>The best argument against the decision. Named adviser, not buried. You need to know what could be wrong.</p>
+        <p>The single most dangerous objection that survived the collision round. Named, not buried.</p>
       </div>
-      <div class="verdict-block">
-        <span class="label">04</span>
+      <div class="verdict-block reveal">
+        <div class="label">04</div>
         <h4>Biggest Risk</h4>
-        <p>The single thing that kills this if it goes wrong. Mitigation noted. No long disclaimer lists.</p>
+        <p>The one failure mode that would invalidate the decision. With the leading indicator to watch.</p>
       </div>
-      <div class="verdict-block">
-        <span class="label">05</span>
+      <div class="verdict-block reveal">
+        <div class="label">05</div>
         <h4>Next 7 Days</h4>
-        <p>A concrete action plan, one task per day, plus an explicit kill criterion that tells you when to reverse course.</p>
+        <p>A concrete action plan for the first week. Owners, sequencing, kill-criteria. Not a roadmap.</p>
       </div>
     </div>
-    <div class="guarantee">
-      <p><strong>Refund guarantee.</strong> If the audit does not surface a risk you had not considered, the fee is returned in full. No questions, no friction.</p>
-    </div>
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="section-pad" id="start" style="background:var(--bg-inset)">
-  <div class="section-inner">
-    <div class="section-label">Engagement</div>
-    <h2 class="section-heading" data-split>Three ways in. <em>Start where the stakes are.</em></h2>
-    <p class="section-desc">Most engagements begin with the Async Brief. It is the cheapest way to find out whether your decision survives pressure. Retainer is by invitation after the first engagement.</p>
-    <div class="grid cols-3">
-      <article class="tier">
-        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600;color:var(--text-dark)">Async Brief</h3>
-        <div class="price">$499 <small>one-off</small></div>
-        <p style="font-size:.9375rem;color:var(--text-secondary)">Written report, delivered in 48 hours. The standard engagement.</p>
-        <ul>
-          <li>5-question brief intake</li>
-          <li>Full 15-adviser council run</li>
-          <li>Verdict + 7-day action plan</li>
-          <li>PDF + Notion share</li>
-          <li>One follow-up clarification round</li>
-        </ul>
-        <a href="mailto:hello@aegntic.com?subject=AE%20Audits%20%E2%80%94%20Async%20Brief" class="btn" style="margin-top:auto;align-self:flex-start">Start async brief</a>
-      </article>
-      <article class="tier featured">
-        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600;color:#fff">Live Council</h3>
-        <div class="price">$1,500 <small>session</small></div>
-        <p style="font-size:.9375rem;color:rgba(255,255,255,.78)">90-minute recorded session. For decisions where the room needs to hear it live.</p>
-        <ul>
-          <li>Pre-session brief sharpening</li>
-          <li>Live council over Zoom, recorded</li>
-          <li>Full written verdict within 24 hours</li>
-          <li>Two follow-up clarification rounds</li>
-          <li>Founding team invited to attend</li>
-        </ul>
-        <a href="mailto:hello@aegntic.com?subject=AE%20Audits%20%E2%80%94%20Live%20Council" class="btn" style="margin-top:auto;align-self:flex-start;background:#fff;color:var(--surface-1)">Book live council</a>
-      </article>
-      <article class="tier">
-        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:600;color:var(--text-dark)">Decision Retainer</h3>
-        <div class="price">$5k <small>/ month</small></div>
-        <p style="font-size:.9375rem;color:var(--text-secondary)">Ongoing decision review. For operators making expensive calls every week.</p>
-        <ul>
-          <li>Up to four audits per month</li>
-          <li>On-call for time-sensitive forks</li>
-          <li>Dedicated Notion workspace</li>
-          <li>Quarterly strategic review session</li>
-          <li>By invitation after first engagement</li>
-        </ul>
-        <a href="mailto:hello@aegntic.com?subject=AE%20Audits%20%E2%80%94%20Retainer" class="btn btn-ghost" style="margin-top:auto;align-self:flex-start">Inquire about retainer</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- SAMPLE -->
+<!-- ============ SAMPLE VERDICT ============ -->
 <section class="section-pad" id="sample">
   <div class="section-inner">
-    <div class="section-label">Proof of work</div>
-    <h2 class="section-heading" data-split>An anonymized <em>real verdict</em>.</h2>
-    <p class="section-desc">A SaaS founder at roughly $180k ARR asked whether to kill the free tier. Below is the abridged verdict. Full write-up available on request.</p>
-    <article class="card card-dark" style="max-width:760px">
-      <h3>The Decision</h3>
-      <p>Kill the free tier. Replace with a 14-day trial requiring a credit card up-front. Grandfather existing free users with high intent for 30 days; email all others a 50%-off-3-months sunset offer.</p>
-      <div class="tag-row"><span class="tag">Consensus</span><span class="tag">14 of 15</span></div>
-    </article>
-    <div style="max-width:760px;margin-top:1.5rem;display:flex;flex-direction:column;gap:1rem">
-      <div style="padding:1.5rem;background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius)">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem">Strongest dissent · #REDTEAM</div>
-        <p style="font-size:.9375rem;color:var(--text-secondary)">If more than 20% of new paid revenue is attributable to free-tier referrals, the kill destroys acquisition. Run referral attribution check before pulling trigger.</p>
+    <div class="section-label">Sample verdict</div>
+    <h2 class="section-heading">The kind of bet <em>generic advice misses.</em></h2>
+    <p class="section-desc">A question that looks like a pricing decision — and isn't. Side-by-side: what a competent general-purpose AI or advisor returns, vs what the AE Audits council surfaces in the same 48 hours.</p>
+
+    <div class="sample reveal">
+      <div class="sample-meta">
+        <div class="label">Audit ref · AE-2403-22</div>
+        <h3>"Should I pivot my $4M ARR B2B SaaS from per-seat to usage-based pricing next quarter?"</h3>
+        <div class="audit-chips">
+          <span class="chip">$4M ARR</span>
+          <span class="chip">8 enterprise renewals due</span>
+          <span class="chip">3 co-founders</span>
+          <span class="chip">60-day window</span>
+        </div>
+        <div class="meta-foot">Submitted by a Series-B founder. Same brief sent to a general-purpose LLM, an external advisor, and AE Audits. Verdicts below.</div>
       </div>
-      <div style="padding:1.5rem;background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius)">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem">Biggest risk</div>
-        <p style="font-size:.9375rem;color:var(--text-secondary)">Existing free users churn loudly on social, damaging brand at the moment of funnel change. Mitigation: publish the "why we killed our free tier" essay on the same day.</p>
+      <div class="sample-body">
+        <div class="sample-compare">
+          <div class="compare-col generic">
+            <h4>What generic systems return</h4>
+            <p class="verdict-line" style="color:rgba(255,255,255,.7);font-weight:400;font-size:.9375rem;border:0;padding:0">"Depends on your churn elasticity. Consider A/B testing."</p>
+            <ul>
+              <li>Survey the top 20% of customers by spend</li>
+              <li>Build a usage-metering layer before announcing anything</li>
+              <li>Pilot with 5–10 design-partner accounts for 90 days</li>
+              <li>Model three churn scenarios: 10%, 20%, 30%</li>
+              <li>Communicate clearly; offer grandfathering for 12 months</li>
+              <li>Monitor NRR closely during transition</li>
+            </ul>
+          </div>
+          <div class="compare-col audit">
+            <h4>What AE Audits returns</h4>
+            <p class="verdict-line"><strong>Do not pivot.</strong> The pricing model is not the binding constraint. Three of your eight enterprise renewals carry <strong>MFN pricing clauses</strong> — any rate change triggers a mandatory re-quote and a 90-day cure window.</p>
+            <ul>
+              <li><strong>Hidden constraint:</strong> MFN clauses in enterprise contracts. Per-seat → usage is a rate change. Pivot auto-breaches 3 of 8 renewals representing <strong>$1.4M of the $4M ARR</strong>.</li>
+              <li><strong>Wrong churn model:</strong> The 30%-churn-worst-case advisor estimate ignores that the 3 MFN accounts are your highest-LTV logos. Real downside is 35%, concentrated in the worst segment.</li>
+              <li><strong>Operator lens:</strong> Your billing system cannot meter usage today. Engineering estimate for a compliant metering layer is 14 weeks, not the 6 the brief assumes. Pivot cannot ship in Q3.</li>
+              <li><strong>Lindy lens:</strong> Of 27 documented B2B SaaS per-seat → usage pivots since 2019, 22 were reversed or re-priced within 18 months. The successful 5 added usage as a <em>second</em> tier, not a replacement.</li>
+              <li><strong>Strongest dissent preserved:</strong> If a competitor pivots first and you do not, you cede the "modern pricing" narrative to procurement teams. This is a real risk — but it is a marketing risk, not a pricing-engineering risk.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="day-plan">
+          <div class="day-label">Next 7 days</div>
+          <div class="day-item"><span class="day">DAY 1-2</span><span>Counsel pulls all 8 enterprise contracts. Flag every MFN, price-lock, and change-of-pricing clause.</span></div>
+          <div class="day-item"><span class="day">DAY 3</span><span>30-min call with the 3 MFN accounts. Test willingness to re-paper in exchange for committed-use discounting. Do not mention "usage-based".</span></div>
+          <div class="day-item"><span class="day">DAY 4</span><span>Engineering scope: how much of the metering layer can ship in 8 weeks if deprioritised against everything else. Honest answer only.</span></div>
+          <div class="day-item"><span class="day">DAY 5</span><span>Draft the "additive tier" alternative: keep per-seat, layer usage-based add-on for power users. Same revenue thesis, zero contract breach.</span></div>
+          <div class="day-item"><span class="day">DAY 6-7</span><span>No announcement. No engineering work. Decision re-review at day 30 against MFN-account signal.</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="section-pad" style="background:var(--bg-inset)">
+<!-- ============ PRICING ============ -->
+<section class="section-pad" id="pricing">
   <div class="section-inner">
-    <div class="section-label">Questions</div>
-    <div class="prose">
-      <h2>Is this just an AI prompt?</h2>
-      <p>No. The prompt architecture is the engine; the value is in the brief normalization, the deduplication, the adversarial collision, and the verdict contract. You are paying for a decision review, not a chatbot output.</p>
-      <h2>Why fifteen advisers and not five?</h2>
-      <p>Five is enough for thin briefs (Mode 2). Decisions with multiple tensions get the full fifteen (Mode 3). The system deduplicates aggressively. If two advisers converge on the same argument, the weaker one drops or is forced to add a distinct angle.</p>
-      <h2>Do you actually use named operators like Buffett and Musk?</h2>
-      <p>As <strong>compressed reasoning lenses</strong>, not impersonations. Each named tag applies a distinct strategic heuristic, prioritization logic, and failure model. No catchphrases, no public-speaking tics, no caricature.</p>
-      <h2>What if my decision is too sensitive to share?</h2>
-      <p>Redact what you must. The brief schema accepts placeholders for confidential figures. We can also sign an NDA for Live Council and Retainer engagements.</p>
-      <h2>When should I not use this?</h2>
-      <p>Trivial decisions, purely factual lookups, or anything where you already know the answer and want validation. The council is for expensive calls under genuine uncertainty.</p>
+    <div class="section-label">Engagement model</div>
+    <h2 class="section-heading">Three formats. <em>One verdict each.</em></h2>
+    <p class="section-desc">Every engagement is fixed-scope. No retainer, no follow-on calls. You submit a brief, you receive a verdict. If the verdict does not surface at least one risk you had not written down, you do not pay.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-head">
+          <span class="price-name">Triage</span>
+          <h3 class="price-headline">Reduced council</h3>
+          <p class="price-desc">For decisions in the $10k–$100k range. Three advisers from the most relevant tiers. One collision round. Chairman's verdict.</p>
+        </div>
+        <div class="price-amount">$490<span> · one decision</span></div>
+        <div class="price-rule"></div>
+        <ul>
+          <li>3-adviser reduced council</li>
+          <li>1 collision round</li>
+          <li>Verdict document only</li>
+          <li>48-hour turnaround</li>
+        </ul>
+        <a href="mailto:hello@aegntic.com?subject=Triage%20audit" class="btn btn-ghost">Request triage</a>
+      </div>
+
+      <div class="price-card featured reveal">
+        <div class="price-head">
+          <span class="price-name">Standard</span>
+          <h3 class="price-headline">Full council</h3>
+          <p class="price-desc">For decisions in the $100k–$2M range. All 15 advisers across five tiers. Two collision rounds. Full Chairman's verdict with 7-day plan.</p>
+        </div>
+        <div class="price-amount">$1,890<span> · one decision</span></div>
+        <div class="price-rule"></div>
+        <ul>
+          <li>15-adviser full council</li>
+          <li>2 collision rounds</li>
+          <li>Full verdict + 7-day plan</li>
+          <li>One revision pass on the brief</li>
+          <li>48-hour turnaround</li>
+        </ul>
+        <a href="mailto:hello@aegntic.com?subject=Standard%20audit" class="btn btn-accent">Request standard</a>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="price-head">
+          <span class="price-name">Strategic</span>
+          <h3 class="price-headline">Full council + defense</h3>
+          <p class="price-desc">For irreversible decisions above $2M. Adds the defense round — your team responds to the verdict, the council responds back. Final verdict after defense.</p>
+        </div>
+        <div class="price-amount">$4,200<span> · one decision</span></div>
+        <div class="price-rule"></div>
+        <ul>
+          <li>15-adviser full council</li>
+          <li>2 collision rounds + 1 defense</li>
+          <li>Full verdict + 7-day plan</li>
+          <li>Live read-out call (60 min)</li>
+          <li>72-hour turnaround</li>
+        </ul>
+        <a href="mailto:hello@aegntic.com?subject=Strategic%20audit" class="btn btn-ghost">Request strategic</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="section-pad">
-  <div class="section-inner" style="text-align:center;max-width:760px">
-    <h2 class="section-heading" data-split style="margin:0 auto 1.5rem">Have a decision <em>worth pressure-testing?</em></h2>
-    <p class="section-desc" style="margin:0 auto 2.5rem">Send a one-sentence brief. We will tell you whether it warrants a full council, a reduced council, or a direct answer. No obligation.</p>
-    <a href="mailto:hello@aegntic.com?subject=AE%20Audits%20%E2%80%94%20Brief%20intake" class="btn" style="font-size:1rem;padding:1.1rem 2.25rem">Start a brief
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+<!-- ============ FAQ ============ -->
+<section class="section-pad" id="faq">
+  <div class="section-inner" style="max-width:900px">
+    <div class="section-label">Before you submit</div>
+    <h2 class="section-heading">Five things worth <em>knowing first.</em></h2>
+
+    <div class="faq-list" style="margin-top:3rem">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>What kind of decision is this actually for?</span>
+          <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Expensive, irreversible or hard-to-reverse, and made under real uncertainty. Examples: fork-or-build a product, accept a term sheet, sign a multi-year vendor, fire a co-founder, migrate a production stack, raise a round at a specific valuation, take a strategic investment, ship a security-sensitive feature under deadline. If the cost of being wrong is recoverable in a week, this is overkill.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>How do you stop the named operators (#BUFFETT, #MUSK, etc) from becoming impersonation theatre?</span>
+          <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">By contract. The Anti-Caricature rule forces named operators to be used as compressed reasoning lenses, not stylised imitation. The output uses each operator's distinct decision criteria, risk models, and prioritisation logic — not their public speaking quirks. If a section reads like a meme version of the person, it gets cut in the deduplication round.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>What does the brief need to contain?</span>
+          <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">One paragraph on the decision itself, one paragraph on what you have already ruled out, the constraints (financial, temporal, contractual, relational), the kill-criteria you are currently using, and any data that contradicts your preferred outcome. We send a structured brief template on request. The shorter the brief the sharper the verdict.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>What if the verdict is wrong?</span>
+          <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Two recourses. First: if the verdict does not surface at least one risk you had not already written down, you do not pay. Second: on Strategic engagements, the defense round exists specifically to push back when you believe the council missed something. The council either defends its position or revises the verdict. Either way, you see the disagreement in writing.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Is this AI-generated? Are the advisers real people?</span>
+          <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">The council is an adversarial reasoning system. The fifteen advisers are reasoning archetypes, not fifteen humans sitting in a room. The Chairman (a human) reviews every verdict before it ships. The value is in the structure — fifteen distinct lenses forced to collide, then deduplicated into one decision-grade document — not in any single voice.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="cta-section">
+  <div class="cta-figure reveal">
+    <div class="cta-content">
+      <span class="label">Submit a decision</span>
+      <h2>Send the brief. <br>Get the verdict.</h2>
+      <p>One decision per engagement. 48-hour turnaround. If the verdict does not surface at least one risk you had not written down, you do not pay.</p>
+    </div>
+    <div class="cta-arm" aria-hidden="true">
+      <div class="cta-arm-flip">
+        <img src="/cta-reach-arm.png" alt="" loading="lazy">
+      </div>
+    </div>
+    <a href="mailto:hello@aegntic.com?subject=AE%20Audit%20request" class="cta-arm-button">
+      Request an audit
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
     </a>
   </div>
 </section>
 
+<!-- ============ FLOATING CTA ============ -->
+<a href="mailto:hello@aegntic.com?subject=AE%20Audit%20request" class="floating-cta" id="floatingCta">
+  Request an audit
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+
+<!-- ============ FOOTER ============ -->
 <footer class="footer">
-  <div class="footer-marquee">
-    <div class="footer-marquee-inner">
-      <span>Adversarial</span><span>Compressed</span><span>Deduplicated</span><span>Decisive</span><span>Refundable</span>
-      <span>Adversarial</span><span>Compressed</span><span>Deduplicated</span><span>Decisive</span><span>Refundable</span>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="/ae-logo.webp" alt="AE logo">
+      <p>AE Audits is a decision-review service operated by aegntic.ai — production AI-agent systems, built solo end to end.</p>
+    </div>
+    <div class="footer-col">
+      <h5>AE Audits</h5>
+      <ul>
+        <li><a href="#what">What it is</a></li>
+        <li><a href="#council">The council</a></li>
+        <li><a href="#verdict">The verdict</a></li>
+        <li><a href="#pricing">Engagement model</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="mailto:hello@aegntic.com">hello@aegntic.com</a></li>
+        <li><a href="/">aegntic.ai</a></li>
+      </ul>
     </div>
   </div>
-  <div class="footer-links">
-    <a href="https://aegntic.ai">aegntic.ai</a>
-    <a href="https://aegntic.ai/audits">AE Audits</a>
-    <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://x.com/AEGNTIC" target="_blank" rel="noopener">X / Twitter</a>
-    <a href="https://aegntic.ai/privacy">Privacy</a>
-    <a href="mailto:hello@aegntic.com">Contact</a>
+  <div class="footer-rule">
+    <span>© 2026 aegntic.ai — All rights reserved</span>
+    <span>Built solo, end to end.</span>
   </div>
-  <div class="footer-copy">&copy; 2026 AEGNTIC. AE Audits · Decision review for expensive bets.</div>
 </footer>
 
 <script>
-  const progressBar=document.getElementById('scrollProgress');
-  const floatingCta=document.getElementById('floatingCta');
-  let ctaVisible=false;
-  function updateProgress(){
-    const st=window.scrollY;
-    const dh=document.documentElement.scrollHeight-window.innerHeight;
-    progressBar.style.width=(dh>0?(st/dh)*100:0)+'%';
-    const shouldShow=st>window.innerHeight*0.45;
-    if(shouldShow&&!ctaVisible){floatingCta.classList.add('visible');ctaVisible=true}
-    else if(!shouldShow&&ctaVisible){floatingCta.classList.remove('visible');ctaVisible=false}
-  }
-  window.addEventListener('scroll',updateProgress,{passive:true});
-  updateProgress();
-
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      const t=document.querySelector(a.getAttribute('href'));
-      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
-    });
-  });
-
-  (function(){
-    if(!window.gsap||!window.ScrollTrigger){return}
-    gsap.registerPlugin(ScrollTrigger);
-    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.body.classList.add('gsap-ready');
-    if(reduce){
-      gsap.set('[data-split] .split-inner,.reveal-fade',{clearProps:'all'});
-      return;
+/* ============ Scroll progress + floating CTA ============ */
+(function(){
+  const progress = document.getElementById('scrollProgress');
+  const floatingCta = document.getElementById('floatingCta');
+  let ticking = false;
+  function update(){
+    const doc = document.documentElement;
+    const max = (doc.scrollHeight - window.innerHeight) || 1;
+    const pct = Math.min(1, Math.max(0, window.scrollY / max));
+    if(progress) progress.style.width = (pct*100).toFixed(2) + '%';
+    if(floatingCta){
+      if(pct > 0.4) floatingCta.classList.add('visible');
+      else floatingCta.classList.remove('visible');
     }
-    function splitWords(el){
-      const nodes=Array.from(el.childNodes);el.innerHTML='';
-      nodes.forEach(n=>{
-        if(n.nodeType===3){
-          n.textContent.split(/(\s+)/).forEach(p=>{
-            if(p==='')return;
-            if(/^\s+$/.test(p)){el.appendChild(document.createTextNode(' '));return}
-            const mask=document.createElement('span');mask.className='split-mask';
-            const inner=document.createElement('span');inner.className='split-inner';inner.textContent=p;
-            mask.appendChild(inner);el.appendChild(mask);
-          });
-        }else if(n.nodeType===1){
-          if(n.tagName.toLowerCase()==='br'){el.appendChild(n);return}
-          const mask=document.createElement('span');mask.className='split-mask';
-          n.classList.add('split-inner');mask.appendChild(n);el.appendChild(mask);
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if(!ticking){ window.requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  update();
+})();
+
+/* ============ FAQ accordion ============ */
+(function(){
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(other => {
+        if(other !== item){
+          other.classList.remove('open');
+          other.querySelector('.faq-q').setAttribute('aria-expanded','false');
+          other.querySelector('.faq-a').style.maxHeight = '0';
         }
       });
-    }
-    document.querySelectorAll('[data-split]').forEach(splitWords);
-    gsap.utils.toArray('[data-split]').forEach(el=>{
-      const inners=el.querySelectorAll('.split-inner');
-      if(inners.length){
-        gsap.fromTo(inners,{yPercent:120},{yPercent:0,duration:1.2,ease:'expo.out',stagger:0.08,
-          scrollTrigger:{trigger:el,start:'top 85%',toggleActions:'play none none reverse'}});
+      if(open){
+        item.classList.remove('open');
+        q.setAttribute('aria-expanded','false');
+        a.style.maxHeight = '0';
+      } else {
+        item.classList.add('open');
+        q.setAttribute('aria-expanded','true');
+        a.style.maxHeight = a.scrollHeight + 'px';
       }
     });
-    gsap.utils.toArray('.card,.adviser,.verdict-block,.tier').forEach(el=>{
-      gsap.fromTo(el,{y:30,opacity:0},{y:0,opacity:1,duration:0.9,ease:'power3.out',
-        scrollTrigger:{trigger:el,start:'top 90%',toggleActions:'play none none reverse'}});
+  });
+})();
+
+/* ============ Reveal observer ============ */
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(e => e.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if(en.isIntersecting){
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
     });
-  })();
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(e => io.observe(e));
+})();
+
+/* ============ GSAP removed — council stack now CSS-only sticky ============ */
 </script>
+
 </body>
 </html>

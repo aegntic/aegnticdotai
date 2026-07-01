@@ -6,5 +6,8 @@ dist
 *.zip
 .gstack/
 
+.wrangler/
+index.html.react-backup
+
 # dead gitlink target — nested repo, do not track
 aegnticdotai-home/

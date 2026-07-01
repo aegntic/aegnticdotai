@@ -1,128 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — aegntic.ai</title>
-<meta name="description" content="Privacy Policy for aegntic.ai — what data we collect, why, and your rights." />
-<link rel="canonical" href="https://aegntic.ai/privacy" />
-<link rel="icon" type="image/png" href="/favicon.png" />
+<meta name="description" content="Privacy Policy for aegntic.ai — what data we collect, why, and your rights.">
+<link rel="canonical" href="https://aegntic.ai/privacy">
+<link rel="icon" type="image/png" href="/favicon.png">
+<meta name="theme-color" content="#f0f6f8">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aegntic.ai/privacy">
+<meta property="og:title" content="Privacy Policy — aegntic.ai">
+<meta property="og:description" content="Privacy Policy for aegntic.ai — what data we collect, why, and your rights.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #faf9f6;
-    --bg-elevated: #f0eeea;
-    --text: #1a1a18;
-    --text-secondary: #6b6860;
-    --text-tertiary: #a09a8e;
-    --rule: #ddd9d0;
-    --font-display: "Instrument Serif", Georgia, serif;
-    --font-body: "Syne", system-ui, sans-serif;
-  }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule); transition: text-decoration-color .3s ease; }
-  a:hover { text-decoration-color: var(--text); }
-  .wrap { max-width: 720px; margin: 0 auto; padding: clamp(5rem, 10vw, 8rem) 1.5rem 6rem; }
-  .back { font-size: .8rem; font-weight: 500; text-transform: uppercase; letter-spacing: .12em; color: var(--text-tertiary); text-decoration: none; display: inline-block; margin-bottom: 3rem; }
-  .back:hover { color: var(--text); }
-  h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.05; letter-spacing: -.02em; margin-bottom: 1rem; }
-  .lede { font-family: var(--font-display); font-size: clamp(1.15rem, 2.2vw, 1.5rem); line-height: 1.4; color: var(--text-secondary); max-width: 44ch; margin-bottom: 3rem; }
-  .meta { font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; color: var(--text-tertiary); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 1rem 0; margin-bottom: 3rem; display: flex; flex-wrap: wrap; gap: 1.5rem; }
-  h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.4rem, 3vw, 1.9rem); line-height: 1.2; letter-spacing: -.01em; margin: 3rem 0 .75rem; }
-  h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-secondary); margin: 2rem 0 .5rem; }
-  p { font-size: .95rem; color: var(--text-secondary); margin-bottom: 1rem; }
-  p strong, li strong { color: var(--text); font-weight: 600; }
-  ul { padding-left: 1.25rem; margin-bottom: 1rem; }
-  li { font-size: .95rem; color: var(--text-secondary); margin-bottom: .5rem; }
-  li::marker { color: var(--text-tertiary); }
-  .contact { background: var(--bg-elevated); border: 1px solid var(--rule); border-radius: 4px; padding: 1.75rem; margin-top: 3rem; }
-  .contact a { font-weight: 600; }
-  footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--rule); font-size: .8rem; color: var(--text-tertiary); }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f0f6f8;
+  --bg-elevated:#ffffff;
+  --bg-inset:#e7eef0;
+  --text:#11181c;
+  --text-dark:#0c1016;
+  --text-secondary:#4a5258;
+  --text-muted:#a5abad;
+  --rule:rgba(17,24,28,0.08);
+  --rule-strong:rgba(17,24,28,0.14);
+  --accent:#00b39f;
+  --accent-dim:rgba(0,179,158,0.12);
+  --surface-1:#0c1016;
+  --surface-2:#23272d;
+  --radius:1.5rem;
+  --radius-pill:999px;
+  --ease-spring:cubic-bezier(.22,.68,0,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
+
+/* SCROLL PROGRESS */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:200;transition:width 80ms linear;will-change:width}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 1rem;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+@media(min-width:1024px){.nav{padding:1.5rem 3rem}}
+.nav-logo{pointer-events:auto;display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.125rem;letter-spacing:-.02em;color:var(--text-dark)}
+.nav-logo .ae{font-family:'Space Grotesk',sans-serif;color:var(--accent)}
+.nav-back{pointer-events:auto;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.6rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;border:none;cursor:pointer;transition:transform .5s var(--ease-spring)}
+.nav-back:hover{transform:scale(1.05)}
+.nav-back svg{width:14px;height:14px;transition:transform .3s var(--ease-spring)}
+.nav-back:hover svg{transform:translateX(-3px)}
+
+/* ARTICLE SHELL */
+.prose-wrap{max-width:760px;margin:0 auto;padding:9rem 1.5rem 5rem}
+@media(min-width:768px){.prose-wrap{padding:11rem 2rem 6rem}}
+.eyebrow{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem}
+.eyebrow::before{content:"";width:1.75rem;height:1px;background:var(--accent);opacity:.6}
+h1.title{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(2.25rem,5vw,3.5rem);font-weight:500;letter-spacing:-.03em;line-height:1.05;color:var(--text-dark);margin-bottom:1.25rem;max-width:16ch}
+.lede{font-size:clamp(1.0625rem,1.4vw,1.25rem);color:var(--text-secondary);line-height:1.6;max-width:48ch;margin-bottom:2.5rem}
+
+/* META STRIP */
+.meta{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:1rem 0;margin-bottom:1rem;display:flex;flex-wrap:wrap;gap:1.5rem}
+.meta span{display:inline-flex;align-items:center;gap:.5rem}
+.meta span strong{font-family:'Space Grotesk',sans-serif;color:var(--text-dark);font-weight:600;text-transform:none;letter-spacing:0;font-size:.8125rem}
+
+/* PROSE — long-form legal body */
+.prose h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.4rem,2.6vw,1.875rem);letter-spacing:-.02em;line-height:1.2;margin:3rem 0 .75rem;color:var(--text-dark)}
+.prose h2:first-child{margin-top:2rem}
+.prose p{font-size:1rem;color:var(--text-secondary);line-height:1.75;margin-bottom:1rem}
+.prose strong{color:var(--text-dark);font-weight:600}
+.prose code{font-family:'Space Grotesk',monospace;font-size:.875em;background:var(--bg-inset);padding:.1rem .4rem;border-radius:.4rem;color:var(--text-dark)}
+.prose ul{padding-left:1.25rem;margin-bottom:1rem}
+.prose li{font-size:1rem;color:var(--text-secondary);margin-bottom:.5rem;line-height:1.7}
+.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent-dim);transition:text-decoration-color .2s}
+.prose a:hover{text-decoration-color:var(--accent)}
+
+/* CONTACT CARD */
+.contact{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius);padding:1.75rem;margin-top:3rem;box-shadow:0 1px 2px rgba(12,16,22,.04)}
+.contact a{font-weight:600}
+
+footer.page-foot{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--rule);font-size:.75rem;color:var(--text-muted);text-align:center}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(12,16,22,.15);border-radius:999px}
+::-webkit-scrollbar-thumb:hover{background:rgba(12,16,22,.3)}
+*{scrollbar-width:thin;scrollbar-color:rgba(12,16,22,.15) transparent}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<main class="wrap">
-  <a class="back" href="/">← aegntic.ai</a>
 
-  <h1>Privacy Policy</h1>
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="https://aegntic.ai" class="nav-logo">ae<span class="ae">gntic</span></a>
+  <a href="https://aegntic.ai" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    Back to aegntic.ai
+  </a>
+</nav>
+
+<main class="prose-wrap">
+  <div class="eyebrow">Privacy</div>
+  <h1 class="title">Privacy Policy</h1>
   <p class="lede">aegntic.ai collects almost nothing. This page explains exactly what we do collect, why, and how to remove it.</p>
 
   <div class="meta">
-    <span>Effective: 26 June 2026</span>
-    <span>Operator: Mattae Cooper</span>
-    <span>Contact: hello@aegntic.com</span>
+    <span>Effective: <strong>26 June 2026</strong></span>
+    <span>Operator: <strong>Mattae Cooper</strong></span>
+    <span>Contact: <strong>hello@aegntic.com</strong></span>
   </div>
 
-  <h2>Who we are</h2>
-  <p>aegntic.ai is the personal portfolio and contact site of <strong>Mattae Cooper</strong>, an independent software engineer. Mattae Cooper is the data controller responsible for this site. This policy applies only to <strong>aegntic.ai</strong> — not to any third-party sites it links to (such as GitHub, cldcde.cc, logue.pro, clawreform.com, or X/Twitter).</p>
+  <article class="prose">
+    <h2>Who we are</h2>
+    <p>aegntic.ai is the personal portfolio and contact site of <strong>Mattae Cooper</strong>, an independent software engineer. Mattae Cooper is the data controller responsible for this site. This policy applies only to <strong>aegntic.ai</strong> — not to any third-party sites it links to (such as GitHub, cldcde.cc, logue.pro, clawreform.com, or X/Twitter).</p>
 
-  <h2>What data we collect</h2>
-  <p>We only collect data you choose to give us, through one of two forms:</p>
-  <ul>
-    <li><strong>Contact form</strong> — if you send a message, we receive the <strong>name, email, subject, and message</strong> you enter.</li>
-    <li><strong>Newsletter</strong> — if you subscribe, we receive your <strong>email address</strong>.</li>
-  </ul>
-  <p>We do <strong>not</strong> collect: browsing history, location, device fingerprints, advertising identifiers, or any data from people who only browse the site without submitting a form.</p>
+    <h2>What data we collect</h2>
+    <p>We only collect data you choose to give us, through one of two forms:</p>
+    <ul>
+      <li><strong>Contact form</strong> — if you send a message, we receive the <strong>name, email, subject, and message</strong> you enter.</li>
+      <li><strong>Newsletter</strong> — if you subscribe, we receive your <strong>email address</strong>.</li>
+    </ul>
+    <p>We do <strong>not</strong> collect: browsing history, location, device fingerprints, advertising identifiers, or any data from people who only browse the site without submitting a form.</p>
 
-  <h2>Why we collect it &amp; legal basis</h2>
-  <ul>
-    <li>To <strong>respond to your enquiry</strong> (contact form) — based on your consent and our legitimate interest in replying.</li>
-    <li>To <strong>send occasional project updates</strong> (newsletter) — based on your consent. You can withdraw it at any time.</li>
-  </ul>
+    <h2>Why we collect it &amp; legal basis</h2>
+    <ul>
+      <li>To <strong>respond to your enquiry</strong> (contact form) — based on your consent and our legitimate interest in replying.</li>
+      <li>To <strong>send occasional project updates</strong> (newsletter) — based on your consent. You can withdraw it at any time.</li>
+    </ul>
 
-  <h2>Where it is stored</h2>
-  <p>Form submissions are stored in <strong>Cloudflare D1</strong>, the database service of our hosting provider Cloudflare. Because Cloudflare operates global infrastructure, your data may be processed in a country other than your own, subject to Cloudflare's own safeguards.</p>
+    <h2>Where it is stored</h2>
+    <p>Form submissions are stored in <strong>Cloudflare D1</strong>, the database service of our hosting provider Cloudflare. Because Cloudflare operates global infrastructure, your data may be processed in a country other than your own, subject to Cloudflare's own safeguards.</p>
 
-  <h2>Cookies &amp; local storage</h2>
-  <p>aegntic.ai <strong>does not use cookies</strong> and <strong>does not run analytics or advertising trackers</strong>. The only client-side storage is a single flag in your browser's <strong>localStorage</strong> that remembers you dismissed or completed the newsletter prompt — it stays on your device and is never sent to us.</p>
+    <h2>Cookies &amp; local storage</h2>
+    <p>aegntic.ai <strong>does not use cookies</strong> and <strong>does not run analytics or advertising trackers</strong>. The only client-side storage is a single flag in your browser's <strong>localStorage</strong> that remembers you dismissed or completed the newsletter prompt — it stays on your device and is never sent to us.</p>
 
-  <h2>Third parties</h2>
-  <ul>
-    <li><strong>Cloudflare</strong> — hosts the site and stores form data (D1).</li>
-    <li><strong>Google Fonts</strong> — the typefaces are served from <code>fonts.gstatic.com</code>; your browser may send your IP address to Google to fetch them. No Google analytics are loaded.</li>
-  </ul>
-  <p>We never sell your data, and we do not share it with anyone except as required to operate the site, or where required by law.</p>
+    <h2>Third parties</h2>
+    <ul>
+      <li><strong>Cloudflare</strong> — hosts the site and stores form data (D1).</li>
+      <li><strong>Google Fonts</strong> — the typefaces are served from <code>fonts.gstatic.com</code>; your browser may send your IP address to Google to fetch them. No Google analytics are loaded.</li>
+    </ul>
+    <p>We never sell your data, and we do not share it with anyone except as required to operate the site, or where required by law.</p>
 
-  <h2>How long we keep it</h2>
-  <p>Only as long as needed: contact messages until your enquiry is resolved (and any resulting work completed), newsletter entries until you unsubscribe or ask us to delete them. You can request deletion at any time.</p>
+    <h2>How long we keep it</h2>
+    <p>Only as long as needed: contact messages until your enquiry is resolved (and any resulting work completed), newsletter entries until you unsubscribe or ask us to delete them. You can request deletion at any time.</p>
 
-  <h2>Your rights</h2>
-  <p>Depending on where you live (e.g. under GDPR, CCPA, or Australian Privacy Principles), you may have the right to:</p>
-  <ul>
-    <li>Access the data we hold about you</li>
-    <li>Correct inaccurate data</li>
-    <li>Request deletion of your data</li>
-    <li>Withdraw consent (e.g. unsubscribe) at any time</li>
-    <li>Lodge a complaint with your local data-protection authority</li>
-  </ul>
-  <p>To exercise any of these, email <strong>hello@aegntic.com</strong>. We respond within 30 days.</p>
+    <h2>Your rights</h2>
+    <p>Depending on where you live (e.g. under GDPR, CCPA, or Australian Privacy Principles), you may have the right to:</p>
+    <ul>
+      <li>Access the data we hold about you</li>
+      <li>Correct inaccurate data</li>
+      <li>Request deletion of your data</li>
+      <li>Withdraw consent (e.g. unsubscribe) at any time</li>
+      <li>Lodge a complaint with your local data-protection authority</li>
+    </ul>
+    <p>To exercise any of these, email <strong>hello@aegntic.com</strong>. We respond within 30 days.</p>
 
-  <h2>Children</h2>
-  <p>aegntic.ai is not directed at anyone under 16, and we do not knowingly collect data from children. If you believe a minor has submitted data, contact us and we will delete it.</p>
+    <h2>Children</h2>
+    <p>aegntic.ai is not directed at anyone under 16, and we do not knowingly collect data from children. If you believe a minor has submitted data, contact us and we will delete it.</p>
 
-  <h2>Security</h2>
-  <p>The site is served over HTTPS and data is held in Cloudflare D1. No method of transmission or storage is fully secure, but we take reasonable measures appropriate to the (minimal) data we hold.</p>
+    <h2>Security</h2>
+    <p>The site is served over HTTPS and data is held in Cloudflare D1. No method of transmission or storage is fully secure, but we take reasonable measures appropriate to the (minimal) data we hold.</p>
 
-  <h2>Changes to this policy</h2>
-  <p>We may update this policy as the site evolves. The "Effective" date above always reflects the current version.</p>
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy as the site evolves. The "Effective" date above always reflects the current version.</p>
+  </article>
 
   <div class="contact">
     <p style="margin-bottom:.5rem"><strong>Questions or data requests?</strong></p>
     <p style="margin-bottom:0">Email <a href="mailto:hello@aegntic.com">hello@aegntic.com</a></p>
   </div>
 
-  <footer>© 2026 Mattae Cooper · aegntic.ai</footer>
+  <footer class="page-foot">© 2026 Mattae Cooper · aegntic.ai</footer>
 </main>
+
+<script>
+  // Scroll progress bar (matches SOHub shell behavior)
+  const progressBar=document.getElementById('scrollProgress');
+  function updateProgress(){
+    const st=window.scrollY;
+    const dh=document.documentElement.scrollHeight-window.innerHeight;
+    progressBar.style.width=(dh>0?(st/dh)*100:0)+'%';
+  }
+  window.addEventListener('scroll',updateProgress,{passive:true});
+  updateProgress();
+</script>
 </body>
 </html>

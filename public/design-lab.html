@@ -1,1031 +1,476 @@
 <!DOCTYPE html>
+<!--
+  ============================================================================
+  Design Lab — aegntic · SOHub DESIGN-LAB SHELL
+  ============================================================================
+  A typography & design specimen showcase. Demonstrates design capability.
+  Content intent preserved; visual shell reskinned from blue (#2563EB) to the
+  SOHub design system (light + teal #00b39f). SOHub nav-back, footer-marquee,
+  scroll-progress, floating-cta, GSAP word-split reveals.
+
+  DESIGN RULES (binding):
+    - Light-first. --bg #f0f6f8. Teal accent #00b39f. Dark surface #0c1016.
+    - Typography: Space Grotesk (display) + Inter (body). Max these two.
+    - Motion: GSAP scroll reveals only (data-split). Respect prefers-reduced-motion.
+    - ZERO AI fingerprints: no purple/blue gradients, no glassmorphism, no
+      gradient text, no numbered 01/02 markers as decoration.
+    - HONESTY: real products only. No fabricated metrics/funding/research claims.
+  ============================================================================
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AEGNTIC — Cognitive OS Design Lab</title>
+<title>Design Lab — aegntic</title>
+<meta name="description" content="A typography and design specimen showcase for the aegntic design system — type contexts, motion, and the SOHub token palette.">
+<link rel="canonical" href="https://aegntic.ai/design-lab">
+<link rel="icon" type="image/png" href="/favicon.png">
+<meta name="theme-color" content="#f0f6f8">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aegntic.ai/design-lab">
+<meta property="og:title" content="Design Lab — aegntic">
+<meta property="og:description" content="A typography and design specimen showcase for the aegntic design system.">
+<meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
 :root{
-  --white:#FFFFFF;
-  --bg:#FAFBFC;
-  --bg-2:#F2F5F8;
-  --panel:#EDF1F5;
-  --text:#0A0E14;
-  --text-dim:rgba(10,14,20,0.50);
-  --text-faint:rgba(10,14,20,0.18);
-  --accent:#2563EB;
-  --accent-light:#60A5FA;
-  --accent-pale:#DBEAFE;
-  --border:rgba(10,14,20,0.06);
-  --border-mid:rgba(10,14,20,0.10);
-  --groove:rgba(10,14,20,0.06);
-  --serif:'Playfair Display',Georgia,serif;
-  --sans:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif;
-  --mono:'Space Mono','Courier New',monospace;
+  --bg:#f0f6f8;
+  --bg-elevated:#ffffff;
+  --bg-inset:#e7eef0;
+  --text:#11181c;
+  --text-dark:#0c1016;
+  --text-secondary:#4a5258;
+  --text-muted:#a5abad;
+  --rule:rgba(17,24,28,0.08);
+  --rule-strong:rgba(17,24,28,0.14);
+  --accent:#00b39f;
+  --accent-dim:rgba(0,179,158,0.12);
+  --surface-1:#0c1016;
+  --surface-2:#23272d;
+  --surface-3:#3a3e44;
+  --surface-4:#50555a;
+  --radius:1.5rem;
+  --radius-lg:3rem;
+  --radius-pill:999px;
+  --ease-spring:cubic-bezier(.22,.68,0,1);
+  --ease-overshoot:cubic-bezier(.22,.68,0,1.2);
 }
-
 html{scroll-behavior:smooth}
-body{background:var(--white);color:var(--text);font-family:var(--sans);font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
+.fd{font-family:'Space Grotesk','Inter',sans-serif}
 
-body::before{content:'';position:fixed;inset:0;background-image:url('aegnticdotaitextheader.png');background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0.02;pointer-events:none;z-index:0}
-body::-webkit-scrollbar{width:0}
-
-.wireframe-bg{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.wireframe-bg svg{position:absolute;top:0;left:0;width:100%;height:100%}
-.wireframe-bg path,.wireframe-bg line,.wireframe-bg circle,.wireframe-bg rect{fill:none;stroke:rgba(10,14,20,0.035);stroke-width:1}
-.wireframe-bg .accent-stroke{stroke:rgba(37,99,235,0.06)}
-
-.content{position:relative;z-index:2}
-
-/* LOADER */
-.loader{position:fixed;inset:0;background:var(--white);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2rem;transition:opacity 0.6s ease,visibility 0.6s ease}
-.loader.hidden{opacity:0;visibility:hidden}
-.loader-logo{width:120px;height:auto;animation:loaderPulse 1.6s ease-in-out infinite}
-@keyframes loaderPulse{0%,100%{opacity:0.3;transform:scale(0.95)}50%{opacity:1;transform:scale(1)}}
-.loader-bar{width:180px;height:1px;background:var(--border);overflow:hidden}
-.loader-bar::after{content:'';display:block;width:40%;height:100%;background:var(--accent);animation:loaderSlide 1.2s ease-in-out infinite}
-@keyframes loaderSlide{0%{transform:translateX(-100%)}100%{transform:translateX(350%)}}
+/* SCROLL PROGRESS */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:200;transition:width 80ms linear;will-change:width}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-brand{display:flex;align-items:center;gap:0.5rem;text-decoration:none;color:var(--text)}
-.nav-brand .logo-mark{height:1.1rem;width:auto}
-.nav-links{display:flex;align-items:center;gap:2rem}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 1rem;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+@media(min-width:1024px){.nav{padding:1.5rem 3rem}}
+.nav-logo{pointer-events:auto;display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.125rem;letter-spacing:-.02em;color:var(--text-dark)}
+.nav-logo .ae{font-family:'Space Grotesk',sans-serif;color:var(--accent)}
+.nav-back{pointer-events:auto;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.6rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;border:none;cursor:pointer;transition:transform .5s var(--ease-spring)}
+.nav-back:hover{transform:scale(1.05)}
+.nav-back svg{width:14px;height:14px;transition:transform .3s var(--ease-spring)}
+.nav-back:hover svg{transform:translateX(-3px)}
 
-/* ========== FLAP CORE ========== */
-/* The measuring span is hidden but participates in layout for accurate metrics */
-.flap-measure{position:absolute;visibility:hidden;white-space:nowrap;z-index:-1}
+/* HERO */
+.hero{position:relative;min-height:82vh;display:flex;align-items:center;padding:10rem 1rem 5rem;overflow:hidden}
+@media(min-width:768px){.hero{padding:12rem 2rem 6rem}}
+@media(min-width:1024px){.hero{padding:13rem 3rem 7rem}}
+.hero-watermark{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:flex-end;overflow:hidden;pointer-events:none;user-select:none;padding-right:.5rem}
+.hero-watermark span{font-weight:700;font-size:clamp(8rem,28vw,24rem);letter-spacing:-.04em;color:var(--text-dark);opacity:.04;line-height:.85;white-space:nowrap}
+.hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%}
+.hero-eyebrow{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem}
+.hero-eyebrow::before{content:"";width:1.75rem;height:1px;background:var(--accent);opacity:.6}
+.hero-headline{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(2.25rem,7vw,6rem);font-weight:500;letter-spacing:-.035em;line-height:1.02;color:var(--text-dark);max-width:16ch;margin-bottom:1.5rem}
+.hero-headline em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:clamp(1rem,1.3vw,1.125rem);color:var(--text-secondary);line-height:1.65;max-width:48ch;margin-bottom:2.5rem}
+.hero-meta{display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:3rem}
+.hero-meta .kv{font-size:.6875rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+.hero-meta .kv b{font-family:'Space Grotesk',sans-serif;color:var(--text-dark);font-weight:600;letter-spacing:0}
 
-/* A flap row holds characters inline and wraps naturally */
-.flap-row{display:inline;line-height:inherit}
+/* SECTION PRIMITIVES */
+section{position:relative}
+.section-pad{padding:6rem 1rem}
+@media(min-width:768px){.section-pad{padding:8rem 2rem}}
+@media(min-width:1024px){.section-pad{padding:8rem 3rem}}
+@media(min-width:1280px){.section-pad{padding:10rem 5rem}}
+.section-inner{max-width:1400px;margin:0 auto}
+.section-inner.narrow{max-width:1040px}
+.section-label{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:.625rem}
+.section-label::before{content:"";width:1.75rem;height:1px;background:var(--text-muted);opacity:.4}
+.section-heading{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(1.75rem,4vw,3rem);font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-dark);margin-bottom:1rem;max-width:22ch}
+.section-heading em{font-style:normal;color:var(--accent)}
+.section-desc{font-size:clamp(.9375rem,1.2vw,1.0625rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:3rem}
 
-/* A flap word is inline-block so it wraps as a unit */
-.flap-word{display:inline-block;vertical-align:top}
+/* TYPE SPECIMEN GRID */
+.specimen-grid{display:grid;grid-template-columns:1fr;gap:1.25rem}
+@media(min-width:768px){.specimen-grid{grid-template-columns:1fr 1fr}}
+.specimen{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius);padding:2.25rem;transition:transform .4s var(--ease-spring),box-shadow .4s ease,border-color .4s ease;overflow:hidden}
+.specimen:hover{transform:translateY(-3px);box-shadow:0 8px 24px -8px rgba(12,16,22,.12);border-color:var(--rule-strong)}
+.specimen .spec-tag{font-size:.6875rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem}
+.specimen .spec-body{font-size:.9rem;color:var(--text-secondary);line-height:1.6;margin-top:1rem}
+.specimen .spec-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+.chip{font-size:.65rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:.35rem .8rem;border-radius:var(--radius-pill);background:var(--accent-dim);color:var(--text-secondary)}
 
-/* Each cell is a fixed-size 3D flip container */
-.flap-cell{
-  display:inline-flex;
-  position:relative;
-  perspective:500px;
-  overflow:hidden;
-  vertical-align:top;
-}
+/* TYPE CONTEXTS — live specimens in each card */
+.ctx-display{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2.5rem,6vw,3.75rem);letter-spacing:-.03em;line-height:1;color:var(--text-dark)}
+.ctx-display-italic{font-family:'Space Grotesk',sans-serif;font-style:italic;font-weight:500;font-size:clamp(2.5rem,6vw,3.75rem);letter-spacing:-.03em;line-height:1;color:var(--accent)}
+.ctx-heading{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(1.6rem,3.2vw,2.25rem);letter-spacing:-.02em;line-height:1.15;color:var(--text-dark)}
+.ctx-heading-italic{font-family:'Space Grotesk',sans-serif;font-style:italic;font-weight:500;font-size:clamp(1.6rem,3.2vw,2.25rem);letter-spacing:-.02em;line-height:1.15;color:var(--accent)}
+.ctx-subheading{font-family:'Inter',sans-serif;font-weight:600;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.ctx-body{font-family:'Inter',sans-serif;font-weight:400;font-size:.95rem;line-height:1.75;color:var(--text-secondary)}
+.ctx-body strong{color:var(--text-dark);font-weight:600}
+.ctx-label{font-family:'Inter',sans-serif;font-weight:500;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted)}
+.ctx-metric{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(2.5rem,5vw,3.5rem);letter-spacing:-.03em;line-height:1;color:var(--text-dark)}
+.ctx-mono{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--text-dark)}
+.ctx-status{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;color:var(--accent)}
 
-.flap-3d{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(0deg);transition:transform 0ms}
-.flap-3d.flip{transform:rotateX(-180deg)}
+/* TOKEN SWATCHES */
+.swatch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+@media(min-width:768px){.swatch-grid{grid-template-columns:repeat(4,1fr)}}
+.swatch{border:1px solid var(--rule);border-radius:1rem;overflow:hidden;transition:transform .3s var(--ease-spring)}
+.swatch:hover{transform:translateY(-2px)}
+.swatch .swatch-fill{height:96px;width:100%}
+.swatch .swatch-info{padding:.875rem 1rem}
+.swatch .swatch-name{font-size:.8125rem;font-weight:600;color:var(--text-dark);margin-bottom:.25rem}
+.swatch .swatch-hex{font-family:'Space Grotesk',sans-serif;font-size:.75rem;color:var(--text-muted);letter-spacing:.02em}
 
-.flap-face{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  backface-visibility:hidden;
-  -webkit-backface-visibility:hidden;
-  line-height:1;
-  white-space:nowrap;
-}
+/* DIMENSION BOARD (departure-style, recolored) */
+.board{background:var(--surface-1);border-radius:var(--radius);overflow:hidden}
+.board-header{display:grid;grid-template-columns:48px 1fr 1fr 140px;gap:1rem;padding:1rem 1.75rem;background:var(--surface-2);font-family:'Inter',sans-serif;font-weight:600;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.board-row{display:grid;grid-template-columns:48px 1fr 1fr 140px;gap:1rem;align-items:center;border-top:1px solid rgba(255,255,255,.06);padding:.9rem 1.75rem;transition:background .2s}
+.board-row:hover{background:var(--surface-2)}
+.board-row .b-idx{font-family:'Space Grotesk',sans-serif;font-size:.8rem;color:var(--text-muted);font-variant-numeric:tabular-nums}
+.board-row .b-module,.board-row .b-dim{font-family:'Space Grotesk',sans-serif;font-size:.875rem;color:#fff;font-weight:500;letter-spacing:.02em}
+.board-row .b-status{font-family:'Space Grotesk',sans-serif;font-size:.75rem;font-weight:600;color:var(--accent);letter-spacing:.04em;text-transform:uppercase}
 
-.flap-back{transform:rotateX(180deg)}
-
-.flap-groove{
-  position:absolute;
-  top:50%;
-  left:0;
-  right:0;
-  height:1px;
-  margin-top:-0.5px;
-  background:var(--groove);
-  z-index:10;
-  pointer-events:none;
-}
-
-/* Space between words */
-.flap-space{display:inline-block;vertical-align:top}
-
-/* ========== TYPOGRAPHY CONTEXTS ========== */
-/* Each context class sets the font, size, weight, and letter-spacing */
-/* that flap cells inherit. Cell width is set via JS measurement. */
-
-.ctx-display{
-  font-family:var(--serif);
-  font-weight:500;
-  font-size:clamp(2.5rem,10vw,8rem);
-  line-height:1.0;
-  letter-spacing:-0.01em;
-}
-.ctx-display .flap-cell{background:var(--white);border:1px solid var(--border-mid);box-shadow:0 1px 3px rgba(10,14,20,0.03)}
-
-.ctx-display-italic{
-  font-family:var(--serif);
-  font-style:italic;
-  font-weight:400;
-  font-size:clamp(2.5rem,10vw,8rem);
-  line-height:1.0;
-  letter-spacing:-0.01em;
-  color:var(--accent);
-}
-.ctx-display-italic .flap-cell{background:var(--white);border:1px solid var(--border-mid);box-shadow:0 1px 3px rgba(10,14,20,0.03)}
-
-.ctx-heading{
-  font-family:var(--serif);
-  font-weight:400;
-  font-size:clamp(1.8rem,4.5vw,3.5rem);
-  line-height:1.1;
-  letter-spacing:-0.02em;
-}
-.ctx-heading .flap-cell{background:var(--white);border:1px solid var(--border-mid);box-shadow:0 1px 2px rgba(10,14,20,0.02)}
-
-.ctx-heading-italic{
-  font-family:var(--serif);
-  font-style:italic;
-  font-weight:400;
-  font-size:clamp(1.8rem,4.5vw,3.5rem);
-  line-height:1.1;
-  letter-spacing:-0.02em;
-  color:var(--accent);
-}
-.ctx-heading-italic .flap-cell{background:var(--white);border:1px solid var(--border-mid)}
-
-.ctx-subheading{
-  font-family:var(--sans);
-  font-weight:600;
-  font-size:0.6rem;
-  letter-spacing:0.4em;
-  text-transform:uppercase;
-  color:var(--accent);
-  line-height:1.5;
-}
-.ctx-subheading .flap-cell{background:transparent;border:none;box-shadow:none}
-.ctx-subheading .flap-groove{display:none}
-
-.ctx-body{
-  font-family:var(--sans);
-  font-weight:300;
-  font-size:0.95rem;
-  line-height:2.0;
-  letter-spacing:0.005em;
-  color:var(--text-dim);
-}
-.ctx-body .flap-cell{background:transparent;border:none;box-shadow:none}
-.ctx-body .flap-groove{display:none}
-.ctx-body .flap-bold{color:var(--text);font-weight:500}
-
-.ctx-label{
-  font-family:var(--sans);
-  font-weight:500;
-  font-size:0.55rem;
-  letter-spacing:0.3em;
-  text-transform:uppercase;
-  color:var(--text-dim);
-  line-height:1.5;
-}
-.ctx-label .flap-cell{background:transparent;border:none;box-shadow:none}
-.ctx-label .flap-groove{display:none}
-
-.ctx-metric{
-  font-family:var(--serif);
-  font-weight:300;
-  font-size:clamp(2.5rem,5vw,4rem);
-  line-height:1;
-  letter-spacing:-0.03em;
-  color:var(--text);
-}
-.ctx-metric .flap-cell{background:transparent;border:none;box-shadow:none}
-.ctx-metric .flap-groove{background:rgba(10,14,20,0.05)}
-
-.ctx-board{
-  font-family:var(--mono);
-  font-weight:400;
-  font-size:0.72rem;
-  letter-spacing:0.05em;
-  text-transform:uppercase;
-  color:var(--text);
-  line-height:1.5;
-}
-.ctx-board .flap-cell{background:transparent;border:none;box-shadow:none}
-.ctx-board .flap-groove{background:rgba(10,14,20,0.05)}
-
-.ctx-board-status{
-  font-family:var(--mono);
-  font-weight:700;
-  font-size:0.72rem;
-  letter-spacing:0.05em;
-  text-transform:uppercase;
-  color:var(--accent);
-  line-height:1.5;
-}
-.ctx-board-status .flap-cell{background:transparent;border:none;box-shadow:none}
-.ctx-board-status .flap-groove{background:rgba(10,14,20,0.05)}
-
-.ctx-nav{
-  font-family:var(--sans);
-  font-weight:500;
-  font-size:0.65rem;
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  color:var(--text-dim);
-  line-height:1.5;
-}
-.ctx-nav .flap-cell{background:transparent;border:none;box-shadow:none}
-.ctx-nav .flap-groove{display:none}
-
-/* ========== LAYOUT ========== */
-.hero{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:8rem 5vw 4rem;
-  position:relative;
-}
-.hero-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(500px,60vw);height:auto;opacity:0.025;pointer-events:none;z-index:0}
-.hero-inner{position:relative;z-index:1;max-width:1300px;width:100%;margin:0 auto}
-
-.hero-label-row{margin-bottom:2.5rem}
-.hero-display-row{margin-bottom:0.3rem}
-.hero-sub-row{margin-top:2.5rem;max-width:480px}
-
-.hero-meta{position:absolute;bottom:2rem;left:5vw;right:5vw;display:flex;justify-content:space-between}
-
-.section{padding:5rem 5vw;max-width:1300px;margin:0 auto}
-.section-narrow{padding:5rem 5vw;max-width:1000px;margin:0 auto}
-
-.rule{border:none;border-top:1px solid var(--border);max-width:1300px;margin:0 auto}
-
-/* ALIGNMENT HELPERS */
-.align-right{text-align:right}
-.align-left{text-align:left}
-.align-center{text-align:center}
-
-/* Heading row with section label on left, heading on right */
-.heading-block{display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
-.heading-block .label-col{flex:0 0 auto}
-.heading-block .heading-col{flex:1 1 auto;min-width:300px;text-align:right}
-
-/* DEPARTURE BOARD */
-.board{background:var(--white);border:1px solid var(--border-mid);border-radius:4px;box-shadow:0 4px 24px rgba(10,14,20,0.04);overflow:hidden}
-.board-header{display:grid;grid-template-columns:50px 1fr 1fr 140px 70px;padding:1rem 1.5rem;background:var(--bg-2);border-bottom:1px solid var(--border-mid);font-family:var(--sans);font-weight:600;font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent)}
-.board-row{display:grid;grid-template-columns:50px 1fr 1fr 140px 70px;border-bottom:1px solid var(--border);min-height:56px;transition:background 0.2s}
-.board-row:last-child{border-bottom:none}
-.board-row:hover{background:var(--bg-2)}
-.board-cell{display:flex;align-items:center;padding:0.6rem 1rem;border-right:1px solid var(--border)}
-.board-cell:last-child{border-right:none}
-.board-cell .idx{font-family:var(--mono);font-size:0.7rem;color:var(--text-faint)}
-
-/* MANIFESTO */
-.manifesto-section{padding:6rem 5vw;max-width:1100px;margin:0 auto;position:relative}
-.manifesto-bg{position:absolute;top:50%;right:-10%;transform:translateY(-50%);width:500px;height:auto;opacity:0.035;pointer-events:none}
-.manifesto-body-row{max-width:540px;margin-top:2rem;position:relative;z-index:1}
-.manifesto-heading-row{margin-bottom:0.3rem;position:relative;z-index:1}
-
-/* METRICS */
-.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-mid);border:1px solid var(--border-mid);border-radius:4px;overflow:hidden}
-.metric{background:var(--white);padding:2.5rem 1.5rem;text-align:center;transition:background 0.2s}
-.metric:hover{background:var(--bg-2)}
-.metric-num-row{margin-bottom:0.8rem;display:flex;justify-content:center}
-
-/* ARCHITECTURE DIAGRAM */
-.diagram-section{padding:5rem 5vw;max-width:1300px;margin:0 auto}
-.diagram{background:var(--white);border:1px solid var(--border-mid);border-radius:4px;padding:3rem;overflow:hidden}
+/* ARCHITECTURE DIAGRAM (light, recolored) */
+.diagram{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius);padding:2.5rem;overflow:hidden}
+@media(min-width:768px){.diagram{padding:3.5rem}}
 .diagram-svg{width:100%;height:auto}
-.diagram-svg .layer-rect{fill:var(--bg-2);stroke:rgba(10,14,20,0.10);stroke-width:1;rx:2}
-.diagram-svg .layer-rect.accent{fill:var(--accent-pale);stroke:rgba(37,99,235,0.20)}
-.diagram-svg .layer-text{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;fill:var(--text);text-transform:uppercase;letter-spacing:0.1em}
-.diagram-svg .layer-sub{font-family:'Inter',sans-serif;font-size:9px;font-weight:300;fill:var(--text-dim)}
-.diagram-svg .connector{fill:none;stroke:rgba(10,14,20,0.08);stroke-width:1}
-.diagram-svg .connector-accent{stroke:rgba(37,99,235,0.15)}
+.diagram-svg .layer-rect{fill:var(--bg-inset);stroke:var(--rule-strong);stroke-width:1;rx:8}
+.diagram-svg .layer-rect.accent{fill:var(--accent-dim);stroke:rgba(0,179,158,0.35)}
+.diagram-svg .layer-text{font-family:'Space Grotesk',monospace;font-size:12px;font-weight:600;fill:var(--text-dark);text-transform:uppercase;letter-spacing:.08em}
+.diagram-svg .layer-sub{font-family:'Inter',sans-serif;font-size:10px;font-weight:400;fill:var(--text-secondary)}
+.diagram-svg .connector{fill:none;stroke:var(--rule-strong);stroke-width:1}
+.diagram-svg .connector-accent{stroke:rgba(0,179,158,0.4)}
 
-/* FEATURES */
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
-.feature-card{background:var(--white);border:1px solid var(--border-mid);border-radius:4px;padding:2rem;transition:border-color 0.2s}
-.feature-card:hover{border-color:var(--accent-light)}
-.feature-title-row{margin-bottom:0.8rem}
-.feature-body-row{margin-bottom:0}
+/* FLOATING CTA */
+.floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.75rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(.9);transition:opacity .5s ease,transform .5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(12,16,22,.15)}
+.floating-cta.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.floating-cta:hover{transform:translateY(-2px) scale(1.05)}
+@media(max-width:767px){.floating-cta span{display:none}.floating-cta{padding:.75rem;border-radius:50%}}
 
 /* FOOTER */
-.footer{padding:5rem 5vw 3rem;border-top:1px solid var(--border-mid);position:relative;background:var(--bg)}
-.footer-bg{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:400px;height:auto;opacity:0.035;pointer-events:none}
-.footer-logo{width:60px;height:auto;margin-bottom:1.5rem}
-.footer-display-row{margin-bottom:1.5rem;position:relative;z-index:1}
-.footer-meta{display:flex;justify-content:flex-start;gap:2rem;position:relative;z-index:1;flex-wrap:wrap}
-.footer-col{flex:1;min-width:200px}
-.footer-col-label{margin-bottom:0.5rem}
+.footer{width:100%;padding:5rem 1.5rem 3rem;display:flex;flex-direction:column;align-items:center;gap:2rem;text-align:center;border-top:1px solid var(--rule)}
+@media(min-width:1024px){.footer{padding:6rem 3rem 4rem}}
+.footer-marquee{width:100%;overflow:hidden;margin-bottom:1rem}
+.footer-marquee-inner{display:flex;gap:3rem;white-space:nowrap;animation:marquee 22s linear infinite;font-size:.8125rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);opacity:.55}
+.footer-marquee-inner span::after{content:'\2022';margin-left:3rem;opacity:.4}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;font-size:.8125rem;font-weight:500;opacity:.65}
+.footer-links a{transition:color .2s}.footer-links a:hover{color:var(--accent);opacity:1}
+.footer-copy{font-size:.75rem;color:var(--text-muted);opacity:.6}
 
-@media(max-width:900px){
-  .metrics-grid{grid-template-columns:repeat(2,1fr)}
-  .features-grid{grid-template-columns:1fr}
+/* GSAP SPLIT REVEAL — masked only when JS active (no-JS sees content) */
+body.gsap-ready .split-mask{display:inline-block;overflow:hidden;vertical-align:top;line-height:inherit;padding-bottom:.05em;margin-bottom:-.05em}
+body.gsap-ready .split-inner{display:inline-block;will-change:transform}
+body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(12,16,22,.15);border-radius:999px}
+::-webkit-scrollbar-thumb:hover{background:rgba(12,16,22,.3)}
+*{scrollbar-width:thin;scrollbar-color:rgba(12,16,22,.15) transparent}
+
+@media(max-width:767px){
   .board-header,.board-row{grid-template-columns:40px 1fr 100px}
-  .board-cell:nth-child(3),.board-cell:nth-child(5){display:none}
-  .board-header span:nth-child(3),.board-header span:nth-child(5){display:none}
-  .nav-links{display:none}
-  .heading-block{flex-direction:column}
-  .heading-block .heading-col{text-align:left}
-}
-@media(max-width:600px){
-  .metrics-grid{grid-template-columns:1fr}
+  .board-row .b-dim,.board-header .h-dim{display:none}
   .diagram{padding:1.5rem}
-  .footer-meta{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+  body.gsap-ready .reveal-fade{opacity:1!important;transform:none!important}
+  .specimen,.swatch{transform:none!important}
+  .footer-marquee-inner{animation:none}
+  html{scroll-behavior:auto}
 }
 </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div class="loader" id="loader">
-  <img src="ae-logo.png" alt="aegntic" class="loader-logo">
-  <div class="loader-bar"></div>
-</div>
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- WIREFRAME BG -->
-<div class="wireframe-bg">
-  <svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" id="wireBg">
-    <path class="accent-stroke" d="M-100,200 Q480,80 960,200 T1920,200" />
-    <path d="M-100,350 Q480,230 960,350 T1920,350" />
-    <path class="accent-stroke" d="M-100,500 Q480,380 960,500 T1920,500" />
-    <path d="M-100,650 Q480,530 960,650 T1920,650" />
-    <path class="accent-stroke" d="M-100,800 Q480,680 960,800 T1920,800" />
-    <path d="M-100,950 Q480,830 960,950 T1920,950" />
-    <line x1="160" y1="0" x2="160" y2="1080" />
-    <line x1="480" y1="0" x2="480" y2="1080" />
-    <line x1="960" y1="0" x2="960" y2="1080" />
-    <line x1="1440" y1="0" x2="1440" y2="1080" />
-    <line x1="1760" y1="0" x2="1760" y2="1080" />
-    <circle cx="160" cy="200" r="2" class="accent-stroke" />
-    <circle cx="480" cy="350" r="2" />
-    <circle cx="960" cy="500" r="2" class="accent-stroke" />
-    <circle cx="1440" cy="650" r="2" />
-    <circle cx="1760" cy="800" r="2" class="accent-stroke" />
-  </svg>
-</div>
+<!-- FLOATING CTA -->
+<a href="https://aegntic.ai" class="floating-cta" id="floatingCta">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+  <span>Back to aegntic.ai</span>
+</a>
 
 <!-- NAV -->
 <nav class="nav">
-  <a href="#" class="nav-brand">
-    <img src="ae-logo.png" alt="aegntic" class="logo-mark">
+  <a href="https://aegntic.ai" class="nav-logo">ae<span class="ae">gntic</span></a>
+  <a href="https://aegntic.ai" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    Back to aegntic.ai
   </a>
-  <div class="nav-links">
-    <div class="flap-row ctx-nav" data-flap="SYSTEM"></div>
-    <div class="flap-row ctx-nav" data-flap="MANIFESTO"></div>
-    <div class="flap-row ctx-nav" data-flap="METRICS"></div>
-    <div class="flap-row ctx-nav" data-flap="ARCHITECTURE"></div>
-  </div>
 </nav>
 
-<div class="content">
-
 <!-- HERO -->
-<section class="hero">
-  <img src="ae-logo.png" alt="" class="hero-watermark">
-  <div class="hero-inner">
-    <div class="hero-label-row align-left">
-      <div class="flap-row ctx-subheading" data-flap="SYSTEM ARCHITECTURE / 2026"></div>
-    </div>
-    <div class="hero-display-row align-right">
-      <div class="flap-row ctx-display" data-flap="COGNITIVE OS"></div>
-    </div>
-    <div class="hero-display-row align-right">
-      <div class="flap-row ctx-display-italic" data-flap="that remembers."></div>
-    </div>
-    <div class="hero-sub-row align-left">
-      <div class="flap-row ctx-body" data-flap="An operating system designed not for humans operating tools, but for autonomous agents that think, remember, and verify every decision they make."></div>
+<header class="hero" id="top">
+  <div class="hero-watermark"><span>type</span></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Design Lab · Type System</div>
+    <h1 class="hero-headline" data-split>A design system, <em>type-first.</em></h1>
+    <p class="hero-sub">A live specimen for the aegntic visual language — two type families, a single teal accent, and a restrained light surface. Every context below is rendered in the tokens it documents.</p>
+    <div class="hero-meta">
+      <span class="kv">Families · <b>Space Grotesk + Inter</b></span>
+      <span class="kv">Surface · <b>#f0f6f8</b></span>
+      <span class="kv">Accent · <b>#00b39f</b></span>
     </div>
   </div>
-  <div class="hero-meta">
-    <div class="flap-row ctx-label" data-flap="VERSION 3.0"></div>
-    <div class="flap-row ctx-label" id="timestamp" data-flap="2026.06.26"></div>
-    <div class="flap-row ctx-label" data-flap="DESIGN LAB"></div>
-  </div>
-</section>
+</header>
 
-<hr class="rule">
-
-<!-- DEPARTURE BOARD -->
-<section class="section" id="system">
-  <div class="heading-block">
-    <div class="label-col">
-      <div class="flap-row ctx-subheading" data-flap="02 / SYSTEM MANIFEST"></div>
-    </div>
-    <div class="heading-col">
-      <div class="flap-row ctx-heading" data-flap="Every module," style="margin-bottom:0.2rem"></div>
-      <div class="flap-row ctx-heading-italic" data-flap="accounted for."></div>
-    </div>
-  </div>
-  <div class="board">
-    <div class="board-header">
-      <span>NO.</span>
-      <span>MODULE</span>
-      <span>DIMENSION</span>
-      <span>STATUS</span>
-      <span>TRACK</span>
-    </div>
-    <div id="boardRows"></div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<!-- MANIFESTO -->
-<section class="manifesto-section" id="manifesto">
-  <img src="aegntic-footer-step2.png" alt="" class="manifesto-bg">
-  <div class="heading-block">
-    <div class="label-col">
-      <div class="flap-row ctx-subheading" data-flap="03 / POSITION"></div>
-    </div>
-    <div class="heading-col">
-      <div class="flap-row ctx-heading" data-flap="INTELLIGENCE" style="margin-bottom:0.2rem"></div>
-      <div class="flap-row ctx-heading-italic" data-flap="not a tool that forgets"></div>
-    </div>
-  </div>
-  <div class="manifesto-body-row align-left">
-    <div class="flap-row ctx-body" data-flap="The Cognitive OS is not a chatbot wrapper. It is a seven-dimension quality framework, a dialectic decision engine, and a continuous verification loop that operates at the speed of intent. Every output passes through calibration gates before it reaches the world."></div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<!-- METRICS -->
-<section class="section" id="metrics">
-  <div class="heading-block">
-    <div class="label-col">
-      <div class="flap-row ctx-subheading" data-flap="04 / SPECIFICATION"></div>
-    </div>
-    <div class="heading-col">
-      <div class="flap-row ctx-heading" data-flap="By the numbers."></div>
-    </div>
-  </div>
-  <div class="metrics-grid">
-    <div class="metric">
-      <div class="metric-num-row"><div class="flap-row ctx-metric" data-flap="07"></div></div>
-      <div class="flap-row ctx-label" data-flap="DIMENSIONS"></div>
-    </div>
-    <div class="metric">
-      <div class="metric-num-row"><div class="flap-row ctx-metric" data-flap="28.7"></div></div>
-      <div class="flap-row ctx-label" data-flap="SPEC KB"></div>
-    </div>
-    <div class="metric">
-      <div class="metric-num-row"><div class="flap-row ctx-metric" data-flap="05"></div></div>
-      <div class="flap-row ctx-label" data-flap="HARNESSES"></div>
-    </div>
-    <div class="metric">
-      <div class="metric-num-row"><div class="flap-row ctx-metric" data-flap="INF"></div></div>
-      <div class="flap-row ctx-label" data-flap="VERIFICATION"></div>
+<!-- TYPE SPECIMENS -->
+<section class="section-pad" id="specimens">
+  <div class="section-inner">
+    <div class="section-label">Type Contexts</div>
+    <h2 class="section-heading" data-split>Every register, <em>accounted for.</em></h2>
+    <p class="section-desc">Seven type contexts define the hierarchy — from display down to label. Each one inherits the same two families and the same accent.</p>
+    <div class="specimen-grid">
+      <article class="specimen reveal-fade">
+        <div class="spec-tag">Display</div>
+        <div class="ctx-display">Aegntic</div>
+        <div class="spec-body">Space Grotesk, 600, tight tracking. The largest register — hero headlines and section openers.</div>
+        <div class="spec-meta"><span class="chip">Space Grotesk</span><span class="chip">600</span></div>
+      </article>
+      <article class="specimen reveal-fade">
+        <div class="spec-tag">Display Italic</div>
+        <div class="ctx-display-italic">that remembers.</div>
+        <div class="spec-body">The accent register. Italic, teal — used to emphasise a phrase inside a display headline.</div>
+        <div class="spec-meta"><span class="chip">Italic</span><span class="chip">Accent</span></div>
+      </article>
+      <article class="specimen reveal-fade">
+        <div class="spec-tag">Heading</div>
+        <div class="ctx-heading">Section headings,</div>
+        <div class="spec-body">Space Grotesk, 500 — the primary section heading weight. Tight leading, dark ink.</div>
+        <div class="spec-meta"><span class="chip">Space Grotesk</span><span class="chip">500</span></div>
+      </article>
+      <article class="specimen reveal-fade">
+        <div class="spec-tag">Heading Italic</div>
+        <div class="ctx-heading-italic">in two registers.</div>
+        <div class="spec-body">The same heading size, italicised in teal. Carries the emphasised half of a section heading.</div>
+        <div class="spec-meta"><span class="chip">Italic</span><span class="chip">Accent</span></div>
+      </article>
+      <article class="specimen reveal-fade">
+        <div class="spec-tag">Body</div>
+        <p class="ctx-body">Inter, 400. The workhorse register for paragraphs. Strong weight lifts <strong>keywords</strong> out of the secondary grey.</p>
+        <div class="spec-meta"><span class="chip">Inter</span><span class="chip">400</span><span class="chip">1.75 line</span></div>
+      </article>
+      <article class="specimen reveal-fade">
+        <div class="spec-tag">Subheading</div>
+        <div class="ctx-subheading">SMALL CAPS · TEAL</div>
+        <div class="spec-body">Inter, 600, wide tracking, uppercase — eyebrows and micro-labels above headings.</div>
+        <div class="spec-meta"><span class="chip">Inter</span><span class="chip">Uppercase</span></div>
+      </article>
+      <article class="specimen reveal-fade">
+        <div class="spec-tag">Metric</div>
+        <div class="ctx-metric">28.7</div>
+        <div class="spec-body">Space Grotesk numerals at display weight. Used for proof-of-work numbers and stats.</div>
+        <div class="spec-meta"><span class="chip">Tabular</span><span class="chip">Display</span></div>
+      </article>
+      <article class="specimen reveal-fade">
+        <div class="spec-tag">Mono / Status</div>
+        <div class="ctx-mono">HARNESS LAYER</div>
+        <div style="margin-top:.5rem" class="ctx-status">ON TIME</div>
+        <div class="spec-body">Space Grotesk at a small size, set in uppercase — board cells, status flags, and inline metadata.</div>
+        <div class="spec-meta"><span class="chip">Mono</span><span class="chip">Status</span></div>
+      </article>
     </div>
   </div>
 </section>
 
-<hr class="rule">
-
-<!-- FEATURES -->
-<section class="section" id="features">
-  <div class="heading-block">
-    <div class="label-col">
-      <div class="flap-row ctx-subheading" data-flap="05 / CAPABILITIES"></div>
-    </div>
-    <div class="heading-col">
-      <div class="flap-row ctx-heading" data-flap="What it does." style="margin-bottom:0.2rem"></div>
-      <div class="flap-row ctx-heading-italic" data-flap="Quietly. Relentlessly."></div>
-    </div>
-  </div>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-title-row"><div class="flap-row ctx-heading" data-flap="Dialectic" style="font-size:1.3rem"></div></div>
-      <div class="flap-row ctx-body" data-flap="Two models debate every decision. The system never ships a thought that has not been stress-tested by an adversary."></div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-title-row"><div class="flap-row ctx-heading-italic" data-flap="Episodic" style="font-size:1.3rem"></div></div>
-      <div class="flap-row ctx-body" data-flap="Four memory layers store context across sessions. Nothing is forgotten. Everything is retrievable. The agent improves with time."></div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-title-row"><div class="flap-row ctx-heading" data-flap="Verified" style="font-size:1.3rem"></div></div>
-      <div class="flap-row ctx-body" data-flap="Seven quality gates score every output. Correctness, completeness, consistency, coherence, conciseness, confidence, calibration."></div>
+<!-- TOKEN PALETTE -->
+<section class="section-pad" id="tokens" style="background:var(--bg-inset)">
+  <div class="section-inner">
+    <div class="section-label">Token Palette</div>
+    <h2 class="section-heading" data-split>The full <em>colour set.</em></h2>
+    <p class="section-desc">Eight tokens carry the entire system — three light surfaces, three text greys, one teal accent, and one accent tint. No gradients.</p>
+    <div class="swatch-grid">
+      <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#f0f6f8;border-bottom:1px solid var(--rule)"></div><div class="swatch-info"><div class="swatch-name">bg</div><div class="swatch-hex">#f0f6f8</div></div></div>
+      <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#ffffff;border-bottom:1px solid var(--rule)"></div><div class="swatch-info"><div class="swatch-name">bg-elevated</div><div class="swatch-hex">#ffffff</div></div></div>
+      <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#e7eef0"></div><div class="swatch-info"><div class="swatch-name">bg-inset</div><div class="swatch-hex">#e7eef0</div></div></div>
+      <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#00b39f"></div><div class="swatch-info"><div class="swatch-name">accent</div><div class="swatch-hex">#00b39f</div></div></div>
+      <div class="swatch reveal-fade"><div class="swatch-fill" style="background:rgba(0,179,158,0.12)"></div><div class="swatch-info"><div class="swatch-name">accent-dim</div><div class="swatch-hex">rgba(0,179,158,.12)</div></div></div>
+      <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#0c1016"></div><div class="swatch-info"><div class="swatch-name">text-dark / surface-1</div><div class="swatch-hex">#0c1016</div></div></div>
+      <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#4a5258"></div><div class="swatch-info"><div class="swatch-name">text-secondary</div><div class="swatch-hex">#4a5258</div></div></div>
+      <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#a5abad"></div><div class="swatch-info"><div class="swatch-name">text-muted</div><div class="swatch-hex">#a5abad</div></div></div>
     </div>
   </div>
 </section>
 
-<hr class="rule">
+<!-- DIMENSION BOARD -->
+<section class="section-pad" id="board">
+  <div class="section-inner narrow">
+    <div class="section-label">System Manifest</div>
+    <h2 class="section-heading" data-split>Every dimension, <em>on one board.</em></h2>
+    <p class="section-desc">The seven quality dimensions the design system is measured against — set on a dark surface in the mono register.</p>
+    <div class="board reveal-fade">
+      <div class="board-header">
+        <span>NO.</span><span>DIMENSION</span><span class="h-dim">FOCUS</span><span>STATUS</span>
+      </div>
+      <div class="board-row"><span class="b-idx">01</span><span class="b-module">HIERARCHY</span><span class="b-dim">scale contrast</span><span class="b-status">ACTIVE</span></div>
+      <div class="board-row"><span class="b-idx">02</span><span class="b-module">RHYTHM</span><span class="b-dim">intentional spacing</span><span class="b-status">ON TIME</span></div>
+      <div class="board-row"><span class="b-idx">03</span><span class="b-module">CONTRAST</span><span class="b-dim">teal on light</span><span class="b-status">ACTIVE</span></div>
+      <div class="board-row"><span class="b-idx">04</span><span class="b-module">TYPE PAIRING</span><span class="b-dim">grotesk + inter</span><span class="b-status">ON TIME</span></div>
+      <div class="board-row"><span class="b-idx">05</span><span class="b-module">MOTION</span><span class="b-dim">scroll reveals</span><span class="b-status">ACTIVE</span></div>
+      <div class="board-row"><span class="b-idx">06</span><span class="b-module">RESTRAINT</span><span class="b-dim">two families, one accent</span><span class="b-status">ON TIME</span></div>
+      <div class="board-row"><span class="b-idx">07</span><span class="b-module">CONSISTENCY</span><span class="b-dim">token-driven</span><span class="b-status">ACTIVE</span></div>
+    </div>
+  </div>
+</section>
 
 <!-- ARCHITECTURE -->
-<section class="diagram-section" id="architecture">
-  <div class="heading-block">
-    <div class="label-col">
-      <div class="flap-row ctx-subheading" data-flap="06 / ARCHITECTURE"></div>
+<section class="section-pad" id="architecture">
+  <div class="section-inner narrow">
+    <div class="section-label">Layer Map</div>
+    <h2 class="section-heading" data-split>Seven layers, <em>one loop.</em></h2>
+    <p class="section-desc">How the specimen page itself is composed — from the surface tokens at the bottom up to the display type at the top.</p>
+    <div class="diagram reveal-fade">
+      <svg class="diagram-svg" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+        <rect class="layer-rect accent" x="50" y="20" width="800" height="50" />
+        <text class="layer-text" x="70" y="42">DISPLAY TYPE</text>
+        <text class="layer-sub" x="70" y="58">Space Grotesk headlines · teal emphasis</text>
+        <text class="layer-sub" x="830" y="42" text-anchor="end">L7</text>
+        <line class="connector" x1="450" y1="70" x2="450" y2="90" />
+        <rect class="layer-rect" x="50" y="90" width="800" height="50" />
+        <text class="layer-text" x="70" y="112">SECTION HEADINGS</text>
+        <text class="layer-sub" x="70" y="128">Hierarchy · eyebrow + heading + desc</text>
+        <text class="layer-sub" x="830" y="112" text-anchor="end">L6</text>
+        <line class="connector" x1="450" y1="140" x2="450" y2="160" />
+        <rect class="layer-rect accent" x="50" y="160" width="800" height="50" />
+        <text class="layer-text" x="70" y="182">TOKEN PALETTE</text>
+        <text class="layer-sub" x="70" y="198">8 tokens · light surfaces + teal accent</text>
+        <text class="layer-sub" x="830" y="182" text-anchor="end">L5</text>
+        <line class="connector" x1="450" y1="210" x2="450" y2="230" />
+        <rect class="layer-rect" x="50" y="230" width="800" height="50" />
+        <text class="layer-text" x="70" y="252">DIMENSION BOARD</text>
+        <text class="layer-sub" x="70" y="268">Dark surface · mono register</text>
+        <text class="layer-sub" x="830" y="252" text-anchor="end">L4</text>
+        <line class="connector" x1="450" y1="280" x2="450" y2="300" />
+        <rect class="layer-rect accent" x="50" y="300" width="800" height="50" />
+        <text class="layer-text" x="70" y="322">REVEAL MOTION</text>
+        <text class="layer-sub" x="70" y="338">GSAP word-split · reduced-motion safe</text>
+        <text class="layer-sub" x="830" y="322" text-anchor="end">L3</text>
+        <line class="connector" x1="450" y1="350" x2="450" y2="370" />
+        <rect class="layer-rect" x="50" y="370" width="800" height="50" />
+        <text class="layer-text" x="70" y="392">BODY &amp; LABELS</text>
+        <text class="layer-sub" x="70" y="408">Inter 400 · small-caps eyebrows</text>
+        <text class="layer-sub" x="830" y="392" text-anchor="end">L2</text>
+        <line class="connector" x1="450" y1="420" x2="450" y2="440" />
+        <rect class="layer-rect" x="50" y="440" width="800" height="50" />
+        <text class="layer-text" x="70" y="462">SURFACE</text>
+        <text class="layer-sub" x="70" y="478">#f0f6f8 base · #ffffff elevated</text>
+        <text class="layer-sub" x="830" y="462" text-anchor="end">L1</text>
+        <path class="connector connector-accent" d="M850,45 Q900,45 900,265 Q900,485 850,465" stroke-dasharray="3,3" />
+        <text class="layer-sub" x="888" y="270" text-anchor="middle" transform="rotate(90,888,265)">FEEDBACK</text>
+      </svg>
     </div>
-    <div class="heading-col">
-      <div class="flap-row ctx-heading" data-flap="Seven layers," style="margin-bottom:0.2rem"></div>
-      <div class="flap-row ctx-heading-italic" data-flap="one loop."></div>
-    </div>
-  </div>
-  <div class="diagram">
-    <svg class="diagram-svg" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
-      <rect class="layer-rect accent" x="50" y="20" width="800" height="50" />
-      <text class="layer-text" x="70" y="42">DECISION ENGINE</text>
-      <text class="layer-sub" x="70" y="58">Dialectic reasoning - Adversarial debate - Confidence scoring</text>
-      <text class="layer-sub" x="780" y="42" text-anchor="end">L7</text>
-      <line class="connector" x1="450" y1="70" x2="450" y2="90" />
-      <rect class="layer-rect" x="50" y="90" width="800" height="50" />
-      <text class="layer-text" x="70" y="112">MEMORY VAULT</text>
-      <text class="layer-sub" x="70" y="128">Episodic - Semantic - Procedural - Working</text>
-      <text class="layer-sub" x="780" y="112" text-anchor="end">L6</text>
-      <line class="connector" x1="450" y1="140" x2="450" y2="160" />
-      <rect class="layer-rect accent" x="50" y="160" width="800" height="50" />
-      <text class="layer-text" x="70" y="182">QUALITY GATES</text>
-      <text class="layer-sub" x="70" y="198">7 dimensions of quality scoring</text>
-      <text class="layer-sub" x="780" y="182" text-anchor="end">L5</text>
-      <line class="connector" x1="450" y1="210" x2="450" y2="230" />
-      <rect class="layer-rect" x="50" y="230" width="800" height="50" />
-      <text class="layer-text" x="70" y="252">VERIFICATION LOOP</text>
-      <text class="layer-sub" x="70" y="268">Continuous testing - Runtime assertions</text>
-      <text class="layer-sub" x="780" y="252" text-anchor="end">L4</text>
-      <line class="connector" x1="450" y1="280" x2="450" y2="300" />
-      <rect class="layer-rect accent" x="50" y="300" width="800" height="50" />
-      <text class="layer-text" x="70" y="322">AGGRESSION CONTROL</text>
-      <text class="layer-sub" x="70" y="338">Calibrated autonomy - Risk assessment</text>
-      <text class="layer-sub" x="780" y="322" text-anchor="end">L3</text>
-      <line class="connector" x1="450" y1="350" x2="450" y2="370" />
-      <rect class="layer-rect" x="50" y="370" width="800" height="50" />
-      <text class="layer-text" x="70" y="392">HARNESS LAYER</text>
-      <text class="layer-sub" x="70" y="408">Multi-API orchestration - Model routing</text>
-      <text class="layer-sub" x="780" y="392" text-anchor="end">L2</text>
-      <line class="connector" x1="450" y1="420" x2="450" y2="440" />
-      <rect class="layer-rect" x="50" y="440" width="800" height="50" />
-      <text class="layer-text" x="70" y="462">COGNITIVE SUBSTRATE</text>
-      <text class="layer-sub" x="70" y="478">Prompt templates - Context windows - Embeddings</text>
-      <text class="layer-sub" x="780" y="462" text-anchor="end">L1</text>
-      <path class="connector connector-accent" d="M850,45 Q900,45 900,265 Q900,485 850,465" stroke-dasharray="3,3" />
-      <text class="layer-sub" x="870" y="270" text-anchor="middle" transform="rotate(90,870,265)">FEEDBACK</text>
-    </svg>
   </div>
 </section>
-
-<hr class="rule">
 
 <!-- FOOTER -->
 <footer class="footer">
-  <img src="aegntic-footer-step2.png" alt="" class="footer-bg">
-  <img src="ae-logo.png" alt="aegntic" class="footer-logo">
-  <div class="footer-display-row align-right">
-    <div class="flap-row ctx-heading" data-flap="AEGNTIC.OS"></div>
-  </div>
-  <div class="footer-meta">
-    <div class="footer-col">
-      <div class="footer-col-label"><div class="flap-row ctx-label" data-flap="AEGNTIC"></div></div>
-      <div class="flap-row ctx-label" data-flap="Agentic empowerment, verified."></div>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-label"><div class="flap-row ctx-label" data-flap="COGNITIVE OS"></div></div>
-      <div class="flap-row ctx-label" data-flap="Version 3.0 specification"></div>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-label"><div class="flap-row ctx-label" data-flap="DESIGN LAB"></div></div>
-      <div class="flap-row ctx-label" data-flap="Split-flap prototype"></div>
+  <div class="footer-marquee">
+    <div class="footer-marquee-inner">
+      <span>Type</span><span>Tokens</span><span>Hierarchy</span><span>Motion</span><span>Restraint</span>
+      <span>Type</span><span>Tokens</span><span>Hierarchy</span><span>Motion</span><span>Restraint</span>
     </div>
   </div>
+  <div class="footer-links">
+    <a href="https://aegntic.ai">aegntic.ai</a>
+    <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://x.com/AEGNTIC" target="_blank" rel="noopener">X / Twitter</a>
+    <a href="https://aegntic.ai/privacy">Privacy</a>
+    <a href="mailto:hello@aegntic.com">Contact</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 AEGNTIC · Design Lab. The coordination layer for persistent human&ndash;AI intelligence.</div>
 </footer>
 
-</div>
-
 <script>
-/* ============================================================
-   SPLIT-FLAP ENGINE v2 — auto-measured cells, word wrapping
-   ============================================================ */
-const FLAP_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,/-';
-
-// Hidden measurement element
-const measureEl = document.createElement('span');
-measureEl.className = 'flap-measure';
-document.documentElement.appendChild(measureEl);
-
-// Measure a character's width given a computed font context
-function measureChar(char, ctxEl) {
-  const cs = window.getComputedStyle(ctxEl);
-  measureEl.style.font = cs.font;
-  measureEl.style.letterSpacing = cs.letterSpacing;
-  measureEl.style.textTransform = cs.textTransform;
-  const displayChar = (char === ' ' || char === '\u00A0') ? '\u00A0' : char;
-  measureEl.textContent = displayChar;
-  const w = measureEl.getBoundingClientRect().width;
-  // Add tiny padding so characters don't touch cell edges
-  return Math.ceil(w) + 2;
-}
-
-// Measure line-height for the context
-function measureLineHeight(ctxEl) {
-  const cs = window.getComputedStyle(ctxEl);
-  const fs = parseFloat(cs.fontSize);
-  // Use the larger of computed line-height or fontSize * 1.1
-  const lh = parseFloat(cs.lineHeight);
-  return Math.max(lh || fs * 1.2, fs * 1.05);
-}
-
-function createFlapCell(char, width, height, ctxEl) {
-  const cell = document.createElement('div');
-  cell.className = 'flap-cell';
-  cell.style.width = width + 'px';
-  cell.style.height = height + 'px';
-  const displayChar = (char === ' ' || char === '\u00A0') ? '\u00A0' : char;
-  cell.innerHTML = `
-    <div class="flap-3d">
-      <div class="flap-face flap-front">${displayChar}</div>
-      <div class="flap-face flap-back">${displayChar}</div>
-    </div>
-    <div class="flap-groove"></div>
-  `;
-  cell._isFlipped = false;
-  cell._currentChar = char;
-  return cell;
-}
-
-function flipCellTo(cell, char, duration) {
-  const front = cell.querySelector('.flap-front');
-  const back = cell.querySelector('.flap-back');
-  const flipper = cell.querySelector('.flap-3d');
-  const displayChar = (char === ' ' || char === '\u00A0') ? '\u00A0' : char;
-
-  return new Promise(resolve => {
-    if (cell._isFlipped) {
-      front.textContent = displayChar;
-    } else {
-      back.textContent = displayChar;
-    }
-
-    const eased = duration < 100 ? 'linear' : 'cubic-bezier(0.35, 0.05, 0.2, 1)';
-    flipper.style.transition = `transform ${duration}ms ${eased}`;
-
-    if (cell._isFlipped) {
-      flipper.classList.remove('flip');
-      flipper.style.transform = 'rotateX(0deg)';
-    } else {
-      flipper.classList.add('flip');
-      flipper.style.transform = 'rotateX(-180deg)';
-    }
-
-    cell._isFlipped = !cell._isFlipped;
-    cell._currentChar = char;
-    setTimeout(resolve, duration + 5);
-  });
-}
-
-async function shuffleCellTo(cell, targetChar, opts) {
-  const { cycles = 6, flipMs = 50, gapMs = 12, settleMs = 180 } = opts;
-  for (let i = 0; i < cycles; i++) {
-    const randChar = FLAP_CHARS[Math.floor(Math.random() * FLAP_CHARS.length)];
-    await flipCellTo(cell, randChar, flipMs);
-    if (gapMs > 0) await new Promise(r => setTimeout(r, gapMs));
+  // ── SCROLL PROGRESS + FLOATING CTA ──
+  const progressBar=document.getElementById('scrollProgress');
+  const floatingCta=document.getElementById('floatingCta');
+  let ctaVisible=false;
+  function updateProgress(){
+    const st=window.scrollY;
+    const dh=document.documentElement.scrollHeight-window.innerHeight;
+    progressBar.style.width=(dh>0?(st/dh)*100:0)+'%';
+    const shouldShow=st>window.innerHeight*0.45;
+    if(shouldShow&&!ctaVisible){floatingCta.classList.add('visible');ctaVisible=true}
+    else if(!shouldShow&&ctaVisible){floatingCta.classList.remove('visible');ctaVisible=false}
   }
-  await flipCellTo(cell, targetChar, settleMs);
-}
+  window.addEventListener('scroll',updateProgress,{passive:true});
+  updateProgress();
 
-/* ============================================================
-   FlapText — builds and manages flap cells for a text string
-   with proper word wrapping and auto-measured character widths
-   ============================================================ */
-class FlapText {
-  constructor(container, text, opts = {}) {
-    this.container = container;
-    this.text = text;
-    this.opts = opts;
-    this.cells = [];
-    this.revealed = false;
-    this.wordGroups = [];
-    this.build();
-  }
-
-  build() {
-    const ctx = this.container; // the .flap-row element with ctx-* class
-    const lineHeight = measureLineHeight(ctx);
-    const words = this.text.split(' ');
-
-    this.container.innerHTML = '';
-
-    words.forEach((word, wordIdx) => {
-      if (wordIdx > 0) {
-        // Space between words
-        const space = document.createElement('span');
-        space.className = 'flap-space';
-        space.style.width = Math.ceil(parseFloat(window.getComputedStyle(ctx).fontSize) * 0.28) + 'px';
-        space.style.height = lineHeight + 'px';
-        this.container.appendChild(space);
-      }
-
-      // Word group — wraps as a unit
-      const wordEl = document.createElement('span');
-      wordEl.className = 'flap-word';
-      wordEl.style.height = lineHeight + 'px';
-
-      for (let i = 0; i < word.length; i++) {
-        const char = word[i];
-        const w = measureChar(char, ctx);
-        const cell = createFlapCell('\u00A0', w, lineHeight, ctx);
-        wordEl.appendChild(cell);
-        this.cells.push({ cell, char, wordIdx, charIdx: i });
-      }
-
-      this.container.appendChild(wordEl);
-      this.wordGroups.push(wordEl);
+  // ── SMOOTH SCROLL for in-page anchors ──
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
     });
-  }
-
-  async reveal(staggerMs = 30, cellOpts = {}) {
-    if (this.revealed) return;
-    this.revealed = true;
-
-    const promises = [];
-    for (let i = 0; i < this.cells.length; i++) {
-      const { cell, char } = this.cells[i];
-      const delay = i * staggerMs;
-      const opts = {
-        cycles: cellOpts.cycles !== undefined ? cellOpts.cycles : (4 + Math.floor(Math.random() * 4)),
-        flipMs: cellOpts.flipMs || 45,
-        gapMs: cellOpts.gapMs || 8,
-        settleMs: cellOpts.settleMs || 160,
-      };
-      promises.push(
-        new Promise(resolve => {
-          setTimeout(() => shuffleCellTo(cell, char, opts).then(resolve), delay);
-        })
-      );
-    }
-    await Promise.all(promises);
-  }
-
-  reset() {
-    this.cells.forEach(({ cell }) => {
-      const front = cell.querySelector('.flap-front');
-      const back = cell.querySelector('.flap-back');
-      const flipper = cell.querySelector('.flap-3d');
-      front.textContent = '\u00A0';
-      back.textContent = '\u00A0';
-      flipper.style.transition = 'none';
-      flipper.classList.remove('flip');
-      flipper.style.transform = 'rotateX(0deg)';
-      cell._isFlipped = false;
-      cell._currentChar = '\u00A0';
-    });
-    this.revealed = false;
-  }
-
-  async updateText(newText, opts = {}) {
-    // For board cells — simple per-char update
-    const newChars = newText.split('');
-    while (this.cells.length < newChars.length) {
-      const ctx = this.container;
-      const lineHeight = measureLineHeight(ctx);
-      const w = measureChar('X', ctx);
-      const cell = createFlapCell('\u00A0', w, lineHeight, ctx);
-      this.container.appendChild(cell);
-      this.cells.push({ cell, char: '\u00A0' });
-    }
-    const promises = [];
-    for (let i = 0; i < newChars.length; i++) {
-      if (this.cells[i].cell._currentChar !== newChars[i]) {
-        const delay = i * (opts.stagger || 25);
-        promises.push(
-          new Promise(resolve => {
-            setTimeout(() => {
-              shuffleCellTo(this.cells[i].cell, newChars[i], {
-                cycles: opts.cycles || 3,
-                flipMs: opts.flipMs || 40,
-                gapMs: opts.gapMs || 5,
-                settleMs: opts.settleMs || 140,
-              }).then(resolve);
-            }, delay);
-          })
-        );
-      }
-    }
-    for (let i = newChars.length; i < this.cells.length; i++) {
-      this.cells[i].cell.style.visibility = 'hidden';
-    }
-    for (let i = 0; i < newChars.length; i++) {
-      this.cells[i].cell.style.visibility = 'visible';
-    }
-    this.text = newText;
-    await Promise.all(promises);
-  }
-}
-
-/* ============================================================
-   PARALLAX
-   ============================================================ */
-let _scrollY = 0, _targetScrollY = 0;
-function updateWireParallax() {
-  _scrollY += (_targetScrollY - _scrollY) * 0.05;
-  const wireBg = document.getElementById('wireBg');
-  if (wireBg) wireBg.style.transform = `translateY(${_scrollY * 0.12}px)`;
-  requestAnimationFrame(updateWireParallax);
-}
-window.addEventListener('scroll', () => { _targetScrollY = window.scrollY; });
-
-/* ============================================================
-   INIT
-   ============================================================ */
-// Wait for fonts to load so measurement is accurate
-document.fonts.ready.then(() => {
-  init();
-});
-
-function init() {
-  updateWireParallax();
-
-  // Timestamp
-  const d = new Date();
-  const pad = n => String(n).padStart(2, '0');
-  const tsEl = document.getElementById('timestamp');
-  if (tsEl) tsEl.setAttribute('data-flap', `${d.getFullYear()}.${pad(d.getMonth()+1)}.${pad(d.getDate())}`);
-
-  // Build all flap text from data-flap attributes
-  const flapEls = document.querySelectorAll('[data-flap]');
-  const flapTexts = [];
-  const heroFlaps = [];
-  const sectionFlaps = new Map(); // section -> []
-
-  flapEls.forEach(el => {
-    const text = el.getAttribute('data-flap');
-    const ft = new FlapText(el, text);
-
-    // Categorize
-    const hero = el.closest('.hero');
-    const section = el.closest('section, footer');
-
-    if (hero) {
-      heroFlaps.push(ft);
-    } else if (section) {
-      if (!sectionFlaps.has(section)) sectionFlaps.set(section, []);
-      sectionFlaps.get(section).push(ft);
-    }
-    flapTexts.push(ft);
   });
 
-  // Reveal nav flaps immediately
-  document.querySelectorAll('.nav-links .flap-row').forEach(el => {
-    const ft = flapTexts.find(t => t.container === el);
-    if (ft) ft.reveal(30, { cycles: 3, flipMs: 35, gapMs: 5, settleMs: 100 });
-  });
-
-  // Reveal hero after loader
-  setTimeout(() => {
-    heroFlaps.forEach((ft, i) => {
-      setTimeout(() => {
-        ft.reveal(25, { cycles: 5, flipMs: 40, gapMs: 6, settleMs: 150 });
-      }, i * 200);
-    });
-  }, 1000);
-
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('hidden');
-  }, 900);
-
-  // Reveal sections on scroll
-  sectionFlaps.forEach((flaps, section) => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          if (!section._revealed) {
-            section._revealed = true;
-            flaps.forEach((ft, i) => {
-              setTimeout(() => {
-                ft.reveal(20, { cycles: 4, flipMs: 38, gapMs: 5, settleMs: 130 });
-              }, i * 150);
-            });
-          }
-        } else {
-          if (section._revealed) {
-            section._revealed = false;
-            flaps.forEach(ft => ft.reset());
-          }
+  // ── GSAP WORD-SPLIT REVEALS (no-JS safe) ──
+  (function(){
+    if(!window.gsap||!window.ScrollTrigger){return}
+    gsap.registerPlugin(ScrollTrigger);
+    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.body.classList.add('gsap-ready');
+    if(reduce){
+      gsap.set('[data-split] .split-inner,.reveal-fade',{clearProps:'all'});
+      return;
+    }
+    function splitWords(el){
+      const nodes=Array.from(el.childNodes);el.innerHTML='';
+      nodes.forEach(n=>{
+        if(n.nodeType===3){
+          n.textContent.split(/(\s+)/).forEach(p=>{
+            if(p==='')return;
+            if(/^\s+$/.test(p)){el.appendChild(document.createTextNode(' '));return}
+            const mask=document.createElement('span');mask.className='split-mask';
+            const inner=document.createElement('span');inner.className='split-inner';inner.textContent=p;
+            mask.appendChild(inner);el.appendChild(mask);
+          });
+        }else if(n.nodeType===1){
+          if(n.tagName.toLowerCase()==='br'){el.appendChild(n);return}
+          const mask=document.createElement('span');mask.className='split-mask';
+          n.classList.add('split-inner');mask.appendChild(n);el.appendChild(mask);
         }
       });
-    }, { threshold: 0.12 });
-    observer.observe(section);
-  });
-
-  // Departure board
-  const boardData = [
-    { idx: '01', module: 'DECISION ENGINE', dimension: 'DIALECTIC', status: 'ACTIVE', track: 'A' },
-    { idx: '02', module: 'MEMORY VAULT', dimension: 'EPISODIC', status: 'BOARDING', track: 'B' },
-    { idx: '03', module: 'QUALITY GATES', dimension: 'SEVEN-FOLD', status: 'ON TIME', track: 'C' },
-    { idx: '04', module: 'VERIFICATION', dimension: 'CONTINUOUS', status: 'ACTIVE', track: 'D' },
-    { idx: '05', module: 'AGGRESSION', dimension: 'CALIBRATED', status: 'ON TIME', track: 'E' },
-    { idx: '06', module: 'HARNESS LAYER', dimension: 'MULTI-API', status: 'STANDBY', track: 'F' },
-  ];
-
-  const boardRows = document.getElementById('boardRows');
-  const boardFlaps = [];
-
-  boardData.forEach((row) => {
-    const rowEl = document.createElement('div');
-    rowEl.className = 'board-row';
-
-    const idxCell = document.createElement('div');
-    idxCell.className = 'board-cell';
-    idxCell.innerHTML = `<span class="idx">${row.idx}</span>`;
-    rowEl.appendChild(idxCell);
-
-    const cells = [
-      { cls: 'board-cell', ctx: 'ctx-board', text: row.module },
-      { cls: 'board-cell', ctx: 'ctx-board', text: row.dimension },
-      { cls: 'board-cell', ctx: 'ctx-board-status', text: row.status },
-      { cls: 'board-cell', ctx: 'ctx-board', text: row.track },
-    ];
-
-    const rowFlaps = {};
-    cells.forEach(c => {
-      const cellEl = document.createElement('div');
-      cellEl.className = c.cls;
-      const flapRow = document.createElement('div');
-      flapRow.className = 'flap-row ' + c.ctx;
-      cellEl.appendChild(flapRow);
-      rowEl.appendChild(cellEl);
-      rowFlaps[c.ctx] = new FlapText(flapRow, c.text);
-    });
-
-    boardRows.appendChild(rowEl);
-    boardFlaps.push({ module: rowFlaps['ctx-board'], dimension: rowFlaps['ctx-board'], status: rowFlaps['ctx-board-status'], track: rowFlaps['ctx-board'], _data: row, _cells: cells, _rowEl: rowEl });
-  });
-
-  // Note: board has two ctx-board entries, need to fix mapping
-  // Rebuild properly
-  boardRows.innerHTML = '';
-  const boardFlapsFinal = [];
-
-  boardData.forEach((row) => {
-    const rowEl = document.createElement('div');
-    rowEl.className = 'board-row';
-
-    const idxCell = document.createElement('div');
-    idxCell.className = 'board-cell';
-    idxCell.innerHTML = `<span class="idx">${row.idx}</span>`;
-    rowEl.appendChild(idxCell);
-
-    function addBoardCell(cls, ctx, text) {
-      const cellEl = document.createElement('div');
-      cellEl.className = cls;
-      const flapRow = document.createElement('div');
-      flapRow.className = 'flap-row ' + ctx;
-      cellEl.appendChild(flapRow);
-      rowEl.appendChild(cellEl);
-      return new FlapText(flapRow, text);
     }
-
-    const moduleFlap = addBoardCell('board-cell', 'ctx-board', row.module);
-    const dimensionFlap = addBoardCell('board-cell', 'ctx-board', row.dimension);
-    const statusFlap = addBoardCell('board-cell', 'ctx-board-status', row.status);
-    const trackFlap = addBoardCell('board-cell', 'ctx-board', row.track);
-
-    boardRows.appendChild(rowEl);
-    boardFlapsFinal.push({ module: moduleFlap, dimension: dimensionFlap, status: statusFlap, track: trackFlap, _data: row });
-  });
-
-  // Reveal board on scroll
-  const boardObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        if (!entry.target._revealed) {
-          entry.target._revealed = true;
-          boardFlapsFinal.forEach((d, i) => {
-            setTimeout(() => {
-              d.module.reveal(15, { cycles: 3, flipMs: 32, gapMs: 4, settleMs: 110 });
-              d.dimension.reveal(15, { cycles: 3, flipMs: 32, gapMs: 4, settleMs: 110 });
-              d.status.reveal(20, { cycles: 4, flipMs: 35, gapMs: 5, settleMs: 120 });
-              d.track.reveal(50, { cycles: 3, flipMs: 35, settleMs: 130 });
-            }, i * 180);
-          });
-        }
-      } else {
-        if (entry.target._revealed) {
-          entry.target._revealed = false;
-          boardFlapsFinal.forEach(d => {
-            d.module.reset();
-            d.dimension.reset();
-            d.status.reset();
-            d.track.reset();
-          });
-        }
+    document.querySelectorAll('[data-split]').forEach(splitWords);
+    gsap.utils.toArray('[data-split]').forEach(el=>{
+      const inners=el.querySelectorAll('.split-inner');
+      if(inners.length){
+        gsap.fromTo(inners,{yPercent:120},{yPercent:0,duration:1.2,ease:'expo.out',stagger:0.08,
+          scrollTrigger:{trigger:el,start:'top 85%',toggleActions:'play none none reverse'}});
       }
     });
-  }, { threshold: 0.12 });
-  boardObserver.observe(document.querySelector('.board'));
-
-  // Periodic status updates
-  const statusOptions = ['ACTIVE', 'BOARDING', 'ON TIME', 'DELAYED', 'STANDBY', 'CHECK-IN'];
-  setInterval(() => {
-    const randomRow = Math.floor(Math.random() * boardFlapsFinal.length);
-    const current = boardFlapsFinal[randomRow]._data.status;
-    let newStatus;
-    do {
-      newStatus = statusOptions[Math.floor(Math.random() * statusOptions.length)];
-    } while (newStatus === current);
-    boardFlapsFinal[randomRow]._data.status = newStatus;
-    boardFlapsFinal[randomRow].status.updateText(newStatus, { cycles: 3, flipMs: 38, settleMs: 130 });
-  }, 3500);
-}
+    gsap.utils.toArray('.reveal-fade').forEach(el=>{
+      gsap.fromTo(el,{y:40,opacity:0},{y:0,opacity:1,duration:1.1,ease:'power3.out',
+        scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'}});
+    });
+  })();
 </script>
-
 </body>
 </html>

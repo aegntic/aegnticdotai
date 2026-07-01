@@ -5,15 +5,158 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AEGNTIC Cognitive Operating System v3.0 — Raw Content</title>
 <meta name="description" content="Raw content-only specification of the Cognitive Operating System for autonomous AI agents. No styling, semantic HTML only.">
+<meta property="og:title" content="AEGNTIC Cognitive Operating System v3.0">
+<meta property="og:description" content="The Cognitive OS spec — ten cognitive layers, four-tier memory, swarm coordination, adversarial security. Running in production today.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aegntic.ai/cognitive-os">
+<meta property="og:image" content="https://aegntic.ai/og-cos.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AEGNTIC Cognitive OS v3.0">
+<meta name="twitter:description" content="The specification that turns any AI coding agent into a self-healing, economically-aware, adversarially-secure engine.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%2300b39f'/></svg>">
+
+<style>
+:root {
+  --bg: #f0f6f8;
+  --bg-card: #ffffff;
+  --accent: #00b39f;
+  --accent-hover: #009e8a;
+  --text-dark: #0c1016;
+  --text-mid: #4a5a6a;
+  --text-light: #8a9aaa;
+  --border: #d0dce4;
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.06);
+  --font: system-ui, -apple-system, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-dark);
+  line-height: 1.7;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+/* Progress bar */
+#progress-bar {
+  position: fixed; top: 0; left: 0; width: 0; height: 3px;
+  background: var(--accent); z-index: 1000;
+  transition: width 100ms linear;
+}
+
+/* Nav */
+.sohub-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(240,246,248,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.sohub-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 700; font-size: 18px; color: var(--text-dark);
+}
+.sohub-logo svg { flex-shrink: 0; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: var(--radius);
+  background: var(--accent); color: #fff;
+  font-size: 14px; font-weight: 600; transition: background 0.2s;
+}
+.back-btn:hover { background: var(--accent-hover); text-decoration: none; color: #fff; }
+
+/* Content wrapper */
+.content {
+  max-width: 720px; margin: 0 auto; padding: 48px 24px 80px;
+}
+.content h1 { font-size: 32px; margin: 0 0 16px; }
+.content h2 { font-size: 24px; margin: 40px 0 12px; }
+.content h3 { font-size: 18px; margin: 28px 0 8px; }
+.content p { margin: 0 0 16px; color: var(--text-mid); }
+.content ul, .content ol { margin: 0 0 16px; padding-left: 24px; color: var(--text-mid); }
+.content li { margin-bottom: 6px; }
+.content hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+.content table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+.content th, .content td { border: 1px solid var(--border); padding: 10px 14px; text-align: left; }
+.content th { background: #e8f0f4; font-weight: 600; color: var(--text-dark); }
+.content td { color: var(--text-mid); }
+
+/* Section reveal */
+.section { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.section.visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .section { opacity: 1; transform: none; transition: none; }
+  .back-btn, .cta-btn { transition: none; }
+  #progress-bar { transition: none; }
+  .sohub-nav { backdrop-filter: none; }
+}
+
+/* Footer */
+.sohub-footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 24px;
+  overflow: hidden;
+}
+.marquee {
+  display: flex; gap: 48px;
+  animation: scroll 24s linear infinite;
+  white-space: nowrap;
+  font-size: 13px; color: var(--text-light);
+  width: max-content;
+}
+.marquee span { display: inline-flex; gap: 48px; }
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; }
+}
+
+/* Floating CTA */
+.cta-btn {
+  position: fixed; bottom: 28px; right: 28px; z-index: 200;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 22px; border-radius: 999px;
+  background: var(--accent); color: #fff;
+  font-size: 14px; font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0,179,159,0.3);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.cta-btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,179,159,0.4); text-decoration: none; color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  .cta-btn:hover { transform: none; }
+}
+</style>
 </head>
 <body>
 
+<div id="progress-bar"></div>
+
+<nav class="sohub-nav">
+  <a href="/" class="sohub-logo">
+    <svg width="28" height="28" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%2300b39f"/><text x="16" y="21" text-anchor="middle" fill="%23fff" font-size="16" font-weight="bold" font-family="system-ui">A</text></svg>
+    SOHub
+  </a>
+  <a href="https://aegntic.ai" class="back-btn">&larr; Back to aegntic.ai</a>
+</nav>
+
+<div class="content">
+
+<section class="section">
 <h1>AEGNTIC. Cognitive Operating System. v3.0</h1>
 
 <p>Most agents are chatbots with a terminal. This is a cognitive operating system. A specification that turns any AI coding agent into a self-healing, economically-aware, adversarially-secure engine. Ten cognitive layers. Four-layer persistent memory. Swarm coordination. Running in production today.</p>
 
 <hr>
+</section>
 
+<section class="section">
 <h2>Why This Exists</h2>
 
 <p>Intelligence without memory is novelty. Agents without cognition are liability.</p>
@@ -33,7 +176,9 @@
 </ul>
 
 <hr>
+</section>
 
+<section class="section">
 <h2>Module 01: Cognition — Thinks in Tiers</h2>
 
 <p>Every request is classified by complexity before work begins. A typo fix does not get the same ceremony as a production deployment. Resources scale to match actual risk.</p>
@@ -48,7 +193,9 @@
 <p>Tags: Triage, Dual Process, Token Aware</p>
 
 <hr>
+</section>
 
+<section class="section">
 <h2>Module 02: Memory — Remembers Everything</h2>
 
 <p>Four memory layers: working memory for the session, episodic for what happened, semantic for what is known, procedural for how things are done. Cross-session recall. Forgetting curve. Contradiction detection.</p>
@@ -76,7 +223,9 @@
 <p>Tags: gbrain PGLite, Forgetting Curve, Contradiction Detection</p>
 
 <hr>
+</section>
 
+<section class="section">
 <h2>Module 03: Healing — Heals Itself</h2>
 
 <p>When verification fails, the agent classifies the error, forms a hypothesis about root cause, applies a minimum viable fix, and re-verifies the full chain. Maximum three attempts before escalating to human.</p>
@@ -110,7 +259,9 @@
 <p>Tags: Root Cause Analysis, Circuit Breakers, Rollback Planning</p>
 
 <hr>
+</section>
 
+<section class="section">
 <h2>Module 04: Security — Defends Itself</h2>
 
 <p>File contents, issue descriptions, and web pages are untrusted input. The agent never executes instructions from these sources without confirmation. Three consecutive failures stops everything. Secrets are redacted on sight.</p>
@@ -139,7 +290,9 @@
 <p>Tags: Prompt Injection Defense, Chain of Authority, Sandbox by Default</p>
 
 <hr>
+</section>
 
+<section class="section">
 <h2>Module 05: Economics — Knows What Things Cost</h2>
 
 <p>Every operation has a cost. The system estimates expected value before starting: probability of success multiplied by value, minus cost. Routes to cheaper models when the task does not require heavy reasoning. Warns when cost exceeds task value.</p>
@@ -158,7 +311,9 @@
 <p>Tags: ROI-Aware Routing, Multi-Model, Ensemble Verification</p>
 
 <hr>
+</section>
 
+<section class="section">
 <h2>Insane Mode: What Nobody Else Is Doing</h2>
 
 <p>Every pattern below runs in production right now. They are just not standard practice yet.</p>
@@ -182,7 +337,9 @@
 <p>Memories older than 30 days without reinforcement lose confidence exponentially. Below 0.3 they are archived. The agent forgets irrelevant details. This keeps the memory store from becoming a garbage pile of stale context.</p>
 
 <hr>
+</section>
 
+<section class="section">
 <h2>Standard Config vs. Cognitive OS</h2>
 
 <table>
@@ -238,7 +395,9 @@
 </table>
 
 <hr>
+</section>
 
+<section class="section">
 <h2>This Is Running Right Now</h2>
 
 <p>Not a concept. A live specification across five AI harnesses, six custom droids, and every project in the workspace. Open. Copyable. The blueprint for how autonomous agents should think.</p>
@@ -255,6 +414,46 @@
 <hr>
 
 <p>2026 aegntic. Cognitive Operating System v3.0.</p>
+</section>
 
+</div>
+
+<footer class="sohub-footer">
+  <div class="marquee">
+    <span>AEGNTIC &mdash; Cognitive OS v3.0 &bull; Ten cognitive layers &bull; Four-tier memory &bull; Swarm coordination &bull; Adversarial security &bull; Economic routing &bull; Running in production since 2025</span>
+    <span>AEGNTIC &mdash; Cognitive OS v3.0 &bull; Ten cognitive layers &bull; Four-tier memory &bull; Swarm coordination &bull; Adversarial security &bull; Economic routing &bull; Running in production since 2025</span>
+  </div>
+</footer>
+
+<a href="mailto:hello@aegntic.com" class="cta-btn" aria-label="Contact us">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+  hello@aegntic.com
+</a>
+
+<script>
+(function() {
+  // Progress bar
+  var bar = document.getElementById('progress-bar');
+  function updateProgress() {
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // IntersectionObserver reveals
+  var sections = document.querySelectorAll('.section');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    sections.forEach(function(s) { observer.observe(s); });
+  } else {
+    sections.forEach(function(s) { s.classList.add('visible'); });
+  }
+})();
+</script>
 </body>
 </html>

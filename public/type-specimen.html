@@ -5,38 +5,119 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AEGNTIC. Type Specimen Lab — 16 Heading Treatments</title>
 <meta name="description" content="16 luxury heading font treatments for the aegntic brand. Side by side comparison.">
+<link rel="canonical" href="https://aegntic.ai/type-specimen">
 <link rel="icon" type="image/png" href="/favicon.png">
+<meta name="theme-color" content="#f0f6f8">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aegntic.ai/type-specimen">
+<meta property="og:title" content="AEGNTIC. Type Specimen Lab — 16 Heading Treatments">
+<meta property="og:description" content="16 luxury heading font treatments for the aegntic brand. Side by side comparison.">
+<meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant:ital,wght@0,300;0,400;0,500;1,300&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400&family=Cinzel:wght@400;600;900&family=Marcellus&family=Italiana&family=Syne:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@200;300;400;700&family=Major+Mono+Display&family=Unica+One&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ============ SOHub Design Tokens ============ */
 :root{
-  --cream:#faf9f6;--ink:#1a1a18;--ink-soft:#6b6860;--ink-tertiary:#a09a8e;
-  --rule:#ddd9d0;--teal:#00b39f;--teal-deep:#0f7a6c;
-  --gold:#c9a961;--gold-bright:#e8c87a;--gold-deep:#9a7d3e;
-  --burgundy:#5c1a2b;--navy:#0d1b2a;--charcoal:#1a1a18;
+  --bg:#f0f6f8;
+  --bg-elevated:#ffffff;
+  --bg-inset:#e7eef0;
+  --text:#11181c;
+  --text-dark:#0c1016;
+  --text-secondary:#4a5258;
+  --text-muted:#a5abad;
+  --rule:rgba(17,24,28,0.08);
+  --rule-strong:rgba(17,24,28,0.14);
+  --accent:#00b39f;
+  --accent-dim:rgba(0,179,158,0.12);
+  --surface-1:#0c1016;
+  --surface-2:#23272d;
+  --surface-3:#3a3e44;
+  --surface-4:#50555a;
+  --surface-5:#6b7075;
+  --radius:3rem;
+  --radius-lg:3.25rem;
+  --radius-pill:999px;
+  --ease-spring:cubic-bezier(.22,.68,0,1);
+  --ease-overshoot:cubic-bezier(.22,.68,0,1.2);
 }
 html{scroll-behavior:smooth}
-body{font-family:'Inter',-apple-system,sans-serif;background:#0a0a09;color:var(--cream);line-height:1.5;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-::selection{background:var(--gold);color:var(--ink)}
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:#0a0a09}
-::-webkit-scrollbar-thumb{background:rgba(201,169,97,.2);border-radius:999px}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}button{font-family:inherit}
+::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(12,16,22,.15);border-radius:999px}
+::-webkit-scrollbar-thumb:hover{background:rgba(12,16,22,.3)}
+*{scrollbar-width:thin;scrollbar-color:rgba(12,16,22,.15) transparent}
 
-/* HEADER */
-.lab-header{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,9,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.04)}
-.lab-header-logo{display:flex;align-items:center;gap:.625rem}
-.lab-header-logo img{height:1.75rem;width:auto;filter:brightness(0) invert(1);opacity:.6}
-.lab-header-title{font-family:'Inter',sans-serif;font-size:.6875rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.lab-header-meta{font-family:'Inter',sans-serif;font-size:.6875rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25)}
+/* ============ Scroll progress ============ */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:200;transition:width 80ms linear;will-change:width}
 
-/* GRID */
-.lab-grid{display:grid;grid-template-columns:1fr;gap:1px;background:rgba(255,255,255,.03);padding-top:4rem}
+/* ============ Nav ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 1rem;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+@media(min-width:1024px){.nav{padding:1.5rem 3rem}}
+.nav-logo{pointer-events:auto;display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.125rem;letter-spacing:-.02em;color:var(--text-dark)}
+.nav-logo .ae{font-family:'Space Grotesk',sans-serif;color:var(--accent)}
+.nav-back{pointer-events:auto;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.6rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;border:none;cursor:pointer;transition:transform .5s var(--ease-spring)}
+.nav-back:hover{transform:scale(1.05)}
+.nav-back svg{width:14px;height:14px;transition:transform .3s var(--ease-spring)}
+.nav-back:hover svg{transform:translateX(-3px)}
+
+/* ============ Hero ============ */
+.hero{position:relative;min-height:70vh;display:flex;align-items:center;padding:8rem 1rem 5rem;overflow:hidden}
+@media(min-width:768px){.hero{padding:10rem 2rem 6rem}}
+@media(min-width:1024px){.hero{padding:11rem 3rem 7rem}}
+@media(min-width:1280px){.hero{padding:12rem 5rem 8rem}}
+.hero-watermark{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:flex-end;overflow:hidden;pointer-events:none;user-select:none;padding-right:.5rem}
+.hero-watermark span{font-weight:700;font-size:clamp(8rem,28vw,24rem);letter-spacing:-.04em;color:var(--text-dark);opacity:.03;line-height:.85;white-space:nowrap}
+.hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%}
+.hero-eyebrow{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem}
+.hero-eyebrow::before{content:"";width:1.75rem;height:1px;background:var(--accent);opacity:.6}
+.hero-headline{font-size:clamp(2.25rem,6vw,5rem);font-weight:600;letter-spacing:-.035em;line-height:1.02;color:var(--text-dark);max-width:18ch;margin-bottom:1.75rem}
+.hero-headline em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:clamp(1.0625rem,1.4vw,1.25rem);color:var(--text-secondary);line-height:1.6;max-width:54ch;margin-bottom:2.75rem;font-weight:400}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+
+/* ============ Buttons ============ */
+.btn{display:inline-flex;align-items:center;gap:.75rem;background:var(--text-dark);color:var(--bg);padding:1rem 2rem;border-radius:var(--radius-pill);font-size:.9375rem;font-weight:500;transition:transform .5s var(--ease-overshoot),box-shadow .4s ease;cursor:pointer;border:none;box-shadow:0 10px 30px -10px rgba(12,16,22,.35)}
+.btn:hover{transform:scale(1.06);box-shadow:0 18px 40px -12px rgba(12,16,22,.45)}
+.btn svg{width:1.125rem;height:1.125rem;transition:transform .3s var(--ease-overshoot)}
+.btn:hover svg{transform:translateX(3px)}
+.btn-ghost{background:transparent;color:var(--text-dark);border:1px solid var(--rule-strong);box-shadow:none}
+.btn-ghost:hover{background:rgba(17,24,28,.04);transform:scale(1.03);box-shadow:none}
+
+/* ============ Footer (SOHub marquee) ============ */
+.footer{width:100%;padding:5rem 1.5rem 3rem;display:flex;flex-direction:column;align-items:center;gap:2rem;text-align:center;border-top:1px solid var(--rule)}
+@media(min-width:1024px){.footer{padding:6rem 3rem 4rem}}
+.footer-marquee{width:100%;overflow:hidden;margin-bottom:1rem}
+.footer-marquee-inner{display:flex;gap:3rem;white-space:nowrap;animation:marquee 22s linear infinite;font-size:.8125rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);opacity:.55}
+.footer-marquee-inner span::after{content:'\2022';margin-left:3rem;opacity:.4}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;font-size:.8125rem;font-weight:500;opacity:.65}
+.footer-links a{transition:color .2s}
+.footer-links a:hover{color:var(--accent);opacity:1}
+.footer-copy{font-size:.75rem;color:var(--text-muted);opacity:.6}
+
+/* ============ Floating CTA ============ */
+.floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.75rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(.9);transition:opacity .5s ease,transform .5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(12,16,22,.15)}
+.floating-cta.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.floating-cta:hover{transform:translateY(-2px) scale(1.05)}
+@media(max-width:767px){.floating-cta span{display:none}.floating-cta{padding:.75rem;border-radius:50%}}
+
+/* ============ Reveal animation ============ */
+.reveal{opacity:0;transform:translateY(2rem);transition:opacity .7s var(--ease-spring),transform .7s var(--ease-spring)}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ============ GRID ============ */
+.lab-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--rule)}
 @media(min-width:768px){.lab-grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1280px){.lab-grid{grid-template-columns:repeat(4,1fr)}}
 
-/* CARD BASE */
+/* ============ CARD BASE ============ */
 .sample{position:relative;padding:3rem 2rem;min-height:52vh;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;cursor:pointer;transition:transform .6s cubic-bezier(.22,.68,0,1)}
 .sample:hover{transform:scale(1.01);z-index:5}
 .sample-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;font-family:'Inter',sans-serif;font-size:.625rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;opacity:.5}
@@ -138,205 +219,287 @@ body{font-family:'Inter',-apple-system,sans-serif;background:#0a0a09;color:var(-
 .s-unica .sample-word{font-family:'Unica One',sans-serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:400;letter-spacing:.04em;line-height:.92;text-transform:uppercase}
 .s-unica .sample-sub{font-family:'Unica One',sans-serif;font-size:1rem;letter-spacing:.2em;text-transform:uppercase;color:#6b6860}
 
-/* LAB FOOTER */
-.lab-footer{padding:4rem 2rem;text-align:center;background:#0a0a09;border-top:1px solid rgba(255,255,255,.03)}
-.lab-footer p{font-family:'Inter',sans-serif;font-size:.6875rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.2)}
-.lab-footer .brand{font-family:'Instrument Serif',serif;font-style:italic;font-size:1.5rem;color:rgba(255,255,255,.3);margin-bottom:.5rem}
-
 /* SELECTED INDICATOR */
-.sample.selected{outline:2px solid var(--gold);outline-offset:-2px;z-index:10}
-.sample.selected::after{content:'SELECTED';position:absolute;bottom:1rem;right:1rem;font-family:'JetBrains Mono',monospace;font-size:.5rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);opacity:.7}
+.sample.selected{outline:2px solid #c9a961;outline-offset:-2px;z-index:10}
+.sample.selected::after{content:'SELECTED';position:absolute;bottom:1rem;right:1rem;font-family:'JetBrains Mono',monospace;font-size:.5rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:#c9a961;opacity:.7}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .footer-marquee-inner{animation:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
 </style>
 </head>
 <body>
 
-<header class="lab-header">
-  <div class="lab-header-logo">
-    <img src="https://aegntic.ai/ae-logo.webp" alt="aegntic">
-    <span class="lab-header-title">Type Specimen Lab</span>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <a href="/" class="nav-logo">ae<span class="ae">gntic</span></a>
+  <a href="/" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    Back to aegntic.ai
+  </a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-watermark"><span>TYPE</span></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Typography Lab · 16 Treatments</div>
+    <h1 class="hero-headline">A <em>type specimen</em> lab for the aegntic brand.</h1>
+    <p class="hero-sub">Sixteen luxury heading treatments side by side — from editorial serifs to geometric monos. Each card is a self-contained composition with its own font, color, and atmosphere. Click any specimen to select it.</p>
+    <div class="hero-actions">
+      <a href="#specimens" class="btn">
+        Browse specimens
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="mailto:hello@aegntic.com?subject=Custom%20type%20treatment" class="btn btn-ghost">Request a custom treatment</a>
+    </div>
   </div>
-  <span class="lab-header-meta">16 Treatments · Click to Select</span>
 </header>
 
-<main class="lab-grid">
+<!-- ============ SPECIMEN GRID ============ -->
+<section id="specimens">
+  <div class="lab-grid">
 
-  <!-- 01 -->
-  <div class="sample s-instrument" data-font="Instrument Serif" data-id="01">
-    <div class="sample-meta"><span class="sample-num">01 / 16</span><span>Italic Serif</span></div>
-    <div class="sample-display">
-      <div class="sample-word">Aegntic<em></em></div>
-      <div class="sample-sub">Cognitive Operating System</div>
-      <div class="accent-line"></div>
+    <!-- 01 -->
+    <div class="sample s-instrument reveal" data-font="Instrument Serif" data-id="01">
+      <div class="sample-meta"><span class="sample-num">01 / 16</span><span>Italic Serif</span></div>
+      <div class="sample-display">
+        <div class="sample-word">Aegntic<em></em></div>
+        <div class="sample-sub">Cognitive Operating System</div>
+        <div class="accent-line"></div>
+      </div>
+      <div class="sample-footer"><span>Instrument Serif</span><span>400 Italic</span></div>
     </div>
-    <div class="sample-footer"><span>Instrument Serif</span><span>400 Italic</span></div>
-  </div>
 
-  <!-- 02 -->
-  <div class="sample s-fraunces" data-font="Fraunces" data-id="02">
-    <div class="sample-meta"><span class="sample-num">02 / 16</span><span>Variable Serif</span></div>
-    <div class="sample-display">
-      <div class="sample-word">Cognitive <em>OS</em></div>
-      <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+    <!-- 02 -->
+    <div class="sample s-fraunces reveal" data-font="Fraunces" data-id="02">
+      <div class="sample-meta"><span class="sample-num">02 / 16</span><span>Variable Serif</span></div>
+      <div class="sample-display">
+        <div class="sample-word">Cognitive <em>OS</em></div>
+        <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+      </div>
+      <div class="sample-footer"><span>Fraunces Variable</span><span>opsz 144 · WONK</span></div>
     </div>
-    <div class="sample-footer"><span>Fraunces Variable</span><span>opsz 144 · WONK</span></div>
-  </div>
 
-  <!-- 03 -->
-  <div class="sample s-playfair" data-font="Playfair Display" data-id="03">
-    <div class="sample-meta"><span class="sample-num">03 / 16</span><span>Editorial Serif</span></div>
-    <div class="sample-display">
-      <div class="sample-word">Cognitive <em>OS</em></div>
-      <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+    <!-- 03 -->
+    <div class="sample s-playfair reveal" data-font="Playfair Display" data-id="03">
+      <div class="sample-meta"><span class="sample-num">03 / 16</span><span>Editorial Serif</span></div>
+      <div class="sample-display">
+        <div class="sample-word">Cognitive <em>OS</em></div>
+        <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+      </div>
+      <div class="sample-footer"><span>Playfair Display</span><span>400 + Italic</span></div>
     </div>
-    <div class="sample-footer"><span>Playfair Display</span><span>400 + Italic</span></div>
-  </div>
 
-  <!-- 04 -->
-  <div class="sample s-cormorant" data-font="Cormorant" data-id="04">
-    <div class="sample-meta"><span class="sample-num">04 / 16</span><span>Ultra-Light Serif</span></div>
-    <div class="sample-display">
-      <div class="sample-word">AEGNTIC</div>
-      <div class="sample-sub">Cognitive Operating System</div>
+    <!-- 04 -->
+    <div class="sample s-cormorant reveal" data-font="Cormorant" data-id="04">
+      <div class="sample-meta"><span class="sample-num">04 / 16</span><span>Ultra-Light Serif</span></div>
+      <div class="sample-display">
+        <div class="sample-word">AEGNTIC</div>
+        <div class="sample-sub">Cognitive Operating System</div>
+      </div>
+      <div class="sample-footer"><span>Cormorant 300</span><span>Wide Tracking</span></div>
     </div>
-    <div class="sample-footer"><span>Cormorant 300</span><span>Wide Tracking</span></div>
-  </div>
 
-  <!-- 05 -->
-  <div class="sample s-bodoni" data-font="Bodoni Moda" data-id="05">
-    <div class="sample-meta"><span class="sample-num">05 / 16</span><span>Didone Fashion</span></div>
-    <div class="sample-display">
-      <div class="sample-word">Cognitive <em>OS</em></div>
-      <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+    <!-- 05 -->
+    <div class="sample s-bodoni reveal" data-font="Bodoni Moda" data-id="05">
+      <div class="sample-meta"><span class="sample-num">05 / 16</span><span>Didone Fashion</span></div>
+      <div class="sample-display">
+        <div class="sample-word">Cognitive <em>OS</em></div>
+        <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+      </div>
+      <div class="sample-footer"><span>Bodoni Moda</span><span>700 + Italic</span></div>
     </div>
-    <div class="sample-footer"><span>Bodoni Moda</span><span>700 + Italic</span></div>
-  </div>
 
-  <!-- 06 -->
-  <div class="sample s-cinzel" data-font="Cinzel" data-id="06">
-    <div class="sample-meta"><span class="sample-num">06 / 16</span><span>Trajan Caps</span></div>
-    <div class="sample-display">
-      <div class="sample-word">AEGNTIC</div>
-      <div class="sample-sub">Cognitive Operating System</div>
+    <!-- 06 -->
+    <div class="sample s-cinzel reveal" data-font="Cinzel" data-id="06">
+      <div class="sample-meta"><span class="sample-num">06 / 16</span><span>Trajan Caps</span></div>
+      <div class="sample-display">
+        <div class="sample-word">AEGNTIC</div>
+        <div class="sample-sub">Cognitive Operating System</div>
+      </div>
+      <div class="sample-footer"><span>Cinzel 600</span><span>Monumental</span></div>
     </div>
-    <div class="sample-footer"><span>Cinzel 600</span><span>Monumental</span></div>
-  </div>
 
-  <!-- 07 -->
-  <div class="sample s-marcellus" data-font="Marcellus" data-id="07">
-    <div class="sample-meta"><span class="sample-num">07 / 16</span><span>Roman Refinement</span></div>
-    <div class="sample-display">
-      <div class="sample-word">Aegntic</div>
-      <div class="sample-sub">Cognitive Operating System</div>
+    <!-- 07 -->
+    <div class="sample s-marcellus reveal" data-font="Marcellus" data-id="07">
+      <div class="sample-meta"><span class="sample-num">07 / 16</span><span>Roman Refinement</span></div>
+      <div class="sample-display">
+        <div class="sample-word">Aegntic</div>
+        <div class="sample-sub">Cognitive Operating System</div>
+      </div>
+      <div class="sample-footer"><span>Marcellus</span><span>400</span></div>
     </div>
-    <div class="sample-footer"><span>Marcellus</span><span>400</span></div>
-  </div>
 
-  <!-- 08 -->
-  <div class="sample s-italiana" data-font="Italiana" data-id="08">
-    <div class="sample-meta"><span class="sample-num">08 / 16</span><span>Fashion House</span></div>
-    <div class="sample-display">
-      <div class="sample-word">Aegntic</div>
-      <div class="sample-sub">Cognitive Operating System</div>
+    <!-- 08 -->
+    <div class="sample s-italiana reveal" data-font="Italiana" data-id="08">
+      <div class="sample-meta"><span class="sample-num">08 / 16</span><span>Fashion House</span></div>
+      <div class="sample-display">
+        <div class="sample-word">Aegntic</div>
+        <div class="sample-sub">Cognitive Operating System</div>
+      </div>
+      <div class="sample-footer"><span>Italiana</span><span>400 Single</span></div>
     </div>
-    <div class="sample-footer"><span>Italiana</span><span>400 Single</span></div>
-  </div>
 
-  <!-- 09 -->
-  <div class="sample s-syne" data-font="Syne" data-id="09">
-    <div class="sample-meta"><span class="sample-num">09 / 16</span><span>Brand Sans Display</span></div>
-    <div class="sample-display">
-      <div class="sample-word">COGNITIVE OS</div>
-      <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+    <!-- 09 -->
+    <div class="sample s-syne reveal" data-font="Syne" data-id="09">
+      <div class="sample-meta"><span class="sample-num">09 / 16</span><span>Brand Sans Display</span></div>
+      <div class="sample-display">
+        <div class="sample-word">COGNITIVE OS</div>
+        <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+      </div>
+      <div class="sample-footer"><span>Syne 800</span><span>Geometric</span></div>
     </div>
-    <div class="sample-footer"><span>Syne 800</span><span>Geometric</span></div>
-  </div>
 
-  <!-- 10 -->
-  <div class="sample s-bricolage" data-font="Bricolage Grotesque" data-id="10">
-    <div class="sample-meta"><span class="sample-num">10 / 16</span><span>Editorial Grotesque</span></div>
-    <div class="sample-display">
-      <div class="sample-word">Cognitive OS</div>
-      <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+    <!-- 10 -->
+    <div class="sample s-bricolage reveal" data-font="Bricolage Grotesque" data-id="10">
+      <div class="sample-meta"><span class="sample-num">10 / 16</span><span>Editorial Grotesque</span></div>
+      <div class="sample-display">
+        <div class="sample-word">Cognitive OS</div>
+        <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+      </div>
+      <div class="sample-footer"><span>Bricolage Grotesque</span><span>Variable 600</span></div>
     </div>
-    <div class="sample-footer"><span>Bricolage Grotesque</span><span>Variable 600</span></div>
-  </div>
 
-  <!-- 11 -->
-  <div class="sample s-space" data-font="Space Grotesk" data-id="11">
-    <span class="current-badge">CURRENT</span>
-    <div class="sample-meta"><span class="sample-num">11 / 16</span><span>Current CogOS</span></div>
-    <div class="sample-display">
-      <div class="sample-word">Cognitive <em>OS</em></div>
-      <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+    <!-- 11 -->
+    <div class="sample s-space reveal" data-font="Space Grotesk" data-id="11">
+      <span class="current-badge">CURRENT</span>
+      <div class="sample-meta"><span class="sample-num">11 / 16</span><span>Current CogOS</span></div>
+      <div class="sample-display">
+        <div class="sample-word">Cognitive <em>OS</em></div>
+        <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+      </div>
+      <div class="sample-footer"><span>Space Grotesk</span><span>600</span></div>
     </div>
-    <div class="sample-footer"><span>Space Grotesk</span><span>600</span></div>
-  </div>
 
-  <!-- 12 -->
-  <div class="sample s-bebas" data-font="Bebas Neue" data-id="12">
-    <div class="sample-meta"><span class="sample-num">12 / 16</span><span>Condensed Poster</span></div>
-    <div class="sample-display">
-      <div class="sample-word">COGNITIVE OS</div>
-      <div class="sample-sub">Aegntic Adaptive Intelligence</div>
+    <!-- 12 -->
+    <div class="sample s-bebas reveal" data-font="Bebas Neue" data-id="12">
+      <div class="sample-meta"><span class="sample-num">12 / 16</span><span>Condensed Poster</span></div>
+      <div class="sample-display">
+        <div class="sample-word">COGNITIVE OS</div>
+        <div class="sample-sub">Aegntic Adaptive Intelligence</div>
+      </div>
+      <div class="sample-footer"><span>Bebas Neue</span><span>400 Caps</span></div>
     </div>
-    <div class="sample-footer"><span>Bebas Neue</span><span>400 Caps</span></div>
-  </div>
 
-  <!-- 13 -->
-  <div class="sample s-dmserif" data-font="DM Serif Display" data-id="13">
-    <div class="sample-meta"><span class="sample-num">13 / 16</span><span>Bold Editorial</span></div>
-    <div class="sample-display">
-      <div class="sample-word">Cognitive <em>OS</em></div>
-      <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+    <!-- 13 -->
+    <div class="sample s-dmserif reveal" data-font="DM Serif Display" data-id="13">
+      <div class="sample-meta"><span class="sample-num">13 / 16</span><span>Bold Editorial</span></div>
+      <div class="sample-display">
+        <div class="sample-word">Cognitive <em>OS</em></div>
+        <div class="sample-sub">Aegntic — Adaptive Intelligence</div>
+      </div>
+      <div class="sample-footer"><span>DM Serif Display</span><span>400 + Italic</span></div>
     </div>
-    <div class="sample-footer"><span>DM Serif Display</span><span>400 + Italic</span></div>
-  </div>
 
-  <!-- 14 -->
-  <div class="sample s-jetbrains" data-font="JetBrains Mono" data-id="14">
-    <div class="sample-meta"><span class="sample-num">14 / 16</span><span>Technical Mono</span></div>
-    <div class="sample-display">
-      <div class="sample-word">cognitive<span class="accent">.</span>os</div>
-      <div class="sample-sub">// aegntic — adaptive intelligence</div>
+    <!-- 14 -->
+    <div class="sample s-jetbrains reveal" data-font="JetBrains Mono" data-id="14">
+      <div class="sample-meta"><span class="sample-num">14 / 16</span><span>Technical Mono</span></div>
+      <div class="sample-display">
+        <div class="sample-word">cognitive<span class="accent">.</span>os</div>
+        <div class="sample-sub">// aegntic — adaptive intelligence</div>
+      </div>
+      <div class="sample-footer"><span>JetBrains Mono</span><span>200 Ultralight</span></div>
     </div>
-    <div class="sample-footer"><span>JetBrains Mono</span><span>200 Ultralight</span></div>
-  </div>
 
-  <!-- 15 -->
-  <div class="sample s-major" data-font="Major Mono Display" data-id="15">
-    <div class="sample-meta"><span class="sample-num">15 / 16</span><span>Geometric Mono</span></div>
-    <div class="sample-display">
-      <div class="sample-word">cognitive</div>
-      <div class="sample-sub">aegntic adaptive intelligence</div>
+    <!-- 15 -->
+    <div class="sample s-major reveal" data-font="Major Mono Display" data-id="15">
+      <div class="sample-meta"><span class="sample-num">15 / 16</span><span>Geometric Mono</span></div>
+      <div class="sample-display">
+        <div class="sample-word">cognitive</div>
+        <div class="sample-sub">aegntic adaptive intelligence</div>
+      </div>
+      <div class="sample-footer"><span>Major Mono Display</span><span>400 Gradient</span></div>
     </div>
-    <div class="sample-footer"><span>Major Mono Display</span><span>400 Gradient</span></div>
-  </div>
 
-  <!-- 16 -->
-  <div class="sample s-unica" data-font="Unica One" data-id="16">
-    <div class="sample-meta"><span class="sample-num">16 / 16</span><span>Swiss Geometric</span></div>
-    <div class="sample-display">
-      <div class="sample-word">COGNITIVE OS</div>
-      <div class="sample-sub">Aegntic Adaptive Intelligence</div>
+    <!-- 16 -->
+    <div class="sample s-unica reveal" data-font="Unica One" data-id="16">
+      <div class="sample-meta"><span class="sample-num">16 / 16</span><span>Swiss Geometric</span></div>
+      <div class="sample-display">
+        <div class="sample-word">COGNITIVE OS</div>
+        <div class="sample-sub">Aegntic Adaptive Intelligence</div>
+      </div>
+      <div class="sample-footer"><span>Unica One</span><span>400 Caps</span></div>
     </div>
-    <div class="sample-footer"><span>Unica One</span><span>400 Caps</span></div>
+
   </div>
+</section>
 
-</main>
-
-<footer class="lab-footer">
-  <div class="brand">aegntic</div>
-  <p>Type Specimen Lab · 16 Luxury Heading Treatments · 2026</p>
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-marquee">
+    <div class="footer-marquee-inner">
+      <span>Orchestration</span><span>Authenticity</span><span>Continuity</span><span>Sovereignty</span><span>Experiential Memory</span>
+      <span>Orchestration</span><span>Authenticity</span><span>Continuity</span><span>Sovereignty</span><span>Experiential Memory</span>
+    </div>
+  </div>
+  <div class="footer-links">
+    <a href="https://aegntic.ai">aegntic.ai</a>
+    <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://x.com/AEGNTIC" target="_blank" rel="noopener">X / Twitter</a>
+    <a href="https://aegntic.ai/privacy">Privacy</a>
+    <a href="mailto:hello@aegntic.com">Contact</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 AEGNTIC. Type Specimen Lab · 16 Luxury Heading Treatments.</div>
 </footer>
 
+<!-- ============ FLOATING CTA ============ -->
+<a href="mailto:hello@aegntic.com?subject=Type%20specimen%20inquiry" class="floating-cta" id="floatingCta">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+  <span>hello@aegntic.com</span>
+</a>
+
 <script>
+/* ============ Scroll progress + floating CTA ============ */
+(function(){
+  const progress = document.getElementById('scrollProgress');
+  const floatingCta = document.getElementById('floatingCta');
+  let ticking = false;
+  function update(){
+    const doc = document.documentElement;
+    const max = (doc.scrollHeight - window.innerHeight) || 1;
+    const pct = Math.min(1, Math.max(0, window.scrollY / max));
+    if(progress) progress.style.width = (pct*100).toFixed(2) + '%';
+    if(floatingCta){
+      if(pct > 0.4) floatingCta.classList.add('visible');
+      else floatingCta.classList.remove('visible');
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if(!ticking){ window.requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  update();
+})();
+
+/* ============ Reveal observer ============ */
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){
+    els.forEach(e => e.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if(en.isIntersecting){
+        en.target.classList.add('in');
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(e => io.observe(e));
+})();
+
+/* ============ Click to select ============ */
 document.querySelectorAll('.sample').forEach(s => {
   s.addEventListener('click', () => {
     document.querySelectorAll('.sample.selected').forEach(el => el.classList.remove('selected'));
     s.classList.add('selected');
-    const fontName = s.dataset.font;
-    const id = s.dataset.id;
-    console.log(`Selected: ${id} — ${fontName}`);
+    console.log(`Selected: ${s.dataset.id} — ${s.dataset.font}`);
   });
 });
 </script>
