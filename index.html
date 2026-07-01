@@ -256,11 +256,11 @@
         .cta-btn svg{width:1.25rem;height:1.25rem;transition:transform 0.3s var(--ease-overshoot);color:#f0f6f8;flex-shrink:0}
         .cta-btn:hover svg{transform:translateX(4px)}
 
-        /* CTA floating visual (SOHub careerChair pattern) */
-        .cta-figure{position:absolute;right:-5vw;top:50%;transform:translateY(-50%);width:min(35vw,420px);z-index:1;pointer-events:none}
+        /* CTA floating visual — arm reaches ≥66% across page, retains right bleed */
+        .cta-figure{position:absolute;right:-5vw;top:50%;transform:translateY(-50%);width:min(71vw,820px);z-index:1;pointer-events:none}
         .cta-figure img{width:100%;height:auto;display:block;animation:floatSlow 6s ease-in-out infinite}
-        @media(max-width:767px){.cta-figure{width:min(45vw,260px);right:-10vw;top:65%}}
-        @media(min-width:1280px){.cta-figure{width:min(30vw,480px)}}
+        @media(max-width:767px){.cta-figure{width:min(80vw,320px);right:-12vw;top:65%}}
+        @media(min-width:1280px){.cta-figure{width:min(66vw,920px)}}
 
 
         /* ── PRE-FOOTER IMAGE STRIP (placeholder slots above footer) ── */
@@ -328,11 +328,16 @@
         .work-item-bg img{transition:transform 0.6s var(--ease-spring),filter 0.4s ease}
         .work-item:hover .work-item-bg img{transform:scale(1.06)!important;filter:brightness(1.08)}
 
+        /* AE Audits card — centered contained logo, dark bg, no zoom */
+        .work-bg-contained{object-fit:contain!important;width:auto!important;height:auto!important;max-width:70%;max-height:70%;position:absolute;top:50%;left:50%;transform:translate(-50%,-55%)}
+        .work-item:first-child .work-item-bg{background:var(--surface-1)}
+        .work-item:hover .work-bg-contained{transform:none!important;filter:none!important}
+
         /* ── HERO RENDER BLEED (slightly clipped off right edge) ── */
         @media(min-width:1024px){.hero-render{padding-right:14vw}.hero-render img{width:min(44vw,620px)}}
         @media(min-width:1280px){.hero-render{padding-right:12vw}.hero-render img{width:min(42vw,640px)}}
 
-        /* ── SERVICE CARD CLIP-PATH REVEAL (SOHub stacked overlap) ── */
+        /* ── SERVICE CARDS — stacked overlap with clip-path scroll reveal ── */
         @media(min-width:1024px){
             .service-card{overflow:hidden}
         }
@@ -565,7 +570,7 @@
         <p class="section-desc">Real, shipped systems — each running in production. Not demos, not dashboards.</p>
         <div class="work-grid">
             <a href="/audits" class="work-item">
-                <div class="work-item-bg"><img src="work-open-inventory.png" alt="AE Audits" loading="lazy"></div>
+                <div class="work-item-bg"><img src="audit-logo.png" alt="AE Audits" class="work-bg-contained" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub"><span class="latest-offer"><span class="latest-pulse"></span>Latest</span></span>
@@ -641,25 +646,25 @@
         <div class="services-stack">
             <div class="service-card">
                 <div class="service-head">
-                    <h3 class="service-title">Custom AI-agent builds</h3>
+                    <h3 class="service-title">Custom agent builds</h3>
                     <div class="service-tags">
                         <span class="service-tag">Architecture</span>
-                        <span class="service-tag">Production</span>
+                        <span class="service-tag">Full-Stack</span>
                         <span class="service-tag">Multi-Agent</span>
                     </div>
                 </div>
-                <p class="service-desc">Agent systems engineered to your stack — from architecture to a working production deployment. Built solo, end to end, in Rust, Go, TypeScript, or Python.</p>
+                <p class="service-desc">Production agent systems designed and shipped solo. <strong>Onchain trade execution</strong> — a Rust/Go order-flow pipeline with real market feeds and MEV protection. <strong>Multi-agent coordination</strong> — persistent swarms with shared reasoning state across MCP servers. Architecture through deployment, in whatever stack the job needs.</p>
             </div>
             <div class="service-card">
                 <div class="service-head">
-                    <h3 class="service-title">Automation systems</h3>
+                    <h3 class="service-title">Automation infrastructure</h3>
                     <div class="service-tags">
                         <span class="service-tag">Workflows</span>
-                        <span class="service-tag">Integrations</span>
                         <span class="service-tag">Backends</span>
+                        <span class="service-tag">Edge</span>
                     </div>
                 </div>
-                <p class="service-desc">Workflows, integrations, and backends that remove manual work. Real systems running in production — not dashboards.</p>
+                <p class="service-desc">Real systems that remove manual work. <strong>Go monolith on Postgres + AWS</strong> — integrated event pipeline handling ingestion, enrichment, and delivery at scale. <strong>Edge products on Cloudflare Workers</strong> — serverless automation with D1, Queues, and R2. No dashboards, no demos — live production deployments.</p>
             </div>
             <div class="service-card">
                 <div class="service-head">
@@ -667,10 +672,10 @@
                     <div class="service-tags">
                         <span class="service-tag">MCP</span>
                         <span class="service-tag">CLIs</span>
-                        <span class="service-tag">Claude Code</span>
+                        <span class="service-tag">Agents</span>
                     </div>
                 </div>
-                <p class="service-desc">MCP plugins, CLIs, and infrastructure. An early operator in the Claude Code ecosystem — see cldcde.cc.</p>
+                <p class="service-desc">Tools that make agents and engineers more capable. <strong>Custom MCP servers</strong> — connecting LLMs to production APIs, databases, and file systems. <strong>Claude Code ecosystem</strong> — early ecosystem operator shaping how agents interact with code. CLI tooling, agent infrastructure, and the coordination layer for persistent intelligence.</p>
             </div>
         </div>
     </section>
@@ -1019,44 +1024,44 @@
                 }
             });
 
-            // ── Service cards: SOHub-style stacked clip-path reveal ──
-            // Each card wipes in from bottom-to-top, one after another
+            // ── Service cards: scrubbed stacking reveal with clip-path transitions ──
+            // Each card uses clip-path to reveal/hide body content as user scrolls.
+            // Headings always peek through; next card body reaches full opacity by tagline.
             document.querySelectorAll('.work-item').forEach(()=>{}); // ensure cards exist
-            ScrollTrigger.create({
-                trigger:'.services-stack',start:'top 75%',
-                onEnter:()=>{
-                    document.querySelectorAll('.service-card').forEach((card,i)=>{
-                        gsap.fromTo(card,{
-                            clipPath:'inset(100% 0 0 0)',
-                        },{
-                            clipPath:'inset(0% 0 0 0)',
-                            duration:1.2,ease:'power4.inOut',delay:i*0.15
-                        });
+            {
+                const cards=document.querySelectorAll('.service-card');
+                if(cards.length>1){
+                    const peekH=140; // approximate heading area in pixels
+                    const cardH=cards[0].offsetHeight;
+                    const clipBody=`inset(0 0 ${cardH-peekH}px 0)`; // keep heading, hide body
+                    const clipHeadOnly=i=>`inset(${cardH-peekH}px 0 0 0)`; // only heading visible
+                    const scrollPerCard=cardH;
+                    const totalScroll=scrollPerCard*(cards.length-1);
+                    const stl=gsap.timeline({
+                        scrollTrigger:{
+                            trigger:'.services-stack',start:'top 75%',
+                            end:()=>`+=${totalScroll}`,scrub:1.5,
+                            invalidateOnRefresh:true
+                        }
                     });
-                },
-                onLeaveBack:()=>{
-                    document.querySelectorAll('.service-card').forEach((card)=>{
-                        gsap.set(card,{clipPath:'inset(100% 0 0 0)'});
+                    cards.forEach((card,i)=>{
+                        const desc=card.querySelector('.service-desc');
+                        const tags=card.querySelectorAll('.service-tag');
+                        const body=[desc,...tags].filter(Boolean);
+                        if(i===0){
+                            stl.to(card,{clipPath:clipBody,duration:1},0);
+                            stl.to(body,{opacity:0.05,duration:1},0);
+                        }else{
+                            stl.fromTo(card,{clipPath:clipHeadOnly(i)},{clipPath:'inset(0 0 0 0)',duration:0.65},i-1);
+                            stl.fromTo(body,{opacity:0.05},{opacity:1,duration:0.55},i-1);
+                            if(i<cards.length-1){
+                                stl.to(card,{clipPath:clipBody,duration:1},i);
+                                stl.to(body,{opacity:0.05,duration:1},i);
+                            }
+                        }
                     });
                 }
-            });
-
-            // ── Service cards: title + desc fade-in on stack entry ──
-            // Each card animates once when first entering viewport
-            document.querySelectorAll('.service-card').forEach(card=>{
-                const title=card.querySelector('.service-title');
-                const desc=card.querySelector('.service-desc');
-                const tags=card.querySelectorAll('.service-tag');
-                if(!title){return}
-                gsap.fromTo([title,desc],{y:36,opacity:0},{
-                    y:0,opacity:1,duration:1.1,ease:easeSoft,stagger:0.12,
-                    scrollTrigger:{trigger:card,start:'top 78%',toggleActions:'play none none reverse'}
-                });
-                gsap.fromTo(tags,{y:20,opacity:0},{
-                    y:0,opacity:1,duration:0.7,ease:easeSoft,stagger:0.07,
-                    scrollTrigger:{trigger:card,start:'top 76%',toggleActions:'play none none reverse'}
-                });
-            });
+            }
 
             // ── Section labels (Selected Work / Core Modules) line+fade ──
             document.querySelectorAll('.section-label').forEach(el=>{
