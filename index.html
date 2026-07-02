@@ -1054,8 +1054,8 @@
                             stl.to(card,{clipPath:clipBody,duration:1},0);
                             stl.to(body,{opacity:0.05,duration:1},0);
                         }else{
-                            stl.fromTo(card,{clipPath:clipHeadOnly(i)},{clipPath:'inset(0 0 0 0)',duration:0.65},i-1);
-                            stl.fromTo(body,{opacity:0.05},{opacity:1,duration:0.55},i-1);
+                            stl.fromTo(card,{clipPath:clipHeadOnly(i)},{clipPath:'inset(0 0 0 0)',duration:0.65,immediateRender:false},i-1);
+                            stl.fromTo(body,{opacity:0.05},{opacity:1,duration:0.55,immediateRender:false},i-1);
                             if(i<cards.length-1){
                                 stl.to(card,{clipPath:clipBody,duration:1},i);
                                 stl.to(body,{opacity:0.05,duration:1},i);
