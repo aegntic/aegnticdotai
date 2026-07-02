@@ -1036,7 +1036,7 @@
                     const peekH=140; // approximate heading area in pixels
                     const cardH=cards[0].offsetHeight;
                     const clipBody=`inset(0 0 ${cardH-peekH}px 0)`; // keep heading, hide body
-                    const clipHeadOnly=i=>`inset(${cardH-peekH}px 0 0 0)`; // only heading visible
+                    const clipHeadOnly=i=>`inset(0 0 ${cardH-peekH}px 0)`; // only heading visible
                     const scrollPerCard=cardH;
                     const totalScroll=scrollPerCard*(cards.length-1);
                     const stl=gsap.timeline({
