@@ -329,9 +329,9 @@
         .work-item:hover .work-item-bg img{transform:scale(1.06)!important;filter:brightness(1.08)}
 
         /* AE Audits card — centered contained logo, dark bg, no zoom */
-        .work-bg-contained{object-fit:contain!important;width:auto!important;height:auto!important;max-width:70%;max-height:70%;position:absolute;top:50%;left:50%;transform:translate(-50%,-55%)}
+        img.work-bg-contained{max-width:60%;max-height:60%;width:auto;height:auto;object-fit:contain;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
         .work-item:first-child .work-item-bg{background:var(--surface-1)}
-        .work-item:hover .work-bg-contained{transform:none!important;filter:none!important}
+        .work-item:hover img.work-bg-contained{transform:translate(-50%,-50%)!important;filter:none!important}
 
         /* ── HERO RENDER BLEED (slightly clipped off right edge) ── */
         @media(min-width:1024px){.hero-render{padding-right:14vw}.hero-render img{width:min(44vw,620px)}}
@@ -363,6 +363,7 @@
         .ae-promo-label::before{content:"";width:1.5rem;height:1px;background:var(--accent)}
         .ae-promo-title{font-size:clamp(2rem,5vw,3.5rem);font-weight:600;letter-spacing:-.03em;line-height:1.05;margin-bottom:1.5rem}
         .ae-promo-title em{font-style:normal;color:var(--accent)}
+        .ae-promo-sub{font-size:clamp(1.125rem,1.8vw,1.35rem);font-weight:500;letter-spacing:-.01em;line-height:1.3;color:var(--accent);margin-bottom:1rem}
         .ae-promo-desc{font-size:clamp(.9375rem,1.2vw,1.0625rem);opacity:.7;line-height:1.65;max-width:44ch;margin-bottom:2rem}
         .ae-promo-cta{display:inline-flex;align-items:center;gap:.75rem;background:var(--accent);color:var(--text-dark);padding:.85rem 2rem;border-radius:999px;font-size:.9375rem;font-weight:600;border:none;cursor:pointer;transition:transform .4s var(--ease-spring),box-shadow .3s ease;text-decoration:none}
         .ae-promo-cta:hover{transform:scale(1.06);box-shadow:0 0 30px rgba(0,179,158,.3)}
@@ -545,9 +546,10 @@
         <div class="ae-promo-inner">
             <div class="ae-promo-grid">
                 <div class="ae-promo-body">
-                    <div class="ae-promo-label">Latest Offer</div>
-                    <h2 class="ae-promo-title" data-split><img src="ae-logo.webp" alt="AE" class="inline-logo inline-logo-light"> Audits —<br>agent-native <em>code review</em>.</h2>
-                    <p class="ae-promo-desc">Decision review for expensive bets. Get a structured adversarial council — 15 specialized lenses — before you commit capital, time, or reputation.</p>
+                    <div class="ae-promo-label">Latest Alpha</div>
+                    <h2 class="ae-promo-title" data-split><img src="ae-logo.webp" alt="AE" class="inline-logo inline-logo-light"> Decision Audits</h2>
+                    <p class="ae-promo-sub">Stress-test high-stakes decisions before they get expensive.</p>
+                    <p class="ae-promo-desc">Decision review for expensive bets — a structured adversarial council with 15 specialized lenses, before you commit capital, time, or reputation.</p>
                     <a href="/audits" class="ae-promo-cta">
                         Learn more about <img src="ae-logo.webp" alt="AE" class="inline-logo"> Audits
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -573,8 +575,8 @@
                 <div class="work-item-bg"><img src="audit-logo.png" alt="AE Audits" class="work-bg-contained" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
-                    <span class="work-item-sub"><span class="latest-offer"><span class="latest-pulse"></span>Latest</span></span>
-                    <span class="work-item-title"><img src="ae-logo.webp" alt="AE" class="inline-logo inline-logo-light"> Audits</span>
+                    <span class="work-item-sub"><span class="latest-offer"><span class="latest-pulse"></span>Latest Alpha</span></span>
+                    <span class="work-item-title"><img src="ae-logo.webp" alt="AE" class="inline-logo inline-logo-light"> Decision Audits</span>
                 </div>
                 <div class="work-item-arrow">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -983,7 +985,7 @@
             // });
 
             // ── Prose / desc / sub fade-up ──
-            gsap.utils.toArray('.intro-prose p, .section-desc, .cta-sub').forEach(el=>{
+            gsap.utils.toArray('.intro-prose p, .section-desc, .cta-sub, .ae-promo-sub, .ae-promo-desc').forEach(el=>{
                 gsap.fromTo(el,{y:48,opacity:0},{
                     y:0,opacity:1,duration:1.3,ease:easeSoft,
                     scrollTrigger:{trigger:el,start:'top 85%',toggleActions:'play none none reverse'}
