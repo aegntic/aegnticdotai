@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mattae Cooper (@aegntic) — Independent AI Agent Builder for Hire</title>
     <meta name="description" content="Mattae Cooper (@aegntic) ships production AI-agent systems solo, end to end — Rust, Go, TypeScript, Python. Custom agent builds, automation, developer tooling. Available for hire.">
-    <meta name="theme-color" content="#f0f6f8">
+    <meta name="theme-color" content="#0a0e12">
     <link rel="canonical" href="https://aegntic.ai/">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aegntic.ai/">
@@ -21,9 +21,12 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         :root{
@@ -31,11 +34,13 @@
             --text:#11181c;
             --text-dark:#0c1016;
             --text-muted:#a5abad;
-            --accent:#00b39f;
+            --accent:#00d4b8;
+            --accent-glow:rgba(0,212,184,0.25);
+            --accent-glow-strong:rgba(0,212,184,0.45);
             --surface-1:#0c1016;
-            --surface-2:#23272d;
-            --surface-3:#3a3e44;
-            --surface-4:#50555a;
+            --surface-2:#171b22;
+            --surface-3:#22262d;
+            --surface-4:#2e323a;
             --radius:3rem;
             --radius-lg:3.25rem;
             --ease-spring:cubic-bezier(.22,.68,0,1);
@@ -46,7 +51,7 @@
         body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
         a{color:inherit;text-decoration:none}
         img{max-width:100%;display:block}
-        ::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
+        ::selection{background:var(--accent-glow);color:var(--text-dark)}
 
         /* ── ANIMATIONS ── */
         @keyframes float{
@@ -85,8 +90,8 @@
         .nav-logo.hidden{opacity:0;transform:translateY(-100%);pointer-events:none}
         .nav-logo img{height:2rem;width:auto}
         @media(min-width:1024px){.nav-logo img{height:2.5rem;width:auto}}
-        .nav-menu-btn{background:var(--text-dark);color:var(--bg);padding:0.125rem;border-radius:999px;font-size:0.8125rem;font-weight:500;pointer-events:auto;display:inline-flex;align-items:center;gap:0;border:none;cursor:pointer;transition:transform 500ms var(--ease-spring);will-change:transform}
-        .nav-menu-btn:hover{transform:scale(1.1)}
+        .nav-menu-btn{background:var(--text-dark);color:var(--bg);padding:0.125rem;border-radius:999px;font-size:0.8125rem;font-weight:500;pointer-events:auto;display:inline-flex;align-items:center;gap:0;border:none;cursor:pointer;transition:transform 500ms var(--ease-spring),box-shadow 400ms ease;will-change:transform;box-shadow:0 0 0 0 transparent}
+        .nav-menu-btn:hover{transform:scale(1.1);box-shadow:0 0 24px var(--accent-glow)}
         .nav-menu-btn-text{color:var(--bg);font-size:0.8125rem;font-weight:500;text-transform:uppercase;padding:0.35rem 0.75rem 0.35rem 0.35rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;height:1.25rem;min-width:4.5rem}
         .nav-menu-btn-text span{display:flex;align-items:center;justify-content:center;transition:transform 500ms var(--ease-overshoot);position:absolute;inset:0}
         .nav-menu-btn-text .menu-close{transform:translateY(100%)}
@@ -225,7 +230,7 @@
         .service-card:nth-child(2){background:var(--surface-2);color:#fff}
         .service-card:nth-child(3){background:var(--surface-3);color:#fff}
         .service-card:nth-child(4){background:var(--surface-4);color:#fff}
-        .service-card:nth-child(5){background:#6b7075;color:#fff}
+        .service-card:nth-child(5){background:var(--surface-4);color:#fff}
 
         .service-head{display:flex;flex-direction:column;gap:1.25rem}
         @media(min-width:1024px){.service-head{gap:1.75rem}}
@@ -240,7 +245,8 @@
         .service-tag{font-size:0.75rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:0.4rem 0.875rem;border-radius:999px;white-space:nowrap;background:rgba(0,0,0,0.25)}
 
         /* ── CTA ── */
-        .cta{position:relative;width:100%;min-height:80vh;padding:4rem 1rem;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+        .cta{position:relative;width:100%;min-height:80vh;padding:4rem 1rem;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:linear-gradient(to bottom,var(--bg),rgba(0,212,184,0.02))}
+        .cta-grid{position:absolute;inset:0;opacity:.03;background:repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(0,212,184,0.08) 48px,rgba(0,212,184,0.08) 49px),repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(0,212,184,0.08) 48px,rgba(0,212,184,0.08) 49px);pointer-events:none}
         @media(min-width:768px){.cta{padding:6rem 2rem;min-height:90vh}}
         @media(min-width:1024px){.cta{padding:8rem 3rem;min-height:100vh}}
         @media(min-width:1280px){.cta{padding:10rem 5rem}}
@@ -251,7 +257,7 @@
         .cta-sub{font-size:clamp(1rem,1.5vw,1.25rem);color:var(--text-muted);max-width:36ch;line-height:1.6;margin-top:2rem;position:relative;z-index:2}
 
         .cta-btn{display:inline-flex;align-items:center;gap:0.75rem;background:#0c1016;color:#f0f6f8;padding:1rem 2.25rem;border-radius:999px;font-size:1rem;font-weight:500;letter-spacing:-0.01em;text-decoration:none;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 10px 30px -10px rgba(12,16,22,0.35);transition:transform 0.5s var(--ease-overshoot),box-shadow 0.4s ease;margin-top:3rem;position:relative;z-index:3;will-change:transform}
-        .cta-btn:hover{transform:scale(1.08);box-shadow:0 1px 0 rgba(255,255,255,0.06) inset,0 18px 40px -12px rgba(12,16,22,0.45)}
+        .cta-btn:hover{transform:scale(1.08);box-shadow:0 1px 0 rgba(255,255,255,0.06) inset,0 0 32px var(--accent-glow),0 18px 40px -12px rgba(12,16,22,0.45)}
         .cta-btn span{color:#f0f6f8;display:inline-block;line-height:1}
         .cta-btn svg{width:1.25rem;height:1.25rem;transition:transform 0.3s var(--ease-overshoot);color:#f0f6f8;flex-shrink:0}
         .cta-btn:hover svg{transform:translateX(4px)}
@@ -355,7 +361,10 @@
         .ae-promo{position:relative;padding:5rem 1rem;background:var(--text-dark);color:#fff;overflow:hidden}
         @media(min-width:768px){.ae-promo{padding:7rem 2rem}}
         @media(min-width:1024px){.ae-promo{padding:8rem 3rem}}
-        .ae-promo-bg{position:absolute;inset:0;opacity:.04;background:radial-gradient(ellipse at 30% 50%,var(--accent) 0%,transparent 60%)}
+        .ae-promo-bg{position:absolute;inset:0;opacity:.06;background:
+            radial-gradient(ellipse at 30% 50%,var(--accent) 0%,transparent 60%),
+            repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(0,212,184,0.04) 48px,rgba(0,212,184,0.04) 49px),
+            repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(0,212,184,0.04) 48px,rgba(0,212,184,0.04) 49px)}
         .ae-promo-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
         .ae-promo-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center}
         @media(min-width:1024px){.ae-promo-grid{grid-template-columns:1fr 1fr;gap:4rem}}
@@ -366,7 +375,7 @@
         .ae-promo-sub{font-size:clamp(1.125rem,1.8vw,1.35rem);font-weight:500;letter-spacing:-.01em;line-height:1.3;color:var(--accent);margin-bottom:1rem}
         .ae-promo-desc{font-size:clamp(.9375rem,1.2vw,1.0625rem);opacity:.7;line-height:1.65;max-width:44ch;margin-bottom:2rem}
         .ae-promo-cta{display:inline-flex;align-items:center;gap:.75rem;background:var(--accent);color:var(--text-dark);padding:.85rem 2rem;border-radius:999px;font-size:.9375rem;font-weight:600;border:none;cursor:pointer;transition:transform .4s var(--ease-spring),box-shadow .3s ease;text-decoration:none}
-        .ae-promo-cta:hover{transform:scale(1.06);box-shadow:0 0 30px rgba(0,179,158,.3)}
+        .ae-promo-cta:hover{transform:scale(1.06);box-shadow:0 0 36px var(--accent-glow)}
         .ae-promo-cta svg{width:1.125rem;height:1.125rem;transition:transform .3s ease}
         .ae-promo-cta:hover svg{transform:translateX(3px)}
         .ae-promo-visual{position:relative;aspect-ratio:4/3;border-radius:1rem;overflow:hidden;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.06)}
@@ -408,9 +417,9 @@
         .hero-scroll:hover{opacity:0.9!important}
 
         /* ── FLOATING CTA (SOHub bottom-right pattern) ── */
-        .floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:0.5rem;background:var(--text-dark);color:var(--bg);padding:0.75rem 1.25rem;border-radius:999px;font-size:0.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(0.9);transition:opacity 0.5s ease,transform 0.5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(12,16,22,0.15)}
+        .floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:0.5rem;background:var(--text-dark);color:var(--bg);padding:0.75rem 1.25rem;border-radius:999px;font-size:0.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(0.9);transition:opacity 0.5s ease,transform 0.5s var(--ease-overshoot),box-shadow 0.4s ease;pointer-events:none;box-shadow:0 4px 20px rgba(12,16,22,0.15),0 0 0 0 transparent}
         .floating-cta.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-        .floating-cta:hover{transform:translateY(-2px) scale(1.05)}
+        .floating-cta:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 0 20px var(--accent-glow)}
         .floating-cta svg{opacity:0.7}
         @media(max-width:767px){.floating-cta span{display:none}.floating-cta{padding:0.75rem;border-radius:50%}}
 
@@ -510,7 +519,7 @@
         <p class="intro-hook" data-split>Production AI-agent systems, <em>built solo</em>, end to end.</p>
         <div class="intro-grid">
             <div class="intro-figure">
-                <img src="intro-cohort-coordination.png" alt="Multi-agent cohort coordination render" loading="lazy">
+                <img src="intro-cohort-coordination.webp" alt="Multi-agent cohort coordination render" loading="lazy">
             </div>
             <div class="intro-body">
                 <div class="intro-eyebrow">Why this exists</div>
@@ -572,7 +581,7 @@
         <p class="section-desc">Real, shipped systems — each running in production. Not demos, not dashboards.</p>
         <div class="work-grid">
             <a href="/audits" class="work-item">
-                <div class="work-item-bg"><img src="audit-logo.png" alt="AE Audits" class="work-bg-contained" loading="lazy"></div>
+                <div class="work-item-bg"><img src="audit-logo.webp" alt="AE Audits" class="work-bg-contained" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub"><span class="latest-offer"><span class="latest-pulse"></span>Latest Alpha</span></span>
@@ -583,7 +592,7 @@
                 </div>
             </a>
             <a href="https://cldcde.cc" target="_blank" rel="noopener" class="work-item">
-                <div class="work-item-bg"><img src="work-cldcde.jpg" alt="CLDCDE" loading="lazy"></div>
+                <div class="work-item-bg"><img src="work-cldcde.webp" alt="CLDCDE" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub">Developer Ecosystem</span>
@@ -594,7 +603,7 @@
                 </div>
             </a>
             <a href="https://clawreform.com" target="_blank" rel="noopener" class="work-item">
-                <div class="work-item-bg"><img src="work-clawreform.jpg" alt="clawREFORM" loading="lazy"></div>
+                <div class="work-item-bg"><img src="work-clawreform.webp" alt="clawREFORM" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub">Agent City</span>
@@ -605,7 +614,7 @@
                 </div>
             </a>
             <a href="https://github.com/aegntic" target="_blank" rel="noopener" class="work-item">
-                <div class="work-item-bg"><img src="work-veritas.png" alt="veritas-operator" loading="lazy"></div>
+                <div class="work-item-bg"><img src="work-veritas.webp" alt="veritas-operator" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub">Research Pipeline</span>
@@ -616,7 +625,7 @@
                 </div>
             </a>
             <a href="https://github.com/aegntic" target="_blank" rel="noopener" class="work-item">
-                <div class="work-item-bg"><img src="work-aetools.jpg" alt="obsidian-indexer" loading="lazy"></div>
+                <div class="work-item-bg"><img src="work-aetools.webp" alt="obsidian-indexer" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub">Sovereign Operator</span>
@@ -627,7 +636,7 @@
                 </div>
             </a>
             <a href="https://logue.pro" target="_blank" rel="noopener" class="work-item">
-                <div class="work-item-bg"><img src="work-prologue.jpg" alt="Prologue" loading="lazy"></div>
+                <div class="work-item-bg"><img src="work-prologue.webp" alt="Prologue" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub">Memory Library</span>
@@ -684,8 +693,9 @@
 
     <!-- CTA -->
     <section class="cta" id="contact">
+        <div class="cta-grid"></div>
         <div class="cta-figure">
-            <img src="cta-reach-arm.png" alt="Mechanical reach-arm gesture" loading="lazy">
+            <img src="cta-reach-arm.webp" alt="Mechanical reach-arm gesture" loading="lazy">
         </div>
         <h2 class="cta-display" data-split>Have a system<br>that should exist?</h2>
         <p class="cta-sub">Tell me what you're building. I'll scope it, quote it, and build it myself.</p>
@@ -698,8 +708,8 @@
     <!-- PRE-FOOTER IMAGE STRIP — editorial macro + detail anchors bridging CTA and footer -->
     <section class="prefooter-strip" id="prefooter-strip" aria-label="aegntic visual anchors">
         <div class="prefooter-strip-inner">
-            <img class="prefooter-img" data-prefooter="primary" src="prefooter-primary.png" alt="Mechanical arm technical dossier, 4-panel blueprint">
-            <img class="prefooter-img" data-prefooter="secondary" src="prefooter-secondary.png" alt="Claw-hand detail with micro worker agents tending blue-lit joints">
+            <img class="prefooter-img" data-prefooter="primary" src="prefooter-primary.webp" alt="Mechanical arm technical dossier, 4-panel blueprint">
+            <img class="prefooter-img" data-prefooter="secondary" src="prefooter-secondary.webp" alt="Claw-hand detail with micro worker agents tending blue-lit joints">
         </div>
     </section>
 
@@ -891,8 +901,8 @@
         }
 
         // ── GSAP TEXT EFFECTS ──
-        (function(){
-            if(!window.gsap||!window.ScrollTrigger){return}
+        (function initGSAP(){
+            if(!window.gsap||!window.ScrollTrigger){return setTimeout(initGSAP,50)}
             gsap.registerPlugin(ScrollTrigger);
             const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             document.body.classList.add('gsap-ready');
