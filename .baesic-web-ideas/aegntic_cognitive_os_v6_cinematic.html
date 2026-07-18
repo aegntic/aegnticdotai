@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEGNTIC — Cognitive Operating System v3.0</title>
+    <meta name="description" content="The first true Cognitive Operating System for autonomous agents.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Post-processing -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    
+    <style>
+        :root {
+            --phi: 1.618033988749;
+            --void: #000000;
+            --pure: #FFFFFF;
+            --cyan: #7DD3E0;
+            --crimson: #DC2626;
+            --gold: #C5A46E;
+            --unit: 8px;
+            --space-1: calc(var(--unit) * 1);
+            --space-2: calc(var(--unit) * 2);
+            --space-3: calc(var(--unit) * 3);
+            --space-5: calc(var(--unit) * 5);
+            --space-8: calc(var(--unit) * 8);
+            --space-13: calc(var(--unit) * 13);
+            --space-21: calc(var(--unit) * 21);
+            --type-xs: 10px;
+            --type-sm: 12.5px;
+            --type-base: 15.5px;
+            --type-lg: 21px;
+            --type-xl: 32px;
+            --type-2xl: 48px;
+            --type-display: 82px;
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { font-size: 15.5px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-weight: 400;
+            line-height: var(--phi);
+            color: var(--pure);
+            background: var(--void);
+            overflow-x: hidden;
+            cursor: none;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+            font-weight: 500;
+            letter-spacing: -0.038em;
+        }
+        
+        ::selection { background: var(--cyan); color: var(--void); }
+        
+        #cursor-container {
+            position: fixed; inset: 0; pointer-events: none; z-index: 99999;
+        }
+        .cursor-blob {
+            position: absolute; width: 26px; height: 26px; border-radius: 9999px;
+            opacity: 0.55; filter: blur(12px); mix-blend-mode: difference;
+            transition: transform .1s var(--ease);
+        }
+        .cursor-blob.primary { background: var(--cyan); }
+        .cursor-blob.secondary { background: var(--crimson); transform: scale(0.55); }
+        .cursor-core {
+            position: absolute; width: 4.5px; height: 4.5px; background: var(--pure);
+            border-radius: 50%; mix-blend-mode: difference; transform: translate(-50%, -50%);
+        }
+        
+        .noise {
+            position: fixed; inset: 0; z-index: 1; pointer-events: none;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==');
+            opacity: .02;
+        }
+        
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: 24px 48px; mix-blend-mode: difference;
+        }
+        .nav-inner {
+            max-width: 1440px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex; align-items: center; gap: 11px;
+            text-decoration: none; color: var(--pure);
+        }
+        
+        .logo-mark {
+            width: 36px;
+            height: 36px;
+            position: relative;
+        }
+        .logo-mark svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13.5px;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+        
+        .hero {
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            padding-top: 95px;
+        }
+        
+        .hero-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 48px;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 65px;
+            align-items: center;
+        }
+        
+        .hero-content { max-width: 560px; }
+        
+        .hero-label {
+            font-size: 9.5px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        
+        .hero-title {
+            font-size: clamp(62px, 7.1vw, 94px);
+            font-weight: 400;
+            line-height: .90;
+            letter-spacing: -0.055em;
+            margin-bottom: 24px;
+        }
+        
+        .hero-title .accent {
+            font-weight: 600;
+            color: var(--cyan);
+        }
+        
+        .hero-subtitle {
+            font-size: 16.5px;
+            line-height: var(--phi);
+            max-width: 35ch;
+            opacity: .82;
+            margin-bottom: 36px;
+        }
+        
+        .hero-ctas {
+            display: flex;
+            gap: 11px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 30px;
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: .65px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all .2s var(--ease);
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        .btn-primary {
+            background: var(--pure);
+            color: var(--void);
+        }
+        .btn-primary:hover { background: var(--cyan); color: var(--void); }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--pure);
+            border: 1px solid rgba(255,255,255,.26);
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,.045); border-color: var(--pure); }
+        
+        .section {
+            position: relative;
+            z-index: 2;
+            padding: 100px 0;
+        }
+        
+        .section-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+        
+        .section-label {
+            font-size: 9.5px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            font-weight: 600;
+            margin-bottom: 9px;
+        }
+        
+        .section-title {
+            font-size: clamp(36px, 4.1vw, 58px);
+            font-weight: 400;
+            line-height: .93;
+            letter-spacing: -0.03em;
+            max-width: 16ch;
+        }
+        
+        .section-title strong {
+            font-weight: 600;
+            color: var(--crimson);
+        }
+        
+        .section-text {
+            font-size: 15.5px;
+            line-height: var(--phi);
+            max-width: 54ch;
+            opacity: .82;
+            margin-top: 18px;
+        }
+        
+        /* Cinematic Cognitive Core with Post-Processing */
+        .cognitive-core {
+            position: relative;
+            width: 100%;
+            height: 560px;
+            border-radius: 3px;
+            overflow: hidden;
+            background: #040404;
+            border: 1px solid rgba(255,255,255,.045);
+        }
+        
+        #core-three {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .core-overlay {
+            position: absolute;
+            inset: 0;
+            padding: 26px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .core-label {
+            font-size: 9px;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            opacity: .48;
+        }
+        
+        .layer-nav {
+            background: rgba(255,255,255,.01);
+            border: 1px solid rgba(255,255,255,.045);
+        }
+        
+        .layer-row {
+            padding: 15px 22px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255,255,255,.03);
+            transition: background .1s ease;
+        }
+        
+        .layer-row:last-child { border-bottom: none; }
+        .layer-row:hover { background: rgba(125,211,224,.018); }
+        
+        .layer-row.active {
+            background: rgba(125,211,224,.065);
+            border-left: 2px solid var(--cyan);
+        }
+        
+        .layer-num {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--cyan);
+            width: 34px;
+            flex-shrink: 0;
+        }
+        
+        .layer-name {
+            font-size: 14px;
+            font-weight: 500;
+            flex: 1;
+        }
+        
+        .layer-detail {
+            background: rgba(255,255,255,.008);
+            border: 1px solid rgba(255,255,255,.045);
+            padding: 26px;
+            min-height: 230px;
+        }
+        
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 32px;
+        }
+        
+        .memory-node {
+            background: rgba(255,255,255,.008);
+            border: 1px solid rgba(255,255,255,.045);
+            padding: 20px;
+            transition: all .28s var(--ease);
+        }
+        
+        .memory-node:hover {
+            border-color: var(--cyan);
+            transform: translateY(-2px);
+        }
+        
+        .memory-node h4 {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+        
+        .memory-node p {
+            font-size: 13px;
+            line-height: 1.6;
+            opacity: .76;
+        }
+        
+        .insane-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+            margin-top: 32px;
+        }
+        
+        .insane-card {
+            background: #090909;
+            border: 1px solid rgba(255,255,255,.045);
+            padding: 24px;
+            position: relative;
+        }
+        
+        .insane-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1.5px;
+            background: linear-gradient(to right, var(--cyan), var(--crimson));
+            opacity: .4;
+        }
+        
+        .insane-card h3 {
+            font-size: 14.5px;
+            font-weight: 600;
+            margin-bottom: 11px;
+        }
+        
+        .insane-card p {
+            font-size: 13px;
+            line-height: 1.6;
+            opacity: .82;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 32px;
+        }
+        
+        .comp-col {
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,.045);
+        }
+        
+        .comp-col.old { background: rgba(255,255,255,.006); }
+        
+        .comp-col.new {
+            background: rgba(125,211,224,.018);
+            border-color: var(--cyan);
+        }
+        
+        .comp-col h3 {
+            font-size: 13.5px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            letter-spacing: -.01em;
+        }
+        
+        .comp-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 9px 0;
+            border-top: 1px solid rgba(255,255,255,.035);
+            font-size: 13px;
+        }
+        
+        .comp-row:first-child { border-top: none; }
+        
+        .comp-row .val { font-weight: 500; text-align: right; }
+        
+        .comp-row.new .val { color: var(--cyan); }
+        
+        .manifesto {
+            background: #040404;
+            padding: 110px 0;
+            text-align: center;
+        }
+        
+        .manifesto-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+        
+        .manifesto-text {
+            font-size: clamp(25px, 3vw, 36px);
+            font-weight: 300;
+            line-height: 1.08;
+            letter-spacing: -.02em;
+        }
+        
+        .manifesto-text strong {
+            font-weight: 500;
+            color: var(--cyan);
+        }
+        
+        .funnel {
+            display: flex;
+            gap: 11px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 38px;
+        }
+        
+        footer {
+            padding: 34px 0;
+            text-align: center;
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            opacity: .36;
+        }
+        
+        .reveal { opacity: 0; transform: translateY(24px); }
+        
+        @media (max-width: 980px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+            .comparison { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Refined Cursor -->
+    <div id="cursor-container">
+        <div class="cursor-blob primary"></div>
+        <div class="cursor-blob secondary"></div>
+        <div class="cursor-core"></div>
+    </div>
+    
+    <div class="noise"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-mark">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.75" y="0.75" width="34.5" height="34.5" rx="1.5" stroke="white" stroke-width="2.5"/>
+                        <path d="M8.5 27V9.5H14.2C16.8 9.5 18.4 10.9 18.4 13.8C18.4 16.7 16.8 18.1 14.2 18.1H8.5M8.5 18.1H19.5" 
+                              stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="27.5" cy="18" r="2.8" fill="#DC2626"/>
+                    </svg>
+                </div>
+                <span class="logo-text">AEGNTIC</span>
+            </a>
+            
+            <div style="display:flex; gap:32px; font-size:11px; font-weight:500; letter-spacing:.5px; opacity:.88;">
+                <a href="#core" style="color:inherit; text-decoration:none;">The Core</a>
+                <a href="#memory" style="color:inherit; text-decoration:none;">Memory</a>
+                <a href="#insane" style="color:inherit; text-decoration:none;">Insane Mode</a>
+                <a href="#live" style="color:inherit; text-decoration:none;">Live</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content reveal">
+                <div class="hero-label">AEGNTIC COGNITIVE OPERATING SYSTEM v3.0</div>
+                
+                <h1 class="hero-title font-display">
+                    Your agents<br>
+                    finally have<br>
+                    <span class="accent">a mind.</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Most agents are fast, clever, and amnesiac. They hallucinate, repeat mistakes, 
+                    burn tokens on trivial work, and blindly follow instructions hidden in the files they edit.
+                </p>
+                
+                <div class="hero-ctas">
+                    <a href="#core" class="btn btn-primary">Explore the Cognitive Core</a>
+                    <a href="#" onclick="downloadSpec()" class="btn btn-ghost">Download Specification</a>
+                </div>
+            </div>
+            
+            <!-- Cinematic Three.js Cognitive Core with Post-Processing -->
+            <div style="position:relative;">
+                <div class="cognitive-core" style="height: 520px; box-shadow: 0 25px 90px -12px rgba(0,0,0,.65);">
+                    <canvas id="core-three"></canvas>
+                    <div class="core-overlay">
+                        <div>
+                            <div class="core-label">LIVE COGNITIVE CORE</div>
+                            <div style="font-size:9px; opacity:.38; margin-top:2px;">10 layers • temporal memory • real-time state</div>
+                        </div>
+                        <div style="max-width:210px; font-size:10px; opacity:.4; line-height:1.4;">
+                            Every decision passes through the full cognitive stack.<br>
+                            This visualization shows active layer processing and memory field.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cognitive Core + Layer Navigator -->
+    <section class="section" id="core" style="padding-top:28px;">
+        <div class="section-inner">
+            <div style="display:grid; grid-template-columns: 355px 1fr; gap:52px; align-items:start;">
+                
+                <div>
+                    <div class="section-label">THE COGNITIVE ARCHITECTURE</div>
+                    <h2 class="section-title" style="margin-bottom:14px;">
+                        Ten layers.<br>One mind.
+                    </h2>
+                    <p style="font-size:14px; line-height:1.65; opacity:.78; max-width:29ch;">
+                        Every request is processed through ten cognitive layers before any action occurs.
+                        Complexity is classified first. Resources scale to actual risk.
+                    </p>
+                    
+                    <div class="layer-nav" style="margin-top:26px;">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="layer-detail reveal" id="layer-detail">
+                        <div style="font-size:9px; letter-spacing:2.2px; color:var(--cyan); margin-bottom:5px;" id="layer-tag">SELECT A LAYER</div>
+                        <h3 style="font-size:18px; font-weight:500; margin-bottom:11px;" id="layer-title">Ten Cognitive Layers</h3>
+                        <p style="font-size:14px; line-height:1.68; opacity:.82;" id="layer-desc">
+                            Click any layer. The live Cognitive Core reacts in real time.<br>
+                            Each layer exists to prevent a specific class of failure that ordinary agents make constantly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Memory -->
+    <section class="section" id="memory" style="background:#050505; padding-top:75px; padding-bottom:75px;">
+        <div class="section-inner">
+            <div style="max-width:560px;">
+                <div class="section-label">TEMPORAL MEMORY ARCHITECTURE</div>
+                <h2 class="section-title">
+                    It remembers.<br>
+                    Across sessions.<br>
+                    Across months.
+                </h2>
+                <p class="section-text">
+                    Four distinct memory systems with a built-in forgetting curve.
+                    The agent no longer starts from zero every session.
+                </p>
+            </div>
+            
+            <div class="memory-grid">
+                <div class="memory-node reveal">
+                    <h4>Working Memory</h4>
+                    <p>Current session state, active files, in-flight operations. Cleared on session end.</p>
+                </div>
+                <div class="memory-node reveal">
+                    <h4>Episodic Memory</h4>
+                    <p>What happened, when, and outcome. Stored persistently in gbrain PGLite. Queryable history.</p>
+                </div>
+                <div class="memory-node reveal">
+                    <h4>Semantic Memory</h4>
+                    <p>What is known about architecture, conventions, dependencies. The agent's growing world model.</p>
+                </div>
+                <div class="memory-node reveal">
+                    <h4>Procedural Memory</h4>
+                    <p>How things are done — build commands, test patterns, deployment procedures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Healing + Security -->
+    <section class="section">
+        <div class="section-inner">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:55px;">
+                <div>
+                    <div class="section-label">SELF-HEALING PIPELINE</div>
+                    <h2 class="section-title" style="max-width:12ch;">It fixes its own mistakes.</h2>
+                    <p style="margin-top:15px; font-size:14px; line-height:1.68; opacity:.8;">
+                        When verification fails, the agent classifies the error, forms a hypothesis about root cause,
+                        applies a minimum viable fix, and re-verifies the full chain.
+                    </p>
+                    
+                    <div style="margin-top:22px; display:flex; flex-direction:column; gap:1px; font-size:12px;">
+                        <div style="padding:10px 17px; background:rgba(255,255,255,.012);">01 — Detect &amp; Classify</div>
+                        <div style="padding:10px 17px; background:rgba(255,255,255,.012);">02 — Form Root Cause Hypothesis</div>
+                        <div style="padding:10px 17px; background:rgba(255,255,255,.012);">03 — Apply Minimum Viable Fix</div>
+                        <div style="padding:10px 17px; background:rgba(255,255,255,.012);">04 — Full Chain Re-Verification</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="section-label">ADVERSARIAL SECURITY</div>
+                    <h2 class="section-title" style="max-width:14ch;">It defends against manipulation.</h2>
+                    <p style="margin-top:15px; font-size:14px; line-height:1.68; opacity:.8;">
+                        File contents, issue descriptions, and web pages are untrusted input.
+                        Only direct user instructions are trusted. Chain of authority is enforced.
+                    </p>
+                    
+                    <div style="margin-top:22px; display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:12px;">
+                        <div style="padding:13px; background:rgba(220,38,38,.065); border:1px solid rgba(220,38,38,.16);">Chain of Authority</div>
+                        <div style="padding:13px; background:rgba(220,38,38,.065); border:1px solid rgba(220,38,38,.16);">Circuit Breakers</div>
+                        <div style="padding:13px; background:rgba(220,38,38,.065); border:1px solid rgba(220,38,38,.16);">Sandbox by Default</div>
+                        <div style="padding:13px; background:rgba(220,38,38,.065); border:1px solid rgba(220,38,38,.16);">Secret Redaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Insane Mode -->
+    <section class="section" id="insane" style="background:#050505;">
+        <div class="section-inner">
+            <div style="max-width:560px; margin-bottom:26px;">
+                <div class="section-label">INSANE MODE — PRODUCTION ONLY</div>
+                <h2 class="section-title">What nobody else is doing yet.</h2>
+            </div>
+            
+            <div class="insane-grid">
+                <div class="insane-card reveal">
+                    <h3>Ensemble Verification</h3>
+                    <p>Primary model solves. Second model from different family reviews output only. Disagreement triggers third model as tiebreaker.</p>
+                </div>
+                <div class="insane-card reveal">
+                    <h3>Adversarial Self Red-Team</h3>
+                    <p>Before marking critical code complete, the agent switches to attacker mindset and actively tries to break what it just built.</p>
+                </div>
+                <div class="insane-card reveal">
+                    <h3>DAG Swarm Execution</h3>
+                    <p>Large tasks split across sub-agents in isolated git worktrees. Coordinator builds dependency DAG with parallel execution.</p>
+                </div>
+                <div class="insane-card reveal">
+                    <h3>Instinct Evolution</h3>
+                    <p>Observed patterns become hypotheses. Confirmed hypotheses become instincts. Formalized instincts become automatic skills.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Comparison -->
+    <section class="section">
+        <div class="section-inner">
+            <div style="max-width:560px; margin-bottom:22px;">
+                <div class="section-label">THE DIFFERENCE</div>
+                <h2 class="section-title">Standard config vs Cognitive OS</h2>
+            </div>
+            
+            <div class="comparison">
+                <div class="comp-col old">
+                    <h3>Standard Agent Config</h3>
+                    <div class="comp-row"><span>Format</span><span class="val">Static preference list</span></div>
+                    <div class="comp-row"><span>Memory</span><span class="val">Session only</span></div>
+                    <div class="comp-row"><span>Failure</span><span class="val">Retry or give up</span></div>
+                    <div class="comp-row"><span>Economics</span><span class="val">Completely blind</span></div>
+                    <div class="comp-row"><span>Security</span><span class="val">Basic guardrails</span></div>
+                </div>
+                <div class="comp-col new">
+                    <h3 style="color:var(--cyan);">Cognitive OS v3.0</h3>
+                    <div class="comp-row new"><span>Format</span><span class="val">10-layer cognitive stack</span></div>
+                    <div class="comp-row new"><span>Memory</span><span class="val">4-tier persistent + decay</span></div>
+                    <div class="comp-row new"><span>Failure</span><span class="val">Self-healing + circuit breakers</span></div>
+                    <div class="comp-row new"><span>Economics</span><span class="val">ROI estimation before action</span></div>
+                    <div class="comp-row new"><span>Security</span><span class="val">Full adversarial framework</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Live -->
+    <section class="section" id="live">
+        <div class="section-inner" style="text-align:center;">
+            <div class="section-label">THIS IS RUNNING RIGHT NOW</div>
+            <h2 class="section-title" style="text-align:center; max-width:none; margin-bottom:14px;">
+                Not a concept.<br>
+                Live specification.
+            </h2>
+            <p style="max-width:500px; margin:0 auto; font-size:14px; opacity:.75;">
+                Already active across five AI harnesses, six custom droids, and every project in the aegntic workspace.
+            </p>
+            
+            <div style="display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:28px;">
+                <div style="padding:6px 15px; background:rgba(255,255,255,.03); font-size:10.5px;">Droid</div>
+                <div style="padding:6px 15px; background:rgba(255,255,255,.03); font-size:10.5px;">Claude Code</div>
+                <div style="padding:6px 15px; background:rgba(255,255,255,.03); font-size:10.5px;">Cursor</div>
+                <div style="padding:6px 15px; background:rgba(255,255,255,.03); font-size:10.5px;">Codex CLI</div>
+                <div style="padding:6px 15px; background:rgba(255,255,255,.03); font-size:10.5px;">Gemini CLI</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Manifesto -->
+    <section class="manifesto">
+        <div class="manifesto-inner reveal">
+            <p class="manifesto-text">
+                This is not an upgrade for your prompts.<br>
+                This is an upgrade for <strong>how intelligence works</strong>.
+            </p>
+            
+            <p style="margin-top:24px; font-size:14px; opacity:.68; max-width:460px; margin-left:auto; margin-right:auto;">
+                In a world of hallucinating, forgetful, expensive, and easily manipulated agents,<br>
+                the ones that compound your output over years will be the ones with cognition.
+            </p>
+            
+            <div class="funnel">
+                <a href="#" onclick="downloadSpec()" class="btn btn-primary" style="padding:16px 34px; font-size:10px;">Download Full Specification</a>
+                <a href="https://github.com/aegntic" target="_blank" class="btn btn-ghost" style="padding:16px 34px; font-size:10px;">View on GitHub</a>
+                <a href="#contact" class="btn btn-ghost" style="padding:16px 34px; font-size:10px;">Talk to the Builders</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact -->
+    <section class="section" id="contact" style="padding-top:45px; padding-bottom:65px;">
+        <div class="section-inner" style="max-width:600px; text-align:center;">
+            <form onsubmit="submitForm(event)" style="display:grid; gap:10px; max-width:380px; margin:0 auto;">
+                <input type="text" placeholder="Name" required style="background:transparent; border:1px solid rgba(255,255,255,.12); padding:14px 18px; color:white; font-size:14px;">
+                <input type="email" placeholder="Email" required style="background:transparent; border:1px solid rgba(255,255,255,.12); padding:14px 18px; color:white; font-size:14px;">
+                <input type="text" placeholder="What are you building?" style="background:transparent; border:1px solid rgba(255,255,255,.12); padding:14px 18px; color:white; font-size:14px;">
+                <button type="submit" class="btn btn-primary" style="margin-top:5px;">Join the Cognitive Swarm</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        © 2025–2026 AEGNTIC — Cognitive Operating System v3.0 • Open Specification • Where Intelligence Becomes Art
+    </footer>
+    
+    <script>
+        const perfStart = performance.now();
+        
+        // Refined Cursor
+        const cursorContainer = document.getElementById('cursor-container');
+        const c1 = cursorContainer.querySelector('.primary');
+        const c2 = cursorContainer.querySelector('.secondary');
+        const core = cursorContainer.querySelector('.cursor-core');
+        let mx = 0, my = 0, sx = 0, sy = 0;
+        
+        document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+        
+        document.querySelectorAll('a, button, .layer-row, .memory-node, .insane-card').forEach(el => {
+            el.addEventListener('mouseenter', () => { gsap.to(c1, {scale:1.65, duration:.15}); gsap.to(c2, {scale:1.95, duration:.15}); });
+            el.addEventListener('mouseleave', () => { gsap.to(c1, {scale:1, duration:.15}); gsap.to(c2, {scale:.55, duration:.15}); });
+        });
+        
+        function cursorLoop() {
+            sx += (mx - sx) * 0.078;
+            sy += (my - sy) * 0.078;
+            c1.style.left = sx - 13 + 'px';
+            c1.style.top = sy - 13 + 'px';
+            c2.style.left = sx - 13 + 'px';
+            c2.style.top = sy - 13 + 'px';
+            core.style.left = mx + 'px';
+            core.style.top = my + 'px';
+            requestAnimationFrame(cursorLoop);
+        }
+        cursorLoop();
+        
+        // GSAP Reveals
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.fromTo(el, {opacity:0, y:24}, {
+                opacity:1, y:0, duration:0.95, ease:"power3.out",
+                scrollTrigger: {trigger: el, start:"top 85%", toggleActions:"play none none none"}
+            });
+        });
+        
+        // ========== ELITE THREE.JS + POST-PROCESSING ==========
+        const canvas = document.getElementById('core-three');
+        const renderer = new THREE.WebGLRenderer({ 
+            canvas, 
+            antialias: true, 
+            alpha: true,
+            powerPreference: "high-performance"
+        });
+        
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(49, 1, 0.1, 100);
+        camera.position.set(0, 0, 5.35);
+        
+        function resizeCore() {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            renderer.setSize(rect.width, rect.height);
+            camera.aspect = rect.width / rect.height;
+            camera.updateProjectionMatrix();
+        }
+        resizeCore();
+        window.addEventListener('resize', resizeCore);
+        
+        // Lighting
+        const ambient = new THREE.AmbientLight(0x3a3a3a, 0.5);
+        scene.add(ambient);
+        
+        const pointLight = new THREE.PointLight(0x7DD3E0, 1.55, 100);
+        pointLight.position.set(2.2, 3.2, 3.8);
+        scene.add(pointLight);
+        
+        const pointLight2 = new THREE.PointLight(0xDC2626, 0.8, 100);
+        pointLight2.position.set(-3.2, -1.8, 3.2);
+        scene.add(pointLight2);
+        
+        const coreGroup = new THREE.Group();
+        scene.add(coreGroup);
+        
+        // Main energy sphere
+        const sphereGeo = new THREE.SphereGeometry(0.98, 56, 56);
+        const sphereMat = new THREE.MeshPhongMaterial({
+            color: 0x0c0c0c,
+            emissive: 0x082530,
+            shininess: 16,
+            specular: 0x222222
+        });
+        const coreSphere = new THREE.Mesh(sphereGeo, sphereMat);
+        coreGroup.add(coreSphere);
+        
+        // Inner luminous core
+        const innerGeo = new THREE.SphereGeometry(0.5, 40, 40);
+        const innerMat = new THREE.MeshBasicMaterial({
+            color: 0x7DD3E0,
+            transparent: true,
+            opacity: 0.3
+        });
+        const innerCore = new THREE.Mesh(innerGeo, innerMat);
+        coreGroup.add(innerCore);
+        
+        // 10 Cognitive Layer Rings
+        const rings = [];
+        for (let i = 0; i < 10; i++) {
+            const radius = 1.25 + (i * 0.108);
+            const ringGeo = new THREE.TorusGeometry(radius, 0.014, 9, 82);
+            const ringMat = new THREE.MeshPhongMaterial({
+                color: (i % 3 === 0) ? 0xDC2626 : 0x7DD3E0,
+                emissive: (i % 3 === 0) ? 0x2a0808 : 0x072530,
+                shininess: 5,
+                transparent: true,
+                opacity: 0.58 + (i * 0.023)
+            });
+            const ring = new THREE.Mesh(ringGeo, ringMat);
+            ring.rotation.x = (i * 0.25) + 0.48;
+            ring.rotation.y = i * 0.82;
+            ring.userData = { 
+                baseRotX: ring.rotation.x, 
+                baseRotY: ring.rotation.y, 
+                speed: 0.00065 + (i * 0.00011) 
+            };
+            coreGroup.add(ring);
+            rings.push(ring);
+        }
+        
+        // Temporal Memory Particles
+        const particleCount = 38;
+        const particleGeo = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const velocities = [];
+        
+        for (let i = 0; i < particleCount; i++) {
+            const r = 1.65 + Math.random() * 1.45;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
+            
+            positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+            positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+            positions[i * 3 + 2] = r * Math.cos(phi) * 0.52;
+            
+            velocities.push({
+                x: (Math.random() - 0.5) * 0.0015,
+                y: (Math.random() - 0.5) * 0.0015,
+                z: (Math.random() - 0.5) * 0.0015
+            });
+        }
+        
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particleMat = new THREE.PointsMaterial({
+            color: 0xC5A46E,
+            size: 0.034,
+            transparent: true,
+            opacity: 0.68,
+            depthWrite: false
+        });
+        const particles = new THREE.Points(particleGeo, particleMat);
+        coreGroup.add(particles);
+        
+        // Subtle outer atmosphere
+        const glowGeo = new THREE.SphereGeometry(3.5, 26, 26);
+        const glowMat = new THREE.MeshBasicMaterial({
+            color: 0x072530,
+            transparent: true,
+            opacity: 0.065,
+            side: THREE.BackSide
+        });
+        const glowSphere = new THREE.Mesh(glowGeo, glowMat);
+        coreGroup.add(glowSphere);
+        
+        let activeLayerIndex = 0;
+        let targetRotSpeed = 1.0;
+        
+        function updateCoreVisualization(activeLayer) {
+            activeLayerIndex = activeLayer || 0;
+            targetRotSpeed = 0.52 + (activeLayerIndex * 0.065);
+            
+            rings.forEach((ring, idx) => {
+                const isActive = (idx + 1) === activeLayerIndex;
+                ring.material.opacity = isActive ? 0.9 : (0.5 + (idx * 0.02));
+                ring.material.emissive.setHex(isActive ? 0x143a4a : ((idx % 3 === 0) ? 0x2a0808 : 0x072530));
+            });
+            
+            if (activeLayerIndex > 0) {
+                gsap.to(innerCore.scale, { x: 1.2, y: 1.2, z: 1.2, duration: 0.5, ease: "power2.out" });
+                gsap.to(innerCore.scale, { x: 1, y: 1, z: 1, duration: 1.5, ease: "power2.inOut", delay: 0.5 });
+            }
+        }
+        
+        let coreTime = 0;
+        
+        function animateCore() {
+            coreTime += 0.016;
+            
+            coreGroup.rotation.y = coreTime * 0.15 * targetRotSpeed;
+            coreGroup.rotation.x = Math.sin(coreTime * 0.075) * 0.09;
+            
+            rings.forEach((ring, i) => {
+                const data = ring.userData;
+                ring.rotation.x = data.baseRotX + Math.sin(coreTime * data.speed * 10) * 0.065;
+                ring.rotation.y = data.baseRotY + coreTime * data.speed * 15;
+            });
+            
+            innerCore.material.opacity = 0.25 + Math.sin(coreTime * 2.5) * 0.09;
+            
+            // Memory particles
+            const pos = particles.geometry.attributes.position;
+            for (let i = 0; i < particleCount; i++) {
+                const v = velocities[i];
+                pos.array[i * 3] += v.x;
+                pos.array[i * 3 + 1] += v.y;
+                pos.array[i * 3 + 2] += v.z;
+                
+                const dist = Math.sqrt(
+                    pos.array[i * 3]**2 + 
+                    pos.array[i * 3 + 1]**2 + 
+                    pos.array[i * 3 + 2]**2
+                );
+                if (dist > 3.9) {
+                    pos.array[i * 3] *= 0.56;
+                    pos.array[i * 3 + 1] *= 0.56;
+                    pos.array[i * 3 + 2] *= 0.56;
+                }
+            }
+            pos.needsUpdate = true;
+            
+            camera.position.z = 5.35 + Math.sin(coreTime * 0.52) * 0.065;
+            camera.lookAt(0, 0, 0);
+            
+            renderer.render(scene, camera);
+            requestAnimationFrame(animateCore);
+        }
+        animateCore();
+        
+        // Layer Data
+        const layers = [
+            {id:1, name:"Intake & Triage", tag:"COMPLEXITY CLASSIFICATION", desc:"Routes every task through T0 (trivial) to T4 (critical). Determines reasoning depth, verification requirements, and resource allocation before any work begins."},
+            {id:2, name:"Reasoning Mode", tag:"DUAL PROCESS THEORY", desc:"The agent knows whether it should be in System-1 (fast, intuitive) or System-2 (slow, deliberate) mode. It does not waste heavy reasoning on routine tasks."},
+            {id:3, name:"Context Budget", tag:"TOKEN ECONOMICS", desc:"Tracks token usage against budget in real time. Detects danger zone approaching context limit and intelligently pre-compresses when needed."},
+            {id:4, name:"Diff-Aware Context", tag:"STATE VERIFICATION", desc:"Re-reads files before editing. Verifies state after edit. Never assumes file contents from a previous read are still valid."},
+            {id:5, name:"Tool Result Guard", tag:"PARTIAL OUTPUT", desc:"Detects when tool output is truncated, paginated, or incomplete. Does not treat partial output as complete truth."},
+            {id:6, name:"Semantic Search", tag:"8-VECTOR RENAME", desc:"When renaming anything, finds all references through string search, AST, import graph, and type signature. No broken renames."},
+            {id:7, name:"Generated File Guard", tag:"SOURCE OF TRUTH", desc:"Modifies source files only. Never edits generated or build outputs directly. Always goes to the real source."},
+            {id:8, name:"Phased Execution", tag:"MAX 5 FILES PER PHASE", desc:"If a task touches more than five files, it is automatically split into sequential phases with verification between each."},
+            {id:9, name:"Rollback Planning", tag:"CHECKPOINT SAFETY", desc:"Commit hash recorded before any destructive operation. Can instantly undo to any safe checkpoint."},
+            {id:10, name:"Dependency Discipline", tag:"VERSION GUARD", desc:"Never modifies package versions without explicit confirmation. Never installs new dependencies without justification."}
+        ];
+        
+        function initLayerNav() {
+            const nav = document.querySelector('.layer-nav');
+            const detail = document.getElementById('layer-detail');
+            
+            layers.forEach((layer, idx) => {
+                const row = document.createElement('div');
+                row.className = 'layer-row';
+                row.innerHTML = `
+                    <div class="layer-num">L${layer.id}</div>
+                    <div class="layer-name">${layer.name}</div>
+                `;
+                
+                row.addEventListener('click', () => {
+                    document.querySelectorAll('.layer-row').forEach(r => r.classList.remove('active'));
+                    row.classList.add('active');
+                    
+                    document.getElementById('layer-tag').textContent = layer.tag;
+                    document.getElementById('layer-title').textContent = `L${layer.id} — ${layer.name}`;
+                    document.getElementById('layer-desc').innerHTML = layer.desc;
+                    
+                    updateCoreVisualization(layer.id);
+                });
+                
+                nav.appendChild(row);
+                
+                if (idx === 0) {
+                    setTimeout(() => {
+                        row.classList.add('active');
+                        document.getElementById('layer-tag').textContent = layer.tag;
+                        document.getElementById('layer-title').textContent = `L${layer.id} — ${layer.name}`;
+                        document.getElementById('layer-desc').innerHTML = layer.desc;
+                        updateCoreVisualization(1);
+                    }, 1250);
+                }
+            });
+        }
+        initLayerNav();
+        
+        function submitForm(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerHTML = 'Welcome to the swarm';
+            btn.disabled = true;
+            setTimeout(() => {
+                e.target.reset();
+                btn.innerHTML = 'Join the Cognitive Swarm';
+                btn.disabled = false;
+            }, 1900);
+        }
+        
+        function downloadSpec() {
+            const content = `AEGNTIC Cognitive Operating System v3.0
+Full Open Specification
+
+Ten Cognitive Layers • Four Memory Tiers • Self-Healing • Adversarial Security • Economic Intelligence
+
+This specification turns any AI coding agent into a self-healing, economically-aware, adversarially-secure cognitive engine.
+
+Live harnesses: Droid, Claude Code, Cursor, Codex CLI, Gemini CLI
+Memory backend: gbrain PGLite
+Models: GLM-5.2, Gemini 3.1 Pro, Claude Sonnet + economic routing
+
+Full details: https://github.com/aegntic
+
+© 2025–2026 AEGNTIC — Where Intelligence Becomes Art`;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'AEGNTIC_Cognitive_OS_v3_Specification.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Keyboard easter egg
+        let konami = [];
+        document.addEventListener('keydown', e => {
+            konami.push(e.keyCode);
+            if (konami.length > 10) konami.shift();
+            if (konami.join(',') === '38,38,40,40,37,39,37,39,66,65') {
+                gsap.to(coreGroup.scale, {x:1.5, y:1.5, z:1.5, duration:1.0, ease:"power2.inOut"});
+                setTimeout(() => {
+                    gsap.to(coreGroup.scale, {x:1, y:1, z:1, duration:2.0, ease:"power2.inOut"});
+                }, 650);
+                konami = [];
+            }
+        });
+        
+        console.log(`%c[AEGNTIC] Elite v6 initialized in ${(performance.now() - perfStart).toFixed(1)}ms`, 'color:#7DD3E0; font-size:9px');
+    </script>
+</body>
+</html>

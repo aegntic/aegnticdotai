@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mattae Cooper (@aegntic) — Independent AI Agent Builder for Hire</title>
     <meta name="description" content="Mattae Cooper (@aegntic) ships production AI-agent systems solo, end to end — Rust, Go, TypeScript, Python. Custom agent builds, automation, developer tooling. Available for hire.">
-    <meta name="theme-color" content="#0a0e12">
+    <meta name="theme-color" content="#f0f6f8">
     <link rel="canonical" href="https://aegntic.ai/">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aegntic.ai/">
@@ -21,12 +21,9 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         :root{
@@ -34,13 +31,11 @@
             --text:#11181c;
             --text-dark:#0c1016;
             --text-muted:#a5abad;
-            --accent:#00d4b8;
-            --accent-glow:rgba(0,212,184,0.25);
-            --accent-glow-strong:rgba(0,212,184,0.45);
+            --accent:#00b39f;
             --surface-1:#0c1016;
-            --surface-2:#171b22;
-            --surface-3:#22262d;
-            --surface-4:#2e323a;
+            --surface-2:#23272d;
+            --surface-3:#3a3e44;
+            --surface-4:#50555a;
             --radius:3rem;
             --radius-lg:3.25rem;
             --ease-spring:cubic-bezier(.22,.68,0,1);
@@ -51,7 +46,8 @@
         body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
         a{color:inherit;text-decoration:none}
         img{max-width:100%;display:block}
-        ::selection{background:var(--accent-glow);color:var(--text-dark)}
+        ::-moz-selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
+        ::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
 
         /* ── ANIMATIONS ── */
         @keyframes float{
@@ -90,8 +86,8 @@
         .nav-logo.hidden{opacity:0;transform:translateY(-100%);pointer-events:none}
         .nav-logo img{height:2rem;width:auto}
         @media(min-width:1024px){.nav-logo img{height:2.5rem;width:auto}}
-        .nav-menu-btn{background:var(--text-dark);color:var(--bg);padding:0.125rem;border-radius:999px;font-size:0.8125rem;font-weight:500;pointer-events:auto;display:inline-flex;align-items:center;gap:0;border:none;cursor:pointer;transition:transform 500ms var(--ease-spring),box-shadow 400ms ease;will-change:transform;box-shadow:0 0 0 0 transparent}
-        .nav-menu-btn:hover{transform:scale(1.1);box-shadow:0 0 24px var(--accent-glow)}
+        .nav-menu-btn{background:var(--text-dark);color:var(--bg);padding:0.125rem;border-radius:999px;font-size:0.8125rem;font-weight:500;pointer-events:auto;display:inline-flex;align-items:center;gap:0;border:none;cursor:pointer;transition:transform 500ms var(--ease-spring);will-change:transform}
+        .nav-menu-btn:hover{transform:scale(1.1)}
         .nav-menu-btn-text{color:var(--bg);font-size:0.8125rem;font-weight:500;text-transform:uppercase;padding:0.35rem 0.75rem 0.35rem 0.35rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;height:1.25rem;min-width:4.5rem}
         .nav-menu-btn-text span{display:flex;align-items:center;justify-content:center;transition:transform 500ms var(--ease-overshoot);position:absolute;inset:0}
         .nav-menu-btn-text .menu-close{transform:translateY(100%)}
@@ -106,10 +102,10 @@
         .hero{position:relative;width:100vw;height:100dvh;min-height:600px;overflow:hidden}
         .hero-render{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:flex-end;padding-right:22vw;animation:heroImgIn 1s var(--ease-spring) 0.3s both}
         @media(min-width:1024px){.hero-render{padding-right:20vw}}
-        .hero-render img{width:min(55vw,600px);height:auto;max-height:75vh;object-fit:contain;animation:float 6s ease-in-out infinite}
+        .hero-render img{width:min(55vw,600px);height:auto;max-height:75vh;-o-object-fit:contain;object-fit:contain;animation:float 6s ease-in-out infinite}
         @media(min-width:1024px){.hero-render img{width:min(40vw,550px)}}
 
-        .hero-watermark{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:flex-end;overflow:hidden;pointer-events:none;user-select:none;padding-right:0.5rem}
+        .hero-watermark{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:flex-end;overflow:hidden;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none;padding-right:0.5rem}
         @media(min-width:1024px){.hero-watermark{padding-right:2rem}}
         .hero-watermark span{font-weight:700;font-size:clamp(8rem,28vw,24rem);letter-spacing:-0.04em;color:var(--text-dark);opacity:0.045;line-height:0.85;white-space:nowrap}
 
@@ -189,7 +185,7 @@
         @media(min-width:1024px){.work-item{border-radius:1.5rem}}
         .work-item:hover{transform:scale(1.02)}
         .work-item-bg{position:absolute;inset:0;z-index:1}
-        .work-item-bg img{width:100%;height:100%;object-fit:cover;display:block}
+        .work-item-bg img{width:100%;height:100%;-o-object-fit:cover;object-fit:cover;display:block}
         .work-item-overlay{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(to top,rgba(12,16,22,0.7),transparent);z-index:2;pointer-events:none}
         .work-item-content{position:absolute;bottom:1rem;left:1.25rem;right:1.25rem;z-index:3;display:flex;flex-direction:column;gap:0.25rem}
         @media(min-width:1024px){.work-item-content{bottom:2rem;left:2rem;right:2rem}}
@@ -230,7 +226,7 @@
         .service-card:nth-child(2){background:var(--surface-2);color:#fff}
         .service-card:nth-child(3){background:var(--surface-3);color:#fff}
         .service-card:nth-child(4){background:var(--surface-4);color:#fff}
-        .service-card:nth-child(5){background:var(--surface-4);color:#fff}
+        .service-card:nth-child(5){background:#6b7075;color:#fff}
 
         .service-head{display:flex;flex-direction:column;gap:1.25rem}
         @media(min-width:1024px){.service-head{gap:1.75rem}}
@@ -245,8 +241,7 @@
         .service-tag{font-size:0.75rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:0.4rem 0.875rem;border-radius:999px;white-space:nowrap;background:rgba(0,0,0,0.25)}
 
         /* ── CTA ── */
-        .cta{position:relative;width:100%;min-height:80vh;padding:4rem 1rem;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:linear-gradient(to bottom,var(--bg),rgba(0,212,184,0.02))}
-        .cta-grid{position:absolute;inset:0;opacity:.03;background:repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(0,212,184,0.08) 48px,rgba(0,212,184,0.08) 49px),repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(0,212,184,0.08) 48px,rgba(0,212,184,0.08) 49px);pointer-events:none}
+        .cta{position:relative;width:100%;min-height:80vh;padding:4rem 1rem;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
         @media(min-width:768px){.cta{padding:6rem 2rem;min-height:90vh}}
         @media(min-width:1024px){.cta{padding:8rem 3rem;min-height:100vh}}
         @media(min-width:1280px){.cta{padding:10rem 5rem}}
@@ -257,7 +252,7 @@
         .cta-sub{font-size:clamp(1rem,1.5vw,1.25rem);color:var(--text-muted);max-width:36ch;line-height:1.6;margin-top:2rem;position:relative;z-index:2}
 
         .cta-btn{display:inline-flex;align-items:center;gap:0.75rem;background:#0c1016;color:#f0f6f8;padding:1rem 2.25rem;border-radius:999px;font-size:1rem;font-weight:500;letter-spacing:-0.01em;text-decoration:none;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset,0 10px 30px -10px rgba(12,16,22,0.35);transition:transform 0.5s var(--ease-overshoot),box-shadow 0.4s ease;margin-top:3rem;position:relative;z-index:3;will-change:transform}
-        .cta-btn:hover{transform:scale(1.08);box-shadow:0 1px 0 rgba(255,255,255,0.06) inset,0 0 32px var(--accent-glow),0 18px 40px -12px rgba(12,16,22,0.45)}
+        .cta-btn:hover{transform:scale(1.08);box-shadow:0 1px 0 rgba(255,255,255,0.06) inset,0 18px 40px -12px rgba(12,16,22,0.45)}
         .cta-btn span{color:#f0f6f8;display:inline-block;line-height:1}
         .cta-btn svg{width:1.25rem;height:1.25rem;transition:transform 0.3s var(--ease-overshoot);color:#f0f6f8;flex-shrink:0}
         .cta-btn:hover svg{transform:translateX(4px)}
@@ -277,7 +272,7 @@
         .prefooter-strip-inner{display:flex;flex-direction:column;gap:1.5rem;max-width:1400px;margin:0 auto}
         @media(min-width:1024px){.prefooter-strip-inner{flex-direction:row;gap:2.5rem;align-items:stretch}}
 
-        .prefooter-img{width:100%;height:auto;display:block;border-radius:1.5rem;background:rgba(17,24,28,0.04);object-fit:cover;aspect-ratio:16/10}
+        .prefooter-img{width:100%;height:auto;display:block;border-radius:1.5rem;background:rgba(17,24,28,0.04);-o-object-fit:cover;object-fit:cover;aspect-ratio:16/10}
         @media(min-width:1024px){.prefooter-img{flex:1;aspect-ratio:4/3;max-height:60vh}}
         .prefooter-img[data-prefooter="primary"]{flex-basis:64%}
         .prefooter-img[data-prefooter="secondary"]{flex-basis:36%}
@@ -334,10 +329,8 @@
         .work-item-bg img{transition:transform 0.6s var(--ease-spring),filter 0.4s ease}
         .work-item:hover .work-item-bg img{transform:scale(1.06)!important;filter:brightness(1.08)}
 
-        /* AE Audits card — centered contained logo, dark bg, no zoom */
-        img.work-bg-contained{max-width:60%;max-height:60%;width:auto;height:auto;object-fit:contain;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-        .work-item:first-child .work-item-bg{background:var(--surface-1)}
-        .work-item:hover img.work-bg-contained{transform:translate(-50%,-50%)!important;filter:none!important}
+        /* AE Audits card — white backdrop for transparent logo */
+        .work-item:first-child .work-item-bg{background:#fff}
 
         /* ── HERO RENDER BLEED (slightly clipped off right edge) ── */
         @media(min-width:1024px){.hero-render{padding-right:14vw}.hero-render img{width:min(44vw,620px)}}
@@ -361,10 +354,7 @@
         .ae-promo{position:relative;padding:5rem 1rem;background:var(--text-dark);color:#fff;overflow:hidden}
         @media(min-width:768px){.ae-promo{padding:7rem 2rem}}
         @media(min-width:1024px){.ae-promo{padding:8rem 3rem}}
-        .ae-promo-bg{position:absolute;inset:0;opacity:.06;background:
-            radial-gradient(ellipse at 30% 50%,var(--accent) 0%,transparent 60%),
-            repeating-linear-gradient(0deg,transparent,transparent 48px,rgba(0,212,184,0.04) 48px,rgba(0,212,184,0.04) 49px),
-            repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(0,212,184,0.04) 48px,rgba(0,212,184,0.04) 49px)}
+        .ae-promo-bg{position:absolute;inset:0;opacity:.04;background:radial-gradient(ellipse at 30% 50%,var(--accent) 0%,transparent 60%)}
         .ae-promo-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
         .ae-promo-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center}
         @media(min-width:1024px){.ae-promo-grid{grid-template-columns:1fr 1fr;gap:4rem}}
@@ -375,7 +365,7 @@
         .ae-promo-sub{font-size:clamp(1.125rem,1.8vw,1.35rem);font-weight:500;letter-spacing:-.01em;line-height:1.3;color:var(--accent);margin-bottom:1rem}
         .ae-promo-desc{font-size:clamp(.9375rem,1.2vw,1.0625rem);opacity:.7;line-height:1.65;max-width:44ch;margin-bottom:2rem}
         .ae-promo-cta{display:inline-flex;align-items:center;gap:.75rem;background:var(--accent);color:var(--text-dark);padding:.85rem 2rem;border-radius:999px;font-size:.9375rem;font-weight:600;border:none;cursor:pointer;transition:transform .4s var(--ease-spring),box-shadow .3s ease;text-decoration:none}
-        .ae-promo-cta:hover{transform:scale(1.06);box-shadow:0 0 36px var(--accent-glow)}
+        .ae-promo-cta:hover{transform:scale(1.06);box-shadow:0 0 30px rgba(0,179,158,.3)}
         .ae-promo-cta svg{width:1.125rem;height:1.125rem;transition:transform .3s ease}
         .ae-promo-cta:hover svg{transform:translateX(3px)}
         .ae-promo-visual{position:relative;aspect-ratio:4/3;border-radius:1rem;overflow:hidden;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.06)}
@@ -417,9 +407,9 @@
         .hero-scroll:hover{opacity:0.9!important}
 
         /* ── FLOATING CTA (SOHub bottom-right pattern) ── */
-        .floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:0.5rem;background:var(--text-dark);color:var(--bg);padding:0.75rem 1.25rem;border-radius:999px;font-size:0.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(0.9);transition:opacity 0.5s ease,transform 0.5s var(--ease-overshoot),box-shadow 0.4s ease;pointer-events:none;box-shadow:0 4px 20px rgba(12,16,22,0.15),0 0 0 0 transparent}
+        .floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:0.5rem;background:var(--text-dark);color:var(--bg);padding:0.75rem 1.25rem;border-radius:999px;font-size:0.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(0.9);transition:opacity 0.5s ease,transform 0.5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(12,16,22,0.15)}
         .floating-cta.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-        .floating-cta:hover{transform:translateY(-2px) scale(1.05);box-shadow:0 0 20px var(--accent-glow)}
+        .floating-cta:hover{transform:translateY(-2px) scale(1.05)}
         .floating-cta svg{opacity:0.7}
         @media(max-width:767px){.floating-cta span{display:none}.floating-cta{padding:0.75rem;border-radius:50%}}
 
@@ -439,7 +429,7 @@
     <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- FLOATING CTA (SOHub pattern) -->
-    <a href="mailto:hello@aegntic.com" class="floating-cta" id="floatingCta">
+    <a href="/cdn-cgi/l/email-protection#5a323f3636351a3b3f3d342e333974393537" class="floating-cta" id="floatingCta">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         <span>Work with me</span>
     </a>
@@ -519,7 +509,7 @@
         <p class="intro-hook" data-split>Production AI-agent systems, <em>built solo</em>, end to end.</p>
         <div class="intro-grid">
             <div class="intro-figure">
-                <img src="intro-cohort-coordination.webp" alt="Multi-agent cohort coordination render" loading="lazy">
+                <img src="intro-cohort-coordination.png" alt="Multi-agent cohort coordination render" loading="lazy">
             </div>
             <div class="intro-body">
                 <div class="intro-eyebrow">Why this exists</div>
@@ -581,7 +571,7 @@
         <p class="section-desc">Real, shipped systems — each running in production. Not demos, not dashboards.</p>
         <div class="work-grid">
             <a href="/audits" class="work-item">
-                <div class="work-item-bg"><img src="audit-logo.webp" alt="AE Audits" class="work-bg-contained" loading="lazy"></div>
+                <div class="work-item-bg" style="background:#fff"><img src="audit-logo.png" alt="Decision Audits" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub"><span class="latest-offer"><span class="latest-pulse"></span>Latest Alpha</span></span>
@@ -592,7 +582,7 @@
                 </div>
             </a>
             <a href="https://cldcde.cc" target="_blank" rel="noopener" class="work-item">
-                <div class="work-item-bg"><img src="work-cldcde.webp" alt="CLDCDE" loading="lazy"></div>
+                <div class="work-item-bg"><img src="work-cldcde.jpg" alt="CLDCDE" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub">Developer Ecosystem</span>
@@ -603,7 +593,7 @@
                 </div>
             </a>
             <a href="https://clawreform.com" target="_blank" rel="noopener" class="work-item">
-                <div class="work-item-bg"><img src="work-clawreform.webp" alt="clawREFORM" loading="lazy"></div>
+                <div class="work-item-bg"><img src="work-clawreform.jpg" alt="clawREFORM" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub">Agent City</span>
@@ -614,7 +604,7 @@
                 </div>
             </a>
             <a href="https://github.com/aegntic" target="_blank" rel="noopener" class="work-item">
-                <div class="work-item-bg"><img src="work-veritas.webp" alt="veritas-operator" loading="lazy"></div>
+                <div class="work-item-bg"><img src="work-veritas.png" alt="veritas-operator" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub">Research Pipeline</span>
@@ -625,7 +615,7 @@
                 </div>
             </a>
             <a href="https://github.com/aegntic" target="_blank" rel="noopener" class="work-item">
-                <div class="work-item-bg"><img src="work-aetools.webp" alt="obsidian-indexer" loading="lazy"></div>
+                <div class="work-item-bg"><img src="work-aetools.jpg" alt="obsidian-indexer" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub">Sovereign Operator</span>
@@ -636,7 +626,7 @@
                 </div>
             </a>
             <a href="https://logue.pro" target="_blank" rel="noopener" class="work-item">
-                <div class="work-item-bg"><img src="work-prologue.webp" alt="Prologue" loading="lazy"></div>
+                <div class="work-item-bg"><img src="work-prologue.jpg" alt="Prologue" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
                     <span class="work-item-sub">Memory Library</span>
@@ -693,13 +683,12 @@
 
     <!-- CTA -->
     <section class="cta" id="contact">
-        <div class="cta-grid"></div>
         <div class="cta-figure">
-            <img src="cta-reach-arm.webp" alt="Mechanical reach-arm gesture" loading="lazy">
+            <img src="cta-reach-arm.png" alt="Mechanical reach-arm gesture" loading="lazy">
         </div>
         <h2 class="cta-display" data-split>Have a system<br>that should exist?</h2>
         <p class="cta-sub">Tell me what you're building. I'll scope it, quote it, and build it myself.</p>
-        <a href="mailto:hello@aegntic.com" class="cta-btn">
+        <a href="/cdn-cgi/l/email-protection#dbb3beb7b7b49bbabebcb5afb2b8f5b8b4b6" class="cta-btn">
             <span>Work with me</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
@@ -708,8 +697,8 @@
     <!-- PRE-FOOTER IMAGE STRIP — editorial macro + detail anchors bridging CTA and footer -->
     <section class="prefooter-strip" id="prefooter-strip" aria-label="aegntic visual anchors">
         <div class="prefooter-strip-inner">
-            <img class="prefooter-img" data-prefooter="primary" src="prefooter-primary.webp" alt="Mechanical arm technical dossier, 4-panel blueprint">
-            <img class="prefooter-img" data-prefooter="secondary" src="prefooter-secondary.webp" alt="Claw-hand detail with micro worker agents tending blue-lit joints">
+            <img class="prefooter-img" data-prefooter="primary" src="prefooter-primary.png" alt="Mechanical arm technical dossier, 4-panel blueprint">
+            <img class="prefooter-img" data-prefooter="secondary" src="prefooter-secondary.png" alt="Claw-hand detail with micro worker agents tending blue-lit joints">
         </div>
     </section>
 
@@ -772,12 +761,12 @@
             <span class="gh-trigger" onclick="openGhCard()">GitHub</span>
             <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X / Twitter</a>
             <a href="https://cldcde.cc" target="_blank" rel="noopener">CLDCDE</a>
-            <a href="mailto:hello@aegntic.com">Contact</a>
+            <a href="/cdn-cgi/l/email-protection#a9c1ccc5c5c6e9c8cccec7ddc0ca87cac6c4">Contact</a>
         </div>
         <div class="footer-copy">&copy; 2026 Mattae Cooper &middot; aegntic.ai</div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Loader
         window.addEventListener('load',()=>{
             setTimeout(()=>{
@@ -901,8 +890,8 @@
         }
 
         // ── GSAP TEXT EFFECTS ──
-        (function initGSAP(){
-            if(!window.gsap||!window.ScrollTrigger){return setTimeout(initGSAP,50)}
+        (function(){
+            if(!window.gsap||!window.ScrollTrigger){return}
             gsap.registerPlugin(ScrollTrigger);
             const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             document.body.classList.add('gsap-ready');
@@ -1046,7 +1035,7 @@
                     const peekH=140; // approximate heading area in pixels
                     const cardH=cards[0].offsetHeight;
                     const clipBody=`inset(0 0 ${cardH-peekH}px 0)`; // keep heading, hide body
-                    const clipHeadOnly=i=>`inset(0 0 ${cardH-peekH}px 0)`; // only heading visible
+                    const clipHeadOnly=i=>`inset(${cardH-peekH}px 0 0 0)`; // only heading visible
                     const scrollPerCard=cardH;
                     const totalScroll=scrollPerCard*(cards.length-1);
                     const stl=gsap.timeline({
@@ -1064,8 +1053,8 @@
                             stl.to(card,{clipPath:clipBody,duration:1},0);
                             stl.to(body,{opacity:0.05,duration:1},0);
                         }else{
-                            stl.fromTo(card,{clipPath:clipHeadOnly(i)},{clipPath:'inset(0 0 0 0)',duration:0.65,immediateRender:false},i-1);
-                            stl.fromTo(body,{opacity:0.05},{opacity:1,duration:0.55,immediateRender:false},i-1);
+                            stl.fromTo(card,{clipPath:clipHeadOnly(i)},{clipPath:'inset(0 0 0 0)',duration:0.65},i-1);
+                            stl.fromTo(body,{opacity:0.05},{opacity:1,duration:0.55},i-1);
                             if(i<cards.length-1){
                                 stl.to(card,{clipPath:clipBody,duration:1},i);
                                 stl.to(body,{opacity:0.05,duration:1},i);
@@ -1200,5 +1189,6 @@
             }
         }
     </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a1517e9d8a9d8078',t:'MTc4MzAzNTYxNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"f847bbd80de94e6c95f997b7ec20d0b5","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>

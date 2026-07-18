@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sydney Autonomous Ecosystem — 3D</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        body {
+            margin: 0;
+            background: #050505;
+            color: white;
+            font-family: 'Inter', system_ui, sans-serif;
+            overflow: hidden;
+        }
+        
+        #info {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            width: 320px;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(103, 232, 249, 0.25);
+            border-radius: 16px;
+            padding: 20px 22px;
+            z-index: 100;
+            box-shadow: 0 0 25px rgba(103, 232, 249, 0.15);
+            max-height: 280px;
+            overflow-y: auto;
+        }
+
+        .holo-panel {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(103, 232, 249, 0.3);
+            box-shadow: 0 0 20px rgba(103, 232, 249, 0.15);
+        }
+
+        .holo-scan {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .holo-scan::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(103, 232, 249, 0.15) 50%,
+                transparent 100%
+            );
+            animation: holo-scan 4s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes holo-scan {
+            0% { top: -100%; }
+            100% { top: 300%; }
+        }
+
+        #minimap {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            width: 220px;
+            height: 160px;
+            background: rgba(10, 10, 10, 0.75);
+            border: 1px solid rgba(103, 232, 249, 0.25);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(103, 232, 249, 0.1);
+            z-index: 100;
+        }
+
+        .floating-label {
+            position: absolute;
+            pointer-events: none;
+            font-size: 11px;
+            font-weight: 600;
+            color: #e0f2fe;
+            background: rgba(15, 23, 42, 0.75);
+            padding: 2px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(103, 232, 249, 0.3);
+            text-shadow: 0 0 6px rgba(103, 232, 249, 0.4);
+            white-space: nowrap;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 50;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Info Panel -->
+    <div id="info" class="holo-panel holo-scan">
+        <div id="info-content">
+            <div style="font-size: 13px; color: #888; margin-bottom: 8px;">SYDNEY AUTONOMOUS ECOSYSTEM</div>
+            <div style="font-size: 22px; font-weight: 600; line-height: 1.1; margin-bottom: 16px;">
+                Aegntic<br>Orchestration Core
+            </div>
+            <div style="font-size: 14px; color: #aaa; line-height: 1.5;">
+                The central coordination layer that routes tasks, manages memory, and maintains continuity across all autonomous subsystems.
+            </div>
+        </div>
+    </div>
+
+    <!-- Mini Holographic Map -->
+    <div id="minimap" class="holo-panel">
+        <canvas id="minimap-canvas" width="220" height="160" style="width: 100%; height: 100%;"></canvas>
+    </div>
+
+    <script>
+        // ==================== THREE.JS SCENE ====================
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(58, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.body.appendChild(renderer.domElement);
+
+        // Lighting
+        scene.add(new THREE.AmbientLight(0x404040, 0.5));
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.9);
+        dirLight.position.set(12, 25, 8);
+        scene.add(dirLight);
+        const rimLight = new THREE.DirectionalLight(0x67e8f9, 0.35);
+        rimLight.position.set(-15, 8, -12);
+        scene.add(rimLight);
+        const pointLight = new THREE.PointLight(0x67e8f9, 1.6, 80);
+        pointLight.position.set(0, 10, 0);
+        scene.add(pointLight);
+
+        // Platform
+        const platform = new THREE.Mesh(
+            new THREE.BoxGeometry(30, 1.4, 24),
+            new THREE.MeshPhongMaterial({ color: 0x0f0f0f, shininess: 8 })
+        );
+        platform.position.y = -1.2;
+        scene.add(platform);
+
+        const grid = new THREE.GridHelper(28, 28, 0x1f1f1f, 0x1f1f1f);
+        grid.position.y = -0.4;
+        scene.add(grid);
+
+        // Central Core
+        const core = new THREE.Mesh(
+            new THREE.CylinderGeometry(3.4, 3.4, 3.0, 48),
+            new THREE.MeshPhongMaterial({ color: 0x67e8f9, emissive: 0x112233, shininess: 90 })
+        );
+        core.position.y = 2.8;
+        scene.add(core);
+
+        const innerCore = new THREE.Mesh(
+            new THREE.CylinderGeometry(2.6, 2.6, 2.8, 48),
+            new THREE.MeshPhongMaterial({ color: 0xffffff, emissive: 0x67e8f9, emissiveIntensity: 0.6, transparent: true, opacity: 0.7 })
+        );
+        innerCore.position.y = 2.8;
+        scene.add(innerCore);
+
+        const ring = new THREE.Mesh(
+            new THREE.TorusGeometry(5.2, 0.18, 20, 80),
+            new THREE.MeshPhongMaterial({ color: 0x67e8f9, emissive: 0x67e8f9, emissiveIntensity: 0.5, transparent: true, opacity: 0.65 })
+        );
+        ring.position.y = 2.8;
+        ring.rotation.x = Math.PI / 2;
+        scene.add(ring);
+
+        // Subsystems
+        const subsystemsData = [
+            { id: 'polymarket', name: "Polymarket Intelligence Hub", position: { x: -12, y: 3.2, z: -8 }, color: 0x67e8f9, description: "Real-time market signal detection and autonomous edge hunting." },
+            { id: 'yt', name: "YT Autonomous Content Engine", position: { x: 12, y: 3.2, z: -8 }, color: 0xa78bfa, description: "End-to-end autonomous video generation, editing and publishing." },
+            { id: 'rag', name: "RAG + Vector Memory Layer", position: { x: 12, y: 3.2, z: 8 }, color: 0x60a5fa, description: "Long-term experiential memory and contextual retrieval." },
+            { id: 'planning', name: "Systemic Brief & Planning Engine", position: { x: -12, y: 3.2, z: 8 }, color: 0xf59e0b, description: "Strategic decomposition and multi-step autonomous planning." },
+            { id: 'telegram', name: "Telegram Interface Layer", position: { x: 0, y: 3.2, z: 12 }, color: 0x34d399, description: "Human command surface and verified interaction layer." },
+            { id: 'observation', name: "Observation & Data Ingestion", position: { x: 0, y: 3.2, z: -12 }, color: 0xec4899, description: "Continuous passive observation and structured data ingestion." }
+        ];
+
+        const subsystemMeshes = {};
+        const flowObjects = [];
+
+        subsystemsData.forEach(data => {
+            const base = new THREE.Mesh(
+                new THREE.BoxGeometry(5, 2.2, 5),
+                new THREE.MeshPhongMaterial({ color: 0x1a1a1a, shininess: 12 })
+            );
+            base.position.set(data.position.x, data.position.y - 0.3, data.position.z);
+            scene.add(base);
+
+            const block = new THREE.Mesh(
+                new THREE.BoxGeometry(4.2, 4.8, 4.2),
+                new THREE.MeshPhongMaterial({ color: data.color, emissive: data.color, emissiveIntensity: 0.3, shininess: 50 })
+            );
+            block.position.set(data.position.x, data.position.y + 1.8, data.position.z);
+            scene.add(block);
+
+            const labelDiv = document.createElement('div');
+            labelDiv.className = 'floating-label';
+            labelDiv.innerHTML = data.name;
+            document.body.appendChild(labelDiv);
+
+            subsystemMeshes[data.id] = { mesh: block, base, data, labelDiv, originalEmissive: 0.3 };
+        });
+
+        // Animated Flow Lines with Particles
+        function createAnimatedFlow(fromPos, toPos, color, flowId) {
+            const points = [];
+            const midX = (fromPos.x + toPos.x) / 2;
+            const midZ = (fromPos.z + toPos.z) / 2;
+            const height = 9.5;
+
+            points.push(new THREE.Vector3(fromPos.x, fromPos.y + 4, fromPos.z));
+            points.push(new THREE.Vector3(midX * 0.55, height, midZ * 0.55));
+            points.push(new THREE.Vector3(toPos.x, toPos.y + 4, toPos.z));
+
+            const curve = new THREE.CatmullRomCurve3(points);
+
+            const tube = new THREE.Mesh(
+                new THREE.TubeGeometry(curve, 48, 0.18, 8, false),
+                new THREE.MeshPhongMaterial({ color, emissive: color, emissiveIntensity: 0.35, transparent: true, opacity: 0.75 })
+            );
+            scene.add(tube);
+
+            // Particles
+            const particleCount = 32;
+            const positions = new Float32Array(particleCount * 3);
+            const velocities = new Float32Array(particleCount);
+
+            for (let i = 0; i < particleCount; i++) {
+                const t = i / particleCount;
+                const pos = curve.getPointAt(t);
+                positions[i * 3] = pos.x;
+                positions[i * 3 + 1] = pos.y;
+                positions[i * 3 + 2] = pos.z;
+                velocities[i] = (Math.random() * 0.55 + 0.75);
+            }
+
+            const particleGeo = new THREE.BufferGeometry();
+            particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            const particles = new THREE.Points(particleGeo, new THREE.PointsMaterial({
+                color, size: 0.38, transparent: true, opacity: 0.95, depthWrite: false
+            }));
+            scene.add(particles);
+
+            flowObjects.push({ tube, particles, curve, velocities, baseColor: color, id: flowId });
+        }
+
+        const corePos = { x: 0, y: 2.8, z: 0 };
+
+        createAnimatedFlow({ x: -12, y: 3.2, z: -8 }, corePos, 0x67e8f9, 'polymarket');
+        createAnimatedFlow({ x: 12, y: 3.2, z: -8 }, corePos, 0xa78bfa, 'yt');
+        createAnimatedFlow({ x: 12, y: 3.2, z: 8 }, corePos, 0x60a5fa, 'rag');
+        createAnimatedFlow({ x: -12, y: 3.2, z: 8 }, corePos, 0xf59e0b, 'planning');
+        createAnimatedFlow({ x: 0, y: 3.2, z: 12 }, corePos, 0x34d399, 'telegram');
+        createAnimatedFlow({ x: 0, y: 3.2, z: -12 }, corePos, 0xec4899, 'observation');
+
+        // Camera
+        camera.position.set(20, 17, 24);
+        camera.lookAt(0, 5, 0);
+
+        const controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.09;
+        controls.minDistance = 14;
+        controls.maxDistance = 48;
+        controls.maxPolarAngle = Math.PI * 0.82;
+
+        // Interaction
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        let selectedId = null;
+
+        function onMouseMove(e) {
+            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        }
+
+        function onClick(e) {
+            raycaster.setFromCamera(mouse, camera);
+            const meshes = Object.values(subsystemMeshes).map(s => s.mesh);
+            const intersects = raycaster.intersectObjects(meshes);
+
+            if (intersects.length > 0) {
+                const clicked = intersects[0].object;
+                for (let [id, obj] of Object.entries(subsystemMeshes)) {
+                    if (obj.mesh === clicked) {
+                        selectSubsystem(id);
+                        return;
+                    }
+                }
+            } else {
+                deselectAll();
+            }
+        }
+
+        function selectSubsystem(id) {
+            deselectAll();
+            selectedId = id;
+
+            const obj = subsystemMeshes[id];
+            obj.mesh.material.emissiveIntensity = 1.15;
+            obj.mesh.scale.set(1.2, 1.2, 1.2);
+
+            flowObjects.forEach(flow => {
+                if (flow.id === id) {
+                    flow.tube.material.emissiveIntensity = 1.1;
+                    flow.tube.material.opacity = 1;
+                }
+            });
+
+            const panel = document.getElementById('info-content');
+            panel.innerHTML = `
+                <div style="font-size: 12px; color: #888; margin-bottom: 6px;">SUBSYSTEM</div>
+                <div style="font-size: 19px; font-weight: 600; line-height: 1.15; margin-bottom: 14px;">${obj.data.name}</div>
+                <div style="font-size: 14px; color: #ccc; line-height: 1.65;">${obj.data.description}</div>
+            `;
+        }
+
+        function deselectAll() {
+            selectedId = null;
+            Object.values(subsystemMeshes).forEach(obj => {
+                obj.mesh.material.emissiveIntensity = obj.originalEmissive;
+                obj.mesh.scale.set(1, 1, 1);
+            });
+            flowObjects.forEach(flow => {
+                flow.tube.material.emissiveIntensity = 0.35;
+                flow.tube.material.opacity = 0.75;
+            });
+
+            const panel = document.getElementById('info-content');
+            panel.innerHTML = `
+                <div style="font-size: 13px; color: #888; margin-bottom: 8px;">SYDNEY AUTONOMOUS ECOSYSTEM</div>
+                <div style="font-size: 22px; font-weight: 600; line-height: 1.1; margin-bottom: 16px;">Aegntic<br>Orchestration Core</div>
+                <div style="font-size: 14px; color: #aaa; line-height: 1.5;">The central coordination layer that routes tasks, manages memory, and maintains continuity across all autonomous subsystems.</div>
+            `;
+        }
+
+        // ==================== FLOATING 3D PROJECTED LABELS ====================
+        function updateFloatingLabels() {
+            Object.values(subsystemMeshes).forEach(obj => {
+                const vector = obj.mesh.position.clone();
+                vector.project(camera);
+
+                const x = (vector.x * 0.5 + 0.5) * window.innerWidth;
+                const y = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+
+                // Subtle floating animation
+                const floatOffset = Math.sin(Date.now() * 0.0015 + obj.data.position.x) * 3;
+                
+                obj.labelDiv.style.left = `${x - 70}px`;
+                obj.labelDiv.style.top = `${y - 68 + floatOffset}px`;
+                obj.labelDiv.style.opacity = vector.z < 1 ? '0.9' : '0';
+                
+                // Slight scale pulsing
+                const scale = 1 + Math.sin(Date.now() * 0.002 + obj.data.position.z) * 0.03;
+                obj.labelDiv.style.transform = `scale(${scale})`;
+            });
+        }
+
+        // ==================== MINI HOLOGRAPHIC MAP ====================
+        const minimapCanvas = document.getElementById('minimap-canvas');
+        const minimapCtx = minimapCanvas.getContext('2d');
+
+        function drawMinimap() {
+            minimapCtx.fillStyle = 'rgba(10, 10, 10, 0.85)';
+            minimapCtx.fillRect(0, 0, 220, 160);
+
+            // Grid
+            minimapCtx.strokeStyle = 'rgba(103, 232, 249, 0.15)';
+            minimapCtx.lineWidth = 1;
+            for (let x = 20; x < 200; x += 20) {
+                minimapCtx.beginPath();
+                minimapCtx.moveTo(x, 10);
+                minimapCtx.lineTo(x, 150);
+                minimapCtx.stroke();
+            }
+            for (let y = 20; y < 140; y += 20) {
+                minimapCtx.beginPath();
+                minimapCtx.moveTo(10, y);
+                minimapCtx.lineTo(210, y);
+                minimapCtx.stroke();
+            }
+
+            // Draw connections
+            minimapCtx.strokeStyle = 'rgba(103, 232, 249, 0.4)';
+            minimapCtx.lineWidth = 1.5;
+
+            const centerX = 110;
+            const centerY = 80;
+
+            // Core
+            minimapCtx.fillStyle = '#67e8f9';
+            minimapCtx.beginPath();
+            minimapCtx.arc(centerX, centerY, 6, 0, Math.PI * 2);
+            minimapCtx.fill();
+
+            // Subsystems on minimap
+            const miniPositions = {
+                'polymarket': { x: 45, y: 45 },
+                'yt': { x: 175, y: 45 },
+                'rag': { x: 175, y: 115 },
+                'planning': { x: 45, y: 115 },
+                'telegram': { x: 110, y: 135 },
+                'observation': { x: 110, y: 25 }
+            };
+
+            Object.keys(miniPositions).forEach(id => {
+                const pos = miniPositions[id];
+                const color = subsystemMeshes[id]?.data.color || '#67e8f9';
+                
+                minimapCtx.strokeStyle = color + '55';
+                minimapCtx.beginPath();
+                minimapCtx.moveTo(centerX, centerY);
+                minimapCtx.lineTo(pos.x, pos.y);
+                minimapCtx.stroke();
+
+                minimapCtx.fillStyle = color;
+                minimapCtx.beginPath();
+                minimapCtx.arc(pos.x, pos.y, 5, 0, Math.PI * 2);
+                minimapCtx.fill();
+
+                if (selectedId === id) {
+                    minimapCtx.strokeStyle = color;
+                    minimapCtx.lineWidth = 2;
+                    minimapCtx.beginPath();
+                    minimapCtx.arc(pos.x, pos.y, 8 + Math.sin(Date.now() * 0.01) * 2, 0, Math.PI * 2);
+                    minimapCtx.stroke();
+                    minimapCtx.lineWidth = 1.5;
+                }
+            });
+        }
+
+        // ==================== ANIMATION LOOP ====================
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+
+            const t = Date.now() * 0.001;
+
+            // Core animation
+            core.rotation.y = t * 0.28;
+            innerCore.rotation.y = t * 0.42;
+            ring.rotation.z = t * 0.32;
+
+            const pulse = Math.sin(t * 2.3) * 0.07 + 1.03;
+            core.scale.set(pulse, 1, pulse);
+
+            // Flowing particles
+            flowObjects.forEach(flow => {
+                const posAttr = flow.particles.geometry.attributes.position;
+                const arr = posAttr.array;
+
+                for (let i = 0; i < flow.velocities.length; i++) {
+                    let newT = (i / flow.velocities.length) + flow.velocities[i] * 0.019;
+                    if (newT > 1) newT -= 1;
+
+                    const p = flow.curve.getPointAt(newT);
+                    arr[i * 3] = p.x;
+                    arr[i * 3 + 1] = p.y;
+                    arr[i * 3 + 2] = p.z;
+                }
+                posAttr.needsUpdate = true;
+            });
+
+            // Update floating 3D projected labels
+            updateFloatingLabels();
+
+            // Draw minimap
+            drawMinimap();
+
+            renderer.render(scene, camera);
+        }
+
+        // Events
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('click', onClick);
+
+        // Start
+        camera.position.set(20, 17, 24);
+        camera.lookAt(0, 5, 0);
+        animate();
+
+        window.addEventListener('dblclick', () => {
+            camera.position.set(20, 17, 24);
+            camera.lookAt(0, 5, 0);
+            controls.reset();
+        });
+
+        console.log('%c[3D] Holographic UI + Mini Map + Floating 3D labels initialized.', 'color:#555');
+    </script>
+</body>
+</html>
