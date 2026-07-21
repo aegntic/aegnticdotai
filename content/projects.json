@@ -126,7 +126,7 @@
     "status": "Living doc",
     "summary": "Cognitive Operating System — the multi-harness agent policy and execution stack.",
     "body": "Cognitive OS is the living operating manual for multi-harness agents: complexity triage, verification chains, memory layers, and security circuit breakers. Readable HTML snapshot ships on this domain.",
-    "url": "/cognitive-os.html",
+    "url": "/cognitive-os/",
     "external": false,
     "tags": ["Agents", "OS", "Policy"],
     "image": "/assets/visuals/research-crystal.png"

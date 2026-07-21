@@ -1,9 +1,8 @@
-# Explicit static routes first (Cloudflare Pages: files win over redirects, but
-# keep intent clear). Do NOT SPA-fallback everything to index.html — that made
-# /blog /projects /research look like the homepage to bots and users.
+# Explicit static routes. No SPA catch-all.
 
 /home    /   301
 /home/   /   301
 
-# Legacy filenames
-/cognitive-os  /cognitive-os.html  301
+# Cognitive OS — avoid .html ↔ bare-path loop on CF
+/cognitive-os.html  /cognitive-os/  301
+/cognitive-os-raw.html  /cognitive-os/  301
