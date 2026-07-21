@@ -1,0 +1,82 @@
+# aegntic.ai
+
+> Mattae Cooper (@aegntic) — independent AI-agent engineer who designs, builds, and ships production AI-agent systems solo, end to end. Available for hire.
+
+## Services
+- Custom AI-agent builds — architecture through production (Rust, Go, TypeScript, Python)
+- Automation systems — workflows, integrations, backends in production
+- Developer tooling — Claude Code ecosystem, MCP, CLIs
+- AE Audits — agent-native adversarial review (https://aegntic.ai/audits/)
+
+## Projects
+- AE Audits — Decision review for expensive bets. A structured adversarial council — 15 specialized lenses — before you commit capital, time, or reputation. (https://aegntic.ai/projects/ae-audits/)
+- CLDCDE — Claude Code ecosystem hub — tools, patterns, and operator infrastructure for agentic development. (https://aegntic.ai/projects/cldcde/)
+- clawREFORM — Agent-city surface for coordination, reform patterns, and multi-agent operations. (https://aegntic.ai/projects/clawreform/)
+- veritas-operator — Research pipeline operator for evidence gathering, synthesis, and verification loops. (https://aegntic.ai/projects/veritas-operator/)
+- obsidian-indexer — Local-first knowledge indexing for sovereign operator workflows — vaults, memory, and agent retrieval. (https://aegntic.ai/projects/obsidian-indexer/)
+- Prologue — Universal MCP discovery and memory library — cut setup from hours to minutes. (https://aegntic.ai/projects/prologue/)
+- tld.express — Express TLD product surface on Cloudflare Pages. (https://aegntic.ai/projects/tld-express/)
+- prompt.fail — Public surface for prompt failure modes and agent edge cases. (https://aegntic.ai/projects/prompt-fail/)
+- mcp.graphics — Graphics-focused MCP surface for agent-driven visual work. (https://aegntic.ai/projects/mcp-graphics/)
+- unltd CLI — CLI patterns for unlimited agent operator workflows. (https://aegntic.ai/projects/unltd-cli/)
+- Cognitive OS — Cognitive Operating System — the multi-harness agent policy and execution stack. (https://aegntic.ai/projects/cognitive-os/)
+- zkputer — Zero-knowledge compute exploration — privacy-preserving execution patterns. (https://aegntic.ai/projects/zkputer/)
+
+## Research & blog
+Full archive: https://aegntic.ai/research/ and https://aegntic.ai/blog/
+- Why We Deleted 125 Blog Posts and Started Over: The Quality Revolution (https://aegntic.ai/blog/why-we-deleted-125-blog-posts-and-started-over/)
+- Building Reusable AI Agent Skills: A Complete Guide (https://aegntic.ai/blog/building-ai-agent-skills/)
+- The FPEF Framework: A Systematic Approach to Debugging Complex Systems (https://aegntic.ai/blog/fpef-debugging-framework/)
+- The RIPSEC Framework: How to Structure Compelling Ebooks and Content (https://aegntic.ai/blog/ripsec-ebook-structure-framework/)
+- Ultra Swarm: Multi-Agent Problem Solving for Complex Decisions (https://aegntic.ai/blog/ultra-swarm-multi-agent-problem-solving/)
+- UltraPlan Pro: Strategic Project Planning for Complex Initiatives (https://aegntic.ai/blog/ultraplan-pro-strategic-project-planning/)
+- From 0 to 40 Platforms: The Aegntic Growth Story (https://aegntic.ai/blog/aegntic-growth-story/)
+- AI-Human Symbiosis: The Path to Augmented Intelligence (https://aegntic.ai/blog/ai-human-symbiosis/)
+- Introducing Mem:RE - The Future of AI Memory (https://aegntic.ai/blog/introducing-memre-ai-memory/)
+- Economics of Zero-Cost AI: 40 Platforms for $0.02/hour (https://aegntic.ai/blog/economics-zero-cost-ai-40-platforms-2-cents-hour/)
+- The Digital Maid Service: Turning Ultra-Swarm Into a Product (https://aegntic.ai/blog/digital-maid-service-product-vision/)
+- The Ultra-Swarm Protocol: Coordinating 6 AI Agents to Clean 447 Files (https://aegntic.ai/blog/ultra-swarm-protocol-coordinating-6-ai-agents-447-files/)
+- Ultra-Swarm in Action: How 8 Parallel Agents Organized 447 Files in 20 Minutes (https://aegntic.ai/blog/ultra-swarm-case-study-447-files/)
+- Hackathon Project Analysis: 8 AI Projects Evaluated for Competition (https://aegntic.ai/blog/hackathon-project-analysis/)
+- The 45-Minute Ebook Factory: Building Autonomous Content Systems (https://aegntic.ai/blog/the-45-minute-ebook-factory-autonomous-content-systems/)
+- Claude Shortcuts Success: When Automation Actually Works (https://aegntic.ai/blog/claude-shortcuts-success/)
+- From 0 to 40 Platforms in 12 Months: The Complete AEGNTIC Story (https://aegntic.ai/blog/from-0-to-40-platforms-in-12-months/)
+- Prologue: How We Built Self-Discovering AI Agent Onboarding (https://aegntic.ai/blog/prologue-self-discovering-ai-agent-onboarding/)
+- The Birth of Prologue: Building a Universal MCP Discovery System (https://aegntic.ai/blog/birth-of-prologue-mcp-discovery/)
+- n8n Automation at Scale: Building Modular AI Workflows (https://aegntic.ai/blog/n8n-automation-at-scale/)
+- Mem:RE: Building AI Memory That Actually Persists (https://aegntic.ai/blog/memre-building-persistent-ai-memory/)
+- PromptRequest: From Hackathon Project to Full Platform (https://aegntic.ai/blog/promptrequest-hackathon-to-platform/)
+- Angle Generation for Ebooks: Premium vs Starter Positioning (https://aegntic.ai/blog/angle-generation-ebooks/)
+- The Quality Criteria Framework: Ensuring Ebook Excellence (https://aegntic.ai/blog/quality-criteria-framework/)
+- The RIPSEC Framework: Psychology-Optimized Content That Converts (https://aegntic.ai/blog/ripsec-framework-psychology-optimized-content-structure/)
+- Universal Knowledge Synthesizer: Building Multi-Modal Knowledge Integration (https://aegntic.ai/blog/universal-knowledge-synthesizer/)
+- The $415 Billion Opportunity: Why AI Developer Tools Will Define the Next Decade (https://aegntic.ai/blog/415-billion-ai-developer-tools/)
+- MCP Server Collection: 7+ Connectors Ready for Integration (https://aegntic.ai/blog/mcp-server-collection/)
+- TUI Design: Building Terminal Interfaces That Developers Love (https://aegntic.ai/blog/tui-design-terminal-interfaces/)
+- How We Achieved 97% AI Authenticity: Solving the Biggest AI Adoption Barrier (https://aegntic.ai/blog/how-we-achieved-97-percent-ai-authenticity/)
+- Protocol Flow: AI-Powered Video Processing at Scale (https://aegntic.ai/blog/protocol-flow-video-processing/)
+- Why Local-First Isn't Optional: The Enterprise Privacy Lesson (https://aegntic.ai/blog/why-local-first-isnt-optional-enterprise-privacy-lesson/)
+- Claude-Flow: Enterprise AI Agent Orchestration (https://aegntic.ai/blog/claude-flow-enterprise-orchestration/)
+- Sequential Thinking: How AI Agents Reason Through Complex Problems (https://aegntic.ai/blog/sequential-thinking-ai-agent-reasoning/)
+- D3MO: Building a Conversational AI Interface That Feels Natural (https://aegntic.ai/blog/d3mo-conversational-ai/)
+- The Aegntic MCP Standard Framework: Building Production-Ready MCP Servers (https://aegntic.ai/blog/aegntic-mcp-standard-framework/)
+- Crypto-Sight: Building a Real-Time Analytics Platform (https://aegntic.ai/blog/crypto-sight-real-time-analytics/)
+- Building a 40+ Platform AI Ecosystem: Architecture Lessons Learned (https://aegntic.ai/blog/building-40-platform-ai-ecosystem/)
+- ElastranAI: Building an Elastic-Powered AI Assistant (https://aegntic.ai/blog/elastranai-elastic-ai-assistant/)
+- Codebuff: Building an AI-Powered Code Editor (https://aegntic.ai/blog/codebuff-ai-code-editor/)
+- …and 24 more at https://aegntic.ai/blog/
+
+## Contact
+- Email: hello@aegntic.com
+- GitHub: https://github.com/aegntic
+- X: https://x.com/aegntic_ai
+- About: https://aegntic.ai/about/
+
+## Site map
+- Home: https://aegntic.ai/
+- Projects: https://aegntic.ai/projects/
+- Research: https://aegntic.ai/research/
+- Blog: https://aegntic.ai/blog/
+- Audits: https://aegntic.ai/audits/
+- robots: https://aegntic.ai/robots.txt
+- sitemap: https://aegntic.ai/sitemap.xml

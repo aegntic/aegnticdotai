@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local-First AI: Privacy Without Compromise — aegntic.ai</title>
+  <meta name="description" content="Why we built for local-first. Running AI locally, keeping data private, and still delivering enterprise features.">
+  <link rel="canonical" href="https://aegntic.ai/blog/local-first-ai-privacy/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/local-first-ai-privacy/">
+  <meta property="og:title" content="Local-First AI: Privacy Without Compromise — aegntic.ai">
+  <meta property="og:description" content="Why we built for local-first. Running AI locally, keeping data private, and still delivering enterprise features.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Local-First AI: Privacy Without Compromise — aegntic.ai">
+  <meta name="twitter:description" content="Why we built for local-first. Running AI locally, keeping data private, and still delivering enterprise features.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Local-First AI: Privacy Without Compromise","description":"Why we built for local-first. Running AI locally, keeping data private, and still delivering enterprise features.","datePublished":"2024-04-19","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/local-first-ai-privacy/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Apr 20, 2024</div>
+    <h1>Local-First AI: Privacy Without Compromise</h1>
+    <p><em>Why we built for local-first. Running AI locally, keeping data private, and still delivering enterprise features.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">privacy</span><span class="tag">local-first</span><span class="tag">AI</span><span class="tag">architecture</span><span class="tag">enterprise</span></div>
+    <p>Cloud AI is convenient. But your data leaves your control.</p>
+<p>Local-first AI keeps everything on your machines while delivering the same power.</p>
+<h2 id="why-local-first-matters">Why Local-First Matters</h2>
+<h3 id="data-sovereignty">Data Sovereignty</h3>
+<p>Your data never leaves your infrastructure:</p>
+<ul>
+<li>No third-party access</li>
+<li>No data residency concerns</li>
+<li>Full control over retention</li>
+</ul>
+<h3 id="compliance-ready">Compliance Ready</h3>
+<p>Meeting regulatory requirements:</p>
+<ul>
+<li>GDPR: Data stays in jurisdiction</li>
+<li>HIPAA: No external processing</li>
+<li>SOC2: Complete audit trail</li>
+</ul>
+<h3 id="cost-predictable">Cost Predictable</h3>
+<p>No per-token pricing surprises:</p>
+<ul>
+<li>Fixed infrastructure costs</li>
+<li>No usage-based billing</li>
+<li>Scales with your hardware</li>
+</ul>
+<h2 id="the-architecture">The Architecture</h2>
+<pre><code>Local-First Stack
+├── Local Models (Ollama/vLLM)
+│   ├── Llama 3
+│   ├── Mistral
+│   └── Custom fine-tunes
+├── Local Embeddings
+│   ├── sentence-transformers
+│   └── nomic-embed
+├── Local Vector Store
+│   ├── ChromaDB
+│   └── Qdrant
+└── Local Orchestration
+    ├── MCP servers
+    └── n8n workflows</code></pre>
+<h3 id="model-options">Model Options</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Size</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Llama 3 8B</td>
+<td>5GB</td>
+<td>General, fast</td>
+</tr>
+<tr class="even">
+<td>Llama 3 70B</td>
+<td>40GB</td>
+<td>Complex reasoning</td>
+</tr>
+<tr class="odd">
+<td>Mistral 7B</td>
+<td>4GB</td>
+<td>Efficient general</td>
+</tr>
+<tr class="even">
+<td>CodeLlama</td>
+<td>7GB</td>
+<td>Code generation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hardware-requirements">Hardware Requirements</h3>
+<p><strong>Minimum (8B models)</strong>:</p>
+<ul>
+<li>16GB RAM</li>
+<li>Modern CPU</li>
+<li>Optional: 8GB VRAM GPU</li>
+</ul>
+<p><strong>Recommended (70B models)</strong>:</p>
+<ul>
+<li>64GB RAM</li>
+<li>NVIDIA GPU 24GB+</li>
+<li>NVMe storage</li>
+</ul>
+<h2 id="implementation">Implementation</h2>
+<h3 id="ollama-setup">Ollama Setup</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Ollama</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://ollama.com/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull models</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull llama3</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull nomic-embed-text</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Start serving</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> serve</span></code></pre></div>
+<h3 id="api-compatibility">API Compatibility</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// OpenAI-compatible API</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(<span class="st">&#39;http://localhost:11434/v1/chat/completions&#39;</span><span class="op">,</span> {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  method<span class="op">:</span> <span class="st">&#39;POST&#39;</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">:</span> { <span class="st">&#39;Content-Type&#39;</span><span class="op">:</span> <span class="st">&#39;application/json&#39;</span> }<span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  body<span class="op">:</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>({</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    model<span class="op">:</span> <span class="st">&#39;llama3&#39;</span><span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">:</span> [{ role<span class="op">:</span> <span class="st">&#39;user&#39;</span><span class="op">,</span> content<span class="op">:</span> <span class="st">&#39;Hello&#39;</span> }]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<h3 id="hybrid-approach">Hybrid Approach</h3>
+<p>Local for sensitive data, cloud for non-sensitive:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">smartRoute</span>(prompt<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> data<span class="op">:</span> Data) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (data<span class="op">.</span><span class="at">classification</span> <span class="op">===</span> <span class="st">&#39;sensitive&#39;</span>) {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> localModel<span class="op">.</span><span class="fu">complete</span>(prompt)<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cloudModel<span class="op">.</span><span class="fu">complete</span>(prompt)<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="performance-comparison">Performance Comparison</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Cloud API</th>
+<th>Local (8B)</th>
+<th>Local (70B)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Latency</td>
+<td>500ms</td>
+<td>200ms</td>
+<td>800ms</td>
+</tr>
+<tr class="even">
+<td>Privacy</td>
+<td>Low</td>
+<td>High</td>
+<td>High</td>
+</tr>
+<tr class="odd">
+<td>Cost/1M tokens</td>
+<td>$3</td>
+<td>$0.05</td>
+<td>$0.20</td>
+</tr>
+<tr class="even">
+<td>Quality</td>
+<td>95%</td>
+<td>75%</td>
+<td>90%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="best-practices">Best Practices</h2>
+<ol type="1">
+<li><strong>Cache aggressively</strong> - Local models are stateless</li>
+<li><strong>Batch requests</strong> - GPU utilization matters</li>
+<li><strong>Use appropriate model sizes</strong> - Bigger isn’t always better</li>
+<li><strong>Monitor resources</strong> - Memory limits are real</li>
+<li><strong>Hybrid when needed</strong> - Not everything needs to be local</li>
+</ol>
+<hr />
+<p><em>Local-first is core to our architecture. See <a href="/blog/building-40-platform-ai-ecosystem">Building 40+ Platforms</a> for the full infrastructure.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

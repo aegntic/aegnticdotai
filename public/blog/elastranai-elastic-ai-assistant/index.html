@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ElastranAI: Building an Elastic-Powered AI Assistant — aegntic.ai</title>
+  <meta name="description" content="The development story of ElastranAI - an AI assistant with native Elasticsearch integration for semantic search and intelligent document retrieval.">
+  <link rel="canonical" href="https://aegntic.ai/blog/elastranai-elastic-ai-assistant/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/elastranai-elastic-ai-assistant/">
+  <meta property="og:title" content="ElastranAI: Building an Elastic-Powered AI Assistant — aegntic.ai">
+  <meta property="og:description" content="The development story of ElastranAI - an AI assistant with native Elasticsearch integration for semantic search and intelligent document retrieval.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ElastranAI: Building an Elastic-Powered AI Assistant — aegntic.ai">
+  <meta name="twitter:description" content="The development story of ElastranAI - an AI assistant with native Elasticsearch integration for semantic search and intelligent document retrieval.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"ElastranAI: Building an Elastic-Powered AI Assistant","description":"The development story of ElastranAI - an AI assistant with native Elasticsearch integration for semantic search and intelligent document retrieval.","datePublished":"2024-07-14","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/elastranai-elastic-ai-assistant/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Jul 15, 2024</div>
+    <h1>ElastranAI: Building an Elastic-Powered AI Assistant</h1>
+    <p><em>The development story of ElastranAI - an AI assistant with native Elasticsearch integration for semantic search and intelligent document retrieval.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">ElastranAI</span><span class="tag">elasticsearch</span><span class="tag">AI</span><span class="tag">semantic-search</span><span class="tag">development</span></div>
+    <p>What happens when you combine conversational AI with enterprise-grade search?</p>
+<p>ElastranAI was our answer—an AI assistant that doesn’t just respond to queries but searches, retrieves, and synthesizes information from massive document collections.</p>
+<h2 id="the-origin">The Origin</h2>
+<p>Traditional AI assistants have a context problem. They’re limited to:</p>
+<ul>
+<li>Whatever’s in their training data (often outdated)</li>
+<li>The current conversation history</li>
+<li>Manually provided context</li>
+</ul>
+<p>But organizations have terabytes of institutional knowledge. ElastranAI connects AI to that knowledge.</p>
+<h2 id="architecture">Architecture</h2>
+<pre><code>ElastranAI Architecture
+├── Frontend (Next.js)
+│   ├── Conversational interface
+│   ├── Document viewer
+│   └── Search visualization
+├── Backend (FastAPI)
+│   ├── Query processing
+│   ├── AI orchestration
+│   └── Response synthesis
+├── Elasticsearch
+│   ├── Document indexing
+│   ├── Semantic search
+│   └── Result ranking
+└── AI Layer
+    ├── Query understanding
+    ├── Document analysis
+    └── Response generation</code></pre>
+<h3 id="why-elasticsearch">Why Elasticsearch?</h3>
+<p>Elasticsearch provides:</p>
+<ul>
+<li><strong>Speed</strong>: Sub-second search across millions of documents</li>
+<li><strong>Relevance</strong>: BM25 + semantic ranking</li>
+<li><strong>Scalability</strong>: Horizontal scaling for enterprise volumes</li>
+<li><strong>Flexibility</strong>: Full-text, structured, and vector search</li>
+</ul>
+<h3 id="why-not-just-use-rag">Why Not Just Use RAG?</h3>
+<p>Standard RAG (Retrieval-Augmented Generation) has limitations:</p>
+<ul>
+<li>Naive chunking loses context</li>
+<li>Vector-only search misses exact matches</li>
+<li>No query understanding layer</li>
+</ul>
+<p>ElastranAI uses a hybrid approach:</p>
+<ol type="1">
+<li>Parse and understand the query</li>
+<li>Multi-strategy search (keyword + semantic + filters)</li>
+<li>Intelligent result re-ranking</li>
+<li>Contextual response synthesis</li>
+</ol>
+<h2 id="key-features">Key Features</h2>
+<h3 id="semantic-query-understanding">Semantic Query Understanding</h3>
+<p>Before searching, we understand what you’re actually asking:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> understand_query(query: <span class="bu">str</span>) <span class="op">-&gt;</span> QueryIntent:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Classify query intent and extract parameters:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">    - Is this a factual question or exploratory?</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    - What entities are mentioned?</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    - What time range is relevant?</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - What document types should be prioritized?</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    intent <span class="op">=</span> <span class="cf">await</span> classify_intent(query)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    entities <span class="op">=</span> extract_entities(query)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    filters <span class="op">=</span> infer_filters(intent, entities)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> QueryIntent(</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span><span class="op">=</span>intent,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        entities<span class="op">=</span>entities,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        filters<span class="op">=</span>filters,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        search_strategy<span class="op">=</span>select_strategy(intent)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<h3 id="hybrid-search">Hybrid Search</h3>
+<p>Combine multiple search strategies:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hybrid_search(query: <span class="bu">str</span>, intent: QueryIntent) <span class="op">-&gt;</span> SearchResults:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Strategy 1: Keyword search with BM25</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    keyword_results <span class="op">=</span> elastic.search(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        query<span class="op">=</span>{<span class="st">&quot;match&quot;</span>: {<span class="st">&quot;content&quot;</span>: query}},</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span><span class="dv">20</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Strategy 2: Semantic search with vectors</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    embedding <span class="op">=</span> generate_embedding(query)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    vector_results <span class="op">=</span> elastic.search(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        knn<span class="op">=</span>{<span class="st">&quot;field&quot;</span>: <span class="st">&quot;embedding&quot;</span>, <span class="st">&quot;query_vector&quot;</span>: embedding},</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span><span class="dv">20</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Strategy 3: Filtered search based on entities</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    filtered_results <span class="op">=</span> elastic.search(</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        query<span class="op">=</span>{<span class="st">&quot;bool&quot;</span>: {<span class="st">&quot;must&quot;</span>: intent.filters}},</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        size<span class="op">=</span><span class="dv">20</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fusion: Combine and re-rank</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fuse_and_rank(keyword_results, vector_results, filtered_results)</span></code></pre></div>
+<h3 id="contextual-response-synthesis">Contextual Response Synthesis</h3>
+<p>Don’t just return documents—synthesize answers:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> synthesize_response(query: <span class="bu">str</span>, documents: <span class="bu">list</span>) <span class="op">-&gt;</span> Response:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Generate response that:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">    - Directly answers the question</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    - Cites sources appropriately</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    - Acknowledges uncertainty when present</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - Suggests follow-up questions</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    context <span class="op">=</span> prepare_context(documents)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> <span class="cf">await</span> llm.generate(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        system<span class="op">=</span><span class="st">&quot;You are a research assistant with access to documents...&quot;</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        user<span class="op">=</span><span class="ss">f&quot;Query: </span><span class="sc">{</span>query<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">Relevant documents:</span><span class="ch">\n</span><span class="sc">{</span>context<span class="sc">}</span><span class="ss">&quot;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Response(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        answer<span class="op">=</span>response.text,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        sources<span class="op">=</span>extract_citations(response, documents),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        confidence<span class="op">=</span>calculate_confidence(response, documents),</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        follow_ups<span class="op">=</span>suggest_follow_ups(query, documents)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<h2 id="performance-results">Performance Results</h2>
+<h3 id="search-latency">Search Latency</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Latency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Query parsing</td>
+<td>50ms</td>
+</tr>
+<tr class="even">
+<td>Keyword search</td>
+<td>30ms</td>
+</tr>
+<tr class="odd">
+<td>Vector search</td>
+<td>80ms</td>
+</tr>
+<tr class="even">
+<td>Result fusion</td>
+<td>20ms</td>
+</tr>
+<tr class="odd">
+<td>Total search</td>
+<td>180ms avg</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quality-metrics">Quality Metrics</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Answer accuracy</td>
+<td>91%</td>
+</tr>
+<tr class="even">
+<td>Source relevance</td>
+<td>88%</td>
+</tr>
+<tr class="odd">
+<td>Response helpfulness</td>
+<td>4.3/5.0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="scale-testing">Scale Testing</h3>
+<p>Successfully tested with:</p>
+<ul>
+<li>5 million documents indexed</li>
+<li>100 concurrent queries</li>
+<li>99.9% uptime over 30 days</li>
+</ul>
+<h2 id="real-world-use-cases">Real-World Use Cases</h2>
+<h3 id="internal-knowledge-base">Internal Knowledge Base</h3>
+<p><strong>Scenario</strong>: Engineering team with 10,000+ documents <strong>Problem</strong>: Finding relevant information takes hours <strong>Solution</strong>: Index all docs in ElastranAI</p>
+<p><strong>Result</strong>:</p>
+<ul>
+<li>Query: “How do we handle rate limiting in production?”</li>
+<li>Response: Synthesized answer with 3 relevant doc citations</li>
+<li>Time: 2 seconds vs 30+ minutes manual search</li>
+</ul>
+<h3 id="customer-support">Customer Support</h3>
+<p><strong>Scenario</strong>: Support team handling technical questions <strong>Problem</strong>: Agents spend 40% of time searching for answers <strong>Solution</strong>: ElastranAI connected to product documentation</p>
+<p><strong>Result</strong>:</p>
+<ul>
+<li>40% reduction in average handle time</li>
+<li>Consistent answers across agents</li>
+<li>Automatic citation of official docs</li>
+</ul>
+<h3 id="legal-document-review">Legal Document Review</h3>
+<p><strong>Scenario</strong>: Law firm with case file archive <strong>Problem</strong>: Finding precedent takes days <strong>Solution</strong>: Semantic search across case history</p>
+<p><strong>Result</strong>:</p>
+<ul>
+<li>Query: “Cases involving breach of fiduciary duty by trustees”</li>
+<li>Returns relevant cases with key passages highlighted</li>
+<li>Days of research compressed to minutes</li>
+</ul>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<h3 id="query-understanding-is-critical">1. Query Understanding Is Critical</h3>
+<p>Without understanding what the user actually wants, even the best search engine returns irrelevant results.</p>
+<h3 id="hybrid-search-beats-pure-approaches">2. Hybrid Search Beats Pure Approaches</h3>
+<p>Neither keyword-only nor vector-only search is sufficient. The fusion approach consistently outperforms.</p>
+<h3 id="citations-build-trust">3. Citations Build Trust</h3>
+<p>Users trust AI responses more when sources are visible. Always show your work.</p>
+<h3 id="latency-matters-more-than-you-think">4. Latency Matters More Than You Think</h3>
+<p>Every 100ms of search latency reduces user satisfaction. We optimized aggressively.</p>
+<h2 id="whats-next">What’s Next</h2>
+<p><strong>Current roadmap</strong>:</p>
+<ul>
+<li>Multi-modal search (images, PDFs, videos)</li>
+<li>Real-time index updates</li>
+<li>Query analytics and optimization suggestions</li>
+<li>Fine-tuned embedding models per domain</li>
+</ul>
+<hr />
+<p><em>ElastranAI represents our approach to knowledge-augmented AI. For related technologies, see <a href="/blog/mcp-revolution-orchestrating-ai-services">MCP orchestration</a> and <a href="/blog/universal-knowledge-synthesizer">Universal Knowledge Synthesizer</a>.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codebuff: Building an AI-Powered Code Editor — aegntic.ai</title>
+  <meta name="description" content="The development story of Codebuff - a code editor with native AI integration, real-time collaboration, and intelligent code generation.">
+  <link rel="canonical" href="https://aegntic.ai/blog/codebuff-ai-code-editor/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/codebuff-ai-code-editor/">
+  <meta property="og:title" content="Codebuff: Building an AI-Powered Code Editor — aegntic.ai">
+  <meta property="og:description" content="The development story of Codebuff - a code editor with native AI integration, real-time collaboration, and intelligent code generation.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Codebuff: Building an AI-Powered Code Editor — aegntic.ai">
+  <meta name="twitter:description" content="The development story of Codebuff - a code editor with native AI integration, real-time collaboration, and intelligent code generation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Codebuff: Building an AI-Powered Code Editor","description":"The development story of Codebuff - a code editor with native AI integration, real-time collaboration, and intelligent code generation.","datePublished":"2024-07-04","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/codebuff-ai-code-editor/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Jul 5, 2024</div>
+    <h1>Codebuff: Building an AI-Powered Code Editor</h1>
+    <p><em>The development story of Codebuff - a code editor with native AI integration, real-time collaboration, and intelligent code generation.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">Codebuff</span><span class="tag">code-editor</span><span class="tag">AI</span><span class="tag">development</span><span class="tag">tools</span></div>
+    <p>What would a code editor look like if AI was a first-class citizen from day one?</p>
+<p>Not AI as a plugin. Not AI as an afterthought. AI at the core of every interaction.</p>
+<p>Codebuff was our answer.</p>
+<h2 id="the-vision">The Vision</h2>
+<p>Current code editors treat AI as an add-on:</p>
+<ul>
+<li>Copilot suggestions in VS Code</li>
+<li>ChatGPT windows alongside editors</li>
+<li>Copy-paste between AI and IDE</li>
+</ul>
+<p>This creates friction. Context is lost. Flow is broken.</p>
+<p>What if the editor <em>was</em> AI-native?</p>
+<h2 id="design-principles">Design Principles</h2>
+<h3 id="ai-understands-the-full-project">1. AI Understands the Full Project</h3>
+<p>Not just the current file—the entire codebase:</p>
+<ul>
+<li>Project structure</li>
+<li>Dependencies</li>
+<li>Conventions used</li>
+<li>Related files</li>
+</ul>
+<p>The AI knows your project like a senior teammate.</p>
+<h3 id="ai-actions-not-just-suggestions">2. AI Actions, Not Just Suggestions</h3>
+<p>Don’t just suggest code. Execute changes:</p>
+<ul>
+<li>“Refactor this to use the new pattern”</li>
+<li>AI makes the changes across all affected files</li>
+<li>Human reviews and accepts/rejects</li>
+</ul>
+<h3 id="real-time-collaboration">3. Real-Time Collaboration</h3>
+<p>Multiple developers + AI working together:</p>
+<ul>
+<li>See AI changes in real-time</li>
+<li>Collaborate with teammates simultaneously</li>
+<li>AI learns from team patterns</li>
+</ul>
+<h3 id="learning-loop">4. Learning Loop</h3>
+<p>AI improves from your feedback:</p>
+<ul>
+<li>Accept → “More like this”</li>
+<li>Reject → “Less like this”</li>
+<li>Edit → “Exactly like this”</li>
+</ul>
+<h2 id="technical-architecture">Technical Architecture</h2>
+<pre><code>Codebuff Architecture
+├── Editor Core (Monaco-based)
+│   ├── Syntax highlighting
+│   ├── Multi-cursor editing
+│   └── Split views
+├── AI Engine
+│   ├── Context aggregation
+│   ├── Code generation
+│   ├── Refactoring operations
+│   └── Learning system
+├── Collaboration Layer
+│   ├── WebSocket sync
+│   ├── Conflict resolution
+│   └── Presence awareness
+├── Backend (Express.js)
+│   ├── Project indexing
+│   ├── AI orchestration
+│   └── Database (PostgreSQL)
+└── AI Integrations
+    ├── OpenAI GPT-4
+    ├── Google Vertex AI
+    └── Custom models</code></pre>
+<h3 id="technology-stack">Technology Stack</h3>
+<ul>
+<li><strong>Frontend</strong>: React + Monaco Editor</li>
+<li><strong>Backend</strong>: Bun + Express.js</li>
+<li><strong>Database</strong>: PostgreSQL for projects, Redis for real-time</li>
+<li><strong>AI</strong>: OpenAI SDK + Google Vertex AI SDK</li>
+<li><strong>Sync</strong>: WebSockets for real-time</li>
+</ul>
+<h3 id="context-system">Context System</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> CodeContext {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Current file</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  currentFile<span class="op">:</span> FileInfo<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  cursorPosition<span class="op">:</span> <span class="bu">Position</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  selection<span class="op">:</span> Selection <span class="op">|</span> <span class="dt">null</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Project context</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  relatedFiles<span class="op">:</span> FileInfo[]<span class="op">;</span>  <span class="co">// Imports, similar patterns</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  projectStructure<span class="op">:</span> Directory<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  conventions<span class="op">:</span> Convention[]<span class="op">;</span>  <span class="co">// Detected patterns</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">// User context</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  recentEdits<span class="op">:</span> Edit[]<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  recentSearches<span class="op">:</span> <span class="dt">string</span>[]<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  recentAIInteractions<span class="op">:</span> Interaction[]<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Team context (if collaborative)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  teamPatterns<span class="op">:</span> Pattern[]<span class="op">;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  recentTeamChanges<span class="op">:</span> Change[]<span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="ai-actions-system">AI-Actions System</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> AIAction {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  type<span class="op">:</span> <span class="st">&#39;refactor&#39;</span> <span class="op">|</span> <span class="st">&#39;generate&#39;</span> <span class="op">|</span> <span class="st">&#39;explain&#39;</span> <span class="op">|</span> <span class="st">&#39;fix&#39;</span> <span class="op">|</span> <span class="st">&#39;optimize&#39;</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  scope<span class="op">:</span> <span class="st">&#39;selection&#39;</span> <span class="op">|</span> <span class="st">&#39;file&#39;</span> <span class="op">|</span> <span class="st">&#39;related&#39;</span> <span class="op">|</span> <span class="st">&#39;project&#39;</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// What the user asked for</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  request<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Proposed changes</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  changes<span class="op">:</span> FileChange[]<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Supporting information</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  explanation<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  confidence<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  alternatives<span class="op">:</span> AIAction[]<span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> FileChange {</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  path<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  type<span class="op">:</span> <span class="st">&#39;modify&#39;</span> <span class="op">|</span> <span class="st">&#39;create&#39;</span> <span class="op">|</span> <span class="st">&#39;delete&#39;</span> <span class="op">|</span> <span class="st">&#39;rename&#39;</span><span class="op">;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  before<span class="op">:</span> <span class="dt">string</span><span class="op">;</span>  <span class="co">// For modify</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  after<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  diff<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="key-features">Key Features</h2>
+<h3 id="natural-language-refactoring">1. Natural Language Refactoring</h3>
+<pre><code>User: &quot;Convert this class to use composition instead of inheritance&quot;
+
+AI: Analyzes the class, identifies inheritance structure, 
+    proposes changes across 3 files, shows diff preview
+
+User: Reviews and accepts with one click</code></pre>
+<h3 id="intelligent-code-generation">2. Intelligent Code Generation</h3>
+<p>Beyond autocomplete—generate complete implementations:</p>
+<ul>
+<li>Write function signature → AI implements body</li>
+<li>Describe feature → AI creates files</li>
+<li>Paste interface → AI generates implementation</li>
+</ul>
+<h3 id="context-aware-explanations">3. Context-Aware Explanations</h3>
+<p>Select any code and ask:</p>
+<ul>
+<li>“What does this do?”</li>
+<li>“Why is this written this way?”</li>
+<li>“What would break if I changed this?”</li>
+</ul>
+<p>AI answers with knowledge of your specific codebase.</p>
+<h3 id="smart-conflict-resolution">4. Smart Conflict Resolution</h3>
+<p>When AI changes conflict with human edits:</p>
+<ul>
+<li>Visual diff of both versions</li>
+<li>“Merge” option that combines intelligently</li>
+<li>History to rollback any decision</li>
+</ul>
+<h3 id="team-learning">5. Team Learning</h3>
+<p>Patterns learned from one developer help the whole team:</p>
+<ul>
+<li>Shared coding conventions</li>
+<li>Project-specific patterns</li>
+<li>Common refactoring approaches</li>
+</ul>
+<h2 id="performance-benchmarks">Performance Benchmarks</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Latency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Single file generation</td>
+<td>2-3s</td>
+</tr>
+<tr class="even">
+<td>Multi-file refactor</td>
+<td>5-8s</td>
+</tr>
+<tr class="odd">
+<td>Context loading</td>
+<td>500ms</td>
+</tr>
+<tr class="even">
+<td>Real-time sync</td>
+<td>&lt;100ms</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quality-metrics">Quality Metrics</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Generation accuracy</td>
+<td>87%</td>
+</tr>
+<tr class="even">
+<td>Refactor success rate</td>
+<td>92%</td>
+</tr>
+<tr class="odd">
+<td>User acceptance rate</td>
+<td>78%</td>
+</tr>
+<tr class="even">
+<td>Time savings vs manual</td>
+<td>4-6x</td>
+</tr>
+</tbody>
+</table>
+<h2 id="user-feedback">User Feedback</h2>
+<h3 id="what-developers-love">What Developers Love</h3>
+<blockquote>
+<p>“Finally, AI that understands my whole project, not just one file.”</p>
+</blockquote>
+<blockquote>
+<p>“The refactoring is like having a senior dev do it for you.”</p>
+</blockquote>
+<blockquote>
+<p>“Real-time collaboration with AI is surreal—like pair programming with a robot.”</p>
+</blockquote>
+<h3 id="what-we-learned-to-fix">What We Learned to Fix</h3>
+<ul>
+<li>Initial AI was too aggressive—now it asks before large changes</li>
+<li>Context gathering was slow—optimized with smart caching</li>
+<li>Explanation quality varied—improved with better prompting</li>
+</ul>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<h3 id="context-is-everything">1. Context Is Everything</h3>
+<p>AI that sees one file is barely useful. AI that sees your whole project is transformative.</p>
+<h3 id="actions-suggestions">2. Actions &gt; Suggestions</h3>
+<p>Users want AI to <em>do</em> things, not just propose them. Make execution seamless.</p>
+<h3 id="trust-is-earned">3. Trust Is Earned</h3>
+<p>Start conservative. Let users build confidence in AI before increasing scope.</p>
+<h3 id="learning-loops-close-the-gap">4. Learning Loops Close the Gap</h3>
+<p>Feedback from accept/reject/edit dramatically improves outputs over time.</p>
+<h2 id="future-development">Future Development</h2>
+<p><strong>Current roadmap</strong>:</p>
+<ul>
+<li>Voice controls for hands-free coding</li>
+<li>More language-specific optimizations</li>
+<li>Enterprise security and compliance</li>
+<li>Plugin system for custom AI actions</li>
+</ul>
+<hr />
+<p><em>Codebuff represents our vision for AI-native development tools. For related projects, see <a href="/blog/elastranai-elastic-ai-assistant">ElastranAI</a> for search-augmented AI.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

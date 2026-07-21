@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeScript for AI Development: Type Safety Meets LLMs — aegntic.ai</title>
+  <meta name="description" content="Why TypeScript is our primary language for AI applications. Type safety, better tooling, and patterns that prevent common mistakes.">
+  <link rel="canonical" href="https://aegntic.ai/blog/typescript-for-ai-development/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/typescript-for-ai-development/">
+  <meta property="og:title" content="TypeScript for AI Development: Type Safety Meets LLMs — aegntic.ai">
+  <meta property="og:description" content="Why TypeScript is our primary language for AI applications. Type safety, better tooling, and patterns that prevent common mistakes.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TypeScript for AI Development: Type Safety Meets LLMs — aegntic.ai">
+  <meta name="twitter:description" content="Why TypeScript is our primary language for AI applications. Type safety, better tooling, and patterns that prevent common mistakes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"TypeScript for AI Development: Type Safety Meets LLMs","description":"Why TypeScript is our primary language for AI applications. Type safety, better tooling, and patterns that prevent common mistakes.","datePublished":"2024-04-14","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/typescript-for-ai-development/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Apr 15, 2024</div>
+    <h1>TypeScript for AI Development: Type Safety Meets LLMs</h1>
+    <p><em>Why TypeScript is our primary language for AI applications. Type safety, better tooling, and patterns that prevent common mistakes.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">typescript</span><span class="tag">development</span><span class="tag">AI</span><span class="tag">patterns</span><span class="tag">tooling</span></div>
+    <p>AI applications handle complex, dynamic data. Type safety prevents entire categories of bugs.</p>
+<p>This is why 60% of our codebase is TypeScript.</p>
+<h2 id="the-case-for-types">The Case for Types</h2>
+<h3 id="before-typescript">Before TypeScript</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">processMessage</span>(message) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> result <span class="op">=</span> <span class="cf">await</span> ai<span class="op">.</span><span class="fu">complete</span>(message<span class="op">.</span><span class="at">content</span>)<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> result<span class="op">.</span><span class="at">text</span><span class="op">;</span> <span class="co">// What if result has no text?</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="after-typescript">After TypeScript</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> Message {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  role<span class="op">:</span> <span class="st">&#39;user&#39;</span> <span class="op">|</span> <span class="st">&#39;assistant&#39;</span> <span class="op">|</span> <span class="st">&#39;system&#39;</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  content<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> AIResponse {</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  text<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  tokens<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  finishReason<span class="op">:</span> <span class="st">&#39;stop&#39;</span> <span class="op">|</span> <span class="st">&#39;length&#39;</span> <span class="op">|</span> <span class="st">&#39;error&#39;</span><span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">processMessage</span>(message<span class="op">:</span> Message)<span class="op">:</span> <span class="bu">Promise</span><span class="op">&lt;</span>AIResponse<span class="op">&gt;</span> {</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> result <span class="op">=</span> <span class="cf">await</span> ai<span class="op">.</span><span class="fu">complete</span>(message<span class="op">.</span><span class="at">content</span>)<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> result<span class="op">;</span> <span class="co">// Compiler ensures shape</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="essential-patterns">Essential Patterns</h2>
+<h3 id="discriminated-unions-for-ai-responses">Discriminated Unions for AI Responses</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> AIResult <span class="op">=</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">|</span> { success<span class="op">:</span> <span class="kw">true</span><span class="op">;</span> text<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> tokens<span class="op">:</span> <span class="dt">number</span> }</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">|</span> { success<span class="op">:</span> <span class="kw">false</span><span class="op">;</span> error<span class="op">:</span> <span class="dt">string</span><span class="op">;</span> retryable<span class="op">:</span> <span class="dt">boolean</span> }<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">handleResult</span>(result<span class="op">:</span> AIResult) {</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (result<span class="op">.</span><span class="at">success</span>) {</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(result<span class="op">.</span><span class="at">text</span>)<span class="op">;</span> <span class="co">// TypeScript knows text exists</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">error</span>(result<span class="op">.</span><span class="at">error</span>)<span class="op">;</span> <span class="co">// TypeScript knows error exists</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="branded-types-for-safety">Branded Types for Safety</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> TokenCount <span class="op">=</span> <span class="dt">number</span> <span class="op">&amp;</span> { <span class="kw">readonly</span> brand<span class="op">:</span> unique <span class="dt">symbol</span> }<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> UserId <span class="op">=</span> <span class="dt">string</span> <span class="op">&amp;</span> { <span class="kw">readonly</span> brand<span class="op">:</span> unique <span class="dt">symbol</span> }<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">countTokens</span>(text<span class="op">:</span> <span class="dt">string</span>)<span class="op">:</span> TokenCount {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">encode</span>(text)<span class="op">.</span><span class="at">length</span> <span class="im">as</span> TokenCount<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Prevents mixing up different number/string types</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">processUser</span>(userId<span class="op">:</span> UserId<span class="op">,</span> tokens<span class="op">:</span> TokenCount) { }</span></code></pre></div>
+<h3 id="zod-for-runtime-validation">Zod for Runtime Validation</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { z } <span class="im">from</span> <span class="st">&#39;zod&#39;</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> AIResponseSchema <span class="op">=</span> z<span class="op">.</span><span class="fu">object</span>({</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  text<span class="op">:</span> z<span class="op">.</span><span class="fu">string</span>()<span class="op">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  tokens<span class="op">:</span> z<span class="op">.</span><span class="fu">number</span>()<span class="op">.</span><span class="fu">int</span>()<span class="op">.</span><span class="fu">positive</span>()<span class="op">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  model<span class="op">:</span> z<span class="op">.</span><span class="fu">enum</span>([<span class="st">&#39;gpt-4&#39;</span><span class="op">,</span> <span class="st">&#39;claude-3&#39;</span><span class="op">,</span> <span class="st">&#39;llama-3&#39;</span>])</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> AIResponse <span class="op">=</span> z<span class="op">.</span><span class="at">infer</span><span class="op">&lt;</span><span class="kw">typeof</span> AIResponseSchema<span class="op">&gt;;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">safeApiCall</span>()<span class="op">:</span> <span class="bu">Promise</span><span class="op">&lt;</span>AIResponse<span class="op">&gt;</span> {</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> raw <span class="op">=</span> <span class="cf">await</span> <span class="fu">fetch</span>(<span class="st">&#39;/api/ai&#39;</span>)<span class="op">.</span><span class="fu">then</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="fu">json</span>())<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> AIResponseSchema<span class="op">.</span><span class="fu">parse</span>(raw)<span class="op">;</span> <span class="co">// Throws if invalid</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="productivity-gains">Productivity Gains</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>JavaScript</th>
+<th>TypeScript</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bug discovery</td>
+<td>Runtime</td>
+<td>Compile time</td>
+</tr>
+<tr class="even">
+<td>Refactoring</td>
+<td>Scary</td>
+<td>Confident</td>
+</tr>
+<tr class="odd">
+<td>Documentation</td>
+<td>Manual</td>
+<td>Automatic</td>
+</tr>
+<tr class="even">
+<td>IDE support</td>
+<td>Basic</td>
+<td>Excellent</td>
+</tr>
+<tr class="odd">
+<td>API integration</td>
+<td>Error-prone</td>
+<td>Type-safe</td>
+</tr>
+</tbody>
+</table>
+<h2 id="our-configuration">Our Configuration</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;compilerOptions&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;strict&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;noUncheckedIndexedAccess&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;noImplicitReturns&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;exactOptionalPropertyTypes&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;moduleResolution&quot;</span><span class="fu">:</span> <span class="st">&quot;bundler&quot;</span><span class="fu">,</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="st">&quot;ES2022&quot;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Strict mode catches the bugs that matter.</p>
+<hr />
+<p><em>TypeScript is foundational to our development. See <a href="/blog/bun-vs-node-runtime-switch">Bun vs Node</a> for our runtime choice.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

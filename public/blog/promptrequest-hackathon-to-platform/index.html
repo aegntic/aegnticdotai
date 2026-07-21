@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptRequest: From Hackathon Project to Full Platform — aegntic.ai</title>
+  <meta name="description" content="The evolution of PromptRequest - a prompting system that grew from hackathon entry to feature-complete platform for prompt engineering and management.">
+  <link rel="canonical" href="https://aegntic.ai/blog/promptrequest-hackathon-to-platform/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/promptrequest-hackathon-to-platform/">
+  <meta property="og:title" content="PromptRequest: From Hackathon Project to Full Platform — aegntic.ai">
+  <meta property="og:description" content="The evolution of PromptRequest - a prompting system that grew from hackathon entry to feature-complete platform for prompt engineering and management.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PromptRequest: From Hackathon Project to Full Platform — aegntic.ai">
+  <meta name="twitter:description" content="The evolution of PromptRequest - a prompting system that grew from hackathon entry to feature-complete platform for prompt engineering and management.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"PromptRequest: From Hackathon Project to Full Platform","description":"The evolution of PromptRequest - a prompting system that grew from hackathon entry to feature-complete platform for prompt engineering and management.","datePublished":"2024-09-24","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/promptrequest-hackathon-to-platform/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Sep 25, 2024</div>
+    <h1>PromptRequest: From Hackathon Project to Full Platform</h1>
+    <p><em>The evolution of PromptRequest - a prompting system that grew from hackathon entry to feature-complete platform for prompt engineering and management.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">PromptRequest</span><span class="tag">prompts</span><span class="tag">hackathon</span><span class="tag">development</span><span class="tag">AI-tools</span></div>
+    <p>Some projects are built to solve today’s problem. Others evolve into something larger.</p>
+<p>PromptRequest started as a hackathon entry. It became a full prompt engineering platform.</p>
+<h2 id="the-hackathon-origin">The Hackathon Origin</h2>
+<p><strong>Challenge</strong>: Build something useful for AI developers in 48 hours.</p>
+<p><strong>Observation</strong>: Everyone was copy-pasting prompts from files, Notion pages, and random notes. There was no systematic way to:</p>
+<ul>
+<li>Store prompts centrally</li>
+<li>Version control changes</li>
+<li>Test prompt variations</li>
+<li>Share with teammates</li>
+</ul>
+<p><strong>Solution</strong>: Build a prompt management system.</p>
+<h2 id="initial-mvp">Initial MVP</h2>
+<p>48-hour version had:</p>
+<ul>
+<li>SQLite database for prompt storage</li>
+<li>Basic CRUD operations</li>
+<li>Tags and categories</li>
+<li>Simple export/import</li>
+</ul>
+<p>It wasn’t fancy, but it worked. And developers immediately wanted more.</p>
+<h2 id="what-users-asked-for">What Users Asked For</h2>
+<p>After the hackathon, feedback poured in:</p>
+<h3 id="i-need-to-ab-test-prompts">“I need to A/B test prompts”</h3>
+<p>Different versions produce different results. Users needed comparison tools.</p>
+<h3 id="i-want-to-share-with-my-team">“I want to share with my team”</h3>
+<p>Individual prompt libraries don’t scale. Teams needed collaboration.</p>
+<h3 id="i-need-to-track-which-version-is-in-production">“I need to track which version is in production”</h3>
+<p>When prompts are code, they need release management.</p>
+<h3 id="i-want-templates-not-just-storage">“I want templates, not just storage”</h3>
+<p>Dynamic prompts with variable substitution.</p>
+<h2 id="the-platform-evolution">The Platform Evolution</h2>
+<h3 id="phase-1-storage-management">Phase 1: Storage → Management</h3>
+<p>Added:</p>
+<ul>
+<li>Prompt versioning with diff view</li>
+<li>Environment tagging (dev, staging, prod)</li>
+<li>Access control per prompt</li>
+<li>Audit logging</li>
+</ul>
+<h3 id="phase-2-management-testing">Phase 2: Management → Testing</h3>
+<p>Added:</p>
+<ul>
+<li>Side-by-side comparison execution</li>
+<li>Metrics collection (latency, token usage)</li>
+<li>Quality scoring with human feedback</li>
+<li>Regression testing for prompt changes</li>
+</ul>
+<h3 id="phase-3-testing-platform">Phase 3: Testing → Platform</h3>
+<p>Added:</p>
+<ul>
+<li>Team workspaces</li>
+<li>API access for programmatic use</li>
+<li>Integration with CI/CD pipelines</li>
+<li>Analytics dashboard</li>
+</ul>
+<h2 id="technical-architecture">Technical Architecture</h2>
+<pre><code>PromptRequest Architecture
+├── Core Services
+│   ├── Prompt Storage (PostgreSQL)
+│   ├── Version Control (Git-like)
+│   ├── Execution Engine
+│   └── Analytics Pipeline
+├── API Layer
+│   ├── REST API
+│   ├── GraphQL
+│   └── SDK (TypeScript, Python)
+├── Web Interface
+│   ├── Editor with syntax highlighting
+│   ├── Testing interface
+│   └── Dashboard
+└── Integrations
+    ├── OpenAI / Anthropic / etc.
+    ├── GitHub / GitLab
+    └── Slack / Discord</code></pre>
+<h3 id="prompt-schema">Prompt Schema</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> Prompt {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  id<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  workspace<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Content</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  name<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  description<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  template<span class="op">:</span> <span class="dt">string</span><span class="op">;</span>  <span class="co">// With {{variable}} syntax</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Metadata</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  tags<span class="op">:</span> <span class="dt">string</span>[]<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  category<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  environment<span class="op">:</span> <span class="st">&#39;dev&#39;</span> <span class="op">|</span> <span class="st">&#39;staging&#39;</span> <span class="op">|</span> <span class="st">&#39;prod&#39;</span><span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Versioning</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  version<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  parentVersion<span class="op">:</span> <span class="dt">number</span> <span class="op">|</span> <span class="dt">null</span><span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  changelog<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Default configuration</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  model<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  temperature<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  maxTokens<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Tracking</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  createdAt<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  updatedAt<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  createdBy<span class="op">:</span> User<span class="op">;</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  executionCount<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  lastExecuted<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="template-engine">Template Engine</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">renderPrompt</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  template<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  variables<span class="op">:</span> <span class="bu">Record</span><span class="op">&lt;</span><span class="dt">string</span><span class="op">,</span> <span class="dt">string</span><span class="op">&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)<span class="op">:</span> <span class="dt">string</span> {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Replace variables</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> rendered <span class="op">=</span> template<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">const</span> [key<span class="op">,</span> value] <span class="kw">of</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">entries</span>(variables)) {</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    rendered <span class="op">=</span> rendered<span class="op">.</span><span class="fu">replace</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">new</span> <span class="bu">RegExp</span>(<span class="vs">`</span><span class="sc">\\</span><span class="vs">{</span><span class="sc">\\</span><span class="vs">{</span><span class="sc">${</span>key<span class="sc">}\\</span><span class="vs">}</span><span class="sc">\\</span><span class="vs">}`</span><span class="op">,</span> <span class="st">&#39;g&#39;</span>)<span class="op">,</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      value</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Validate all variables replaced</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> unreplaced <span class="op">=</span> rendered<span class="op">.</span><span class="fu">match</span>(<span class="ss">/</span><span class="sc">\{\{[^}]+\}\}</span><span class="ss">/g</span>)<span class="op">;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (unreplaced) {</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="vs">`Missing variables: </span><span class="sc">${</span>unreplaced<span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;, &#39;</span>)<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> rendered<span class="op">;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="key-features">Key Features</h2>
+<h3 id="version-control">1. Version Control</h3>
+<p>Full history of every prompt change:</p>
+<ul>
+<li>Who changed it</li>
+<li>What changed</li>
+<li>Why it changed</li>
+<li>When it was deployed</li>
+</ul>
+<p>Roll back to any version with one click.</p>
+<h3 id="ab-testing">2. A/B Testing</h3>
+<p>Test prompt variations scientifically:</p>
+<ul>
+<li>Split traffic between versions</li>
+<li>Collect quality metrics</li>
+<li>Statistical significance calculation</li>
+<li>Winner deployment</li>
+</ul>
+<h3 id="environment-management">3. Environment Management</h3>
+<p>Separate prompts by environment:</p>
+<ul>
+<li>Development: Experimental changes</li>
+<li>Staging: Testing before production</li>
+<li>Production: Deployed and stable</li>
+</ul>
+<p>Promote between environments with review workflow.</p>
+<h3 id="api-access">4. API Access</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> promptrequest <span class="im">import</span> Client</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> Client(api_key<span class="op">=</span><span class="st">&quot;...&quot;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get prompt</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> client.get_prompt(<span class="st">&quot;customer-support-v2&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Execute with variables</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.execute(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    prompt_id<span class="op">=</span><span class="st">&quot;customer-support-v2&quot;</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    variables<span class="op">=</span>{<span class="st">&quot;customer_name&quot;</span>: <span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;issue&quot;</span>: <span class="st">&quot;billing&quot;</span>},</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">&quot;claude-3-opus&quot;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Log feedback</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>client.log_feedback(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    execution_id<span class="op">=</span>response.<span class="bu">id</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    rating<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    notes<span class="op">=</span><span class="st">&quot;Perfect response&quot;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h3 id="analytics-dashboard">5. Analytics Dashboard</h3>
+<p>Track across all prompts:</p>
+<ul>
+<li>Execution volume</li>
+<li>Average latency</li>
+<li>Token usage and cost</li>
+<li>Quality scores over time</li>
+<li>Error rates</li>
+</ul>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<h3 id="start-simple-grow-from-feedback">1. Start Simple, Grow From Feedback</h3>
+<p>The 48-hour MVP validated the idea. User feedback directed every subsequent feature.</p>
+<h3 id="prompts-are-code">2. Prompts Are Code</h3>
+<p>Treat prompts with the same rigor as software:</p>
+<ul>
+<li>Version control</li>
+<li>Testing</li>
+<li>Review process</li>
+<li>Environment management</li>
+</ul>
+<h3 id="collaboration-multiplies-value">3. Collaboration Multiplies Value</h3>
+<p>Individual prompt libraries are useful. Team-shared libraries are transformative.</p>
+<h3 id="metrics-enable-improvement">4. Metrics Enable Improvement</h3>
+<p>Without measurement, prompt changes are guesswork. With metrics, they’re engineering.</p>
+<h2 id="growth-trajectory">Growth Trajectory</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Milestone</th>
+<th>Timeline</th>
+<th>Key Metric</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hackathon MVP</td>
+<td>Day 2</td>
+<td>1 user (me)</td>
+</tr>
+<tr class="even">
+<td>Private beta</td>
+<td>Month 1</td>
+<td>15 users</td>
+</tr>
+<tr class="odd">
+<td>Public beta</td>
+<td>Month 3</td>
+<td>200 users</td>
+</tr>
+<tr class="even">
+<td>Platform launch</td>
+<td>Month 6</td>
+<td>1,500 users</td>
+</tr>
+<tr class="odd">
+<td>Team features</td>
+<td>Month 9</td>
+<td>50 teams</td>
+</tr>
+</tbody>
+</table>
+<h2 id="whats-next">What’s Next</h2>
+<p><strong>Current roadmap</strong>:</p>
+<ul>
+<li>Prompt chains and workflows</li>
+<li>Multi-modal prompt support</li>
+<li>Automated optimization suggestions</li>
+<li>Enterprise SSO integration</li>
+</ul>
+<hr />
+<p><em>PromptRequest demonstrates how hackathon projects can evolve into platforms. For related development tools, see <a href="/blog/mcp-revolution-orchestrating-ai-services">MCP orchestration</a>.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

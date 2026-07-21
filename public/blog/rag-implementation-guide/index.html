@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG Implementation Guide: Retrieval-Augmented Generation Done Right — aegntic.ai</title>
+  <meta name="description" content="Building effective RAG systems. Chunking strategies, embedding selection, retrieval optimization, and quality measurement.">
+  <link rel="canonical" href="https://aegntic.ai/blog/rag-implementation-guide/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/rag-implementation-guide/">
+  <meta property="og:title" content="RAG Implementation Guide: Retrieval-Augmented Generation Done Right — aegntic.ai">
+  <meta property="og:description" content="Building effective RAG systems. Chunking strategies, embedding selection, retrieval optimization, and quality measurement.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RAG Implementation Guide: Retrieval-Augmented Generation Done Right — aegntic.ai">
+  <meta name="twitter:description" content="Building effective RAG systems. Chunking strategies, embedding selection, retrieval optimization, and quality measurement.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"RAG Implementation Guide: Retrieval-Augmented Generation Done Right","description":"Building effective RAG systems. Chunking strategies, embedding selection, retrieval optimization, and quality measurement.","datePublished":"2024-04-04","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/rag-implementation-guide/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Apr 5, 2024</div>
+    <h1>RAG Implementation Guide: Retrieval-Augmented Generation Done Right</h1>
+    <p><em>Building effective RAG systems. Chunking strategies, embedding selection, retrieval optimization, and quality measurement.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">RAG</span><span class="tag">embeddings</span><span class="tag">AI</span><span class="tag">architecture</span><span class="tag">search</span></div>
+    <p>RAG connects AI to your knowledge. Done poorly, it retrieves irrelevant content. Done well, it’s transformative.</p>
+<h2 id="the-rag-pipeline">The RAG Pipeline</h2>
+<pre><code>Query → Embed → Search → Retrieve → Augment → Generate</code></pre>
+<p>Each step has optimization opportunities.</p>
+<h2 id="step-1-chunking">Step 1: Chunking</h2>
+<h3 id="bad-chunking">Bad Chunking</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixed-size chunks ignore structure</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>chunks <span class="op">=</span> [text[i:i<span class="op">+</span><span class="dv">500</span>] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(text), <span class="dv">500</span>)]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Might split mid-sentence, mid-paragraph</span></span></code></pre></div>
+<h3 id="good-chunking">Good Chunking</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> langchain.text_splitter <span class="im">import</span> RecursiveCharacterTextSplitter</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>splitter <span class="op">=</span> RecursiveCharacterTextSplitter(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    chunk_size<span class="op">=</span><span class="dv">500</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    chunk_overlap<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    separators<span class="op">=</span>[<span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot;. &quot;</span>, <span class="st">&quot; &quot;</span>]  <span class="co"># Respect structure</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>chunks <span class="op">=</span> splitter.split_text(text)</span></code></pre></div>
+<h3 id="chunk-size-trade-offs">Chunk Size Trade-offs</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Size</th>
+<th>Retrieval</th>
+<th>Context</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>100</td>
+<td>Precise</td>
+<td>Fragmented</td>
+<td>Specific Q&amp;A</td>
+</tr>
+<tr class="even">
+<td>500</td>
+<td>Balanced</td>
+<td>Coherent</td>
+<td>General use</td>
+</tr>
+<tr class="odd">
+<td>1000</td>
+<td>Broader</td>
+<td>Full context</td>
+<td>Complex topics</td>
+</tr>
+</tbody>
+</table>
+<h2 id="step-2-embedding">Step 2: Embedding</h2>
+<h3 id="model-selection">Model Selection</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># OpenAI (best quality, API cost)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>embed <span class="op">=</span> OpenAI().embeddings.create(model<span class="op">=</span><span class="st">&quot;text-embedding-3-small&quot;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Local (free, self-hosted)</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sentence_transformers <span class="im">import</span> SentenceTransformer</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SentenceTransformer(<span class="st">&#39;all-MiniLM-L6-v2&#39;</span>)</span></code></pre></div>
+<h3 id="embedding-comparison">Embedding Comparison</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Dimensions</th>
+<th>Quality</th>
+<th>Speed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>text-embedding-3-large</td>
+<td>3072</td>
+<td>Excellent</td>
+<td>API</td>
+</tr>
+<tr class="even">
+<td>text-embedding-3-small</td>
+<td>1536</td>
+<td>Very good</td>
+<td>API</td>
+</tr>
+<tr class="odd">
+<td>nomic-embed-text</td>
+<td>768</td>
+<td>Good</td>
+<td>Fast</td>
+</tr>
+<tr class="even">
+<td>all-MiniLM-L6-v2</td>
+<td>384</td>
+<td>Adequate</td>
+<td>Very fast</td>
+</tr>
+</tbody>
+</table>
+<h2 id="step-3-vector-store">Step 3: Vector Store</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chromadb</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> chromadb.PersistentClient(path<span class="op">=</span><span class="st">&quot;./chroma_db&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>collection <span class="op">=</span> client.create_collection(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">&quot;documents&quot;</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    metadata<span class="op">=</span>{<span class="st">&quot;hnsw:space&quot;</span>: <span class="st">&quot;cosine&quot;</span>}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Store chunks with metadata</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>collection.add(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    ids<span class="op">=</span>[<span class="ss">f&quot;chunk_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">&quot;</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(chunks))],</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    documents<span class="op">=</span>chunks,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    embeddings<span class="op">=</span>embeddings,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    metadatas<span class="op">=</span>[{<span class="st">&quot;source&quot;</span>: doc.source, <span class="st">&quot;page&quot;</span>: i} <span class="cf">for</span> i, _ <span class="kw">in</span> <span class="bu">enumerate</span>(chunks)]</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h2 id="step-4-retrieval">Step 4: Retrieval</h2>
+<h3 id="basic-retrieval">Basic Retrieval</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> collection.query(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    query_embeddings<span class="op">=</span>[query_embedding],</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    n_results<span class="op">=</span><span class="dv">5</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h3 id="advanced-retrieval">Advanced Retrieval</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hybrid search: semantic + keyword</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hybrid_search(query: <span class="bu">str</span>, k: <span class="bu">int</span> <span class="op">=</span> <span class="dv">5</span>):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    semantic <span class="op">=</span> vector_search(query, k<span class="op">=</span>k<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    keyword <span class="op">=</span> bm25_search(query, k<span class="op">=</span>k<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reciprocal Rank Fusion</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    fused <span class="op">=</span> reciprocal_rank_fusion(semantic, keyword)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fused[:k]</span></code></pre></div>
+<h2 id="step-5-augmentation">Step 5: Augmentation</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> build_prompt(query: <span class="bu">str</span>, retrieved: <span class="bu">list</span>[<span class="bu">str</span>]) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    context <span class="op">=</span> <span class="st">&quot;</span><span class="ch">\n\n</span><span class="st">&quot;</span>.join([</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f&quot;[Document </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">]: </span><span class="sc">{</span>doc<span class="sc">}</span><span class="ss">&quot;</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, doc <span class="kw">in</span> <span class="bu">enumerate</span>(retrieved)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f&quot;&quot;&quot;Answer based on the provided documents only.</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ss">    </span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="ss">Documents:</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>context<span class="sc">}</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ss">Question: </span><span class="sc">{</span>query<span class="sc">}</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ss">Instructions:</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- Use only information from the documents</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- Cite document numbers [1], [2], etc.</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- Say &quot;not found in documents&quot; if unsure</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="ss">&quot;&quot;&quot;</span></span></code></pre></div>
+<h2 id="quality-measurement">Quality Measurement</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> evaluate_rag(test_set: <span class="bu">list</span>[<span class="bu">dict</span>]) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    metrics <span class="op">=</span> {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;retrieval_precision&#39;</span>: [],</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;answer_accuracy&#39;</span>: [],</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;faithfulness&#39;</span>: []</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> case <span class="kw">in</span> test_set:</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        retrieved <span class="op">=</span> retrieve(case[<span class="st">&#39;query&#39;</span>])</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        answer <span class="op">=</span> generate(case[<span class="st">&#39;query&#39;</span>], retrieved)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Does retrieved content contain the answer?</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        metrics[<span class="st">&#39;retrieval_precision&#39;</span>].append(</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>            <span class="bu">any</span>(case[<span class="st">&#39;answer_source&#39;</span>] <span class="kw">in</span> r <span class="cf">for</span> r <span class="kw">in</span> retrieved)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Is the answer correct?</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        metrics[<span class="st">&#39;answer_accuracy&#39;</span>].append(</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>            case[<span class="st">&#39;expected&#39;</span>] <span class="kw">in</span> answer</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {k: <span class="bu">sum</span>(v)<span class="op">/</span><span class="bu">len</span>(v) <span class="cf">for</span> k, v <span class="kw">in</span> metrics.items()}</span></code></pre></div>
+<h2 id="common-pitfalls">Common Pitfalls</h2>
+<ol type="1">
+<li><strong>Too small chunks</strong> → Lost context</li>
+<li><strong>Too large chunks</strong> → Irrelevant content retrieved</li>
+<li><strong>No overlap</strong> → Information at boundaries lost</li>
+<li><strong>Wrong embedding model</strong> → Poor semantic matching</li>
+<li><strong>No reranking</strong> → Good documents ranked low</li>
+</ol>
+<hr />
+<p><em>RAG is central to knowledge-augmented AI. See <a href="/blog/elastranai-elastic-ai-assistant">ElastranAI</a> for our implementation.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

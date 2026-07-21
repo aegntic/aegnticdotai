@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observability for AI Systems: Logging, Metrics, and Traces — aegntic.ai</title>
+  <meta name="description" content="Monitoring AI applications in production. What to log, which metrics matter, and how to debug when things go wrong.">
+  <link rel="canonical" href="https://aegntic.ai/blog/observability-ai-systems/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/observability-ai-systems/">
+  <meta property="og:title" content="Observability for AI Systems: Logging, Metrics, and Traces — aegntic.ai">
+  <meta property="og:description" content="Monitoring AI applications in production. What to log, which metrics matter, and how to debug when things go wrong.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Observability for AI Systems: Logging, Metrics, and Traces — aegntic.ai">
+  <meta name="twitter:description" content="Monitoring AI applications in production. What to log, which metrics matter, and how to debug when things go wrong.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Observability for AI Systems: Logging, Metrics, and Traces","description":"Monitoring AI applications in production. What to log, which metrics matter, and how to debug when things go wrong.","datePublished":"2024-03-14","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/observability-ai-systems/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Mar 15, 2024</div>
+    <h1>Observability for AI Systems: Logging, Metrics, and Traces</h1>
+    <p><em>Monitoring AI applications in production. What to log, which metrics matter, and how to debug when things go wrong.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">observability</span><span class="tag">monitoring</span><span class="tag">logging</span><span class="tag">production</span><span class="tag">AI</span></div>
+    <p>You can’t improve what you can’t measure. AI systems need observability from day one.</p>
+<h2 id="the-three-pillars">The Three Pillars</h2>
+<h3 id="logs">1. Logs</h3>
+<p>What happened, step by step.</p>
+<h3 id="metrics">2. Metrics</h3>
+<p>Aggregated measurements over time.</p>
+<h3 id="traces">3. Traces</h3>
+<p>Request flow through the system.</p>
+<h2 id="logging-for-ai">Logging for AI</h2>
+<h3 id="what-to-log">What to Log</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> AILog {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Identification</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  requestId<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  timestamp<span class="op">:</span> <span class="bu">Date</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  userId<span class="op">?:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Input (sanitized)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  inputTokens<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  inputHash<span class="op">:</span> <span class="dt">string</span><span class="op">;</span>  <span class="co">// Not actual content</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Output</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  outputTokens<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  model<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Performance</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  latency<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Quality</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  finishReason<span class="op">:</span> <span class="st">&#39;stop&#39;</span> <span class="op">|</span> <span class="st">&#39;length&#39;</span> <span class="op">|</span> <span class="st">&#39;error&#39;</span><span class="op">;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Cost</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  cost<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="what-not-to-log">What NOT to Log</h3>
+<ul>
+<li>Full prompts (privacy)</li>
+<li>Full responses (storage)</li>
+<li>API keys (security)</li>
+<li>PII (compliance)</li>
+</ul>
+<h3 id="structured-logging">Structured Logging</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pino <span class="im">from</span> <span class="st">&#39;pino&#39;</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> logger <span class="op">=</span> <span class="fu">pino</span>({</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  level<span class="op">:</span> <span class="st">&#39;info&#39;</span><span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  formatters<span class="op">:</span> {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    level<span class="op">:</span> (label) <span class="kw">=&gt;</span> ({ level<span class="op">:</span> label })</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>logger<span class="op">.</span><span class="fu">info</span>({</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  event<span class="op">:</span> <span class="st">&#39;ai_completion&#39;</span><span class="op">,</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  requestId<span class="op">:</span> ctx<span class="op">.</span><span class="at">requestId</span><span class="op">,</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  model<span class="op">:</span> <span class="st">&#39;claude-3-sonnet&#39;</span><span class="op">,</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  inputTokens<span class="op">:</span> <span class="dv">150</span><span class="op">,</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  outputTokens<span class="op">:</span> <span class="dv">342</span><span class="op">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  latency<span class="op">:</span> <span class="dv">1234</span><span class="op">,</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  cost<span class="op">:</span> <span class="fl">0.002</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<h2 id="key-metrics">Key Metrics</h2>
+<h3 id="latency">Latency</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> latencyHistogram <span class="op">=</span> <span class="kw">new</span> <span class="fu">Histogram</span>({</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  name<span class="op">:</span> <span class="st">&#39;ai_latency_seconds&#39;</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  help<span class="op">:</span> <span class="st">&#39;AI completion latency&#39;</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  labelNames<span class="op">:</span> [<span class="st">&#39;model&#39;</span><span class="op">,</span> <span class="st">&#39;status&#39;</span>]<span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  buckets<span class="op">:</span> [<span class="fl">0.1</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">30</span>]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Record</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> end <span class="op">=</span> latencyHistogram<span class="op">.</span><span class="fu">startTimer</span>({ model<span class="op">,</span> status })<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> <span class="fu">complete</span>()<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">end</span>()<span class="op">;</span></span></code></pre></div>
+<h3 id="token-usage">Token Usage</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> tokenCounter <span class="op">=</span> <span class="kw">new</span> <span class="fu">Counter</span>({</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  name<span class="op">:</span> <span class="st">&#39;ai_tokens_total&#39;</span><span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  help<span class="op">:</span> <span class="st">&#39;Total tokens used&#39;</span><span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  labelNames<span class="op">:</span> [<span class="st">&#39;model&#39;</span><span class="op">,</span> <span class="st">&#39;type&#39;</span>]  <span class="co">// input/output</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>tokenCounter<span class="op">.</span><span class="fu">inc</span>({ model<span class="op">:</span> <span class="st">&#39;claude-3&#39;</span><span class="op">,</span> type<span class="op">:</span> <span class="st">&#39;input&#39;</span> }<span class="op">,</span> <span class="dv">150</span>)<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>tokenCounter<span class="op">.</span><span class="fu">inc</span>({ model<span class="op">:</span> <span class="st">&#39;claude-3&#39;</span><span class="op">,</span> type<span class="op">:</span> <span class="st">&#39;output&#39;</span> }<span class="op">,</span> <span class="dv">342</span>)<span class="op">;</span></span></code></pre></div>
+<h3 id="error-rate">Error Rate</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> errorCounter <span class="op">=</span> <span class="kw">new</span> <span class="fu">Counter</span>({</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  name<span class="op">:</span> <span class="st">&#39;ai_errors_total&#39;</span><span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  help<span class="op">:</span> <span class="st">&#39;Total AI errors&#39;</span><span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  labelNames<span class="op">:</span> [<span class="st">&#39;model&#39;</span><span class="op">,</span> <span class="st">&#39;error_type&#39;</span>]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">// On error</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>errorCounter<span class="op">.</span><span class="fu">inc</span>({ model<span class="op">:</span> <span class="st">&#39;gpt-4&#39;</span><span class="op">,</span> error_type<span class="op">:</span> <span class="st">&#39;rate_limit&#39;</span> })<span class="op">;</span></span></code></pre></div>
+<h3 id="cost">Cost</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> costGauge <span class="op">=</span> <span class="kw">new</span> <span class="fu">Gauge</span>({</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  name<span class="op">:</span> <span class="st">&#39;ai_cost_dollars&#39;</span><span class="op">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  help<span class="op">:</span> <span class="st">&#39;AI cost in dollars&#39;</span><span class="op">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  labelNames<span class="op">:</span> [<span class="st">&#39;model&#39;</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>costGauge<span class="op">.</span><span class="fu">inc</span>({ model<span class="op">:</span> <span class="st">&#39;claude-3&#39;</span> }<span class="op">,</span> <span class="fl">0.002</span>)<span class="op">;</span></span></code></pre></div>
+<h2 id="distributed-tracing">Distributed Tracing</h2>
+<h3 id="with-opentelemetry">With OpenTelemetry</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { trace } <span class="im">from</span> <span class="st">&#39;@opentelemetry/api&#39;</span><span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> tracer <span class="op">=</span> trace<span class="op">.</span><span class="fu">getTracer</span>(<span class="st">&#39;ai-service&#39;</span>)<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">processRequest</span>(req<span class="op">:</span> Request) {</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> tracer<span class="op">.</span><span class="fu">startActiveSpan</span>(<span class="st">&#39;ai.process&#39;</span><span class="op">,</span> <span class="kw">async</span> (span) <span class="kw">=&gt;</span> {</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    span<span class="op">.</span><span class="fu">setAttribute</span>(<span class="st">&#39;user.id&#39;</span><span class="op">,</span> req<span class="op">.</span><span class="at">userId</span>)<span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Child span for retrieval</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> docs <span class="op">=</span> <span class="cf">await</span> tracer<span class="op">.</span><span class="fu">startActiveSpan</span>(<span class="st">&#39;ai.retrieve&#39;</span><span class="op">,</span> <span class="kw">async</span> (s) <span class="kw">=&gt;</span> {</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> result <span class="op">=</span> <span class="cf">await</span> <span class="fu">vectorSearch</span>(req<span class="op">.</span><span class="at">query</span>)<span class="op">;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      s<span class="op">.</span><span class="fu">setAttribute</span>(<span class="st">&#39;docs.count&#39;</span><span class="op">,</span> result<span class="op">.</span><span class="at">length</span>)<span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>      s<span class="op">.</span><span class="fu">end</span>()<span class="op">;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Child span for completion</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> tracer<span class="op">.</span><span class="fu">startActiveSpan</span>(<span class="st">&#39;ai.complete&#39;</span><span class="op">,</span> <span class="kw">async</span> (s) <span class="kw">=&gt;</span> {</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> result <span class="op">=</span> <span class="cf">await</span> llm<span class="op">.</span><span class="fu">complete</span>(req<span class="op">.</span><span class="at">query</span><span class="op">,</span> docs)<span class="op">;</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>      s<span class="op">.</span><span class="fu">setAttribute</span>(<span class="st">&#39;tokens.output&#39;</span><span class="op">,</span> result<span class="op">.</span><span class="at">tokens</span>)<span class="op">;</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>      s<span class="op">.</span><span class="fu">end</span>()<span class="op">;</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    span<span class="op">.</span><span class="fu">end</span>()<span class="op">;</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response<span class="op">;</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="dashboards">Dashboards</h2>
+<h3 id="essential-panels">Essential Panels</h3>
+<ol type="1">
+<li><strong>Request Volume</strong> - Requests/minute by model</li>
+<li><strong>Latency Percentiles</strong> - P50, P95, P99</li>
+<li><strong>Error Rate</strong> - Errors/total requests</li>
+<li><strong>Token Usage</strong> - Input vs output over time</li>
+<li><strong>Cost Tracker</strong> - Hourly/daily/monthly spend</li>
+<li><strong>Quality Score</strong> - User feedback ratings</li>
+</ol>
+<h3 id="example-grafana-query">Example Grafana Query</h3>
+<pre class="promql"><code># Request latency P95
+histogram_quantile(0.95, 
+  sum(rate(ai_latency_seconds_bucket[5m])) by (le, model)
+)
+
+# Error rate
+sum(rate(ai_errors_total[5m])) 
+/ sum(rate(ai_requests_total[5m]))</code></pre>
+<h2 id="alerting">Alerting</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">groups</span><span class="kw">:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> ai-alerts</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">rules</span><span class="kw">:</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">alert</span><span class="kw">:</span><span class="at"> HighErrorRate</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">expr</span><span class="kw">:</span><span class="at"> sum(rate(ai_errors_total[5m])) / sum(rate(ai_requests_total[5m])) &gt; 0.05</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">for</span><span class="kw">:</span><span class="at"> 5m</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">annotations</span><span class="kw">:</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">summary</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;AI error rate above 5%&quot;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="at">          </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">alert</span><span class="kw">:</span><span class="at"> HighLatency</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">expr</span><span class="kw">:</span><span class="at"> histogram_quantile(0.95, sum(rate(ai_latency_seconds_bucket[5m])) by (le)) &gt; 10</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">for</span><span class="kw">:</span><span class="at"> 5m</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">annotations</span><span class="kw">:</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">summary</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;AI P95 latency above 10s&quot;</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="at">          </span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">alert</span><span class="kw">:</span><span class="at"> BudgetExceeded</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">expr</span><span class="kw">:</span><span class="at"> sum(ai_cost_dollars) &gt; 100</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">annotations</span><span class="kw">:</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">summary</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Daily AI budget exceeded&quot;</span></span></code></pre></div>
+<h2 id="debugging-production-issues">Debugging Production Issues</h2>
+<ol type="1">
+<li><strong>Start with metrics</strong> - What changed?</li>
+<li><strong>Find affected requests</strong> - Filter by time/error</li>
+<li><strong>Trace the request</strong> - Follow the full path</li>
+<li><strong>Check logs</strong> - Details at each step</li>
+<li><strong>Reproduce locally</strong> - Confirm fix</li>
+</ol>
+<hr />
+<p><em>Observability is non-negotiable in production. See <a href="/blog/claude-flow-enterprise-orchestration">Claude-Flow</a> for enterprise monitoring.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

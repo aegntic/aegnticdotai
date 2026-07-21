@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bun vs Node: Why We Switched Our Runtime — aegntic.ai</title>
+  <meta name="description" content="The decision to switch from Node.js to Bun. Performance benchmarks, compatibility testing, and lessons from the migration.">
+  <link rel="canonical" href="https://aegntic.ai/blog/bun-vs-node-runtime-switch/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/bun-vs-node-runtime-switch/">
+  <meta property="og:title" content="Bun vs Node: Why We Switched Our Runtime — aegntic.ai">
+  <meta property="og:description" content="The decision to switch from Node.js to Bun. Performance benchmarks, compatibility testing, and lessons from the migration.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bun vs Node: Why We Switched Our Runtime — aegntic.ai">
+  <meta name="twitter:description" content="The decision to switch from Node.js to Bun. Performance benchmarks, compatibility testing, and lessons from the migration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Bun vs Node: Why We Switched Our Runtime","description":"The decision to switch from Node.js to Bun. Performance benchmarks, compatibility testing, and lessons from the migration.","datePublished":"2024-05-31","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/bun-vs-node-runtime-switch/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Jun 1, 2024</div>
+    <h1>Bun vs Node: Why We Switched Our Runtime</h1>
+    <p><em>The decision to switch from Node.js to Bun. Performance benchmarks, compatibility testing, and lessons from the migration.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">bun</span><span class="tag">nodejs</span><span class="tag">javascript</span><span class="tag">performance</span><span class="tag">runtime</span></div>
+    <p>We were happy Node.js users for years. Then we tried Bun.</p>
+<p>Three weeks later, our entire stack runs on Bun.</p>
+<h2 id="the-promise">The Promise</h2>
+<p>Bun promises:</p>
+<ul>
+<li><strong>Faster execution</strong>: Up to 4x faster than Node</li>
+<li><strong>Faster startup</strong>: Sub-millisecond cold starts</li>
+<li><strong>Native bundling</strong>: No webpack/esbuild needed</li>
+<li><strong>Native testing</strong>: Jest-compatible test runner</li>
+<li><strong>Node compatibility</strong>: Drop-in replacement</li>
+</ul>
+<p>But promises are cheap. We tested.</p>
+<h2 id="benchmark-results">Benchmark Results</h2>
+<h3 id="installation-speed">Installation Speed</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Node.js project (1,200 dependencies)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install    <span class="co"># 45 seconds</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pnpm</span> install   <span class="co"># 22 seconds</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">bun</span> install    <span class="co"># 4 seconds</span></span></code></pre></div>
+<p><strong>Winner</strong>: Bun (11x faster than npm)</p>
+<h3 id="script-execution">Script Execution</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple script</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">node</span> script.js   <span class="co"># 180ms</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">bun</span> run script.js  <span class="co"># 45ms</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># TypeScript (no pre-compile)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">ts-node</span> script.ts    <span class="co"># 1,200ms</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">bun</span> run script.ts   <span class="co"># 60ms</span></span></code></pre></div>
+<p><strong>Winner</strong>: Bun (4x for JS, 20x for TS)</p>
+<h3 id="http-server-performance">HTTP Server Performance</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Simple HTTP server benchmark</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">// 10,000 requests, keep-alive</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Node.js (Express)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Requests<span class="op">/</span>sec<span class="op">:</span> <span class="dv">12</span><span class="op">,</span><span class="dv">000</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Latency avg<span class="op">:</span> <span class="dv">8</span><span class="er">ms</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Bun (Bun.serve)</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Requests<span class="op">/</span>sec<span class="op">:</span> <span class="dv">85</span><span class="op">,</span><span class="dv">000</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>Latency avg<span class="op">:</span> <span class="dv">1</span><span class="er">ms</span></span></code></pre></div>
+<p><strong>Winner</strong>: Bun (7x more requests)</p>
+<h3 id="build-time">Build Time</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build React app</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build    <span class="co"># 28 seconds</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">bun</span> run build    <span class="co"># 12 seconds</span></span></code></pre></div>
+<p><strong>Winner</strong>: Bun (2.3x faster)</p>
+<h3 id="test-suite">Test Suite</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 500 tests</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> test   <span class="co"># 18 seconds</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">bun</span> test   <span class="co"># 5 seconds</span></span></code></pre></div>
+<p><strong>Winner</strong>: Bun (3.6x faster)</p>
+<h2 id="compatibility-testing">Compatibility Testing</h2>
+<h3 id="what-worked-immediately">What Worked Immediately</h3>
+<ul>
+<li>Express.js ✅</li>
+<li>Hono ✅</li>
+<li>Prisma ✅</li>
+<li>Drizzle ✅</li>
+<li>React/Next.js ✅</li>
+<li>TypeScript ✅</li>
+<li>Most npm packages ✅</li>
+</ul>
+<h3 id="what-required-changes">What Required Changes</h3>
+<p><strong>Native modules</strong>: Some needed recompilation</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bun</span> add sharp  <span class="co"># Handles automatically</span></span></code></pre></div>
+<p><strong>Node-specific APIs</strong>: Some edge cases</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Node</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">process</span><span class="op">.</span><span class="fu">nextTick</span>(callback)<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Bun (works, but setImmediate is preferred)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setImmediate</span>(callback)<span class="op">;</span></span></code></pre></div>
+<p><strong>File watching</strong>: Different behavior in some cases</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Use Bun&#39;s native watch</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { watch } <span class="im">from</span> <span class="st">&quot;fs&quot;</span><span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">// vs Bun-native</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Bun<span class="op">.</span><span class="fu">file</span>(path)<span class="op">.</span><span class="fu">watch</span>(callback)<span class="op">;</span></span></code></pre></div>
+<h3 id="what-didnt-work">What Didn’t Work</h3>
+<ul>
+<li>A few native modules with Node-specific bindings</li>
+<li>Some obscure Node.js APIs</li>
+<li>Certain worker thread patterns</li>
+</ul>
+<p>Overall compatibility: <strong>~95%</strong> of our code worked unchanged.</p>
+<h2 id="migration-process">Migration Process</h2>
+<h3 id="step-1-test-compatibility">Step 1: Test Compatibility</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace node_modules</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> node_modules package-lock.json</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">bun</span> install</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Run tests</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="ex">bun</span> test</span></code></pre></div>
+<h3 id="step-2-update-scripts">Step 2: Update Scripts</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="er">//</span> <span class="er">package.json</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;scripts&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;dev&quot;</span><span class="fu">:</span> <span class="st">&quot;bun run --watch src/index.ts&quot;</span><span class="fu">,</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;build&quot;</span><span class="fu">:</span> <span class="st">&quot;bun build src/index.ts --outdir dist&quot;</span><span class="fu">,</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;test&quot;</span><span class="fu">:</span> <span class="st">&quot;bun test&quot;</span><span class="fu">,</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;start&quot;</span><span class="fu">:</span> <span class="st">&quot;bun run dist/index.js&quot;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="step-3-update-cicd">Step 3: Update CI/CD</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># GitHub Actions</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> oven-sh/setup-bun@v1</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">bun-version</span><span class="kw">:</span><span class="at"> latest</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> bun install</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> bun test</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> bun run build</span></span></code></pre></div>
+<h3 id="step-4-docker-updates">Step 4: Docker Updates</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> oven/bun:1 as builder</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> package.json bun.lockb ./</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">bun</span> install <span class="at">--frozen-lockfile</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> . .</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">bun</span> run build</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> oven/bun:1-slim</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">COPY</span> <span class="op">--from=builder</span> /app/dist /app</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="kw">CMD</span> [<span class="st">&quot;bun&quot;</span>, <span class="st">&quot;run&quot;</span>, <span class="st">&quot;/app/index.js&quot;</span>]</span></code></pre></div>
+<h2 id="real-world-impact">Real-World Impact</h2>
+<h3 id="developer-experience">Developer Experience</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Before (Node)</th>
+<th>After (Bun)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Install time</td>
+<td>45s</td>
+<td>4s</td>
+</tr>
+<tr class="even">
+<td>Dev server start</td>
+<td>3s</td>
+<td>0.5s</td>
+</tr>
+<tr class="odd">
+<td>Hot reload</td>
+<td>500ms</td>
+<td>100ms</td>
+</tr>
+<tr class="even">
+<td>Test suite</td>
+<td>18s</td>
+<td>5s</td>
+</tr>
+<tr class="odd">
+<td>Build time</td>
+<td>28s</td>
+<td>12s</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total daily time saved per developer</strong>: ~15 minutes</p>
+<h3 id="production-performance">Production Performance</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Before (Node)</th>
+<th>After (Bun)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cold start</td>
+<td>800ms</td>
+<td>150ms</td>
+</tr>
+<tr class="even">
+<td>Requests/sec</td>
+<td>12,000</td>
+<td>85,000</td>
+</tr>
+<tr class="odd">
+<td>P99 latency</td>
+<td>45ms</td>
+<td>8ms</td>
+</tr>
+<tr class="even">
+<td>Memory usage</td>
+<td>180MB</td>
+<td>120MB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cost-impact">Cost Impact</h3>
+<ul>
+<li><strong>Fewer servers needed</strong>: 4x throughput per instance</li>
+<li><strong>Less compute time</strong>: Faster cold starts in serverless</li>
+<li><strong>Developer productivity</strong>: Faster iteration cycles</li>
+</ul>
+<h2 id="gotchas-we-discovered">Gotchas We Discovered</h2>
+<h3 id="buns-bundler-is-young">1. Bun’s Bundler Is Young</h3>
+<p>For complex bundling, we still use esbuild in some places.</p>
+<h3 id="error-messages-differ">2. Error Messages Differ</h3>
+<p>Stack traces look different. Takes adjustment.</p>
+<h3 id="some-node.js-patterns-dont-translate">3. Some Node.js Patterns Don’t Translate</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Node pattern that works differently</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> module <span class="op">=</span> <span class="pp">require</span>(<span class="vs">`./dynamic/</span><span class="sc">${</span>name<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Bun prefers</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> module <span class="op">=</span> <span class="cf">await</span> <span class="im">import</span>(<span class="vs">`./dynamic/</span><span class="sc">${</span>name<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span></code></pre></div>
+<h3 id="lock-file-differences">4. Lock File Differences</h3>
+<p><code>bun.lockb</code> is binary (faster), but you lose diff visibility.</p>
+<h2 id="when-to-stick-with-node">When to Stick with Node</h2>
+<ul>
+<li>Heavy native module usage</li>
+<li>Edge cases with Node.js compatibility</li>
+<li>Team unfamiliar with Bun ecosystem</li>
+<li>Risk-averse production environments</li>
+</ul>
+<h2 id="our-recommendation">Our Recommendation</h2>
+<p><strong>For new projects</strong>: Start with Bun. The benefits are significant.</p>
+<p><strong>For existing projects</strong>: Test compatibility, migrate incrementally.</p>
+<p><strong>For production</strong>: We’ve run Bun in production for 6 months with zero issues.</p>
+<hr />
+<p><em>Bun powers our development workflow. For the full tech stack, see <a href="/blog/building-40-platform-ai-ecosystem">Building a 40+ Platform Ecosystem</a>.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

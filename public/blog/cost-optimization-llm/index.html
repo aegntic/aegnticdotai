@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cost Optimization for LLM Applications: Spending Wisely on AI — aegntic.ai</title>
+  <meta name="description" content="Strategies to reduce AI API costs. Model selection, caching, prompt optimization, and intelligent routing.">
+  <link rel="canonical" href="https://aegntic.ai/blog/cost-optimization-llm/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/cost-optimization-llm/">
+  <meta property="og:title" content="Cost Optimization for LLM Applications: Spending Wisely on AI — aegntic.ai">
+  <meta property="og:description" content="Strategies to reduce AI API costs. Model selection, caching, prompt optimization, and intelligent routing.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cost Optimization for LLM Applications: Spending Wisely on AI — aegntic.ai">
+  <meta name="twitter:description" content="Strategies to reduce AI API costs. Model selection, caching, prompt optimization, and intelligent routing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Cost Optimization for LLM Applications: Spending Wisely on AI","description":"Strategies to reduce AI API costs. Model selection, caching, prompt optimization, and intelligent routing.","datePublished":"2024-03-24","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/cost-optimization-llm/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Mar 25, 2024</div>
+    <h1>Cost Optimization for LLM Applications: Spending Wisely on AI</h1>
+    <p><em>Strategies to reduce AI API costs. Model selection, caching, prompt optimization, and intelligent routing.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">cost</span><span class="tag">optimization</span><span class="tag">LLMs</span><span class="tag">architecture</span><span class="tag">business</span></div>
+    <p>AI API costs can spiral quickly. A naive implementation might spend $10,000/month. An optimized one, $500.</p>
+<p>Same functionality. Smart architecture.</p>
+<h2 id="understanding-costs">Understanding Costs</h2>
+<h3 id="token-pricing-per-1m-tokens">Token Pricing (per 1M tokens)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GPT-4</td>
+<td>$30</td>
+<td>$60</td>
+</tr>
+<tr class="even">
+<td>GPT-4o</td>
+<td>$5</td>
+<td>$15</td>
+</tr>
+<tr class="odd">
+<td>Claude 3 Opus</td>
+<td>$15</td>
+<td>$75</td>
+</tr>
+<tr class="even">
+<td>Claude 3 Haiku</td>
+<td>$0.25</td>
+<td>$1.25</td>
+</tr>
+<tr class="odd">
+<td>Llama 3 70B (OpenRouter)</td>
+<td>$0.90</td>
+<td>$0.90</td>
+</tr>
+</tbody>
+</table>
+<p>Output tokens cost 2-5x more than input tokens.</p>
+<h2 id="strategy-1-model-tiering">Strategy 1: Model Tiering</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> Complexity <span class="op">=</span> <span class="st">&#39;simple&#39;</span> <span class="op">|</span> <span class="st">&#39;medium&#39;</span> <span class="op">|</span> <span class="st">&#39;complex&#39;</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">selectModel</span>(task<span class="op">:</span> Task)<span class="op">:</span> <span class="dt">string</span> {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> complexity <span class="op">=</span> <span class="fu">assessComplexity</span>(task)<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    simple<span class="op">:</span> <span class="st">&#39;claude-3-haiku&#39;</span><span class="op">,</span>      <span class="co">// $0.25/M - 20x cheaper</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    medium<span class="op">:</span> <span class="st">&#39;gpt-4o-mini&#39;</span><span class="op">,</span>         <span class="co">// $0.15/M </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    complex<span class="op">:</span> <span class="st">&#39;claude-3-opus&#39;</span>       <span class="co">// $15/M - only when needed</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  }[complexity]<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Automatic complexity detection</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">assessComplexity</span>(task<span class="op">:</span> Task)<span class="op">:</span> Complexity {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (task<span class="op">.</span><span class="at">type</span> <span class="op">===</span> <span class="st">&#39;classification&#39;</span>) <span class="cf">return</span> <span class="st">&#39;simple&#39;</span><span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (task<span class="op">.</span><span class="at">type</span> <span class="op">===</span> <span class="st">&#39;generation&#39;</span> <span class="op">&amp;&amp;</span> task<span class="op">.</span><span class="at">length</span> <span class="op">&lt;</span> <span class="dv">100</span>) <span class="cf">return</span> <span class="st">&#39;simple&#39;</span><span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (task<span class="op">.</span><span class="at">requiresReasoning</span>) <span class="cf">return</span> <span class="st">&#39;complex&#39;</span><span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="st">&#39;medium&#39;</span><span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Impact</strong>: 70-90% cost reduction for simple tasks.</p>
+<h2 id="strategy-2-caching">Strategy 2: Caching</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { createHash } <span class="im">from</span> <span class="st">&#39;crypto&#39;</span><span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> cache <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span><span class="op">&lt;</span><span class="dt">string</span><span class="op">,</span> CachedResponse<span class="op">&gt;</span>()<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">cachedComplete</span>(prompt<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> options<span class="op">:</span> Options) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> key <span class="op">=</span> <span class="fu">createHash</span>(<span class="st">&#39;sha256&#39;</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">update</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>({ prompt<span class="op">,</span> <span class="op">...</span>options }))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">digest</span>(<span class="st">&#39;hex&#39;</span>)<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Check cache</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cached <span class="op">=</span> cache<span class="op">.</span><span class="fu">get</span>(key)<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (cached <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu">isExpired</span>(cached)) {</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cached<span class="op">.</span><span class="at">response</span><span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Call API</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> llm<span class="op">.</span><span class="fu">complete</span>(prompt<span class="op">,</span> options)<span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Cache if deterministic</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (options<span class="op">.</span><span class="at">temperature</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    cache<span class="op">.</span><span class="fu">set</span>(key<span class="op">,</span> { response<span class="op">,</span> timestamp<span class="op">:</span> <span class="bu">Date</span><span class="op">.</span><span class="fu">now</span>() })<span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> response<span class="op">;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Impact</strong>: 30-50% reduction for repeated queries.</p>
+<h2 id="strategy-3-prompt-compression">Strategy 3: Prompt Compression</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Before: 500 tokens</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> verbose <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="vs">  Please analyze the following text carefully and thoroughly.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="vs">  Consider all aspects of the content including but not limited to</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="vs">  the main themes, supporting arguments, and overall structure.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="vs">  Text: </span><span class="sc">${</span>content<span class="sc">}</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span><span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">// After: 50 tokens</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> compressed <span class="op">=</span> <span class="vs">`Analyze:</span><span class="sc">\n${</span>content<span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Same quality, 90% fewer tokens</span></span></code></pre></div>
+<p><strong>Impact</strong>: 50-80% input cost reduction.</p>
+<h2 id="strategy-4-batching">Strategy 4: Batching</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Expensive: 10 API calls</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">processItems</span>(items<span class="op">:</span> Item[]) {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">all</span>(items<span class="op">.</span><span class="fu">map</span>(item <span class="kw">=&gt;</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    llm<span class="op">.</span><span class="fu">complete</span>(<span class="vs">`Classify: </span><span class="sc">${</span>item<span class="op">.</span><span class="at">text</span><span class="sc">}</span><span class="vs">`</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  ))<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Cheap: 1 API call</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">batchProcess</span>(items<span class="op">:</span> Item[]) {</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> prompt <span class="op">=</span> items<span class="op">.</span><span class="fu">map</span>((item<span class="op">,</span> i) <span class="kw">=&gt;</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`</span><span class="sc">${</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="vs">. </span><span class="sc">${</span>item<span class="op">.</span><span class="at">text</span><span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  )<span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)<span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> result <span class="op">=</span> <span class="cf">await</span> llm<span class="op">.</span><span class="fu">complete</span>(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`Classify each item (positive/negative):</span><span class="sc">\n${</span>prompt<span class="sc">}\n\n</span><span class="vs">Respond with numbers and classifications only.`</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">parseClassifications</span>(result)<span class="op">;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Impact</strong>: 5-10x fewer API calls = 5-10x lower overhead.</p>
+<h2 id="strategy-5-output-length-control">Strategy 5: Output Length Control</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Expensive: Unlimited output</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> verbose <span class="op">=</span> <span class="cf">await</span> llm<span class="op">.</span><span class="fu">complete</span>(prompt)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Often produces 500+ tokens</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Cheap: Controlled output</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> concise <span class="op">=</span> <span class="cf">await</span> llm<span class="op">.</span><span class="fu">complete</span>(prompt<span class="op">,</span> {</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  max_tokens<span class="op">:</span> <span class="dv">100</span><span class="op">,</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  stop<span class="op">:</span> [<span class="st">&#39;</span><span class="sc">\n\n</span><span class="st">&#39;</span>]  <span class="co">// Stop at paragraph break</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<p><strong>Impact</strong>: 60-80% output cost reduction.</p>
+<h2 id="strategy-6-smart-fallbacks">Strategy 6: Smart Fallbacks</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">optimizedComplete</span>(prompt<span class="op">:</span> <span class="dt">string</span>) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Try cheap model first</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> cheapResult <span class="op">=</span> <span class="cf">await</span> cheapModel<span class="op">.</span><span class="fu">complete</span>(prompt)<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Validate quality</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="cf">await</span> <span class="fu">isHighQuality</span>(cheapResult)) {</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cheapResult<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Fallback to expensive only if needed</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> expensiveModel<span class="op">.</span><span class="fu">complete</span>(prompt)<span class="op">;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><strong>Impact</strong>: 80%+ queries satisfied by cheap model.</p>
+<h2 id="cost-monitoring">Cost Monitoring</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CostTracker {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span> costs<span class="op">:</span> CostEntry[] <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">track</span>(model<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> inputTokens<span class="op">:</span> <span class="dt">number</span><span class="op">,</span> outputTokens<span class="op">:</span> <span class="dt">number</span>) {</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> cost <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="fu">calculateCost</span>(model<span class="op">,</span> inputTokens<span class="op">,</span> outputTokens)<span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">costs</span><span class="op">.</span><span class="fu">push</span>({ model<span class="op">,</span> cost<span class="op">,</span> timestamp<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>() })<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Alert on threshold</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="kw">this</span><span class="op">.</span><span class="fu">dailyCost</span>() <span class="op">&gt;</span> <span class="kw">this</span><span class="op">.</span><span class="at">dailyBudget</span>) {</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="fu">alert</span>(<span class="st">&#39;Daily budget exceeded&#39;</span>)<span class="op">;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">report</span>()<span class="op">:</span> CostReport {</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      today<span class="op">:</span> <span class="kw">this</span><span class="op">.</span><span class="fu">dailyCost</span>()<span class="op">,</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      thisMonth<span class="op">:</span> <span class="kw">this</span><span class="op">.</span><span class="fu">monthlyCost</span>()<span class="op">,</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      byModel<span class="op">:</span> <span class="kw">this</span><span class="op">.</span><span class="fu">costByModel</span>()<span class="op">,</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>      trend<span class="op">:</span> <span class="kw">this</span><span class="op">.</span><span class="fu">costTrend</span>()</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="real-world-results">Real-World Results</h2>
+<p>Before optimization:</p>
+<ul>
+<li><strong>Monthly spend</strong>: $8,500</li>
+<li><strong>Requests</strong>: 500,000</li>
+<li><strong>Avg cost/request</strong>: $0.017</li>
+</ul>
+<p>After optimization:</p>
+<ul>
+<li><strong>Monthly spend</strong>: $850</li>
+<li><strong>Requests</strong>: 500,000</li>
+<li><strong>Avg cost/request</strong>: $0.0017</li>
+</ul>
+<p><strong>90% cost reduction</strong> with same functionality.</p>
+<hr />
+<p><em>Cost optimization is essential at scale. See <a href="/blog/openrouter-unified-llm-api">OpenRouter</a> for unified model access.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

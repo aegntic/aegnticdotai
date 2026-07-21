@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protocol Flow: AI-Powered Video Processing at Scale — aegntic.ai</title>
+  <meta name="description" content="Building an intelligent video processing pipeline. Scene detection, storyboard generation, workflow automation with n8n and Kdenlive integration.">
+  <link rel="canonical" href="https://aegntic.ai/blog/protocol-flow-video-processing/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/protocol-flow-video-processing/">
+  <meta property="og:title" content="Protocol Flow: AI-Powered Video Processing at Scale — aegntic.ai">
+  <meta property="og:description" content="Building an intelligent video processing pipeline. Scene detection, storyboard generation, workflow automation with n8n and Kdenlive integration.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Protocol Flow: AI-Powered Video Processing at Scale — aegntic.ai">
+  <meta name="twitter:description" content="Building an intelligent video processing pipeline. Scene detection, storyboard generation, workflow automation with n8n and Kdenlive integration.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Protocol Flow: AI-Powered Video Processing at Scale","description":"Building an intelligent video processing pipeline. Scene detection, storyboard generation, workflow automation with n8n and Kdenlive integration.","datePublished":"2024-08-19","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/protocol-flow-video-processing/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Aug 20, 2024</div>
+    <h1>Protocol Flow: AI-Powered Video Processing at Scale</h1>
+    <p><em>Building an intelligent video processing pipeline. Scene detection, storyboard generation, workflow automation with n8n and Kdenlive integration.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">video-processing</span><span class="tag">AI</span><span class="tag">automation</span><span class="tag">n8n</span><span class="tag">workflow</span></div>
+    <p>Video content is the most complex content type to work with. A single project involves:</p>
+<ul>
+<li>Footage across multiple files</li>
+<li>Audio tracks to separate and process</li>
+<li>Scenes to detect and catalog</li>
+<li>Effects to apply consistently</li>
+<li>Exports to multiple formats</li>
+</ul>
+<p>Most workflows remain painfully manual. Protocol Flow changes that.</p>
+<h2 id="the-problem">The Problem</h2>
+<p>Traditional video workflow:</p>
+<ol type="1">
+<li><strong>Import</strong>: Manually organize footage</li>
+<li><strong>Review</strong>: Watch everything to find usable content</li>
+<li><strong>Edit</strong>: Drag and drop, frame by frame</li>
+<li><strong>Process</strong>: Wait for renders</li>
+<li><strong>Export</strong>: Repeat for each output format</li>
+</ol>
+<p><strong>Total time</strong>: Hours to days for a simple project.</p>
+<h2 id="the-protocol-flow-approach">The Protocol Flow Approach</h2>
+<p>AI-powered automation at every step:</p>
+<pre><code>Footage Input
+    ↓
+Scene Detection (AI)
+    ↓
+Storyboard Generation (AI)
+    ↓
+Quality Assessment
+    ↓
+Automated Editing
+    ↓
+Export Pipeline
+    ↓
+Distribution Ready</code></pre>
+<h3 id="technology-stack">Technology Stack</h3>
+<ul>
+<li><strong>Python</strong>: Core processing engine</li>
+<li><strong>Node.js</strong>: API and orchestration</li>
+<li><strong>n8n</strong>: Workflow automation</li>
+<li><strong>Kdenlive</strong>: Professional editing integration</li>
+<li><strong>OpenRouter</strong>: AI model access</li>
+<li><strong>FFmpeg</strong>: Media processing</li>
+</ul>
+<h2 id="key-features">Key Features</h2>
+<h3 id="ai-powered-scene-detection">AI-Powered Scene Detection</h3>
+<p>Automatically identifies:</p>
+<ul>
+<li>Scene boundaries (visual cuts)</li>
+<li>Topic transitions (audio analysis)</li>
+<li>Key moments (highlight detection)</li>
+<li>Quality issues (blur, noise, underexposure)</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> detect_scenes(video_path):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Multi-modal scene detection combining:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">    - Visual histogram analysis</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    - Audio energy patterns</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    - AI content understanding</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    &quot;&quot;&quot;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    scenes <span class="op">=</span> []</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Visual detection</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    visual_cuts <span class="op">=</span> detect_visual_transitions(video_path)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Audio detection</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    audio_boundaries <span class="op">=</span> detect_audio_changes(video_path)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># AI content analysis</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    content_segments <span class="op">=</span> analyze_content(video_path)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Merge and reconcile</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> merge_scene_data(visual_cuts, audio_boundaries, content_segments)</span></code></pre></div>
+<h3 id="interactive-storyboard-generation">Interactive Storyboard Generation</h3>
+<p>From raw footage to visual storyboard:</p>
+<ul>
+<li>Thumbnail extraction at key frames</li>
+<li>Auto-generated scene descriptions</li>
+<li>Quality scores per segment</li>
+<li>Suggested editing decisions</li>
+</ul>
+<h3 id="n8n-workflow-integration">n8n Workflow Integration</h3>
+<p>Automation workflows for:</p>
+<ul>
+<li><strong>Ingest triggers</strong>: New file detection starts processing</li>
+<li><strong>Quality gates</strong>: Automatic rejection of low-quality footage</li>
+<li><strong>Notification hooks</strong>: Status updates via Slack/email</li>
+<li><strong>Distribution</strong>: Automatic upload to multiple platforms</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Video Processing Pipeline&quot;</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;nodes&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;n8n-nodes-base.fileWatcher&quot;</span><span class="fu">,</span> <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;New Video&quot;</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;protocol-flow.sceneDetect&quot;</span><span class="fu">,</span> <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Detect Scenes&quot;</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;protocol-flow.qualityCheck&quot;</span><span class="fu">,</span> <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Quality Gate&quot;</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;protocol-flow.storyboard&quot;</span><span class="fu">,</span> <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Generate Storyboard&quot;</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span><span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;n8n-nodes-base.slack&quot;</span><span class="fu">,</span> <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Notify Complete&quot;</span><span class="fu">}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="kdenlive-integration">Kdenlive Integration</h3>
+<p>Direct integration with professional editing:</p>
+<ul>
+<li>Export scene data as Kdenlive project XML</li>
+<li>Pre-built edit decisions based on AI analysis</li>
+<li>Markers for human review points</li>
+<li>Render queue management</li>
+</ul>
+<h2 id="real-world-performance">Real-World Performance</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Manual Time</th>
+<th>Protocol Flow</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Scene Detection</td>
+<td>20 min/hour of footage</td>
+<td>2 min</td>
+</tr>
+<tr class="even">
+<td>Storyboarding</td>
+<td>30 min/hour</td>
+<td>3 min</td>
+</tr>
+<tr class="odd">
+<td>Quality Review</td>
+<td>1x real-time</td>
+<td>Instant</td>
+</tr>
+<tr class="even">
+<td>Basic Cuts</td>
+<td>1 hour/10 min output</td>
+<td>5 min setup</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Typical speedup: 5-10x reduction in editing time</strong></p>
+<h2 id="workflow-example">Workflow Example</h2>
+<h3 id="documentary-project">Documentary Project</h3>
+<p><strong>Input</strong>: 4 hours of interview footage + B-roll</p>
+<p><strong>Traditional approach</strong>: 2-3 days of editing</p>
+<p><strong>Protocol Flow approach</strong>:</p>
+<ol type="1">
+<li>Drop footage into watched folder</li>
+<li>Automatic scene detection runs (15 min)</li>
+<li>Storyboard generated with transcripts</li>
+<li>AI identifies key quotes and highlights</li>
+<li>Export Kdenlive project with suggested edits</li>
+<li>Human review and refinement (2-4 hours)</li>
+<li>Automated render and distribution</li>
+</ol>
+<p><strong>Total time</strong>: 4-5 hours instead of 2-3 days</p>
+<h3 id="youtube-content-pipeline">YouTube Content Pipeline</h3>
+<p><strong>Input</strong>: Screen recording + webcam footage</p>
+<p><strong>Protocol Flow approach</strong>:</p>
+<ol type="1">
+<li>Simultaneous recording with markers</li>
+<li>Auto-sync multi-source footage</li>
+<li>AI removes dead air and mistakes</li>
+<li>Generate chapter markers</li>
+<li>Export for YouTube with optimized settings</li>
+</ol>
+<p><strong>Result</strong>: Post-processing reduced from 3 hours to 30 minutes.</p>
+<h2 id="architecture-deep-dive">Architecture Deep Dive</h2>
+<h3 id="processing-nodes">Processing Nodes</h3>
+<pre><code>Protocol Flow Architecture
+├── Ingest Node
+│   ├── File validation
+│   ├── Metadata extraction
+│   └── Queue management
+├── Analysis Node
+│   ├── Scene detection
+│   ├── Quality assessment
+│   └── Content understanding
+├── Decision Node
+│   ├── Edit suggestions
+│   ├── Quality gates
+│   └── Workflow routing
+└── Output Node
+    ├── Project export
+    ├── Render management
+    └── Distribution</code></pre>
+<h3 id="ai-model-integration">AI Model Integration</h3>
+<p>Different models for different tasks:</p>
+<ul>
+<li><strong>Vision models</strong>: Scene detection, quality assessment</li>
+<li><strong>Audio models</strong>: Transcription, music detection</li>
+<li><strong>Language models</strong>: Content summarization, title generation</li>
+<li><strong>Embedding models</strong>: Similarity search, scene clustering</li>
+</ul>
+<h3 id="openrouter-access">OpenRouter Access</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="kw">def</span> analyze_scene(frame_data):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Use vision model for scene analysis&quot;&quot;&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> <span class="cf">await</span> openrouter_client.chat.completions.create(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">&quot;anthropic/claude-3-opus&quot;</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>[{</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;role&quot;</span>: <span class="st">&quot;user&quot;</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;content&quot;</span>: [</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                {<span class="st">&quot;type&quot;</span>: <span class="st">&quot;image&quot;</span>, <span class="st">&quot;data&quot;</span>: frame_data},</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                {<span class="st">&quot;type&quot;</span>: <span class="st">&quot;text&quot;</span>, <span class="st">&quot;text&quot;</span>: <span class="st">&quot;Describe this scene...&quot;</span>}</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            ]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        }]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> parse_scene_analysis(response)</span></code></pre></div>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<h3 id="humans-still-matter">1. Humans Still Matter</h3>
+<p>AI excels at the tedious parts—detection, quality checking, basic cuts. Creative decisions still benefit from human judgment.</p>
+<h3 id="quality-thresholds-are-key">2. Quality Thresholds Are Key</h3>
+<p>Automatic rejection of subpar footage saves more time than automatic editing of everything.</p>
+<h3 id="workflow-integration-is-critical">3. Workflow Integration Is Critical</h3>
+<p>The technology is only valuable if it fits into existing workflows. Kdenlive/n8n integration was essential.</p>
+<h3 id="batching-improves-throughput">4. Batching Improves Throughput</h3>
+<p>Processing videos in batches is more efficient than one-at-a-time, especially for AI operations.</p>
+<h2 id="future-development">Future Development</h2>
+<p><strong>Immediate roadmap</strong>:</p>
+<ul>
+<li>Real-time processing (live stream support)</li>
+<li>More editor integrations (DaVinci Resolve, Premiere)</li>
+<li>Advanced audio separation (Demucs integration)</li>
+<li>Multi-language transcription</li>
+</ul>
+<p><strong>Long-term vision</strong>:</p>
+<ul>
+<li>Fully automated content production</li>
+<li>AI-directed cinematography suggestions</li>
+<li>Personalized edit styles</li>
+</ul>
+<hr />
+<p><em>Protocol Flow represents our approach to media automation. For the underlying infrastructure, see <a href="/blog/n8n-automation-at-scale">n8n Automation at Scale</a>.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

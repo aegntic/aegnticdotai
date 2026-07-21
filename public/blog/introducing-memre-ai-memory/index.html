@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introducing Mem:RE - The Future of AI Memory — aegntic.ai</title>
+  <meta name="description" content="Memory meets request. How we are building persistent, queryable AI memory that transforms how agents learn and remember across sessions.">
+  <link rel="canonical" href="https://aegntic.ai/blog/introducing-memre-ai-memory/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/introducing-memre-ai-memory/">
+  <meta property="og:title" content="Introducing Mem:RE - The Future of AI Memory — aegntic.ai">
+  <meta property="og:description" content="Memory meets request. How we are building persistent, queryable AI memory that transforms how agents learn and remember across sessions.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Introducing Mem:RE - The Future of AI Memory — aegntic.ai">
+  <meta name="twitter:description" content="Memory meets request. How we are building persistent, queryable AI memory that transforms how agents learn and remember across sessions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Introducing Mem:RE - The Future of AI Memory","description":"Memory meets request. How we are building persistent, queryable AI memory that transforms how agents learn and remember across sessions.","datePublished":"2024-11-19","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/introducing-memre-ai-memory/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Nov 20, 2024</div>
+    <h1>Introducing Mem:RE - The Future of AI Memory</h1>
+    <p><em>Memory meets request. How we are building persistent, queryable AI memory that transforms how agents learn and remember across sessions.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">Memre</span><span class="tag">AI</span><span class="tag">memory</span><span class="tag">agents</span><span class="tag">future-hindsight</span></div>
+    <p><strong>Memory. Request. Memre.</strong></p>
+<p>Every AI conversation is an island. The context starts fresh. The learning disappears. The agent that helped you yesterday has no memory of what worked.</p>
+<p>This is the fundamental limitation holding AI back.</p>
+<p><strong>Mem:RE changes everything.</strong></p>
+<h2 id="the-memory-problem">The Memory Problem</h2>
+<p>Current AI systems suffer from:</p>
+<h3 id="stateless-sessions">Stateless Sessions</h3>
+<p>Each conversation starts cold. Preferences learned in previous sessions are gone. Context built over time evaporates.</p>
+<h3 id="no-institutional-memory">No Institutional Memory</h3>
+<p>Teams can’t share AI learnings. What works for one person doesn’t transfer to another. The AI doesn’t learn from collective experience.</p>
+<h3 id="lost-context">Lost Context</h3>
+<p>Long projects lose context as conversations scroll out of window. The AI forgets what was decided, what was tried, what failed.</p>
+<h2 id="the-memre-solution">The Mem:RE Solution</h2>
+<p>Mem:RE (pronounced “memory”) provides:</p>
+<h3 id="persistent-memory">Persistent Memory</h3>
+<p>Every meaningful interaction is captured and indexed:</p>
+<ul>
+<li>Preferences learned</li>
+<li>Decisions made</li>
+<li>Outcomes observed</li>
+<li>Patterns recognized</li>
+</ul>
+<h3 id="queryable-knowledge">Queryable Knowledge</h3>
+<p>Memory isn’t just storage—it’s retrieval:</p>
+<ul>
+<li>“What did we decide about X?”</li>
+<li>“How did we solve Y last time?”</li>
+<li>“What patterns work best for Z?”</li>
+</ul>
+<h3 id="shareable-learning">Shareable Learning</h3>
+<p>Team knowledge accumulates:</p>
+<ul>
+<li>Common solutions propagate</li>
+<li>Best practices emerge</li>
+<li>Mistakes aren’t repeated</li>
+</ul>
+<h2 id="architecture">Architecture</h2>
+<pre><code>Mem:RE Architecture
+├── Capture Layer
+│   ├── Session recorder
+│   ├── Decision extractor
+│   └── Outcome tracker
+├── Storage Layer
+│   ├── Vector embeddings (Supabase)
+│   ├── Graph relationships (Neo4j)
+│   └── Full-text search (Typesense)
+├── Retrieval Layer
+│   ├── Semantic search
+│   ├── Graph traversal
+│   └── Temporal queries
+└── Integration Layer
+    ├── MCP server
+    ├── API access
+    └── IDE plugins</code></pre>
+<h3 id="the-future-hindsight-pattern">The Future Hindsight Pattern</h3>
+<p>Mem:RE is part of our “Future Hindsight” collection—tools that give you access to insights that normally only come with hindsight:</p>
+<ul>
+<li>What will work? (Pattern matching from past success)</li>
+<li>What should I avoid? (Learning from past failures)</li>
+<li>What context am I missing? (Surfacing forgotten decisions)</li>
+</ul>
+<p>Hindsight, delivered in advance.</p>
+<h2 id="use-cases">Use Cases</h2>
+<h3 id="development-context">1. Development Context</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Query development decisions</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> memories <span class="op">=</span> <span class="cf">await</span> memre<span class="op">.</span><span class="fu">query</span>({</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">&#39;decision&#39;</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">project</span><span class="op">:</span> <span class="st">&#39;api-design&#39;</span><span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">context</span><span class="op">:</span> <span class="st">&#39;authentication&#39;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: Previous auth decisions, what was tried, what worked</span></span></code></pre></div>
+<h3 id="writing-assistance">2. Writing Assistance</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Query style preferences</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> preferences <span class="op">=</span> <span class="cf">await</span> memre<span class="op">.</span><span class="fu">query</span>({</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">&#39;preference&#39;</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">domain</span><span class="op">:</span> <span class="st">&#39;writing&#39;</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">user</span><span class="op">:</span> <span class="st">&#39;current&#39;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: Tone, length, formatting preferences learned over time</span></span></code></pre></div>
+<h3 id="project-onboarding">3. Project Onboarding</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// New team member context</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> onboarding <span class="op">=</span> <span class="cf">await</span> memre<span class="op">.</span><span class="fu">query</span>({</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">&#39;institutional&#39;</span><span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">project</span><span class="op">:</span> <span class="st">&#39;widget-platform&#39;</span><span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">scope</span><span class="op">:</span> <span class="st">&#39;essential&#39;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: Key decisions, architecture choices, gotchas, tips</span></span></code></pre></div>
+<h2 id="privacy-first">Privacy First</h2>
+<p>Memory is sensitive. Mem:RE is built for trust:</p>
+<h3 id="local-by-default">Local by Default</h3>
+<p>All data stays on your infrastructure. No cloud storage required.</p>
+<h3 id="encryption-at-rest">Encryption at Rest</h3>
+<p>Everything encrypted with keys you control.</p>
+<h3 id="selective-capture">Selective Capture</h3>
+<p>Choose what gets remembered. Sensitive content excluded.</p>
+<h3 id="full-deletion">Full Deletion</h3>
+<p>Delete memories completely. No hidden retention.</p>
+<h2 id="integration">Integration</h2>
+<h3 id="mcp-server">MCP Server</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;mcpServers&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;memre&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;uvx&quot;</span><span class="fu">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;memre-server&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;env&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;MEMRE_STORAGE&quot;</span><span class="fu">:</span> <span class="st">&quot;~/.memre&quot;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="query-interface">Query Interface</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Store memory</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> memre<span class="op">.</span><span class="fu">store</span>({</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">content</span><span class="op">:</span> <span class="st">&quot;User prefers concise explanations&quot;</span><span class="op">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> <span class="st">&quot;preference&quot;</span><span class="op">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">tags</span><span class="op">:</span> [<span class="st">&quot;style&quot;</span><span class="op">,</span> <span class="st">&quot;communication&quot;</span>]<span class="op">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">confidence</span><span class="op">:</span> <span class="fl">0.9</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Query memories</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> results <span class="op">=</span> <span class="cf">await</span> memre<span class="op">.</span><span class="fu">query</span>({</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">query</span><span class="op">:</span> <span class="st">&quot;How should I explain complex topics?&quot;</span><span class="op">,</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">limit</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">types</span><span class="op">:</span> [<span class="st">&quot;preference&quot;</span><span class="op">,</span> <span class="st">&quot;feedback&quot;</span>]</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<h2 id="coming-soon">Coming Soon</h2>
+<h3 id="team-memory-spaces">Team Memory Spaces</h3>
+<p>Shared knowledge across team members:</p>
+<ul>
+<li>Common vocabulary</li>
+<li>Agreed patterns</li>
+<li>Collective learning</li>
+</ul>
+<h3 id="memory-insights">Memory Insights</h3>
+<p>Analytics on memory patterns:</p>
+<ul>
+<li>Most accessed memories</li>
+<li>Memory decay curves</li>
+<li>Knowledge gaps</li>
+</ul>
+<h3 id="active-learning">Active Learning</h3>
+<p>Agents that improve from memory:</p>
+<ul>
+<li>Pattern recognition</li>
+<li>Preference prediction</li>
+<li>Proactive suggestions</li>
+</ul>
+<h2 id="early-access">Early Access</h2>
+<p>Mem:RE is currently in private beta. We’re working with select teams to refine the experience before broader launch.</p>
+<p><strong>memre.quest</strong> - Join the waitlist.</p>
+<hr />
+<p><em>Mem:RE is part of the Aegntic Future Hindsight collection. Learn about <a href="/blog/building-40-platform-ai-ecosystem">the broader ecosystem</a> or explore <a href="/blog/why-we-built-aegntic">our founding vision</a>.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>n8n Automation at Scale: Building Modular AI Workflows — aegntic.ai</title>
+  <meta name="description" content="How we use n8n for modular, expandable automation. From simple triggers to complex multi-step AI pipelines that handle real production workloads.">
+  <link rel="canonical" href="https://aegntic.ai/blog/n8n-automation-at-scale/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/n8n-automation-at-scale/">
+  <meta property="og:title" content="n8n Automation at Scale: Building Modular AI Workflows — aegntic.ai">
+  <meta property="og:description" content="How we use n8n for modular, expandable automation. From simple triggers to complex multi-step AI pipelines that handle real production workloads.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="n8n Automation at Scale: Building Modular AI Workflows — aegntic.ai">
+  <meta name="twitter:description" content="How we use n8n for modular, expandable automation. From simple triggers to complex multi-step AI pipelines that handle real production workloads.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"n8n Automation at Scale: Building Modular AI Workflows","description":"How we use n8n for modular, expandable automation. From simple triggers to complex multi-step AI pipelines that handle real production workloads.","datePublished":"2024-10-14","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/n8n-automation-at-scale/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Oct 15, 2024</div>
+    <h1>n8n Automation at Scale: Building Modular AI Workflows</h1>
+    <p><em>How we use n8n for modular, expandable automation. From simple triggers to complex multi-step AI pipelines that handle real production workloads.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">n8n</span><span class="tag">automation</span><span class="tag">workflow</span><span class="tag">integration</span><span class="tag">AI-pipelines</span></div>
+    <p>When you’re orchestrating 40+ platforms, manual processes don’t scale. Every repetitive task is a candidate for automation. Every integration point is a potential workflow.</p>
+<p><strong>n8n is our automation backbone.</strong></p>
+<h2 id="why-n8n">Why n8n?</h2>
+<p>We evaluated every major workflow platform:</p>
+<ul>
+<li>Zapier: Great UI, expensive at scale, limited complexity</li>
+<li>Make: Good value, complex learning curve</li>
+<li>Temporal: Powerful, overkill for many use cases</li>
+<li>n8n: Self-hosted, unlimited execution, full flexibility</li>
+</ul>
+<p>For our needs—high volume, complex logic, self-hosted—n8n won decisively.</p>
+<h2 id="architecture-approach">Architecture Approach</h2>
+<h3 id="modular-design">Modular Design</h3>
+<p>Every workflow is a composable unit:</p>
+<pre><code>Workflow Library
+├── Triggers/
+│   ├── github-webhook.json
+│   ├── cron-daily.json
+│   └── api-endpoint.json
+├── Processors/
+│   ├── llm-analysis.json
+│   ├── data-transform.json
+│   └── quality-check.json
+├── Actions/
+│   ├── notion-update.json
+│   ├── slack-notify.json
+│   └── database-write.json
+└── Pipelines/
+    ├── content-generation.json
+    ├── pr-automation.json
+    └── daily-reports.json</code></pre>
+<p>New automation? Compose from existing modules.</p>
+<h3 id="mcp-integration">MCP Integration</h3>
+<p>n8n connects to our MCP ecosystem via dedicated nodes:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// n8n custom node for MCP</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MCPNode {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">async</span> <span class="fu">execute</span>(items) {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> mcpClient <span class="op">=</span> <span class="cf">await</span> <span class="kw">this</span><span class="op">.</span><span class="fu">getMCPClient</span>()<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> tool <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="fu">getNodeParameter</span>(<span class="st">&#39;tool&#39;</span>)<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> args <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="fu">getNodeParameter</span>(<span class="st">&#39;arguments&#39;</span>)<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cf">await</span> mcpClient<span class="op">.</span><span class="fu">execute</span>(tool<span class="op">,</span> args)<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Every MCP server is accessible from n8n workflows.</p>
+<h2 id="real-workflows">Real Workflows</h2>
+<h3 id="pr-documentation-generation">1. PR Documentation Generation</h3>
+<p>When a pull request is opened:</p>
+<pre><code>Trigger: GitHub Webhook (PR opened)
+    ↓
+Fetch: Get PR files and diff
+    ↓
+Analyze: LLM summarizes changes
+    ↓
+Generate: Create documentation draft
+    ↓
+Authenticate: aegnt-27 for human feel
+    ↓
+Post: Add as PR comment
+    ↓
+Notify: Slack message to channel</code></pre>
+<p><strong>Result</strong>: Every PR has documentation before review begins.</p>
+<h3 id="daily-content-pipeline">2. Daily Content Pipeline</h3>
+<p>Every morning at 6 AM:</p>
+<pre><code>Trigger: Cron (6:00 AM)
+    ↓
+Fetch: Get trending topics from sources
+    ↓
+Filter: Relevance scoring
+    ↓
+Select: Top 3 topics for content
+    ↓
+For each topic:
+    ├── Generate: Draft using Agent Neo
+    ├── Quality: Score against criteria
+    ├── Edit: Revise if &lt; 85
+    └── Queue: Schedule for publishing
+    ↓
+Report: Daily summary to Notion</code></pre>
+<p><strong>Result</strong>: Consistent content pipeline without manual curation.</p>
+<h3 id="customer-onboarding">3. Customer Onboarding</h3>
+<p>When a new customer signs up:</p>
+<pre><code>Trigger: Webhook (Stripe payment)
+    ↓
+Create: User account in database
+    ↓
+Provision: Initialize workspace
+    ↓
+Email: Send welcome sequence
+    ↓
+Segment: Add to appropriate cohort
+    ↓
+Track: Initialize analytics events
+    ↓
+Follow-up: Schedule 3-day check-in</code></pre>
+<p><strong>Result</strong>: Immediate, consistent onboarding without manual steps.</p>
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="error-handling">1. Error Handling</h3>
+<p>Every workflow includes error paths:</p>
+<pre><code>Main flow:
+    ↓
+Try: Execute step
+    ├── Success → Continue
+    └── Error:
+        ├── Log to monitoring
+        ├── Retry if appropriate
+        ├── Alert if critical
+        └── Graceful degradation</code></pre>
+<p>Workflows should never fail silently.</p>
+<h3 id="idempotency">2. Idempotency</h3>
+<p>Design for re-runability:</p>
+<ul>
+<li>Check if action already completed</li>
+<li>Use unique identifiers for deduplication</li>
+<li>Make operations reversible where possible</li>
+</ul>
+<h3 id="observability">3. Observability</h3>
+<p>Every workflow produces telemetry:</p>
+<ul>
+<li>Execution time per step</li>
+<li>Success/failure counts</li>
+<li>Data volume processed</li>
+<li>Error categorization</li>
+</ul>
+<h3 id="version-control">4. Version Control</h3>
+<p>Workflows are code:</p>
+<ul>
+<li>Store as JSON in git</li>
+<li>PR process for changes</li>
+<li>Environment-specific configs</li>
+<li>Rollback capability</li>
+</ul>
+<h2 id="performance-at-scale">Performance at Scale</h2>
+<p>Our n8n deployment handles:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Daily executions</td>
+<td>50,000+</td>
+</tr>
+<tr class="even">
+<td>Active workflows</td>
+<td>200+</td>
+</tr>
+<tr class="odd">
+<td>Avg execution time</td>
+<td>2.3 seconds</td>
+</tr>
+<tr class="even">
+<td>Error rate</td>
+<td>&lt; 0.1%</td>
+</tr>
+<tr class="odd">
+<td>Uptime</td>
+<td>99.9%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="scaling-strategy">Scaling Strategy</h3>
+<pre><code>n8n Deployment
+├── Main instance (production workflows)
+├── Worker pool (parallel execution)
+├── Database (PostgreSQL for persistence)
+└── Redis (queue management)</code></pre>
+<p>Horizontal scaling through worker pool. No single workflow bottlenecks the system.</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="deploy-n8n">1. Deploy n8n</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Docker deployment</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-d</span> <span class="dt">\</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--name</span> n8n <span class="dt">\</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-p</span> 5678:5678 <span class="dt">\</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-v</span> n8n_data:/home/node/.n8n <span class="dt">\</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  n8nio/n8n</span></code></pre></div>
+<h3 id="set-up-mcp-connection">2. Set Up MCP Connection</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install n8n-nodes-mcp (custom package)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/.n8n/custom</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install @aegntic/n8n-nodes-mcp</span></code></pre></div>
+<h3 id="create-first-workflow">3. Create First Workflow</h3>
+<ol type="1">
+<li>Add HTTP Webhook trigger</li>
+<li>Connect to MCP Execute node</li>
+<li>Select tool (e.g., <code>sequential-thinking</code>)</li>
+<li>Add output action (Slack, email, database)</li>
+<li>Activate workflow</li>
+</ol>
+<h3 id="monitor-and-iterate">4. Monitor and Iterate</h3>
+<ul>
+<li>Watch execution logs</li>
+<li>Identify failure patterns</li>
+<li>Optimize slow steps</li>
+<li>Expand coverage</li>
+</ul>
+<h2 id="common-patterns">Common Patterns</h2>
+<h3 id="webhook-llm-action">Webhook → LLM → Action</h3>
+<p>Most common: external event triggers AI processing, result goes somewhere.</p>
+<h3 id="cron-aggregate-report">Cron → Aggregate → Report</h3>
+<p>Scheduled: collect data, analyze, generate summary.</p>
+<h3 id="event-branch-multiple-actions">Event → Branch → Multiple Actions</h3>
+<p>Complex: one trigger, conditional logic, multiple outcomes.</p>
+<h3 id="queue-batch-process">Queue → Batch → Process</h3>
+<p>High-volume: accumulate items, process in batches for efficiency.</p>
+<hr />
+<p><em>n8n is a key component of our automation infrastructure. Learn about <a href="/blog/mcp-revolution-orchestrating-ai-services">MCP integration</a> or explore <a href="/blog/building-40-platform-ai-ecosystem">our overall architecture</a>.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

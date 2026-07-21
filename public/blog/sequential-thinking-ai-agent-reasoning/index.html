@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sequential Thinking: How AI Agents Reason Through Complex Problems — aegntic.ai</title>
+  <meta name="description" content="Inside the sequential thinking MCP server. How structured reasoning chains produce better outcomes for complex decisions and analysis.">
+  <link rel="canonical" href="https://aegntic.ai/blog/sequential-thinking-ai-agent-reasoning/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/sequential-thinking-ai-agent-reasoning/">
+  <meta property="og:title" content="Sequential Thinking: How AI Agents Reason Through Complex Problems — aegntic.ai">
+  <meta property="og:description" content="Inside the sequential thinking MCP server. How structured reasoning chains produce better outcomes for complex decisions and analysis.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sequential Thinking: How AI Agents Reason Through Complex Problems — aegntic.ai">
+  <meta name="twitter:description" content="Inside the sequential thinking MCP server. How structured reasoning chains produce better outcomes for complex decisions and analysis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Sequential Thinking: How AI Agents Reason Through Complex Problems","description":"Inside the sequential thinking MCP server. How structured reasoning chains produce better outcomes for complex decisions and analysis.","datePublished":"2024-08-04","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/sequential-thinking-ai-agent-reasoning/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Aug 5, 2024</div>
+    <h1>Sequential Thinking: How AI Agents Reason Through Complex Problems</h1>
+    <p><em>Inside the sequential thinking MCP server. How structured reasoning chains produce better outcomes for complex decisions and analysis.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">AI</span><span class="tag">reasoning</span><span class="tag">sequential-thinking</span><span class="tag">MCP</span><span class="tag">problem-solving</span></div>
+    <p>When humans solve complex problems, we don’t arrive at answers instantly. We reason through steps. Weigh options. Backtrack when needed.</p>
+<p>AI agents need the same capability.</p>
+<p><strong>Sequential Thinking</strong> is an MCP server that provides structured reasoning to any AI workflow.</p>
+<h2 id="why-sequential-matters">Why Sequential Matters</h2>
+<p>Standard LLM calls are atomic: input → output.</p>
+<p>For simple queries, that’s fine. But complex problems require:</p>
+<ul>
+<li>Breaking down into sub-problems</li>
+<li>Evaluating intermediate results</li>
+<li>Adjusting approach based on findings</li>
+<li>Building toward a final answer</li>
+</ul>
+<p>Without structure, LLMs can:</p>
+<ul>
+<li>Jump to conclusions</li>
+<li>Miss important considerations</li>
+<li>Produce inconsistent reasoning</li>
+<li>Fail to show their work</li>
+</ul>
+<h2 id="the-sequential-thinking-model">The Sequential Thinking Model</h2>
+<pre><code>Input: Complex query
+
+Process:
+├── Step 1: Define the problem
+│   └── Output: Problem statement
+├── Step 2: Gather information
+│   └── Output: Relevant data
+├── Step 3: Analyze options
+│   └── Output: Option evaluation
+├── Step 4: Form conclusion
+│   └── Output: Reasoned answer
+└── Final: Synthesize
+
+Output: Answer with reasoning chain</code></pre>
+<p>Each step builds on previous steps. The reasoning is explicit and auditable.</p>
+<h2 id="real-example-migration-decision">Real Example: Migration Decision</h2>
+<p><strong>Query</strong>: “Should we migrate from PostgreSQL to MongoDB?”</p>
+<h3 id="without-sequential-thinking">Without Sequential Thinking</h3>
+<blockquote>
+<p>“It depends on your use case. PostgreSQL is great for relational data while MongoDB excels at document storage. Consider your data model, team expertise, and scaling needs.”</p>
+</blockquote>
+<p>Generic. Non-actionable.</p>
+<h3 id="with-sequential-thinking">With Sequential Thinking</h3>
+<p><strong>Step 1: Analyze Current Data Model</strong></p>
+<pre><code>├── Finding: 50+ foreign key relationships
+├── Finding: Complex JOIN operations daily
+├── Finding: Transactions across multiple tables
+└── Conclusion: Heavy relational dependencies</code></pre>
+<p><strong>Step 2: Evaluate MongoDB Fit</strong></p>
+<pre><code>├── Check: Document storage capability → Good
+├── Check: Complex joins → Weak (requires $lookup)
+├── Check: ACID transactions → Supported but different
+└── Conclusion: Moderate fit for current use case</code></pre>
+<p><strong>Step 3: Assess Migration Effort</strong></p>
+<pre><code>├── Code changes: ~40% of data layer
+├── Timeline: 6-8 weeks minimum
+├── Risk: Data model redesign required
+└── Conclusion: Significant undertaking</code></pre>
+<p><strong>Step 4: Calculate ROI</strong></p>
+<pre><code>├── Current pain: Moderate (some scaling issues)
+├── Migration cost: High (engineering time)
+├── Expected benefit: Marginal improvement
+└── Conclusion: Negative ROI for this use case</code></pre>
+<p><strong>Final Recommendation</strong>: Stay with PostgreSQL. Address scaling through read replicas and query optimization.</p>
+<p>The reasoning is transparent. Each step can be challenged or refined.</p>
+<h2 id="how-it-works">How It Works</h2>
+<h3 id="mcp-interface">MCP Interface</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// List available tools</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> client<span class="op">.</span><span class="fu">listTools</span>()<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: [{ name: &#39;sequential-thinking&#39;, ... }]</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Execute sequential analysis</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> result <span class="op">=</span> <span class="cf">await</span> client<span class="op">.</span><span class="fu">execute</span>(<span class="st">&#39;sequential-thinking&#39;</span><span class="op">,</span> {</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">query</span><span class="op">:</span> <span class="st">&#39;Should we migrate from PostgreSQL to MongoDB?&#39;</span><span class="op">,</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">context</span><span class="op">:</span> {</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">currentDatabase</span><span class="op">:</span> <span class="st">&#39;PostgreSQL 15&#39;</span><span class="op">,</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tables</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">foreignKeys</span><span class="op">:</span> <span class="dv">47</span><span class="op">,</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">dailyTransactions</span><span class="op">:</span> <span class="dv">100000</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">depth</span><span class="op">:</span> <span class="dv">4</span> <span class="co">// Number of reasoning steps</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<h3 id="configuration">Configuration</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;mcpServers&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;sequentialthinking&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;npx&quot;</span><span class="fu">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;-y&quot;</span><span class="ot">,</span> <span class="st">&quot;@modelcontextprotocol/server-sequential-thinking&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;env&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;OPENAI_API_KEY&quot;</span><span class="fu">:</span> <span class="st">&quot;your-key&quot;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="output-format">Output Format</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;steps&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;step&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;Analyze Current Data Model&quot;</span><span class="fu">,</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;reasoning&quot;</span><span class="fu">:</span> <span class="st">&quot;...&quot;</span><span class="fu">,</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;findings&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;...&quot;</span><span class="ot">,</span> <span class="st">&quot;...&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;conclusion&quot;</span><span class="fu">:</span> <span class="st">&quot;Heavy relational dependencies&quot;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="er">//</span> <span class="er">...</span> <span class="er">more</span> <span class="er">steps</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;finalAnswer&quot;</span><span class="fu">:</span> <span class="st">&quot;Stay with PostgreSQL&quot;</span><span class="fu">,</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;confidence&quot;</span><span class="fu">:</span> <span class="dv">0</span><span class="er">.</span><span class="dv">85</span><span class="fu">,</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;caveats&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;Assumes current team expertise remains&quot;</span><span class="ot">]</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h2 id="when-to-use-sequential-thinking">When to Use Sequential Thinking</h2>
+<p><strong>Good fit</strong>:</p>
+<ul>
+<li>Architecture decisions</li>
+<li>Trade-off analysis</li>
+<li>Complex debugging</li>
+<li>Risk assessment</li>
+<li>Strategic planning</li>
+</ul>
+<p><strong>Less suited for</strong>:</p>
+<ul>
+<li>Simple lookups</li>
+<li>Creative generation</li>
+<li>Speed-critical operations</li>
+<li>Trivial questions</li>
+</ul>
+<h2 id="integration-patterns">Integration Patterns</h2>
+<h3 id="with-fpef-debugging">With FPEF Debugging</h3>
+<pre><code>FPEF Phase: PROVE (Hypothesis Formation)
+├── Use sequential-thinking for each hypothesis
+├── Document reasoning for future reference
+└── Build evidence-based conclusions</code></pre>
+<h3 id="with-ultra-swarm">With Ultra Swarm</h3>
+<pre><code>Ultra Swarm: Multiple agent perspectives
+├── Each agent uses sequential-thinking internally
+├── Reasoning chains are compared across agents
+└── Conflicts surface explicit disagreements</code></pre>
+<h3 id="with-ultraplan-pro">With UltraPlan Pro</h3>
+<pre><code>UltraPlan Pro: Risk Assessment
+├── For each identified risk:
+│   └── Sequential analysis of probability/impact
+├── Reasoned prioritization
+└── Mitigation strategies with supporting logic</code></pre>
+<h2 id="customization">Customization</h2>
+<h3 id="depth-control">Depth Control</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Shallow analysis (2 steps)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> client<span class="op">.</span><span class="fu">execute</span>(<span class="st">&#39;sequential-thinking&#39;</span><span class="op">,</span> {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">query</span><span class="op">:</span> <span class="st">&#39;Quick assessment...&#39;</span><span class="op">,</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">depth</span><span class="op">:</span> <span class="dv">2</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Deep analysis (6 steps)</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> client<span class="op">.</span><span class="fu">execute</span>(<span class="st">&#39;sequential-thinking&#39;</span><span class="op">,</span> {</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">query</span><span class="op">:</span> <span class="st">&#39;Comprehensive evaluation...&#39;</span><span class="op">,</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">depth</span><span class="op">:</span> <span class="dv">6</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<h3 id="domain-context">Domain Context</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Provide domain-specific context</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> client<span class="op">.</span><span class="fu">execute</span>(<span class="st">&#39;sequential-thinking&#39;</span><span class="op">,</span> {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">query</span><span class="op">:</span> <span class="st">&#39;Evaluate authentication options&#39;</span><span class="op">,</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">context</span><span class="op">:</span> {</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">industry</span><span class="op">:</span> <span class="st">&#39;healthcare&#39;</span><span class="op">,</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">compliance</span><span class="op">:</span> [<span class="st">&#39;HIPAA&#39;</span><span class="op">,</span> <span class="st">&#39;SOC2&#39;</span>]<span class="op">,</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">userBase</span><span class="op">:</span> <span class="dv">50000</span><span class="op">,</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">existingStack</span><span class="op">:</span> [<span class="st">&#39;React&#39;</span><span class="op">,</span> <span class="st">&#39;Node.js&#39;</span><span class="op">,</span> <span class="st">&#39;PostgreSQL&#39;</span>]</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<h3 id="custom-step-templates">Custom Step Templates</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Override default reasoning steps</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> client<span class="op">.</span><span class="fu">execute</span>(<span class="st">&#39;sequential-thinking&#39;</span><span class="op">,</span> {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">query</span><span class="op">:</span> <span class="st">&#39;Technology selection&#39;</span><span class="op">,</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">steps</span><span class="op">:</span> [</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Gather requirements&#39;</span><span class="op">,</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;List candidates&#39;</span><span class="op">,</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Evaluate against requirements&#39;</span><span class="op">,</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Check community/support&#39;</span><span class="op">,</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Calculate total cost&#39;</span><span class="op">,</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;Make recommendation&#39;</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<h2 id="the-value-of-explicit-reasoning">The Value of Explicit Reasoning</h2>
+<p>Implicit reasoning is a black box. You get an answer but not the path.</p>
+<p>Explicit reasoning provides:</p>
+<ul>
+<li><strong>Auditability</strong>: Review and challenge each step</li>
+<li><strong>Debuggability</strong>: Find where reasoning went wrong</li>
+<li><strong>Learning</strong>: Understand the model’s approach</li>
+<li><strong>Trust</strong>: Confidence through transparency</li>
+<li><strong>Iteration</strong>: Refine specific steps without starting over</li>
+</ul>
+<hr />
+<p><em>Sequential Thinking is part of our MCP ecosystem. Learn more about <a href="/blog/mcp-revolution-orchestrating-ai-services">MCP architecture</a> or explore <a href="/blog/fpef-debugging-framework">the full methodology toolkit</a>.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TUI Design: Building Terminal Interfaces That Developers Love — aegntic.ai</title>
+  <meta name="description" content="Principles and patterns for creating beautiful, functional terminal user interfaces. Rich formatting, real-time updates, and cross-platform compatibility.">
+  <link rel="canonical" href="https://aegntic.ai/blog/tui-design-terminal-interfaces/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/tui-design-terminal-interfaces/">
+  <meta property="og:title" content="TUI Design: Building Terminal Interfaces That Developers Love — aegntic.ai">
+  <meta property="og:description" content="Principles and patterns for creating beautiful, functional terminal user interfaces. Rich formatting, real-time updates, and cross-platform compatibility.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="TUI Design: Building Terminal Interfaces That Developers Love — aegntic.ai">
+  <meta name="twitter:description" content="Principles and patterns for creating beautiful, functional terminal user interfaces. Rich formatting, real-time updates, and cross-platform compatibility.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"TUI Design: Building Terminal Interfaces That Developers Love","description":"Principles and patterns for creating beautiful, functional terminal user interfaces. Rich formatting, real-time updates, and cross-platform compatibility.","datePublished":"2024-08-24","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/tui-design-terminal-interfaces/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Aug 25, 2024</div>
+    <h1>TUI Design: Building Terminal Interfaces That Developers Love</h1>
+    <p><em>Principles and patterns for creating beautiful, functional terminal user interfaces. Rich formatting, real-time updates, and cross-platform compatibility.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">TUI</span><span class="tag">terminal</span><span class="tag">UI-design</span><span class="tag">development</span><span class="tag">CLI</span></div>
+    <p>Developers live in terminals. The best tools meet them there.</p>
+<p>Terminal User Interfaces (TUIs) combine the speed of CLI with the clarity of GUI.</p>
+<h2 id="why-tui">Why TUI?</h2>
+<h3 id="speed">Speed</h3>
+<ul>
+<li>No mouse required</li>
+<li>Keyboard shortcuts for everything</li>
+<li>Instant response times</li>
+</ul>
+<h3 id="ubiquity">Ubiquity</h3>
+<ul>
+<li>Works over SSH</li>
+<li>Works in containers</li>
+<li>Works everywhere terminals exist</li>
+</ul>
+<h3 id="integration">Integration</h3>
+<ul>
+<li>Pipes and redirects</li>
+<li>Scriptable</li>
+<li>Composable with other tools</li>
+</ul>
+<h2 id="design-principles">Design Principles</h2>
+<h3 id="information-hierarchy">1. Information Hierarchy</h3>
+<p>Most important information first and most visible:</p>
+<pre><code>┌─────────────────────────────────────┐
+│ Status: ✓ Running     CPU: 45%      │  ← Primary status
+├─────────────────────────────────────┤
+│ Active Tasks: 12      Queue: 3       │  ← Secondary metrics
+├─────────────────────────────────────┤
+│ Recent Activity:                     │
+│  • Task completed: build-frontend    │  ← Activity log
+│  • Task started: run-tests           │
+│  • Error: database connection lost   │
+└─────────────────────────────────────┘</code></pre>
+<h3 id="progressive-disclosure">2. Progressive Disclosure</h3>
+<p>Don’t show everything at once:</p>
+<p><strong>Level 1</strong>: Overview (what’s the situation?) <strong>Level 2</strong>: Details (what’s happening specifically?) <strong>Level 3</strong>: Full data (give me everything)</p>
+<p>Navigation: Tab between levels, arrow keys within.</p>
+<h3 id="consistent-color-semantics">3. Consistent Color Semantics</h3>
+<pre><code>Green  = Success, healthy, active
+Yellow = Warning, pending, attention needed
+Red    = Error, failure, critical
+Blue   = Information, links, navigation
+Gray   = Disabled, inactive, secondary
+White  = Primary content</code></pre>
+<h3 id="keyboard-first-design">4. Keyboard-First Design</h3>
+<p>Every action should have a keyboard shortcut:</p>
+<pre><code>Common patterns:
+  q/Esc  = Quit/back
+  Enter  = Select/confirm
+  Tab    = Next section
+  /      = Search
+  ?      = Help
+  r      = Refresh
+  j/k    = Navigate down/up (vim-style)
+  ↑↓←→   = Navigation (arrow-style)</code></pre>
+<h2 id="implementation-with-rich">Implementation with Rich</h2>
+<p>Python’s Rich library makes beautiful TUIs accessible:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich.console <span class="im">import</span> Console</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich.table <span class="im">import</span> Table</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich.panel <span class="im">import</span> Panel</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich.live <span class="im">import</span> Live</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>console <span class="op">=</span> Console()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Tables</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> Table(title<span class="op">=</span><span class="st">&quot;Active Tasks&quot;</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>table.add_column(<span class="st">&quot;ID&quot;</span>, style<span class="op">=</span><span class="st">&quot;cyan&quot;</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>table.add_column(<span class="st">&quot;Name&quot;</span>, style<span class="op">=</span><span class="st">&quot;green&quot;</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>table.add_column(<span class="st">&quot;Status&quot;</span>, style<span class="op">=</span><span class="st">&quot;yellow&quot;</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> task <span class="kw">in</span> tasks:</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    table.add_row(task.<span class="bu">id</span>, task.name, task.status)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>console.<span class="bu">print</span>(table)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Live updates</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> Live(generate_status()) <span class="im">as</span> live:</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        live.update(generate_status())</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        sleep(<span class="dv">1</span>)</span></code></pre></div>
+<h3 id="real-time-updates">Real-Time Updates</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich.live <span class="im">import</span> Live</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich.layout <span class="im">import</span> Layout</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rich.panel <span class="im">import</span> Panel</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_layout():</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    layout <span class="op">=</span> Layout()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    layout.split_column(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        Layout(name<span class="op">=</span><span class="st">&quot;header&quot;</span>, size<span class="op">=</span><span class="dv">3</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        Layout(name<span class="op">=</span><span class="st">&quot;main&quot;</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        Layout(name<span class="op">=</span><span class="st">&quot;footer&quot;</span>, size<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> layout</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>layout <span class="op">=</span> create_layout()</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>layout[<span class="st">&quot;header&quot;</span>].update(Panel(<span class="st">&quot;🚀 System Monitor&quot;</span>))</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>layout[<span class="st">&quot;main&quot;</span>].update(Panel(generate_stats()))</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>layout[<span class="st">&quot;footer&quot;</span>].update(Panel(<span class="st">&quot;Press q to quit&quot;</span>))</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> Live(layout, refresh_per_second<span class="op">=</span><span class="dv">4</span>):</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> running:</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        layout[<span class="st">&quot;main&quot;</span>].update(Panel(generate_stats()))</span></code></pre></div>
+<h2 id="cross-platform-considerations">Cross-Platform Considerations</h2>
+<h3 id="terminal-capabilities">Terminal Capabilities</h3>
+<p>Not all terminals are equal:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_terminal_width():</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> os.get_terminal_size().columns</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">OSError</span>:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">80</span>  <span class="co"># Safe default</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> supports_color():</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check TERM and NO_COLOR</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> os.environ.get(<span class="st">&#39;NO_COLOR&#39;</span>):</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    term <span class="op">=</span> os.environ.get(<span class="st">&#39;TERM&#39;</span>, <span class="st">&#39;&#39;</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> term <span class="op">!=</span> <span class="st">&#39;dumb&#39;</span></span></code></pre></div>
+<h3 id="graceful-degradation">Graceful Degradation</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Renderer:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.rich <span class="op">=</span> supports_rich()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.color <span class="op">=</span> supports_color()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="bu">unicode</span> <span class="op">=</span> supports_unicode()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> status_icon(<span class="va">self</span>, success: <span class="bu">bool</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.<span class="bu">unicode</span>:</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">&quot;✓&quot;</span> <span class="cf">if</span> success <span class="cf">else</span> <span class="st">&quot;✗&quot;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">&quot;[OK]&quot;</span> <span class="cf">if</span> success <span class="cf">else</span> <span class="st">&quot;[FAIL]&quot;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> progress_bar(<span class="va">self</span>, pct: <span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        width <span class="op">=</span> <span class="bu">min</span>(<span class="dv">20</span>, get_terminal_width() <span class="op">-</span> <span class="dv">10</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.<span class="bu">unicode</span>:</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            filled <span class="op">=</span> <span class="bu">int</span>(width <span class="op">*</span> pct)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">&quot;█&quot;</span> <span class="op">*</span> filled <span class="op">+</span> <span class="st">&quot;░&quot;</span> <span class="op">*</span> (width <span class="op">-</span> filled)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            filled <span class="op">=</span> <span class="bu">int</span>(width <span class="op">*</span> pct)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">&quot;#&quot;</span> <span class="op">*</span> filled <span class="op">+</span> <span class="st">&quot;-&quot;</span> <span class="op">*</span> (width <span class="op">-</span> filled)</span></code></pre></div>
+<h2 id="common-patterns">Common Patterns</h2>
+<h3 id="selection-lists">Selection Lists</h3>
+<pre><code>Select an option:
+  ┃ ○ Option A
+  ┃ ● Option B  ← current selection
+  ┃ ○ Option C
+
+Controls: ↑↓ to move, Enter to select</code></pre>
+<h3 id="confirmation-dialogs">Confirmation Dialogs</h3>
+<pre><code>┌────────────────────────────────────┐
+│ Delete this file?                   │
+│                                     │
+│ This cannot be undone.             │
+│                                     │
+│     [Cancel]  [Delete]              │
+└────────────────────────────────────┘
+
+Controls: Tab to switch, Enter to confirm</code></pre>
+<h3 id="progress-indicators">Progress Indicators</h3>
+<pre><code>Building project...
+  ├─ Compiling sources    ████████████████░░░░ 80%
+  ├─ Running tests        ████████████████████ Done
+  └─ Generating docs      ░░░░░░░░░░░░░░░░░░░░ Waiting</code></pre>
+<h3 id="searchable-lists">Searchable Lists</h3>
+<pre><code>Search: docker█
+
+Results (5 of 23):
+  • start-docker-container
+  • stop-docker-container  
+  • docker-compose-up
+  • docker-compose-down
+  • docker-prune-images
+
+Press Enter to select, Esc to cancel</code></pre>
+<h2 id="performance-optimization">Performance Optimization</h2>
+<h3 id="minimize-redraws">Minimize Redraws</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad: Full redraw every update</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    clear_screen()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    draw_everything()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    sleep(<span class="fl">0.1</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Good: Only update changed regions</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> Live(layout) <span class="im">as</span> live:</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> stats_changed:</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            layout[<span class="st">&quot;stats&quot;</span>].update(new_stats)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> logs_changed:</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            layout[<span class="st">&quot;logs&quot;</span>].update(new_logs)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        sleep(<span class="fl">0.1</span>)</span></code></pre></div>
+<h3 id="efficient-rendering">Efficient Rendering</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pre-compute static elements</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>HEADER <span class="op">=</span> Panel(<span class="st">&quot;System Monitor&quot;</span>, style<span class="op">=</span><span class="st">&quot;bold blue&quot;</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Reuse table structure</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_table(table: Table, rows: <span class="bu">list</span>):</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    table.rows.clear()</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> rows:</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        table.add_row(<span class="op">*</span>row)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> table</span></code></pre></div>
+<h2 id="user-testing-insights">User Testing Insights</h2>
+<p>From building TUIs for Prologue and other tools:</p>
+<h3 id="what-users-love">What Users Love</h3>
+<ul>
+<li>Responsive key shortcuts</li>
+<li>Clear status indicators</li>
+<li>Search/filter capabilities</li>
+<li>Consistent navigation</li>
+</ul>
+<h3 id="what-users-hate">What Users Hate</h3>
+<ul>
+<li>Unclear how to exit</li>
+<li>No loading indicators</li>
+<li>Broken layouts in small terminals</li>
+<li>Mandatory mouse interaction</li>
+</ul>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<h3 id="test-in-multiple-terminals">1. Test in Multiple Terminals</h3>
+<p>iTerm2, Terminal.app, Windows Terminal, tmux—behavior varies.</p>
+<h3 id="provide-escape-hatches">2. Provide Escape Hatches</h3>
+<p>Users should always be able to quit or go back.</p>
+<h3 id="show-loading-states">3. Show Loading States</h3>
+<p>Even if operation is fast, show that something is happening.</p>
+<h3 id="document-keybindings">4. Document Keybindings</h3>
+<p>Show available shortcuts, ideally in a help panel.</p>
+<hr />
+<p><em>TUI design is essential for developer tools. For applications, see <a href="/blog/birth-of-prologue-mcp-discovery">Prologue MCP Discovery</a>.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

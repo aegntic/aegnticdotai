@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The FPEF Framework: A Systematic Approach to Debugging Complex Systems — aegntic.ai</title>
+  <meta name="description" content="Learn the Find-Prove-Evidence-Fix methodology used by senior engineers to debug complex bugs systematically instead of relying on trial and error.">
+  <link rel="canonical" href="https://aegntic.ai/blog/fpef-debugging-framework/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/fpef-debugging-framework/">
+  <meta property="og:title" content="The FPEF Framework: A Systematic Approach to Debugging Complex Systems — aegntic.ai">
+  <meta property="og:description" content="Learn the Find-Prove-Evidence-Fix methodology used by senior engineers to debug complex bugs systematically instead of relying on trial and error.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The FPEF Framework: A Systematic Approach to Debugging Complex Systems — aegntic.ai">
+  <meta name="twitter:description" content="Learn the Find-Prove-Evidence-Fix methodology used by senior engineers to debug complex bugs systematically instead of relying on trial and error.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"The FPEF Framework: A Systematic Approach to Debugging Complex Systems","description":"Learn the Find-Prove-Evidence-Fix methodology used by senior engineers to debug complex bugs systematically instead of relying on trial and error.","datePublished":"2024-12-18","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/fpef-debugging-framework/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Dec 19, 2024</div>
+    <h1>The FPEF Framework: A Systematic Approach to Debugging Complex Systems</h1>
+    <p><em>Learn the Find-Prove-Evidence-Fix methodology used by senior engineers to debug complex bugs systematically instead of relying on trial and error.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">debugging</span><span class="tag">methodology</span><span class="tag">engineering</span><span class="tag">FPEF</span></div>
+    <p>Ever spent hours debugging a problem only to realize you were chasing the wrong cause? The FPEF framework eliminates guesswork from debugging by following a systematic, evidence-based approach.</p>
+<h2 id="what-is-fpef">What is FPEF?</h2>
+<p>FPEF stands for <strong>Find-Prove-Evidence-Fix</strong> — a four-phase methodology for analyzing, validating, and fixing complex systems with confidence.</p>
+<pre><code>FIND → PROVE → EVIDENCE → FIX</code></pre>
+<p>Unlike ad-hoc debugging, FPEF ensures you:</p>
+<ul>
+<li>Don’t skip critical investigation steps</li>
+<li>Build a solid evidence trail</li>
+<li>Make minimal, targeted fixes</li>
+<li>Document solutions for the future</li>
+</ul>
+<hr />
+<h2 id="phase-1-find-system-mapping">Phase 1: FIND — System Mapping</h2>
+<p>Before diving into solutions, map the territory.</p>
+<h3 id="step-1.1-reproduce-the-issue">Step 1.1: Reproduce the Issue</h3>
+<ul>
+<li>Confirm the issue can be <strong>consistently reproduced</strong></li>
+<li>Document exact steps to trigger the problem</li>
+<li>Note environmental factors (OS, versions, configs)</li>
+</ul>
+<h3 id="step-1.2-map-the-system">Step 1.2: Map the System</h3>
+<ul>
+<li>Identify all components involved</li>
+<li>Document data flow and dependencies</li>
+<li>Create a visual map of the affected area</li>
+</ul>
+<h3 id="step-1.3-gather-initial-data">Step 1.3: Gather Initial Data</h3>
+<ul>
+<li>Collect error messages, logs, and stack traces</li>
+<li>Note when the issue started</li>
+<li>Identify recent changes that might be related</li>
+</ul>
+<p><strong>Deliverable:</strong> Issue description with reproduction steps and system map</p>
+<hr />
+<h2 id="phase-2-prove-hypothesis-formation">Phase 2: PROVE — Hypothesis Formation</h2>
+<p>Form testable theories about what’s wrong.</p>
+<h3 id="step-2.1-form-hypotheses">Step 2.1: Form Hypotheses</h3>
+<ul>
+<li>List possible root causes based on evidence</li>
+<li>Rank hypotheses by probability</li>
+<li>Identify what would prove/disprove each</li>
+</ul>
+<h3 id="step-2.2-design-tests">Step 2.2: Design Tests</h3>
+<ul>
+<li>Create minimal test cases for each hypothesis</li>
+<li>Determine what data would confirm the cause</li>
+<li>Plan investigation order (most likely first)</li>
+</ul>
+<h3 id="step-2.3-eliminate-possibilities">Step 2.3: Eliminate Possibilities</h3>
+<ul>
+<li>Use binary search to narrow down the problem</li>
+<li>Test one variable at a time</li>
+<li>Document what each test proves or disproves</li>
+</ul>
+<p><strong>Deliverable:</strong> Ranked hypothesis list with test plans</p>
+<hr />
+<h2 id="phase-3-evidence-validation">Phase 3: EVIDENCE — Validation</h2>
+<p>Collect hard data to confirm your theory.</p>
+<h3 id="step-3.1-collect-hard-evidence">Step 3.1: Collect Hard Evidence</h3>
+<ul>
+<li>Run diagnostic commands and log analysis</li>
+<li>Use debugging tools (breakpoints, profilers)</li>
+<li>Gather quantitative data where possible</li>
+</ul>
+<h3 id="step-3.2-verify-assumptions">Step 3.2: Verify Assumptions</h3>
+<ul>
+<li>Question every assumption about the system</li>
+<li>Test edge cases and boundary conditions</li>
+<li>Look for patterns in the evidence</li>
+</ul>
+<h3 id="step-3.3-document-findings">Step 3.3: Document Findings</h3>
+<ul>
+<li>Create a clear evidence trail</li>
+<li>Note what was tested and results</li>
+<li>Identify the confirmed root cause</li>
+</ul>
+<p><strong>Deliverable:</strong> Evidence report with confirmed root cause</p>
+<hr />
+<h2 id="phase-4-fix-minimal-intervention">Phase 4: FIX — Minimal Intervention</h2>
+<p>Make the smallest change that solves the problem.</p>
+<h3 id="step-4.1-design-the-fix">Step 4.1: Design the Fix</h3>
+<ul>
+<li>Create the <strong>smallest change</strong> that fixes the issue</li>
+<li>Consider side effects and ripple effects</li>
+<li>Plan rollback strategy if fix fails</li>
+</ul>
+<h3 id="step-4.2-implement-and-test">Step 4.2: Implement and Test</h3>
+<ul>
+<li>Make the targeted fix</li>
+<li>Verify the original issue is resolved</li>
+<li>Test for regressions in related functionality</li>
+</ul>
+<h3 id="step-4.3-verify-and-document">Step 4.3: Verify and Document</h3>
+<ul>
+<li>Confirm fix works in all affected scenarios</li>
+<li>Document the solution for future reference</li>
+<li>Update any affected documentation</li>
+</ul>
+<p><strong>Deliverable:</strong> Implemented fix with verification results</p>
+<hr />
+<h2 id="quick-reference-checklist">Quick Reference Checklist</h2>
+<pre><code>[ ] Issue reproduced consistently
+[ ] System components mapped
+[ ] Hypotheses ranked by probability
+[ ] Evidence collected and analyzed
+[ ] Root cause confirmed with data
+[ ] Minimal fix designed
+[ ] Fix implemented and tested
+[ ] No regressions introduced
+[ ] Solution documented</code></pre>
+<hr />
+<h2 id="when-to-use-fpef">When to Use FPEF</h2>
+<p>FPEF is particularly effective for:</p>
+<ul>
+<li><strong>Complex bugs</strong> that resist simple fixes</li>
+<li><strong>Performance issues</strong> with unclear causes</li>
+<li><strong>Intermittent problems</strong> that are hard to reproduce</li>
+<li><strong>System failures</strong> requiring root cause analysis</li>
+<li><strong>Post-mortems</strong> after incidents</li>
+</ul>
+<hr />
+<h2 id="key-principles">Key Principles</h2>
+<ol type="1">
+<li><strong>Don’t skip phases</strong> — Each builds on the previous</li>
+<li><strong>Document as you go</strong> — Memory is unreliable</li>
+<li><strong>Test one thing at a time</strong> — Avoid confounding variables</li>
+<li><strong>Trust the evidence</strong> — Not your intuition</li>
+<li><strong>Minimal fixes only</strong> — Resist scope creep</li>
+</ol>
+<hr />
+<h2 id="get-started">Get Started</h2>
+<p>Next time you face a challenging bug, resist the urge to immediately start changing code. Take 10 minutes to apply FPEF:</p>
+<ol type="1">
+<li>Write down exactly how to reproduce the issue</li>
+<li>Map the components involved</li>
+<li>Form 3 hypotheses and rank them</li>
+<li>Design a test for the most likely cause</li>
+<li>Let the evidence guide your fix</li>
+</ol>
+<p>The discipline pays off. You’ll solve problems faster, with more confidence, and with fixes that actually stick.</p>
+<hr />
+<p><em>FPEF is part of the Aegntic framework collection. For more engineering methodologies, explore <a href="/blog/ultraplan-pro-strategic-project-planning">UltraPlan Pro</a> for project planning and <a href="/blog/ultra-swarm-multi-agent-problem-solving">Ultra Swarm</a> for complex decision-making.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

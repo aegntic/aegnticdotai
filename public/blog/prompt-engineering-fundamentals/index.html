@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Engineering Fundamentals: From Basics to Production — aegntic.ai</title>
+  <meta name="description" content="Essential prompt engineering patterns. Structure, context management, and techniques that consistently produce better outputs.">
+  <link rel="canonical" href="https://aegntic.ai/blog/prompt-engineering-fundamentals/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/prompt-engineering-fundamentals/">
+  <meta property="og:title" content="Prompt Engineering Fundamentals: From Basics to Production — aegntic.ai">
+  <meta property="og:description" content="Essential prompt engineering patterns. Structure, context management, and techniques that consistently produce better outputs.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Prompt Engineering Fundamentals: From Basics to Production — aegntic.ai">
+  <meta name="twitter:description" content="Essential prompt engineering patterns. Structure, context management, and techniques that consistently produce better outputs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Prompt Engineering Fundamentals: From Basics to Production","description":"Essential prompt engineering patterns. Structure, context management, and techniques that consistently produce better outputs.","datePublished":"2024-04-09","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/prompt-engineering-fundamentals/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Apr 10, 2024</div>
+    <h1>Prompt Engineering Fundamentals: From Basics to Production</h1>
+    <p><em>Essential prompt engineering patterns. Structure, context management, and techniques that consistently produce better outputs.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">prompts</span><span class="tag">AI</span><span class="tag">fundamentals</span><span class="tag">patterns</span><span class="tag">LLMs</span></div>
+    <p>Good prompts aren’t magic. They’re engineering.</p>
+<p>Consistent patterns produce consistent results.</p>
+<h2 id="core-principles">Core Principles</h2>
+<h3 id="be-specific">1. Be Specific</h3>
+<p><strong>Bad</strong>: “Write about dogs” <strong>Good</strong>: “Write a 200-word article about the health benefits of walking dogs, targeting first-time dog owners”</p>
+<h3 id="provide-context">2. Provide Context</h3>
+<p><strong>Bad</strong>: “Fix this code” <strong>Good</strong>: “Fix this TypeScript function that should validate email addresses. It currently allows invalid formats like ‘test@’ through.”</p>
+<h3 id="define-format">3. Define Format</h3>
+<p><strong>Bad</strong>: “List some options” <strong>Good</strong>: “List 5 options as a numbered list. Each item should have a title and one-sentence description.”</p>
+<h3 id="set-constraints">4. Set Constraints</h3>
+<p><strong>Bad</strong>: “Keep it short” <strong>Good</strong>: “Maximum 3 paragraphs, each under 50 words”</p>
+<h2 id="the-risen-framework">The RISEN Framework</h2>
+<p><strong>R</strong>ole: Who should the AI be? <strong>I</strong>nstructions: What should it do? <strong>S</strong>teps: How should it proceed? <strong>E</strong>nd goal: What’s the desired output? <strong>N</strong>arrowing: What constraints apply?</p>
+<pre><code>You are a senior software engineer (Role).
+
+Review this code for security vulnerabilities (Instructions).
+
+First, identify input validation issues. Then, check for injection risks. Finally, look for authentication bypasses (Steps).
+
+Provide a prioritized list of issues with severity ratings and fixes (End goal).
+
+Focus only on security, not style or performance (Narrowing).</code></pre>
+<h2 id="template-patterns">Template Patterns</h2>
+<h3 id="few-shot-learning">Few-Shot Learning</h3>
+<pre><code>Convert measurements to metric:
+
+Input: 5 feet
+Output: 1.52 meters
+
+Input: 10 pounds
+Output: 4.54 kilograms
+
+Input: 32 degrees Fahrenheit
+Output: 0 degrees Celsius
+
+Input: {{user_input}}
+Output:</code></pre>
+<h3 id="chain-of-thought">Chain of Thought</h3>
+<pre><code>Solve this step by step:
+
+Problem: {{problem}}
+
+Step 1: Identify what we know
+Step 2: Identify what we need to find
+Step 3: Apply relevant formulas
+Step 4: Calculate the answer
+Step 5: Verify by checking
+
+Show your work for each step.</code></pre>
+<h3 id="structured-output">Structured Output</h3>
+<pre><code>Analyze this text and return JSON:
+
+Text: {{input}}
+
+Return exactly this structure:
+{
+  &quot;sentiment&quot;: &quot;positive&quot; | &quot;neutral&quot; | &quot;negative&quot;,
+  &quot;topics&quot;: [&quot;string&quot;, ...],
+  &quot;summary&quot;: &quot;One sentence summary&quot;,
+  &quot;confidence&quot;: 0.0-1.0
+}</code></pre>
+<h2 id="common-mistakes">Common Mistakes</h2>
+<ol type="1">
+<li><strong>Vague instructions</strong> → Ambiguous outputs</li>
+<li><strong>No examples</strong> → Inconsistent format</li>
+<li><strong>Too many tasks</strong> → Incomplete execution</li>
+<li><strong>Missing constraints</strong> → Verbose or wrong-length responses</li>
+<li><strong>Assuming context</strong> → AI doesn’t know what you know</li>
+</ol>
+<h2 id="testing-prompts">Testing Prompts</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">testPrompt</span>(prompt<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> testCases<span class="op">:</span> TestCase[]) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> results <span class="op">=</span> <span class="cf">await</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">all</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    testCases<span class="op">.</span><span class="fu">map</span>(<span class="kw">async</span> (test) <span class="kw">=&gt;</span> {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">const</span> output <span class="op">=</span> <span class="cf">await</span> <span class="fu">complete</span>(prompt<span class="op">.</span><span class="fu">replace</span>(<span class="st">&#39;{{input}}&#39;</span><span class="op">,</span> test<span class="op">.</span><span class="at">input</span>))<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        input<span class="op">:</span> test<span class="op">.</span><span class="at">input</span><span class="op">,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        output<span class="op">,</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        passed<span class="op">:</span> test<span class="op">.</span><span class="fu">validate</span>(output)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      }<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> passRate <span class="op">=</span> results<span class="op">.</span><span class="fu">filter</span>(r <span class="kw">=&gt;</span> r<span class="op">.</span><span class="at">passed</span>)<span class="op">.</span><span class="at">length</span> <span class="op">/</span> results<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> { results<span class="op">,</span> passRate }<span class="op">;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Aim for 90%+ pass rate before production.</p>
+<hr />
+<p><em>Prompt engineering is foundational. See <a href="/blog/promptrequest-hackathon-to-platform">PromptRequest</a> for our prompt management system.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>

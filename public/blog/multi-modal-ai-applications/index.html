@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Modal AI: Images, Audio, and Video with LLMs — aegntic.ai</title>
+  <meta name="description" content="Building applications that understand multiple content types. Vision models, audio processing, and unified multi-modal workflows.">
+  <link rel="canonical" href="https://aegntic.ai/blog/multi-modal-ai-applications/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/multi-modal-ai-applications/">
+  <meta property="og:title" content="Multi-Modal AI: Images, Audio, and Video with LLMs — aegntic.ai">
+  <meta property="og:description" content="Building applications that understand multiple content types. Vision models, audio processing, and unified multi-modal workflows.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Multi-Modal AI: Images, Audio, and Video with LLMs — aegntic.ai">
+  <meta name="twitter:description" content="Building applications that understand multiple content types. Vision models, audio processing, and unified multi-modal workflows.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Multi-Modal AI: Images, Audio, and Video with LLMs","description":"Building applications that understand multiple content types. Vision models, audio processing, and unified multi-modal workflows.","datePublished":"2024-03-19","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/multi-modal-ai-applications/"}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+        <a href="/projects/">Projects</a>
+        <a href="/research/">Research</a>
+        <a href="/blog/" aria-current="page">Blog</a>
+        <a href="/audits/">Audits</a>
+      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Mar 20, 2024</div>
+    <h1>Multi-Modal AI: Images, Audio, and Video with LLMs</h1>
+    <p><em>Building applications that understand multiple content types. Vision models, audio processing, and unified multi-modal workflows.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">multi-modal</span><span class="tag">vision</span><span class="tag">audio</span><span class="tag">AI</span><span class="tag">LLMs</span></div>
+    <p>Text-only AI is limiting. Real applications need to see images, hear audio, and process video.</p>
+<p>Multi-modal AI bridges these gaps.</p>
+<h2 id="vision-understanding-images">Vision: Understanding Images</h2>
+<h3 id="image-description">Image Description</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> response <span class="op">=</span> <span class="cf">await</span> openai<span class="op">.</span><span class="at">chat</span><span class="op">.</span><span class="at">completions</span><span class="op">.</span><span class="fu">create</span>({</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  model<span class="op">:</span> <span class="st">&#39;gpt-4o&#39;</span><span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  messages<span class="op">:</span> [{</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    role<span class="op">:</span> <span class="st">&#39;user&#39;</span><span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    content<span class="op">:</span> [</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      { type<span class="op">:</span> <span class="st">&#39;text&#39;</span><span class="op">,</span> text<span class="op">:</span> <span class="st">&#39;Describe this image in detail.&#39;</span> }<span class="op">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      { </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        type<span class="op">:</span> <span class="st">&#39;image_url&#39;</span><span class="op">,</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        image_url<span class="op">:</span> { url<span class="op">:</span> <span class="vs">`data:image/jpeg;base64,</span><span class="sc">${</span>base64Image<span class="sc">}</span><span class="vs">`</span> }</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  }]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div>
+<h3 id="document-analysis">Document Analysis</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">extractFromDocument</span>(imagePath<span class="op">:</span> <span class="dt">string</span>) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> image <span class="op">=</span> <span class="cf">await</span> fs<span class="op">.</span><span class="fu">readFile</span>(imagePath)<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> base64 <span class="op">=</span> image<span class="op">.</span><span class="fu">toString</span>(<span class="st">&#39;base64&#39;</span>)<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> openai<span class="op">.</span><span class="at">chat</span><span class="op">.</span><span class="at">completions</span><span class="op">.</span><span class="fu">create</span>({</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    model<span class="op">:</span> <span class="st">&#39;gpt-4o&#39;</span><span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">:</span> [{</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      role<span class="op">:</span> <span class="st">&#39;user&#39;</span><span class="op">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      content<span class="op">:</span> [</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        { type<span class="op">:</span> <span class="st">&#39;text&#39;</span><span class="op">,</span> text<span class="op">:</span> <span class="st">&#39;Extract all text and data from this document as structured JSON.&#39;</span> }<span class="op">,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        { type<span class="op">:</span> <span class="st">&#39;image_url&#39;</span><span class="op">,</span> image_url<span class="op">:</span> { url<span class="op">:</span> <span class="vs">`data:image/png;base64,</span><span class="sc">${</span>base64<span class="sc">}</span><span class="vs">`</span> }}</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      ]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    }]</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="audio-speech-and-sound">Audio: Speech and Sound</h2>
+<h3 id="transcription">Transcription</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> transcription <span class="op">=</span> <span class="cf">await</span> openai<span class="op">.</span><span class="at">audio</span><span class="op">.</span><span class="at">transcriptions</span><span class="op">.</span><span class="fu">create</span>({</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  file<span class="op">:</span> fs<span class="op">.</span><span class="fu">createReadStream</span>(<span class="st">&#39;audio.mp3&#39;</span>)<span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  model<span class="op">:</span> <span class="st">&#39;whisper-1&#39;</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  response_format<span class="op">:</span> <span class="st">&#39;verbose_json&#39;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: { text, segments, words }</span></span></code></pre></div>
+<h3 id="text-to-speech">Text-to-Speech</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> speech <span class="op">=</span> <span class="cf">await</span> openai<span class="op">.</span><span class="at">audio</span><span class="op">.</span><span class="at">speech</span><span class="op">.</span><span class="fu">create</span>({</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  model<span class="op">:</span> <span class="st">&#39;tts-1-hd&#39;</span><span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  voice<span class="op">:</span> <span class="st">&#39;nova&#39;</span><span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  input<span class="op">:</span> <span class="st">&#39;Hello, this is generated speech.&#39;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> fs<span class="op">.</span><span class="fu">writeFile</span>(<span class="st">&#39;output.mp3&#39;</span><span class="op">,</span> <span class="bu">Buffer</span><span class="op">.</span><span class="fu">from</span>(<span class="cf">await</span> speech<span class="op">.</span><span class="fu">arrayBuffer</span>()))<span class="op">;</span></span></code></pre></div>
+<h3 id="audio-analysis">Audio Analysis</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">analyzeAudio</span>(audioPath<span class="op">:</span> <span class="dt">string</span>) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Transcribe first</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> transcript <span class="op">=</span> <span class="cf">await</span> <span class="fu">transcribe</span>(audioPath)<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Analyze with LLM</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> llm<span class="op">.</span><span class="fu">complete</span>(<span class="vs">`</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="vs">    Analyze this audio transcript:</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>transcript<span class="op">.</span><span class="at">text</span><span class="sc">}</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="vs">    Identify: speaker sentiment, key topics, action items</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="vs">  `</span>)<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="video-frame-by-frame-understanding">Video: Frame-by-Frame Understanding</h2>
+<h3 id="video-processing-pipeline">Video Processing Pipeline</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">analyzeVideo</span>(videoPath<span class="op">:</span> <span class="dt">string</span>) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Extract key frames</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> frames <span class="op">=</span> <span class="cf">await</span> <span class="fu">extractKeyFrames</span>(videoPath<span class="op">,</span> { interval<span class="op">:</span> <span class="dv">5</span> })<span class="op">;</span> <span class="co">// every 5 seconds</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Analyze each frame</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> frameAnalyses <span class="op">=</span> <span class="cf">await</span> <span class="bu">Promise</span><span class="op">.</span><span class="fu">all</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    frames<span class="op">.</span><span class="fu">map</span>((frame<span class="op">,</span> i) <span class="kw">=&gt;</span> </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">analyzeImage</span>(frame<span class="op">,</span> <span class="vs">`Frame at </span><span class="sc">${</span>i <span class="op">*</span> <span class="dv">5</span><span class="sc">}</span><span class="vs"> seconds`</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Synthesize understanding</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> llm<span class="op">.</span><span class="fu">complete</span>(<span class="vs">`</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="vs">    Video analysis from </span><span class="sc">${</span>frames<span class="op">.</span><span class="at">length</span><span class="sc">}</span><span class="vs"> frames:</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>frameAnalyses<span class="op">.</span><span class="fu">join</span>(<span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)<span class="sc">}</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="vs">    Provide: overall summary, key events, timeline</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="vs">  `</span>)<span class="op">;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">extractKeyFrames</span>(videoPath<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> options<span class="op">:</span> { interval<span class="op">:</span> <span class="dt">number</span> }) {</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Use ffmpeg</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">await</span> <span class="fu">execAsync</span>(<span class="vs">`ffmpeg -i </span><span class="sc">${</span>videoPath<span class="sc">}</span><span class="vs"> -vf fps=1/</span><span class="sc">${</span>options<span class="op">.</span><span class="at">interval</span><span class="sc">}</span><span class="vs"> frame_%d.jpg`</span>)<span class="op">;</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Return frame paths</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="unified-multi-modal-processing">Unified Multi-Modal Processing</h2>
+<h3 id="content-type-detection">Content Type Detection</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">processContent</span>(input<span class="op">:</span> <span class="bu">Buffer</span> <span class="op">|</span> <span class="dt">string</span>) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> <span class="kw">type</span> <span class="op">=</span> <span class="cf">await</span> <span class="fu">detectContentType</span>(input)<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span> (<span class="kw">type</span>) {</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">&#39;text&#39;</span><span class="op">:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">processText</span>(input <span class="im">as</span> <span class="dt">string</span>)<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">&#39;image&#39;</span><span class="op">:</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">processImage</span>(input <span class="im">as</span> <span class="bu">Buffer</span>)<span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">&#39;audio&#39;</span><span class="op">:</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">processAudio</span>(input <span class="im">as</span> <span class="bu">Buffer</span>)<span class="op">;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">&#39;video&#39;</span><span class="op">:</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">processVideo</span>(input <span class="im">as</span> <span class="bu">Buffer</span>)<span class="op">;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>      <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="vs">`Unsupported content type: </span><span class="sc">${</span><span class="kw">type</span><span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="multi-modal-rag">Multi-Modal RAG</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">async</span> <span class="kw">function</span> <span class="fu">multiModalSearch</span>(query<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> collection<span class="op">:</span> MultiModalCollection) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Search across modalities</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> textResults <span class="op">=</span> <span class="cf">await</span> <span class="fu">searchText</span>(query<span class="op">,</span> collection<span class="op">.</span><span class="at">texts</span>)<span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> imageResults <span class="op">=</span> <span class="cf">await</span> <span class="fu">searchImages</span>(query<span class="op">,</span> collection<span class="op">.</span><span class="at">images</span>)<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> audioResults <span class="op">=</span> <span class="cf">await</span> <span class="fu">searchAudio</span>(query<span class="op">,</span> collection<span class="op">.</span><span class="at">audio</span>)<span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Rank and merge</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="fu">mergeResults</span>(textResults<span class="op">,</span> imageResults<span class="op">,</span> audioResults)<span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h2 id="model-capabilities">Model Capabilities</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Text</th>
+<th>Image</th>
+<th>Audio</th>
+<th>Video</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GPT-4o</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>Frames</td>
+</tr>
+<tr class="even">
+<td>Claude 3</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>Frames</td>
+</tr>
+<tr class="odd">
+<td>Gemini Pro</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Whisper</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<h2 id="best-practices">Best Practices</h2>
+<ol type="1">
+<li><strong>Compress images</strong> before sending (quality/cost trade-off)</li>
+<li><strong>Extract audio</strong> from video for transcription</li>
+<li><strong>Sample frames</strong> don’t send every video frame</li>
+<li><strong>Combine modalities</strong> for richer understanding</li>
+<li><strong>Cache processed results</strong> multi-modal is expensive</li>
+</ol>
+<hr />
+<p><em>Multi-modal capabilities power our content processing. See <a href="/blog/protocol-flow-video-processing">Protocol Flow</a> for video automation.</em></p>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+  </div>
+</main>
+  <footer class="footer">
+    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-links">
+      <a href="/projects/">Projects</a>
+      <a href="/research/">Research</a>
+      <a href="/blog/">Blog</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+</body>
+</html>
