@@ -26,15 +26,15 @@
     <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
     <div class="nav-links">
       <a href="/">Home</a>
-        <a href="/projects/">Projects</a>
-        <a href="/research/">Research</a>
-        <a href="/blog/" aria-current="page">Blog</a>
-        <a href="/audits/">Audits</a>
-      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+        <a href="/projects/">Work</a>
+        <a href="/blog/" aria-current="page">Notes</a>
+        <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+        <a href="/about/">About</a>
+      <a class="nav-cta" href="https://aedex.ing" target="_blank" rel="noopener">Open aedex</a>
     </div>
   </nav>
   <main class="page">
-  <a class="back" href="/blog/">← Blog</a>
+  <a class="back" href="/blog/">← Notes</a>
   <article class="prose">
     <div class="eyebrow">Jun 12, 2024</div>
     <h1>The MCP Server That Took 47 Iterations to Get Right</h1>
@@ -323,7 +323,7 @@ Iteration 30:
 <p><strong>100% success rate.</strong></p>
 <h3 id="the-production-deployment">The Production Deployment</h3>
 <p>June 12th, 11:47pm. We deployed iteration 47 to production.</p>
-<p>The first 24 hours: - <strong>Requests processed</strong>: 47,231 - <strong>Success rate</strong>: 99.97% - <strong>Average response time</strong>: 342ms - <strong>Memory usage</strong>: Stable at 185MB - <strong>Error rate</strong>: 0.03% (all gracefully handled) - <strong>Uptime</strong>: 100%</p>
+<p>The first 24 hours: - <strong>Requests processed</strong>: Tens of thousands - <strong>Success rate</strong>: High (the few failures were all gracefully handled) - <strong>Average response time</strong>: Sub-second - <strong>Memory usage</strong>: Stable - <strong>Error rate</strong>: Low (all gracefully handled) - <strong>Uptime</strong>: 100%</p>
 <p><strong>It worked.</strong></p>
 <h2 id="the-technical-innovations-that-made-the-difference">The Technical Innovations That Made the Difference</h2>
 <h3 id="innovation-1-event-driven-architecture">Innovation 1: Event-Driven Architecture</h3>
@@ -498,10 +498,10 @@ Iteration 30:
 <h3 id="the-performance-implications">The Performance Implications</h3>
 <p>The platform approach delivered remarkable performance:</p>
 <pre><code>Production Performance (90 days):
-├── Requests processed: 12,743,892
-├── Success rate: 99.97%
-├── Average response time: 342ms
-├── 99th percentile: 1.2s
+├── Requests processed: Millions
+├── Success rate: High
+├── Average response time: Sub-second
+├── 99th percentile: Low
 ├── Memory usage: 185MB (stable)
 ├── CPU usage: 23% (8 cores)
 ├── Uptime: 99.99%
@@ -571,20 +571,21 @@ Deployment: Docker + Kubernetes (container orchestration)</code></pre>
 <p>The final breakthrough wasn’t just about fixing bugs. It was about completely rethinking the approach from server to platform.</p>
 <p><strong>And that’s why iteration 47 succeeded where 46 failed.</strong></p>
 <hr />
-<p><em>For the story of how this MCP server became the foundation of our 40-platform ecosystem, see <a href="/blog/from-0-to-40-platforms-in-12-months">From 0 to 40 Platforms in 12 Months</a>. For the technical deep dive into our AI authenticity work that makes our platforms unique, see <a href="/blog/how-we-achieved-97-percent-ai-authenticity">How We Achieved 97% AI Authenticity</a>.</em></p>
+<p><em>For the story of how this MCP server became the foundation of our ecosystem, see <a href="/blog/aegntic-growth-story">The Aegntic Growth Story</a>.</em></p>
 
   </article>
   <div class="cta-row">
-    <a class="btn-ghost btn" href="/blog/">All posts</a>
-    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+    <a class="btn-ghost btn" href="/blog/">All notes</a>
+    <a class="btn" href="https://aedex.ing" target="_blank" rel="noopener">Open aedex</a>
   </div>
 </main>
   <footer class="footer">
     <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
     <div class="footer-links">
-      <a href="/projects/">Projects</a>
-      <a href="/research/">Research</a>
-      <a href="/blog/">Blog</a>
+      <a href="/projects/">Work</a>
+      <a href="/blog/">Notes</a>
+      <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+      <a href="/about/">About</a>
       <a href="/audits/">Audits</a>
       <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
       <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>

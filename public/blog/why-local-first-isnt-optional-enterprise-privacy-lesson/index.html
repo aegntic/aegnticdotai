@@ -4,79 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Why Local-First Isn't Optional: The Enterprise Privacy Lesson — aegntic.ai</title>
-  <meta name="description" content="How a $2.4M deal collapsed over data privacy, and why local-first AI became non-negotiable. Real enterprise stories, compliance requirements, and the business case for local AI deployment.">
+  <meta name="description" content="Why local-first AI is a design principle, not a feature. Privacy requirements, compliance (GDPR, HIPAA, SOX), and the business case for keeping data under your own control.">
   <link rel="canonical" href="https://aegntic.ai/blog/why-local-first-isnt-optional-enterprise-privacy-lesson/">
   <meta name="theme-color" content="#f0f6f8">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aegntic.ai/blog/why-local-first-isnt-optional-enterprise-privacy-lesson/">
   <meta property="og:title" content="Why Local-First Isn't Optional: The Enterprise Privacy Lesson — aegntic.ai">
-  <meta property="og:description" content="How a $2.4M deal collapsed over data privacy, and why local-first AI became non-negotiable. Real enterprise stories, compliance requirements, and the business case for local AI deployment.">
+  <meta property="og:description" content="Why local-first AI is a design principle, not a feature. Privacy requirements, compliance (GDPR, HIPAA, SOX), and the business case for keeping data under your own control.">
   <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Why Local-First Isn't Optional: The Enterprise Privacy Lesson — aegntic.ai">
-  <meta name="twitter:description" content="How a $2.4M deal collapsed over data privacy, and why local-first AI became non-negotiable. Real enterprise stories, compliance requirements, and the business case for local AI deployment.">
+  <meta name="twitter:description" content="Why local-first AI is a design principle, not a feature. Privacy requirements, compliance (GDPR, HIPAA, SOX), and the business case for keeping data under your own control.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/site.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Why Local-First Isn't Optional: The Enterprise Privacy Lesson","description":"How a $2.4M deal collapsed over data privacy, and why local-first AI became non-negotiable. Real enterprise stories, compliance requirements, and the business case for local AI deployment.","datePublished":"2024-08-12","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/why-local-first-isnt-optional-enterprise-privacy-lesson/"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Why Local-First Isn't Optional: The Enterprise Privacy Lesson","description":"Why local-first AI is a design principle, not a feature. Privacy requirements, compliance (GDPR, HIPAA, SOX), and the business case for keeping data under your own control.","datePublished":"2024-08-12","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/why-local-first-isnt-optional-enterprise-privacy-lesson/"}</script>
 </head>
 <body>
   <nav class="nav">
     <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
     <div class="nav-links">
       <a href="/">Home</a>
-        <a href="/projects/">Projects</a>
-        <a href="/research/">Research</a>
-        <a href="/blog/" aria-current="page">Blog</a>
-        <a href="/audits/">Audits</a>
-      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+        <a href="/projects/">Work</a>
+        <a href="/blog/" aria-current="page">Notes</a>
+        <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+        <a href="/about/">About</a>
+      <a class="nav-cta" href="https://aedex.ing" target="_blank" rel="noopener">Open aedex</a>
     </div>
   </nav>
   <main class="page">
-  <a class="back" href="/blog/">← Blog</a>
+  <a class="back" href="/blog/">← Notes</a>
   <article class="prose">
     <div class="eyebrow">Aug 12, 2024</div>
     <h1>Why Local-First Isn't Optional: The Enterprise Privacy Lesson</h1>
-    <p><em>How a $2.4M deal collapsed over data privacy, and why local-first AI became non-negotiable. Real enterprise stories, compliance requirements, and the business case for local AI deployment.</em></p>
+    <p><em>Why local-first AI is a design principle, not a feature. Privacy requirements, compliance (GDPR, HIPAA, SOX), and the business case for keeping data under your own control.</em></p>
     <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">enterprise</span><span class="tag">privacy</span><span class="tag">local-first</span><span class="tag">compliance</span><span class="tag">business-strategy</span></div>
-    <p><strong>August 12th, 2024. 3:42pm.</strong></p>
-<p>I was in a boardroom with C-suite executives from a Fortune 500 financial services company. We were discussing their $2.4 million AI transformation project. Everything was going perfectly—until the Chief Privacy Officer asked one question.</p>
-<p>“Where does our sensitive data go when your AI processes it?”</p>
-<p>The room went silent. Our sales team stumbled through the answer about cloud security and encryption. The CPO’s face grew more concerned with each word.</p>
-<p>Two weeks later, we got the call: the project was on hold indefinitely. They couldn’t risk their customer data leaving their infrastructure, no matter how good our security was.</p>
-<p>That lost deal taught me something fundamental: <strong>local-first isn’t a feature—it’s a requirement for enterprise AI adoption.</strong></p>
-<p>This is the story of how that painful lesson transformed our entire strategy, the real enterprise privacy requirements we discovered, and why local-first AI became non-negotiable.</p>
-<h2 id="the-2.4-million-deal-that-changed-everything">The $2.4 Million Deal That Changed Everything</h2>
-<h3 id="august-1st---the-perfect-pitch">August 1st - The Perfect Pitch</h3>
-<p>The initial meeting couldn’t have gone better. We presented our cloud-based AI solution that would:</p>
-<ul>
-<li>Transform their customer service with AI-powered insights</li>
-<li>Automate compliance reporting and risk assessment</li>
-<li>Provide predictive analytics for fraud detection</li>
-<li>Reduce operational costs by 40%</li>
-</ul>
-<p>The executives were excited. The numbers made sense. The technology was impressive.</p>
-<p><strong>August 2nd - The Due Diligence</strong></p>
-<p>Their technical team deep-dived into our architecture. They loved our: - 97% AI authenticity scores - Advanced security measures - Enterprise-grade encryption - Comprehensive audit trails</p>
-<p>Everything looked perfect for a $2.4 million, 3-year contract.</p>
-<h3 id="august-8th---the-privacy-breakthrough">August 8th - The Privacy Breakthrough</h3>
-<p>The meeting was going smoothly until their Chief Privacy Officer, Sarah Mitchell, leaned forward.</p>
-<p>“I understand your security is excellent,” she said. “But when our AI processes customer financial data, intellectual property, and compliance information—where exactly does that data go?”</p>
-<p>Our VP of Sales, Mark, responded confidently: “It stays within our secure cloud environment with enterprise-grade encryption. Only authorized personnel have access.”</p>
-<p>Sarah wasn’t satisfied. “That’s not what I’m asking. I need to know the physical location. The jurisdiction. Who has access. What happens if there’s a data breach. What if government agencies request our data.”</p>
-<p>The room grew tense. Mark tried to explain our security measures, but Sarah kept pushing.</p>
-<h3 id="august-12th---the-death-knell">August 12th - The Death Knell</h3>
-<p>Two weeks later, the call came. Their legal team had identified too many risks:</p>
-<ul>
-<li><strong>Data residency requirements</strong>: Financial data must stay within specific jurisdictions</li>
-<li><strong>Regulatory compliance</strong>: GDPR, HIPAA, SOX requirements couldn’t be met with cloud processing</li>
-<li><strong>Data sovereignty concerns</strong>: Customer data couldn’t leave their direct control</li>
-<li><strong>Third-party access risks</strong>: Even with encryption, the risk was unacceptable</li>
-</ul>
-<p><strong>The decision was final: the project was on hold until we could offer a local-first solution.</strong></p>
-<h2 id="the-enterprise-privacy-requirements-we-discovered">The Enterprise Privacy Requirements We Discovered</h2>
-<p>That painful failure led to deep research into enterprise privacy requirements. What we learned shocked us.</p>
+    <p>Let me be honest up front: there is no dramatic “we lost the big enterprise deal” war story behind this post. I’ve never stood in a boardroom watching a Fortune 500 contract evaporate over a single privacy question. If you came here for that, I’d rather tell you that than invent it.</p>
+<p>What this post actually is: the design principle I’ve arrived at from building local-first systems, and the privacy and compliance requirements that make local-first the right default for any serious AI deployment. It’s the general, real knowledge — GDPR, HIPAA, SOX, data residency — distilled into an argument for keeping data under your own control. Not a war story from a lost contract.</p>
+<p>The reason local-first matters isn’t a personal lesson learned the hard way. It’s structural: <strong>local-first isn’t a feature—it’s a requirement for enterprise AI adoption.</strong> The compliance landscape makes that case on its own.</p>
+<h2 id="the-privacy-requirements-that-make-the-case">The Privacy Requirements That Make the Case</h2>
+<p>The argument for local-first isn’t a story about a deal that got away. It’s the regulatory and architectural reality of moving sensitive data through a third party.</p>
 <h3 id="the-regulatory-landscape">The Regulatory Landscape</h3>
 <p><strong>GDPR (General Data Protection Regulation)</strong> - Article 3: Territorial scope applies to data processing outside EU - Article 44: Data transfers require adequate protection - Article 49: Derogations are limited and specific - <strong>Reality</strong>: Most cloud AI services cannot guarantee GDPR compliance</p>
 <p><strong>HIPAA (Health Insurance Portability and Accountability Act)</strong> - Covered entities must control protected health information (PHI) - Business associate agreements required for data processors - Breach notification within 60 days - <strong>Reality</strong>: Cloud AI providers cannot sign HIPAA BAAs for generative AI</p>
@@ -112,25 +80,20 @@
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    breachNotification<span class="op">:</span> BreachNotificationRequirements<span class="op">;</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<h3 id="the-real-world-enterprise-stories">The Real-World Enterprise Stories</h3>
-<h3 id="story-1-the-healthcare-provider">Story 1: The Healthcare Provider</h3>
-<p>A major hospital system wanted to use AI for medical record analysis:</p>
-<p><strong>Requirements:</strong> - Patient data must remain within hospital infrastructure - No third-party processing of PHI - Complete audit trails for every AI decision - Immediate breach notification capability</p>
-<p><strong>Challenge:</strong> Cloud AI providers couldn’t meet HIPAA requirements for generative AI.</p>
-<p><strong>Solution:</strong> Local deployment with on-premise LLM and strict access controls.</p>
-<h3 id="story-2-the-financial-services-company">Story 2: The Financial Services Company</h3>
-<p>The company that walked away from our $2.4M deal:</p>
-<p><strong>Requirements:</strong> - Customer financial data must stay within their data centers - No cross-border data transfers - Real-time audit capabilities for regulators - Zero third-party data access</p>
-<p><strong>Challenge:</strong> Cloud AI couldn’t guarantee data sovereignty.</p>
-<p><strong>Solution:</strong> Local-first architecture with hybrid cloud approach for non-sensitive data.</p>
-<h3 id="story-3-the-government-contractor">Story 3: The Government Contractor</h3>
-<p>A defense contractor needed AI for document analysis:</p>
-<p><strong>Requirements:</strong> - Classified data processing on approved systems only - No cloud processing for sensitive information - CUI (Controlled Unclassified Information) protection - FISMA compliance requirements</p>
-<p><strong>Challenge:</strong> Cloud AI was completely prohibited.</p>
+<h3 id="compliance-archetypes-not-war-stories">Compliance Archetypes (Not War Stories)</h3>
+<p>These aren’t accounts of specific clients — they’re the data classes and regulatory regimes that make the local-first case. Each is the kind of environment where sending data to a third-party AI is simply not an option.</p>
+<p><strong>Healthcare (PHI / HIPAA)</strong> - Patient data must remain within hospital infrastructure - No third-party processing of protected health information - Complete audit trails for every AI decision - Immediate breach notification capability</p>
+<p><strong>Challenge:</strong> Cloud AI providers generally cannot meet HIPAA requirements for generative AI processing of PHI.</p>
+<p><strong>Solution:</strong> Local deployment with on-premise models and strict access controls.</p>
+<p><strong>Financial Services (customer financial data)</strong> - Customer financial data must stay within the institution’s own data centers - No cross-border data transfers - Real-time audit capabilities for regulators - Zero third-party data access</p>
+<p><strong>Challenge:</strong> Cloud AI cannot guarantee data sovereignty or meet jurisdictional residency rules.</p>
+<p><strong>Solution:</strong> Local-first architecture with a hybrid approach for genuinely non-sensitive data.</p>
+<p><strong>Government / Defense (classified and CUI data)</strong> - Classified data processing on approved systems only - No cloud processing for sensitive information - CUI (Controlled Unclassified Information) protection - FISMA compliance requirements</p>
+<p><strong>Challenge:</strong> Cloud AI is prohibited outright for classified workloads.</p>
 <p><strong>Solution:</strong> Air-gapped local deployment with approved hardware and software.</p>
 <h2 id="the-local-first-architecture-we-built">The Local-First Architecture We Built</h2>
 <h3 id="the-enterprise-local-first-stack">The Enterprise Local-First Stack</h3>
-<p>Based on these requirements, we redesigned our entire architecture:</p>
+<p>Based on these requirements, an enterprise-grade local-first stack looks like:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Enterprise Local-First Architecture</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">interface</span> EnterpriseLocalFirstStack {</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  infrastructure<span class="op">:</span> LocalInfrastructure<span class="op">;</span></span>
@@ -259,20 +222,20 @@
 <h3 id="the-cost-analysis">The Cost Analysis</h3>
 <p>We conducted a comprehensive TCO (Total Cost of Ownership) analysis:</p>
 <pre><code>Cloud-Based AI (3 Years):
-├── Infrastructure: $120,000
-├── Platform Fees: $360,000 ($10,000/month)
-├── Data Transfer: $90,000
-├── Compliance Overhead: $180,000
-└── Total: $750,000
+├── Infrastructure: ongoing
+├── Platform Fees: recurring monthly per-model spend
+├── Data Transfer: ongoing
+├── Compliance Overhead: ongoing
+└── Profile: costs scale with usage
 
 Local-First AI (3 Years):
-├── Infrastructure: $300,000 (one-time)
-├── Models: $45,000 (one-time)
-├── Maintenance: $90,000 ($2,500/month)
-├── Compliance: $30,000 (one-time setup)
-└── Total: $465,000
+├── Infrastructure: one-time hardware
+├── Models: one-time or low recurring
+├── Maintenance: low recurring
+├── Compliance: one-time setup
+└── Profile: front-loaded, then marginal
 
-3-Year Savings: $285,000 (38% reduction)</code></pre>
+3-Year Outcome: local-first costs decouple from usage and trend lower over time</code></pre>
 <h3 id="the-risk-mitigation-benefits">The Risk Mitigation Benefits</h3>
 <p><strong>Data Breach Risk Reduction:</strong> - <strong>Cloud-based</strong>: 100+ third-party attack vectors - <strong>Local-first</strong>: 10-15 internal attack vectors - <strong>Risk Reduction</strong>: 85-90%</p>
 <p><strong>Regulatory Compliance Risk:</strong> - <strong>Cloud-based</strong>: Constant uncertainty, changing terms - <strong>Local-first</strong>: Complete control, predictable compliance - <strong>Risk Reduction</strong>: 95%</p>
@@ -309,7 +272,7 @@ Local-First AI (3 Years):
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> complianceValidated<span class="op">;</span></span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p><strong>Results</strong>: 97% of cloud model quality achieved with local deployment.</p>
+<p><strong>Results</strong>: Cloud-comparable model quality achieved with local deployment.</p>
 <h3 id="challenge-2-scalability">Challenge 2: Scalability</h3>
 <p><strong>Problem</strong>: Local infrastructure might not scale like cloud services.</p>
 <p><strong>Solution</strong>: Intelligent scaling and resource management:</p>
@@ -356,19 +319,15 @@ Local-First AI (3 Years):
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="cf">await</span> adapter<span class="op">.</span><span class="fu">integrate</span>(config)<span class="op">;</span></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<h2 id="the-results-that-matter">The Results That Matter</h2>
-<h3 id="post-implementation-metrics">Post-Implementation Metrics</h3>
-<p>After implementing local-first for our enterprise clients:</p>
-<p><strong>Compliance Metrics:</strong> - <strong>Data Sovereignty</strong>: 100% (all data stays in jurisdiction) - <strong>Regulatory Compliance</strong>: 100% (GDPR, HIPAA, SOX compliant) - <strong>Audit Trail Completeness</strong>: 100% (every operation logged) - <strong>Breach Response Time</strong>: &lt;1 hour (vs 72 hours industry average)</p>
-<p><strong>Performance Metrics:</strong> - <strong>Processing Speed</strong>: 35% faster than cloud (no network latency) - <strong>Availability</strong>: 99.95% (vs 99.9% cloud SLA) - <strong>Data Processing Volume</strong>: 10x increase (no rate limiting) - <strong>Customization</strong>: Unlimited (vs cloud provider constraints)</p>
-<p><strong>Business Metrics:</strong> - <strong>TCO Reduction</strong>: 38% over 3 years - <strong>Risk Reduction</strong>: 90% (data breach, compliance) - <strong>Time to Market</strong>: 40% faster (no procurement delays) - <strong>Customer Satisfaction</strong>: 95% (vs 70% pre-local-first)</p>
-<h3 id="the-success-stories">The Success Stories</h3>
-<h3 id="story-1-the-hospital-system">Story 1: The Hospital System</h3>
-<p>After implementing local-first: - <strong>AI Adoption</strong>: 200% increase - <strong>Processing Speed</strong>: 3x faster than cloud alternatives - <strong>Compliance Cost</strong>: 60% reduction - <strong>Patient Outcomes</strong>: 15% improvement in diagnostic accuracy</p>
-<h3 id="story-2-the-financial-services-company-1">Story 2: The Financial Services Company</h3>
-<p>They came back after our local-first solution: - <strong>Contract Value</strong>: $3.1 million (29% increase) - <strong>Implementation Time</strong>: 4 months (vs 6 months for cloud) - <strong>Regulatory Approval</strong>: 100% first-time approval - <strong>Risk Assessment</strong>: Minimal additional controls required</p>
-<h3 id="story-3-the-government-contractor-1">Story 3: The Government Contractor</h3>
-<p>Successful deployment with: - <strong>Security Clearance</strong>: Level 5 approval achieved - <strong>Processing Capability</strong>: Classified data processing approved - <strong>Cost Efficiency</strong>: 70% reduction vs custom development - <strong>Scalability</strong>: 10x growth capability built-in</p>
+<h2 id="the-qualitative-wins-not-tracked-metrics">The Qualitative Wins (Not Tracked Metrics)</h2>
+<p>I’m not going to quote you a “38% TCO reduction” or a fabricated compliance dashboard from clients who don’t exist. What local-first genuinely delivers, in honest terms:</p>
+<ul>
+<li><strong>Control</strong>: data never leaves infrastructure you own, so residency and sovereignty stop being someone else’s promise</li>
+<li><strong>Predictable cost</strong>: hardware is a one-time, front-loaded expense rather than per-token usage that scales forever</li>
+<li><strong>Auditability</strong>: every operation is logged inside your perimeter, not inside a vendor’s</li>
+<li><strong>No rate limits or throttling from a third party</strong> on your own workloads</li>
+</ul>
+<p>These are structural properties of the architecture, not measured outcomes from a roster of enterprise customers I can’t honestly claim to have.</p>
 <h2 id="the-future-of-enterprise-ai">The Future of Enterprise AI</h2>
 <h3 id="the-local-first-trend">The Local-First Trend</h3>
 <p>We’re seeing a fundamental shift in enterprise AI:</p>
@@ -394,27 +353,28 @@ Local-First AI (3 Years):
 <p><strong>Phase 3: Deployment (3-5 weeks)</strong> - Model deployment - System integration - User training - Performance optimization</p>
 <p><strong>Phase 4: Validation (2-3 weeks)</strong> - Security audit - Compliance validation - Performance testing - User acceptance</p>
 <h2 id="the-most-important-lesson">The Most Important Lesson</h2>
-<p>After losing that $2.4 million deal and rebuilding our entire strategy, the most important lesson became clear:</p>
+<p>Strip away the deal narratives and the one lesson holds up:</p>
 <p><strong>Local-first isn’t optional for enterprise AI—it’s mandatory.</strong></p>
 <p>The privacy, security, and compliance requirements are too important to leave to third-party cloud providers. Enterprises need control over their data, their infrastructure, and their compliance.</p>
 <p><strong>Local-first AI isn’t a technical choice—it’s a business necessity.</strong></p>
 <p>The companies that understand this will thrive in the AI revolution. The ones that don’t will struggle with regulatory compliance, security risks, and customer trust.</p>
 <p><strong>The future of enterprise AI is local-first. The only question is whether you’ll be ready for it.</strong></p>
 <hr />
-<p><em>For the technical story of our 40-platform ecosystem built on local-first principles, see <a href="/blog/from-0-to-40-platforms-in-12-months">From 0 to 40 Platforms in 12 Months</a>. For the deep dive into our AI authenticity work that makes local deployment compelling, see <a href="/blog/how-we-achieved-97-percent-ai-authenticity">How We Achieved 97% AI Authenticity</a>.</em></p>
+<p><em>For the technical story of our ecosystem built on local-first principles, see <a href="/blog/aegntic-growth-story">The Aegntic Growth Story</a>.</em></p>
 
   </article>
   <div class="cta-row">
-    <a class="btn-ghost btn" href="/blog/">All posts</a>
-    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+    <a class="btn-ghost btn" href="/blog/">All notes</a>
+    <a class="btn" href="https://aedex.ing" target="_blank" rel="noopener">Open aedex</a>
   </div>
 </main>
   <footer class="footer">
     <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
     <div class="footer-links">
-      <a href="/projects/">Projects</a>
-      <a href="/research/">Research</a>
-      <a href="/blog/">Blog</a>
+      <a href="/projects/">Work</a>
+      <a href="/blog/">Notes</a>
+      <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+      <a href="/about/">About</a>
       <a href="/audits/">Audits</a>
       <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
       <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>

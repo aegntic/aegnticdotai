@@ -3,44 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Building a 40+ Platform AI Ecosystem: Architecture Lessons Learned — aegntic.ai</title>
-  <meta name="description" content="How we scaled from one project to 40+ interconnected platforms. Modular architecture, shared infrastructure, and the principles that made it work.">
+  <title>Building an AI Platform Ecosystem: Architecture Lessons Learned — aegntic.ai</title>
+  <meta name="description" content="How we scaled from one project to an interconnected ecosystem of platforms. Modular architecture, shared infrastructure, and the principles that made it work.">
   <link rel="canonical" href="https://aegntic.ai/blog/building-40-platform-ai-ecosystem/">
+  <meta name="robots" content="noindex,follow">
   <meta name="theme-color" content="#f0f6f8">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://aegntic.ai/blog/building-40-platform-ai-ecosystem/">
-  <meta property="og:title" content="Building a 40+ Platform AI Ecosystem: Architecture Lessons Learned — aegntic.ai">
-  <meta property="og:description" content="How we scaled from one project to 40+ interconnected platforms. Modular architecture, shared infrastructure, and the principles that made it work.">
+  <meta property="og:title" content="Building an AI Platform Ecosystem: Architecture Lessons Learned — aegntic.ai">
+  <meta property="og:description" content="How we scaled from one project to an interconnected ecosystem of platforms. Modular architecture, shared infrastructure, and the principles that made it work.">
   <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Building a 40+ Platform AI Ecosystem: Architecture Lessons Learned — aegntic.ai">
-  <meta name="twitter:description" content="How we scaled from one project to 40+ interconnected platforms. Modular architecture, shared infrastructure, and the principles that made it work.">
+  <meta name="twitter:title" content="Building an AI Platform Ecosystem: Architecture Lessons Learned — aegntic.ai">
+  <meta name="twitter:description" content="How we scaled from one project to an interconnected ecosystem of platforms. Modular architecture, shared infrastructure, and the principles that made it work.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/site.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Building a 40+ Platform AI Ecosystem: Architecture Lessons Learned","description":"How we scaled from one project to 40+ interconnected platforms. Modular architecture, shared infrastructure, and the principles that made it work.","datePublished":"2024-07-19","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/building-40-platform-ai-ecosystem/"}</script>
+  
 </head>
 <body>
   <nav class="nav">
     <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
     <div class="nav-links">
       <a href="/">Home</a>
-        <a href="/projects/">Projects</a>
-        <a href="/research/">Research</a>
-        <a href="/blog/" aria-current="page">Blog</a>
-        <a href="/audits/">Audits</a>
-      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
+        <a href="/projects/">Work</a>
+        <a href="/blog/" aria-current="page">Notes</a>
+        <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+        <a href="/about/">About</a>
+      <a class="nav-cta" href="https://aedex.ing" target="_blank" rel="noopener">Open aedex</a>
     </div>
   </nav>
   <main class="page">
-  <a class="back" href="/blog/">← Blog</a>
+  <a class="back" href="/blog/">← Notes</a>
   <article class="prose">
     <div class="eyebrow">Jul 20, 2024</div>
-    <h1>Building a 40+ Platform AI Ecosystem: Architecture Lessons Learned</h1>
-    <p><em>How we scaled from one project to 40+ interconnected platforms. Modular architecture, shared infrastructure, and the principles that made it work.</em></p>
+    <h1>Building an AI Platform Ecosystem: Architecture Lessons Learned</h1>
+    <p><em>How we scaled from one project to an interconnected ecosystem of platforms. Modular architecture, shared infrastructure, and the principles that made it work.</em></p>
     <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">architecture</span><span class="tag">ecosystem</span><span class="tag">scaling</span><span class="tag">AI</span><span class="tag">infrastructure</span></div>
-    <p>When we started Aegntic, we had one platform. Now we have over 40. Each interconnected. Each leveraging shared infrastructure. Each delivering more value because of the others.</p>
+    <p>When we started Aegntic, we had one platform. Now we have a growing set of them. Each interconnected. Each leveraging shared infrastructure. Each delivering more value because of the others.</p>
 <p>Here’s how we architected an ecosystem, not just a product.</p>
 <h2 id="the-challenge-of-scale">The Challenge of Scale</h2>
 <p>Most companies build products in isolation. Each new project starts from scratch:</p>
@@ -50,12 +51,12 @@
 <li>New deployment pipeline</li>
 <li>New monitoring setup</li>
 </ul>
-<p>This approach doesn’t scale. By project #5, you’re drowning in maintenance. By project #20, it’s unsustainable.</p>
+<p>This approach doesn’t scale. After a handful of projects, you’re drowning in maintenance. Past a dozen, it’s unsustainable.</p>
 <h2 id="the-ecosystem-mindset">The Ecosystem Mindset</h2>
 <p>We built differently from day one:</p>
 <pre><code>Traditional: Project → Infrastructure → Maintenance
 Ecosystem:   Infrastructure → Projects → Less maintenance over time</code></pre>
-<p>Every new platform leverages existing foundations. The marginal cost of platform #40 is a fraction of platform #1.</p>
+<p>Every new platform leverages existing foundations. The marginal cost of each new platform is a fraction of the first.</p>
 <h2 id="core-architecture-principles">Core Architecture Principles</h2>
 <h3 id="shared-authentication">1. Shared Authentication</h3>
 <p>One identity system serves all platforms:</p>
@@ -97,8 +98,6 @@ Ecosystem:   Infrastructure → Projects → Less maintenance over time</code></
 ┌───────┴───────────────────────────────────────────────┐
 │                                                        │
 ├── Core Development Platforms                           │
-│   ├── DailyDoco Pro (documentation automation)        │
-│   ├── aegnt-27 (human authenticity)                   │
 │   ├── multi-cld-code (multi-IDE orchestration)        │
 │   └── project4site (project management)               │
 │                                                        │
@@ -124,7 +123,7 @@ Ecosystem:   Infrastructure → Projects → Less maintenance over time</code></
     ├── mcp-servers (protocol servers)                  │
     ├── workflows (automation definitions)              │
     └── configuration (.claude, .cursor)                │</code></pre>
-<p>40+ platforms. One ecosystem.</p>
+<p>Many platforms. One ecosystem.</p>
 <h2 id="technology-choices">Technology Choices</h2>
 <h3 id="languages">Languages</h3>
 <ul>
@@ -174,7 +173,7 @@ Ecosystem:   Infrastructure → Projects → Less maintenance over time</code></
 <p>We spent 6 months on infrastructure before shipping products. That investment paid off exponentially.</p>
 <p><strong>If starting over, we’d do the same thing.</strong></p>
 <h3 id="document-everything">2. Document Everything</h3>
-<p>With 40+ platforms, tribal knowledge doesn’t scale. Every decision is documented. Every integration has a README.</p>
+<p>As the ecosystem grows, tribal knowledge doesn’t scale. Every decision is documented. Every integration has a README.</p>
 <h3 id="make-adding-new-platforms-frictionless">3. Make Adding New Platforms Frictionless</h3>
 <p>The easier it is to create a new platform, the more likely good ideas get built.</p>
 <p>Our template creates a new platform in &lt; 30 minutes:</p>
@@ -206,26 +205,22 @@ Ecosystem:   Infrastructure → Projects → Less maintenance over time</code></
 </thead>
 <tbody>
 <tr class="odd">
-<td>Platforms</td>
-<td>40+</td>
-</tr>
-<tr class="even">
 <td>Shared auth</td>
 <td>100%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Common DB patterns</td>
 <td>85%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Unified CI/CD</td>
 <td>90%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>MCP-integrated</td>
 <td>70%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Time to new platform</td>
 <td>&lt; 30 min</td>
 </tr>
@@ -240,22 +235,23 @@ Ecosystem:   Infrastructure → Projects → Less maintenance over time</code></
 <li>More problems solved</li>
 <li>More capabilities to compose</li>
 </ul>
-<p>Platform #40 is easier than platform #5 was.</p>
+<p>Each new platform is easier than the one before it.</p>
 <hr />
 <p><em>This ecosystem approach is fundamental to how we build. Learn more about <a href="/blog/mcp-revolution-orchestrating-ai-services">MCP orchestration</a> or explore <a href="/blog/why-we-built-aegntic">our founding vision</a>.</em></p>
 
   </article>
   <div class="cta-row">
-    <a class="btn-ghost btn" href="/blog/">All posts</a>
-    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+    <a class="btn-ghost btn" href="/blog/">All notes</a>
+    <a class="btn" href="https://aedex.ing" target="_blank" rel="noopener">Open aedex</a>
   </div>
 </main>
   <footer class="footer">
     <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
     <div class="footer-links">
-      <a href="/projects/">Projects</a>
-      <a href="/research/">Research</a>
-      <a href="/blog/">Blog</a>
+      <a href="/projects/">Work</a>
+      <a href="/blog/">Notes</a>
+      <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+      <a href="/about/">About</a>
       <a href="/audits/">Audits</a>
       <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
       <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>

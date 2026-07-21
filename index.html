@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mattae Cooper (@aegntic) — Independent AI Agent Builder for Hire</title>
-    <meta name="description" content="Mattae Cooper (@aegntic) ships production AI-agent systems solo, end to end — Rust, Go, TypeScript, Python. Custom agent builds, automation, developer tooling. Available for hire.">
+    <meta name="description" content="Mattae Cooper (@aegntic) ships production AI-agent systems solo, end to end — Rust, Go, TypeScript, Python. Building aedex — catalog-first agent data exchange. Custom agent systems. Available for hire.">
     <meta name="theme-color" content="#f0f6f8">
     <link rel="canonical" href="https://aegntic.ai/">
     <meta property="og:type" content="website">
@@ -438,6 +438,18 @@
         .cta-btn[aria-expanded="true"]{transform:scale(1.02)}
         .cta-btn[aria-expanded="true"] svg{transform:rotate(90deg)}
 
+
+        /* ── AEDEX PROMO (electric blue product accent) ── */
+        .ae-promo{--promo-accent:#1fb6ff}
+        .ae-promo-label{color:var(--promo-accent)!important}
+        .ae-promo-label::before{background:var(--promo-accent)!important}
+        .ae-promo-title em,.ae-promo-title span.aedex-em{color:var(--promo-accent)!important;font-style:normal}
+        .ae-promo-cta{background:var(--promo-accent)!important;color:#0c1016!important}
+        .ae-promo-cta:hover{box-shadow:0 0 30px rgba(31,182,255,.35)!important}
+        .ae-promo-bg{background:radial-gradient(ellipse at 30% 50%,rgba(31,182,255,.35) 0%,transparent 60%)!important;opacity:.12!important}
+        .ae-promo-visual-inner .ae-big span{color:var(--promo-accent)!important}
+        .latest-offer{background:var(--promo-accent)!important}
+
         /* ── INLINE LOGO (AE in AE Audits) ── */
         .inline-logo{height:1em;width:auto;vertical-align:middle;display:inline;margin:-0.1em 0.08em 0 0}
         .inline-logo-light{filter:brightness(0) invert(1)}
@@ -497,23 +509,19 @@
             </a>
             <a href="/projects/" class="menu-link" onclick="closeMenu()">
                 <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
-                <span>Projects</span>
-            </a>
-            <a href="/research/" class="menu-link" onclick="closeMenu()">
-                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
-                <span>Research</span>
+                <span>Work</span>
             </a>
             <a href="/blog/" class="menu-link" onclick="closeMenu()">
                 <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
-                <span>Blog</span>
+                <span>Notes</span>
             </a>
-            <a href="/audits/" class="menu-link" onclick="closeMenu()">
+            <a href="https://aedex.ing" class="menu-link" onclick="closeMenu()" target="_blank" rel="noopener">
                 <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
-                <span>Audits</span>
+                <span>aedex</span>
             </a>
-            <a href="#services" class="menu-link" onclick="closeMenu()">
+            <a href="/about/" class="menu-link" onclick="closeMenu()">
                 <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
-                <span>Services</span>
+                <span>About</span>
             </a>
             <a href="#contact" class="menu-link" onclick="closeMenu()">
                 <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
@@ -553,7 +561,7 @@
                 <p class="intro-lead" data-split>Capability without shipping is noise. <em>Real systems in production are the only résumé.</em></p>
                 <div class="intro-prose">
                     <p>I'm Mattae Cooper. I design, build, and ship AI-agent systems alone — architecture through deployment, in whatever stack the job needs: Rust, Go, TypeScript, Python. <strong>Onchain trade execution, a large Go backend on Postgres and AWS, edge products on Cloudflare Workers</strong> — all real, all running in production.</p>
-                    <p>No agency, no handoff. Custom agent builds, automation that removes manual work, and developer tooling for the Claude Code ecosystem. The proof is public — 127+ repositories and the systems behind them.</p>
+                    <p>No agency, no handoff. Primary product focus is <strong>aedex</strong> — a catalog-first data marketplace CLI for agents — plus custom agent builds, automation, and Claude Code ecosystem tooling. The proof is public.</p>
                 </div>
                 <div class="intro-sig">
                     <div class="proof-strip">
@@ -570,31 +578,31 @@
                             <span class="proof-label">Languages</span>
                         </div>
                     </div>
-                    <p class="intro-tagline" data-split><strong>Mattae Cooper</strong> — independent AI-agent engineer, for hire.</p>
+                    <p class="intro-tagline" data-split><strong>Mattae Cooper</strong> — independent AI-agent engineer. Building <a href="https://aedex.ing" style="color:var(--accent);text-decoration:none">aedex</a>.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- AE AUDITS PROMO (latest offer) -->
-    <section class="ae-promo" id="ae-audits">
+    <!-- AEDEX PROMO (primary product) -->
+    <section class="ae-promo" id="aedex">
         <div class="ae-promo-bg"></div>
         <div class="ae-promo-inner">
             <div class="ae-promo-grid">
                 <div class="ae-promo-body">
-                    <div class="ae-promo-label">Latest Alpha</div>
-                    <h2 class="ae-promo-title" data-split><img src="ae-logo.webp" alt="AE" class="inline-logo inline-logo-light"> Decision Audits</h2>
-                    <p class="ae-promo-sub">Stress-test high-stakes decisions before they get expensive.</p>
-                    <p class="ae-promo-desc">Decision review for expensive bets — a structured adversarial council with 15 specialized lenses, before you commit capital, time, or reputation.</p>
-                    <a href="/audits/" class="ae-promo-cta">
-                        Learn more about <img src="ae-logo.webp" alt="AE" class="inline-logo"> Audits
+                    <div class="ae-promo-label">Primary product</div>
+                    <h2 class="ae-promo-title" data-split>aedex — catalog-first<br><em>agent data exchange</em>.</h2>
+                    <p class="ae-promo-sub">Discover, inspect, and run hundreds of data tools. One CLI, one balance.</p>
+                    <p class="ae-promo-desc">aedex is the Aegntic decentralized exchange CLI and gateway for agent-native data tools. Catalog first — stop hand-rolling scrapers and one-off integrations. Live at aedex.ing.</p>
+                    <a href="https://aedex.ing" class="ae-promo-cta" target="_blank" rel="noopener">
+                        Open aedex
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                     </a>
                 </div>
                 <div class="ae-promo-visual">
                     <div class="ae-promo-visual-inner">
-                        <div class="ae-big">ae<span>·</span></div>
-                        <div class="ae-sub">Agent-Native Code Review</div>
+                        <div class="ae-big">ae<span>dex</span></div>
+                        <div class="ae-sub">Agent Data Exchange</div>
                     </div>
                 </div>
             </div>
@@ -605,14 +613,14 @@
     <section class="work" id="work">
         <div class="section-label">Selected Work</div>
         <h2 class="section-heading" data-split>Selected work.</h2>
-        <p class="section-desc">Real, shipped systems — each running in production. Not demos, not dashboards.</p>
+        <p class="section-desc">Shipped systems. Primary focus: aedex — not a demo graveyard.</p>
         <div class="work-grid">
-            <a href="/projects/ae-audits/" class="work-item">
-                <div class="work-item-bg"><img src="audit-logo.png" alt="AE Audits" class="work-bg-contained" loading="lazy"></div>
+            <a href="https://aedex.ing" target="_blank" rel="noopener" class="work-item">
+                <div class="work-item-bg"><img src="work-cldcde.jpg" alt="aedex" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
-                    <span class="work-item-sub"><span class="latest-offer"><span class="latest-pulse"></span>Latest Alpha</span></span>
-                    <span class="work-item-title"><img src="ae-logo.webp" alt="AE" class="inline-logo inline-logo-light"> Decision Audits</span>
+                    <span class="work-item-sub"><span class="latest-offer"><span class="latest-pulse"></span>Latest</span></span>
+                    <span class="work-item-title">aedex</span>
                 </div>
                 <div class="work-item-arrow">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -640,28 +648,6 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
                 </div>
             </a>
-            <a href="/projects/veritas-operator/" class="work-item">
-                <div class="work-item-bg"><img src="work-veritas.png" alt="veritas-operator" loading="lazy"></div>
-                <div class="work-item-overlay"></div>
-                <div class="work-item-content">
-                    <span class="work-item-sub">Research Pipeline</span>
-                    <span class="work-item-title">veritas-operator</span>
-                </div>
-                <div class="work-item-arrow">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </div>
-            </a>
-            <a href="/projects/obsidian-indexer/" class="work-item">
-                <div class="work-item-bg"><img src="work-aetools.jpg" alt="obsidian-indexer" loading="lazy"></div>
-                <div class="work-item-overlay"></div>
-                <div class="work-item-content">
-                    <span class="work-item-sub">Sovereign Operator</span>
-                    <span class="work-item-title">obsidian-indexer</span>
-                </div>
-                <div class="work-item-arrow">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </div>
-            </a>
             <a href="/projects/prologue/" class="work-item">
                 <div class="work-item-bg"><img src="work-prologue.jpg" alt="Prologue" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
@@ -673,8 +659,19 @@
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
                 </div>
             </a>
+            <a href="/projects/cognitive-os/" class="work-item">
+                <div class="work-item-bg"><img src="work-veritas.png" alt="Cognitive OS" loading="lazy"></div>
+                <div class="work-item-overlay"></div>
+                <div class="work-item-content">
+                    <span class="work-item-sub">Agent OS</span>
+                    <span class="work-item-title">Cognitive OS</span>
+                </div>
+                <div class="work-item-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </div>
+            </a>
         </div>
-        <p class="section-desc" style="margin:2rem auto 0;max-width:1600px"><a href="/projects/" style="color:var(--accent);font-weight:500">All projects →</a> · <a href="/blog/" style="color:var(--accent);font-weight:500">Blog →</a> · <a href="/research/" style="color:var(--accent);font-weight:500">Research →</a></p>
+        <p class="section-desc" style="margin:2rem auto 0;max-width:1600px"><a href="/projects/" style="color:var(--accent);font-weight:500">All work →</a> · <a href="/blog/" style="color:var(--accent);font-weight:500">Notes →</a> · <a href="https://aedex.ing" style="color:#1fb6ff;font-weight:500" target="_blank" rel="noopener">aedex →</a></p>
     </section>
 
     <!-- SERVICES -->
@@ -714,7 +711,7 @@
                         <span class="service-tag">Agents</span>
                     </div>
                 </div>
-                <p class="service-desc">Tools that make agents and engineers more capable. <strong>Custom MCP servers</strong> — connecting LLMs to production APIs, databases, and file systems. <strong>Claude Code ecosystem</strong> — early ecosystem operator shaping how agents interact with code. CLI tooling, agent infrastructure, and the coordination layer for persistent intelligence.</p>
+                <p class="service-desc">Tools that make agents and engineers more capable — including <strong>aedex</strong> and <strong>custom MCP servers</strong> — connecting LLMs to production APIs, databases, and file systems. <strong>Claude Code ecosystem</strong> — early ecosystem operator shaping how agents interact with code. CLI tooling, agent infrastructure, and the coordination layer for persistent intelligence.</p>
             </div>
         </div>
     </section>
@@ -831,9 +828,10 @@
         </div>
         <img src="ae-logo.webp" alt="AEGNTIC" style="height:2rem;width:auto;opacity:0.5">
         <div class="footer-links">
-            <a href="/projects/">Projects</a>
-            <a href="/research/">Research</a>
-            <a href="/blog/">Blog</a>
+            <a href="/projects/">Work</a>
+            <a href="/blog/">Notes</a>
+            <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+            <a href="/about/">About</a>
             <a href="/audits/">Audits</a>
             <span class="gh-trigger" onclick="openGhCard()">GitHub</span>
             <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X / Twitter</a>

@@ -1,8 +1,23 @@
-# Explicit static routes. No SPA catch-all.
+# Explicit static routes. No SPA catch-all (unknown paths must 404).
 
 /home    /   301
 /home/   /   301
 
-# Cognitive OS — avoid .html ↔ bare-path loop on CF
+# Writing merge
+/research    /blog/   301
+/research/   /blog/   301
+/blog        /blog/   301
+/notes       /blog/   301
+/notes/      /blog/   301
+/projects    /projects/  301
+/about       /about/  301
+/audits      /audits/ 301
+/work        /projects/  301
+/work/       /projects/  301
+
+# Cognitive OS
 /cognitive-os.html  /cognitive-os/  301
 /cognitive-os-raw.html  /cognitive-os/  301
+
+# Legacy audits file
+/audits.html  /audits/  301

@@ -1,0 +1,21 @@
+# Public blog index allowlist (one slug per line).
+# Posts not listed stay at /blog/{slug}/ if already built but are omitted from index, sitemap priority lists, and llms.txt.
+# ponytail: flat allowlist beats tagging 60 files
+
+why-we-deleted-125-blog-posts-and-started-over
+why-we-built-aegntic
+birth-of-prologue-mcp-discovery
+prologue-self-discovering-ai-agent-onboarding
+mcp-revolution-orchestrating-ai-services
+the-mcp-server-that-took-47-iterations-to-get-right
+aegntic-mcp-standard-framework
+building-ai-agent-skills
+ultra-swarm-protocol-coordinating-6-ai-agents-447-files
+ultra-swarm-case-study-447-files
+local-first-ai-privacy
+why-local-first-isnt-optional-enterprise-privacy-lesson
+memre-building-persistent-ai-memory
+fpef-debugging-framework
+philosophy-of-no-shortcuts
+claude-flow-enterprise-orchestration
+sequential-thinking-ai-agent-reasoning
