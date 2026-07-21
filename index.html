@@ -408,11 +408,35 @@
         .hero-scroll:hover{opacity:0.9!important}
 
         /* ── FLOATING CTA (SOHub bottom-right pattern) ── */
-        .floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:0.5rem;background:var(--text-dark);color:var(--bg);padding:0.75rem 1.25rem;border-radius:999px;font-size:0.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(0.9);transition:opacity 0.5s ease,transform 0.5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(12,16,22,0.15)}
+        .floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:0.5rem;background:var(--text-dark);color:var(--bg);padding:0.75rem 1.25rem;border-radius:999px;font-size:0.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(0.9);transition:opacity 0.5s ease,transform 0.5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(12,16,22,0.15);border:none;cursor:pointer;font-family:inherit}
         .floating-cta.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
         .floating-cta:hover{transform:translateY(-2px) scale(1.05)}
         .floating-cta svg{opacity:0.7}
         @media(max-width:767px){.floating-cta span{display:none}.floating-cta{padding:0.75rem;border-radius:50%}}
+
+        /* ── CONTACT DROPDOWN FORM ── */
+        .cta-btn{border:none;cursor:pointer;font-family:inherit}
+        .contact-drop{max-width:28rem;margin-top:0;max-height:0;opacity:0;overflow:hidden;transform:translateY(-8px);transition:max-height .45s var(--ease-spring),opacity .35s ease,transform .45s var(--ease-spring),margin-top .35s ease;position:relative;z-index:3;pointer-events:none}
+        .contact-drop.open{max-height:36rem;opacity:1;transform:translateY(0);margin-top:1.5rem;pointer-events:auto}
+        .contact-card{background:rgba(240,246,248,.92);backdrop-filter:blur(12px);border:1px solid rgba(17,24,28,.08);border-radius:1.5rem;padding:1.35rem 1.35rem 1.25rem;box-shadow:0 18px 50px -20px rgba(12,16,22,.25)}
+        .contact-grid{display:grid;grid-template-columns:1fr;gap:.75rem}
+        @media(min-width:520px){.contact-grid-2{grid-template-columns:1fr 1fr;gap:.75rem}}
+        .contact-field label{display:block;font-size:.6875rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.35rem}
+        .contact-field input,.contact-field textarea{width:100%;border:1px solid rgba(17,24,28,.1);background:#fff;border-radius:.85rem;padding:.75rem .9rem;font:inherit;font-size:.9375rem;color:var(--text-dark);outline:none;transition:border-color .2s,box-shadow .2s}
+        .contact-field input:focus,.contact-field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,179,158,.15)}
+        .contact-field textarea{min-height:7rem;resize:vertical;line-height:1.5}
+        .contact-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;margin-top:.25rem}
+        .contact-submit{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--text-dark);color:var(--bg);border:none;border-radius:999px;padding:.85rem 1.4rem;font:inherit;font-size:.9rem;font-weight:500;cursor:pointer;transition:transform .3s var(--ease-spring)}
+        .contact-submit:hover{transform:scale(1.04)}
+        .contact-submit:disabled{opacity:.55;cursor:wait;transform:none}
+        .contact-alt{font-size:.8125rem;color:var(--text-muted)}
+        .contact-alt a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+        .contact-status{font-size:.875rem;min-height:1.25rem;margin-top:.35rem}
+        .contact-status.ok{color:#0a7a6a}
+        .contact-status.err{color:#b42318}
+        .contact-hp{position:absolute;left:-9999px;opacity:0;height:0;width:0;overflow:hidden}
+        .cta-btn[aria-expanded="true"]{transform:scale(1.02)}
+        .cta-btn[aria-expanded="true"] svg{transform:rotate(90deg)}
 
         /* ── INLINE LOGO (AE in AE Audits) ── */
         .inline-logo{height:1em;width:auto;vertical-align:middle;display:inline;margin:-0.1em 0.08em 0 0}
@@ -430,10 +454,10 @@
     <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- FLOATING CTA (SOHub pattern) -->
-    <a href="mailto:hello@aegntic.com" class="floating-cta" id="floatingCta">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    <button type="button" class="floating-cta" id="floatingCta" aria-controls="contactFormPanel" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         <span>Work with me</span>
-    </a>
+    </button>
 
     <!-- LOADER -->
     <div class="page-loader" id="loader">
@@ -702,10 +726,45 @@
         </div>
         <h2 class="cta-display" data-split>Have a system<br>that should exist?</h2>
         <p class="cta-sub">Tell me what you're building. I'll scope it, quote it, and build it myself.</p>
-        <a href="mailto:hello@aegntic.com" class="cta-btn">
+        <button type="button" class="cta-btn" id="ctaOpen" aria-expanded="false" aria-controls="contactFormPanel">
             <span>Work with me</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+        <div class="contact-drop" id="contactFormPanel" aria-hidden="true">
+            <div class="contact-card">
+                <form id="contactForm" novalidate>
+                    <div class="contact-hp" aria-hidden="true">
+                        <label for="contact_company">Company</label>
+                        <input type="text" id="contact_company" name="company" tabindex="-1" autocomplete="off">
+                    </div>
+                    <div class="contact-grid">
+                        <div class="contact-grid contact-grid-2">
+                            <div class="contact-field">
+                                <label for="contact_name">Name</label>
+                                <input id="contact_name" name="name" type="text" autocomplete="name" placeholder="Your name">
+                            </div>
+                            <div class="contact-field">
+                                <label for="contact_email">Email</label>
+                                <input id="contact_email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+                            </div>
+                        </div>
+                        <div class="contact-field">
+                            <label for="contact_subject">Subject</label>
+                            <input id="contact_subject" name="subject" type="text" placeholder="What should exist?">
+                        </div>
+                        <div class="contact-field">
+                            <label for="contact_message">Message</label>
+                            <textarea id="contact_message" name="message" required placeholder="Scope, timeline, constraints — whatever helps me reply fast."></textarea>
+                        </div>
+                        <div class="contact-actions">
+                            <button type="submit" class="contact-submit" id="contactSubmit">Send message</button>
+                            <span class="contact-alt">or <a href="mailto:hello@aegntic.com">hello@aegntic.com</a></span>
+                        </div>
+                        <p class="contact-status" id="contactStatus" role="status" aria-live="polite"></p>
+                    </div>
+                </form>
+            </div>
+        </div>
     </section>
 
     <!-- PRE-FOOTER IMAGE STRIP — editorial macro + detail anchors bridging CTA and footer -->
@@ -839,6 +898,105 @@
                 if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'})}
             });
         });
+
+        // ── CONTACT DROPDOWN ──
+        (function(){
+            const panel=document.getElementById('contactFormPanel');
+            const form=document.getElementById('contactForm');
+            const openBtn=document.getElementById('ctaOpen');
+            const floatBtn=document.getElementById('floatingCta');
+            const statusEl=document.getElementById('contactStatus');
+            const submitBtn=document.getElementById('contactSubmit');
+            if(!panel||!form||!openBtn) return;
+
+            function setOpen(open){
+                panel.classList.toggle('open', open);
+                panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+                openBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if(floatBtn) floatBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if(open){
+                    // focus email after expand
+                    setTimeout(()=>{
+                        const email=document.getElementById('contact_email');
+                        if(email) email.focus({preventScroll:true});
+                    }, 280);
+                }
+            }
+            function openContact(scroll){
+                setOpen(true);
+                if(scroll){
+                    document.getElementById('contact')?.scrollIntoView({behavior:'smooth', block:'center'});
+                }
+            }
+            function toggleContact(scroll){
+                const willOpen=!panel.classList.contains('open');
+                setOpen(willOpen);
+                if(willOpen && scroll){
+                    document.getElementById('contact')?.scrollIntoView({behavior:'smooth', block:'center'});
+                }
+            }
+
+            openBtn.addEventListener('click', ()=>toggleContact(false));
+            floatBtn?.addEventListener('click', ()=>openContact(true));
+
+            // Menu Contact → open form
+            document.querySelectorAll('a[href="#contact"]').forEach(a=>{
+                a.addEventListener('click', ()=>{
+                    setTimeout(()=>setOpen(true), 350);
+                });
+            });
+
+            form.addEventListener('submit', async (e)=>{
+                e.preventDefault();
+                const fd=new FormData(form);
+                // honeypot
+                if((fd.get('company')||'').toString().trim()){
+                    statusEl.textContent='Sent. I\'ll reply soon.';
+                    statusEl.className='contact-status ok';
+                    form.reset();
+                    return;
+                }
+                const email=(fd.get('email')||'').toString().trim();
+                const message=(fd.get('message')||'').toString().trim();
+                if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+                    statusEl.textContent='Valid email required.';
+                    statusEl.className='contact-status err';
+                    return;
+                }
+                if(!message){
+                    statusEl.textContent='Message required.';
+                    statusEl.className='contact-status err';
+                    return;
+                }
+                submitBtn.disabled=true;
+                statusEl.textContent='Sending…';
+                statusEl.className='contact-status';
+                try{
+                    const res=await fetch('/api/contact',{
+                        method:'POST',
+                        headers:{'Content-Type':'application/json'},
+                        body:JSON.stringify({
+                            name:(fd.get('name')||'').toString().trim(),
+                            email,
+                            subject:(fd.get('subject')||'').toString().trim() || 'Work with me',
+                            message
+                        })
+                    });
+                    const data=await res.json().catch(()=>({}));
+                    if(!res.ok){
+                        throw new Error(data.error || 'Send failed');
+                    }
+                    statusEl.textContent='Sent. I\'ll reply soon.';
+                    statusEl.className='contact-status ok';
+                    form.reset();
+                }catch(err){
+                    statusEl.innerHTML='Couldn\'t send via form. Email <a href="mailto:hello@aegntic.com">hello@aegntic.com</a> instead.';
+                    statusEl.className='contact-status err';
+                }finally{
+                    submitBtn.disabled=false;
+                }
+            });
+        })();
 
         // ── SCROLL PROGRESS BAR ──
         const progressBar=document.getElementById('scrollProgress');
