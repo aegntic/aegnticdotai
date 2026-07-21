@@ -107,8 +107,9 @@ function shell({ title, description, canonical, body, active = '', jsonLd = null
     ['/projects/', 'Work', 'projects'],
     ['/blog/', 'Notes', 'blog'],
     ['https://aedex.ing', 'aedex', 'aedex'],
+    ['/cognitive-os/', 'Cognitive OS', 'cognitive-os'],
     ['/about/', 'About', 'about'],
-    ['#contact-home', 'Contact', 'contact'],
+    ['/#contact', 'Contact', 'contact'],
   ];
   // Contact on subpages goes home contact
   const menu = items
@@ -154,12 +155,12 @@ function shell({ title, description, canonical, body, active = '', jsonLd = null
   <nav class="nav">
     <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
     <button type="button" class="nav-menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
-      <span class="nav-menu-btn-icon" aria-hidden="true">
-        <svg viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11.45" cy="3" r="2.55" fill="currentColor"/><circle cx="2.55" cy="3" r="2.55" fill="currentColor"/></svg>
-      </span>
       <span class="nav-menu-btn-text">
         <span class="menu-label">Menu</span>
         <span class="menu-close">Close</span>
+      </span>
+      <span class="nav-menu-btn-icon" aria-hidden="true">
+        <svg viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11.45" cy="3" r="2.55" fill="currentColor"/><circle cx="2.55" cy="3" r="2.55" fill="currentColor"/></svg>
       </span>
     </button>
   </nav>
@@ -181,6 +182,7 @@ ${menu}
       <a href="/projects/">Work</a>
       <a href="/blog/">Notes</a>
       <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+      <a href="/cognitive-os/">Cognitive OS</a>
       <a href="/about/">About</a>
       <a href="/audits/">Audits</a>
       <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>

@@ -21,7 +21,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
@@ -91,7 +91,7 @@
         .nav-menu-btn-text span{display:flex;align-items:center;justify-content:center;transition:transform 500ms var(--ease-overshoot);position:absolute;inset:0}
         .nav-menu-btn-text .menu-close{transform:translateY(100%)}
         .nav-menu-btn.open .nav-menu-btn-text .menu-label{transform:translateY(-100%)}
-        .nav-menu-btn.open .nav-menu-btn-text .menu-close{transform:translate(-50%,0)}
+        .nav-menu-btn.open .nav-menu-btn-text .menu-close{transform:translateY(0)}
         .nav-menu-btn-icon{background:#1e242c;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;margin-right:0.25rem;transition:transform 500ms var(--ease-strong);will-change:transform}
         .nav-menu-btn:hover .nav-menu-btn-icon{transform:rotate(90deg)}
         .nav-menu-btn-icon svg{width:14px;height:6px;color:var(--bg)}
@@ -477,7 +477,7 @@
 
     <!-- NAV -->
     <nav class="nav">
-        <a href="#" class="nav-logo"><img src="ae-logo.webp" alt="aegntic"></a>
+        <a href="/" class="nav-logo"><img src="ae-logo.webp" alt="aegntic"></a>
         <button class="nav-menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
             <span class="nav-menu-btn-text">
                 <span class="menu-label">Menu</span>
