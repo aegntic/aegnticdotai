@@ -21,7 +21,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
@@ -81,8 +81,8 @@
         /* ── NAV ── */
         .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 1rem;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
         @media(min-width:1024px){.nav{padding:1.5rem 3rem}}
-        .nav-logo{pointer-events:auto;display:flex;align-items:center;transition:opacity 300ms ease,transform 300ms ease}
-        .nav-logo.hidden{opacity:0;transform:translateY(-100%);pointer-events:none}
+        .nav-logo{pointer-events:auto;display:flex;align-items:center;transition:opacity 300ms ease,transform 300ms ease;opacity:1!important}
+        .nav-logo.hidden{opacity:1;transform:none;pointer-events:auto} /* ponytail: keep logo always visible */
         .nav-logo img{height:2rem;width:auto}
         @media(min-width:1024px){.nav-logo img{height:2.5rem;width:auto}}
         .nav-menu-btn{background:var(--text-dark);color:var(--bg);padding:0.125rem;border-radius:999px;font-size:0.8125rem;font-weight:500;pointer-events:auto;display:inline-flex;align-items:center;gap:0;border:none;cursor:pointer;transition:transform 500ms var(--ease-spring);will-change:transform}
@@ -99,27 +99,29 @@
 
         /* ── HERO ── */
         .hero{position:relative;width:100vw;height:100dvh;min-height:600px;overflow:hidden}
-        .hero-render{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:flex-end;padding-right:22vw;animation:heroImgIn 1s var(--ease-spring) 0.3s both}
+        .hero-render{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:flex-end;padding-right:clamp(1rem,12vw,18vw);opacity:1}
         @media(min-width:1024px){.hero-render{padding-right:20vw}}
-        .hero-render img{width:min(55vw,600px);height:auto;max-height:75vh;object-fit:contain;animation:float 6s ease-in-out infinite}
+        .hero-render img{width:min(48vw,520px);height:auto;max-height:70vh;object-fit:contain;animation:float 6s ease-in-out infinite;opacity:.95}
         @media(min-width:1024px){.hero-render img{width:min(40vw,550px)}}
 
         .hero-watermark{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:flex-end;overflow:hidden;pointer-events:none;user-select:none;padding-right:0.5rem}
         @media(min-width:1024px){.hero-watermark{padding-right:2rem}}
-        .hero-watermark span{font-weight:700;font-size:clamp(8rem,28vw,24rem);letter-spacing:-0.04em;color:var(--text-dark);opacity:0.045;line-height:0.85;white-space:nowrap}
+        .hero-watermark span{font-weight:700;font-size:clamp(7rem,24vw,20rem);letter-spacing:-0.04em;color:var(--text-dark);opacity:0.035;line-height:0.85;white-space:nowrap}
 
-        .hero-content{position:absolute;bottom:2.5rem;left:0;right:0;padding:0 1rem 0;z-index:2}
+        .hero-content{position:absolute;bottom:clamp(2.75rem,11vh,5.5rem);left:0;right:auto;padding:0 clamp(1.25rem,4vw,3.25rem);z-index:5;max-width:min(34rem,58vw)}
+        .hero-headline,.hero-headline *{opacity:1!important;transform:none!important;visibility:visible!important}
+        .intro-hook,.intro-lead,.section-heading,.cta-display,.ae-promo-title{opacity:1!important}
         @media(min-width:768px){.hero-content{padding:0 2rem 0;bottom:3rem}}
         @media(min-width:1024px){.hero-content{padding:0 3rem 0;bottom:13vh;left:3rem}}
         @media(min-width:1280px){.hero-content{left:3rem}}
 
-        .hero-headline{font-size:clamp(2rem,4.2vw,3.5rem);font-weight:600;line-height:1;letter-spacing:-0.04em;color:var(--text-dark);max-width:18ch;opacity:0;animation:heroFadeIn 0.8s ease-out 0.5s forwards}
+        .hero-headline{font-size:clamp(2.25rem,4.5vw,3.75rem);font-weight:600;line-height:1.02;letter-spacing:-0.04em;color:var(--text-dark);max-width:16ch;opacity:1}
         body.gsap-ready .hero-headline{animation:none;opacity:1}
         @media(min-width:768px){.hero-headline{max-width:20ch}}
         @media(min-width:1024px){.hero-headline{font-size:clamp(2.5rem,4.5vw,3.75rem);max-width:22ch}}
         @media(min-width:1280px){.hero-headline{font-size:clamp(2.75rem,4.2vw,4rem)}}
 
-        .hero-scroll{position:absolute;left:1rem;bottom:1rem;z-index:2;display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;font-weight:500;color:var(--text-muted);opacity:0;animation:scrollPulse 3s ease-in-out infinite,heroFadeIn 0.6s ease-out 0.8s forwards}
+        .hero-scroll{position:absolute;left:clamp(1rem,4vw,3rem);bottom:1.25rem;z-index:6;display:flex;align-items:center;gap:0.5rem;font-size:0.875rem;font-weight:500;color:var(--text-muted);opacity:0.55}
         @media(min-width:768px){.hero-scroll{bottom:1.5rem}}
         @media(min-width:1024px){.hero-scroll{left:3rem;bottom:6%;font-size:0.9375rem}}
         .hero-scroll svg{width:14px;height:14px;animation:scrollArrow 2s ease-in-out infinite}
@@ -301,15 +303,15 @@
         /* Only mask when JS active so no-JS users see content */
         body.gsap-ready .split-mask{display:inline-block;overflow:hidden;vertical-align:top;line-height:inherit;padding-bottom:0.05em;margin-bottom:-0.05em}
         body.gsap-ready .split-inner{display:inline-block;will-change:transform}
-        body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
-        body.gsap-ready .reveal-clip{clip-path:inset(0 0 100% 0);will-change:clip-path}
+        body.gsap-ready.gsap-armed .reveal-fade{opacity:0;will-change:transform,opacity}
+        body.gsap-ready.gsap-armed .reveal-clip{clip-path:inset(0 0 100% 0);will-change:clip-path}
 
         /* Eyebrow line draw */
-        body.gsap-ready .intro-eyebrow::before{transform:scaleX(0);transform-origin:left center;will-change:transform}
+        body.gsap-ready.gsap-armed .intro-eyebrow::before{transform:scaleX(0);transform-origin:left center;will-change:transform}
         body.gsap-ready .intro-eyebrow.line-drawn::before{transform:scaleX(1);transition:transform 1.2s cubic-bezier(.22,.68,0,1)}
 
         /* Work card image zoom baseline */
-        body.gsap-ready .work-item-bg img{will-change:transform;transform:scale(1.15)}
+        body.gsap-ready.gsap-armed .work-item-bg img{will-change:transform;transform:scale(1.15)}
 
         /* Per-line mask wrapper */
         body.gsap-ready .split-line{display:block;overflow:hidden;padding-bottom:0.06em;margin-bottom:-0.06em}
@@ -439,6 +441,61 @@
         .cta-btn[aria-expanded="true"] svg{transform:rotate(90deg)}
 
 
+
+        /* ── CHROME HARDENING ── */
+        .nav{z-index:200!important;height:auto;min-height:4.5rem;align-items:center}
+        .nav-menu-btn{background:#0c1016!important;color:#f0f6f8!important;box-shadow:0 8px 24px -10px rgba(12,16,22,.5)}
+        .nav-menu-btn-text,.nav-menu-btn-text span{color:#f0f6f8!important}
+        .nav-menu-btn-icon{background:#1e242c!important}
+        .nav-menu-btn-icon svg{color:#f0f6f8!important}
+        #site-menu{z-index:199!important}
+        .page-loader{z-index:1000}
+        /* content never permanently hidden if GSAP stalls */
+        body.gsap-armed .reveal-fade{opacity:0}
+        body.gsap-ready:not(.gsap-armed) .reveal-fade,
+        body.gsap-ready:not(.gsap-armed) .reveal-clip{opacity:1!important;clip-path:none!important}
+        body.gsap-fail .split-inner,
+        body.gsap-fail .reveal-fade,
+        body.gsap-fail .reveal-clip{opacity:1!important;transform:none!important;clip-path:none!important}
+        /* intro figure: no destructive full-bleed that eats text */
+        .intro-figure{position:relative;width:100%;max-width:560px;margin:0;border-radius:1rem;overflow:hidden;aspect-ratio:4/5}
+        .intro-figure img{width:100%;height:100%;object-fit:cover;display:block;border-radius:1rem}
+        @media(min-width:1024px){
+          .intro-figure{max-width:none;margin:0;aspect-ratio:4/5}
+          .intro-figure img{border-radius:1rem}
+        }
+        @media(max-width:1023px){.intro-figure{aspect-ratio:4/3;max-width:560px;margin:1.5rem auto 0}}
+        .intro-grid{align-items:center!important;gap:3rem!important}
+        @media(min-width:1024px){.intro-grid{gap:4.5rem!important}}
+        .intro{padding-top:clamp(5rem,12vh,8rem)!important;padding-bottom:clamp(4rem,10vh,7rem)!important}
+        .ae-promo{padding:clamp(4rem,10vw,7rem) var(--page-pad,1.5rem)!important}
+        .ae-promo-title{max-width:16ch}
+        .work{padding-top:clamp(4rem,9vw,7rem)!important;padding-bottom:clamp(3.5rem,8vw,6rem)!important}
+        .work-grid{gap:1.25rem!important}
+        @media(min-width:768px){.work-grid{gap:1.5rem!important}}
+        .section-heading{margin-bottom:0.75rem}
+        .section-desc{margin-bottom:2.25rem}
+        .services{padding-top:clamp(3.5rem,8vw,6rem)!important}
+        /* service cards: kill absolute stack overlaps on desktop — clean vertical stack */
+        @media(min-width:1024px){
+          .services-stack{position:relative!important;display:flex!important;flex-direction:column!important;gap:1.25rem!important;min-height:0!important;height:auto!important}
+          .service-card{position:relative!important;left:auto!important;right:auto!important;top:auto!important;aspect-ratio:auto!important;min-height:0!important;padding:2.25rem 2rem!important}
+          .service-card:nth-child(n){top:auto!important;z-index:auto!important}
+        }
+        .service-title{font-size:clamp(1.75rem,3.5vw,2.75rem)!important}
+        .service-card{clip-path:none!important;opacity:1!important}
+        .work-item{clip-path:none!important;opacity:1!important}
+        .work-item-bg img{transform:none!important}
+        /* work-item force visible */
+        /* service-card clip kill */
+        .cta{min-height:auto!important;padding:clamp(5rem,12vw,9rem) var(--page-pad,1.5rem)!important}
+        .cta-display{font-size:clamp(2.75rem,8vw,5.5rem)!important;max-width:12ch}
+        .prefooter-strip{padding:clamp(3rem,7vw,5rem) var(--page-pad,1.5rem) clamp(2rem,5vw,3rem)!important}
+        /* hero breathe */
+        .hero{min-height:100dvh}
+        .hero-headline{max-width:14ch}
+        @media(min-width:1024px){.hero-headline{max-width:16ch}}
+
         /* ── AEDEX PROMO (electric blue product accent) ── */
         .ae-promo{--promo-accent:#1fb6ff}
         .ae-promo-label{color:var(--promo-accent)!important}
@@ -460,6 +517,7 @@
             body.gsap-ready .intro-eyebrow::before{transform:none!important}
         }
     </style>
+    <link rel="stylesheet" href="/site.css">
 </head>
 <body>
     <!-- SCROLL PROGRESS BAR -->
@@ -471,15 +529,10 @@
         <span>Work with me</span>
     </button>
 
-    <!-- LOADER -->
-    <div class="page-loader" id="loader">
-        <span class="loader-text"><img src="ae-logo.webp" alt="AEGNTIC"></span>
-    </div>
-
-    <!-- NAV -->
+<!-- NAV -->
     <nav class="nav">
         <a href="#" class="nav-logo"><img src="ae-logo.webp" alt="aegntic"></a>
-        <button class="nav-menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+        <button type="button" class="nav-menu-btn" id="menuBtn" style="background:#0c1016;color:#f0f6f8" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
             <span class="nav-menu-btn-text">
                 <span class="menu-label">Menu</span>
                 <span class="menu-close">Close</span>
@@ -541,7 +594,7 @@
             <img src="cta-float.webp" alt="" loading="lazy">
         </div>
         <div class="hero-content">
-            <h1 class="hero-headline" data-split>I build production<br>AI-agent systems.</h1>
+            <h1 class="hero-headline">I build production<br>AI-agent systems.</h1>
         </div>
         <span class="hero-scroll">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
@@ -551,14 +604,14 @@
 
     <!-- INTRO / MANIFESTO -->
     <section class="intro" id="manifesto">
-        <p class="intro-hook" data-split>Production AI-agent systems, <em>built solo</em>, end to end.</p>
+        <p class="intro-hook">Production AI-agent systems, <em>built solo</em>, end to end.</p>
         <div class="intro-grid">
             <div class="intro-figure">
                 <img src="intro-cohort-coordination.png" alt="Multi-agent cohort coordination render" loading="lazy">
             </div>
             <div class="intro-body">
                 <div class="intro-eyebrow">Why this exists</div>
-                <p class="intro-lead" data-split>Capability without shipping is noise. <em>Real systems in production are the only résumé.</em></p>
+                <p class="intro-lead">Capability without shipping is noise. <em>Real systems in production are the only résumé.</em></p>
                 <div class="intro-prose">
                     <p>I'm Mattae Cooper. I design, build, and ship AI-agent systems alone — architecture through deployment, in whatever stack the job needs: Rust, Go, TypeScript, Python. <strong>Onchain trade execution, a large Go backend on Postgres and AWS, edge products on Cloudflare Workers</strong> — all real, all running in production.</p>
                     <p>No agency, no handoff. Primary product focus is <strong>aedex</strong> — a catalog-first data marketplace CLI for agents — plus custom agent builds, automation, and Claude Code ecosystem tooling. The proof is public.</p>
@@ -578,7 +631,7 @@
                             <span class="proof-label">Languages</span>
                         </div>
                     </div>
-                    <p class="intro-tagline" data-split><strong>Mattae Cooper</strong> — independent AI-agent engineer. Building <a href="https://aedex.ing" style="color:var(--accent);text-decoration:none">aedex</a>.</p>
+                    <p class="intro-tagline"><strong>Mattae Cooper</strong> — independent AI-agent engineer. Building <a href="https://aedex.ing" style="color:var(--accent);text-decoration:none">aedex</a>.</p>
                 </div>
             </div>
         </div>
@@ -591,7 +644,7 @@
             <div class="ae-promo-grid">
                 <div class="ae-promo-body">
                     <div class="ae-promo-label">Primary product</div>
-                    <h2 class="ae-promo-title" data-split>aedex — catalog-first<br><em>agent data exchange</em>.</h2>
+                    <h2 class="ae-promo-title">aedex — catalog-first<br><em>agent data exchange</em>.</h2>
                     <p class="ae-promo-sub">Discover, inspect, and run hundreds of data tools. One CLI, one balance.</p>
                     <p class="ae-promo-desc">aedex is the Aegntic decentralized exchange CLI and gateway for agent-native data tools. Catalog first — stop hand-rolling scrapers and one-off integrations. Live at aedex.ing.</p>
                     <a href="https://aedex.ing" class="ae-promo-cta" target="_blank" rel="noopener">
@@ -612,7 +665,7 @@
     <!-- WORK -->
     <section class="work" id="work">
         <div class="section-label">Selected Work</div>
-        <h2 class="section-heading" data-split>Selected work.</h2>
+        <h2 class="section-heading">Selected work.</h2>
         <p class="section-desc">Shipped systems. Primary focus: aedex — not a demo graveyard.</p>
         <div class="work-grid">
             <a href="https://aedex.ing" target="_blank" rel="noopener" class="work-item">
@@ -677,7 +730,7 @@
     <!-- SERVICES -->
     <section class="services" id="services">
         <div class="section-label">What I do</div>
-        <h2 class="section-heading" data-split>What I build for clients.</h2>
+        <h2 class="section-heading">What I build for clients.</h2>
         <p class="section-desc">Three ways I ship real systems — not dashboards, not demos.</p>
         <div class="services-stack">
             <div class="service-card">
@@ -721,7 +774,7 @@
         <div class="cta-figure">
             <img src="cta-reach-arm.png" alt="Mechanical reach-arm gesture" loading="lazy">
         </div>
-        <h2 class="cta-display" data-split>Have a system<br>that should exist?</h2>
+        <h2 class="cta-display">Have a system<br>that should exist?</h2>
         <p class="cta-sub">Tell me what you're building. I'll scope it, quote it, and build it myself.</p>
         <button type="button" class="cta-btn" id="ctaOpen" aria-expanded="false" aria-controls="contactFormPanel">
             <span>Work with me</span>
@@ -841,12 +894,18 @@
     </footer>
 
     <script>
-        // Loader
-        window.addEventListener('load',()=>{
-            setTimeout(()=>{
-                document.getElementById('loader').classList.add('done');
-            },600);
-        });
+                
+        // deep-link scroll for preview/QA
+        (function(){
+          const go=()=>{
+            const id=location.hash.replace('#','');
+            if(!id) return;
+            const el=document.getElementById(id);
+            if(el) el.scrollIntoView({block:'start'});
+          };
+          window.addEventListener('load',()=>setTimeout(go,100));
+          setTimeout(go,600);
+        })();
 
         // Logo hide on scroll to avoid watermark overlap
         const navLogo=document.querySelector('.nav-logo');
@@ -1105,36 +1164,22 @@
             }
 
             // Run split on every [data-split]
-            document.querySelectorAll('[data-split]').forEach(splitWords);
-
+            // ponytail: split-text disabled — it left headlines off-screen when animation stalled
+            arm();
+            // snap any leftover transforms
+            document.querySelectorAll('.split-inner,.reveal-fade,.reveal-clip').forEach(el=>{
+              el.style.opacity='1'; el.style.transform='none'; el.style.clipPath='none';
+            });
             const ease='expo.out';
             const easeSoft='power3.out';
             const easeClip='power4.inOut';
-
-            // ── HERO timeline (runs after loader) ──
-            const heroTL=gsap.timeline({delay:0.5});
-            heroTL.fromTo('.hero-headline .split-inner',
-                {yPercent:120},
-                {yPercent:0,duration:1.6,ease:ease,stagger:0.1}
-            );
-
-            // ── Scroll-triggered word reveals ──
-            gsap.utils.toArray('.intro-hook, .intro-lead, .section-heading, .intro-tagline, .cta-display').forEach(el=>{
-                const inners=el.querySelectorAll('.split-inner');
-                if(!inners.length){return}
-                gsap.fromTo(inners,
-                    {yPercent:120},
-                    {yPercent:0,duration:1.4,ease:ease,stagger:0.08,
-                    scrollTrigger:{trigger:el,start:'top 82%',toggleActions:'play none none reverse'}}
-                );
-            });
 
             // ── Intro eyebrow line draw + fade ──
             gsap.to('.intro-eyebrow::before',{}); // pseudo handled via CSS class toggle
             document.querySelectorAll('.intro-eyebrow').forEach(el=>{
                 gsap.fromTo(el,{opacity:0,x:-16},{
                     opacity:1,x:0,duration:1.0,ease:easeSoft,
-                    scrollTrigger:{trigger:el,start:'top 85%',toggleActions:'play none none reverse'}
+                    scrollTrigger:{trigger:el,start:'top 85%',toggleActions:'play none none none'}
                 });
             });
             // Pseudo line draw — animate via CSS class
@@ -1152,104 +1197,29 @@
             //     gsap.fromTo(el,
             //         {xPercent:-40,scale:0.9,opacity:0},
             //         {xPercent:-22,scale:1,opacity:1,duration:1.6,ease:easeSoft,
-            //         scrollTrigger:{trigger:'.intro',start:'top 60%',toggleActions:'play none none reverse'}}
+            //         scrollTrigger:{trigger:'.intro',start:'top 60%',toggleActions:'play none none none'}}
             //     );
             // });
 
             // ── Prose / desc / sub fade-up ──
             gsap.utils.toArray('.intro-prose p, .section-desc, .cta-sub, .ae-promo-sub, .ae-promo-desc').forEach(el=>{
-                gsap.fromTo(el,{y:48,opacity:0},{
-                    y:0,opacity:1,duration:1.3,ease:easeSoft,
-                    scrollTrigger:{trigger:el,start:'top 85%',toggleActions:'play none none reverse'}
-                });
+                // fade disabled — content stays readable without scroll gate
+                gsap.fromTo(el,{y:16},{y:0,duration:0.7,ease:easeSoft,scrollTrigger:{trigger:el,start:'top 90%',toggleActions:'play none none none'}});
             });
-
-            // ── Work card directional clip reveal ──
-            const clips=[
-                'inset(0 100% 0 0)',
-                'inset(0 0 100% 0)',
-                'inset(0 0 0 100%)',
-                'inset(100% 0 0 0)'
-            ];
-            ScrollTrigger.create({
-                trigger:'.work-grid',start:'top 78%',
-                onEnter:()=>{
-                    document.querySelectorAll('.work-item').forEach((card,i)=>{
-                        gsap.fromTo(card,{
-                            clipPath:clips[i%clips.length],opacity:1
-                        },{
-                            clipPath:'inset(0 0 0 0)',duration:1.5,ease:easeClip,delay:i*0.14
-                        });
-                    });
-                    document.querySelectorAll('.work-item-bg img').forEach((img,i)=>{
-                        gsap.to(img,{
-                            scale:1,duration:1.8,ease:'power3.out',delay:i*0.14
-                        });
-                    });
-                },
-                onLeaveBack:()=>{
-                    // reset so re-entry plays again
-                    document.querySelectorAll('.work-item').forEach((card,i)=>{
-                        gsap.set(card,{clipPath:clips[i%clips.length]});
-                    });
-                    document.querySelectorAll('.work-item-bg img').forEach(img=>{
-                        gsap.set(img,{scale:1.15});
-                    });
-                }
-            });
-
-            // ── Service cards: scrubbed stacking reveal with clip-path transitions ──
-            // Each card uses clip-path to reveal/hide body content as user scrolls.
-            // Headings always peek through; next card body reaches full opacity by tagline.
-            document.querySelectorAll('.work-item').forEach(()=>{}); // ensure cards exist
-            {
-                const cards=document.querySelectorAll('.service-card');
-                if(cards.length>1){
-                    const peekH=140; // approximate heading area in pixels
-                    const cardH=cards[0].offsetHeight;
-                    const clipBody=`inset(0 0 ${cardH-peekH}px 0)`; // keep heading, hide body
-                    const clipHeadOnly=i=>`inset(${cardH-peekH}px 0 0 0)`; // only heading visible
-                    const scrollPerCard=cardH;
-                    const totalScroll=scrollPerCard*(cards.length-1);
-                    const stl=gsap.timeline({
-                        scrollTrigger:{
-                            trigger:'.services-stack',start:'top 75%',
-                            end:()=>`+=${totalScroll}`,scrub:1.5,
-                            invalidateOnRefresh:true
-                        }
-                    });
-                    cards.forEach((card,i)=>{
-                        const desc=card.querySelector('.service-desc');
-                        const tags=card.querySelectorAll('.service-tag');
-                        const body=[desc,...tags].filter(Boolean);
-                        if(i===0){
-                            stl.to(card,{clipPath:clipBody,duration:1},0);
-                            stl.to(body,{opacity:0.05,duration:1},0);
-                        }else{
-                            stl.fromTo(card,{clipPath:clipHeadOnly(i)},{clipPath:'inset(0 0 0 0)',duration:0.65},i-1);
-                            stl.fromTo(body,{opacity:0.05},{opacity:1,duration:0.55},i-1);
-                            if(i<cards.length-1){
-                                stl.to(card,{clipPath:clipBody,duration:1},i);
-                                stl.to(body,{opacity:0.05,duration:1},i);
-                            }
-                        }
-                    });
-                }
-            }
 
             // ── Section labels (Selected Work / Core Modules) line+fade ──
             document.querySelectorAll('.section-label').forEach(el=>{
-                gsap.fromTo(el,{opacity:0,y:-14},{
-                    opacity:1,y:0,duration:0.9,ease:easeSoft,
-                    scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'}
+                gsap.fromTo(el,{opacity:1,y:0},{
+                    opacity:1,y:0,duration:0.01,ease:easeSoft,
+                    scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}
                 });
             });
 
             // ── CTA figure reveal (preserves CSS translateY(-50%) via GSAP yPercent) ──
             gsap.utils.toArray('.cta-figure').forEach(el=>{
-                gsap.fromTo(el,{x:80,opacity:0,yPercent:-50},{
-                    x:0,opacity:1,yPercent:-50,duration:1.6,ease:easeSoft,
-                    scrollTrigger:{trigger:'.cta',start:'top 70%',toggleActions:'play none none reverse'}
+                gsap.fromTo(el,{x:0,opacity:1,yPercent:-50},{
+                    x:0,opacity:1,yPercent:-50,duration:0.01,ease:easeSoft,
+                    scrollTrigger:{trigger:'.cta',start:'top 70%',toggleActions:'play none none none'}
                 });
             });
         })();

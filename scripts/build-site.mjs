@@ -93,25 +93,41 @@ function loadAllowlist() {
   );
 }
 
-function shell({ title, description, canonical, body, active = '', jsonLd = null }) {
-  // ponytail: nav ≤5 — aedex is external primary product
-  const nav = [
+const MENU_ARROW = `<span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>`;
+
+function menuLink(href, label, key, active) {
+  const cur = key === active ? ' aria-current="page"' : '';
+  const ext = href.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
+  return `<a href="${href}" class="menu-link" onclick="closeMenu()"${cur}${ext}>${MENU_ARROW}<span>${label}</span></a>`;
+}
+
+function shell({ title, description, canonical, body, active = '', jsonLd = null, electricCta = false }) {
+  const items = [
     ['/', 'Home', 'home'],
     ['/projects/', 'Work', 'projects'],
     ['/blog/', 'Notes', 'blog'],
     ['https://aedex.ing', 'aedex', 'aedex'],
     ['/about/', 'About', 'about'],
-  ]
+    ['#contact-home', 'Contact', 'contact'],
+  ];
+  // Contact on subpages goes home contact
+  const menu = items
     .map(([href, label, key]) => {
+      const h = key === 'contact' ? '/#contact' : href;
       const cur = key === active ? ' aria-current="page"' : '';
-      const ext = href.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
-      return `<a href="${href}"${cur}${ext}>${label}</a>`;
+      const ext = h.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
+      return `            <a href="${h}" class="menu-link"${cur}${ext} onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>${label}</span>
+            </a>`;
     })
-    .join('\n        ');
+    .join('\n');
 
   const ld = jsonLd
     ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`
     : '';
+
+  const ctaClass = electricCta ? 'btn btn-electric' : 'btn';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -128,25 +144,39 @@ function shell({ title, description, canonical, body, active = '', jsonLd = null
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:image" content="${SITE}/og-aegntic-skeleton.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${esc(title)}">
-  <meta name="twitter:description" content="${esc(description)}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/site.css">
   ${ld}
 </head>
 <body>
   <nav class="nav">
     <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
-    <div class="nav-links">
-      ${nav}
-      <a class="nav-cta" href="https://aedex.ing" target="_blank" rel="noopener">Open aedex</a>
+    <button type="button" class="nav-menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+      <span class="nav-menu-btn-icon" aria-hidden="true">
+        <svg viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11.45" cy="3" r="2.55" fill="currentColor"/><circle cx="2.55" cy="3" r="2.55" fill="currentColor"/></svg>
+      </span>
+      <span class="nav-menu-btn-text">
+        <span class="menu-label">Menu</span>
+        <span class="menu-close">Close</span>
+      </span>
+    </button>
+  </nav>
+  <nav id="site-menu" aria-hidden="true">
+    <div class="site-menu-inner">
+${menu}
     </div>
   </nav>
   ${body}
   <footer class="footer">
-    <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
+    <div class="footer-marquee" aria-hidden="true">
+      <div class="footer-marquee-inner">
+        <span>Rust</span><span>Go</span><span>TypeScript</span><span>Python</span><span>Agents</span><span>aedex</span><span>MCP</span><span>Claude Code</span>
+        <span>Rust</span><span>Go</span><span>TypeScript</span><span>Python</span><span>Agents</span><span>aedex</span><span>MCP</span><span>Claude Code</span>
+      </div>
+    </div>
+    <img class="footer-logo" src="/ae-logo.webp" alt="AEGNTIC">
     <div class="footer-links">
       <a href="/projects/">Work</a>
       <a href="/blog/">Notes</a>
@@ -159,10 +189,35 @@ function shell({ title, description, canonical, body, active = '', jsonLd = null
     </div>
     <div class="footer-copy">&copy; ${new Date().getFullYear()} Mattae Cooper · aegntic.ai</div>
   </footer>
+  <script>
+    function toggleMenu(){
+      const btn=document.getElementById('menuBtn');
+      const menu=document.getElementById('site-menu');
+      const open=menu.classList.toggle('open');
+      menu.setAttribute('aria-hidden', open?'false':'true');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open?'true':'false');
+    }
+    function closeMenu(){
+      const btn=document.getElementById('menuBtn');
+      const menu=document.getElementById('site-menu');
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden','true');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+    }
+    document.addEventListener('click',e=>{
+      const btn=document.getElementById('menuBtn');
+      const menu=document.getElementById('site-menu');
+      if(menu.classList.contains('open') && !btn.contains(e.target) && !menu.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMenu(); });
+  </script>
 </body>
 </html>
 `;
 }
+
 
 function write(path, content) {
   mkdirSync(dirname(path), { recursive: true });
@@ -224,7 +279,7 @@ function buildBlog(posts) {
   const filters = [
     `<button type="button" class="filter active" data-filter="*">All</button>`,
     ...allTags
-      .slice(0, 16)
+      .slice(0, 8)
       .map(
         (t) =>
           `<button type="button" class="filter" data-filter="${esc(t)}">${esc(t)}</button>`,

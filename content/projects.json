@@ -6,12 +6,17 @@
     "status": "Latest",
     "featured": true,
     "home": true,
-    "summary": "Catalog-first data marketplace for agents. Discover, inspect, and run hundreds of data tools — one CLI, one balance.",
+    "summary": "Catalog-first data marketplace for agents. Discover, inspect, and run hundreds of data tools \u2014 one CLI, one balance.",
     "body": "aedex is the top product focus under Aegntic: a decentralized exchange CLI and gateway for agent-native data tools. Discover first, run second, bill once. Web console and gateway at aedex.ing.",
     "url": "https://aedex.ing",
     "external": true,
-    "tags": ["CLI", "Marketplace", "Agents", "Data"],
-    "image": "/work-cldcde.jpg"
+    "tags": [
+      "CLI",
+      "Marketplace",
+      "Agents",
+      "Data"
+    ],
+    "image": "/work-clawreform.jpg"
   },
   {
     "slug": "cldcde",
@@ -20,11 +25,15 @@
     "status": "Production",
     "featured": true,
     "home": true,
-    "summary": "Claude Code ecosystem hub — tools, patterns, and operator infrastructure for agentic development.",
+    "summary": "Claude Code ecosystem hub \u2014 tools, patterns, and operator infrastructure for agentic development.",
     "body": "CLDCDE is the public surface for Claude Code ecosystem work: tooling, patterns, and operator infrastructure that make agentic development shippable. Live at cldcde.cc.",
     "url": "https://cldcde.cc",
     "external": true,
-    "tags": ["Claude Code", "Ecosystem", "Tooling"],
+    "tags": [
+      "Claude Code",
+      "Ecosystem",
+      "Tooling"
+    ],
     "image": "/work-cldcde.jpg"
   },
   {
@@ -35,10 +44,13 @@
     "featured": true,
     "home": true,
     "summary": "Agent-city surface for coordination, reform patterns, and multi-agent operations.",
-    "body": "clawREFORM explores multi-agent coordination as an urban metaphor — agents as operators in a shared city. Production surface at clawreform.com.",
+    "body": "clawREFORM explores multi-agent coordination as an urban metaphor \u2014 agents as operators in a shared city. Production surface at clawreform.com.",
     "url": "https://clawreform.com",
     "external": true,
-    "tags": ["Agents", "Coordination"],
+    "tags": [
+      "Agents",
+      "Coordination"
+    ],
     "image": "/work-clawreform.jpg"
   },
   {
@@ -48,11 +60,15 @@
     "status": "Production",
     "featured": true,
     "home": true,
-    "summary": "Universal MCP discovery and memory library — cut setup from hours to minutes.",
+    "summary": "Universal MCP discovery and memory library \u2014 cut setup from hours to minutes.",
     "body": "Prologue is MCP discovery and memory infrastructure for agent stacks. Stop re-solving auth, discovery, and wiring every time a new agent surface comes online. Live at logue.pro.",
     "url": "https://logue.pro",
     "external": true,
-    "tags": ["MCP", "Memory", "Discovery"],
+    "tags": [
+      "MCP",
+      "Memory",
+      "Discovery"
+    ],
     "image": "/work-prologue.jpg"
   },
   {
@@ -62,11 +78,15 @@
     "status": "Living doc",
     "featured": true,
     "home": true,
-    "summary": "Cognitive Operating System — multi-harness agent policy, verification chains, and execution stack.",
+    "summary": "Cognitive Operating System \u2014 multi-harness agent policy, verification chains, and execution stack.",
     "body": "Cognitive OS is the living operating manual for multi-harness agents: complexity triage, verification chains, memory layers, and security circuit breakers.",
     "url": "/cognitive-os/",
     "external": false,
-    "tags": ["Agents", "OS", "Policy"],
+    "tags": [
+      "Agents",
+      "OS",
+      "Policy"
+    ],
     "image": "/assets/visuals/research-crystal.png"
   },
   {
@@ -76,11 +96,14 @@
     "status": "Available",
     "featured": false,
     "home": false,
-    "summary": "Structured adversarial council for expensive decisions — available on request, not the primary offer.",
+    "summary": "Structured adversarial council for expensive decisions \u2014 available on request, not the primary offer.",
     "body": "AE Audits remains available as decision-grade review with multiple adversarial lenses. Primary product focus has moved to aedex; audits is offered selectively.",
     "url": "/audits/",
     "external": false,
-    "tags": ["Review", "Agents"],
+    "tags": [
+      "Review",
+      "Agents"
+    ],
     "image": "/work-open-inventory.png"
   },
   {
@@ -94,7 +117,10 @@
     "body": "prompt.fail documents failure modes in prompt and agent systems.",
     "url": "https://prompt.fail",
     "external": true,
-    "tags": ["Prompts", "Failure modes"],
-    "image": "/assets/projects/prompt-prompter-wireframe.png"
+    "tags": [
+      "Prompts",
+      "Failure modes"
+    ],
+    "image": "/work-open-inventory.png"
   }
 ]
