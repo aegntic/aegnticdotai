@@ -245,8 +245,10 @@
         @media(min-width:1024px){.cta{padding:8rem 3rem;min-height:100vh}}
         @media(min-width:1280px){.cta{padding:10rem 5rem}}
 
-        .cta-display{font-size:clamp(4rem,12vw,9rem);font-weight:600;letter-spacing:-0.04em;line-height:0.9;color:var(--text-dark);position:relative;z-index:2}
-        @media(min-width:1024px){.cta-display{font-size:clamp(6rem,12vw,10rem)}}
+        .cta-display{font-size:clamp(2.75rem,7vw,5.5rem);font-weight:600;letter-spacing:-0.04em;line-height:0.95;color:var(--text-dark);position:relative;z-index:2;max-width:14ch}
+        @media(min-width:1024px){.cta-display{font-size:clamp(3.5rem,6.5vw,5.75rem);max-width:12ch}}
+        .cta-copy{position:relative;z-index:2;max-width:min(36rem,52%);padding-right:1rem}
+        @media(max-width:767px){.cta-copy{max-width:100%}}
 
         .cta-sub{font-size:clamp(1rem,1.5vw,1.25rem);color:var(--text-muted);max-width:36ch;line-height:1.6;margin-top:2rem;position:relative;z-index:2}
 
@@ -257,10 +259,10 @@
         .cta-btn:hover svg{transform:translateX(4px)}
 
         /* CTA floating visual — arm reaches ≥66% across page, retains right bleed */
-        .cta-figure{position:absolute;right:-5vw;top:50%;transform:translateY(-50%);width:min(71vw,820px);z-index:1;pointer-events:none}
+        .cta-figure{position:absolute;right:-8vw;top:50%;transform:translateY(-50%);width:min(42vw,520px);z-index:1;pointer-events:none;opacity:.92}
         .cta-figure img{width:100%;height:auto;display:block;animation:floatSlow 6s ease-in-out infinite}
-        @media(max-width:767px){.cta-figure{width:min(80vw,320px);right:-12vw;top:65%}}
-        @media(min-width:1280px){.cta-figure{width:min(66vw,920px)}}
+        @media(max-width:767px){.cta-figure{width:min(55vw,240px);right:-10vw;top:72%;opacity:.35}}
+        @media(min-width:1280px){.cta-figure{width:min(40vw,560px);right:-6vw}}
 
 
         /* ── PRE-FOOTER IMAGE STRIP (placeholder slots above footer) ── */
@@ -516,6 +518,10 @@
                 <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
                 <span>aedex</span>
             </a>
+            <a href="/cognitive-os/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Cognitive OS</span>
+            </a>
             <a href="/about/" class="menu-link" onclick="closeMenu()">
                 <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
                 <span>About</span>
@@ -538,7 +544,7 @@
             <img src="cta-float.webp" alt="" loading="lazy">
         </div>
         <div class="hero-content">
-            <h1 class="hero-headline" data-split>I build production<br>AI-agent systems.</h1>
+            <h1 class="hero-headline" data-split>Products for<br>production agents.</h1>
         </div>
         <span class="hero-scroll">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
@@ -546,36 +552,26 @@
         </span>
     </section>
 
-    <!-- INTRO / MANIFESTO -->
-    <section class="intro" id="manifesto">
-        <p class="intro-hook" data-split>Production AI-agent systems, <em>built solo</em>, end to end.</p>
+    <!-- PURPOSE -->
+    <section class="intro" id="purpose">
+        <div class="section-label">What this is</div>
+        <h2 class="section-heading" data-split>Two products. One craft.</h2>
+        <p class="intro-hook" style="margin-bottom:2.5rem;max-width:28ch">Ship agent infrastructure people actually run — not demos, not decks.</p>
         <div class="intro-grid">
             <div class="intro-figure">
-                <img src="intro-cohort-coordination.png" alt="Multi-agent cohort coordination render" loading="lazy">
+                <img src="intro-cohort-coordination.png" alt="Multi-agent cohort coordination" loading="lazy">
             </div>
-            <div class="intro-body">
-                <div class="intro-eyebrow">Why this exists</div>
-                <p class="intro-lead" data-split>Capability without shipping is noise. <em>Real systems in production are the only résumé.</em></p>
+            <div>
+                <p class="intro-lead" data-split style="margin-bottom:1.5rem">aegntic builds the layer agents run on.</p>
                 <div class="intro-prose">
-                    <p>I'm Mattae Cooper. I design, build, and ship AI-agent systems alone — architecture through deployment, in whatever stack the job needs: Rust, Go, TypeScript, Python. <strong>Onchain trade execution, a large Go backend on Postgres and AWS, edge products on Cloudflare Workers</strong> — all real, all running in production.</p>
-                    <p>No agency, no handoff. Custom agent builds, automation that removes manual work, and developer tooling for the Claude Code ecosystem. The proof is public — 127+ repositories and the systems behind them.</p>
+                    <p><strong>aedex</strong> — catalog-first data exchange CLI. Discover, inspect, and run data tools from one surface.</p>
+                    <p><strong>Cognitive OS</strong> — the policy + verification stack for agents that operate across harnesses without going feral.</p>
+                    <p>Everything else (CLDCDE, Prologue, clawREFORM) is the same craft applied to adjacent problems.</p>
                 </div>
-                <div class="intro-sig">
-                    <div class="proof-strip">
-                        <div class="proof-item">
-                            <span class="proof-num" id="stat-repos">127+</span>
-                            <span class="proof-label">Public Repos</span>
-                        </div>
-                        <div class="proof-item">
-                            <span class="proof-num" id="stat-stars">9</span>
-                            <span class="proof-label">Crate Engine</span>
-                        </div>
-                        <div class="proof-item">
-                            <span class="proof-num" id="stat-followers">4</span>
-                            <span class="proof-label">Languages</span>
-                        </div>
-                    </div>
-                    <p class="intro-tagline" data-split><strong>Mattae Cooper</strong> — independent AI-agent engineer, for hire.</p>
+                <div class="intro-stats" style="margin-top:2rem">
+                    <div class="intro-stat"><div class="intro-stat-num">aedex</div><div class="intro-stat-label">Primary product</div></div>
+                    <div class="intro-stat"><div class="intro-stat-num">Cos</div><div class="intro-stat-label">Agent OS</div></div>
+                    <div class="intro-stat"><div class="intro-stat-num">Open</div><div class="intro-stat-label">Public proof</div></div>
                 </div>
             </div>
         </div>
@@ -588,9 +584,9 @@
             <div class="ae-promo-grid">
                 <div class="ae-promo-body">
                     <div class="ae-promo-label">Primary product</div>
-                    <h2 class="ae-promo-title" data-split>aedex <em>— catalog-first</em><br>agent data exchange</h2>
-                    <p class="ae-promo-sub">Discover, inspect, and run hundreds of data tools from one CLI.</p>
-                    <p class="ae-promo-desc">The product focus now. Same craft as the rest of the studio — production systems, not demos. CLI, catalog, gateway, marketplace.</p>
+                    <h2 class="ae-promo-title" data-split>aedex.</h2>
+                    <p class="ae-promo-sub">Catalog-first agent data exchange.</p>
+                    <p class="ae-promo-desc">One CLI to discover, inspect, and run data tools. Marketplace + gateway. Built for agents that need real I/O, not chat wrappers.</p>
                     <a href="https://aedex.ing" class="ae-promo-cta" target="_blank" rel="noopener">
                         Open aedex
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -606,18 +602,55 @@
         </div>
     </section>
 
+
+    <!-- COGNITIVE OS -->
+    <section class="ae-promo" id="cognitive-os" style="background:var(--bg);color:var(--text-dark)">
+        <div class="ae-promo-inner">
+            <div class="section-label" style="color:var(--text-muted)">Core system</div>
+            <h2 class="section-heading" data-split style="max-width:20ch">Cognitive OS.</h2>
+            <p class="section-desc" style="margin-bottom:2.5rem;max-width:40ch">Most agents are chatbots with a terminal. This is a cognitive operating system — policy, verification, and multi-harness execution as one stack.</p>
+            <div class="ae-promo-grid">
+                <div class="ae-promo-body">
+                    <p class="ae-promo-sub" style="color:var(--accent)">Five systems that change how the agent operates.</p>
+                    <p class="ae-promo-desc" style="opacity:1;color:var(--text-muted)">Complexity classification. Diff-aware edits. Verification chains before “done.” Swarm coordination. Adversarial security gates. Running now — not a whitepaper.</p>
+                    <a href="/cognitive-os/" class="ae-promo-cta" style="background:var(--text-dark);color:var(--bg)">
+                        Open Cognitive OS
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <div class="ae-promo-visual" style="background:var(--text-dark);border-color:transparent">
+                    <div class="ae-promo-visual-inner">
+                        <div class="ae-big" style="color:#fff">Cos<span style="color:var(--accent)">·</span></div>
+                        <div class="ae-sub">cognitive operating system</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- WORK -->
     <section class="work" id="work">
-        <div class="section-label">Selected Work</div>
-        <h2 class="section-heading" data-split>Selected work.</h2>
-        <p class="section-desc">Real, shipped systems — each running in production. Primary product focus is aedex.</p>
+        <div class="section-label">Portfolio</div>
+        <h2 class="section-heading" data-split>Shipped products.</h2>
+        <p class="section-desc">Live systems. aedex and Cognitive OS lead. The rest prove the same craft.</p>
         <div class="work-grid">
             <a href="https://aedex.ing" class="work-item" target="_blank" rel="noopener">
                 <div class="work-item-bg"><img src="work-aetools.jpg" alt="aedex" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
-                    <span class="work-item-sub"><span class="latest-offer"><span class="latest-pulse"></span>Latest</span> · Agent data exchange</span>
+                    <span class="work-item-sub"><span class="latest-offer"><span class="latest-pulse"></span>Latest</span> · Data exchange CLI</span>
                     <span class="work-item-title">aedex</span>
+                </div>
+                <div class="work-item-arrow">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </div>
+            </a>
+            <a href="/cognitive-os/" class="work-item">
+                <div class="work-item-bg"><img src="work-veritas.png" alt="Cognitive OS" loading="lazy"></div>
+                <div class="work-item-overlay"></div>
+                <div class="work-item-content">
+                    <span class="work-item-sub">Agent operating system</span>
+                    <span class="work-item-title">Cognitive OS</span>
                 </div>
                 <div class="work-item-arrow">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -627,19 +660,8 @@
                 <div class="work-item-bg"><img src="work-cldcde.jpg" alt="CLDCDE" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
-                    <span class="work-item-sub">Developer Ecosystem</span>
+                    <span class="work-item-sub">Claude Code ecosystem</span>
                     <span class="work-item-title">CLDCDE</span>
-                </div>
-                <div class="work-item-arrow">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                </div>
-            </a>
-            <a href="/projects/clawreform/" class="work-item">
-                <div class="work-item-bg"><img src="work-clawreform.jpg" alt="clawREFORM" loading="lazy"></div>
-                <div class="work-item-overlay"></div>
-                <div class="work-item-content">
-                    <span class="work-item-sub">Agent City</span>
-                    <span class="work-item-title">clawREFORM</span>
                 </div>
                 <div class="work-item-arrow">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -649,19 +671,19 @@
                 <div class="work-item-bg"><img src="work-prologue.jpg" alt="Prologue" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
-                    <span class="work-item-sub">Memory Library</span>
+                    <span class="work-item-sub">MCP discovery + memory</span>
                     <span class="work-item-title">Prologue</span>
                 </div>
                 <div class="work-item-arrow">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
                 </div>
             </a>
-            <a href="/projects/cognitive-os/" class="work-item">
-                <div class="work-item-bg"><img src="work-veritas.png" alt="Cognitive OS" loading="lazy"></div>
+            <a href="/projects/clawreform/" class="work-item">
+                <div class="work-item-bg"><img src="work-clawreform.jpg" alt="clawREFORM" loading="lazy"></div>
                 <div class="work-item-overlay"></div>
                 <div class="work-item-content">
-                    <span class="work-item-sub">Agent OS</span>
-                    <span class="work-item-title">Cognitive OS</span>
+                    <span class="work-item-sub">Agent coordination</span>
+                    <span class="work-item-title">clawREFORM</span>
                 </div>
                 <div class="work-item-arrow">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -673,42 +695,30 @@
 
     <!-- SERVICES -->
     <section class="services" id="services">
-        <div class="section-label">What I do</div>
-        <h2 class="section-heading" data-split>What I build for clients.</h2>
-        <p class="section-desc">Three ways I ship real systems — not dashboards, not demos.</p>
+        <div class="section-label">Engagement</div>
+        <h2 class="section-heading" data-split>Build with us.</h2>
+        <p class="section-desc">If aedex or Cognitive OS is the fit — use them. If you need a custom production system, hire the same craft.</p>
         <div class="services-stack">
             <div class="service-card">
                 <div class="service-head">
-                    <h3 class="service-title">Custom agent builds</h3>
-                    <div class="service-tags">
-                        <span class="service-tag">Architecture</span>
-                        <span class="service-tag">Full-Stack</span>
-                        <span class="service-tag">Multi-Agent</span>
-                    </div>
+                    <h3 class="service-title">aedex</h3>
+                    <div class="service-tags"><span class="service-tag">Product</span><span class="service-tag">CLI</span><span class="service-tag">Data</span></div>
                 </div>
-                <p class="service-desc">Production agent systems designed and shipped solo. <strong>Onchain trade execution</strong> — a Rust/Go order-flow pipeline with real market feeds and MEV protection. <strong>Multi-agent coordination</strong> — persistent swarms with shared reasoning state across MCP servers. Architecture through deployment, in whatever stack the job needs.</p>
+                <p class="service-desc">Catalog-first agent data exchange. One CLI for discovery, inspection, and execution across data tools.</p>
             </div>
             <div class="service-card">
                 <div class="service-head">
-                    <h3 class="service-title">Automation infrastructure</h3>
-                    <div class="service-tags">
-                        <span class="service-tag">Workflows</span>
-                        <span class="service-tag">Backends</span>
-                        <span class="service-tag">Edge</span>
-                    </div>
+                    <h3 class="service-title">Cognitive OS</h3>
+                    <div class="service-tags"><span class="service-tag">OS</span><span class="service-tag">Policy</span><span class="service-tag">Verify</span></div>
                 </div>
-                <p class="service-desc">Real systems that remove manual work. <strong>Go monolith on Postgres + AWS</strong> — integrated event pipeline handling ingestion, enrichment, and delivery at scale. <strong>Edge products on Cloudflare Workers</strong> — serverless automation with D1, Queues, and R2. No dashboards, no demos — live production deployments.</p>
+                <p class="service-desc">How serious agents should run: classify complexity, verify before done, coordinate swarms, refuse silent failure.</p>
             </div>
             <div class="service-card">
                 <div class="service-head">
-                    <h3 class="service-title">Developer tooling</h3>
-                    <div class="service-tags">
-                        <span class="service-tag">MCP</span>
-                        <span class="service-tag">CLIs</span>
-                        <span class="service-tag">Agents</span>
-                    </div>
+                    <h3 class="service-title">Custom builds</h3>
+                    <div class="service-tags"><span class="service-tag">Hire</span><span class="service-tag">Ship</span></div>
                 </div>
-                <p class="service-desc">Tools that make agents and engineers more capable. <strong>Custom MCP servers</strong> — connecting LLMs to production APIs, databases, and file systems. <strong>Claude Code ecosystem</strong> — early ecosystem operator shaping how agents interact with code. CLI tooling, agent infrastructure, and the coordination layer for persistent intelligence.</p>
+                <p class="service-desc">Production agent systems end to end — architecture through deploy. Solo. No agency handoff.</p>
             </div>
         </div>
     </section>
@@ -718,12 +728,14 @@
         <div class="cta-figure">
             <img src="cta-reach-arm.png" alt="Mechanical reach-arm gesture" loading="lazy">
         </div>
-        <h2 class="cta-display" data-split>Have a system<br>that should exist?</h2>
-        <p class="cta-sub">Tell me what you're building. I'll scope it, quote it, and build it myself.</p>
+        <div class="cta-copy">
+        <h2 class="cta-display" data-split>Need it<br>built?</h2>
+        <p class="cta-sub">aedex, Cognitive OS, or a custom production system. Scope · quote · ship.</p>
         <button type="button" class="cta-btn" id="ctaOpen" aria-expanded="false" aria-controls="contactFormPanel">
             <span>Work with me</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </button>
+        </div>
         <div class="contact-drop" id="contactFormPanel" aria-hidden="true">
             <div class="contact-card">
                 <form id="contactForm" novalidate>
@@ -828,6 +840,7 @@
             <a href="/projects/">Work</a>
             <a href="/blog/">Notes</a>
             <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+            <a href="/cognitive-os/">Cognitive OS</a>
             <a href="/about/">About</a>
             <a href="/audits/">Audits</a>
             <span class="gh-trigger" onclick="openGhCard()">GitHub</span>

@@ -13,10 +13,10 @@
 
 ## Work
 - aedex — Catalog-first data marketplace for agents. Discover, inspect, and run hundreds of data tools — one CLI, one balance. (https://aedex.ing)
-- CLDCDE — Claude Code ecosystem hub — tools, patterns, and operator infrastructure for agentic development. (https://cldcde.cc)
-- clawREFORM — Agent-city surface for coordination, reform patterns, and multi-agent operations. (https://clawreform.com)
-- Prologue — Universal MCP discovery and memory library — cut setup from hours to minutes. (https://logue.pro)
 - Cognitive OS — Cognitive Operating System — multi-harness agent policy, verification chains, and execution stack. (/cognitive-os/)
+- CLDCDE — Claude Code ecosystem hub — tools, patterns, and operator infrastructure for agentic development. (https://cldcde.cc)
+- Prologue — Universal MCP discovery and memory library — cut setup from hours to minutes. (https://logue.pro)
+- clawREFORM — Agent-city surface for coordination, reform patterns, and multi-agent operations. (https://clawreform.com)
 - AE Audits — Structured adversarial council for expensive decisions — available on request, not the primary offer. (/audits/)
 - prompt.fail — Public surface for prompt failure modes and agent edge cases. (https://prompt.fail)
 
