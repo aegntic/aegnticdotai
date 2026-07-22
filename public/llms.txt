@@ -14,6 +14,7 @@
 ## Work
 - aedex — Catalog-first data marketplace for agents. Discover, inspect, and run hundreds of data tools — one CLI, one balance. (https://aedex.ing)
 - Cognitive OS — Cognitive Operating System — multi-harness agent policy, verification chains, and execution stack. (/cognitive-os/)
+- Cognitive Operator — A single operator that persists, coordinates, and acts over time — not a chatbot session. Built on Cognitive OS primitives. (/cognitive-operator/)
 - CLDCDE — Claude Code ecosystem hub — tools, patterns, and operator infrastructure for agentic development. (https://cldcde.cc)
 - Prologue — Universal MCP discovery and memory library — cut setup from hours to minutes. (https://logue.pro)
 - clawREFORM — Agent-city surface for coordination, reform patterns, and multi-agent operations. (https://clawreform.com)
@@ -51,4 +52,5 @@
 - Notes: https://aegntic.ai/blog/
 - aedex: https://aedex.ing
 - Cognitive OS: https://aegntic.ai/cognitive-os/
+- Cognitive Operator: https://aegntic.ai/cognitive-operator/
 - sitemap: https://aegntic.ai/sitemap.xml

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cognitive Operator — aegntic.ai</title>
+  <meta name="description" content="A single operator that persists, coordinates, and acts over time — not a chatbot session. Built on Cognitive OS primitives.">
+  <link rel="canonical" href="https://aegntic.ai/projects/cognitive-operator/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/projects/cognitive-operator/">
+  <meta property="og:title" content="Cognitive Operator — aegntic.ai">
+  <meta property="og:description" content="A single operator that persists, coordinates, and acts over time — not a chatbot session. Built on Cognitive OS primitives.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Cognitive Operator","description":"A single operator that persists, coordinates, and acts over time — not a chatbot session. Built on Cognitive OS primitives.","url":"https://aegntic.ai/projects/cognitive-operator/","author":{"@type":"Person","name":"Mattae Cooper"}}</script>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <button type="button" class="nav-menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+      <span class="nav-menu-btn-text">
+        <span class="menu-label">Menu</span>
+        <span class="menu-close">Close</span>
+      </span>
+      <span class="nav-menu-btn-icon" aria-hidden="true">
+        <svg viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11.45" cy="3" r="2.55" fill="currentColor"/><circle cx="2.55" cy="3" r="2.55" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </nav>
+  <nav id="site-menu" aria-hidden="true">
+    <div class="site-menu-inner">
+            <a href="/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Home</span>
+            </a>
+            <a href="/projects/" class="menu-link" aria-current="page" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Work</span>
+            </a>
+            <a href="/blog/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Notes</span>
+            </a>
+            <a href="https://aedex.ing" class="menu-link" target="_blank" rel="noopener" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>aedex</span>
+            </a>
+            <a href="/cognitive-os/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Cognitive OS</span>
+            </a>
+            <a href="/cognitive-operator/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Operator</span>
+            </a>
+            <a href="/about/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>About</span>
+            </a>
+            <a href="/#contact" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Contact</span>
+            </a>
+    </div>
+  </nav>
+  <main class="page">
+  <a class="back" href="/projects/">← Work</a>
+  <article class="prose">
+    <span class="status-pill">Thesis</span>
+    <h1>Cognitive Operator</h1>
+    <p><em>Sovereign runtime thesis — A single operator that persists, coordinates, and acts over time — not a chatbot session. Built on Cognitive OS primitives.</em></p>
+    <div class="card-tags" style="margin:0 0 1.5rem"><span class="tag">agents</span><span class="tag">operator</span><span class="tag">runtime</span></div>
+    <p><img src="/work-veritas.png" alt="Cognitive Operator" style="border-radius:1rem;border:1px solid var(--rule)"></p>
+    <p>The Cognitive Operator is the product thesis: one sovereign runtime that remembers, coordinates, and acts on behalf of a user or org over time.</p>
+<p>It sits on Cognitive OS (policy + verification) and pairs with aedex for real data I/O. Read the full narrative at /cognitive-operator/.</p>
+  </article>
+  <div class="cta-row">
+    <a class="btn" href="/cognitive-operator/">View</a>
+    <a class="btn-ghost btn" href="/projects/">All work</a>
+  </div>
+</main>
+  <footer class="footer">
+    <div class="footer-marquee" aria-hidden="true">
+      <div class="footer-marquee-inner">
+        <span>Rust</span><span>Go</span><span>TypeScript</span><span>Python</span><span>Agents</span><span>aedex</span><span>MCP</span><span>Claude Code</span>
+        <span>Rust</span><span>Go</span><span>TypeScript</span><span>Python</span><span>Agents</span><span>aedex</span><span>MCP</span><span>Claude Code</span>
+      </div>
+    </div>
+    <img class="footer-logo" src="/ae-logo.webp" alt="AEGNTIC">
+    <div class="footer-links">
+      <a href="/projects/">Work</a>
+      <a href="/blog/">Notes</a>
+      <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+      <a href="/cognitive-os/">Cognitive OS</a>
+      <a href="/cognitive-operator/">Operator</a>
+      <a href="/about/">About</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+  <script>
+    function toggleMenu(){
+      const btn=document.getElementById('menuBtn');
+      const menu=document.getElementById('site-menu');
+      const open=menu.classList.toggle('open');
+      menu.setAttribute('aria-hidden', open?'false':'true');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open?'true':'false');
+    }
+    function closeMenu(){
+      const btn=document.getElementById('menuBtn');
+      const menu=document.getElementById('site-menu');
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden','true');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+    }
+    document.addEventListener('click',e=>{
+      const btn=document.getElementById('menuBtn');
+      const menu=document.getElementById('site-menu');
+      if(menu.classList.contains('open') && !btn.contains(e.target) && !menu.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMenu(); });
+  </script>
+</body>
+</html>

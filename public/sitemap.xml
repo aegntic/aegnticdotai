@@ -31,12 +31,22 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://aegntic.ai/cognitive-operator/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://aegntic.ai/projects/aedex/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://aegntic.ai/projects/cognitive-os/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aegntic.ai/projects/cognitive-operator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

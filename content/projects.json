@@ -50,7 +50,9 @@
       "agents",
       "operator",
       "runtime"
-    ]
+    ],
+    "body": "The Cognitive Operator is the product thesis: one sovereign runtime that remembers, coordinates, and acts on behalf of a user or org over time.\n\nIt sits on Cognitive OS (policy + verification) and pairs with aedex for real data I/O. Read the full narrative at /cognitive-operator/.",
+    "external": false
   },
   {
     "slug": "cldcde",

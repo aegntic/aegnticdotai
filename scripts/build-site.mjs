@@ -459,7 +459,10 @@ function buildProjects(projects) {
     <p><em>${esc(p.subtitle || '')}${p.subtitle ? ' — ' : ''}${esc(p.summary)}</em></p>
     <div class="card-tags" style="margin:0 0 1.5rem">${(p.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
     ${p.image ? `<p><img src="${esc(p.image)}" alt="${esc(p.title)}" style="border-radius:1rem;border:1px solid var(--rule)"></p>` : ''}
-    ${p.body.split(/\n\n+/).map((para) => `<p>${esc(para).replace(/\n/g, '<br>')}</p>`).join('\n')}
+    ${(p.body || p.summary || '')
+      .split(/\n\n+/)
+      .map((para) => `<p>${esc(para).replace(/\n/g, '<br>')}</p>`)
+      .join('\n')}
   </article>
   <div class="cta-row">
     <a class="btn" href="${esc(ctaHref)}"${p.external ? ' target="_blank" rel="noopener"' : ''}>${esc(ctaLabel)}</a>
