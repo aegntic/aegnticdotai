@@ -21,3 +21,6 @@
 
 # Legacy audits file
 /audits.html  /audits/  301
+
+/cognitive-operator    /cognitive-operator/   301
+/cognitive-operator.html  /cognitive-operator/  301

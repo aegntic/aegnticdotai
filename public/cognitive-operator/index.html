@@ -19,7 +19,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Cognitive Operator — aegntic</title>
 <meta name="description" content="A sovereign cognitive operator: a single runtime that persists, coordinates, and acts on behalf of one user or org over time. Not a chatbot — an operator that runs and remembers.">
-<link rel="canonical" href="https://aegntic.ai/cognitive-operator">
+<link rel="canonical" href="https://aegntic.ai/cognitive-operator/">
 <link rel="icon" type="image/png" href="/favicon.png">
 <meta name="theme-color" content="#f0f6f8">
 <meta property="og:type" content="article">
@@ -32,7 +32,8 @@
 <meta name="twitter:description" content="A sovereign cognitive operator: a single runtime that persists, coordinates, and acts on behalf of one user or org over time. Not a chatbot — an operator that runs and remembers.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
 <script type="application/ld+json">
@@ -42,7 +43,7 @@
   "name": "aegntic Cognitive Operator",
   "applicationCategory": "SoftwareApplication",
   "operatingSystem": "Cross-platform",
-  "url": "https://aegntic.ai/cognitive-operator",
+  "url": "https://aegntic.ai/cognitive-operator/",
   "description": "A sovereign cognitive operator: a single runtime that persists, coordinates, and acts on behalf of one user or org over time. Built from four coordination-layer primitives — orchestration, continuity, sovereignty, and experiential memory.",
   "author": { "@type": "Organization", "name": "aegntic", "url": "https://aegntic.ai" },
   "publisher": { "@type": "Organization", "name": "aegntic", "url": "https://aegntic.ai" }
@@ -78,7 +79,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 ::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
-.fd{font-family:'Space Grotesk','Inter',sans-serif}
+.fd{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif}
 
 /* SCROLL PROGRESS */
 .scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:200;transition:width 80ms linear;will-change:width}
@@ -87,7 +88,7 @@ a{color:inherit;text-decoration:none}
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 1rem;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
 @media(min-width:1024px){.nav{padding:1.5rem 3rem}}
 .nav-logo{pointer-events:auto;display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.125rem;letter-spacing:-.02em;color:var(--text-dark)}
-.nav-logo .ae{font-family:'Space Grotesk',sans-serif;color:var(--accent)}
+.nav-logo .ae{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;color:var(--accent)}
 .nav-back{pointer-events:auto;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.6rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;border:none;cursor:pointer;transition:transform .5s var(--ease-spring)}
 .nav-back:hover{transform:scale(1.05)}
 .nav-back svg{width:14px;height:14px;transition:transform .3s var(--ease-spring)}
@@ -103,7 +104,7 @@ a{color:inherit;text-decoration:none}
 .hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%}
 .hero-eyebrow{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem}
 .hero-eyebrow::before{content:"";width:1.75rem;height:1px;background:var(--accent);opacity:.6}
-.hero-headline{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(2rem,5.2vw,4.25rem);font-weight:500;letter-spacing:-.03em;line-height:1.05;color:var(--text-dark);max-width:20ch;margin-bottom:1.5rem}
+.hero-headline{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(2rem,5.2vw,4.25rem);font-weight:500;letter-spacing:-.03em;line-height:1.05;color:var(--text-dark);max-width:20ch;margin-bottom:1.5rem}
 .hero-headline em{font-style:normal;color:var(--accent)}
 .hero-sub{font-size:clamp(1rem,1.3vw,1.125rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:2.5rem}
 .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
@@ -125,7 +126,7 @@ section{position:relative}
 .section-inner{max-width:1400px;margin:0 auto}
 .section-label{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:.625rem}
 .section-label::before{content:"";width:1.75rem;height:1px;background:var(--text-muted);opacity:.4}
-.section-heading{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(1.75rem,4vw,3rem);font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-dark);margin-bottom:1rem;max-width:22ch}
+.section-heading{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(1.75rem,4vw,3rem);font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-dark);margin-bottom:1rem;max-width:22ch}
 .section-heading em{font-style:normal;color:var(--accent)}
 .section-desc{font-size:clamp(.9375rem,1.2vw,1.0625rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:3rem}
 
@@ -134,7 +135,7 @@ section{position:relative}
 @media(min-width:768px){.grid.cols-2{grid-template-columns:1fr 1fr}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
 .card{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius);padding:2.25rem;box-shadow:0 1px 2px rgba(12,16,22,.04);transition:transform .4s var(--ease-spring),box-shadow .4s ease,border-color .4s ease}
 .card:hover{transform:translateY(-3px);box-shadow:0 8px 24px -8px rgba(12,16,22,.12);border-color:var(--rule-strong)}
-.card h3{font-family:'Space Grotesk',sans-serif;font-size:1.375rem;font-weight:600;letter-spacing:-.02em;margin-bottom:.625rem;color:var(--text-dark)}
+.card h3{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:1.375rem;font-weight:600;letter-spacing:-.02em;margin-bottom:.625rem;color:var(--text-dark)}
 .card p{font-size:.9375rem;color:var(--text-secondary);line-height:1.6}
 .card .tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
 .tag{font-size:.6875rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.4rem .875rem;border-radius:var(--radius-pill);background:var(--accent-dim);color:var(--text-secondary)}
@@ -147,15 +148,15 @@ section{position:relative}
 .stack-card{background:var(--surface-1);color:#fff;border-radius:var(--radius);padding:2.25rem 1.5rem;display:flex;flex-direction:column;gap:1rem;transition:transform .4s var(--ease-spring)}
 @media(min-width:768px){.stack-card{flex-direction:row;align-items:center;gap:2.5rem;padding:2.5rem}}
 .stack-card:hover{transform:scale(1.005)}
-.stack-card .num{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:600;letter-spacing:-.02em;color:var(--accent);min-width:80px;line-height:1}
-.stack-card h3{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.125rem,1.8vw,1.5rem);font-weight:600;letter-spacing:-.02em;margin-bottom:.5rem;color:#fff}
+.stack-card .num{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:600;letter-spacing:-.02em;color:var(--accent);min-width:80px;line-height:1}
+.stack-card h3{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(1.125rem,1.8vw,1.5rem);font-weight:600;letter-spacing:-.02em;margin-bottom:.5rem;color:#fff}
 .stack-card p{font-size:.9375rem;opacity:.65;line-height:1.6;max-width:48ch}
 .stack-card:nth-child(2n){background:var(--surface-2)}
 .stack-card:nth-child(3n){background:var(--surface-3)}
 
 /* PROSE */
 .prose{max-width:720px}
-.prose h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.4rem,2.6vw,1.875rem);letter-spacing:-.02em;line-height:1.2;margin:3rem 0 .75rem;color:var(--text-dark)}
+.prose h2{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight:600;font-size:clamp(1.4rem,2.6vw,1.875rem);letter-spacing:-.02em;line-height:1.2;margin:3rem 0 .75rem;color:var(--text-dark)}
 .prose h2:first-child{margin-top:0}
 .prose p{font-size:1rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1rem}
 .prose strong{color:var(--text-dark);font-weight:600}
@@ -209,6 +210,31 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
   .btn,.card,.stack-card{transform:none!important}
   .footer-marquee-inner{animation:none}
 }
+
+/* unified MENU (match homepage) */
+.nav-menu-btn{background:var(--text-dark);color:var(--bg);padding:0.125rem;border-radius:999px;font-size:0.8125rem;font-weight:500;pointer-events:auto;display:inline-flex;align-items:center;gap:0;border:none;cursor:pointer;transition:transform 500ms var(--ease-spring);will-change:transform;font-family:inherit}
+.nav-menu-btn:hover{transform:scale(1.1)}
+.nav-menu-btn-text{color:var(--bg);font-size:0.8125rem;font-weight:500;text-transform:uppercase;padding:0.35rem 0.75rem 0.35rem 0.35rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;height:1.25rem;min-width:4.5rem}
+.nav-menu-btn-text span{display:flex;align-items:center;justify-content:center;transition:transform 500ms var(--ease-overshoot);position:absolute;inset:0}
+.nav-menu-btn-text .menu-close{transform:translateY(100%)}
+.nav-menu-btn.open .nav-menu-btn-text .menu-label{transform:translateY(-100%)}
+.nav-menu-btn.open .nav-menu-btn-text .menu-close{transform:translateY(0)}
+.nav-menu-btn-icon{background:#1e242c;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;margin-right:0.25rem;transition:transform 500ms var(--ease-strong);will-change:transform}
+.nav-menu-btn:hover .nav-menu-btn-icon{transform:rotate(90deg)}
+.nav-menu-btn-icon svg{width:14px;height:6px;color:var(--bg)}
+@media(min-width:1024px){.nav-menu-btn-icon{width:36px;height:36px;margin-right:0.35rem}.nav-menu-btn-icon svg{width:18px;height:8px}.nav-menu-btn-text{padding:0.4rem 1rem;font-size:0.875rem;height:1.35rem;line-height:1.35rem}}
+#site-menu{position:fixed;top:3.5rem;left:1rem;right:1rem;z-index:98;pointer-events:none;opacity:0;transform:translateY(-10px);transition:opacity 300ms ease,transform 300ms ease,visibility 300ms;visibility:hidden}
+#site-menu.open{pointer-events:auto;opacity:1;transform:translateY(0);visibility:visible}
+.site-menu-inner{background:#d9e0e3;border-radius:1.5rem;padding:1.5rem;display:flex;flex-direction:column;gap:0.25rem}
+@media(min-width:1024px){#site-menu{top:4.5rem;left:auto;right:3rem;width:320px}.site-menu-inner{padding:2rem}}
+.menu-link{display:flex;flex-direction:row;align-items:center;gap:0;color:var(--text-dark);font-size:1.75rem;font-weight:600;letter-spacing:-0.02em;text-decoration:none;padding:0.5rem 1rem;border-radius:1rem;transition:background-color 200ms ease-out;white-space:nowrap}
+.menu-link:hover,.menu-link[aria-current="page"]{background:#fff}
+.menu-link-arrow{width:0;overflow:hidden;transition:width 300ms ease-out;display:flex;align-items:center;flex-shrink:0}
+.menu-link:hover .menu-link-arrow{width:1.5rem}
+.menu-link-arrow svg{width:100%;height:auto}
+@media(min-width:1024px){.menu-link{font-size:2.5rem;padding:0.75rem 1.25rem}.menu-link:hover .menu-link-arrow{width:2rem}}
+.nav-back{display:none!important}
+
 </style>
 </head>
 <body>
@@ -223,11 +249,28 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
 
 <!-- NAV -->
 <nav class="nav">
-  <a href="https://aegntic.ai" class="nav-logo">ae<span class="ae">gntic</span></a>
-  <a href="https://aegntic.ai" class="nav-back">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
-    Back to aegntic.ai
-  </a>
+  <a href="/" class="nav-logo"><img src="/ae-logo.webp" alt="aegntic" style="height:2rem;width:auto"></a>
+  <button type="button" class="nav-menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+    <span class="nav-menu-btn-text">
+      <span class="menu-label">Menu</span>
+      <span class="menu-close">Close</span>
+    </span>
+    <span class="nav-menu-btn-icon" aria-hidden="true">
+      <svg viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11.45" cy="3" r="2.55" fill="currentColor"/><circle cx="2.55" cy="3" r="2.55" fill="currentColor"/></svg>
+    </span>
+  </button>
+</nav>
+<nav id="site-menu" aria-hidden="true">
+  <div class="site-menu-inner">
+  <a href="/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Home</span></a>
+  <a href="/projects/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Work</span></a>
+  <a href="/blog/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Notes</span></a>
+  <a href="https://aedex.ing" class="menu-link" target="_blank" rel="noopener" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>aedex</span></a>
+  <a href="/cognitive-os/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Cognitive OS</span></a>
+  <a href="/cognitive-operator/" class="menu-link" aria-current="page" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Operator</span></a>
+  <a href="/about/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>About</span></a>
+  <a href="/#contact" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Contact</span></a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -350,29 +393,51 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
         <a href="https://github.com/aegntic" target="_blank" rel="noopener" class="btn">github.com/aegntic
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
-        <a href="https://aegntic.ai" class="btn btn-ghost">Back to aegntic.ai</a>
+        <a href="/" class="btn btn-ghost">Back to aegntic.ai</a>
       </div>
     </div>
   </section>
 </main>
 
 <!-- FOOTER -->
+
+<section class="section" id="related-products" style="padding:4rem 1.5rem 2rem">
+  <div style="max-width:1100px;margin:0 auto">
+    <p class="section-label" style="font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem">Related</p>
+    <h2 class="section-heading">Stack this sits on.</h2>
+    <div style="display:grid;gap:1rem;grid-template-columns:1fr;margin-top:1.5rem">
+      <a href="/cognitive-os/" style="display:block;padding:1.25rem 1.5rem;border:1px solid var(--rule);border-radius:1.1rem;background:#fff">
+        <strong style="display:block;font-size:1.15rem;margin-bottom:.35rem">Cognitive OS</strong>
+        <span style="color:var(--text-muted);font-size:.95rem">The policy + verification operating system the operator runs on.</span>
+      </a>
+      <a href="https://aedex.ing" target="_blank" rel="noopener" style="display:block;padding:1.25rem 1.5rem;border:1px solid var(--rule);border-radius:1.1rem;background:#fff">
+        <strong style="display:block;font-size:1.15rem;margin-bottom:.35rem">aedex</strong>
+        <span style="color:var(--text-muted);font-size:.95rem">Catalog-first data exchange — how the operator reaches real I/O.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="footer-marquee">
     <div class="footer-marquee-inner">
-      <span>Orchestration</span><span>Continuity</span><span>Sovereignty</span><span>Experiential Memory</span>
-      <span>Orchestration</span><span>Continuity</span><span>Sovereignty</span><span>Experiential Memory</span>
+      <span>Rust</span><span>Go</span><span>TypeScript</span><span>Python</span><span>Agents</span><span>aedex</span><span>Cognitive OS</span><span>Operator</span>
+      <span>Rust</span><span>Go</span><span>TypeScript</span><span>Python</span><span>Agents</span><span>aedex</span><span>Cognitive OS</span><span>Operator</span>
     </div>
   </div>
+  <img src="/ae-logo.webp" alt="AEGNTIC" style="height:2rem;width:auto;opacity:0.5">
   <div class="footer-links">
-    <a href="https://aegntic.ai">aegntic.ai</a>
+    <a href="/projects/">Work</a>
+    <a href="/blog/">Notes</a>
+    <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+    <a href="/cognitive-os/">Cognitive OS</a>
+    <a href="/cognitive-operator/">Operator</a>
+    <a href="/about/">About</a>
     <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://x.com/AEGNTIC" target="_blank" rel="noopener">X / Twitter</a>
-    <a href="https://cldcde.cc" target="_blank" rel="noopener">cldcde.cc</a>
-    <a href="https://logue.pro" target="_blank" rel="noopener">logue.pro</a>
-    <a href="https://clawreform.com" target="_blank" rel="noopener">clawreform.com</a>
+    <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+    <a href="/#contact">Contact</a>
   </div>
-  <div class="footer-copy">&copy; 2026 AEGNTIC. The coordination layer for persistent human&ndash;AI intelligence.</div>
+  <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
 </footer>
 
 <script>
@@ -442,5 +507,32 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
     });
   })();
 </script>
+
+<script>
+function toggleMenu(){
+  const btn=document.getElementById('menuBtn');
+  const menu=document.getElementById('site-menu');
+  const open=menu.classList.toggle('open');
+  menu.setAttribute('aria-hidden', open?'false':'true');
+  btn.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open?'true':'false');
+}
+function closeMenu(){
+  const btn=document.getElementById('menuBtn');
+  const menu=document.getElementById('site-menu');
+  if(!menu) return;
+  menu.classList.remove('open');
+  menu.setAttribute('aria-hidden','true');
+  btn.classList.remove('open');
+  btn.setAttribute('aria-expanded','false');
+}
+document.addEventListener('click',e=>{
+  const btn=document.getElementById('menuBtn');
+  const menu=document.getElementById('site-menu');
+  if(menu&&menu.classList.contains('open')&&btn&&!btn.contains(e.target)&&!menu.contains(e.target)) closeMenu();
+});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMenu(); });
+</script>
+
 </body>
 </html>

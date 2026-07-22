@@ -37,6 +37,22 @@
     "image": "/assets/visuals/research-crystal.png"
   },
   {
+    "slug": "cognitive-operator",
+    "title": "Cognitive Operator",
+    "subtitle": "Sovereign runtime thesis",
+    "status": "Thesis",
+    "featured": true,
+    "home": true,
+    "summary": "A single operator that persists, coordinates, and acts over time \u2014 not a chatbot session. Built on Cognitive OS primitives.",
+    "url": "/cognitive-operator/",
+    "image": "/work-veritas.png",
+    "tags": [
+      "agents",
+      "operator",
+      "runtime"
+    ]
+  },
+  {
     "slug": "cldcde",
     "title": "CLDCDE",
     "subtitle": "Developer ecosystem",

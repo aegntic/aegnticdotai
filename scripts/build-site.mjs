@@ -108,6 +108,7 @@ function shell({ title, description, canonical, body, active = '', jsonLd = null
     ['/blog/', 'Notes', 'blog'],
     ['https://aedex.ing', 'aedex', 'aedex'],
     ['/cognitive-os/', 'Cognitive OS', 'cognitive-os'],
+    ['/cognitive-operator/', 'Operator', 'cognitive-operator'],
     ['/about/', 'About', 'about'],
     ['/#contact', 'Contact', 'contact'],
   ];
@@ -184,6 +185,7 @@ ${menu}
       <a href="/blog/">Notes</a>
       <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
       <a href="/cognitive-os/">Cognitive OS</a>
+      <a href="/cognitive-operator/">Operator</a>
       <a href="/about/">About</a>
       <a href="/audits/">Audits</a>
       <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
@@ -536,6 +538,7 @@ function buildSitemap(listedPosts, projects) {
     ['/about/', '0.7', 'monthly'],
     ['/audits/', '0.5', 'monthly'],
     ['/cognitive-os/', '0.7', 'monthly'],
+    ['/cognitive-operator/', '0.7', 'monthly'],
     ...projects.map((p) => [`/projects/${p.slug}/`, p.slug === 'aedex' ? '0.9' : '0.7', 'monthly']),
     ...listedPosts.map((p) => [`/blog/${p.slug}/`, '0.6', 'yearly']),
   ];
@@ -598,6 +601,7 @@ ${postLines}
 - Notes: ${SITE}/blog/
 - aedex: https://aedex.ing
 - Cognitive OS: ${SITE}/cognitive-os/
+- Cognitive Operator: ${SITE}/cognitive-operator/
 - sitemap: ${SITE}/sitemap.xml
 `,
   );
