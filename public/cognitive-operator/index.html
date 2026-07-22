@@ -128,6 +128,9 @@ section{position:relative}
 .section-label::before{content:"";width:1.75rem;height:1px;background:var(--text-muted);opacity:.4}
 .section-heading{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(1.75rem,4vw,3rem);font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-dark);margin-bottom:1rem;max-width:22ch}
 .section-heading em{font-style:normal;color:var(--accent)}
+.prompt-fail-figure{margin:0 auto 2.5rem;max-width:min(560px,92%);text-align:center}
+.prompt-fail-figure img{width:100%;height:auto;display:block;margin:0 auto;background:transparent}
+@media(min-width:1024px){.prompt-fail-figure{margin-bottom:3rem;max-width:640px}}
 .section-desc{font-size:clamp(.9375rem,1.2vw,1.0625rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:3rem}
 
 /* CARD GRID */
@@ -345,6 +348,9 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
   <!-- HOW IT WORKS / PRINCIPLES — SOHub grid -->
   <section class="section-pad">
     <div class="section-inner">
+      <figure class="prompt-fail-figure" aria-label="prompt.Fail illustration">
+        <img src="/prompt-fail-ouroboros.png" alt="Ring of figures: hey puter do majic — prompt.Fail" width="1308" height="812" loading="lazy">
+      </figure>
       <div class="section-label">How it actually runs</div>
       <h2 class="section-heading" data-split>Not magic. <em>Coordination</em> done deliberately.</h2>
       <p class="section-desc">The operator is a loop with honest, boring, load-bearing properties. These are the principles that make the primitives above behave like an operator rather than a script.</p>
