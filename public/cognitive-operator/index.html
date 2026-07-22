@@ -87,8 +87,9 @@ a{color:inherit;text-decoration:none}
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 1rem;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
 @media(min-width:1024px){.nav{padding:1.5rem 3rem}}
-.nav-logo{pointer-events:auto;display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.125rem;letter-spacing:-.02em;color:var(--text-dark)}
-.nav-logo .ae{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;color:var(--accent)}
+.nav-logo{pointer-events:auto;display:flex;align-items:center}
+.nav-logo img{height:2rem;width:auto;display:block}
+@media(min-width:1024px){.nav-logo img{height:2.5rem}}
 .nav-back{pointer-events:auto;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.6rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;border:none;cursor:pointer;transition:transform .5s var(--ease-spring)}
 .nav-back:hover{transform:scale(1.05)}
 .nav-back svg{width:14px;height:14px;transition:transform .3s var(--ease-spring)}
@@ -252,7 +253,7 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
 
 <!-- NAV -->
 <nav class="nav">
-  <a href="/" class="nav-logo"><img src="/ae-logo.webp" alt="aegntic" style="height:2rem;width:auto"></a>
+  <a href="/" class="nav-logo"><img src="/ae-logo.webp" alt="aegntic" width="80" height="40"></a>
   <button type="button" class="nav-menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
     <span class="nav-menu-btn-text">
       <span class="menu-label">Menu</span>
