@@ -473,7 +473,7 @@
 
     <!-- LOADER -->
     <div class="page-loader" id="loader">
-        <span class="loader-text"><img src="ae-logo.webp" alt="AEGNTIC"></span>
+        <span class="loader-text" data-message="Initializing agent runtime..."><img src="ae-logo.webp" alt="AEGNTIC"></span>
     </div>
 
     <!-- NAV -->
@@ -526,6 +526,22 @@
             <a href="/cognitive-operator/" class="menu-link" onclick="closeMenu()">
                 <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
                 <span>Operator</span>
+            </a>
+            <a href="/compound-engineering/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Compound Engineering</span>
+            </a>
+            <a href="/fpef/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>FPEF</span>
+            </a>
+            <a href="/ae-cli/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>ae-cli</span>
+            </a>
+            <a href="/privacy/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Privacy</span>
             </a>
             <a href="/about/" class="menu-link" onclick="closeMenu()">
                 <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
@@ -1088,7 +1104,15 @@
 
             // Cancel hero CSS fade so GSAP controls it
             if(reduce){
-                document.querySelectorAll('[data-split] .split-inner,[data-split]').forEach(()=>{});
+                document.querySelectorAll('[data-split] .split-inner,[data-split]').forEach(()=>{})
+        // Respect reduced motion
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          gsap.globalTimeline.timeScale(0.001);
+          document.documentElement.style.setProperty("--ease-spring", "ease");
+          document.documentElement.style.setProperty("--ease-overshoot", "ease");
+          document.documentElement.style.setProperty("--ease-strong", "ease");
+        }
+;
                 // Force-show everything
                 gsap.set('[data-split] .split-inner',{clearProps:'all'});
                 gsap.set('.reveal-fade,.reveal-clip',{clearProps:'all'});
@@ -1378,6 +1402,41 @@
                 io.observe(proofStrip);
             }
         }
-    </script>
+    
+        // Contact form success animation
+        const submitBtn = document.getElementById("contactSubmit");
+        const originalText = submitBtn?.textContent;
+        if (submitBtn && !submitBtn.dataset.enhanced) {
+          submitBtn.dataset.enhanced = "true";
+          submitBtn.addEventListener("click", function(e) {
+            const form = document.getElementById("contactForm");
+            if (form && form.checkValidity()) {
+              this.classList.add("success");
+              this.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:0 auto"><path d="M20 6L9 17l-5-5"/></svg>';
+              this.style.width = "48px";
+              this.style.padding = "1rem";
+              setTimeout(() => {
+                this.classList.remove("success");
+                this.innerHTML = originalText;
+                this.style.width = "";
+                this.style.padding = "";
+              }, 2000);
+            }
+          });
+        }
+</script>
+
+<script>
+// Console easter egg for curious developers
+const messages = [
+  "Hello! Building agent systems? Check out aedex.ing",
+  "Cognitive OS: github.com/aegntic/cognitive-os",
+  "One person. Production systems. No agency handoff.",
+  "This site runs on vanilla HTML/CSS/JS + GSAP. No framework.",
+];
+console.log("%c" + messages[Math.floor(Math.random() * messages.length)], "color: #00b39f; font-size: 14px; font-weight: 500; font-family: 'Satoshi', sans-serif;");
+console.log("%cHiring? Let's talk. hello@aegntic.com", "color: #8b9296; font-size: 12px;");
+</script>
+
 </body>
 </html>

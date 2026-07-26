@@ -1,568 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AEGNTIC. Cognitive Operating System.</title>
-<meta name="description" content="A cognitive operating system for autonomous AI agents. Multi-model orchestration, self-healing pipelines, adversarial security, economic intelligence, and swarm coordination.">
-<link rel="canonical" href="https://aegntic.ai/cognitive-os">
-<link rel="icon" type="image/png" href="/favicon.png">
-<meta name="theme-color" content="#f0f6f8">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://aegntic.ai/cognitive-os">
-<meta property="og:title" content="AEGNTIC. Cognitive Operating System.">
-<meta property="og:description" content="The most advanced agent specification in production. 10-layer cognitive stack, 4-layer memory, self-healing, swarm coordination.">
-<meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AEGNTIC. Cognitive Operating System.">
-<meta name="twitter:description" content="The most advanced agent specification in production. 10-layer cognitive stack, 4-layer memory, self-healing, swarm coordination.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#f0f6f8;--bg-elevated:#ffffff;--bg-inset:#e7eef0;
-  --text:#11181c;--text-dark:#0c1016;--text-secondary:#4a5258;--text-muted:#a5abad;
-  --accent:#00b39f;--accent-dim:rgba(0,179,158,0.12);
-  --surface-1:#0c1016;--surface-2:#23272d;
-  --rule:rgba(17,24,28,0.08);--rule-strong:rgba(17,24,28,0.14);
-  --radius:1.5rem;--radius-lg:3rem;--radius-pill:999px;
-  --shadow-sm:0 1px 2px rgba(12,16,22,.04);--shadow-lg:0 8px 32px rgba(0,0,0,.12);
-  --ease-spring:cubic-bezier(.22,.68,0,1);--ease-overshoot:cubic-bezier(.22,.68,0,1.2);--ease-strong:cubic-bezier(.22,.68,0,1.5);
-}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(12,16,22,.15);border-radius:var(--radius-pill)}
-::-webkit-scrollbar-thumb:hover{background:rgba(12,16,22,.3)}
-*{scrollbar-width:thin;scrollbar-color:rgba(12,16,22,.15) transparent}
-
-@media(prefers-reduced-motion:reduce){
-  .reveal,.reveal.visible{opacity:1!important;transform:none!important;transition:none!important}
-  .floating-cta{transition:none}
-  .scroll-progress{transition:none}
-  .btn:hover,.btn-ghost:hover,.nav-back:hover,.module-card:hover,.insane-card:hover{transform:none!important}
-  .footer-marquee-inner{animation:none}
-}
-
-.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:200;transition:width 80ms linear;will-change:width}
-
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 1rem;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
-@media(min-width:1024px){.nav{padding:1.5rem 3rem}}
-.nav-logo{pointer-events:auto;display:flex;align-items:center}
-.nav-logo img{height:2rem;width:auto}
-@media(min-width:1024px){.nav-logo img{height:2.5rem}}
-.nav-back{pointer-events:auto;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.6rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;border:none;cursor:pointer;transition:transform .5s var(--ease-spring)}
-.nav-back:hover{transform:scale(1.05)}
-.nav-back svg{width:14px;height:14px;transition:transform .3s var(--ease-spring)}
-.nav-back:hover svg{transform:translateX(-3px)}
-
-/* HERO */
-.hero{position:relative;width:100vw;height:100dvh;min-height:600px;overflow:hidden;display:flex;align-items:flex-end}
-.hero-watermark{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;overflow:hidden;pointer-events:none;user-select:none}
-.hero-watermark span{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight:700;font-size:clamp(8rem,28vw,24rem);letter-spacing:-.04em;color:var(--text-dark);opacity:.04;line-height:.85;white-space:nowrap}
-.hero-content{position:relative;z-index:2;padding:0 1rem 4rem;max-width:1400px;margin:0 auto;width:100%}
-@media(min-width:768px){.hero-content{padding:0 2rem 5rem}}
-@media(min-width:1024px){.hero-content{padding:0 3rem 6rem}}
-@media(min-width:1280px){.hero-content{padding:0 5rem 7rem}}
-.hero-eyebrow{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem}
-.hero-eyebrow::before{content:"";width:1.75rem;height:1px;background:var(--accent);opacity:.6}
-.hero-headline{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(2rem,5.5vw,4.5rem);font-weight:500;letter-spacing:-.03em;line-height:1.05;color:var(--text-dark);max-width:20ch;margin-bottom:1.5rem}
-.hero-headline em{font-style:normal;color:var(--accent)}
-.hero-sub{font-size:clamp(1rem,1.3vw,1.125rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:2.5rem}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:.75rem;background:var(--text-dark);color:var(--bg);padding:.875rem 2rem;border-radius:var(--radius-pill);font-size:.9375rem;font-weight:500;transition:transform .5s var(--ease-overshoot),box-shadow .4s ease;cursor:pointer;border:none;box-shadow:0 10px 30px -10px rgba(12,16,22,.35)}
-.btn:hover{transform:scale(1.06);box-shadow:0 18px 40px -12px rgba(12,16,22,.45)}
-.btn svg{width:1.125rem;height:1.125rem;transition:transform .3s var(--ease-overshoot)}
-.btn:hover svg{transform:translateX(3px)}
-.btn-ghost{background:transparent;color:var(--text-dark);border:1px solid var(--rule-strong);box-shadow:none}
-.btn-ghost:hover{background:rgba(17,24,28,.04);transform:scale(1.03);box-shadow:none}
-.hero-scroll{position:absolute;left:1rem;bottom:1rem;z-index:2;display:flex;align-items:center;gap:.5rem;font-size:.8125rem;font-weight:500;color:var(--text-muted);opacity:.5}
-@media(min-width:1024px){.hero-scroll{left:3rem;bottom:2rem}}
-
-/* INTRO */
-.intro{position:relative;padding:8rem 1rem 6rem;border-top:1px solid var(--rule)}
-@media(min-width:768px){.intro{padding:10rem 2rem 8rem}}
-@media(min-width:1024px){.intro{padding:12rem 3rem 10rem}}
-@media(min-width:1280px){.intro{padding:14rem 5rem 12rem}}
-.intro-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;max-width:1400px;margin:0 auto}
-@media(min-width:1024px){.intro-grid{grid-template-columns:5fr 7fr;gap:5rem;align-items:start}}
-.intro-meta{display:flex;flex-direction:column;gap:1rem}
-@media(min-width:1024px){.intro-meta{position:sticky;top:6rem}}
-.intro-eyebrow{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:.625rem}
-.intro-eyebrow::before{content:"";width:1.75rem;height:1px;background:var(--text-muted);opacity:.4}
-.intro-body{display:flex;flex-direction:column;gap:1.75rem}
-.intro-lead{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(1.5rem,3.2vw,2.75rem);font-weight:500;letter-spacing:-.025em;line-height:1.18;color:var(--text-dark);max-width:22ch}
-.intro-lead em{font-style:normal;color:var(--accent)}
-.intro-prose{font-size:clamp(1rem,1.3vw,1.125rem);color:var(--text);line-height:1.65;max-width:52ch}
-.intro-prose p+p{margin-top:1.25rem}
-.intro-prose strong{color:var(--text-dark);font-weight:600}
-.intro-stats{display:flex;gap:3rem;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--rule);flex-wrap:wrap}
-.stat-item{display:flex;flex-direction:column;gap:.375rem}
-.stat-num{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:600;letter-spacing:-.02em;line-height:1;color:var(--text-dark)}
-.stat-num .accent{color:var(--accent)}
-.stat-label{font-size:.6875rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
-
-/* MODULES — editorial white cards */
-.modules{padding:4rem 0 0}
-@media(min-width:1024px){.modules{padding:6rem 0 0}}
-.modules-header{padding:0 1rem;max-width:1400px;margin:0 auto 4rem}
-@media(min-width:768px){.modules-header{padding:0 2rem}}
-@media(min-width:1024px){.modules-header{padding:0 3rem;margin-bottom:3rem}}
-.modules-stack{display:flex;flex-direction:column;gap:1.5rem;padding:0 1rem;max-width:1400px;margin:0 auto}
-@media(min-width:768px){.modules-stack{padding:0 2rem}}
-@media(min-width:1024px){.modules-stack{padding:0 3rem;gap:2rem}}
-.module-card{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:3rem 2rem;display:flex;flex-direction:column;justify-content:space-between;gap:2rem;min-height:340px;position:relative;overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .4s var(--ease-spring),box-shadow .4s ease,border-color .4s ease}
-.module-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--rule-strong)}
-@media(min-width:1024px){.module-card{padding:4rem 3.5rem}}
-@media(min-width:1280px){.module-card{padding:5rem 4rem}}
-.module-num{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(.875rem,1.2vw,1rem);font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.25rem}
-.module-title{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(2.25rem,5vw,4rem);font-weight:600;letter-spacing:-.03em;line-height:1;color:var(--text-dark);margin-bottom:1.5rem}
-@media(min-width:1024px){.module-title{font-size:clamp(3rem,6vw,5.5rem)}}
-.module-desc{font-size:clamp(1rem,1.3vw,1.125rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:1.5rem}
-.module-layers{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem}
-.module-layer{display:flex;align-items:flex-start;gap:.875rem;font-size:.875rem;color:var(--text-secondary);line-height:1.5}
-.module-layer-num{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:.75rem;font-weight:700;min-width:28px;padding-top:1px;color:var(--accent)}
-.module-tags{display:flex;flex-wrap:wrap;gap:.5rem}
-.module-tag{font-size:.6875rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.4rem .875rem;border-radius:var(--radius-pill);white-space:nowrap;background:var(--accent-dim);color:var(--text-secondary);transition:background-color .3s ease}
-
-/* INSANE GRID */
-.insane{padding:8rem 1rem}
-@media(min-width:768px){.insane{padding:10rem 2rem}}
-@media(min-width:1024px){.insane{padding:10rem 3rem}}
-@media(min-width:1280px){.insane{padding:12rem 5rem}}
-.insane-header{max-width:1400px;margin:0 auto 4rem}
-.insane-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;max-width:1400px;margin:0 auto}
-@media(min-width:768px){.insane-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.insane-grid{gap:2.5rem}}
-.insane-card{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow-sm);transition:transform .4s var(--ease-spring),box-shadow .4s ease,border-color .4s ease}
-.insane-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px -8px rgba(12,16,22,.12);border-color:var(--rule-strong)}
-.insane-num{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(2rem,3vw,3rem);font-weight:600;color:var(--accent);opacity:.15;line-height:1;margin-bottom:1rem}
-.insane-card h3{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:1.375rem;font-weight:600;letter-spacing:-.02em;margin-bottom:.625rem;color:var(--text-dark)}
-.insane-card p{font-size:.9375rem;color:var(--text-secondary);line-height:1.6}
-
-/* COMPARISON */
-.compare{padding:4rem 1rem;margin-top:4rem}
-@media(min-width:768px){.compare{padding:6rem 2rem}}
-@media(min-width:1024px){.compare{padding:8rem 3rem}}
-@media(min-width:1280px){.compare{padding:8rem 5rem}}
-.compare-header{max-width:1400px;margin:0 auto 4rem}
-.compare-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;max-width:1400px;margin:0 auto}
-@media(min-width:768px){.compare-grid{grid-template-columns:1fr 1fr}}
-.compare-col{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow-sm)}
-.compare-col.bad{opacity:.5}
-.compare-col h4{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:1.25rem;font-weight:600;margin-bottom:1.25rem;color:var(--text-dark)}
-.compare-col.bad h4{color:var(--text-muted)}
-.compare-col ul{list-style:none}
-.compare-col ul li{font-size:.875rem;padding:.5rem 0;padding-left:1.5rem;position:relative;color:var(--text)}
-.compare-col.bad ul li{color:var(--text-muted)}
-.compare-col:not(.bad) ul li::before{content:"\2713";position:absolute;left:0;color:var(--accent);font-weight:600}
-.compare-col.bad ul li::before{content:"\2717";position:absolute;left:0;color:var(--text-muted)}
-
-/* SECTION SHARED */
-.section-label{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:.625rem}
-.section-label::before{content:"";width:1.75rem;height:1px;background:var(--text-muted);opacity:.4}
-.section-heading{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(1.75rem,4vw,3.25rem);font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-dark);margin-bottom:1rem;max-width:22ch}
-.section-heading em{font-style:normal;color:var(--accent)}
-.section-desc{font-size:clamp(.9375rem,1.2vw,1.0625rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:0}
-
-/* CTA */
-.cta{position:relative;width:100%;min-height:70vh;padding:6rem 1rem;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-@media(min-width:768px){.cta{padding:8rem 2rem;min-height:80vh}}
-@media(min-width:1024px){.cta{padding:10rem 3rem}}
-@media(min-width:1280px){.cta{padding:10rem 5rem}}
-.cta-display{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(3rem,10vw,7rem);font-weight:600;letter-spacing:-.04em;line-height:.9;color:var(--text-dark);position:relative;z-index:2;max-width:14ch}
-.cta-display em{font-style:normal;color:var(--accent)}
-.cta-sub{font-size:clamp(1rem,1.5vw,1.25rem);color:var(--text-secondary);max-width:42ch;line-height:1.6;margin-top:2rem;position:relative;z-index:2}
-.cta-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:2.5rem;position:relative;z-index:2}
-
-/* FLOATING CTA — teal pill */
-.floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;padding:.75rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(.9);transition:opacity .5s ease,transform .5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(0,179,158,.35);border:none;cursor:pointer}
-.floating-cta.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-.floating-cta:hover{transform:translateY(-2px) scale(1.05)}
-.floating-cta svg{width:1rem;height:1rem;flex-shrink:0}
-@media(max-width:767px){.floating-cta .cta-label{display:none}.floating-cta{padding:.75rem;border-radius:50%}}
-
-/* FOOTER — SOHub light */
-.footer{width:100%;padding:5rem 1.5rem 3rem;display:flex;flex-direction:column;align-items:center;gap:2rem;text-align:center;border-top:1px solid var(--rule)}
-@media(min-width:1024px){.footer{padding:6rem 3rem 4rem}}
-.footer-marquee{width:100%;overflow:hidden;margin-bottom:1rem}
-.footer-marquee-inner{display:flex;gap:3rem;white-space:nowrap;animation:marquee 22s linear infinite;font-size:.8125rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);opacity:.55}
-.footer-marquee-inner span::after{content:'\2022';margin-left:3rem;opacity:.4}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.footer-logo{margin-bottom:.5rem;opacity:.3}
-.footer-logo img{height:2rem;width:auto;margin:0 auto}
-.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;font-size:.8125rem;font-weight:500;opacity:.65}
-.footer-links a{transition:color .2s}
-.footer-links a:hover{color:var(--accent);opacity:1}
-.footer-copy{font-size:.75rem;color:var(--text-muted);opacity:.6}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease-spring),transform .8s var(--ease-spring)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-
-/* unified chrome menu (match homepage) */
-.nav-menu-btn{background:var(--text-dark);color:var(--bg);padding:0.125rem;border-radius:999px;font-size:0.8125rem;font-weight:500;pointer-events:auto;display:inline-flex;align-items:center;gap:0;border:none;cursor:pointer;transition:transform 500ms var(--ease-spring);will-change:transform;font-family:inherit}
-.nav-menu-btn:hover{transform:scale(1.1)}
-.nav-menu-btn-text{color:var(--bg);font-size:0.8125rem;font-weight:500;text-transform:uppercase;padding:0.35rem 0.75rem 0.35rem 0.35rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;height:1.25rem;min-width:4.5rem}
-.nav-menu-btn-text span{display:flex;align-items:center;justify-content:center;transition:transform 500ms var(--ease-overshoot);position:absolute;inset:0}
-.nav-menu-btn-text .menu-close{transform:translateY(100%)}
-.nav-menu-btn.open .nav-menu-btn-text .menu-label{transform:translateY(-100%)}
-.nav-menu-btn.open .nav-menu-btn-text .menu-close{transform:translateY(0)}
-.nav-menu-btn-icon{background:#1e242c;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;margin-right:0.25rem;transition:transform 500ms var(--ease-strong);will-change:transform}
-.nav-menu-btn:hover .nav-menu-btn-icon{transform:rotate(90deg)}
-.nav-menu-btn-icon svg{width:14px;height:6px;color:var(--bg)}
-@media(min-width:1024px){.nav-menu-btn-icon{width:36px;height:36px;margin-right:0.35rem}.nav-menu-btn-icon svg{width:18px;height:8px}.nav-menu-btn-text{padding:0.4rem 1rem;font-size:0.875rem;height:1.35rem;line-height:1.35rem}}
-#site-menu{position:fixed;top:3.5rem;left:1rem;right:1rem;z-index:98;pointer-events:none;opacity:0;transform:translateY(-10px);transition:opacity 300ms ease,transform 300ms ease,visibility 300ms;visibility:hidden}
-#site-menu.open{pointer-events:auto;opacity:1;transform:translateY(0);visibility:visible}
-.site-menu-inner{background:#d9e0e3;border-radius:1.5rem;padding:1.5rem;display:flex;flex-direction:column;gap:0.25rem}
-@media(min-width:1024px){#site-menu{top:4.5rem;left:auto;right:3rem;width:320px}.site-menu-inner{padding:2rem}}
-.menu-link{display:flex;flex-direction:row;align-items:center;gap:0;color:var(--text-dark);font-size:1.75rem;font-weight:600;letter-spacing:-0.02em;text-decoration:none;padding:0.5rem 1rem;border-radius:1rem;transition:background-color 200ms ease-out;white-space:nowrap}
-.menu-link:hover,.menu-link[aria-current="page"]{background:#fff}
-.menu-link-arrow{width:0;overflow:hidden;transition:width 300ms ease-out;display:flex;align-items:center;flex-shrink:0}
-.menu-link:hover .menu-link-arrow{width:1.5rem}
-.menu-link-arrow svg{width:100%;height:auto}
-@media(min-width:1024px){.menu-link{font-size:2.5rem;padding:0.75rem 1.25rem}.menu-link:hover .menu-link-arrow{width:2rem}}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AEGNTIC. Cognitive Operating System.</title>
+  <meta name="description" content="A cognitive operating system for autonomous AI agents. Multi-model orchestration, self-healing pipelines, adversarial security, economic intelligence, and swarm coordination.">
+  <link rel="canonical" href="https://aegntic.ai/cognitive-os/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/cognitive-os/">
+  <meta property="og:title" content="AEGNTIC. Cognitive Operating System.">
+  <meta property="og:description" content="A cognitive operating system for autonomous AI agents. Multi-model orchestration, self-healing pipelines, adversarial security, economic intelligence, and swarm coordination.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  
 </head>
 <body>
-
-<div class="scroll-progress" id="progress"></div>
-
-<nav class="nav">
-  <a href="/" class="nav-logo"><img src="/ae-logo.webp" alt="aegntic" width="80" height="40"></a>
-  <button type="button" class="nav-menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
-    <span class="nav-menu-btn-text">
-      <span class="menu-label">Menu</span>
-      <span class="menu-close">Close</span>
-    </span>
-    <span class="nav-menu-btn-icon" aria-hidden="true">
-      <svg viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11.45" cy="3" r="2.55" fill="currentColor"/><circle cx="2.55" cy="3" r="2.55" fill="currentColor"/></svg>
-    </span>
-  </button>
-</nav>
-<nav id="site-menu" aria-hidden="true">
-  <div class="site-menu-inner">
-    <a href="/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Home</span></a>
-    <a href="/projects/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Work</span></a>
-    <a href="/blog/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Notes</span></a>
-    <a href="https://aedex.ing" class="menu-link" target="_blank" rel="noopener" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>aedex</span></a>
-    <a href="/cognitive-os/" class="menu-link" aria-current="page" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Cognitive OS</span></a>
-    <a href="/cognitive-operator/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Operator</span></a>
-    <a href="/about/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>About</span></a>
-    <a href="/#contact" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Contact</span></a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-watermark"><span>cogOS</span></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">Cognitive Operating System — v3.0</p>
-    <h1 class="hero-headline">Most agents are chatbots with a terminal. This is a <em>cognitive operating system.</em></h1>
-    <p class="hero-sub">A specification that turns any AI coding agent into a self-healing, economically-aware, adversarially-secure engine. Ten cognitive layers. Four-layer persistent memory. Swarm coordination. Running in production today.</p>
-    <div class="hero-actions">
-      <a href="#modules" class="btn">
-        Explore the system
-        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9h10M10 5l4 4-4 4"/></svg>
-      </a>
-      <a href="#insane" class="btn btn-ghost">What nobody else does</a>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <button type="button" class="nav-menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+      <span class="nav-menu-btn-text">
+        <span class="menu-label">Menu</span>
+        <span class="menu-close">Close</span>
+      </span>
+      <span class="nav-menu-btn-icon" aria-hidden="true">
+        <svg viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11.45" cy="3" r="2.55" fill="currentColor"/><circle cx="2.55" cy="3" r="2.55" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </nav>
+  <nav id="site-menu" aria-hidden="true">
+    <div class="site-menu-inner">
+            <a href="/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Home</span>
+            </a>
+            <a href="/projects/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Work</span>
+            </a>
+            <a href="/blog/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Notes</span>
+            </a>
+            <a href="https://aedex.ing" class="menu-link" target="_blank" rel="noopener" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>aedex</span>
+            </a>
+            <a href="/cognitive-os/" class="menu-link" aria-current="page" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Cognitive OS</span>
+            </a>
+            <a href="/cognitive-operator/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Operator</span>
+            </a>
+            <a href="/compound-engineering/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Compound Engineering</span>
+            </a>
+            <a href="/fpef/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>FPEF</span>
+            </a>
+            <a href="/ae-cli/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>ae-cli</span>
+            </a>
+            <a href="/privacy/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Privacy</span>
+            </a>
+            <a href="/about/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>About</span>
+            </a>
+            <a href="/#contact" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Contact</span>
+            </a>
     </div>
-  </div>
-  <div class="hero-scroll">Scroll</div>
-</section>
-
-<!-- INTRO / MANIFESTO -->
-<section class="intro">
-  <div class="intro-grid">
-    <div class="intro-meta reveal">
-      <div class="intro-eyebrow">Why this exists</div>
+  </nav>
+  <main class="page">
+  <div class="section-header">
+    <div class="section-label">System</div>
+    <div class="section-heading-wrap">
+      <div class="section-heading-back">cognitive os</div>
+      <div class="section-heading-front">Cognitive OS</div>
     </div>
-    <div class="intro-body reveal">
-      <p class="intro-lead">Intelligence without memory is novelty. <em>Agents without cognition are liability.</em></p>
-      <div class="intro-prose">
-        <p>Current AI agent configs are static preference files. Lists of coding conventions. "Use TypeScript. Follow PEP 8." The agent resets every session. It trusts file contents blindly. It retries failures blindly. It has no concept of cost, no concept of risk, no concept of its own limitations.</p>
-        <p><strong>This specification changes how the agent thinks</strong>, not just what it outputs. Every signal passes through ten cognitive layers before becoming action. Every failure triggers a diagnostic pipeline. Every decision carries an estimated price tag.</p>
-        <p>The result: an agent that triages complexity, remembers across sessions, heals its own mistakes, defends itself against adversarial input, and routes work to the model that can handle it cheapest.</p>
-      </div>
-      <div class="intro-stats">
-        <div class="stat-item"><span class="stat-num"><span class="accent">10</span></span><span class="stat-label">Cognitive Layers</span></div>
-        <div class="stat-item"><span class="stat-num"><span class="accent">04</span></span><span class="stat-label">Memory Tiers</span></div>
-        <div class="stat-item"><span class="stat-num"><span class="accent">05</span></span><span class="stat-label">Harness Adapters</span></div>
-        <div class="stat-item"><span class="stat-num"><span class="accent">16</span></span><span class="stat-label">System Sections</span></div>
-      </div>
-    </div>
+    <p class="section-desc">A cognitive operating system for autonomous AI agents. Multi-model orchestration, self-healing pipelines, adversarial security, economic intelligence, and swarm coordination.</p>
   </div>
-</section>
-
-<!-- STACKING MODULE CARDS -->
-<section class="modules" id="modules">
-  <div class="modules-header reveal">
-    <p class="section-label">Five modules of the cognitive layer</p>
-    <h2 class="section-heading">Five systems that <em>change</em> how the agent operates.</h2>
-  </div>
-  <div class="modules-stack">
-    <div class="module-card reveal">
-      <div>
-        <div class="module-num">01 — Cognition</div>
-        <h3 class="module-title">Thinks<br>in tiers.</h3>
-        <p class="module-desc">Every request is classified by complexity before work begins. A typo fix does not get the same ceremony as a production deployment. Resources scale to match actual risk.</p>
-        <div class="module-layers">
-          <div class="module-layer"><span class="module-layer-num">L1</span> Intake and triage — routes T0 through T4</div>
-          <div class="module-layer"><span class="module-layer-num">L2</span> Reasoning mode — System-1 fast vs System-2 deep</div>
-          <div class="module-layer"><span class="module-layer-num">L3</span> Context budget — token economics, danger zone detection</div>
-        </div>
-      </div>
-      <div class="module-tags">
-        <span class="module-tag">Triage</span>
-        <span class="module-tag">Dual Process</span>
-        <span class="module-tag">Token Aware</span>
+  <article class="prose">
+    <div class="section-header">
+      <div class="section-label">Ten layers</div>
+      <div class="section-heading-wrap">
+        <div class="section-heading-back">ten layers</div>
+        <div class="section-heading-front">Ten Layers</div>
       </div>
     </div>
-
-    <div class="module-card reveal">
-      <div>
-        <div class="module-num">02 — Memory</div>
-        <h3 class="module-title">Remembers<br>everything.</h3>
-        <p class="module-desc">Four memory layers: working memory for the session, episodic for what happened, semantic for what is known, procedural for how things are done. Cross-session recall. Forgetting curve. Contradiction detection.</p>
-        <div class="module-layers">
-          <div class="module-layer"><span class="module-layer-num">L4</span> Diff-aware context — re-read before edit, verify after</div>
-          <div class="module-layer"><span class="module-layer-num">L5</span> Tool result blindness — detect silent truncation</div>
-        </div>
-      </div>
-      <div class="module-tags">
-        <span class="module-tag">gbrain PGLite</span>
-        <span class="module-tag">Forgetting Curve</span>
-        <span class="module-tag">Contradiction Detection</span>
-      </div>
-    </div>
-
-    <div class="module-card reveal">
-      <div>
-        <div class="module-num">03 — Healing</div>
-        <h3 class="module-title">Heals<br>itself.</h3>
-        <p class="module-desc">When verification fails, the agent classifies the error, forms a hypothesis about root cause, applies a minimum viable fix, and re-verifies the full chain. Maximum three attempts before escalating to human.</p>
-        <div class="module-layers">
-          <div class="module-layer"><span class="module-layer-num">L6</span> Semantic search — 8-vector rename protocol</div>
-          <div class="module-layer"><span class="module-layer-num">L7</span> Generated file guard — modify source only</div>
-          <div class="module-layer"><span class="module-layer-num">L8</span> Phased execution — five files max per phase</div>
-        </div>
-      </div>
-      <div class="module-tags">
-        <span class="module-tag">Root Cause Analysis</span>
-        <span class="module-tag">Circuit Breakers</span>
-        <span class="module-tag">Rollback Planning</span>
+    <ol>
+      <li><strong>Intake & Triage</strong> — T0–T4 complexity classifier routes every task</li>
+      <li><strong>Reasoning Mode Selection</strong> — System-1 / System-2 / Meta-cognition</li>
+      <li><strong>Context Budget Management</strong> — Danger zone detection, aggressive pruning</li>
+      <li><strong>Diff-Aware Context</strong> — Re-read before edit, chunked reads for large files</li>
+      <li><strong>Tool Result Blindness Prevention</strong> — Truncation awareness, suspicious result detection</li>
+      <li><strong>Semantic vs Syntactic Search</strong> — 8-point grep protocol for renames</li>
+      <li><strong>Generated File Awareness</strong> — Never edit generated code; find the source</li>
+      <li><strong>Phased Execution</strong> — Dead code removal → Implementation → Integration verification</li>
+      <li><strong>Rollback Planning</strong> — Starting commit hash, git worktree isolation</li>
+      <li><strong>Dependency Discipline</strong> — Lockfile detection, never mix package managers</li>
+    </ol>
+    <div class="section-header">
+      <div class="section-label">Memory stack</div>
+      <div class="section-heading-wrap">
+        <div class="section-heading-back">memory stack</div>
+        <div class="section-heading-front">Memory Stack</div>
       </div>
     </div>
-
-    <div class="module-card reveal">
-      <div>
-        <div class="module-num">04 — Security</div>
-        <h3 class="module-title">Defends<br>itself.</h3>
-        <p class="module-desc">File contents, issue descriptions, and web pages are untrusted input. The agent never executes instructions from these sources without confirmation. Three consecutive failures stops everything. Secrets are redacted on sight.</p>
-        <div class="module-layers">
-          <div class="module-layer"><span class="module-layer-num">L9</span> Rollback planning — commit hash recorded</div>
-          <div class="module-layer"><span class="module-layer-num">L10</span> Dependency discipline — lockfile detection</div>
-        </div>
-      </div>
-      <div class="module-tags">
-        <span class="module-tag">Prompt Injection Defense</span>
-        <span class="module-tag">Chain of Authority</span>
-        <span class="module-tag">Sandbox by Default</span>
+    <ul>
+      <li><strong>L1 Working</strong> — Context window, current session</li>
+      <li><strong>L2 Episodic</strong> — gbrain PGLite, cross-session</li>
+      <li><strong>L3 Semantic</strong> — Architecture, decisions, patterns</li>
+      <li><strong>L4 Procedural</strong> — Skills, hooks, droids</li>
+    </ul>
+    <div class="section-header">
+      <div class="section-label">Verification chain</div>
+      <div class="section-heading-wrap">
+        <div class="section-heading-back">verification chain</div>
+        <div class="section-heading-front">Verification Chain</div>
       </div>
     </div>
-
-    <div class="module-card reveal">
-      <div>
-        <div class="module-num">05 — Economics</div>
-        <h3 class="module-title">Knows what<br>things cost.</h3>
-        <p class="module-desc">Every operation has a cost. The system estimates expected value before starting: probability of success times value, minus cost. Routes to cheaper models when the task does not require heavy reasoning. Warns when cost exceeds task value.</p>
+    <ol>
+      <li>Type check</li>
+      <li>Lint</li>
+      <li>Unit tests</li>
+      <li>Integration tests</li>
+      <li>Build</li>
+      <li>Security scan</li>
+      <li>Impact check (GitNexus)</li>
+    </ol>
+    <p style="margin-top:2rem"><a href="/cognitive-operator/">Read the Operator thesis →</a></p>
+  </article>
+</main>
+  <footer class="footer">
+    <div class="footer-marquee" aria-hidden="true">
+      <div class="footer-marquee-inner">
+        <span>Rust</span><span>Go</span><span>TypeScript</span><span>Python</span><span>Agents</span><span>aedex</span><span>MCP</span><span>Claude Code</span>
+        <span>Rust</span><span>Go</span><span>TypeScript</span><span>Python</span><span>Agents</span><span>aedex</span><span>MCP</span><span>Claude Code</span>
       </div>
-      <div class="module-tags">
-        <span class="module-tag">ROI-Aware Routing</span>
-        <span class="module-tag">Multi-Model</span>
-        <span class="module-tag">Ensemble Verification</span>
-      </div>
     </div>
-  </div>
-</section>
-
-<!-- INSANE MODE -->
-<section class="insane" id="insane">
-  <div class="insane-header reveal">
-    <p class="section-label">Insane mode</p>
-    <h2 class="section-heading">Technically possible today. <em>Barely anyone</em> is doing it.</h2>
-    <p class="section-desc">Every pattern here runs in production right now. They are just not standard practice yet.</p>
-  </div>
-  <div class="insane-grid">
-    <div class="insane-card reveal">
-      <div class="insane-num">01</div>
-      <h3>Ensemble verification</h3>
-      <p>For critical tasks, the primary model produces the solution and a second model from a different family reviews it independently. Disagreement triggers a third model as tiebreaker.</p>
+    <img class="footer-logo" src="/ae-logo.webp" alt="AEGNTIC">
+    <div class="footer-links">
+      <a href="/projects/">Work</a>
+      <a href="/blog/">Notes</a>
+      <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+      <a href="/cognitive-os/">Cognitive OS</a>
+      <a href="/cognitive-operator/">Operator</a>
+      <a href="/about/">About</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
     </div>
-    <div class="insane-card reveal">
-      <div class="insane-num">02</div>
-      <h3>Adversarial self-red-team</h3>
-      <p>Before marking critical code complete, the agent switches to attacker mindset: injection vectors, race conditions, resource exhaustion. It tries to break what it just built.</p>
-    </div>
-    <div class="insane-card reveal">
-      <div class="insane-num">03</div>
-      <h3>Instinct evolution</h3>
-      <p>Observed patterns become hypotheses. Confirmed hypotheses become instincts. Formalized instincts become skills. Skills become hooks that run without thinking.</p>
-    </div>
-    <div class="insane-card reveal">
-      <div class="insane-num">04</div>
-      <h3>Economic routing</h3>
-      <p>Expected value is estimated before starting. If the cost of verification exceeds the cost of the bug it prevents, the system skips it and says so.</p>
-    </div>
-    <div class="insane-card reveal">
-      <div class="insane-num">05</div>
-      <h3>DAG swarm execution</h3>
-      <p>Tasks touching many files get split across sub-agents in isolated git worktrees. The coordinator merges sequentially, running integration tests between merges.</p>
-    </div>
-    <div class="insane-card reveal">
-      <div class="insane-num">06</div>
-      <h3>Forgetting curve</h3>
-      <p>Memories older than thirty days without reinforcement lose confidence exponentially. Below 0.3 they are archived. The agent forgets irrelevant details.</p>
-    </div>
-  </div>
-</section>
-
-<!-- COMPARISON -->
-<section class="compare">
-  <div class="compare-header reveal">
-    <p class="section-label">The difference</p>
-    <h2 class="section-heading">Standard config vs. <em>Cognitive OS.</em></h2>
-  </div>
-  <div class="compare-grid">
-    <div class="compare-col bad reveal">
-      <h4>Standard AGENTS.md</h4>
-      <ul>
-        <li>Static list of coding preferences</li>
-        <li>No complexity classification</li>
-        <li>No memory beyond the session</li>
-        <li>Single-model, no routing</li>
-        <li>No self-healing on failure</li>
-        <li>No economic awareness</li>
-        <li>No security framework beyond basics</li>
-        <li>Agent starts fresh every session</li>
-      </ul>
-    </div>
-    <div class="compare-col reveal">
-      <h4>Cognitive OS v3.0</h4>
-      <ul>
-        <li>Ten-layer cognitive processing stack</li>
-        <li>Complexity-tiered task routing</li>
-        <li>Four-layer persistent memory with forgetting</li>
-        <li>Multi-model orchestration with ensemble</li>
-        <li>Self-healing pipeline with circuit breakers</li>
-        <li>Economic intelligence with ROI routing</li>
-        <li>Adversarial security framework</li>
-        <li>Swarm DAG execution, cross-session recall</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta">
-  <h2 class="cta-display reveal">This is <em>running</em> right now.</h2>
-  <p class="cta-sub reveal">Not a concept. A live specification across five AI harnesses, six custom droids, and every project in the workspace. Open. Copyable. The blueprint for how autonomous agents should think.</p>
-  <div class="cta-actions reveal">
-    <a href="mailto:hello@aegntic.com?subject=Cognitive OS" class="btn">
-      Discuss implementation
-      <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9h10M10 5l4 4-4 4"/></svg>
-    </a>
-    <a href="https://github.com/aegntic" target="_blank" class="btn btn-ghost">GitHub</a>
-    <a href="https://aegntic.ai" class="btn btn-ghost">aegntic.ai</a>
-  </div>
-</section>
-
-<!-- FLOATING CTA — teal pill, appears after 40% scroll -->
-<a href="mailto:hello@aegntic.com?subject=Cognitive%20OS" class="floating-cta" id="floatingCta">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-  <span class="cta-label">Discuss implementation</span>
-</a>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-marquee">
-    <div class="footer-marquee-inner">
-      <span>Adaptive Evolution</span><span>Agentic Empowerment</span><span>Verified Intelligence</span><span>Persistent Memory</span><span>Coordination Layer</span>
-      <span>Adaptive Evolution</span><span>Agentic Empowerment</span><span>Verified Intelligence</span><span>Persistent Memory</span><span>Coordination Layer</span>
-    </div>
-  </div>
-  <div class="footer-logo">
-    <img src="/ae-logo.webp" alt="aegntic">
-  </div>
-  <div class="footer-links">
-    <a href="https://aegntic.ai">aegntic.ai</a>
-    <a href="https://ae.ltd">ae.ltd</a>
-    <a href="https://github.com/aegntic">GitHub</a>
-    <a href="https://twitter.com/aegntic_ai">Twitter</a>
-  </div>
-  <p class="footer-copy">&copy; 2026 aegntic. Cognitive Operating System v3.0.</p>
-</footer>
-
-<script>
-const progress = document.getElementById('progress');
-const floatingCta = document.getElementById('floatingCta');
-let ctaVisible = false;
-
-function updateProgress() {
-  const st = window.scrollY;
-  const dh = document.documentElement.scrollHeight - window.innerHeight;
-  progress.style.width = (dh > 0 ? (st / dh) * 100 : 0) + '%';
-  const shouldShow = st > window.innerHeight * 0.4;
-  if (shouldShow && !ctaVisible) { floatingCta.classList.add('visible'); ctaVisible = true; }
-  else if (!shouldShow && ctaVisible) { floatingCta.classList.remove('visible'); ctaVisible = false; }
-}
-window.addEventListener('scroll', updateProgress, { passive: true });
-updateProgress();
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 40);
-      observer.unobserve(e.target);
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+  <script>
+    function toggleMenu(){
+      const btn=document.getElementById('menuBtn');
+      const menu=document.getElementById('site-menu');
+      const open=menu.classList.toggle('open');
+      menu.setAttribute('aria-hidden', open?'false':'true');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open?'true':'false');
     }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-
-<script>
-function toggleMenu(){
-  const btn=document.getElementById('menuBtn');
-  const menu=document.getElementById('site-menu');
-  const open=menu.classList.toggle('open');
-  menu.setAttribute('aria-hidden', open?'false':'true');
-  btn.classList.toggle('open', open);
-  btn.setAttribute('aria-expanded', open?'true':'false');
-}
-function closeMenu(){
-  const btn=document.getElementById('menuBtn');
-  const menu=document.getElementById('site-menu');
-  menu.classList.remove('open');
-  menu.setAttribute('aria-hidden','true');
-  btn.classList.remove('open');
-  btn.setAttribute('aria-expanded','false');
-}
-document.addEventListener('click',e=>{
-  const btn=document.getElementById('menuBtn');
-  const menu=document.getElementById('site-menu');
-  if(menu && menu.classList.contains('open') && !btn.contains(e.target) && !menu.contains(e.target)) closeMenu();
-});
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMenu(); });
-</script>
-
+    function closeMenu(){
+      const btn=document.getElementById('menuBtn');
+      const menu=document.getElementById('site-menu');
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden','true');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+    }
+    document.addEventListener('click',e=>{
+      const btn=document.getElementById('menuBtn');
+      const menu=document.getElementById('site-menu');
+      if(menu.classList.contains('open') && !btn.contains(e.target) && !menu.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMenu(); });
+  </script>
 </body>
 </html>

@@ -1,545 +1,182 @@
 <!DOCTYPE html>
-<!--
-  ============================================================================
-  AEGNTIC · The Cognitive Operator (SOHub content page)
-  ============================================================================
-  Product-narrative page for aegntic's thesis: a sovereign cognitive operator —
-  a single runtime/agent that persists, coordinates, and acts on behalf of one
-  user or org over time. Built on the canonical SOHub shell (single source of
-  truth: /public/_sohub-shell-reference.html). CSS vars, components, GSAP JS,
-  scroll-progress, floating-cta, footer-marquee, nav-back replicated verbatim.
-
-  HONESTY: thesis/concept + real open work only. No fabricated metrics,
-  no funding/MRR/endorsement/user counts. Real links only.
-  ============================================================================
--->
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Cognitive Operator — aegntic</title>
-<meta name="description" content="A sovereign cognitive operator: a single runtime that persists, coordinates, and acts on behalf of one user or org over time. Not a chatbot — an operator that runs and remembers.">
-<link rel="canonical" href="https://aegntic.ai/cognitive-operator/">
-<link rel="icon" type="image/png" href="/favicon.png">
-<meta name="theme-color" content="#f0f6f8">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://aegntic.ai/cognitive-operator">
-<meta property="og:title" content="The Cognitive Operator — aegntic">
-<meta property="og:description" content="A sovereign cognitive operator: a single runtime that persists, coordinates, and acts on behalf of one user or org over time. Not a chatbot — an operator that runs and remembers.">
-<meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Cognitive Operator — aegntic">
-<meta name="twitter:description" content="A sovereign cognitive operator: a single runtime that persists, coordinates, and acts on behalf of one user or org over time. Not a chatbot — an operator that runs and remembers.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "aegntic Cognitive Operator",
-  "applicationCategory": "SoftwareApplication",
-  "operatingSystem": "Cross-platform",
-  "url": "https://aegntic.ai/cognitive-operator/",
-  "description": "A sovereign cognitive operator: a single runtime that persists, coordinates, and acts on behalf of one user or org over time. Built from four coordination-layer primitives — orchestration, continuity, sovereignty, and experiential memory.",
-  "author": { "@type": "Organization", "name": "aegntic", "url": "https://aegntic.ai" },
-  "publisher": { "@type": "Organization", "name": "aegntic", "url": "https://aegntic.ai" }
-}
-</script>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#f0f6f8;
-  --bg-elevated:#ffffff;
-  --bg-inset:#e7eef0;
-  --text:#11181c;
-  --text-dark:#0c1016;
-  --text-secondary:#4a5258;
-  --text-muted:#a5abad;
-  --rule:rgba(17,24,28,0.08);
-  --rule-strong:rgba(17,24,28,0.14);
-  --accent:#00b39f;
-  --accent-dim:rgba(0,179,158,0.12);
-  --surface-1:#0c1016;
-  --surface-2:#23272d;
-  --surface-3:#3a3e44;
-  --surface-4:#50555a;
-  --radius:1.5rem;
-  --radius-lg:3rem;
-  --radius-pill:999px;
-  --ease-spring:cubic-bezier(.22,.68,0,1);
-  --ease-overshoot:cubic-bezier(.22,.68,0,1.2);
-  --ease-strong:cubic-bezier(.22,.68,0,1.5);
-}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
-.fd{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif}
-
-/* SCROLL PROGRESS */
-.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--accent);z-index:200;transition:width 80ms linear;will-change:width}
-
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 1rem;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
-@media(min-width:1024px){.nav{padding:1.5rem 3rem}}
-.nav-logo{pointer-events:auto;display:flex;align-items:center}
-.nav-logo img{height:2rem;width:auto;display:block}
-@media(min-width:1024px){.nav-logo img{height:2.5rem}}
-.nav-back{pointer-events:auto;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.6rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;border:none;cursor:pointer;transition:transform .5s var(--ease-spring)}
-.nav-back:hover{transform:scale(1.05)}
-.nav-back svg{width:14px;height:14px;transition:transform .3s var(--ease-spring)}
-.nav-back:hover svg{transform:translateX(-3px)}
-
-/* HERO */
-.hero{position:relative;min-height:78vh;display:flex;align-items:center;padding:9rem 1rem 5rem;overflow:hidden}
-@media(min-width:768px){.hero{padding:11rem 2rem 6rem}}
-@media(min-width:1024px){.hero{padding:11rem 3rem 7rem}}
-@media(min-width:1280px){.hero{padding:13rem 5rem 9rem}}
-.hero-watermark{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:flex-end;overflow:hidden;pointer-events:none;user-select:none;padding-right:.5rem}
-.hero-watermark span{font-weight:700;font-size:clamp(8rem,28vw,24rem);letter-spacing:-.04em;color:var(--text-dark);opacity:.04;line-height:.85;white-space:nowrap}
-.hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%}
-.hero-eyebrow{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem}
-.hero-eyebrow::before{content:"";width:1.75rem;height:1px;background:var(--accent);opacity:.6}
-.hero-headline{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(2rem,5.2vw,4.25rem);font-weight:500;letter-spacing:-.03em;line-height:1.05;color:var(--text-dark);max-width:20ch;margin-bottom:1.5rem}
-.hero-headline em{font-style:normal;color:var(--accent)}
-.hero-sub{font-size:clamp(1rem,1.3vw,1.125rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:2.5rem}
-.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
-
-/* BUTTONS */
-.btn{display:inline-flex;align-items:center;gap:.75rem;background:var(--text-dark);color:var(--bg);padding:.875rem 2rem;border-radius:var(--radius-pill);font-size:.9375rem;font-weight:500;transition:transform .5s var(--ease-overshoot),box-shadow .4s ease;cursor:pointer;border:none;box-shadow:0 10px 30px -10px rgba(12,16,22,.35)}
-.btn:hover{transform:scale(1.06);box-shadow:0 18px 40px -12px rgba(12,16,22,.45)}
-.btn svg{width:1.125rem;height:1.125rem;transition:transform .3s var(--ease-overshoot)}
-.btn:hover svg{transform:translateX(3px)}
-.btn-ghost{background:transparent;color:var(--text-dark);border:1px solid var(--rule-strong);box-shadow:none}
-.btn-ghost:hover{background:rgba(17,24,28,.04);transform:scale(1.03);box-shadow:none}
-
-/* SECTION PRIMITIVES */
-section{position:relative}
-.section-pad{padding:6rem 1rem}
-@media(min-width:768px){.section-pad{padding:8rem 2rem}}
-@media(min-width:1024px){.section-pad{padding:8rem 3rem}}
-@media(min-width:1280px){.section-pad{padding:10rem 5rem}}
-.section-inner{max-width:1400px;margin:0 auto}
-.section-label{font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:.625rem}
-.section-label::before{content:"";width:1.75rem;height:1px;background:var(--text-muted);opacity:.4}
-.section-heading{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(1.75rem,4vw,3rem);font-weight:500;letter-spacing:-.025em;line-height:1.1;color:var(--text-dark);margin-bottom:1rem;max-width:22ch}
-.section-heading em{font-style:normal;color:var(--accent)}
-.prompt-fail-figure{margin:0 auto 2.5rem;max-width:min(560px,92%);text-align:center}
-.prompt-fail-figure img{width:100%;height:auto;display:block;margin:0 auto;background:transparent}
-@media(min-width:1024px){.prompt-fail-figure{margin-bottom:3rem;max-width:640px}}
-.section-desc{font-size:clamp(.9375rem,1.2vw,1.0625rem);color:var(--text-secondary);line-height:1.65;max-width:52ch;margin-bottom:3rem}
-
-/* CARD GRID */
-.grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
-@media(min-width:768px){.grid.cols-2{grid-template-columns:1fr 1fr}.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-.card{background:var(--bg-elevated);border:1px solid var(--rule);border-radius:var(--radius);padding:2.25rem;box-shadow:0 1px 2px rgba(12,16,22,.04);transition:transform .4s var(--ease-spring),box-shadow .4s ease,border-color .4s ease}
-.card:hover{transform:translateY(-3px);box-shadow:0 8px 24px -8px rgba(12,16,22,.12);border-color:var(--rule-strong)}
-.card h3{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:1.375rem;font-weight:600;letter-spacing:-.02em;margin-bottom:.625rem;color:var(--text-dark)}
-.card p{font-size:.9375rem;color:var(--text-secondary);line-height:1.6}
-.card .tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
-.tag{font-size:.6875rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.4rem .875rem;border-radius:var(--radius-pill);background:var(--accent-dim);color:var(--text-secondary)}
-.card-dark{background:var(--surface-1);color:#fff;border-color:transparent}
-.card-dark h3{color:#fff}.card-dark p{color:rgba(255,255,255,.7)}
-.card-dark .tag{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85)}
-
-/* DARK STACK LIST (SOHub numbered cards) */
-.stack-list{display:flex;flex-direction:column;gap:1rem}
-.stack-card{background:var(--surface-1);color:#fff;border-radius:var(--radius);padding:2.25rem 1.5rem;display:flex;flex-direction:column;gap:1rem;transition:transform .4s var(--ease-spring)}
-@media(min-width:768px){.stack-card{flex-direction:row;align-items:center;gap:2.5rem;padding:2.5rem}}
-.stack-card:hover{transform:scale(1.005)}
-.stack-card .num{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:600;letter-spacing:-.02em;color:var(--accent);min-width:80px;line-height:1}
-.stack-card h3{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:clamp(1.125rem,1.8vw,1.5rem);font-weight:600;letter-spacing:-.02em;margin-bottom:.5rem;color:#fff}
-.stack-card p{font-size:.9375rem;opacity:.65;line-height:1.6;max-width:48ch}
-.stack-card:nth-child(2n){background:var(--surface-2)}
-.stack-card:nth-child(3n){background:var(--surface-3)}
-
-/* PROSE */
-.prose{max-width:720px}
-.prose h2{font-family:'Satoshi', 'Helvetica Neue', Helvetica, Arial, sans-serif;font-weight:600;font-size:clamp(1.4rem,2.6vw,1.875rem);letter-spacing:-.02em;line-height:1.2;margin:3rem 0 .75rem;color:var(--text-dark)}
-.prose h2:first-child{margin-top:0}
-.prose p{font-size:1rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1rem}
-.prose strong{color:var(--text-dark);font-weight:600}
-.prose ul{padding-left:1.25rem;margin-bottom:1rem}
-.prose li{font-size:1rem;color:var(--text-secondary);margin-bottom:.5rem;line-height:1.6}
-.prose a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent-dim)}
-
-/* CTA SECTION */
-.cta-final{background:var(--surface-1);color:#fff;border-radius:var(--radius-lg) var(--radius-lg) 0 0}
-.cta-final .section-label{color:rgba(255,255,255,.4)}
-.cta-final .section-label::before{background:rgba(255,255,255,.3)}
-.cta-final .section-heading{color:#fff}
-.cta-final .section-desc{color:rgba(255,255,255,.7)}
-.cta-final .btn{background:#fff;color:var(--text-dark)}
-.cta-final .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.2)}
-.cta-final .btn-ghost:hover{background:rgba(255,255,255,.08)}
-
-/* FOOTER (SOHub marquee) */
-.footer{width:100%;padding:5rem 1.5rem 3rem;display:flex;flex-direction:column;align-items:center;gap:2rem;text-align:center;border-top:1px solid var(--rule)}
-@media(min-width:1024px){.footer{padding:6rem 3rem 4rem}}
-.footer-marquee{width:100%;overflow:hidden;margin-bottom:1rem}
-.footer-marquee-inner{display:flex;gap:3rem;white-space:nowrap;animation:marquee 22s linear infinite;font-size:.8125rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);opacity:.55}
-.footer-marquee-inner span::after{content:'\2022';margin-left:3rem;opacity:.4}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;font-size:.8125rem;font-weight:500;opacity:.65}
-.footer-links a{transition:color .2s}
-.footer-links a:hover{color:var(--accent);opacity:1}
-.footer-copy{font-size:.75rem;color:var(--text-muted);opacity:.6}
-
-/* FLOATING CTA */
-.floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.75rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(.9);transition:opacity .5s ease,transform .5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(12,16,22,.15)}
-.floating-cta.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
-.floating-cta:hover{transform:translateY(-2px) scale(1.05)}
-@media(max-width:767px){.floating-cta span{display:none}.floating-cta{padding:.75rem;border-radius:50%}}
-
-/* GSAP SPLIT REVEAL — only masked when JS active (no-JS sees content) */
-body.gsap-ready .split-mask{display:inline-block;overflow:hidden;vertical-align:top;line-height:inherit;padding-bottom:.05em;margin-bottom:-.05em}
-body.gsap-ready .split-inner{display:inline-block;will-change:transform}
-body.gsap-ready .split-line{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
-body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
-
-/* CUSTOM SCROLLBAR */
-::-webkit-scrollbar{width:6px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(12,16,22,.15);border-radius:999px}
-::-webkit-scrollbar-thumb:hover{background:rgba(12,16,22,.3)}
-*{scrollbar-width:thin;scrollbar-color:rgba(12,16,22,.15) transparent}
-
-@media(prefers-reduced-motion:reduce){
-  body.gsap-ready .reveal-fade{opacity:1!important;transform:none!important}
-  .btn,.card,.stack-card{transform:none!important}
-  .footer-marquee-inner{animation:none}
-}
-
-/* unified MENU (match homepage) */
-.nav-menu-btn{background:var(--text-dark);color:var(--bg);padding:0.125rem;border-radius:999px;font-size:0.8125rem;font-weight:500;pointer-events:auto;display:inline-flex;align-items:center;gap:0;border:none;cursor:pointer;transition:transform 500ms var(--ease-spring);will-change:transform;font-family:inherit}
-.nav-menu-btn:hover{transform:scale(1.1)}
-.nav-menu-btn-text{color:var(--bg);font-size:0.8125rem;font-weight:500;text-transform:uppercase;padding:0.35rem 0.75rem 0.35rem 0.35rem;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;height:1.25rem;min-width:4.5rem}
-.nav-menu-btn-text span{display:flex;align-items:center;justify-content:center;transition:transform 500ms var(--ease-overshoot);position:absolute;inset:0}
-.nav-menu-btn-text .menu-close{transform:translateY(100%)}
-.nav-menu-btn.open .nav-menu-btn-text .menu-label{transform:translateY(-100%)}
-.nav-menu-btn.open .nav-menu-btn-text .menu-close{transform:translateY(0)}
-.nav-menu-btn-icon{background:#1e242c;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;margin-right:0.25rem;transition:transform 500ms var(--ease-strong);will-change:transform}
-.nav-menu-btn:hover .nav-menu-btn-icon{transform:rotate(90deg)}
-.nav-menu-btn-icon svg{width:14px;height:6px;color:var(--bg)}
-@media(min-width:1024px){.nav-menu-btn-icon{width:36px;height:36px;margin-right:0.35rem}.nav-menu-btn-icon svg{width:18px;height:8px}.nav-menu-btn-text{padding:0.4rem 1rem;font-size:0.875rem;height:1.35rem;line-height:1.35rem}}
-#site-menu{position:fixed;top:3.5rem;left:1rem;right:1rem;z-index:98;pointer-events:none;opacity:0;transform:translateY(-10px);transition:opacity 300ms ease,transform 300ms ease,visibility 300ms;visibility:hidden}
-#site-menu.open{pointer-events:auto;opacity:1;transform:translateY(0);visibility:visible}
-.site-menu-inner{background:#d9e0e3;border-radius:1.5rem;padding:1.5rem;display:flex;flex-direction:column;gap:0.25rem}
-@media(min-width:1024px){#site-menu{top:4.5rem;left:auto;right:3rem;width:320px}.site-menu-inner{padding:2rem}}
-.menu-link{display:flex;flex-direction:row;align-items:center;gap:0;color:var(--text-dark);font-size:1.75rem;font-weight:600;letter-spacing:-0.02em;text-decoration:none;padding:0.5rem 1rem;border-radius:1rem;transition:background-color 200ms ease-out;white-space:nowrap}
-.menu-link:hover,.menu-link[aria-current="page"]{background:#fff}
-.menu-link-arrow{width:0;overflow:hidden;transition:width 300ms ease-out;display:flex;align-items:center;flex-shrink:0}
-.menu-link:hover .menu-link-arrow{width:1.5rem}
-.menu-link-arrow svg{width:100%;height:auto}
-@media(min-width:1024px){.menu-link{font-size:2.5rem;padding:0.75rem 1.25rem}.menu-link:hover .menu-link-arrow{width:2rem}}
-.nav-back{display:none!important}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cognitive Operator — aegntic.ai</title>
+  <meta name="description" content="Sovereign runtime thesis — an agent you own that compounds.">
+  <link rel="canonical" href="https://aegntic.ai/cognitive-operator/">
+  <meta name="theme-color" content="#f0f6f8">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/cognitive-operator/">
+  <meta property="og:title" content="Cognitive Operator — aegntic.ai">
+  <meta property="og:description" content="Sovereign runtime thesis — an agent you own that compounds.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,600,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  
 </head>
 <body>
-<!-- SCROLL PROGRESS -->
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- FLOATING CTA -->
-<a href="https://github.com/aegntic" target="_blank" rel="noopener" class="floating-cta" id="floatingCta">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-  <span>See the work</span>
-</a>
-
-<!-- NAV -->
-<nav class="nav">
-  <a href="/" class="nav-logo"><img src="/ae-logo.webp" alt="aegntic" width="80" height="40"></a>
-  <button type="button" class="nav-menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
-    <span class="nav-menu-btn-text">
-      <span class="menu-label">Menu</span>
-      <span class="menu-close">Close</span>
-    </span>
-    <span class="nav-menu-btn-icon" aria-hidden="true">
-      <svg viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11.45" cy="3" r="2.55" fill="currentColor"/><circle cx="2.55" cy="3" r="2.55" fill="currentColor"/></svg>
-    </span>
-  </button>
-</nav>
-<nav id="site-menu" aria-hidden="true">
-  <div class="site-menu-inner">
-  <a href="/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Home</span></a>
-  <a href="/projects/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Work</span></a>
-  <a href="/blog/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Notes</span></a>
-  <a href="https://aedex.ing" class="menu-link" target="_blank" rel="noopener" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>aedex</span></a>
-  <a href="/cognitive-os/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Cognitive OS</span></a>
-  <a href="/cognitive-operator/" class="menu-link" aria-current="page" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Operator</span></a>
-  <a href="/about/" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>About</span></a>
-  <a href="/#contact" class="menu-link" onclick="closeMenu()"><span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span><span>Contact</span></a>
+  <nav class="nav">
+    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
+    <button type="button" class="nav-menu-btn" id="menuBtn" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+      <span class="nav-menu-btn-text">
+        <span class="menu-label">Menu</span>
+        <span class="menu-close">Close</span>
+      </span>
+      <span class="nav-menu-btn-icon" aria-hidden="true">
+        <svg viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11.45" cy="3" r="2.55" fill="currentColor"/><circle cx="2.55" cy="3" r="2.55" fill="currentColor"/></svg>
+      </span>
+    </button>
+  </nav>
+  <nav id="site-menu" aria-hidden="true">
+    <div class="site-menu-inner">
+            <a href="/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Home</span>
+            </a>
+            <a href="/projects/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Work</span>
+            </a>
+            <a href="/blog/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Notes</span>
+            </a>
+            <a href="https://aedex.ing" class="menu-link" target="_blank" rel="noopener" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>aedex</span>
+            </a>
+            <a href="/cognitive-os/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Cognitive OS</span>
+            </a>
+            <a href="/cognitive-operator/" class="menu-link" aria-current="page" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Operator</span>
+            </a>
+            <a href="/compound-engineering/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Compound Engineering</span>
+            </a>
+            <a href="/fpef/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>FPEF</span>
+            </a>
+            <a href="/ae-cli/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>ae-cli</span>
+            </a>
+            <a href="/privacy/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Privacy</span>
+            </a>
+            <a href="/about/" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>About</span>
+            </a>
+            <a href="/#contact" class="menu-link" onclick="closeMenu()">
+                <span class="menu-link-arrow"><svg viewBox="0 0 45 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.4 2L41.5 19.1L24.4 36.2M0 19.1H40.3" stroke="currentColor" stroke-width="4.9"/></svg></span>
+                <span>Contact</span>
+            </a>
+    </div>
+  </nav>
+  <main class="page">
+  <div class="section-header">
+    <div class="section-label">Thesis</div>
+    <div class="section-heading-wrap">
+      <div class="section-heading-back">cognitive operator</div>
+      <div class="section-heading-front">Cognitive Operator</div>
+    </div>
+    <p class="section-desc">Sovereign runtime thesis — an agent you own that compounds.</p>
   </div>
-</nav>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-watermark"><span>operator</span></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">The Cognitive Operator</div>
-    <h1 class="hero-headline" data-split>Not a chatbot. An <em>operator</em> that runs and remembers.</h1>
-    <p class="hero-sub">A sovereign cognitive operator is a single runtime that persists, coordinates, and acts on behalf of one person or organization over time. It ties together the four coordination-layer primitives — orchestration, continuity, sovereignty, and experiential memory — into one thing that keeps running when the conversation ends.</p>
-    <div class="hero-actions">
-      <a href="#primitives" class="btn">Read the thesis
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-      </a>
-      <a href="https://github.com/aegntic" target="_blank" rel="noopener" class="btn btn-ghost">See the open work</a>
-    </div>
-  </div>
-</header>
-
-<!-- THESIS INTRO (prose) -->
-<main>
-  <section class="section-pad" style="padding-top:4rem">
-    <div class="section-inner">
-      <div class="prose">
-        <div class="section-label">The thesis</div>
-        <h2 class="section-heading" data-split style="margin-bottom:1.5rem">An agent you <em>own</em>, that compounds.</h2>
-        <p>Most "AI" today is a chatbot: stateless, ephemeral, restarted every session. You explain yourself from scratch each time. It forgets what it did yesterday. It has no authority, no memory, no continuity of purpose.</p>
-        <p>The cognitive operator is the opposite bet. It is a <strong>single, sovereign runtime</strong> bound to one user or org. It coordinates work across many tools and sub-agents. It carries state forward across sessions, so capability compounds instead of resetting. You host it, you own it, and its context is built from your lived interactions rather than handed to a third party.</p>
-        <p>This page is honest about what that is: a thesis and a body of open work, not a finished product with a price tag. Four primitives define the shape of the operator. Everything aegntic builds is an attempt to make those primitives real.</p>
+  <article class="prose">
+    <div class="section-header">
+      <div class="section-label">Four primitives</div>
+      <div class="section-heading-wrap">
+        <div class="section-heading-back">four primitives</div>
+        <div class="section-heading-front">Four Coordination Primitives</div>
       </div>
     </div>
-  </section>
-
-  <!-- PRIMITIVES — SOHub dark numbered stack list -->
-  <section class="section-pad" id="primitives">
-    <div class="section-inner">
-      <div class="section-label">Four coordination-layer primitives</div>
-      <h2 class="section-heading" data-split>The operator is built from <em>four primitives.</em></h2>
-      <p class="section-desc">Each primitive is a layer of capability. Together they describe a thing that runs, remembers, stays private, and learns from what it does.</p>
-      <div class="stack-list">
-        <article class="stack-card reveal-fade">
-          <div class="num">01</div>
-          <div>
-            <h3>Orchestration</h3>
-            <p>Coordinate multiple agents and tools into coherent workflows. The operator is not one model answering one prompt — it is a runtime that decomposes intent, routes work to the right tool or sub-agent, verifies results, and composes a finished outcome. Many moving parts, one coherent actor.</p>
-          </div>
-        </article>
-        <article class="stack-card reveal-fade">
-          <div class="num">02</div>
-          <div>
-            <h3>Continuity</h3>
-            <p>Persistent memory across sessions and time. State that compounds. The operator remembers what it learned yesterday and last week, so each interaction starts from where the last one ended instead of from zero. Context is an asset that accrues, not a buffer that clears.</p>
-          </div>
-        </article>
-        <article class="stack-card reveal-fade">
-          <div class="num">03</div>
-          <div>
-            <h3>Sovereignty</h3>
-            <p>Self-hosted and private by default. You own the operator — its memory, its keys, its logs. Nothing about your work is handed to a platform you do not control. Sovereignty is the precondition that makes the other primitives safe to actually use.</p>
-          </div>
-        </article>
-        <article class="stack-card reveal-fade">
-          <div class="num">04</div>
-          <div>
-            <h3>Experiential memory</h3>
-            <p>Context built from lived interaction. Not a static prompt of preferences, but a record shaped by what the operator actually did, what worked, what failed. Memory earned through experience is sharper than memory asserted once at setup.</p>
-          </div>
-        </article>
+    <ol>
+      <li><strong>Memory</strong> — Persistent, portable, private. What the agent knows across runs.</li>
+      <li><strong>Tools</strong> — Capabilities the agent can invoke. Sandboxed, auditable, composable.</li>
+      <li><strong>Policy</strong> — Rules the agent follows. Versioned, testable, overrideable.</li>
+      <li><strong>Loop</strong> — The coordination cycle. Plan → execute → verify → learn.</li>
+    </ol>
+    <div class="section-header">
+      <div class="section-label">Principles</div>
+      <div class="section-heading-wrap">
+        <div class="section-heading-back">principles</div>
+        <div class="section-heading-front">Operating Principles</div>
       </div>
     </div>
-  </section>
-
-  <!-- HOW IT WORKS / PRINCIPLES — SOHub grid -->
-  <section class="section-pad">
-    <div class="section-inner">
-      <figure class="prompt-fail-figure" aria-label="prompt.Fail illustration">
-        <img src="/prompt-fail-ouroboros.png" alt="Ring of figures: hey puter do majic — prompt.Fail" width="1308" height="812" loading="lazy">
-      </figure>
-      <div class="section-label">How it actually runs</div>
-      <h2 class="section-heading" data-split>Not magic. <em>Coordination</em> done deliberately.</h2>
-      <p class="section-desc">The operator is a loop with honest, boring, load-bearing properties. These are the principles that make the primitives above behave like an operator rather than a script.</p>
-      <div class="grid cols-3">
-        <article class="card reveal-fade">
-          <h3>One actor, many tools</h3>
-          <p>The operator is the single accountable entity. It calls tools, spawns sub-agents, and merges their results into one decision. From the outside it looks like one coherent assistant; inside it is a coordinated system.</p>
-          <div class="tag-row"><span class="tag">Decompose</span><span class="tag">Route</span><span class="tag">Verify</span></div>
-        </article>
-        <article class="card card-dark reveal-fade">
-          <h3>State that survives</h3>
-          <p>Memory is written, retrieved, and reconciled across sessions. Yesterday's outcome becomes today's starting context. The operator does not ask you to re-explain itself.</p>
-          <div class="tag-row"><span class="tag">Persistent</span><span class="tag">Reconciled</span></div>
-        </article>
-        <article class="card reveal-fade">
-          <h3>Private by construction</h3>
-          <p>It runs where you run it. Memory, keys, and logs stay under your control. The default posture is local and sovereign, not upload-and-trust.</p>
-          <div class="tag-row"><span class="tag">Self-hosted</span><span class="tag">Yours</span></div>
-        </article>
-        <article class="card reveal-fade">
-          <h3>Learns from doing</h3>
-          <p>Experiential memory means context is shaped by real outcomes, not by a one-time setup form. Patterns observed in practice become sharper context over time.</p>
-          <div class="tag-row"><span class="tag">Earned</span><span class="tag">Compounding</span></div>
-        </article>
-        <article class="card card-dark reveal-fade">
-          <h3>Honest about limits</h3>
-          <p>An operator that runs and remembers is also one that can fail in durable ways. The design assumes verification, rollback, and the discipline to not trust a single unverified result. Capability without honesty is liability.</p>
-          <div class="tag-row"><span class="tag">Verify</span><span class="tag">Rollback</span></div>
-        </article>
-        <article class="card reveal-fade">
-          <h3>Yours to inspect</h3>
-          <p>Because you own it, you can see what it remembers, what it decided, and why. The operator is auditable by the person it serves — not a black box rented from someone else.</p>
-          <div class="tag-row"><span class="tag">Transparent</span><span class="tag">Auditable</span></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA SECTION -->
-  <section class="section-pad cta-final">
-    <div class="section-inner">
+    <ul>
+      <li><strong>Local-first</strong> — Data stays on your machine. Cloud is optional sync, not primary storage.</li>
+      <li><strong>Model-agnostic</strong> — Swap backends (local/cloud) without rewiring tools or memory.</li>
+      <li><strong>No vendor lock-in</strong> — Plain JSON, SQLite, git. Export anytime.</li>
+      <li><strong>Compounding</strong> — Every run improves the agent. Failed paths logged, successful patterns extracted.</li>
+    </ul>
+    <div class="section-header">
       <div class="section-label">Open work</div>
-      <h2 class="section-heading" data-split>The operator is a thesis, <em>in progress.</em></h2>
-      <p class="section-desc">This is honest open work, not a finished product with a checkout button. If the primitives above describe something you want to build with, the repos are public and the conversation is open.</p>
-      <div class="hero-actions" style="margin-top:0">
-        <a href="https://github.com/aegntic" target="_blank" rel="noopener" class="btn">github.com/aegntic
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
-        <a href="/" class="btn btn-ghost">Back to aegntic.ai</a>
+      <div class="section-heading-wrap">
+        <div class="section-heading-back">open work</div>
+        <div class="section-heading-front">Open Work</div>
       </div>
     </div>
-  </section>
+    <p>The operator is a thesis, <em>in progress.</em> Current focus: Cognitive OS v3 integration, gbrain memory layer, skill automation pipeline.</p>
+    <p style="margin-top:2rem"><a href="/cognitive-os/">Read Cognitive OS spec →</a></p>
+  </article>
 </main>
-
-<!-- FOOTER -->
-
-<section class="section" id="related-products" style="padding:4rem 1.5rem 2rem">
-  <div style="max-width:1100px;margin:0 auto">
-    <p class="section-label" style="font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem">Related</p>
-    <h2 class="section-heading">Stack this sits on.</h2>
-    <div style="display:grid;gap:1rem;grid-template-columns:1fr;margin-top:1.5rem">
-      <a href="/cognitive-os/" style="display:block;padding:1.25rem 1.5rem;border:1px solid var(--rule);border-radius:1.1rem;background:#fff">
-        <strong style="display:block;font-size:1.15rem;margin-bottom:.35rem">Cognitive OS</strong>
-        <span style="color:var(--text-muted);font-size:.95rem">The policy + verification operating system the operator runs on.</span>
-      </a>
-      <a href="https://aedex.ing" target="_blank" rel="noopener" style="display:block;padding:1.25rem 1.5rem;border:1px solid var(--rule);border-radius:1.1rem;background:#fff">
-        <strong style="display:block;font-size:1.15rem;margin-bottom:.35rem">aedex</strong>
-        <span style="color:var(--text-muted);font-size:.95rem">Catalog-first data exchange — how the operator reaches real I/O.</span>
-      </a>
+  <footer class="footer">
+    <div class="footer-marquee" aria-hidden="true">
+      <div class="footer-marquee-inner">
+        <span>Rust</span><span>Go</span><span>TypeScript</span><span>Python</span><span>Agents</span><span>aedex</span><span>MCP</span><span>Claude Code</span>
+        <span>Rust</span><span>Go</span><span>TypeScript</span><span>Python</span><span>Agents</span><span>aedex</span><span>MCP</span><span>Claude Code</span>
+      </div>
     </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="footer-marquee">
-    <div class="footer-marquee-inner">
-      <span>Rust</span><span>Go</span><span>TypeScript</span><span>Python</span><span>Agents</span><span>aedex</span><span>Cognitive OS</span><span>Operator</span>
-      <span>Rust</span><span>Go</span><span>TypeScript</span><span>Python</span><span>Agents</span><span>aedex</span><span>Cognitive OS</span><span>Operator</span>
+    <img class="footer-logo" src="/ae-logo.webp" alt="AEGNTIC">
+    <div class="footer-links">
+      <a href="/projects/">Work</a>
+      <a href="/blog/">Notes</a>
+      <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
+      <a href="/cognitive-os/">Cognitive OS</a>
+      <a href="/cognitive-operator/">Operator</a>
+      <a href="/about/">About</a>
+      <a href="/audits/">Audits</a>
+      <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
+      <a href="mailto:hello@aegntic.com">Contact</a>
     </div>
-  </div>
-  <img src="/ae-logo.webp" alt="AEGNTIC" style="height:2rem;width:auto;opacity:0.5">
-  <div class="footer-links">
-    <a href="/projects/">Work</a>
-    <a href="/blog/">Notes</a>
-    <a href="https://aedex.ing" target="_blank" rel="noopener">aedex</a>
-    <a href="/cognitive-os/">Cognitive OS</a>
-    <a href="/cognitive-operator/">Operator</a>
-    <a href="/about/">About</a>
-    <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
-    <a href="/#contact">Contact</a>
-  </div>
-  <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
-</footer>
-
-<script>
-  // ── SCROLL PROGRESS + FLOATING CTA ──
-  const progressBar=document.getElementById('scrollProgress');
-  const floatingCta=document.getElementById('floatingCta');
-  let ctaVisible=false;
-  function updateProgress(){
-    const st=window.scrollY;
-    const dh=document.documentElement.scrollHeight-window.innerHeight;
-    progressBar.style.width=(dh>0?(st/dh)*100:0)+'%';
-    const shouldShow=st>window.innerHeight*0.45;
-    if(shouldShow&&!ctaVisible){floatingCta.classList.add('visible');ctaVisible=true}
-    else if(!shouldShow&&ctaVisible){floatingCta.classList.remove('visible');ctaVisible=false}
-  }
-  window.addEventListener('scroll',updateProgress,{passive:true});
-  updateProgress();
-
-  // ── SMOOTH SCROLL for in-page anchors ──
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      const t=document.querySelector(a.getAttribute('href'));
-      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
-    });
-  });
-
-  // ── GSAP WORD-SPLIT REVEALS (no-JS safe) ──
-  (function(){
-    if(!window.gsap||!window.ScrollTrigger){return}
-    gsap.registerPlugin(ScrollTrigger);
-    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.body.classList.add('gsap-ready');
-    if(reduce){
-      document.querySelectorAll('[data-split]').forEach(()=>{});
-      gsap.set('[data-split] .split-inner,.reveal-fade',{clearProps:'all'});
-      return;
+    <div class="footer-copy">&copy; 2026 Mattae Cooper · aegntic.ai</div>
+  </footer>
+  <script>
+    function toggleMenu(){
+      const btn=document.getElementById('menuBtn');
+      const menu=document.getElementById('site-menu');
+      const open=menu.classList.toggle('open');
+      menu.setAttribute('aria-hidden', open?'false':'true');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open?'true':'false');
     }
-    function splitWords(el){
-      const nodes=Array.from(el.childNodes);el.innerHTML='';
-      nodes.forEach(n=>{
-        if(n.nodeType===3){
-          n.textContent.split(/(\s+)/).forEach(p=>{
-            if(p==='')return;
-            if(/^\s+$/.test(p)){el.appendChild(document.createTextNode(' '));return}
-            const mask=document.createElement('span');mask.className='split-mask';
-            const inner=document.createElement('span');inner.className='split-inner';inner.textContent=p;
-            mask.appendChild(inner);el.appendChild(mask);
-          });
-        }else if(n.nodeType===1){
-          if(n.tagName.toLowerCase()==='br'){el.appendChild(n);return}
-          const mask=document.createElement('span');mask.className='split-mask';
-          n.classList.add('split-inner');mask.appendChild(n);el.appendChild(mask);
-        }
-      });
+    function closeMenu(){
+      const btn=document.getElementById('menuBtn');
+      const menu=document.getElementById('site-menu');
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden','true');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
     }
-    document.querySelectorAll('[data-split]').forEach(splitWords);
-    gsap.utils.toArray('[data-split]').forEach(el=>{
-      const inners=el.querySelectorAll('.split-inner');
-      if(inners.length){
-        gsap.fromTo(inners,{yPercent:120},{yPercent:0,duration:1.2,ease:'expo.out',stagger:0.08,
-          scrollTrigger:{trigger:el,start:'top 85%',toggleActions:'play none none reverse'}});
-      }
+    document.addEventListener('click',e=>{
+      const btn=document.getElementById('menuBtn');
+      const menu=document.getElementById('site-menu');
+      if(menu.classList.contains('open') && !btn.contains(e.target) && !menu.contains(e.target)) closeMenu();
     });
-    gsap.utils.toArray('.reveal-fade').forEach(el=>{
-      gsap.fromTo(el,{y:40,opacity:0},{y:0,opacity:1,duration:1.1,ease:'power3.out',
-        scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'}});
-    });
-  })();
-</script>
-
-<script>
-function toggleMenu(){
-  const btn=document.getElementById('menuBtn');
-  const menu=document.getElementById('site-menu');
-  const open=menu.classList.toggle('open');
-  menu.setAttribute('aria-hidden', open?'false':'true');
-  btn.classList.toggle('open', open);
-  btn.setAttribute('aria-expanded', open?'true':'false');
-}
-function closeMenu(){
-  const btn=document.getElementById('menuBtn');
-  const menu=document.getElementById('site-menu');
-  if(!menu) return;
-  menu.classList.remove('open');
-  menu.setAttribute('aria-hidden','true');
-  btn.classList.remove('open');
-  btn.setAttribute('aria-expanded','false');
-}
-document.addEventListener('click',e=>{
-  const btn=document.getElementById('menuBtn');
-  const menu=document.getElementById('site-menu');
-  if(menu&&menu.classList.contains('open')&&btn&&!btn.contains(e.target)&&!menu.contains(e.target)) closeMenu();
-});
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMenu(); });
-</script>
-
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMenu(); });
+  </script>
 </body>
 </html>
