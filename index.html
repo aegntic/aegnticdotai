@@ -31,7 +31,8 @@
             --text:#11181c;
             --text-dark:#0c1016;
             --text-muted:#a5abad;
-            --accent:#00b39f;
+            --accent:#b73512;
+            --accent-bright:#ff6338;
             --surface-1:#0c1016;
             --surface-2:#23272d;
             --surface-3:#3a3e44;
@@ -46,7 +47,7 @@
         body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
         a{color:inherit;text-decoration:none}
         img{max-width:100%;display:block}
-        ::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
+        ::selection{background:rgba(183,53,18,0.2);color:var(--text-dark)}
 
         /* ── ANIMATIONS ── */
         @keyframes float{
@@ -91,7 +92,7 @@
         .nav-menu-btn-text span{display:flex;align-items:center;justify-content:center;transition:transform 500ms var(--ease-overshoot);position:absolute;inset:0}
         .nav-menu-btn-text .menu-close{transform:translateY(100%)}
         .nav-menu-btn.open .nav-menu-btn-text .menu-label{transform:translateY(-100%)}
-        .nav-menu-btn.open .nav-menu-btn-text .menu-close{transform:translate(-50%,0)}
+        .nav-menu-btn.open .nav-menu-btn-text .menu-close{transform:translateY(0)}
         .nav-menu-btn-icon{background:#1e242c;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;margin-right:0.25rem;transition:transform 500ms var(--ease-strong);will-change:transform}
         .nav-menu-btn:hover .nav-menu-btn-icon{transform:rotate(90deg)}
         .nav-menu-btn-icon svg{width:14px;height:6px;color:var(--bg)}
@@ -138,7 +139,7 @@
 
         /* Hook line — full-width thesis statement before the grid */
         .intro-hook{max-width:1400px;margin:0 auto 5rem;font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(2rem,4.5vw,3.75rem);font-weight:500;letter-spacing:-0.03em;line-height:1.1;color:var(--text-dark)}
-        .intro-hook em{font-style:normal;color:var(--accent,#00b39f)}
+        .intro-hook em{font-style:normal;color:var(--accent,#b73512)}
         @media(min-width:768px){.intro-hook{margin-bottom:6rem}}
         @media(min-width:1024px){.intro-hook{margin-bottom:7rem}}
 
@@ -154,7 +155,7 @@
         .intro-eyebrow::before{content:"";width:1.75rem;height:1px;background:var(--text-muted);opacity:0.5}
         .intro-body{display:flex;flex-direction:column;gap:1.75rem;min-width:0}
         .intro-lead{font-family:'Space Grotesk','Inter',sans-serif;font-size:clamp(1.5rem,3.2vw,2.75rem);font-weight:500;letter-spacing:-0.025em;line-height:1.18;color:var(--text-dark);max-width:22ch}
-        .intro-lead em{font-style:normal;color:var(--accent,#00b39f)}
+        .intro-lead em{font-style:normal;color:var(--accent,#b73512)}
         .intro-prose{font-size:clamp(1rem,1.3vw,1.125rem);color:var(--text);line-height:1.65;max-width:46ch}
         .intro-prose p{margin:0}
         .intro-prose p+p{margin-top:1.25rem}
@@ -202,23 +203,17 @@
         @media(min-width:1280px){.services{padding:8rem 5rem}}
 
         .services-stack{position:relative;display:flex;flex-direction:column;gap:1.5rem}
-        @media(min-width:1024px){.services-stack{gap:0;min-height:calc(5 * 6rem + 100vh * 0.55)}}
+        @media(min-width:1024px){.services-stack{gap:2rem;min-height:auto}}
 
         .service-card{border-radius:var(--radius);padding:2.5rem 1.5rem;display:flex;flex-direction:column;justify-content:space-between;gap:1.25rem;min-height:320px;position:relative}
         @media(min-width:1024px){
-            .service-card{position:absolute;left:0;right:0;padding:3rem 2.5rem;min-height:auto;aspect-ratio:16/7}
-            .service-card:nth-child(1){top:0;z-index:1}
-            .service-card:nth-child(2){top:5rem;z-index:2}
-            .service-card:nth-child(3){top:10rem;z-index:3}
-            .service-card:nth-child(4){top:15rem;z-index:4}
-            .service-card:nth-child(5){top:20rem;z-index:5}
+            .service-card{position:sticky;top:5rem;padding:3rem 2.5rem;min-height:auto;aspect-ratio:16/7}
+            .service-card:nth-child(1){z-index:1}
+            .service-card:nth-child(2){z-index:2}
+            .service-card:nth-child(3){z-index:3}
         }
         @media(min-width:1280px){
             .service-card{padding:4rem 3rem}
-            .service-card:nth-child(2){top:6rem;z-index:2}
-            .service-card:nth-child(3){top:12rem;z-index:3}
-            .service-card:nth-child(4){top:18rem;z-index:4}
-            .service-card:nth-child(5){top:24rem;z-index:5}
         }
 
         .service-card:nth-child(1){background:var(--surface-1);color:#fff}
@@ -344,7 +339,7 @@
 
         /* ── MAGNETIC TAG (cursor-following micro-interaction) ── */
         .service-tag{transition:transform 0.4s var(--ease-spring),background-color 0.3s ease;will-change:transform;cursor:default}
-        .service-tag.magnetic-active{background:rgba(0,179,158,0.25)}
+        .service-tag.magnetic-active{background:rgba(183,53,18,0.3)}
 
         /* ── LATEST OFFER BADGE ── */
         .latest-offer{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;padding:.35rem .85rem;border-radius:999px;font-size:.6875rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.5rem}
@@ -365,8 +360,8 @@
         .ae-promo-title em{font-style:normal;color:var(--accent)}
         .ae-promo-sub{font-size:clamp(1.125rem,1.8vw,1.35rem);font-weight:500;letter-spacing:-.01em;line-height:1.3;color:var(--accent);margin-bottom:1rem}
         .ae-promo-desc{font-size:clamp(.9375rem,1.2vw,1.0625rem);opacity:.7;line-height:1.65;max-width:44ch;margin-bottom:2rem}
-        .ae-promo-cta{display:inline-flex;align-items:center;gap:.75rem;background:var(--accent);color:var(--text-dark);padding:.85rem 2rem;border-radius:999px;font-size:.9375rem;font-weight:600;border:none;cursor:pointer;transition:transform .4s var(--ease-spring),box-shadow .3s ease;text-decoration:none}
-        .ae-promo-cta:hover{transform:scale(1.06);box-shadow:0 0 30px rgba(0,179,158,.3)}
+        .ae-promo-cta{display:inline-flex;align-items:center;gap:.75rem;background:var(--accent-bright);color:var(--text-dark);padding:.85rem 2rem;border-radius:999px;font-size:.9375rem;font-weight:600;border:none;cursor:pointer;transition:transform .4s var(--ease-spring),box-shadow .3s ease;text-decoration:none}
+        .ae-promo-cta:hover{transform:scale(1.06);box-shadow:0 0 30px rgba(255,99,56,.3)}
         .ae-promo-cta svg{width:1.125rem;height:1.125rem;transition:transform .3s ease}
         .ae-promo-cta:hover svg{transform:translateX(3px)}
         .ae-promo-visual{position:relative;aspect-ratio:4/3;border-radius:1rem;overflow:hidden;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.06)}
@@ -424,7 +419,7 @@
         @media(min-width:520px){.contact-grid-2{grid-template-columns:1fr 1fr;gap:.75rem}}
         .contact-field label{display:block;font-size:.6875rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.35rem}
         .contact-field input,.contact-field textarea{width:100%;border:1px solid rgba(17,24,28,.1);background:#fff;border-radius:.85rem;padding:.75rem .9rem;font:inherit;font-size:.9375rem;color:var(--text-dark);outline:none;transition:border-color .2s,box-shadow .2s}
-        .contact-field input:focus,.contact-field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,179,158,.15)}
+        .contact-field input:focus,.contact-field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(183,53,18,.15)}
         .contact-field textarea{min-height:7rem;resize:vertical;line-height:1.5}
         .contact-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;margin-top:.25rem}
         .contact-submit{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--text-dark);color:var(--bg);border:none;border-radius:999px;padding:.85rem 1.4rem;font:inherit;font-size:.9rem;font-weight:500;cursor:pointer;transition:transform .3s var(--ease-spring)}
@@ -443,10 +438,108 @@
         .inline-logo{height:1em;width:auto;vertical-align:middle;display:inline;margin:-0.1em 0.08em 0 0}
         .inline-logo-light{filter:brightness(0) invert(1)}
 
+        /* ── SCROLL-WORLD JOURNEY ── */
+        .journey-rail{position:fixed;left:1.5rem;top:50%;z-index:85;display:none;transform:translateY(-50%);mix-blend-mode:difference}
+        .journey-rail-inner{display:flex;flex-direction:column;gap:.65rem}
+        .journey-step{display:flex;align-items:center;gap:.6rem;color:#fff;font-size:.625rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.35;transition:opacity .3s ease,transform .4s var(--ease-spring)}
+        .journey-step::before{content:'';width:.35rem;height:.35rem;border:1px solid currentColor;border-radius:50%;transition:background .3s ease,transform .4s var(--ease-overshoot)}
+        .journey-step.active{opacity:1;transform:translateX(.2rem)}
+        .journey-step.active::before{background:#fff;transform:scale(1.55)}
+        @media(min-width:1180px){.journey-rail{display:block}}
+
+        .scene-index{font-size:.6875rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+        .hero .scene-index{position:absolute;left:1rem;bottom:8rem;z-index:2;margin:0}
+        @media(min-width:1024px){.hero .scene-index{left:6rem;bottom:calc(13vh + 6.4rem)}}
+
+        .intro{min-height:155vh;padding:0;background:var(--text-dark);color:#fff;border-top:0;overflow:visible}
+        .intro-grid{position:sticky;top:0;min-height:100vh;max-width:none;margin:0;display:flex;align-items:center;overflow:hidden}
+        .intro-figure{position:absolute;inset:0;width:68%;height:100%;margin:0;border-radius:0;overflow:hidden}
+        .intro-figure::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,16,22,.05) 35%,rgba(12,16,22,.95) 93%),linear-gradient(0deg,rgba(12,16,22,.7),transparent 45%)}
+        .intro-figure img{width:100%;height:100%;object-fit:cover;border-radius:0;filter:saturate(.45) contrast(1.06);transform:scale(1.03)}
+        .intro-body{position:relative;z-index:2;width:min(46rem,48vw);margin-left:auto;padding:12vh 6vw 10vh 3rem;gap:1.8rem}
+        .intro-eyebrow{color:#aeb6bb}
+        .intro-lead{max-width:15ch;color:#fff;font-size:clamp(2.5rem,4.8vw,5.2rem);line-height:.98}
+        .intro-lead em{display:block;color:var(--accent-bright)}
+        .intro-prose{max-width:31rem;color:#c6cdd1;font-size:clamp(1rem,1.25vw,1.125rem)}
+        .intro-sig{border-color:rgba(255,255,255,.14);padding-top:1.5rem}
+        .proof-strip{gap:clamp(1.4rem,3vw,3.5rem)}
+        .proof-num{color:#fff}
+        .proof-label{color:#9ba5ab}
+
+        .ae-promo{min-height:100vh;display:flex;align-items:center;padding-top:7rem;padding-bottom:7rem}
+        .ae-promo-bg{opacity:.12;background:radial-gradient(circle at 75% 50%,rgba(255,99,56,.35),transparent 42%)}
+        .ae-promo-label,.ae-promo-sub{color:var(--accent-bright)}
+        .ae-promo-title{font-size:clamp(3.6rem,7vw,7rem);line-height:.92;max-width:9ch}
+        .ae-promo-sub{font-size:clamp(1.1rem,1.7vw,1.35rem);max-width:25ch}
+        .ae-promo-desc{max-width:34rem;margin-bottom:2.2rem}
+        .product-list{display:grid;grid-template-columns:1fr;gap:.65rem;max-width:36rem;margin:2rem 0}
+        .product-link{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding:1rem 0;border-top:1px solid rgba(255,255,255,.14);color:#fff;transition:padding .35s var(--ease-spring),border-color .3s ease}
+        .product-link:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
+        .product-link:hover{padding-left:.6rem;border-color:var(--accent-bright)}
+        .product-link-index{font-size:.625rem;letter-spacing:.1em;color:var(--accent-bright)}
+        .product-link strong{display:block;font-size:1rem;letter-spacing:-.02em}
+        .product-link small{display:block;margin-top:.15rem;color:#aeb6bb;font-size:.75rem;line-height:1.35}
+        .product-link-arrow{color:var(--accent-bright)}
+        .ae-promo-visual{border-radius:50%;aspect-ratio:1;max-width:31rem;margin:0 auto;background:radial-gradient(circle,rgba(255,255,255,.07),rgba(255,255,255,.015) 68%);border-color:rgba(255,255,255,.12)}
+        .ae-promo-logo{width:min(76%,24rem)}
+
+        .work{padding-top:9rem;padding-bottom:10rem}
+        .work .section-heading{font-size:clamp(3.2rem,7vw,7rem);max-width:11ch;line-height:.92}
+        .work .section-desc{max-width:30rem;margin-bottom:4rem}
+
+        .services{padding-top:9rem;padding-bottom:10rem;background:#e6ecef}
+        .services>.section-label,.services>.section-heading,.services>.section-desc,.services>.services-stack{max-width:1400px;margin-left:auto;margin-right:auto}
+        .services>.section-heading{font-size:clamp(3.2rem,7vw,7rem);max-width:10ch;line-height:.92}
+        .services>.section-desc{margin-left:max(0px,calc((100% - 1400px)/2));margin-bottom:4rem;max-width:31rem}
+        .service-card{border:1px solid rgba(255,255,255,.08)}
+        .service-card:nth-child(1){background:#0c1016}
+        .service-card:nth-child(2){background:#242a30}
+        .service-card:nth-child(3){background:#3d444b}
+        .service-title{max-width:12ch}
+        .service-desc{font-size:clamp(1rem,1.4vw,1.2rem);max-width:35ch;opacity:.78}
+
+        .cta{background:var(--bg);min-height:110vh}
+        .cta .scene-index{position:relative;z-index:3}
+        .cta-display{max-width:10ch}
+        .cta-sub{max-width:25ch}
+        .cta-figure{width:min(76vw,980px);right:-8vw}
+        .prefooter-strip{padding-top:2rem}
+
+        @media(max-width:1023px){
+            .intro{min-height:auto}
+            .intro-grid{position:relative;min-height:100svh;display:flex;align-items:flex-end}
+            .intro-figure{width:100%;height:100%}
+            .intro-figure::after{background:linear-gradient(0deg,rgba(12,16,22,.98) 10%,rgba(12,16,22,.12) 78%)}
+            .intro-body{width:100%;margin:0;padding:52vh 1.5rem 5rem;gap:1.25rem}
+            .intro-lead{font-size:clamp(2.4rem,10vw,4rem);max-width:14ch}
+            .intro-prose{max-width:28rem}
+            .proof-strip{display:flex;flex-wrap:wrap}
+            .ae-promo{min-height:auto}
+            .ae-promo-title{font-size:clamp(3.2rem,14vw,5.5rem)}
+            .ae-promo-visual{max-width:24rem}
+            .work,.services{padding-top:6rem;padding-bottom:7rem}
+        }
+
+        @media(max-width:600px){
+            .hero-content{bottom:4.75rem}
+            .hero .scene-index{bottom:15.75rem}
+            .hero-headline{font-size:clamp(2.3rem,10.5vw,3.4rem);max-width:11ch}
+            .intro-body{padding-top:46vh}
+            .intro-sig{display:none}
+            .ae-promo{padding:5.5rem 1rem}
+            .ae-promo-grid{gap:3.5rem}
+            .ae-promo-visual{width:86vw}
+            .product-link{grid-template-columns:auto 1fr auto}
+            .service-title{font-size:clamp(2.4rem,12vw,4rem)}
+            .cta-display{font-size:clamp(3.7rem,18vw,6rem)}
+            .cta-figure{width:120vw;right:-48vw;opacity:.62}
+        }
+
         @media(prefers-reduced-motion:reduce){
             body.gsap-ready .reveal-fade,body.gsap-ready .reveal-clip{opacity:1!important;clip-path:none!important;transform:none!important}
             body.gsap-ready .work-item-bg img{transform:none!important}
             body.gsap-ready .intro-eyebrow::before{transform:none!important}
+            .intro-grid{position:relative}
         }
     </style>
 </head>
@@ -478,6 +571,17 @@
             </span>
         </button>
     </nav>
+
+    <aside class="journey-rail" aria-label="Page journey">
+        <div class="journey-rail-inner">
+            <a class="journey-step active" href="#hero" data-journey-link="hero">00</a>
+            <a class="journey-step" href="#manifesto" data-journey-link="manifesto">01</a>
+            <a class="journey-step" href="#products" data-journey-link="products">02</a>
+            <a class="journey-step" href="#work" data-journey-link="work">03</a>
+            <a class="journey-step" href="#services" data-journey-link="services">04</a>
+            <a class="journey-step" href="#contact" data-journey-link="contact">05</a>
+        </div>
+    </aside>
     <style>
         #site-menu{position:fixed;top:3.5rem;left:1rem;right:1rem;z-index:98;pointer-events:none;opacity:0;transform:translateY(-10px);transition:opacity 300ms ease,transform 300ms ease,visibility 300ms;visibility:hidden}
         #site-menu.open{pointer-events:auto;opacity:1;transform:translateY(0);visibility:visible}
@@ -540,6 +644,7 @@
         <div class="hero-content">
             <h1 class="hero-headline" data-split>Make the work that matters<br>easier to do.</h1>
         </div>
+        <div class="scene-index">00 / Enter</div>
         <span class="hero-scroll">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
             Scroll
@@ -548,17 +653,16 @@
 
     <!-- INTRO / MANIFESTO -->
     <section class="intro" id="manifesto">
-        <p class="intro-hook" data-split>AI agents, automation, and internal tools — <em>made useful</em>, end to end.</p>
         <div class="intro-grid">
             <div class="intro-figure">
                 <img src="intro-cohort-coordination.png" alt="Multi-agent cohort coordination render" loading="lazy">
             </div>
             <div class="intro-body">
-                <div class="intro-eyebrow">The offer</div>
-                <p class="intro-lead" data-split>Bring the repeated work, fragile hand-off, or product idea. <em>Leave with a system your team can use.</em></p>
+                <div class="scene-index">01 / Find the drag</div>
+                <div class="intro-eyebrow">Start with the work</div>
+                <p class="intro-lead" data-split>Find the friction. <em>Build the system.</em></p>
                 <div class="intro-prose">
-                    <p>Aegntic is the independent systems practice of Mattae Cooper. I design, build, and ship the useful version — from a clear first scope through deployment, in the stack the job needs.</p>
-                    <p>One accountable builder. No strategy deck handed to another team. The proof is public: <strong>127+ repositories and production systems across Rust, Go, TypeScript, Python, Postgres, AWS, and Cloudflare.</strong></p>
+                    <p>Bring one repeated task, fragile hand-off, or product idea. Leave with a dependable system your team can use.</p>
                 </div>
                 <div class="intro-sig">
                     <div class="proof-strip">
@@ -568,33 +672,40 @@
                         </div>
                         <div class="proof-item">
                             <span class="proof-num" id="stat-stars">9</span>
-                            <span class="proof-label">Crate Engine</span>
+                            <span class="proof-label">GitHub Stars</span>
                         </div>
                         <div class="proof-item">
                             <span class="proof-num" id="stat-followers">4</span>
-                            <span class="proof-label">Languages</span>
+                            <span class="proof-label">Followers</span>
                         </div>
                     </div>
-                    <p class="intro-tagline" data-split><strong>Clear scope.</strong> One accountable builder. A dependable system.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- AEGNTIC SKILLS PROMO -->
-    <section class="ae-promo" id="ae-audits">
+    <section class="ae-promo" id="products">
         <div class="ae-promo-bg"></div>
         <div class="ae-promo-inner">
             <div class="ae-promo-grid">
                 <div class="ae-promo-body">
-                    <div class="ae-promo-label">New in Codex</div>
-                    <h2 class="ae-promo-title" data-split>Aegntic Skills</h2>
-                    <p class="ae-promo-sub">Operating playbooks for agents that operate.</p>
-                    <p class="ae-promo-desc">17 practical systems for validation, coordination, verification, research, and better decisions — built to make agents useful in the work, not merely impressive in a demo.</p>
-                    <a href="/skills/" class="ae-promo-cta">
-                        Explore the Skills collection
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </a>
+                    <div class="scene-index">02 / Products</div>
+                    <div class="ae-promo-label">Operational intelligence</div>
+                    <h2 class="ae-promo-title" data-split>Better operators.</h2>
+                    <p class="ae-promo-sub">Tools that improve how decisions and work get done.</p>
+                    <div class="product-list">
+                        <a class="product-link" href="/skills/">
+                            <span class="product-link-index">01</span>
+                            <span><strong>Aegntic Skills</strong><small>17 installable playbooks for agents that operate.</small></span>
+                            <span class="product-link-arrow">↗</span>
+                        </a>
+                        <a class="product-link" href="/audits/">
+                            <span class="product-link-index">02</span>
+                            <span><strong>Decision Audits</strong><small>Adversarial review before a high-stakes decision gets expensive.</small></span>
+                            <span class="product-link-arrow">↗</span>
+                        </a>
+                    </div>
                 </div>
                 <div class="ae-promo-visual">
                     <div class="ae-promo-visual-inner">
@@ -608,9 +719,10 @@
 
     <!-- WORK -->
     <section class="work" id="work">
-        <div class="section-label">Selected Work</div>
-        <h2 class="section-heading" data-split>Selected work.</h2>
-        <p class="section-desc">Real, shipped systems — each running in production. Not demos, not dashboards.</p>
+        <div class="scene-index">03 / Proof</div>
+        <div class="section-label">Selected systems</div>
+        <h2 class="section-heading" data-split>The work exists.</h2>
+        <p class="section-desc">Open the proof. Every card leads to a real system.</p>
         <div class="work-grid">
             <a href="/projects/ae-audits/" class="work-item">
                 <div class="work-item-bg"><img src="audit-logo.png" alt="AE Audits" class="work-bg-contained" loading="lazy"></div>
@@ -684,20 +796,21 @@
 
     <!-- SERVICES -->
     <section class="services" id="services">
-        <div class="section-label">Services</div>
-        <h2 class="section-heading" data-split>Three practical ways to make work run better.</h2>
-        <p class="section-desc">Start with the job to be done. We choose the smallest system that makes it clearer, faster, or more reliable.</p>
+        <div class="scene-index">04 / Services</div>
+        <div class="section-label">Choose the result</div>
+        <h2 class="section-heading" data-split>Three ways in.</h2>
+        <p class="section-desc">Every engagement ends in working software—not another recommendation deck.</p>
         <div class="services-stack">
             <div class="service-card">
                 <div class="service-head">
-                    <h3 class="service-title">AI agents for real jobs</h3>
+                    <h3 class="service-title">Agent build</h3>
                     <div class="service-tags">
                         <span class="service-tag">Research</span>
                         <span class="service-tag">Operations</span>
                         <span class="service-tag">Coordination</span>
                     </div>
                 </div>
-                <p class="service-desc">Purpose-built agents that research, decide, draft, or coordinate within the way your team already works. From first workflow to reliable release, the system is designed around a real job — not a generic chatbot.</p>
+                <p class="service-desc">A purpose-built agent inside a real workflow—designed, deployed, and handed over.</p>
             </div>
             <div class="service-card">
                 <div class="service-head">
@@ -708,18 +821,18 @@
                         <span class="service-tag">Reliability</span>
                     </div>
                 </div>
-                <p class="service-desc">Connected systems that remove repetitive steps, reduce errors, and keep work moving. I join the tools you already use with the data, logic, and safeguards needed to trust the result.</p>
+                <p class="service-desc">One connected process that removes repeat steps, reduces errors, and keeps moving.</p>
             </div>
             <div class="service-card">
                 <div class="service-head">
-                    <h3 class="service-title">Internal tools that fit</h3>
+                    <h3 class="service-title">Internal tool</h3>
                     <div class="service-tags">
                         <span class="service-tag">Apps</span>
                         <span class="service-tag">Developer tools</span>
                         <span class="service-tag">Infrastructure</span>
                     </div>
                 </div>
-                <p class="service-desc">Practical apps, developer tools, and infrastructure shaped around your team. Build a new capability without forcing your people into generic software or another brittle spreadsheet process.</p>
+                <p class="service-desc">A focused app or developer tool shaped around your team—and owned by you.</p>
             </div>
         </div>
     </section>
@@ -729,10 +842,11 @@
         <div class="cta-figure">
             <img src="cta-reach-arm.png" alt="Mechanical reach-arm gesture" loading="lazy">
         </div>
-        <h2 class="cta-display" data-split>Have work that should<br>run better?</h2>
-        <p class="cta-sub">Bring the process, the problem, or the ambition. We&rsquo;ll turn it into a clear, usable system.</p>
+        <div class="scene-index">05 / Start</div>
+        <h2 class="cta-display" data-split>Bring me the<br>bottleneck.</h2>
+        <p class="cta-sub">One problem. One scope. One accountable builder.</p>
         <button type="button" class="cta-btn" id="ctaOpen" aria-expanded="false" aria-controls="contactFormPanel">
-            <span>Start a project</span>
+            <span>Start here</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </button>
         <div class="contact-drop" id="contactFormPanel" aria-hidden="true">
@@ -904,6 +1018,21 @@
                 if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'})}
             });
         });
+
+        // Journey rail — show which world the visitor is currently moving through
+        const journeyLinks=document.querySelectorAll('[data-journey-link]');
+        const journeyScenes=document.querySelectorAll('#hero,#manifesto,#products,#work,#services,#contact');
+        if('IntersectionObserver' in window&&journeyLinks.length){
+            const journeyObserver=new IntersectionObserver(entries=>{
+                entries.forEach(entry=>{
+                    if(!entry.isIntersecting)return;
+                    journeyLinks.forEach(link=>{
+                        link.classList.toggle('active',link.dataset.journeyLink===entry.target.id);
+                    });
+                });
+            },{rootMargin:'-42% 0px -42% 0px',threshold:0});
+            journeyScenes.forEach(scene=>journeyObserver.observe(scene));
+        }
 
         // ── CONTACT DROPDOWN ──
         (function(){
@@ -1084,7 +1213,6 @@
                 gsap.set('[data-split] .split-inner',{clearProps:'all'});
                 gsap.set('.reveal-fade,.reveal-clip',{clearProps:'all'});
                 gsap.set('.work-item-bg img',{clearProps:'transform'});
-                gsap.set('.intro-eyebrow::before',{clearProps:'all'}); // noop, pseudo handled by CSS
                 return;
             }
 
@@ -1138,7 +1266,6 @@
             });
 
             // ── Intro eyebrow line draw + fade ──
-            gsap.to('.intro-eyebrow::before',{}); // pseudo handled via CSS class toggle
             document.querySelectorAll('.intro-eyebrow').forEach(el=>{
                 gsap.fromTo(el,{opacity:0,x:-16},{
                     opacity:1,x:0,duration:1.0,ease:easeSoft,
@@ -1205,45 +1332,6 @@
                     });
                 }
             });
-
-            // ── Service cards: scrubbed stacking reveal with clip-path transitions ──
-            // Each card uses clip-path to reveal/hide body content as user scrolls.
-            // Headings always peek through; next card body reaches full opacity by tagline.
-            document.querySelectorAll('.work-item').forEach(()=>{}); // ensure cards exist
-            {
-                const cards=document.querySelectorAll('.service-card');
-                if(cards.length>1){
-                    const peekH=140; // approximate heading area in pixels
-                    const cardH=cards[0].offsetHeight;
-                    const clipBody=`inset(0 0 ${cardH-peekH}px 0)`; // keep heading, hide body
-                    const clipHeadOnly=i=>`inset(${cardH-peekH}px 0 0 0)`; // only heading visible
-                    const scrollPerCard=cardH;
-                    const totalScroll=scrollPerCard*(cards.length-1);
-                    const stl=gsap.timeline({
-                        scrollTrigger:{
-                            trigger:'.services-stack',start:'top 75%',
-                            end:()=>`+=${totalScroll}`,scrub:1.5,
-                            invalidateOnRefresh:true
-                        }
-                    });
-                    cards.forEach((card,i)=>{
-                        const desc=card.querySelector('.service-desc');
-                        const tags=card.querySelectorAll('.service-tag');
-                        const body=[desc,...tags].filter(Boolean);
-                        if(i===0){
-                            stl.to(card,{clipPath:clipBody,duration:1},0);
-                            stl.to(body,{opacity:0.05,duration:1},0);
-                        }else{
-                            stl.fromTo(card,{clipPath:clipHeadOnly(i)},{clipPath:'inset(0 0 0 0)',duration:0.65},i-1);
-                            stl.fromTo(body,{opacity:0.05},{opacity:1,duration:0.55},i-1);
-                            if(i<cards.length-1){
-                                stl.to(card,{clipPath:clipBody,duration:1},i);
-                                stl.to(body,{opacity:0.05,duration:1},i);
-                            }
-                        }
-                    });
-                }
-            }
 
             // ── Section labels (Selected Work / Core Modules) line+fade ──
             document.querySelectorAll('.section-label').forEach(el=>{
