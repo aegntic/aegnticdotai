@@ -61,3 +61,4 @@ Hybrid: Apple-like restraint as foundation, karen.city editorial boldness for em
 - **Voice:** Direct and warm. Explain the concrete outcome before the technology. Avoid hype, opaque jargon, and generic claims about “transformation.”
 - **Primary CTA:** “Start a project.”
 - **Logo:** Use `/assets/ae-logo-sq-outline-blk-nbg.png` via `AeLogo.tsx`. It is the supplied black AE mark; do not substitute a text lockup.
+- **Aegntic Skills:** `/skills/` is the public catalogue for the Codex plugin. Keep its 17 operational systems accurate to the installed `aegntic-skills` plugin; describe them as operating playbooks, never generic prompts.
