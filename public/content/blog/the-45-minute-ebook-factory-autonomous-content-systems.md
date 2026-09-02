@@ -352,4 +352,4 @@ The question is no longer "can AI write good content?" but "how will we use unli
 
 ---
 
-*For the business strategy behind content automation, see [Zero-Cost AI Systems: Production-Grade Apps on Free Tiers](/blog/zero-cost-ai-systems).*
+*For the business strategy behind content automation, see [Economics of Zero-Cost AI](/blog/economics-zero-cost-ai-40-platforms-2-cents-hour/).*

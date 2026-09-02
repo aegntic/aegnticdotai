@@ -81,7 +81,7 @@
     "url": "https://tld.express",
     "external": true,
     "tags": ["Edge", "Product"],
-    "image": "/assets/projects/tld-express-wireframe.png"
+    "image": "/assets/projects/transparent/tld-express-wireframe_transparent.png"
   },
   {
     "slug": "prompt-fail",
@@ -93,7 +93,7 @@
     "url": "https://prompt.fail",
     "external": true,
     "tags": ["Prompts", "Failure modes"],
-    "image": "/assets/projects/prompt-prompter-wireframe.png"
+    "image": "/assets/projects/prompt-fail-preview.png"
   },
   {
     "slug": "mcp-graphics",
@@ -105,7 +105,7 @@
     "url": "https://mcp.graphics",
     "external": true,
     "tags": ["MCP", "Graphics"],
-    "image": "/assets/projects/zkputer-wireframe.png"
+    "image": "/assets/projects/transparent/zkputer-wireframe_transparent.png"
   },
   {
     "slug": "unltd-cli",
@@ -117,7 +117,7 @@
     "url": "https://github.com/aegntic",
     "external": true,
     "tags": ["CLI", "Agents"],
-    "image": "/assets/projects/unltd-cli-wireframe.png"
+    "image": "/assets/projects/transparent/unltd-cli-wireframe_transparent.png"
   },
   {
     "slug": "cognitive-os",
@@ -141,6 +141,6 @@
     "url": "https://github.com/aegntic",
     "external": true,
     "tags": ["ZK", "Privacy", "R&D"],
-    "image": "/assets/projects/zkputer-wireframe.png"
+    "image": "/assets/projects/transparent/zkputer-wireframe_transparent.png"
   }
 ]

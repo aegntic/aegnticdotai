@@ -93,6 +93,7 @@ function shell({
     ['/', 'Home', 'home'],
     ['/projects/', 'Projects', 'projects'],
     ['/research/', 'Research', 'research'],
+    ['/skills/', 'Skills', 'skills'],
     ['/blog/', 'Blog', 'blog'],
     ['/audits/', 'Audits', 'audits'],
   ]
@@ -114,7 +115,7 @@ function shell({
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
   <link rel="canonical" href="${esc(canonical)}">
-  <meta name="theme-color" content="#f0f6f8">
+  <meta name="theme-color" content="#e9eef1">
   <meta property="og:type" content="website">
   <meta property="og:url" content="${esc(canonical)}">
   <meta property="og:title" content="${esc(title)}">
@@ -125,7 +126,7 @@ function shell({
   <meta name="twitter:description" content="${esc(description)}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/site.css">
   ${ld}
 </head>
@@ -143,6 +144,7 @@ function shell({
     <div class="footer-links">
       <a href="/projects/">Projects</a>
       <a href="/research/">Research</a>
+      <a href="/skills/">Skills</a>
       <a href="/blog/">Blog</a>
       <a href="/audits/">Audits</a>
       <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>

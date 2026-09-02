@@ -5,11 +5,11 @@
   ============================================================================
   A typography & design specimen showcase. Demonstrates design capability.
   Content intent preserved; visual shell reskinned from blue (#2563EB) to the
-  SOHub design system (light + teal #00b39f). SOHub nav-back, footer-marquee,
+  Aegntic design system (industrial light + orange #b73512). Compact controls, footer marquee,
   scroll-progress, floating-cta, GSAP word-split reveals.
 
   DESIGN RULES (binding):
-    - Light-first. --bg #f0f6f8. Teal accent #00b39f. Dark surface #0c1016.
+    - Light-first. --bg #e9eef1. Orange accent #b73512. Dark surface #0c1016.
     - Typography: Space Grotesk (display) + Inter (body). Max these two.
     - Motion: GSAP scroll reveals only (data-split). Respect prefers-reduced-motion.
     - ZERO AI fingerprints: no purple/blue gradients, no glassmorphism, no
@@ -49,8 +49,8 @@
   --text-muted:#a5abad;
   --rule:rgba(17,24,28,0.08);
   --rule-strong:rgba(17,24,28,0.14);
-  --accent:#00b39f;
-  --accent-dim:rgba(0,179,158,0.12);
+  --accent:#b73512;
+  --accent-dim:rgba(183,53,18,0.12);
   --surface-1:#0c1016;
   --surface-2:#23272d;
   --surface-3:#3a3e44;
@@ -65,7 +65,7 @@ html{scroll-behavior:smooth}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
+::selection{background:rgba(255,99,56,0.22);color:var(--text-dark)}
 .fd{font-family:'Space Grotesk','Inter',sans-serif}
 
 /* SCROLL PROGRESS */
@@ -158,11 +158,11 @@ section{position:relative}
 @media(min-width:768px){.diagram{padding:3.5rem}}
 .diagram-svg{width:100%;height:auto}
 .diagram-svg .layer-rect{fill:var(--bg-inset);stroke:var(--rule-strong);stroke-width:1;rx:8}
-.diagram-svg .layer-rect.accent{fill:var(--accent-dim);stroke:rgba(0,179,158,0.35)}
+.diagram-svg .layer-rect.accent{fill:var(--accent-dim);stroke:rgba(183,53,18,0.35)}
 .diagram-svg .layer-text{font-family:'Space Grotesk',monospace;font-size:12px;font-weight:600;fill:var(--text-dark);text-transform:uppercase;letter-spacing:.08em}
 .diagram-svg .layer-sub{font-family:'Inter',sans-serif;font-size:10px;font-weight:400;fill:var(--text-secondary)}
 .diagram-svg .connector{fill:none;stroke:var(--rule-strong);stroke-width:1}
-.diagram-svg .connector-accent{stroke:rgba(0,179,158,0.4)}
+.diagram-svg .connector-accent{stroke:rgba(183,53,18,0.4)}
 
 /* FLOATING CTA */
 .floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:.5rem;background:var(--text-dark);color:var(--bg);padding:.75rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(.9);transition:opacity .5s ease,transform .5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(12,16,22,.15)}
@@ -231,11 +231,11 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
   <div class="hero-content">
     <div class="hero-eyebrow">Design Lab · Type System</div>
     <h1 class="hero-headline" data-split>A design system, <em>type-first.</em></h1>
-    <p class="hero-sub">A live specimen for the aegntic visual language — two type families, a single teal accent, and a restrained light surface. Every context below is rendered in the tokens it documents.</p>
+    <p class="hero-sub">A live specimen for the aegntic visual language — two type families, a single industrial-orange signal, and a restrained light surface. Every context below is rendered in the tokens it documents.</p>
     <div class="hero-meta">
       <span class="kv">Families · <b>Space Grotesk + Inter</b></span>
       <span class="kv">Surface · <b>#f0f6f8</b></span>
-      <span class="kv">Accent · <b>#00b39f</b></span>
+      <span class="kv">Accent · <b>#b73512</b></span>
     </div>
   </div>
 </header>
@@ -256,7 +256,7 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
       <article class="specimen reveal-fade">
         <div class="spec-tag">Display Italic</div>
         <div class="ctx-display-italic">that remembers.</div>
-        <div class="spec-body">The accent register. Italic, teal — used to emphasise a phrase inside a display headline.</div>
+        <div class="spec-body">The accent register. Italic, orange — used to emphasise a phrase inside a display headline.</div>
         <div class="spec-meta"><span class="chip">Italic</span><span class="chip">Accent</span></div>
       </article>
       <article class="specimen reveal-fade">
@@ -268,7 +268,7 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
       <article class="specimen reveal-fade">
         <div class="spec-tag">Heading Italic</div>
         <div class="ctx-heading-italic">in two registers.</div>
-        <div class="spec-body">The same heading size, italicised in teal. Carries the emphasised half of a section heading.</div>
+        <div class="spec-body">The same heading size, italicised in orange. Carries the emphasised half of a section heading.</div>
         <div class="spec-meta"><span class="chip">Italic</span><span class="chip">Accent</span></div>
       </article>
       <article class="specimen reveal-fade">
@@ -304,13 +304,13 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
   <div class="section-inner">
     <div class="section-label">Token Palette</div>
     <h2 class="section-heading" data-split>The full <em>colour set.</em></h2>
-    <p class="section-desc">Eight tokens carry the entire system — three light surfaces, three text greys, one teal accent, and one accent tint. No gradients.</p>
+    <p class="section-desc">Eight tokens carry the entire system — three light surfaces, three text greys, one orange accent, and one accent tint.</p>
     <div class="swatch-grid">
       <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#f0f6f8;border-bottom:1px solid var(--rule)"></div><div class="swatch-info"><div class="swatch-name">bg</div><div class="swatch-hex">#f0f6f8</div></div></div>
       <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#ffffff;border-bottom:1px solid var(--rule)"></div><div class="swatch-info"><div class="swatch-name">bg-elevated</div><div class="swatch-hex">#ffffff</div></div></div>
       <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#e7eef0"></div><div class="swatch-info"><div class="swatch-name">bg-inset</div><div class="swatch-hex">#e7eef0</div></div></div>
-      <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#00b39f"></div><div class="swatch-info"><div class="swatch-name">accent</div><div class="swatch-hex">#00b39f</div></div></div>
-      <div class="swatch reveal-fade"><div class="swatch-fill" style="background:rgba(0,179,158,0.12)"></div><div class="swatch-info"><div class="swatch-name">accent-dim</div><div class="swatch-hex">rgba(0,179,158,.12)</div></div></div>
+      <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#b73512"></div><div class="swatch-info"><div class="swatch-name">accent</div><div class="swatch-hex">#b73512</div></div></div>
+      <div class="swatch reveal-fade"><div class="swatch-fill" style="background:rgba(183,53,18,0.12)"></div><div class="swatch-info"><div class="swatch-name">accent-dim</div><div class="swatch-hex">rgba(183,53,18,.12)</div></div></div>
       <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#0c1016"></div><div class="swatch-info"><div class="swatch-name">text-dark / surface-1</div><div class="swatch-hex">#0c1016</div></div></div>
       <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#4a5258"></div><div class="swatch-info"><div class="swatch-name">text-secondary</div><div class="swatch-hex">#4a5258</div></div></div>
       <div class="swatch reveal-fade"><div class="swatch-fill" style="background:#a5abad"></div><div class="swatch-info"><div class="swatch-name">text-muted</div><div class="swatch-hex">#a5abad</div></div></div>
@@ -330,7 +330,7 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
       </div>
       <div class="board-row"><span class="b-idx">01</span><span class="b-module">HIERARCHY</span><span class="b-dim">scale contrast</span><span class="b-status">ACTIVE</span></div>
       <div class="board-row"><span class="b-idx">02</span><span class="b-module">RHYTHM</span><span class="b-dim">intentional spacing</span><span class="b-status">ON TIME</span></div>
-      <div class="board-row"><span class="b-idx">03</span><span class="b-module">CONTRAST</span><span class="b-dim">teal on light</span><span class="b-status">ACTIVE</span></div>
+      <div class="board-row"><span class="b-idx">03</span><span class="b-module">CONTRAST</span><span class="b-dim">orange on light</span><span class="b-status">ACTIVE</span></div>
       <div class="board-row"><span class="b-idx">04</span><span class="b-module">TYPE PAIRING</span><span class="b-dim">grotesk + inter</span><span class="b-status">ON TIME</span></div>
       <div class="board-row"><span class="b-idx">05</span><span class="b-module">MOTION</span><span class="b-dim">scroll reveals</span><span class="b-status">ACTIVE</span></div>
       <div class="board-row"><span class="b-idx">06</span><span class="b-module">RESTRAINT</span><span class="b-dim">two families, one accent</span><span class="b-status">ON TIME</span></div>
@@ -349,7 +349,7 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
       <svg class="diagram-svg" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
         <rect class="layer-rect accent" x="50" y="20" width="800" height="50" />
         <text class="layer-text" x="70" y="42">DISPLAY TYPE</text>
-        <text class="layer-sub" x="70" y="58">Space Grotesk headlines · teal emphasis</text>
+        <text class="layer-sub" x="70" y="58">Space Grotesk headlines · orange emphasis</text>
         <text class="layer-sub" x="830" y="42" text-anchor="end">L7</text>
         <line class="connector" x1="450" y1="70" x2="450" y2="90" />
         <rect class="layer-rect" x="50" y="90" width="800" height="50" />
@@ -359,7 +359,7 @@ body.gsap-ready .reveal-fade{opacity:0;will-change:transform,opacity}
         <line class="connector" x1="450" y1="140" x2="450" y2="160" />
         <rect class="layer-rect accent" x="50" y="160" width="800" height="50" />
         <text class="layer-text" x="70" y="182">TOKEN PALETTE</text>
-        <text class="layer-sub" x="70" y="198">8 tokens · light surfaces + teal accent</text>
+        <text class="layer-sub" x="70" y="198">8 tokens · light surfaces + orange accent</text>
         <text class="layer-sub" x="830" y="182" text-anchor="end">L5</text>
         <line class="connector" x1="450" y1="210" x2="450" y2="230" />
         <rect class="layer-rect" x="50" y="230" width="800" height="50" />

@@ -200,4 +200,4 @@ The next 12 months will be even more exciting than the first. We've built the fo
 
 ---
 
-*For the technical deep dive into our authenticity framework, see [How We Achieved 97% AI Authenticity](/blog/achieving-97-percent-ai-authenticity). For our complete MCP ecosystem, see [The Aegntic MCP Standard Framework](/blog/aegntic-mcp-standard-framework).*
+*For the technical deep dive into our authenticity framework, see [How We Achieved 97% AI Authenticity](/blog/how-we-achieved-97-percent-ai-authenticity/). For our complete MCP ecosystem, see [The Aegntic MCP Standard Framework](/blog/aegntic-mcp-standard-framework/).*

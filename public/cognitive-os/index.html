@@ -24,7 +24,7 @@
 :root{
   --bg:#f0f6f8;--bg-elevated:#ffffff;--bg-inset:#e7eef0;
   --text:#11181c;--text-dark:#0c1016;--text-secondary:#4a5258;--text-muted:#a5abad;
-  --accent:#00b39f;--accent-dim:rgba(0,179,158,0.12);
+  --accent:#b73512;--accent-dim:rgba(183,53,18,0.12);
   --surface-1:#0c1016;--surface-2:#23272d;
   --rule:rgba(17,24,28,0.08);--rule-strong:rgba(17,24,28,0.14);
   --radius:1.5rem;--radius-lg:3rem;--radius-pill:999px;
@@ -35,7 +35,7 @@ html{scroll-behavior:smooth}
 body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;font-size:16px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-::selection{background:rgba(0,179,158,0.2);color:var(--text-dark)}
+::selection{background:rgba(255,99,56,0.22);color:var(--text-dark)}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(12,16,22,.15);border-radius:var(--radius-pill)}
@@ -182,8 +182,8 @@ a{color:inherit;text-decoration:none}
 .cta-sub{font-size:clamp(1rem,1.5vw,1.25rem);color:var(--text-secondary);max-width:42ch;line-height:1.6;margin-top:2rem;position:relative;z-index:2}
 .cta-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:2.5rem;position:relative;z-index:2}
 
-/* FLOATING CTA — teal pill */
-.floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;padding:.75rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(.9);transition:opacity .5s ease,transform .5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(0,179,158,.35);border:none;cursor:pointer}
+/* FLOATING CTA — signal pill */
+.floating-cta{position:fixed;bottom:1.5rem;right:1.5rem;z-index:90;display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;padding:.75rem 1.25rem;border-radius:var(--radius-pill);font-size:.8125rem;font-weight:500;opacity:0;transform:translateY(20px) scale(.9);transition:opacity .5s ease,transform .5s var(--ease-overshoot);pointer-events:none;box-shadow:0 4px 20px rgba(183,53,18,.35);border:none;cursor:pointer}
 .floating-cta.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
 .floating-cta:hover{transform:translateY(-2px) scale(1.05)}
 .floating-cta svg{width:1rem;height:1rem;flex-shrink:0}
@@ -446,7 +446,7 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
-<!-- FLOATING CTA — teal pill, appears after 40% scroll -->
+<!-- FLOATING CTA — signal pill, appears after 40% scroll -->
 <a href="mailto:hello@aegntic.com?subject=Cognitive%20OS" class="floating-cta" id="floatingCta">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
   <span class="cta-label">Discuss implementation</span>
