@@ -11,8 +11,8 @@ const AeLogo: React.FC<AeLogoProps> = ({
 }) => {
     return (
         <img
-            src="/assets/visuals/hero-typography.png"
-            alt="aegntic"
+            src="/assets/ae-logo-sq-outline-blk-nbg.png"
+            alt="AE — Aegntic"
             width={size}
             height={size}
             className={className}

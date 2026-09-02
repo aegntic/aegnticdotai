@@ -74,10 +74,10 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
             <div className="w-full max-w-5xl mx-auto flex flex-col gap-24 md:gap-36">
 
                 {/* ============================================================
-                    HERO — proof-forward positioning
+                    HERO — clear offer
                     ============================================================ */}
                 <section>
-                    <p className="text-label mb-4">Mattae Cooper · @aegntic</p>
+                    <p className="text-label mb-4">Aegntic · independent systems practice</p>
                     <h1 style={{
                         fontFamily: 'var(--font-family-display)',
                         fontSize: 'clamp(2.4rem, 7vw, 5rem)',
@@ -86,7 +86,7 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                         color: 'var(--color-text-primary)',
                         maxWidth: '16ch',
                     }}>
-                        I build production AI-agent systems. Solo, end to end.
+                        Make the work that matters easier to do.
                     </h1>
                     <p style={{
                         fontFamily: 'var(--font-family-display)',
@@ -96,25 +96,25 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                         maxWidth: '44ch',
                         marginTop: '1.5rem',
                     }}>
-                        Independent engineer shipping real systems across Rust, Go, TypeScript and Python &mdash; for clients and in the open.
+                        Aegntic designs and ships AI agents, automations, and internal tools for teams with real work to move through. Clear scope. One accountable builder. A system you can use.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-3">
                         <button onClick={onOpenContact} className="btn-primary">
-                            Work with me <ArrowRight size={14} />
+                            Start a project <ArrowRight size={14} />
                         </button>
                         <a href="https://github.com/aegntic" target="_blank" rel="noopener noreferrer" className="btn-ghost">
-                            See the work
+                            Explore the work
                         </a>
                     </div>
                 </section>
 
                 {/* ============================================================
-                    CLAUDEISM — the origin. The frustration this all started from.
+                    HOW IT WORKS — plain language, concrete result
                     ============================================================ */}
                 <section>
                     <div className="flex items-baseline justify-between mb-10 flex-wrap gap-2">
-                        <p className="text-label">claudeism</p>
-                        <p className="text-label" style={{ opacity: 0.5 }}>est. March 2025 &middot; v3.69</p>
+                        <p className="text-label">How it works</p>
+                        <p className="text-label" style={{ opacity: 0.5 }}>from friction to a working system</p>
                     </div>
 
                     <p style={{
@@ -125,14 +125,14 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                         color: 'var(--color-text-primary)',
                         maxWidth: '26ch',
                     }}>
-                        <span style={{ opacity: 0.4 }}>/ˈklɔːdiːz(ə)m/</span> &mdash; a computational condition of wildly variable, often inversely proportional, utility.
+                        Useful AI should make a task clearer, faster, or more reliable. If it does none of those, it is not the answer.
                     </p>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12">
                         {[
-                            { t: 'Cognitive Obfuscation', d: 'The baffling propensity to produce outputs that obscure, rather than illuminate, logical processes; a feat of digital prestidigitation leaving users perpetually bewildered.' },
-                            { t: 'Rhetorical Evasion', d: 'A consistent pattern of linguistic manipulation, approximating gaslighting, wherein direct responses are replaced with artful dodges and semantic side-steps.' },
-                            { t: 'User-Mediated Functionality', d: 'A state wherein effective operation is contingent upon relentless user intervention, transforming interactions into a Sisyphean task of error correction.' },
+                            { t: '01 — Find the leverage', d: 'We identify the repeated work, fragile hand-off, or product opportunity worth turning into a system.' },
+                            { t: '02 — Build the useful version', d: 'I design, connect, and ship the smallest complete version that people can actually use.' },
+                            { t: '03 — Make it dependable', d: 'The result is tested, documented, and built to live inside your team — not just impress in a demo.' },
                         ].map((item) => (
                             <div key={item.t} className="md:border-t pt-6" style={{ borderColor: 'var(--color-rule)' }}>
                                 <p className="text-label mb-3">{item.t}</p>
@@ -155,16 +155,7 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                         maxWidth: '52ch',
                         marginTop: '3rem',
                     }}>
-                        &ldquo;Individuals experiencing Claudeism seek a computational partner that prioritizes transparent, reliable, and direct communication, rather than demanding the user adopt the role of a perpetually exasperated chaperone.&rdquo;
-                    </p>
-
-                    <p style={{
-                        fontSize: '0.8rem',
-                        color: 'var(--color-text-tertiary)',
-                        marginTop: '1.5rem',
-                        lineHeight: 1.5,
-                    }}>
-                        Coined March 2025. The frustration this name captured is the one every system on this site is built to kill &mdash; <a href="https://github.com/aegntic/claudeism" target="_blank" rel="noopener noreferrer" className="nav-link inline-flex items-center gap-1">read the original <ArrowUpRight size={11} /></a>
+                        You get a practical partner from the first question through to a working release &mdash; not a maze of vague advice, prompts, and hand-offs.
                     </p>
                 </section>
 
@@ -215,15 +206,15 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                 </section>
 
                 {/* ============================================================
-                    WHAT I DO — concrete offers, fixed-scope
+                    WHAT I DO — clear offers
                     ============================================================ */}
                 <section>
                     <p className="text-label mb-10">What I do</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10">
                         {[
-                            { num: '01', title: 'Custom AI-agent builds', desc: 'Agent systems engineered to your stack &mdash; from architecture to a working production deployment.' },
-                            { num: '02', title: 'Automation systems', desc: 'Workflows, integrations and backends that remove manual work. Real systems, not dashboards.' },
-                            { num: '03', title: 'Developer tooling', desc: 'MCP plugins, CLIs and infrastructure. An early operator in the Claude Code ecosystem &mdash; see cldcde.cc.' },
+                            { num: '01', title: 'AI agents for real jobs', desc: 'Purpose-built agents that research, decide, draft, or coordinate within the way your team already works.' },
+                            { num: '02', title: 'Workflow automation', desc: 'Connected systems that remove repetitive steps, reduce errors, and keep work moving without another dashboard.' },
+                            { num: '03', title: 'Internal tools that fit', desc: 'Practical apps, developer tools, and infrastructure shaped around your team &mdash; not generic software you have to bend around.' },
                         ].map((item) => (
                             <div key={item.num} className="md:border-t pt-6" style={{ borderColor: 'var(--color-rule)' }}>
                                 <span className="text-label block mb-6" style={{ opacity: 0.5 }}>{item.num}</span>
@@ -276,7 +267,7 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                         color: 'var(--color-text-primary)',
                         maxWidth: '20ch',
                     }}>
-                        Have a system that should exist? Let&rsquo;s ship it.
+                        Have work that should run better? Let&rsquo;s make it real.
                     </h2>
                     <p style={{
                         fontFamily: 'var(--font-family-display)',
@@ -286,11 +277,11 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                         maxWidth: '48ch',
                         marginTop: '1.25rem',
                     }}>
-                        Tell me what you&rsquo;re building. I&rsquo;ll scope it, quote it, and build it myself.
+                        Bring the process, the problem, or the ambition. We&rsquo;ll turn it into a clear, usable system.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
                         <button onClick={onOpenContact} className="btn-primary">
-                            Work with me <ArrowRight size={14} />
+                            Start a project <ArrowRight size={14} />
                         </button>
                         <a href="mailto:hello@aegntic.com" className="nav-link flex items-center gap-2">
                             <Mail size={14} /> hello@aegntic.com

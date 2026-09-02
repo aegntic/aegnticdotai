@@ -6,10 +6,11 @@ Use this file as the canonical guidance for agentic changes in this repo.
 
 ## Quick Orientation
 
-- Root app: `src/` (current production code)
+- Production homepage: `index.html` (handcrafted static page with the live menu and GSAP interactions)
+- React reference implementation: `src/` (not currently mounted by the root `index.html`)
 - Reference React apps: `aegnticdotai-home/`, `blog-entry-extracted/`
-- Styling: Tailwind v4 with custom CSS in `src/styles/`
-- Animations: CSS keyframes in `src/styles/global.css`
+- Homepage styling and animations: inline CSS and GSAP in `index.html`
+- React reference styling: Tailwind v4 with custom CSS in `src/styles/`
 - Icons: `lucide-react` + `Icon3D` component
 - Data viz: `recharts` (used in research templates)
 
@@ -17,7 +18,7 @@ Use this file as the canonical guidance for agentic changes in this repo.
 
 Run commands from the directory that contains the relevant `package.json`.
 
-### Root app (`/home/ae/AE/02_Showcase/aegnticdotai`)
+### Production homepage (`/home/ae/AE/02_Showcase/aegnticdotai`)
 
 - Install: `npm install`
 - Dev server: `npm run dev`
@@ -132,8 +133,8 @@ Example ordering:
 
 ## Repo-Specific Patterns
 
-- Navigation highlights active section by reading DOM positions.
-- Animated effects rely on custom keyframes in `global.css`.
+- The production navigation, menu, and animated effects live in `index.html`; preserve their structure and script hooks when changing content.
+- The React reference implementation has its own navigation and custom keyframes in `src/styles/global.css`.
 - Dev tools allow inline editing in dev mode; keep their state stable.
 
 ## What Not To Do

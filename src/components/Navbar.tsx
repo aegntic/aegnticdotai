@@ -26,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPanel }) => {
                     title="Research"
                 >
                     <FileText size={14} />
-                    <span className="hidden md:inline">Research</span>
+                    <span className="hidden md:inline">Open work</span>
                 </button>
                 <button
                     onClick={() => onOpenPanel('contact')}

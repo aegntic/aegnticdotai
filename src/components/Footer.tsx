@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
                 <div className="flex items-center gap-3">
                     <AeLogo size={16} className="opacity-20" />
                     <span className="text-label">
-                        &copy; 2025 aegntic
+                        &copy; 2026 aegntic
                     </span>
                 </div>
                 <div className="flex items-center gap-6">

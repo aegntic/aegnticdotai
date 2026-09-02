@@ -49,14 +49,14 @@ const App: React.FC = () => {
                 maxWidth: '34ch',
                 marginBottom: 'clamp(3rem, 6vw, 6rem)',
             }}>
-                I&rsquo;m Mattae Cooper. I ship production AI-agent systems &mdash; solo, end to end.
+                Aegntic is the independent systems practice of Mattae Cooper. I turn repeated work and ambitious product ideas into dependable software.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-24">
                 {[
-                    { num: '01', title: 'How I work', desc: 'One engineer, the whole system. Architecture, build, deployment. Rust, Go, TypeScript, Python &mdash; whichever the job needs.' },
-                    { num: '02', title: 'What I ship', desc: 'Custom AI-agent builds, automation systems, and developer tooling. Real systems in production &mdash; not demos.' },
-                    { num: '03', title: 'The proof', desc: '127+ public repositories. A 9-crate Rust trading engine, a large Go backend on Postgres and AWS, edge products on Cloudflare Workers.' },
+                    { num: '01', title: 'A clear starting point', desc: 'Bring the bottleneck, the workflow, or the product idea. We define the smallest useful system before writing code.' },
+                    { num: '02', title: 'One accountable builder', desc: 'Architecture, build, and deployment stay with the same person. No hand-offs between a strategy deck and the working thing.' },
+                    { num: '03', title: 'Proof in public', desc: '127+ public repositories, production systems, and the commits behind them. The work is available to inspect.' },
                 ].map(item => (
                     <div key={item.num} className="md:border-t pt-6" style={{ borderColor: 'var(--color-rule)' }}>
                         <span className="text-label block mb-6" style={{ opacity: 0.5 }}>{item.num}</span>
@@ -87,7 +87,7 @@ const App: React.FC = () => {
                     letterSpacing: '-0.01em',
                     maxWidth: '40ch',
                 }}>
-                    Systems over labor. I build the thing that runs, then hand it over.
+                    Systems over slide decks. I build the thing that runs, then hand it over.
                 </p>
             </div>
         </div>
@@ -105,10 +105,10 @@ const App: React.FC = () => {
                     maxWidth: '46ch',
                     marginBottom: '1.5rem',
                 }}>
-                    I build in the open. The work is the research.
+                    The work is open. The proof is inspectable.
                 </p>
                 <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'var(--color-text-secondary)', maxWidth: '48ch' }}>
-                    No published papers to point at yet. Instead, the proof is public &mdash; 127+ repositories, shipped systems, and the commits behind them. Read the code; that is where the thinking lives.
+                    Aegntic publishes the useful parts: repositories, shipped systems, and the decisions behind them. If you want to know how I think, start with the work.
                 </p>
             </div>
 
@@ -124,10 +124,10 @@ const App: React.FC = () => {
                         <span className="text-label">github.com/aegntic</span>
                     </div>
                     <h3 style={{ fontFamily: 'var(--font-family-display)', fontSize: 'clamp(1.1rem, 2vw, 1.5rem)', lineHeight: 1.2, marginBottom: '0.5rem' }}>
-                        The repositories <ArrowUpRight size={14} className="inline" />
+                        Explore the repositories <ArrowUpRight size={14} className="inline" />
                     </h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--color-text-tertiary)', maxWidth: '44ch', lineHeight: 1.5 }}>
-                        Every project, every system, in the open. Start there.
+                        Agents, automation, infrastructure, and experiments — all in one place.
                     </p>
                 </a>
             </div>
@@ -155,7 +155,7 @@ const App: React.FC = () => {
                 maxWidth: '40ch',
                 marginBottom: 'clamp(2rem, 4vw, 3rem)',
             }}>
-                Tell me what you&rsquo;re building. I&rsquo;ll scope it, quote it, and build it myself.
+                Tell me what needs to become easier. I&rsquo;ll help define the right system, then build it.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-16 md:gap-20">
@@ -212,7 +212,7 @@ const App: React.FC = () => {
 
             {/* Panel overlays */}
             <PanelOverlay
-                title={activePanel === 'about' ? 'About' : activePanel === 'research' ? 'Research' : 'Contact'}
+                title={activePanel === 'about' ? 'About' : activePanel === 'research' ? 'Open work' : 'Contact'}
                 isOpen={activePanel !== null}
                 onClose={() => setActivePanel(null)}
             >
