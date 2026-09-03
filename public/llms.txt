@@ -20,6 +20,10 @@
 - mcp.graphics — Graphics-focused MCP surface for agent-driven visual work. (https://aegntic.ai/projects/mcp-graphics/)
 - unltd CLI — CLI patterns for unlimited agent operator workflows. (https://aegntic.ai/projects/unltd-cli/)
 - Cognitive OS — Cognitive Operating System — the multi-harness agent policy and execution stack. (https://aegntic.ai/projects/cognitive-os/)
+- Systems — memory, policy, coordination, and verification infrastructure. (https://aegntic.ai/systems/)
+- Agents — purpose-built operators including Echo, veritas-operator, and obsidian-indexer. (https://aegntic.ai/agents/)
+- Plugins — installable operating intelligence including Aegntic Skills and Tab Harvest. (https://aegntic.ai/plugins/)
+- Products — focused products including AE Audits, CLDCDE, prompt.fail, and tld.express. (https://aegntic.ai/products/)
 - zkputer — Zero-knowledge compute exploration — privacy-preserving execution patterns. (https://aegntic.ai/projects/zkputer/)
 
 ## Research & blog

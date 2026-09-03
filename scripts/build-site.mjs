@@ -91,11 +91,11 @@ function shell({
 }) {
   const nav = [
     ['/', 'Home', 'home'],
-    ['/projects/', 'Projects', 'projects'],
-    ['/research/', 'Research', 'research'],
-    ['/skills/', 'Skills', 'skills'],
-    ['/blog/', 'Blog', 'blog'],
-    ['/audits/', 'Audits', 'audits'],
+    ['/systems/', 'Systems', 'systems'],
+    ['/agents/', 'Agents', 'agents'],
+    ['/plugins/', 'Plugins', 'plugins'],
+    ['/products/', 'Products', 'products'],
+    ['/#contact', 'Contact', 'contact'],
   ]
     .map(([href, label, key]) => {
       const cur = key === active ? ' aria-current="page"' : '';
@@ -124,10 +124,10 @@ function shell({
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${esc(title)}">
   <meta name="twitter:description" content="${esc(description)}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/site.css">
+  <link rel="stylesheet" href="/design-system.css">
+  <link rel="stylesheet" href="/premium-nav.css">
+  <script src="/premium-nav.js" defer></script>
   ${ld}
 </head>
 <body>
@@ -142,11 +142,11 @@ function shell({
   <footer class="footer">
     <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
     <div class="footer-links">
-      <a href="/projects/">Projects</a>
+      <a href="/systems/">Systems</a>
+      <a href="/agents/">Agents</a>
+      <a href="/plugins/">Plugins</a>
+      <a href="/products/">Products</a>
       <a href="/research/">Research</a>
-      <a href="/skills/">Skills</a>
-      <a href="/blog/">Blog</a>
-      <a href="/audits/">Audits</a>
       <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
       <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
       <a href="mailto:hello@aegntic.com">Contact</a>
@@ -520,10 +520,15 @@ function buildAbout() {
 function buildSitemap(posts, projects) {
   const urls = [
     ['/', '1.0', 'weekly'],
+    ['/systems/', '0.9', 'weekly'],
+    ['/agents/', '0.9', 'weekly'],
+    ['/plugins/', '0.9', 'weekly'],
+    ['/products/', '0.9', 'weekly'],
     ['/projects/', '0.9', 'weekly'],
     ['/research/', '0.9', 'weekly'],
     ['/blog/', '0.9', 'weekly'],
     ['/audits/', '0.8', 'monthly'],
+    ['/skills/', '0.8', 'monthly'],
     ['/about/', '0.6', 'monthly'],
     ...projects.map((p) => [`/projects/${p.slug}/`, '0.7', 'monthly']),
     ...posts.map((p) => [`/blog/${p.slug}/`, '0.6', 'yearly']),
@@ -579,6 +584,10 @@ ${postLines}${more}
 
 ## Site map
 - Home: ${SITE}/
+- Systems: ${SITE}/systems/
+- Agents: ${SITE}/agents/
+- Plugins: ${SITE}/plugins/
+- Products: ${SITE}/products/
 - Projects: ${SITE}/projects/
 - Research: ${SITE}/research/
 - Blog: ${SITE}/blog/

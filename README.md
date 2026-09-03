@@ -1,145 +1,88 @@
-# Aegntic.ai - Independent Research Foundation
+# aegntic.ai
 
-> Zero knowledge, unlimited insight
+Aegntic builds practical AI agents, dependable workflow automation, and focused
+internal tools. The site is designed to make that offer legible quickly, show
+the systems behind it, and give people a direct route to start a project.
 
-A modern, responsive website showcasing the Aegntic Foundation's research in zero-knowledge cryptography, AI systems, and decentralized technologies.
+## Current position
 
-## 🌟 Features
+The primary offer has three accountable outcomes:
 
-- **Dark/Light Theme Toggle** - Smooth theme switching with localStorage persistence
-- **Modular SPA Architecture** - Single-page application with client-side routing
-- **Responsive Design** - Mobile-first approach with Tailwind CSS
-- **Advanced Animations** - Custom CSS animations and visual effects
-- **Cloudflare Pages Ready** - Optimized for static site deployment
-- **SEO Optimized** - Meta tags and semantic HTML structure
+1. **Agent build** — a purpose-built agent deployed inside a real workflow,
+   with an evaluation set, controls, runbook, and handover.
+2. **Workflow automation** — a monitored process that removes repeated steps
+   and fragile hand-offs, with a recovery path and ownership documentation.
+3. **Internal tool** — focused operational software shaped around the team,
+   including source access, deployment, and handover.
 
-## 🚀 Quick Start
+The public catalogue is organised into six top-level routes:
 
-### Local Development
+- `/home` — the main scroll-led story and service offer
+- `/systems` — Cognitive OS, Cognitive OS Engine, clawREFORM, and Prologue
+- `/agents` — Echo, veritas-operator, obsidian-indexer, and Hermes Agent
+- `/plugins` — Aegntic Skills, Tab Harvest, Compound Engineering, and Aegntic MCP
+- `/products` — AE Audits, CLDCDE, prompt.fail, and tld.express
+- `/contact` — the project enquiry route on the homepage
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/aegnticdotai.git
-   cd aegnticdotai
-   ```
+Research, writing, project case studies, privacy, and specialist product pages
+remain available as supporting evidence beneath that primary structure.
 
-2. **Start the development server**
-   ```bash
-   npm run dev
-   # or
-   python3 -m http.server 8080
-   ```
+## Experience principles
 
-3. **Open your browser**
-   Navigate to `http://localhost:8080`
+- Preserve the recognisable landing-page hero, robot swarm, imagery, and rhythm.
+- Use a warm-white industrial/editorial canvas rather than a teal interface.
+- Keep copy short, concrete, and outcome-led.
+- Use motion to maintain continuity through the page, not as decoration.
+- Present robots as purposeful scene elements rather than repeated wallpaper.
+- Maintain one typography system everywhere: Inter for body copy and Space
+  Grotesk for display type, both served locally from `/public/fonts/`.
+- Respect reduced-motion preferences and keep layouts usable without animation.
 
-### Deployment
+## Source architecture
 
-#### Cloudflare Pages
+- `index.html` — production homepage, service offer, contact form, and GSAP
+  scroll choreography
+- `public/premium-nav.js` and `public/premium-nav.css` — shared magnetic menu and
+  short-form card carousels
+- `public/design-system.css` — shared typography and interaction baseline
+- `public/catalog.css` — shared layout for Systems, Agents, Plugins, and Products
+- `public/{systems,agents,plugins,products}/` — primary catalogue pages
+- `public/{projects,research,blog,skills,...}/` — evidence and specialist pages
+- `scripts/build-site.mjs` — generated-content build and future shared-shell output
+- `dist/` — deployable output created by Vite; do not edit it directly
 
-1. Connect your GitHub repository to Cloudflare Pages
-2. Set build command: `npm run build`
-3. Set output directory: `/`
-4. Deploy!
+The React code under `src/` is a reference implementation. The live homepage is
+the handcrafted root `index.html`.
 
-The `_redirects` file ensures proper SPA routing on Cloudflare Pages.
+## Local development
 
-## 📁 Project Structure
-
-```
-aegnticdotai/
-├── index.html              # Main HTML file with navigation
-├── js/
-│   └── app.js             # Main application logic and routing
-├── pages/
-│   ├── home.html          # Home page with hero section
-│   ├── about.html         # About aegntic.foundation
-│   ├── research.html      # aegntic.research blog directory
-│   ├── projects.html      # Project showcase
-│   └── colabs.html        # Collaborations page
-├── _redirects             # Cloudflare Pages routing config
-├── package.json           # Project metadata
-└── README.md             # This file
-```
-
-## 🎨 Design System
-
-- **Primary Color**: `#00f0ff` (Neon Cyan)
-- **Background Dark**: `#030305` (Deepest black/blue)
-- **Surface Dark**: `#0a0a0c`
-- **Typography**: Inter (sans-serif), Playfair Display (serif), JetBrains Mono (monospace)
-
-## 🛠️ Technologies Used
-
-- **HTML5** - Semantic markup
-- **Vanilla JavaScript** - No framework dependencies
-- **Tailwind CSS** - Utility-first CSS framework (via CDN)
-- **Font Awesome** - Icons and visual elements
-
-## 📱 Pages Overview
-
-### Home (`/`)
-Hero page showcasing the foundation's mission and research focus areas with advanced visual effects.
-
-### About (`/about`)
-Information about aegntic.foundation with the tagline "zero knowledge, unlimited insight".
-
-### Research (`/research`)
-aegntic.research - Blog directory showcasing research papers and publications with filtering capabilities.
-
-### Projects (`/projects`)
-Project showcase displaying active and completed research projects with metrics and GitHub links.
-
-### Collaborations (`/colabs`)
-Partner collaboration page highlighting industry and academic partnerships.
-
-## 🔧 Configuration
-
-### Adding New Pages
-
-1. Create a new HTML file in the `pages/` directory
-2. Add the page route to the `pages` object in `js/app.js`
-3. Update the navigation menu in `index.html`
-
-### Customizing Theme
-
-Modify the Tailwind configuration in `index.html`:
-
-```javascript
-tailwind.config = {
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        primary: "#00f0ff", // Change primary color
-        // ... other customizations
-      }
-    }
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-## 🌐 Browser Support
+Build the same output Cloudflare serves:
 
-- Chrome/Chromium 88+
-- Firefox 85+
-- Safari 14+
-- Edge 88+
+```bash
+npm run build
+```
 
-## 📄 License
+The deploy directory is `dist`.
 
-MIT License - see LICENSE file for details.
+## Deployment
 
-## 🤝 Contributing
+The canonical source is the `aegntic/aegnticdotai` GitHub repository. Cloudflare
+Pages builds the production site from the repository using `npm run build` and
+publishes `dist` to [aegntic.ai](https://aegntic.ai).
 
-We welcome contributions! Please see our contributing guidelines for more information.
+## Verification baseline
 
-## 📞 Contact
+Before publishing:
 
-- Website: [aegntic.ai](https://aegntic.ai)
-- Research: [aegntic.research](https://aegntic.research)
-- Foundation: [aegntic.foundation](https://aegntic.foundation)
-
----
-
-**Zero knowledge, unlimited insight** © 2024 Aegntic Foundation
+- Run `npm run build` and `git diff --check`.
+- Check desktop and phone widths for overflow.
+- Open every primary route and representative project, research, blog, skills,
+  audit, Cognitive OS, and privacy pages.
+- Confirm both local fonts load and every image resolves after lazy loading.
+- Exercise mouse, keyboard, touch-sized menu, reduced motion, and contact-form
+  validation.

@@ -19,15 +19,12 @@
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"ProfessionalService","name":"Aegntic","url":"https://aegntic.ai","description":"Independent systems practice building AI agents, workflow automation, and internal tools.","founder":{"@type":"Person","name":"Mattae Cooper"},"sameAs":["https://github.com/aegntic","https://x.com/aegntic_ai"],"knowsAbout":["AI agents","workflow automation","internal tools","MCP","Rust","Go","TypeScript","Python"]}
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
         :root{
-            --bg:#f0f6f8;
+            --bg:#f7f8f6;
             --text:#11181c;
             --text-dark:#0c1016;
             --text-muted:#a5abad;
@@ -542,8 +539,69 @@
             .intro-grid{position:relative}
         }
     </style>
+  <link rel="stylesheet" href="/design-system.css">
+  <link rel="stylesheet" href="/premium-nav.css">
+  <script src="/premium-nav.js" defer></script>
+  <style id="white-scroll-world">
+    /* White-world continuity: imagery is staged as evidence, never wallpaper. */
+    .intro{min-height:155vh;background:var(--bg);color:var(--text-dark)}
+    .intro-grid{overflow:visible}
+    .intro-grid::before{content:'';position:absolute;inset:8% 2% 8% 4%;border:1px solid rgba(12,16,22,.08);border-radius:50%;transform:rotate(-7deg);pointer-events:none}
+    .intro-grid::after{content:'COORDINATION / MEMORY / PROOF';position:absolute;left:4.5%;bottom:7%;color:var(--text-muted);font-size:.57rem;font-weight:600;letter-spacing:.17em;writing-mode:vertical-rl;pointer-events:none}
+    .intro-figure{inset:13vh auto auto 4vw;width:min(53vw,54rem);height:72vh;border-radius:2rem;box-shadow:0 2rem 5rem -3rem rgba(12,16,22,.45);overflow:hidden}
+    .intro-figure::after{background:linear-gradient(90deg,transparent 55%,rgba(12,16,22,.18)),linear-gradient(0deg,rgba(12,16,22,.28),transparent 36%)}
+    .intro-figure img{object-fit:cover;filter:saturate(.68) contrast(1.04);transform:scale(1.035)}
+    .intro-body{width:min(42rem,43vw);padding-right:6vw}
+    .intro-eyebrow,.intro-prose{color:var(--text-muted)}
+    .intro-lead,.intro-tagline,.proof-num{color:var(--text-dark)}
+    .intro-sig{border-color:rgba(12,16,22,.12)}
+    .proof-label{color:var(--text-muted)}
+
+    .ae-promo{background:var(--bg);color:var(--text-dark);border-top:1px solid rgba(12,16,22,.08);border-bottom:1px solid rgba(12,16,22,.08)}
+    .ae-promo-bg{opacity:1;background:radial-gradient(circle at 76% 50%,rgba(183,53,18,.08),transparent 32%),linear-gradient(90deg,transparent 49.9%,rgba(12,16,22,.07) 50%,transparent 50.1%)}
+    .ae-promo-label,.ae-promo-sub{color:var(--accent)}
+    .ae-promo-title{color:var(--text-dark)}
+    .ae-promo-desc{color:var(--text-muted)}
+    .product-list{max-width:41rem}
+    .product-link{color:var(--text-dark);border-color:rgba(12,16,22,.13)}
+    .product-link:last-child{border-color:rgba(12,16,22,.13)}
+    .product-link:hover{border-color:var(--accent);background:rgba(255,255,255,.7)}
+    .product-link small{color:var(--text-muted)}
+    .ae-promo-visual{background:radial-gradient(circle at 35% 28%,#fff,#d9dfe1 32%,#8f999f 66%,#30383f);border-color:rgba(12,16,22,.14);box-shadow:inset 0 0 0 1.4rem rgba(255,255,255,.3),0 2rem 5rem -3rem rgba(12,16,22,.45)}
+    .ae-promo-logo{filter:drop-shadow(0 1.25rem 2.5rem rgba(0,0,0,.22))}
+    .ae-promo-visual-inner .ae-sub{color:rgba(12,16,22,.6)}
+
+    .work,.services,.cta,.prefooter-strip,.footer{background:var(--bg)}
+    .services{border-top:1px solid rgba(12,16,22,.08)}
+    .service-card{box-shadow:0 1.2rem 4rem -2.8rem rgba(12,16,22,.6)}
+    .service-offer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:auto;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.16)}
+    .service-offer span{display:block;margin-bottom:.32rem;color:rgba(255,255,255,.46);font-size:.6rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase}
+    .service-offer strong{display:block;max-width:24ch;font-size:.82rem;font-weight:500;line-height:1.4}
+    .cta-figure img{filter:grayscale(1) contrast(1.08);opacity:.82}
+    .prefooter-img{filter:grayscale(.8) saturate(.25);opacity:.86}
+
+    .world-thread{position:fixed;left:50%;top:0;bottom:0;z-index:0;width:1px;background:linear-gradient(transparent,rgba(183,53,18,.12) 12%,rgba(183,53,18,.12) 88%,transparent);pointer-events:none}
+    .world-thread::after{content:'';position:absolute;left:50%;top:var(--world-progress,0%);width:.55rem;height:.55rem;border-radius:50%;background:var(--accent-bright);box-shadow:0 0 0 .35rem rgba(255,99,56,.1);transform:translate(-50%,-50%)}
+    main,section,footer{position:relative;z-index:1}
+
+    @media(max-width:1023px){
+      .intro{min-height:auto;padding:6rem 1rem}
+      .intro-grid{min-height:auto;display:grid;gap:3rem}
+      .intro-grid::before,.intro-grid::after{display:none}
+      .intro-figure{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:3/2;border-radius:1.25rem}
+      .intro-body{width:100%;padding:0;gap:1.25rem}
+      .intro-prose{color:var(--text-muted)}
+      .ae-promo-bg{background:radial-gradient(circle at 50% 78%,rgba(183,53,18,.08),transparent 25%)}
+    }
+    @media(max-width:600px){
+      .service-offer{grid-template-columns:1fr}
+      .world-thread{display:none}
+    }
+    @media(prefers-reduced-motion:reduce){.world-thread{display:none}.cta-figure img,.prefooter-img{opacity:1}}
+  </style>
 </head>
 <body>
+    <div class="world-thread" id="worldThread" aria-hidden="true"></div>
     <!-- SCROLL PROGRESS BAR -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -691,17 +749,32 @@
             <div class="ae-promo-grid">
                 <div class="ae-promo-body">
                     <div class="scene-index">02 / Products</div>
-                    <div class="ae-promo-label">Operational intelligence</div>
+                    <div class="ae-promo-label">Systems that earn their place</div>
                     <h2 class="ae-promo-title" data-split>Better operators.</h2>
-                    <p class="ae-promo-sub">Tools that improve how decisions and work get done.</p>
+                    <p class="ae-promo-sub">Five clear ways to improve how decisions and work get done.</p>
                     <div class="product-list">
-                        <a class="product-link" href="/skills/">
+                        <a class="product-link" href="/cognitive-os/">
                             <span class="product-link-index">01</span>
-                            <span><strong>Aegntic Skills</strong><small>96 installable playbooks for agents that operate.</small></span>
+                            <span><strong>Cognitive OS</strong><small>Memory, verification, coordination, and safety for multi-harness agents.</small></span>
+                            <span class="product-link-arrow">↗</span>
+                        </a>
+                        <a class="product-link" href="/skills/">
+                            <span class="product-link-index">02</span>
+                            <span><strong>Aegntic Skills</strong><small>96 installable operating playbooks for agents that need to finish well.</small></span>
+                            <span class="product-link-arrow">↗</span>
+                        </a>
+                        <a class="product-link" href="https://github.com/aegntic/tab-harvest">
+                            <span class="product-link-index">03</span>
+                            <span><strong>Tab Harvest</strong><small>Turn open browser work, transcripts, and links into structured intelligence.</small></span>
+                            <span class="product-link-arrow">↗</span>
+                        </a>
+                        <a class="product-link" href="/agents/#echo">
+                            <span class="product-link-index">04</span>
+                            <span><strong>Echo</strong><small>File intelligence for classifying and routing artifacts inside agent workflows.</small></span>
                             <span class="product-link-arrow">↗</span>
                         </a>
                         <a class="product-link" href="/audits/">
-                            <span class="product-link-index">02</span>
+                            <span class="product-link-index">05</span>
                             <span><strong>Decision Audits</strong><small>Adversarial review before a high-stakes decision gets expensive.</small></span>
                             <span class="product-link-arrow">↗</span>
                         </a>
@@ -811,6 +884,7 @@
                     </div>
                 </div>
                 <p class="service-desc">A purpose-built agent inside a real workflow—designed, deployed, and handed over.</p>
+                <div class="service-offer"><div><span>You bring</span><strong>A job, its inputs, and the boundaries it cannot cross.</strong></div><div><span>You leave with</span><strong>A deployed agent, evaluation set, operating controls, and runbook.</strong></div></div>
             </div>
             <div class="service-card">
                 <div class="service-head">
@@ -822,6 +896,7 @@
                     </div>
                 </div>
                 <p class="service-desc">One connected process that removes repeat steps, reduces errors, and keeps moving.</p>
+                <div class="service-offer"><div><span>You bring</span><strong>A repeated process, its hand-offs, and the current failure points.</strong></div><div><span>You leave with</span><strong>A monitored workflow, recovery path, and ownership documentation.</strong></div></div>
             </div>
             <div class="service-card">
                 <div class="service-head">
@@ -833,6 +908,7 @@
                     </div>
                 </div>
                 <p class="service-desc">A focused app or developer tool shaped around your team—and owned by you.</p>
+                <div class="service-offer"><div><span>You bring</span><strong>The bottleneck, the users, and the decision the tool must make easier.</strong></div><div><span>You leave with</span><strong>Working software, source access, deployment, and a clear handover.</strong></div></div>
             </div>
         </div>
     </section>
@@ -1096,11 +1172,13 @@
                 if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
                     statusEl.textContent='Valid email required.';
                     statusEl.className='contact-status err';
+                    document.getElementById('contact_email')?.focus({preventScroll:true});
                     return;
                 }
                 if(!message){
                     statusEl.textContent='Message required.';
                     statusEl.className='contact-status err';
+                    document.getElementById('contact_message')?.focus({preventScroll:true});
                     return;
                 }
                 submitBtn.disabled=true;
@@ -1142,6 +1220,7 @@
             const dh=document.documentElement.scrollHeight-window.innerHeight;
             const pct=dh>0?(st/dh)*100:0;
             progressBar.style.width=pct+'%';
+            document.documentElement.style.setProperty('--world-progress',pct+'%');
             // Show floating CTA after scrolling past 40% of viewport
             const shouldShow=st>window.innerHeight*0.4;
             if(shouldShow&&!ctaVisible){floatingCta.classList.add('visible');ctaVisible=true}
@@ -1347,6 +1426,44 @@
                     x:0,opacity:1,yPercent:-50,duration:1.6,ease:easeSoft,
                     scrollTrigger:{trigger:'.cta',start:'top 70%',toggleActions:'play none none reverse'}
                 });
+            });
+
+            // ── WHITE SCROLL WORLD ──
+            // Each scene advances the same visual thread: object, meaning, proof, offer, hand-off.
+            gsap.to('.hero-render',{
+                yPercent:10,scale:.965,ease:'none',
+                scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1.1}
+            });
+
+            gsap.timeline({
+                scrollTrigger:{trigger:'.intro',start:'top bottom',end:'bottom top',scrub:1.15}
+            })
+            .fromTo('.intro-figure',{xPercent:-5,rotate:-1.4,scale:.94},{xPercent:5,rotate:1.1,scale:1.035,ease:'none'},0)
+            .fromTo('.intro-body',{y:90},{y:-55,ease:'none'},0);
+
+            gsap.timeline({
+                scrollTrigger:{trigger:'.ae-promo',start:'top bottom',end:'bottom top',scrub:1.2}
+            })
+            .fromTo('.ae-promo-visual',{rotate:-7,scale:.88},{rotate:5,scale:1.03,ease:'none'},0)
+            .fromTo('.ae-promo-body',{y:80},{y:-45,ease:'none'},0);
+
+            gsap.utils.toArray('.product-link').forEach((link,index)=>{
+                gsap.fromTo(link,{x:index%2?-28:28},{
+                    x:0,ease:'none',
+                    scrollTrigger:{trigger:link,start:'top 92%',end:'top 66%',scrub:.7}
+                });
+            });
+
+            gsap.utils.toArray('.service-card').forEach((card,index)=>{
+                gsap.fromTo(card,{scale:.965+index*.008},{
+                    scale:1,ease:'none',
+                    scrollTrigger:{trigger:card,start:'top 92%',end:'top 58%',scrub:.8}
+                });
+            });
+
+            gsap.fromTo('.cta-figure',{xPercent:18},{
+                xPercent:-5,ease:'none',
+                scrollTrigger:{trigger:'.cta',start:'top bottom',end:'bottom top',scrub:1.1}
             });
         })();
 

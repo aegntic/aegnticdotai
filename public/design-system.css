@@ -1,0 +1,33 @@
+@font-face{
+  font-family:'Inter';
+  src:url('/fonts/inter-latin.woff2') format('woff2');
+  font-style:normal;
+  font-weight:400 700;
+  font-display:swap;
+}
+@font-face{
+  font-family:'Space Grotesk';
+  src:url('/fonts/space-grotesk-latin.woff2') format('woff2');
+  font-style:normal;
+  font-weight:400 700;
+  font-display:swap;
+}
+:root{
+  --ae-font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --ae-font-display:'Space Grotesk','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --ae-font-mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --ae-paper:#f7f8f6;
+  --ae-ink:#0c1016;
+  --ae-muted:#687178;
+  --ae-signal:#b73512;
+}
+html{font-synthesis:none;text-rendering:optimizeLegibility;overflow-x:clip}
+body{font-family:var(--ae-font-body);overflow-x:clip}
+h1,h2,h3,h4,h5,h6,.page-title,.card-title,.service-title,.ae-promo-title,.cta-display,.hero-headline{font-family:var(--ae-font-display)}
+button,input,select,textarea{font-family:var(--ae-font-body)}
+code,pre,kbd,samp,.micro,.eyebrow,.card-meta,.tag{font-family:var(--ae-font-mono)}
+img{height:auto}
+button,a{-webkit-tap-highlight-color:transparent}
+button:active,.btn:active,.button:active,.pill:active,.cta-btn:active{transform:scale(.975)}
+@media(hover:hover) and (pointer:fine){a,button{cursor:pointer}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}

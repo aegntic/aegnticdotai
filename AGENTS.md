@@ -6,7 +6,10 @@ Use this file as the canonical guidance for agentic changes in this repo.
 
 ## Quick Orientation
 
-- Production homepage: `index.html` (handcrafted static page with the live menu and GSAP interactions)
+- Production homepage: `index.html` (handcrafted static page with the GSAP scroll journey)
+- Global navigation: `public/premium-nav.js` + `public/premium-nav.css`
+- Shared typography and interaction baseline: `public/design-system.css`
+- Primary catalogue pages: `public/{systems,agents,plugins,products}/`
 - React reference implementation: `src/` (not currently mounted by the root `index.html`)
 - Reference React apps: `aegnticdotai-home/`, `blog-entry-extracted/`
 - Homepage styling and animations: inline CSS and GSAP in `index.html`
@@ -18,7 +21,7 @@ Use this file as the canonical guidance for agentic changes in this repo.
 
 Run commands from the directory that contains the relevant `package.json`.
 
-### Production homepage (`/home/ae/AE/02_Showcase/aegnticdotai`)
+### Production site (repository root)
 
 - Install: `npm install`
 - Dev server: `npm run dev`
@@ -116,7 +119,9 @@ Example ordering:
 
 - Tailwind classes live inline in JSX; keep class lists readable.
 - Prefer semantic utility ordering: layout → spacing → typography → color → effects.
-- Shared styles belong in `src/styles/global.css` or `wireframe.css`.
+- Shared production styles belong in `public/design-system.css`; primary catalogue
+  layout belongs in `public/catalog.css`. React reference styles remain in
+  `src/styles/global.css` or `wireframe.css`.
 - Use design tokens in `@theme` where possible.
 
 ### Naming Conventions
@@ -133,7 +138,15 @@ Example ordering:
 
 ## Repo-Specific Patterns
 
-- The production navigation, menu, and animated effects live in `index.html`; preserve their structure and script hooks when changing content.
+- The production scroll effects live in `index.html`; preserve their section IDs
+  and script hooks when changing content.
+- The global menu is injected on every public page by `public/premium-nav.js`.
+  Keep the six primary headings `/home`, `/systems`, `/agents`, `/plugins`,
+  `/products`, and `/contact` aligned with `SITEMAP.md`.
+- Preserve the landing hero, robot-arm entrance, robot cohort, imagery, and overall
+  rhythm unless a change is explicitly requested.
+- Inter body copy and Space Grotesk display type are self-hosted from
+  `public/fonts/`; do not reintroduce a runtime Google Fonts dependency.
 - The React reference implementation has its own navigation and custom keyframes in `src/styles/global.css`.
 - Dev tools allow inline editing in dev mode; keep their state stable.
 

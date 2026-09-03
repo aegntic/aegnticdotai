@@ -1,89 +1,62 @@
-# Aegntic.ai - Focused Sitemap
+# aegntic.ai sitemap
 
-## Primary Navigation Structure
+## Primary navigation
 
+```text
+/
+├── systems/
+│   ├── cognitive-os/
+│   ├── projects/cognitive-os/
+│   ├── projects/clawreform/
+│   └── projects/prologue/
+├── agents/
+│   ├── agents/#echo
+│   ├── projects/veritas-operator/
+│   ├── projects/obsidian-indexer/
+│   └── github.com/aegntic/hermes-agent
+├── plugins/
+│   ├── skills/
+│   ├── github.com/aegntic/tab-harvest
+│   ├── github.com/aegntic/compound-engineering
+│   └── projects/mcp-graphics/
+├── products/
+│   ├── audits/
+│   ├── projects/cldcde/
+│   ├── projects/prompt-fail/
+│   └── projects/tld-express/
+└── #contact
 ```
-├── Home (/) - Hero page (✓ already in codebase)
-├── About Us (/about) - aegntic.foundation
-│   └── Tagline: "zero knowledge, unlimited insight"
-├── Research (/research) - aegntic.research (main blog directory)
-├── Projects (/projects) - Project showcase
-└── Collaborations (/colabs) - Partner collaborations
-```
 
-## Page Specifications
+The six visible menu headings are `/home`, `/systems`, `/agents`, `/plugins`,
+`/products`, and `/contact`. Each opens a short-form selection carousel in the
+global navigation surface.
 
-### Home (/)
-**Status**: ✅ Already exists in codebase
-**Content**: Hero page with research foundation overview
-**Style**: Current hero design with advanced animations
+## Supporting routes
 
-### About Us (/about)
-**URL**: `aegntic.foundation`
-**Tagline**: "zero knowledge, unlimited insight"
-**Content Structure**:
-- Mission and vision
-- Zero-knowledge proof expertise explanation
-- Team introduction
-- Foundation values and approach
-**Style**: Apply blog entry sophistication with academic authority
+- `/projects/` — project and product case studies
+- `/research/` — research library
+- `/blog/` — long-form writing and technical evidence
+- `/about/` — company context
+- `/privacy/` — privacy policy
+- `/cognitive-operator/` — specialist product surface
 
-### Research (/research)
-**URL**: `aegntic.research`
-**Purpose**: Main blog directory and research publications
-**Content Structure**:
-- Research article listing (blog directory)
-- Category filtering
-- Search functionality
-- Featured publications
-**Style**: Use blog entry components for article listings and detail pages
+## Homepage journey
 
-### Projects (/projects)
-**Purpose**: Project showcase and portfolio
-**Content Structure**:
-- Featured projects grid
-- Project detail pages
-- Technology stack displays
-- Progress metrics and visualizations
-**Style**: Data-rich presentations using blog entry chart patterns
+1. Hero — preserve the original identity and robot-arm entrance.
+2. Work — use the robot cohort to move from promise to operational context.
+3. Systems — introduce Cognitive OS, Aegntic Skills, Tab Harvest, Echo, and
+   decision audits as concrete offers.
+4. Proof — selected deployed work and open project inventory.
+5. Services — Agent build, Workflow automation, and Internal tool, each with a
+   clear input and handover outcome.
+6. Contact — bring the bottleneck and start with one accountable next step.
 
-### Collaborations (/colabs)
-**Purpose**: Partner collaborations and ecosystem
-**Content Structure**:
-- Partner showcase
-- Joint projects
-- Collaboration opportunities
-- Community engagement
-**Style**: Professional networking layout with trust indicators
+## Shared presentation contract
 
-## Component Reuse Strategy
-
-**From Blog Entry:**
-- `Navbar.tsx` - Updated navigation menu
-- `ArticleContent.tsx` - Adapted for research articles
-- `Sidebar.tsx` - For project/research navigation
-- `RelatedArticles.tsx` - Adapted for related projects/colabs
-- Data visualization components for project metrics
-- Theme switching and responsive design patterns
-
-**New Components Needed:**
-- Project showcase cards
-- Partner collaboration displays
-- Team profile components
-- Zero-knowledge concept visualizations
-
-## Implementation Priority
-
-1. **Update Navbar** - Add new navigation items
-2. **Create About Us page** - Foundation messaging with tagline
-3. **Build Research directory** - Blog-style article listings
-4. **Develop Projects showcase** - Project cards and detail pages
-5. **Create Colabs page** - Partner collaboration displays
-
-## URL Structure
-
-- Base domain: `aegnticdotai`
-- About: `aegntic.foundation` (subdomain or branded section)
-- Research: `aegntic.research` (subdomain or branded section)
-- Projects: `/projects`
-- Collaborations: `/colabs`
+- Warm-white background, dark ink, restrained rust/orange signal colour
+- Inter body typography and Space Grotesk headings, served locally
+- Persistent AE mark and premium heavy-motion Explore control
+- Shared full-screen menu on every public HTML page
+- Horizontal card carousels with pointer, keyboard, and touch-sized behaviour
+- GSAP scroll continuity on the homepage with reduced-motion fallbacks
+- Existing imagery retained and loaded from local deploy assets
