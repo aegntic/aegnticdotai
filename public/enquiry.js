@@ -12,7 +12,27 @@
   dialog.id = 'ae-enquiry';
   dialog.className = 'ae-enquiry';
   dialog.setAttribute('aria-labelledby', 'ae-enquiry-title');
-  dialog.innerHTML = `<div class="ae-enquiry-inner"><button class="ae-enquiry-close" type="button" aria-label="Close enquiry">Close <span aria-hidden="true">×</span></button><p class="ae-enquiry-kicker">With Mattae Cooper</p><h2 id="ae-enquiry-title">Let's make<br>it work.</h2><p class="ae-enquiry-intro">A little context is enough to begin.</p><form id="ae-enquiry-form" novalidate><label for="ae-service">What do you need?</label><select id="ae-service" name="service">${services.map(service => `<option>${service}</option>`).join('')}</select><div class="ae-enquiry-row"><div><label for="ae-name">Name</label><input id="ae-name" name="name" autocomplete="name" maxlength="100" required></div><div><label for="ae-email">Work email</label><input id="ae-email" name="email" type="email" autocomplete="email" maxlength="254" required></div></div><label for="ae-system">Repository or system URL <span>optional</span></label><input id="ae-system" name="system_url" type="url" inputmode="url" maxlength="1000" placeholder="https://"><label id="ae-message-label" for="ae-message">What should work better?</label><textarea id="ae-message" name="message" rows="4" minlength="10" maxlength="5000" required></textarea><div class="ae-enquiry-hp" aria-hidden="true"><label for="ae-company">Leave empty</label><input id="ae-company" name="company" tabindex="-1" autocomplete="off"></div><input type="hidden" name="source_path"><input type="hidden" name="offer_key"><p class="ae-enquiry-status" role="status" aria-live="polite"></p><button type="submit" class="ae-enquiry-submit">Send enquiry <span aria-hidden="true">↗</span></button><p class="ae-enquiry-privacy">Your details are used to respond to this enquiry. <a href="/privacy/">Privacy</a></p><p class="ae-enquiry-fallback">Or email <a href="mailto:hello@aegntic.com">hello@aegntic.com</a></p></form></div>`;
+  dialog.innerHTML = `<div class="ae-enquiry-inner">
+    <button class="ae-enquiry-close" type="button" aria-label="Close enquiry">Close <span aria-hidden="true">×</span></button>
+    <p class="ae-enquiry-kicker">With Mattae Cooper</p><h2 id="ae-enquiry-title">Let's make<br>it work.</h2>
+    <p class="ae-enquiry-intro">A little context is enough to begin.</p>
+    <form id="ae-enquiry-form" novalidate>
+      <label for="ae-service">What do you need?</label><select id="ae-service" name="service">${services.map(service => `<option>${service}</option>`).join('')}</select>
+      <div class="ae-enquiry-row">
+        <div><label for="ae-name">Name</label><input id="ae-name" name="name" autocomplete="name" maxlength="100" required></div>
+        <div><label for="ae-email">Work email</label><input id="ae-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+      </div>
+      <label for="ae-system">Repository or system URL <span>optional</span></label>
+      <input id="ae-system" name="system_url" type="url" inputmode="url" maxlength="1000" placeholder="https://" aria-describedby="ae-system-hint">
+      <p id="ae-system-hint" class="ae-enquiry-privacy">Use a public link. No passwords, access tokens or private customer data.</p>
+      <label id="ae-message-label" for="ae-message">What should work better?</label><textarea id="ae-message" name="message" rows="4" minlength="10" maxlength="5000" required></textarea>
+      <div class="ae-enquiry-hp" aria-hidden="true"><label for="ae-company">Leave empty</label><input id="ae-company" name="company" tabindex="-1" autocomplete="off"></div>
+      <input type="hidden" name="source_path"><input type="hidden" name="offer_key">
+      <p class="ae-enquiry-status" role="status" aria-live="polite"></p>
+      <button type="submit" class="ae-enquiry-submit">Send enquiry <span aria-hidden="true">↗</span></button>
+      <p class="ae-enquiry-privacy">Your details are used to respond to this enquiry. <a href="/privacy/">Privacy</a></p>
+      <p class="ae-enquiry-fallback">Or email <a href="mailto:hello@aegntic.com">hello@aegntic.com</a></p>
+    </form></div>`;
   document.body.append(dialog);
   const form = dialog.querySelector('form');
   const service = form.elements.service;
@@ -24,6 +44,8 @@
   let pending = false;
   let sent = false;
   let draftStarted = false;
+  let draftSnapshot = '';
+  let submissionId = '';
   function updatePrompt() {
     document.getElementById('ae-message-label').textContent = prompts[service.value];
     form.elements.offer_key.value = service.value.toLowerCase().replaceAll(' ', '-');
@@ -34,8 +56,10 @@
     if (dialog.open) return;
     opener = link || document.activeElement;
     const chosen = link?.dataset.enquiry;
-    if (services.includes(chosen)) service.value = chosen;
-    else if (!draftStarted) service.value = 'Something else';
+    if (!pending && !sent) {
+      if (services.includes(chosen)) service.value = chosen;
+      else if (!draftStarted) service.value = 'Something else';
+    }
     if (!draftStarted) form.elements.source_path.value = location.pathname;
     updatePrompt();
     document.dispatchEvent(new Event('ae:close-menu'));
@@ -85,8 +109,14 @@
     pending = true;
     submit.disabled = true;
     submit.textContent = 'Sending…';
+    fields.forEach(field => {field.readOnly = true;});
+    service.disabled = true;
     try {
-      const response = await fetch('/api/contact', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:form.elements.name.value.trim(),email:form.elements.email.value.trim(),subject:service.value,service:service.value,system_url:form.elements.system_url.value.trim(),message:message.value.trim(),company:form.elements.company.value,source_path:form.elements.source_path.value,offer_key:form.elements.offer_key.value}),signal:AbortSignal.timeout(15000)});
+      const payload = {name:form.elements.name.value.trim(),email:form.elements.email.value.trim(),subject:service.value,service:service.value,system_url:form.elements.system_url.value.trim(),message:message.value.trim(),company:form.elements.company.value,source_path:form.elements.source_path.value,offer_key:form.elements.offer_key.value};
+      const snapshot = JSON.stringify(payload);
+      // Per-submission only, held in page memory. An unchanged retry reuses the key.
+      if (snapshot !== draftSnapshot) {submissionId = crypto.randomUUID();draftSnapshot = snapshot;}
+      const response = await fetch('/api/contact', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...payload,submission_id:submissionId}),signal:AbortSignal.timeout(15000)});
       const result = await response.json();
       if (!response.ok || result.status !== 'success') throw new Error('receipt-not-confirmed');
       sent = true;
@@ -98,6 +128,9 @@
       status.textContent = 'Receipt could not be confirmed. Your draft is still here. Please retry or use the email below.';
       submit.textContent = 'Retry enquiry';
       submit.disabled = false;
-    } finally {pending = false;}
+    } finally {
+      pending = false;
+      if (!sent) {fields.forEach(field => {field.readOnly = false;});service.disabled = false;}
+    }
   });
 })();

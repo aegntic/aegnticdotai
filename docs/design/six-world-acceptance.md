@@ -21,6 +21,20 @@ DONE IF:
 4. All Work with me actions open an on-site, accessible enquiry dialog with focus containment, Escape/backdrop closing and focus restoration.
 5. Local previews cannot submit a real enquiry; production success is shown only after a successful server response. Production delivery remains a separate verification gate.
 
+### Enquiry delivery gate (local implementation; production not yet verified)
+
+DONE IF:
+1. JSON, byte limits, field lengths/types, email, service, honeypot and same-origin validation reject invalid submissions before a database write.
+2. An additive migration preserves existing messages and stores the service, source path, optional system URL, offer, lead status and notification status.
+3. The enquiry is durably stored before a fixed-recipient notification is attempted. Queued, delivered and failed notifications remain distinguishable.
+4. Notification or notification-status-update failure retains the message and confirms receipt; database failure never triggers email or exposes internal error details. An unchanged retry or simultaneous duplicate has one stored row and at most one notification attempt.
+5. Local and staging hosts cannot send real notifications. Tests execute real SQL and replace only the external email boundary; the migration and API are also exercised through local Wrangler.
+6. Documentation describes setup, recovery and privacy honestly. Sender onboarding, secrets, deployment approval and an explicitly approved production enquiry remain release gates.
+
+Maintainer/unplug: a non-author can run the documented Node and local Wrangler commands from a clean checkout without production secrets. No framework or database abstraction is added beyond a small test-only SQLite adapter.
+
+Business link: prevent lost enquiries and retain enough context to respond usefully; no conversion uplift is claimed.
+
 ## C. Alternatives and compounding
 
 DONE IF:
