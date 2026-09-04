@@ -1,17 +1,5 @@
 [
   {
-    "slug": "ae-audits",
-    "title": "AE Audits",
-    "subtitle": "Agent-native code review",
-    "status": "Latest",
-    "summary": "Decision review for expensive bets. A structured adversarial council — 15 specialized lenses — before you commit capital, time, or reputation.",
-    "body": "AE Audits is agent-native review for high-stakes decisions. Instead of a single model opinion, you get a structured adversarial council across 15 specialized lenses: architecture, security, economics, ops, product, and more.\n\nPricing tiers stay simple: async brief from $490, full council $1,890, strategic from $4,200. Output is a decision-grade brief you can act on — not a dashboard demo.",
-    "url": "/audits/",
-    "external": false,
-    "tags": ["Review", "Agents", "Decision systems"],
-    "image": "/work-open-inventory.png"
-  },
-  {
     "slug": "cldcde",
     "title": "CLDCDE",
     "subtitle": "Developer ecosystem",

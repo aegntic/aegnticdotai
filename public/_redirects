@@ -3,6 +3,13 @@
 /home    /   301
 /home/   /   301
 
+# Retired offer; current product catalogue is the maintained destination.
+/audits /products/ 301
+/audits/ /products/ 301
+/audits.html /products/ 301
+/projects/ae-audits /products/ 301
+/projects/ae-audits/ /products/ 301
+
 # Cognitive OS — avoid .html ↔ bare-path loop on CF
 /cognitive-os.html  /cognitive-os/  301
 /cognitive-os-raw.html  /cognitive-os/  301

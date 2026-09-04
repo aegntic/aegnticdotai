@@ -16,6 +16,8 @@ import {
 } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildCatalogues } from './build-catalogues.mjs';
+import { syncSharedShell } from './sync-shared-shell.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -89,20 +91,6 @@ function shell({
   active = '',
   jsonLd = null,
 }) {
-  const nav = [
-    ['/', 'Home', 'home'],
-    ['/systems/', 'Systems', 'systems'],
-    ['/agents/', 'Agents', 'agents'],
-    ['/plugins/', 'Plugins', 'plugins'],
-    ['/products/', 'Products', 'products'],
-    ['/#contact', 'Contact', 'contact'],
-  ]
-    .map(([href, label, key]) => {
-      const cur = key === active ? ' aria-current="page"' : '';
-      return `<a href="${href}"${cur}>${label}</a>`;
-    })
-    .join('\n        ');
-
   const ld = jsonLd
     ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`
     : '';
@@ -131,13 +119,7 @@ function shell({
   ${ld}
 </head>
 <body>
-  <nav class="nav">
-    <a class="nav-logo" href="/"><img src="/ae-logo.webp" alt="aegntic"></a>
-    <div class="nav-links">
-      ${nav}
-      <a class="nav-cta" href="mailto:hello@aegntic.com">Work with me</a>
-    </div>
-  </nav>
+  <noscript><nav aria-label="Basic navigation"><a href="/">Home</a> · <a href="/products/">Products</a> · <a href="/#contact">Contact</a></nav></noscript>
   ${body}
   <footer class="footer">
     <img src="/ae-logo.webp" alt="AEGNTIC" style="height:1.75rem;width:auto;opacity:.5;margin:0 auto">
@@ -404,7 +386,7 @@ function buildProjects(projects) {
     shell({
       title: 'Projects — aegntic.ai',
       description:
-        'Selected projects by Mattae Cooper (@aegntic): AE Audits, CLDCDE, clawREFORM, Prologue, and more.',
+        'Selected projects by Mattae Cooper (@aegntic): CLDCDE, clawREFORM, Prologue, and more.',
       canonical: `${SITE}/projects/`,
       body: indexBody,
       active: 'projects',
@@ -455,40 +437,8 @@ function buildProjects(projects) {
 }
 
 function buildAudits() {
-  const body = `<main class="page">
-  <div class="hero-mini">
-    <div class="eyebrow">Latest offer</div>
-    <h1 class="page-title">AE Audits</h1>
-    <p class="page-desc">Agent-native code and decision review. A structured adversarial council — 15 specialized lenses — before you commit capital, time, or reputation.</p>
-  </div>
-  <article class="prose">
-    <h2>What you get</h2>
-    <p>Not a lint pass. A decision-grade brief from multiple adversarial lenses: architecture, security, economics, operations, product risk, and more. Built for expensive bets where a single-model rubber stamp is not enough.</p>
-    <h2>Pricing</h2>
-    <ul>
-      <li><strong>Async brief</strong> — from $490</li>
-      <li><strong>Full council</strong> — $1,890</li>
-      <li><strong>Strategic</strong> — from $4,200</li>
-    </ul>
-    <h2>Who it's for</h2>
-    <p>Founders, operators, and eng leads shipping agent systems, infra bets, or high-stakes product calls who want structured pushback before lock-in.</p>
-  </article>
-  <div class="cta-row">
-    <a class="btn" href="mailto:hello@aegntic.com?subject=AE%20Audits">Request an audit</a>
-    <a class="btn-ghost btn" href="/projects/ae-audits/">Project page</a>
-  </div>
-</main>`;
-  write(
-    join(OUT, 'audits/index.html'),
-    shell({
-      title: 'AE Audits — agent-native code review — aegntic.ai',
-      description:
-        'AE Audits: agent-native code and decision review. Async brief from $490, full council $1,890, strategic from $4,200.',
-      canonical: `${SITE}/audits/`,
-      body,
-      active: 'audits',
-    }),
-  );
+  const retired = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url=/products/"><link rel="canonical" href="https://aegntic.ai/products/"><title>Products : : aegntic.ai</title></head><body><p>This offer has been retired. <a href="/products/">Explore the products</a>.</p></body></html>';
+  for (const path of ['audits/index.html', 'audits.html', 'projects/ae-audits/index.html']) write(join(OUT, path), retired);
 }
 
 function buildAbout() {
@@ -527,7 +477,6 @@ function buildSitemap(posts, projects) {
     ['/projects/', '0.9', 'weekly'],
     ['/research/', '0.9', 'weekly'],
     ['/blog/', '0.9', 'weekly'],
-    ['/audits/', '0.8', 'monthly'],
     ['/skills/', '0.8', 'monthly'],
     ['/about/', '0.6', 'monthly'],
     ...projects.map((p) => [`/projects/${p.slug}/`, '0.7', 'monthly']),
@@ -568,7 +517,6 @@ function buildLlms(posts, projects) {
 - Custom AI-agent builds — architecture through production (Rust, Go, TypeScript, Python)
 - Automation systems — workflows, integrations, backends in production
 - Developer tooling — Claude Code ecosystem, MCP, CLIs
-- AE Audits — agent-native adversarial review (${SITE}/audits/)
 
 ## Projects
 ${projectLines}
@@ -620,6 +568,9 @@ function ensureAssets() {
 }
 
 function main() {
+  buildCatalogues(OUT);
+  buildAudits();
+  syncSharedShell(OUT);
   if (!existsSync(BLOG_SRC)) {
     console.error('Missing blog source:', BLOG_SRC);
     process.exit(1);
@@ -649,6 +600,7 @@ function main() {
   buildAbout();
   buildSitemap(posts, projects);
   buildLlms(posts, projects);
+  syncSharedShell(OUT);
 
   // robots
   writeFileSync(

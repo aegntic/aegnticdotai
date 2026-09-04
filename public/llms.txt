@@ -6,10 +6,8 @@
 - Custom AI-agent builds — architecture through production (Rust, Go, TypeScript, Python)
 - Automation systems — workflows, integrations, backends in production
 - Developer tooling — Claude Code ecosystem, MCP, CLIs
-- AE Audits — agent-native adversarial review (https://aegntic.ai/audits/)
 
 ## Projects
-- AE Audits — Decision review for expensive bets. A structured adversarial council — 15 specialized lenses — before you commit capital, time, or reputation. (https://aegntic.ai/projects/ae-audits/)
 - CLDCDE — Claude Code ecosystem hub — tools, patterns, and operator infrastructure for agentic development. (https://aegntic.ai/projects/cldcde/)
 - clawREFORM — Agent-city surface for coordination, reform patterns, and multi-agent operations. (https://aegntic.ai/projects/clawreform/)
 - veritas-operator — Research pipeline operator for evidence gathering, synthesis, and verification loops. (https://aegntic.ai/projects/veritas-operator/)
@@ -22,7 +20,7 @@
 - Cognitive OS — Cognitive Operating System — the multi-harness agent policy and execution stack. (https://aegntic.ai/projects/cognitive-os/)
 - Systems — memory, policy, coordination, and verification infrastructure. (https://aegntic.ai/systems/)
 - Agents — purpose-built operators including Echo, veritas-operator, and obsidian-indexer. (https://aegntic.ai/agents/)
-- Plugins — installable operating intelligence including Aegntic Skills and Tab Harvest. (https://aegntic.ai/plugins/)
+- Plugins — installable operating intelligence including aegntic Skills and Tab Harvest. (https://aegntic.ai/plugins/)
 - Products — focused products including AE Audits, CLDCDE, prompt.fail, and tld.express. (https://aegntic.ai/products/)
 - zkputer — Zero-knowledge compute exploration — privacy-preserving execution patterns. (https://aegntic.ai/projects/zkputer/)
 
@@ -34,7 +32,7 @@ Full archive: https://aegntic.ai/research/ and https://aegntic.ai/blog/
 - The RIPSEC Framework: How to Structure Compelling Ebooks and Content (https://aegntic.ai/blog/ripsec-ebook-structure-framework/)
 - Ultra Swarm: Multi-Agent Problem Solving for Complex Decisions (https://aegntic.ai/blog/ultra-swarm-multi-agent-problem-solving/)
 - UltraPlan Pro: Strategic Project Planning for Complex Initiatives (https://aegntic.ai/blog/ultraplan-pro-strategic-project-planning/)
-- From 0 to 40 Platforms: The Aegntic Growth Story (https://aegntic.ai/blog/aegntic-growth-story/)
+- From 0 to 40 Platforms: The aegntic Growth Story (https://aegntic.ai/blog/aegntic-growth-story/)
 - AI-Human Symbiosis: The Path to Augmented Intelligence (https://aegntic.ai/blog/ai-human-symbiosis/)
 - Introducing Mem:RE - The Future of AI Memory (https://aegntic.ai/blog/introducing-memre-ai-memory/)
 - Economics of Zero-Cost AI: 40 Platforms for $0.02/hour (https://aegntic.ai/blog/economics-zero-cost-ai-40-platforms-2-cents-hour/)
@@ -63,7 +61,7 @@ Full archive: https://aegntic.ai/research/ and https://aegntic.ai/blog/
 - Claude-Flow: Enterprise AI Agent Orchestration (https://aegntic.ai/blog/claude-flow-enterprise-orchestration/)
 - Sequential Thinking: How AI Agents Reason Through Complex Problems (https://aegntic.ai/blog/sequential-thinking-ai-agent-reasoning/)
 - D3MO: Building a Conversational AI Interface That Feels Natural (https://aegntic.ai/blog/d3mo-conversational-ai/)
-- The Aegntic MCP Standard Framework: Building Production-Ready MCP Servers (https://aegntic.ai/blog/aegntic-mcp-standard-framework/)
+- The aegntic MCP Standard Framework: Building Production-Ready MCP Servers (https://aegntic.ai/blog/aegntic-mcp-standard-framework/)
 - Crypto-Sight: Building a Real-Time Analytics Platform (https://aegntic.ai/blog/crypto-sight-real-time-analytics/)
 - Building a 40+ Platform AI Ecosystem: Architecture Lessons Learned (https://aegntic.ai/blog/building-40-platform-ai-ecosystem/)
 - ElastranAI: Building an Elastic-Powered AI Assistant (https://aegntic.ai/blog/elastranai-elastic-ai-assistant/)
@@ -81,6 +79,5 @@ Full archive: https://aegntic.ai/research/ and https://aegntic.ai/blog/
 - Projects: https://aegntic.ai/projects/
 - Research: https://aegntic.ai/research/
 - Blog: https://aegntic.ai/blog/
-- Audits: https://aegntic.ai/audits/
 - robots: https://aegntic.ai/robots.txt
 - sitemap: https://aegntic.ai/sitemap.xml

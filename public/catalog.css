@@ -32,3 +32,18 @@ a{color:inherit;text-decoration:none}
 .catalog-footer{display:flex;justify-content:space-between;gap:1rem;padding:2rem 0 0;color:var(--ae-muted);font-size:.65rem;letter-spacing:.07em;text-transform:uppercase}
 @media(max-width:760px){.catalog-page{padding-top:7rem}.catalog-hero{min-height:28rem}.catalog-title{font-size:clamp(4rem,23vw,6.4rem)}.catalog-intro{grid-template-columns:1fr;padding:4rem 0 2rem}.catalog-grid{grid-template-columns:1fr;padding-bottom:5rem}.catalog-card{min-height:19rem}.catalog-footer{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){.catalog-card,.catalog-cta a{transition-duration:.01ms}}
+
+/* Catalogue continuations use the same full-page scene and paper as home. */
+.catalog-content{width:76%;margin:0 auto;padding-bottom:60px}
+.catalog-scene.world-products{min-height:100svh;display:flex;align-items:center;padding:0}
+.catalog-scene.world-products .world-copy{padding:110px 0 100px}
+.catalog-scene.world-products .world-art{height:100%}
+.catalog-content .catalog-grid{gap:0;border-top:1px solid var(--ae-line);padding:0 0 80px}
+.catalog-content .catalog-card,.catalog-content .catalog-card:nth-child(3n+2){background:transparent;color:var(--ae-ink);border-radius:0;min-height:280px;border:0;border-bottom:1px solid var(--ae-line);padding:32px 32px 32px 0;box-shadow:none}
+.catalog-content .catalog-card:nth-child(2n){padding-left:32px;border-left:1px solid var(--ae-line)}
+.catalog-content .catalog-card p,.catalog-content .catalog-card:nth-child(3n+2) p{color:var(--ae-muted)}
+.catalog-content .catalog-card__meta,.catalog-content .catalog-card:nth-child(3n+2) .catalog-card__meta{color:var(--ae-muted)}
+.catalog-content .catalog-card h2{font-size:clamp(25px,3.3vw,45px);letter-spacing:-.055em}
+.catalog-content .catalog-card:hover{transform:translateY(-3px);background:#eef0ec}
+.catalog-content .catalog-cta{background:transparent;color:var(--ae-ink);border-radius:0;border-top:1px solid var(--ae-line);padding:50px 0}.catalog-content .catalog-cta::before{display:none}.catalog-content .catalog-cta p{color:var(--ae-muted)}.catalog-content .catalog-cta a{background:var(--ae-ink);color:#fff;min-height:44px}
+@media(max-width:760px){.catalog-content{width:calc(100% - 84px);margin-left:58px}.catalog-content .catalog-card:nth-child(2n){padding-left:0;border-left:0}.catalog-content .catalog-card{min-height:260px}.catalog-scene.world-products .world-copy{padding:65vh 0 60px}.catalog-scene.world-products .world-art{height:55vh}.catalog-content .catalog-cta h2{font-size:42px}}
