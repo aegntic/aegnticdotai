@@ -2,6 +2,8 @@
 
 Five fresh scenes generated with the built-in image-generation tool on 2026-09-05 (Sydney). The original robot family, supplied logo and all existing media remain in the repository. Web derivatives are WebP quality 90, without colour filtering or geometric cropping. The output PNGs remain in the host's generation archive; execution IDs below identify them. No paid video job was submitted.
 
+Owner refinement: the generated Access image is retained as an unused study. The local homepage now restores the original `public/cta-float.webp` (512 × 768, transparent WebP) because the owner prefers its compact, substantial build and larger presence. Its native aspect ratio and colours are preserved; the presentation mirrors it horizontally as the original landing page did. The other four generated scenes are still concept artwork, not yet revised to the original mascot's proportions.
+
 | Scene | Reference | Generation execution | Web derivative |
 |---|---|---|---|
 | Systems | public/intro-cohort-coordination.png | 1662b675-84a4-4b5b-bd76-a0e3ac5b3b60 | public/assets/worlds/systems.webp |

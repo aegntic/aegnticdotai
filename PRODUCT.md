@@ -8,6 +8,8 @@ The homepage follows ACCESS → SYSTEMS → AGENTS → PLUGINS → PRODUCTS → 
 
 The original hero composition, robot family, side-arm entrances and existing artwork are reference assets, not disposable decoration. Fresh scenes must have a role. System robots bleed left and meet the page background; never place the swarm in a rounded card.
 
+Mascot refinement (2026-09-05): the owner prefers the original landing mascot's size and build. Preserve its oversized camera head, broad torso, short substantial limbs and compact silhouette. The homepage uses the original transparent `cta-float.webp` again, at a prominent scale. Future scene art should use that character as its proportion reference; the slender generated Access figure is not the approved mascot direction.
+
 Product marks disclose a concise explanation on the page. Navigation to the product happens only through an explicit link. Echo's destination is https://echo.aegntic.ai/. No invented partner logos or affiliate relationships.
 
 All enquiry actions stay on the site. A guided form is appropriate; a simulated chatbot must not be represented as an AI or a human. Social links come from existing source. Partner/affiliate links need confirmation before publication.
