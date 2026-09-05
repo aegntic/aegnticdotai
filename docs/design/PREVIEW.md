@@ -15,7 +15,7 @@ The site generator supports committed generated pages when Pandoc is unavailable
 
 ## What changed locally
 
-- Six full-height worlds, four fresh category robot scenes, restored original landing mascot, vertical left labels, shared typography and short copy. The slender generated Access bot remains an unused study; the owner's preferred compact original is the proportion reference for future scenes.
+- Six full-height worlds, four fresh category robot scenes, restored original landing mascot, vertical left labels, shared typography and short copy. The slender generated Access bot remains an unused study; the category scenes now follow the owner's preferred compact original proportions.
 - Native product disclosures with explicit links, including live Echo.
 - Four matching catalogue heroes, generated from a small explicit source file.
 - A shared on-site enquiry dialog. Local and staging hosts cannot submit.
@@ -60,12 +60,19 @@ Wrangler setup is pinned to 4.129.0 with npm-exec, not assumed to exist in the p
 
 Rebuilt browser form: native modal remained on `/`; local submit reported `Preview checked. Nothing was sent or saved. Service: Something else. Source: /.` Mobile viewport/document/panel widths were all 390px. Public-link warning is associated with the URL field. Escape restored focus to Work with me. Sampled console logs were empty. Original mascot also inspected on desktop/mobile with native colours and no headline overlap.
 
+### Mascot artwork refinement evidence (2026-09-05)
+
+The four category scenes now use versioned `*-mascot-v2.webp` files; the original `/cta-float.webp` hero is unchanged. All four new scenes were visually inspected in the desktop preview and at 390 × 844. The inspection caught white image rectangles, Systems artwork too close to the disclosure, and mobile labels crossing the left-bleed robots. One CSS correction batch added an opaque blend backdrop, increased desktop copy clearance, moved mobile labels above the illustrations and kept complete image aspect ratios. The confirmation pass showed seamless paper backgrounds, intact rightmost Systems robot and separate artwork/headings on mobile.
+
+Fresh computed mobile results: document width 390; all five world images loaded; each image filter `none` and object-fit `contain`; sampled console logs empty. Systems was additionally inspected at a 1920 × 1080 emulated viewport: document width 1906 (reserved scrollbar), containment retained and the rightmost subject whole. The mobile products catalogue uses the same new derivative, loads correctly and remains 390px wide. These are Chromium emulation checks, not real iOS/Android hardware or exhaustive browser coverage. Source/asset provenance and exact prompts are in `artwork-provenance.md` and `mascot-v2-prompts.md`.
+
+Independent non-author artwork check found no concrete blocker, reran the static verifier successfully and confirmed homepage/generator/generated/dist references agree. The original hero and all four prior category assets are hash-identical to the previous commit. The reviewer checked artwork and source, not the browser screenshots described above.
+
 ## Unfinished release gates
 
 - Paid scroll-world video: budget, camera and native portrait decision pending. No render submitted.
 - The live form backend is still the old endpoint. The replacement frontend/API and migrations are implemented and tested locally; deploy them together only after current D1 bindings, sender onboarding, production secrets and mailbox delivery are verified. No end-to-end production lead claim yet.
 - Edge rate-limit/spam protection needs an owner/operations decision. Origin checks alone are not abuse prevention. No Turnstile, IP records or new paid rules were silently added.
-- Other generated scene robots are not yet revised to the newly reaffirmed original mascot proportions.
 - No production enquiry has been submitted. A labelled test requires explicit confirmation.
 - Partner and affiliate destinations were not supplied; do not invent relationships. The contact section offers partnership enquiries instead.
 - Confirm final product marks and verify external destinations at release time.
