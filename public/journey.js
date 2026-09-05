@@ -32,7 +32,8 @@
   if (!window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
   const motion = gsap.matchMedia();
-  motion.add('(prefers-reduced-motion: no-preference)', () => {
+  // Rebuild on rotation/breakpoint changes as well as motion-preference changes.
+  ['(max-width:600px)', '(min-width:601px)'].forEach(viewport => motion.add(`${viewport} and (prefers-reduced-motion: no-preference)`, () => {
     const mobile = matchMedia('(max-width:600px)').matches;
     if (document.querySelector('.journey-progress')) gsap.to('.journey-progress', {scaleX:1,ease:'none',scrollTrigger:{trigger:document.documentElement,start:'top top',end:'bottom bottom',scrub:true}});
     document.querySelectorAll('.world').forEach((world, index) => {
@@ -43,5 +44,5 @@
       if (ghost) gsap.fromTo(ghost,{x:index % 2 ? -25 : 25},{x:index % 2 ? 25 : -25,ease:'none',scrollTrigger:{trigger:world,start:'top bottom',end:'bottom top',scrub:1}});
       if (heading) gsap.fromTo(heading,{y:mobile ? 12 : 28},{y:0,ease:'power2.out',scrollTrigger:{trigger:heading,start:'top 95%',end:'top 55%',scrub:.5}});
     });
-  });
+  }));
 })();

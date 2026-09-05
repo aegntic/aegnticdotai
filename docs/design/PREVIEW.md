@@ -68,6 +68,20 @@ Fresh computed mobile results: document width 390; all five world images loaded;
 
 Independent non-author artwork check found no concrete blocker, reran the static verifier successfully and confirmed homepage/generator/generated/dist references agree. The original hero and all four prior category assets are hash-identical to the previous commit. The reviewer checked artwork and source, not the browser screenshots described above.
 
+### Responsive follow-through evidence (2026-09-05)
+
+The 320 × 568 check exposed a real gap in the earlier 390px-only coverage: separate viewport-based positions put the Systems art box bottom at 447.64px and its heading at 369.20px. Products and the original hero also visibly crossed the headings, especially in reduced-motion mode. Mobile copy now follows the shared art top/height plus 24px rather than an unrelated viewport percentage. The original asset is unchanged. Landscape labels move above the left-bleed artwork. GSAP media registrations now rebuild when the 600px layout breakpoint changes; previously the initial mobile flag stayed cached after rotation.
+
+Fresh browser results after the correction:
+
+- Home's five non-contact worlds at 320 × 568 and 390 × 844: measured artwork-box-to-heading gap 24px with reduced motion, transforms `none`, no document-width overflow. Normal-motion Products gaps were 34.84px at 320 and 39px at 390.
+- In-place 320 → 844 → 390 viewport changes: the fully passed hero's computed Y translation changed −15px → −65px → −15px without a page reload. Reduced motion removed all five artwork transforms.
+- Landscape 844 × 390: Systems label at 80px, scene art inset 110px, intentional left bleed and intact rightmost subject. Menu opened the on-site native modal while preserving `/`; dialog width 610px, viewport-constrained height and scrollable form contents. Escape restored focus to Menu.
+- All four catalogue heroes at both 320px and 390px: measured 24px gap, document width equal to viewport. At 390, all four images loaded, heading font was Space Grotesk, and each page had one Menu at x257.6 / y12.8 / 120 × 50px.
+- At 320px, the products CTA opened a 320px-wide native modal on `/products/`, with Internal tool selected. No enquiry was submitted.
+
+The independent evaluator reran syntax, static asset and diff checks and inspected the catalogue cascade and breakpoint registration. Its arithmetic confirmed a 24px reduced-motion gap and at least 9px art-box clearance under the maximum small-screen art movement. Browser evidence above was collected separately by the implementer. These remain Chromium emulation results, not real hardware/Safari validation. `npm run build`, `node --check public/journey.js`, `node scripts/verify-preview.mjs`, and `git diff --check` passed; Pandoc fallback remains as documented.
+
 ## Unfinished release gates
 
 - Paid scroll-world video: exact scene-art approval, budget, camera and native portrait decision pending. No render submitted. [scroll-world-film.md](scroll-world-film.md) records freshly checked provider capabilities, current configuration-specific prices, six-scene handoffs, prompt candidates and real-media verification gates. A camera-only draft probe is quoted at 80 credits; it does not prove a seamless chain.

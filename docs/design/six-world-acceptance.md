@@ -12,6 +12,16 @@ DONE IF:
 5. Desktop and 390px mobile have no horizontal document overflow; reduced motion and missing GSAP leave all content usable.
 6. The exact requested homepage document title is present; visible brand casing is never mixed.
 
+## A2. Responsive follow-through
+
+DONE IF:
+1. At 320 × 568 and 390 × 844, every non-contact world reserves its artwork height before the heading, including the original mascot, with reduced motion enabled and normal motion active.
+2. The 844 × 390 landscape layout keeps left labels clear of the left-bleed robots and preserves the rightmost Systems robot.
+3. Crossing the 600px breakpoint re-evaluates scroll-motion distances without reloading; reduced motion removes transforms and keeps all content usable.
+4. Homepage and generated catalogue heroes share the spacing correction; menu and on-site enquiry remain reachable without document overflow.
+
+Maintainer/unplug: use the existing shared styles and motion module, no new framework or media assets. Reproduce with the documented local build and browser viewport controls. Business link: keep offers and enquiry controls readable on small or rotated devices; no conversion claim.
+
 ## B. Shared shell and enquiry
 
 DONE IF:
