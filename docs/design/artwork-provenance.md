@@ -43,4 +43,4 @@ Echo, Tab Harvest and Cognitive OS use typographic studies, not newly claimed of
 
 ## Rendered motion gate
 
-Current page motion is GSAP scroll-linked transforms and native disclosure. It is not the completed scroll-world film. OpenArt quoted 1,000 credits for one five-second 1080p 16:9 silent Seedance 2.0 image-to-video job. A six-scene, eleven-clip chain is approximately 11,000 credits before retries at that configuration. Camera and portrait-chain decisions remain open; no credits were authorized or spent.
+Current page motion is GSAP scroll-linked transforms and native disclosure. It is not the completed scroll-world film. The initial 1,000-credit quote was for one five-second 1080p 16:9 silent Seedance 2.0 job; eleven such clips describes a dive/connector architecture. The proposed studio-glide architecture instead needs six sequential legs, without connectors. [scroll-world-film.md](scroll-world-film.md) records fresh eight-second leg quotes, probe pricing and handoff requirements. Camera, native portrait and spending decisions remain open; no video credits were authorized or spent.

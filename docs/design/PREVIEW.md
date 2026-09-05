@@ -70,7 +70,7 @@ Independent non-author artwork check found no concrete blocker, reran the static
 
 ## Unfinished release gates
 
-- Paid scroll-world video: budget, camera and native portrait decision pending. No render submitted.
+- Paid scroll-world video: exact scene-art approval, budget, camera and native portrait decision pending. No render submitted. [scroll-world-film.md](scroll-world-film.md) records freshly checked provider capabilities, current configuration-specific prices, six-scene handoffs, prompt candidates and real-media verification gates. A camera-only draft probe is quoted at 80 credits; it does not prove a seamless chain.
 - The live form backend is still the old endpoint. The replacement frontend/API and migrations are implemented and tested locally; deploy them together only after current D1 bindings, sender onboarding, production secrets and mailbox delivery are verified. No end-to-end production lead claim yet.
 - Edge rate-limit/spam protection needs an owner/operations decision. Origin checks alone are not abuse prevention. No Turnstile, IP records or new paid rules were silently added.
 - No production enquiry has been submitted. A labelled test requires explicit confirmation.

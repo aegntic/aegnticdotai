@@ -45,8 +45,10 @@ DONE IF:
 
 ## D. Rendered scroll-world film
 
+Current render brief and configuration-specific cost evidence: [scroll-world-film.md](scroll-world-film.md). Exact scene artwork, camera, spending ceiling and native portrait selection remain unapproved. No generated video exists yet.
+
 DONE IF:
-1. Camera direction, credit ceiling and portrait-chain decision are approved before paid rendering.
+1. Exact reference artwork/start canvases, camera direction, credit ceiling and portrait-chain decision are approved before paid rendering.
 2. Actual rendered frames establish continuous seams across the approved scenes; no CSS-only substitute is called a completed film.
 3. Scrub seeking, poster fallback, reduced motion, mobile performance and image/video byte budgets are tested against actual outputs.
 
