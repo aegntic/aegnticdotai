@@ -13,13 +13,14 @@
   <link rel="icon" href="/favicon.png">
   <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/design-system.css">
-  <link rel="stylesheet" href="/premium-nav.css">
+  <link rel="stylesheet" href="/premium-nav.css?v=b9d0f67814ab">
   <link rel="stylesheet" href="/journey.css">
   <script src="/premium-nav.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="/journey.js" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"aegntic","url":"https://aegntic.ai/","description":"Independent practice building AI agents, workflow automation and internal tools.","founder":{"@type":"Person","name":"Mattae Cooper"},"sameAs":["https://github.com/aegntic","https://x.com/aegntic_ai"]}</script>
+<link rel="stylesheet" href="/shared-footer.css">
 </head>
 <body class="journey-page">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -99,6 +100,16 @@
       <noscript><p class="no-script-contact">JavaScript is needed for the on-site form. You can also contact <a href="mailto:hello@aegntic.com">hello@aegntic.com</a>.</p></noscript>
     </section>
   </main>
-  <footer class="journey-footer"><span>aegntic.ai</span><span>Unlimited Insight, Zero Knowledge</span><span>© 2026 Mattae Cooper</span></footer>
+<footer class="ae-site-footer" aria-label="aegntic footer">
+  <div class="ae-site-footer__signature">
+    <a class="ae-site-footer__mark" href="/" aria-label="aegntic home">
+      <img class="ae-site-footer__flat" src="/ae-logo.webp" width="400" height="400" alt="" loading="lazy">
+      <img class="ae-site-footer__chrome" src="/assets/ae-logo-FINAL-nb.png" width="1254" height="1254" alt="" loading="lazy">
+    </a>
+    <div class="ae-site-footer__voice"><p>Unlimited Insight.<br>Zero Knowledge.</p><a href="/#contact" data-enquiry="Something else">Work with me <span aria-hidden="true">↗</span></a></div>
+  </div>
+  <nav class="ae-site-footer__links" aria-label="Footer navigation"><a href="/">Home</a><a href="/systems/">Systems</a><a href="/agents/">Agents</a><a href="/plugins/">Plugins</a><a href="/products/">Products</a><a href="/research/">Research</a><a href="/projects/">Projects</a><a href="/privacy/">Privacy</a></nav>
+  <div class="ae-site-footer__colophon"><span>aegntic.ai</span><span>© 2026 Mattae Cooper</span><a href="https://github.com/aegntic">GitHub <span aria-hidden="true">↗</span></a></div>
+</footer>
 </body>
 </html>

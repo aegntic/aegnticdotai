@@ -1,5 +1,6 @@
 import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { withSharedFooter } from './shared-footer.mjs';
 
 // Normalize committed and freshly generated static pages identically, even without Pandoc.
 // Original artwork and article bodies are retained; only retired offers and shell markup move.
@@ -21,6 +22,7 @@ export function syncSharedShell(outputDirectory) {
       if (path.includes('cognitive-os') && !/<main\b/.test(html)) {
         html = html.replace(/<body([^>]*)>/,'<body$1>\n<main id="main">').replace(/<footer\b/,'</main>\n<footer');
       }
+      html = withSharedFooter(html);
       if (html !== source) writeFileSync(path,html);
     }
   }

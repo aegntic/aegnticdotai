@@ -18,6 +18,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildCatalogues } from './build-catalogues.mjs';
 import { syncSharedShell } from './sync-shared-shell.mjs';
+import { withSharedFooter } from './shared-footer.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -395,7 +396,7 @@ function buildProjects(projects) {
 
   for (const p of projects) {
     const ctaHref = p.url || '/';
-    const ctaLabel = p.external ? 'Open project' : 'View';
+    const ctaLabel = p.ctaLabel || (p.external ? 'Open project' : 'View');
     const body = `<main class="page">
   <a class="back" href="/projects/">← Projects</a>
   <article class="prose">
@@ -410,7 +411,7 @@ function buildProjects(projects) {
       .join('\n')}
   </article>
   <div class="cta-row">
-    <a class="btn" href="${esc(ctaHref)}"${p.external ? ' target="_blank" rel="noopener"' : ''}>${esc(ctaLabel)}</a>
+    <a class="btn" href="${esc(ctaHref)}"${ctaHref === '/#contact' ? ' data-enquiry="Something else"' : ''}${p.external ? ' target="_blank" rel="noopener"' : ''}>${esc(ctaLabel)}</a>
     <a class="btn-ghost btn" href="/projects/">All projects</a>
     <a class="btn-ghost btn" href="mailto:hello@aegntic.com">Work with me</a>
   </div>
@@ -568,6 +569,10 @@ function ensureAssets() {
 }
 
 function main() {
+  const homePath = join(ROOT, 'index.html');
+  const homeSource = readFileSync(homePath, 'utf8');
+  const home = withSharedFooter(homeSource);
+  if (home !== homeSource) writeFileSync(homePath, home);
   buildCatalogues(OUT);
   buildAudits();
   syncSharedShell(OUT);

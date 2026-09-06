@@ -90,8 +90,9 @@
     "status": "Production",
     "summary": "Graphics-focused MCP surface for agent-driven visual work.",
     "body": "mcp.graphics is a production MCP-oriented graphics surface — part of the broader Aegntic MCP tooling stack.",
-    "url": "https://mcp.graphics",
-    "external": true,
+    "url": "/#contact",
+    "external": false,
+    "ctaLabel": "Ask about this project",
     "tags": ["MCP", "Graphics"],
     "image": "/assets/projects/transparent/zkputer-wireframe_transparent.png"
   },

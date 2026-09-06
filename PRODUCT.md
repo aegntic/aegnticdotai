@@ -16,12 +16,14 @@ All enquiry actions stay on the site. A guided form is appropriate; a simulated 
 
 ## Boundaries
 
-- Work in the local design branch. No broad design deployment without review.
+- The owner authorized publication of the reviewed 5187 build on 2026-09-06. Continue on the local design branch until Cloudflare authentication, production bindings, additive enquiry migrations and notification prerequisites are verified. Do not bypass those checks by pushing main.
 - Live colour correction is already deployed at af681dc; keep it intact.
 - Synced ChatGPT project sources are read-only and incomplete.
 - Existing typography: self-hosted Inter and Space Grotesk. Brand spelling: aegntic or AEGNTIC only.
 - HTML/CSS/GSAP prototypes are not a completed scroll-world film. Paid video generation awaits a budget/camera choice.
 - No audit offer, fabricated claims, unsolicited product analytics, or new dependencies.
+
+Footer requirement (2026-09-06): every substantive page ends with the same chrome AE logo, brand signature and working navigation/enquiry links. The original flat mark is a subtle pointer-hover material change; reduced-motion users receive an immediate change. No paid media or replacement hero is part of this release request.
 
 ## Authority and conversion
 

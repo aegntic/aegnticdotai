@@ -88,8 +88,9 @@ footer.page-foot{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--rul
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
   <link rel="stylesheet" href="/design-system.css">
-  <link rel="stylesheet" href="/premium-nav.css">
+  <link rel="stylesheet" href="/premium-nav.css?v=b9d0f67814ab">
   <script src="/premium-nav.js" defer></script>
+<link rel="stylesheet" href="/shared-footer.css">
 </head>
 <body>
 
@@ -171,7 +172,7 @@ footer.page-foot{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--rul
     <p style="margin-bottom:0">Email <a href="mailto:hello@aegntic.com">hello@aegntic.com</a></p>
   </div>
 
-  <footer class="page-foot">© 2026 Mattae Cooper · aegntic.ai</footer>
+
 </main>
 
 <script>
@@ -185,5 +186,16 @@ footer.page-foot{margin-top:4rem;padding-top:2rem;border-top:1px solid var(--rul
   window.addEventListener('scroll',updateProgress,{passive:true});
   updateProgress();
 </script>
+<footer class="ae-site-footer" aria-label="aegntic footer">
+  <div class="ae-site-footer__signature">
+    <a class="ae-site-footer__mark" href="/" aria-label="aegntic home">
+      <img class="ae-site-footer__flat" src="/ae-logo.webp" width="400" height="400" alt="" loading="lazy">
+      <img class="ae-site-footer__chrome" src="/assets/ae-logo-FINAL-nb.png" width="1254" height="1254" alt="" loading="lazy">
+    </a>
+    <div class="ae-site-footer__voice"><p>Unlimited Insight.<br>Zero Knowledge.</p><a href="/#contact" data-enquiry="Something else">Work with me <span aria-hidden="true">↗</span></a></div>
+  </div>
+  <nav class="ae-site-footer__links" aria-label="Footer navigation"><a href="/">Home</a><a href="/systems/">Systems</a><a href="/agents/">Agents</a><a href="/plugins/">Plugins</a><a href="/products/">Products</a><a href="/research/">Research</a><a href="/projects/">Projects</a><a href="/privacy/">Privacy</a></nav>
+  <div class="ae-site-footer__colophon"><span>aegntic.ai</span><span>© 2026 Mattae Cooper</span><a href="https://github.com/aegntic">GitHub <span aria-hidden="true">↗</span></a></div>
+</footer>
 </body>
 </html>

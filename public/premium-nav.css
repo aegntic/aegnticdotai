@@ -21,6 +21,8 @@ body.ae-menu-open{overflow:hidden}
 .ae-global-nav :focus-visible,.ae-menu :focus-visible{outline:2px solid #165bcc;outline-offset:5px}
 
 .ae-global-nav{position:fixed;inset:0 0 auto;z-index:990;display:flex;align-items:center;justify-content:space-between;padding:1rem;pointer-events:none;font-family:var(--ae-font-body)}
+/* Legacy pages customize their scrollbars; keep the navigation on one viewport grid. */
+@media(min-width:821px){.ae-global-nav{right:auto;width:calc(100vw - 15px)}}
 @media(min-width:1024px){.ae-global-nav{padding:1.35rem 3rem}}
 .ae-global-mark,.ae-menu-trigger{pointer-events:auto}
 .ae-global-mark{position:relative;display:flex;align-items:center;justify-content:center;width:3rem;height:3rem;transition:opacity .2s ease,transform .24s var(--ae-ease)}
