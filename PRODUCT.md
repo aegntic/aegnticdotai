@@ -27,6 +27,8 @@ All enquiry actions stay on the site. A guided form is appropriate; a simulated 
 
 Footer requirement (2026-09-06): every substantive page ends with the same chrome AE logo, brand signature and working navigation/enquiry links. The original flat mark is a subtle pointer-hover material change; reduced-motion users receive an immediate change. No paid media or replacement hero is part of this release request.
 
+Navigation refinement (2026-09-06): keep the square chrome header logo visible at rest; reveal the flat mark only on fine-pointer hover, with no autoplay logo loop. Restore the SOHub control motion from commit 98545de: two-line disc rotates on hover and Menu/Close labels slide vertically. Keep the present global menu and its stable dimensions. Subpages have a shared Back link: articles return to Writing, project details to Projects, other pages to Home. The homepage invitation reads `...lfg` in muted type with a brief arrow pulse when visible; reduced motion leaves it still. Uniform footer remains on every substantive page.
+
 ## Authority and conversion
 
 Authority comes from inspectable work, precise descriptions, maintained destinations, and a clear accountable person. Success means visitors understand what fits their problem and can enquire without leaving the page. No unique-user or conversion uplift claim is currently supported by evidence.

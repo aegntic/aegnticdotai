@@ -2,7 +2,7 @@ import {createHash} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 
 // Stable content version prevents a cached menu stylesheet from surviving a release.
-const navStyleVersion = createHash('sha256').update(readFileSync(new URL('../public/premium-nav.css', import.meta.url))).digest('hex').slice(0,12);
+const assetVersions = ['premium-nav.css','premium-nav.js','journey.css','journey.js','shared-footer.css'].map(file => [file, createHash('sha256').update(readFileSync(new URL(`../public/${file}`, import.meta.url))).digest('hex').slice(0,12)]);
 
 // One static, no-JavaScript footer for every public page.
 export function sharedFooter() {
@@ -21,9 +21,12 @@ export function sharedFooter() {
 
 export function withSharedFooter(html) {
   if (/http-equiv="refresh"/i.test(html)) return html;
-  html = html.replace(/href="\/premium-nav\.css(?:\?[^\"]*)?"/g, `href="/premium-nav.css?v=${navStyleVersion}"`);
   // Incumbent pages have one page footer, never an article-level footer.
   html = html.replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/gi, '');
-  if (!html.includes('href="/shared-footer.css"')) html = html.replace('</head>', '<link rel="stylesheet" href="/shared-footer.css">\n</head>');
+  if (!/href="\/shared-footer\.css(?:\?[^\"]*)?"/.test(html)) html = html.replace('</head>', '<link rel="stylesheet" href="/shared-footer.css">\n</head>');
+  for (const [file, version] of assetVersions) {
+    const pattern = new RegExp('((?:href|src)=")/' + file.replace('.', '\\.') + '(?:\\?[^\"]*)?"', 'g');
+    html = html.replace(pattern, `$1/${file}?v=${version}"`);
+  }
   return html.replace(/\s*<\/body>/, `\n${sharedFooter()}\n</body>`);
 }

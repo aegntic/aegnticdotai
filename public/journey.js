@@ -1,5 +1,12 @@
 (() => {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const invitation = document.querySelector('.world-next');
+  if (invitation && 'IntersectionObserver' in window) {
+    let visible = false;
+    const updatePulse = () => invitation.classList.toggle('is-visible', visible && !document.hidden);
+    new IntersectionObserver(([entry]) => {visible = entry.isIntersecting;updatePulse();}).observe(invitation);
+    document.addEventListener('visibilitychange', updatePulse);
+  }
   const track = document.querySelector('.product-track');
   if (track) {
     const cards = [...track.querySelectorAll('.product-object')];

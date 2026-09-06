@@ -27,24 +27,31 @@ body.ae-menu-open{overflow:hidden}
 .ae-global-mark,.ae-menu-trigger{pointer-events:auto}
 .ae-global-mark{position:relative;display:flex;align-items:center;justify-content:center;width:3rem;height:3rem;transition:opacity .2s ease,transform .24s var(--ae-ease)}
 .ae-global-mark.is-retreated:not(:focus){transform:translateY(-120px);opacity:0}
-.ae-global-mark .ae-mark-dimensional{position:absolute;inset:0;opacity:0;animation:ae-mark-loop 12s cubic-bezier(.45,0,.25,1) infinite;object-fit:contain}
-.ae-global-mark>img:first-child{animation:ae-mark-base 12s cubic-bezier(.45,0,.25,1) infinite}
-.ae-logo-paused .ae-global-mark img{animation-play-state:paused}
-.ae-motion-toggle{border:0;background:transparent;padding:8px 0;min-height:44px;color:inherit;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.ae-global-mark img{transition:opacity 280ms ease-out,transform 280ms var(--ae-ease)}
+.ae-global-mark .ae-mark-dimensional{position:absolute;inset:0;opacity:1;object-fit:contain}
+.ae-global-mark>img:first-child{opacity:0;transform:rotateY(-12deg) scale(.96)}
+@media(hover:hover) and (pointer:fine){.ae-global-mark:hover .ae-mark-dimensional{opacity:0;transform:rotateY(12deg) scale(.96)}.ae-global-mark:hover>img:first-child{opacity:1;transform:none}}
+.ae-page-back{position:absolute;left:80px;top:16px;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 10px;color:var(--ae-ink);background:var(--ae-paper);border:1px solid var(--ae-line);border-radius:999px;font:500 12px/1 var(--ae-font-body);pointer-events:auto}
+.ae-page-back:active{transform:scale(.975)}
+@media(min-width:1024px){.ae-page-back{left:112px;top:24px}}
+@media(max-width:820px){.ae-page-back{left:72px;top:16px}}
 .ae-keyboard .ae-menu,.ae-keyboard .ae-menu *{transition-duration:.01ms!important;transition-delay:0s!important}
-@keyframes ae-mark-base{0%,25%,90%,100%{opacity:1;transform:none}40%,73%{opacity:0;transform:rotateY(15deg) scale(.94)}}
-@keyframes ae-mark-loop{0%,25%,90%,100%{opacity:0;transform:rotateY(-15deg) scale(.94)}40%,73%{opacity:1;transform:none}}
+.ae-keyboard .ae-menu-trigger__label>span,.ae-keyboard .ae-menu-trigger__disc{transition-duration:.01ms!important}
 .ae-global-mark:hover{transform:scale(1.035)}
 .ae-global-mark img{width:100%;height:100%;object-fit:contain;filter:contrast(1.1)}
 .ae-menu-trigger{position:relative;display:inline-flex;align-items:center;justify-content:space-between;gap:.75rem;width:120px;height:50px;min-height:50px;padding:5px 6px 5px 18px;border:0;border-radius:999px;background:var(--ae-ink);color:#fff;box-shadow:0 1rem 3rem rgba(12,16,22,.18);cursor:pointer;font:600 .68rem/1 var(--ae-font-body);letter-spacing:.09em;text-transform:uppercase;transform:translate3d(0,0,0);transition:box-shadow .25s ease,background .2s ease}
 .ae-menu-trigger:active{transform:scale(.975)}
-.ae-menu-trigger__disc{display:grid;place-items:center;width:2.5rem;height:2.5rem;border-radius:50%;background:#252b31;transition:transform .5s var(--ae-ease-heavy),background .2s ease}
+.ae-menu-trigger__label{position:relative;display:block;width:54px;height:20px;overflow:hidden}
+.ae-menu-trigger__label>span{position:absolute;inset:0;display:flex;align-items:center;transition:transform 500ms cubic-bezier(.22,.68,0,1.2)}
+.ae-menu-close{transform:translateY(100%)}
+.ae-menu-trigger[aria-expanded='true'] .ae-menu-label{transform:translateY(-100%)}
+.ae-menu-trigger[aria-expanded='true'] .ae-menu-close{transform:translateY(0)}
+.ae-menu-trigger__disc{position:relative;flex:none;display:grid;place-items:center;width:2.5rem;height:2.5rem;border-radius:50%;background:#252b31;transition:transform 500ms cubic-bezier(.22,.68,0,1.5)}
 .ae-menu-trigger__disc::before,.ae-menu-trigger__disc::after{content:'';position:absolute;width:.85rem;height:1px;background:#fff;transition:transform .45s var(--ae-ease)}
 .ae-menu-trigger__disc::before{transform:translateY(-3px)}
 .ae-menu-trigger__disc::after{transform:translateY(3px)}
-.ae-menu-trigger[aria-expanded='true'] .ae-menu-trigger__disc{background:var(--ae-signal);transform:rotate(90deg)}
-.ae-menu-trigger[aria-expanded='true'] .ae-menu-trigger__disc::before{transform:rotate(45deg)}
-.ae-menu-trigger[aria-expanded='true'] .ae-menu-trigger__disc::after{transform:rotate(-45deg)}
+.ae-menu-trigger[aria-expanded='true'] .ae-menu-trigger__disc{transform:rotate(90deg)}
+@media(hover:hover) and (pointer:fine){.ae-menu-trigger:hover .ae-menu-trigger__disc{transform:rotate(90deg)}}
 
 .ae-menu{position:fixed;inset:0;z-index:980;visibility:hidden;pointer-events:none;color:var(--ae-ink);font-family:var(--ae-font-body);transition:visibility 0s linear .18s}
 .ae-menu[aria-hidden='false']{visibility:visible;pointer-events:auto;transition-delay:0s}
@@ -111,8 +118,8 @@ body.ae-menu-open{overflow:hidden}
 
 @media(hover:hover) and (pointer:fine){.ae-menu-trigger:hover{box-shadow:0 1.35rem 3.5rem rgba(12,16,22,.28)}}
 @media(prefers-reduced-motion:reduce){
-  .ae-global-mark img{animation:none!important}
+  .ae-global-mark img{animation:none!important;transition:none!important;transform:none!important}
   .ae-global-mark,.ae-menu{transition:none!important}
-  .ae-menu__veil,.ae-menu__shell,.ae-menu__panel,.ae-menu__link,.ae-menu-card,.ae-menu-trigger,.ae-menu-trigger__disc{transition-duration:.01ms!important}
+  .ae-menu__veil,.ae-menu__shell,.ae-menu__panel,.ae-menu__link,.ae-menu-card,.ae-menu-trigger,.ae-menu-trigger__disc,.ae-menu-trigger__label>span{transition-duration:.01ms!important}
   .ae-menu__shell{transform:none!important}
 }

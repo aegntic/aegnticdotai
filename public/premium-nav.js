@@ -57,13 +57,12 @@
   function mount() {
     if (document.querySelector('.ae-global-nav')) return;
     const shell = document.createElement('div');
-    shell.innerHTML = `<header class="ae-global-nav"><a class="ae-global-mark" href="/" aria-label="aegntic home"><img src="/ae-logo.webp" alt="aegntic"></a><button class="ae-menu-trigger" type="button" aria-expanded="false" aria-controls="ae-command-menu" data-magnetic><span class="ae-menu-trigger__label">Menu</span><span class="ae-menu-trigger__disc" aria-hidden="true"></span></button></header><nav class="ae-menu" id="ae-command-menu" aria-hidden="true" aria-label="Primary navigation"><div class="ae-menu__veil" data-ae-close></div><div class="ae-menu__shell"><div class="ae-menu__grid"><div class="ae-menu__index"><span class="ae-menu__eyebrow">aegntic / operating surface</span><div class="ae-menu__list">${Object.entries(groups).map(([key,group]) => `<a class="ae-menu__link" href="${group.href}" data-ae-menu-key="${key}">/${key}</a>`).join('')}</div><div class="ae-menu__foot"><a href="/research/">Research</a><a href="/blog/">Writing</a><a href="https://github.com/aegntic">GitHub</a></div></div><div class="ae-menu__stage">${Object.entries(groups).map(panelMarkup).join('')}</div></div></div></nav>`;
+    shell.innerHTML = `<header class="ae-global-nav"><a class="ae-global-mark" href="/" aria-label="aegntic home"><img src="/ae-logo.webp" alt="aegntic"></a><button class="ae-menu-trigger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="ae-command-menu" data-magnetic><span class="ae-menu-trigger__label" aria-hidden="true"><span class="ae-menu-label">Menu</span><span class="ae-menu-close">Close</span></span><span class="ae-menu-trigger__disc" aria-hidden="true"></span></button></header><nav class="ae-menu" id="ae-command-menu" aria-hidden="true" aria-label="Primary navigation"><div class="ae-menu__veil" data-ae-close></div><div class="ae-menu__shell"><div class="ae-menu__grid"><div class="ae-menu__index"><span class="ae-menu__eyebrow">aegntic / operating surface</span><div class="ae-menu__list">${Object.entries(groups).map(([key,group]) => `<a class="ae-menu__link" href="${group.href}" data-ae-menu-key="${key}">/${key}</a>`).join('')}</div><div class="ae-menu__foot"><a href="/research/">Research</a><a href="/blog/">Writing</a><a href="https://github.com/aegntic">GitHub</a></div></div><div class="ae-menu__stage">${Object.entries(groups).map(panelMarkup).join('')}</div></div></div></nav>`;
     document.body.prepend(...shell.childNodes);
     document.body.classList.add('ae-nav-mounted');
     document.querySelectorAll('body > .nav, body > #site-menu').forEach(el => el.setAttribute('aria-hidden','true'));
 
     const trigger = document.querySelector('.ae-menu-trigger');
-    const label = trigger.querySelector('.ae-menu-trigger__label');
     const menu = document.getElementById('ae-command-menu');
     const links = [...menu.querySelectorAll('[data-ae-menu-key]')];
     const panels = [...menu.querySelectorAll('[data-ae-panel]')];
@@ -72,17 +71,15 @@
     const inertBefore = new Map();
     menu.inert = true;
     mark.insertAdjacentHTML('beforeend', '<img class="ae-mark-dimensional" src="/assets/ae-logo-FINAL-nb.png" alt="" aria-hidden="true">');
-    const motionButton = document.createElement('button');
-    motionButton.type = 'button';
-    motionButton.className = 'ae-motion-toggle';
-    motionButton.textContent = 'Pause logo loop';
-    motionButton.setAttribute('aria-pressed','false');
-    menu.querySelector('.ae-menu__foot').append(motionButton);
-    motionButton.addEventListener('click', () => {
-      const paused = document.body.classList.toggle('ae-logo-paused');
-      motionButton.setAttribute('aria-pressed',String(paused));
-      motionButton.textContent = paused ? 'Resume logo loop' : 'Pause logo loop';
-    });
+    if (location.pathname !== '/' && !/^\/home\/?$/.test(location.pathname)) {
+      const parent = /^\/blog\/[^/]+/.test(location.pathname) ? ['/blog/', 'Back to writing'] : /^\/projects\/[^/]+/.test(location.pathname) ? ['/projects/', 'Back to projects'] : ['/', 'Back to home'];
+      const back = document.createElement('a');
+      back.className = 'ae-page-back';
+      back.href = parent[0];
+      back.setAttribute('aria-label', parent[1]);
+      back.innerHTML = '<span aria-hidden="true">←</span> Back';
+      document.querySelector('.ae-global-nav').append(back);
+    }
     document.addEventListener('keydown', event => {if (event.key === 'Tab') document.body.classList.add('ae-keyboard');});
     document.addEventListener('pointerdown', () => document.body.classList.remove('ae-keyboard'));
     const enquiryScript = document.createElement('script');
@@ -118,7 +115,7 @@
       trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
       menu.setAttribute('aria-hidden', open ? 'false' : 'true');
       document.body.classList.toggle('ae-menu-open', open);
-      label.textContent = open ? 'Close' : 'Menu';
+      trigger.setAttribute('aria-label', open ? 'Close' : 'Menu');
       menu.inert = !open;
       if (open) {
         [...document.body.children].filter(element => element !== menu && !element.classList.contains('ae-global-nav') && element.tagName !== 'SCRIPT' && element.tagName !== 'DIALOG').forEach(element => {
@@ -148,7 +145,7 @@
     });
     document.addEventListener('keydown', event => {
       if (event.key === 'Tab' && trigger.getAttribute('aria-expanded') === 'true') {
-        const focusable = [mark, trigger, ...menu.querySelectorAll('a,button,[tabindex="0"]')].filter(element => !element.closest('[inert]') && element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
+        const focusable = [mark, trigger, ...document.querySelectorAll('.ae-page-back'), ...menu.querySelectorAll('a,button,[tabindex="0"]')].filter(element => !element.closest('[inert]') && element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
         const index = focusable.indexOf(document.activeElement);
         if (event.shiftKey && index <= 0) {event.preventDefault();focusable.at(-1).focus();}
         else if (!event.shiftKey && (index === focusable.length - 1 || index < 0)) {event.preventDefault();focusable[0].focus();}
@@ -189,7 +186,7 @@
     }
 
     activate(routeKey);
-    label.textContent = 'Menu';
+    trigger.setAttribute('aria-label', 'Menu');
 
     // Measure against the fixed, untransformed logo footprint to prevent oscillation.
     let collisionFrame = 0;
