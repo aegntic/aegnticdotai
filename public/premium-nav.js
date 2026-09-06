@@ -57,7 +57,7 @@
   function mount() {
     if (document.querySelector('.ae-global-nav')) return;
     const shell = document.createElement('div');
-    shell.innerHTML = `<header class="ae-global-nav"><a class="ae-global-mark" href="/" aria-label="aegntic home"><img src="/ae-logo.webp" alt="aegntic"></a><button class="ae-menu-trigger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="ae-command-menu" data-magnetic><span class="ae-menu-trigger__label" aria-hidden="true"><span class="ae-menu-label">Menu</span><span class="ae-menu-close">Close</span></span><span class="ae-menu-trigger__disc" aria-hidden="true"></span></button></header><nav class="ae-menu" id="ae-command-menu" aria-hidden="true" aria-label="Primary navigation"><div class="ae-menu__veil" data-ae-close></div><div class="ae-menu__shell"><div class="ae-menu__grid"><div class="ae-menu__index"><span class="ae-menu__eyebrow">aegntic / operating surface</span><div class="ae-menu__list">${Object.entries(groups).map(([key,group]) => `<a class="ae-menu__link" href="${group.href}" data-ae-menu-key="${key}">/${key}</a>`).join('')}</div><div class="ae-menu__foot"><a href="/research/">Research</a><a href="/blog/">Writing</a><a href="https://github.com/aegntic">GitHub</a></div></div><div class="ae-menu__stage">${Object.entries(groups).map(panelMarkup).join('')}</div></div></div></nav>`;
+    shell.innerHTML = `<header class="ae-global-nav"><a class="ae-global-mark" href="/" aria-label="aegntic home"><img src="/ae-logo.webp" alt="aegntic"></a><button class="ae-menu-trigger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="ae-command-menu"><span class="ae-menu-trigger__label" aria-hidden="true"><span class="ae-menu-label">Menu</span><span class="ae-menu-close">Close</span></span><span class="ae-menu-trigger__disc" aria-hidden="true"></span></button></header><nav class="ae-menu" id="ae-command-menu" aria-hidden="true" aria-label="Primary navigation"><div class="ae-menu__veil" data-ae-close></div><div class="ae-menu__shell"><div class="ae-menu__grid"><div class="ae-menu__index"><span class="ae-menu__eyebrow">aegntic / operating surface</span><div class="ae-menu__list">${Object.entries(groups).map(([key,group]) => `<a class="ae-menu__link" href="${group.href}" data-ae-menu-key="${key}">/${key}</a>`).join('')}</div><div class="ae-menu__foot"><a href="/research/">Research</a><a href="/blog/">Writing</a><a href="https://github.com/aegntic">GitHub</a></div></div><div class="ae-menu__stage">${Object.entries(groups).map(panelMarkup).join('')}</div></div></div></nav>`;
     document.body.prepend(...shell.childNodes);
     document.body.classList.add('ae-nav-mounted');
     document.querySelectorAll('body > .nav, body > #site-menu').forEach(el => el.setAttribute('aria-hidden','true'));
@@ -175,17 +175,14 @@
       });
     });
 
-    const canMagnet = matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches;
-    if (canMagnet) {
-      document.querySelectorAll('[data-magnetic]').forEach(element => {
-        let tx=0,ty=0,x=0,y=0,raf=0;
-        const tick=()=>{x+=(tx-x)*.13;y+=(ty-y)*.13;element.style.transform=`translate3d(${x}px,${y}px,0)`;if(Math.abs(tx-x)+Math.abs(ty-y)>.08)raf=requestAnimationFrame(tick);else raf=0};
-        element.addEventListener('pointermove', event => {const rect=element.getBoundingClientRect();tx=(event.clientX-rect.left-rect.width/2)*.18;ty=(event.clientY-rect.top-rect.height/2)*.22;if(!raf)raf=requestAnimationFrame(tick)});
-        element.addEventListener('pointerleave',()=>{tx=0;ty=0;if(!raf)raf=requestAnimationFrame(tick)});
-      });
-    }
-
     activate(routeKey);
+
+    // Compact footer index; no second carousel or two-tap navigation.
+    document.querySelectorAll('[data-footer-key]').forEach(link => {
+      const current = link.dataset.footerKey === routeKey;
+      link.classList.toggle('is-active', current);
+      if (current) link.setAttribute('aria-current', 'page');
+    });
     trigger.setAttribute('aria-label', 'Menu');
 
     // Measure against the fixed, untransformed logo footprint to prevent oscillation.

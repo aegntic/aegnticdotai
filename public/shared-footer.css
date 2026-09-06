@@ -12,6 +12,14 @@ footer.ae-site-footer{display:block;position:relative;box-sizing:border-box;widt
 .ae-site-footer__links{display:flex;flex-wrap:wrap;gap:4px 28px;margin:0;padding:20px 0;border-block:1px solid #d9dedf}
 .ae-site-footer__links a,.ae-site-footer__colophon a{display:inline-flex;align-items:center;min-height:44px}
 .ae-site-footer__colophon{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;color:#505a61;font-size:12px}
+.ae-site-footer__secondary{display:flex;flex-wrap:wrap;gap:8px 28px;padding-top:16px;color:#505a61}
+.ae-site-footer__secondary a{display:inline-flex;align-items:center;min-height:44px}
 @media(hover:hover) and (pointer:fine){.ae-site-footer__mark:hover .ae-site-footer__flat{opacity:1;transform:none}.ae-site-footer__mark:hover .ae-site-footer__chrome{opacity:0;transform:rotateY(12deg) scale(.96)}.ae-site-footer__links a:hover,.ae-site-footer__colophon a:hover{text-decoration:underline;text-underline-offset:5px}}
 @media(max-width:600px){footer.ae-site-footer{padding:48px 28px 24px}.ae-site-footer__signature{align-items:flex-start;flex-direction:column;gap:32px;padding-bottom:36px}.ae-site-footer__mark{width:180px}.ae-site-footer__voice p{font-size:34px}.ae-site-footer__links{gap:0 22px}.ae-site-footer__colophon{flex-wrap:wrap}.ae-site-footer__colophon>span:first-child{width:100%;font-weight:600}}
 @media(prefers-reduced-motion:reduce){.ae-site-footer__mark img{transition:none;transform:none!important}}
+.ae-footer-navigation{padding:24px 0;border-block:1px solid #d9dedf}
+.ae-site-footer .ae-site-footer__links{display:flex;flex-direction:column;align-items:flex-start;gap:0;border:0;margin:0;padding:0}
+.ae-site-footer .ae-menu__link{color:#0c1016;font:500 clamp(26px,2.5vw,36px)/1.05 var(--ae-font-display);letter-spacing:-.055em;min-height:44px;gap:12px;white-space:nowrap}
+.ae-site-footer .ae-menu__link:hover,.ae-site-footer .ae-menu__link:focus-visible{text-decoration:none}
+.ae-keyboard .ae-footer-navigation *{transition-duration:.01ms!important}
+@media(prefers-reduced-motion:reduce){.ae-footer-navigation *{transition:none!important}}

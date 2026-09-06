@@ -14,7 +14,8 @@ export function sharedFooter() {
     </a>
     <div class="ae-site-footer__voice"><p>Unlimited Insight.<br>Zero Knowledge.</p><a href="/#contact" data-enquiry="Something else">Work with me <span aria-hidden="true">↗</span></a></div>
   </div>
-  <nav class="ae-site-footer__links" aria-label="Footer navigation"><a href="/">Home</a><a href="/systems/">Systems</a><a href="/agents/">Agents</a><a href="/plugins/">Plugins</a><a href="/products/">Products</a><a href="/research/">Research</a><a href="/projects/">Projects</a><a href="/privacy/">Privacy</a></nav>
+  <div class="ae-footer-navigation"><nav class="ae-site-footer__links" aria-label="Footer navigation">${['home','systems','agents','plugins','products','contact'].map(key => `<a class="ae-menu__link" data-footer-key="${key}" href="${key === 'home' ? '/' : key === 'contact' ? '/#contact' : `/${key}/`}">/${key}</a>`).join('')}</nav></div>
+  <nav class="ae-site-footer__secondary" aria-label="More from aegntic"><a href="/research/">Research</a><a href="/blog/">Writing</a><a href="/projects/">Projects</a><a href="/privacy/">Privacy</a></nav>
   <div class="ae-site-footer__colophon"><span>aegntic.ai</span><span>© ${new Date().getFullYear()} Mattae Cooper</span><a href="https://github.com/aegntic">GitHub <span aria-hidden="true">↗</span></a></div>
 </footer>`;
 }
