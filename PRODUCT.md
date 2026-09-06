@@ -12,6 +12,8 @@ Mascot refinement (2026-09-05): the owner prefers the original landing mascot's 
 
 Product marks disclose a concise explanation on the page. Navigation to the product happens only through an explicit link. Echo's destination is https://echo.aegntic.ai/. No invented partner logos or affiliate relationships.
 
+Agents exception (2026-09-06): the owner selected the original chrome cube-headed robot holding a transparent tablet, as shown in screenshot-2026-09-06_14-08-20.png. Use the existing `public/assets/worlds/agents.webp` on both the homepage Agents section and `/agents/`, retaining the spacious copy-left/art-right composition. Other scenes keep their current mascot artwork.
+
 All enquiry actions stay on the site. A guided form is appropriate; a simulated chatbot must not be represented as an AI or a human. Social links come from existing source. Partner/affiliate links need confirmation before publication.
 
 ## Boundaries
