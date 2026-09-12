@@ -19,7 +19,7 @@ interface Enquiry {
 }
 
 const MAX_BYTES = 32768;
-const RECIPIENT = 'hello@aegntic.com';
+const RECIPIENT = 'hello@aegntic.ai';
 const OFFERS: Record<string, string> = {
     'Agent build': 'agent-build',
     'Workflow automation': 'workflow-automation',

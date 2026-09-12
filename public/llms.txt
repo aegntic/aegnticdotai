@@ -69,7 +69,7 @@ Full archive: https://aegntic.ai/research/ and https://aegntic.ai/blog/
 - …and 24 more at https://aegntic.ai/blog/
 
 ## Contact
-- Email: hello@aegntic.com
+- Email: hello@aegntic.ai
 - GitHub: https://github.com/aegntic
 - X: https://x.com/aegntic_ai
 - About: https://aegntic.ai/about/

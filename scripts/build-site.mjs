@@ -132,7 +132,7 @@ function shell({
       <a href="/research/">Research</a>
       <a href="https://github.com/aegntic" target="_blank" rel="noopener">GitHub</a>
       <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">X</a>
-      <a href="mailto:hello@aegntic.com">Contact</a>
+      <a href="mailto:hello@aegntic.ai">Contact</a>
     </div>
     <div class="footer-copy">&copy; ${new Date().getFullYear()} Mattae Cooper · aegntic.ai</div>
   </footer>
@@ -268,7 +268,7 @@ function buildBlog(posts) {
   </article>
   <div class="cta-row">
     <a class="btn-ghost btn" href="/blog/">All posts</a>
-    <a class="btn" href="mailto:hello@aegntic.com">Work with me</a>
+    <a class="btn" href="mailto:hello@aegntic.ai">Work with me</a>
   </div>
 </main>`;
     write(
@@ -413,7 +413,7 @@ function buildProjects(projects) {
   <div class="cta-row">
     <a class="btn" href="${esc(ctaHref)}"${ctaHref === '/#contact' ? ' data-enquiry="Something else"' : ''}${p.external ? ' target="_blank" rel="noopener"' : ''}>${esc(ctaLabel)}</a>
     <a class="btn-ghost btn" href="/projects/">All projects</a>
-    <a class="btn-ghost btn" href="mailto:hello@aegntic.com">Work with me</a>
+    <a class="btn-ghost btn" href="mailto:hello@aegntic.ai">Work with me</a>
   </div>
 </main>`;
     write(
@@ -452,7 +452,7 @@ function buildAbout() {
   <article class="prose">
     <p>I design, build, and ship AI-agent systems alone — architecture through deployment — in Rust, Go, TypeScript, and Python. Onchain trade execution, large Go backends on Postgres and AWS, edge products on Cloudflare Workers: real systems in production.</p>
     <p>No agency, no handoff. Custom agent builds, automation that removes manual work, and developer tooling for the Claude Code ecosystem. The proof is public.</p>
-    <p><strong>Contact:</strong> <a href="mailto:hello@aegntic.com">hello@aegntic.com</a> · <a href="https://github.com/aegntic">GitHub</a> · <a href="https://x.com/aegntic_ai">X</a></p>
+    <p><strong>Contact:</strong> <a href="mailto:hello@aegntic.ai">hello@aegntic.ai</a> · <a href="https://github.com/aegntic">GitHub</a> · <a href="https://x.com/aegntic_ai">X</a></p>
   </article>
 </main>`;
   write(
@@ -526,7 +526,7 @@ ${projectLines}
 Full archive: ${SITE}/research/ and ${SITE}/blog/
 ${postLines}${more}
 ## Contact
-- Email: hello@aegntic.com
+- Email: hello@aegntic.ai
 - GitHub: https://github.com/aegntic
 - X: https://x.com/aegntic_ai
 - About: ${SITE}/about/

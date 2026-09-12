@@ -31,7 +31,7 @@
       <p class="ae-enquiry-status" role="status" aria-live="polite"></p>
       <button type="submit" class="ae-enquiry-submit">Send enquiry <span aria-hidden="true">↗</span></button>
       <p class="ae-enquiry-privacy">Your details are used to respond to this enquiry. <a href="/privacy/">Privacy</a></p>
-      <p class="ae-enquiry-fallback">Or email <a href="mailto:hello@aegntic.com">hello@aegntic.com</a></p>
+      <p class="ae-enquiry-fallback">Or email <a href="mailto:hello@aegntic.ai">hello@aegntic.ai</a></p>
     </form></div>`;
   document.body.append(dialog);
   const form = dialog.querySelector('form');
