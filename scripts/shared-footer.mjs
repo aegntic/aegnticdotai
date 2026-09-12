@@ -26,7 +26,8 @@ export function withSharedFooter(html) {
   if (/http-equiv="refresh"/i.test(html)) return html;
   // Incumbent pages have one page footer, never an article-level footer.
   html = html.replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/gi, '');
-  if (!html.includes('gsap.min.js')) html = html.replace('</head>', '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>\n</head>');
+  // Self-hosted GSAP (public/vendor/gsap/3.13.0) — no runtime CDN dependency, matches the self-hosted-fonts doctrine.
+  if (!html.includes('gsap.min.js')) html = html.replace('</head>', '<script defer src="/vendor/gsap/3.13.0/gsap.min.js"></script>\n</head>');
   if (!/href="\/shared-footer\.css(?:\?[^\"]*)?"/.test(html)) html = html.replace('</head>', '<link rel="stylesheet" href="/shared-footer.css">\n</head>');
   for (const [file, version] of assetVersions) {
     const pattern = new RegExp('((?:href|src)=")/' + file.replace('.', '\\.') + '(?:\\?[^\"]*)?"', 'g');
