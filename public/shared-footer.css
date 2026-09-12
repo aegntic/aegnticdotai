@@ -8,6 +8,7 @@ footer.ae-site-footer{display:block;position:relative;box-sizing:border-box;widt
 .ae-site-footer__mark img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;max-width:none;margin:0;border:0;border-radius:0;filter:none;transition:opacity 280ms ease-out,transform 280ms cubic-bezier(.16,1,.3,1)}
 .ae-site-footer__flat{opacity:0;transform:rotateY(-12deg) scale(.96)}
 .ae-site-footer__voice p{margin:0 0 28px;font:500 clamp(26px,4.5vw,64px)/1.08 var(--ae-font-display,'Space Grotesk',sans-serif);letter-spacing:-.035em;color:#0c1016}
+.ae-site-footer__voice p.ae-site-footer__triad{margin:-16px 0 28px;font:400 clamp(12px,1.6vw,18px)/1.4 var(--ae-font-body,'Inter',sans-serif);letter-spacing:.02em;text-transform:lowercase;opacity:.72}
 .ae-site-footer__voice>a{display:inline-flex;gap:28px;align-items:center;min-height:44px;font-weight:500;border-bottom:1px solid #0c1016}
 .ae-site-footer__links{display:flex;flex-wrap:wrap;gap:4px 28px;margin:0;padding:20px 0;border-block:1px solid #d9dedf}
 .ae-site-footer__links a,.ae-site-footer__colophon a{display:inline-flex;align-items:center;min-height:44px}
@@ -21,5 +22,9 @@ footer.ae-site-footer{display:block;position:relative;box-sizing:border-box;widt
 .ae-site-footer .ae-site-footer__links{display:flex;flex-direction:column;align-items:flex-start;gap:0;border:0;margin:0;padding:0}
 .ae-site-footer .ae-menu__link{color:#0c1016;font:500 clamp(26px,2.5vw,36px)/1.05 var(--ae-font-display);letter-spacing:-.055em;min-height:44px;gap:12px;white-space:nowrap}
 .ae-site-footer .ae-menu__link:hover,.ae-site-footer .ae-menu__link:focus-visible{text-decoration:none}
+.ae-footer-item{min-height:66px}
+.ae-site-footer .ae-menu__link::before{display:block;flex-shrink:0}
+.ae-footer-description{display:block;height:20px;margin-left:12px;color:#687178;font:400 12px/20px var(--ae-font-body,Inter,sans-serif);letter-spacing:0;white-space:nowrap}
+.ae-footer-description-accessible{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .ae-keyboard .ae-footer-navigation *{transition-duration:.01ms!important}
 @media(prefers-reduced-motion:reduce){.ae-footer-navigation *{transition:none!important}}
