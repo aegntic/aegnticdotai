@@ -12,7 +12,7 @@ export function sharedFooter() {
       <img class="ae-site-footer__flat" src="/ae-logo.webp" width="400" height="400" alt="" loading="lazy">
       <img class="ae-site-footer__chrome" src="/assets/ae-logo-FINAL-nb.png" width="1254" height="1254" alt="" loading="lazy">
     </a>
-    <div class="ae-site-footer__voice"><p>Unlimited Insight.<br>Zero Knowledge.</p><a href="/#contact" data-enquiry="Something else">Work with me <span aria-hidden="true">↗</span></a></div>
+    <div class="ae-site-footer__voice"><p>Unlimited Insight.<br>Zero Knowledge.</p><p class="ae-site-footer__triad">iii / unltd; insight : : innovation : : integrity : : iv / zero knowledge</p><a href="/#contact" data-enquiry="Something else">Work with me <span aria-hidden="true">↗</span></a></div>
   </div>
   <div class="ae-footer-navigation"><nav class="ae-site-footer__links" aria-label="Footer navigation">${['home','systems','agents','plugins','products','contact'].map(key => `<a class="ae-menu__link" data-footer-key="${key}" href="${key === 'home' ? '/' : key === 'contact' ? '/#contact' : `/${key}/`}">/${key}</a>`).join('')}</nav></div>
   <nav class="ae-site-footer__secondary" aria-label="More from aegntic"><a href="/research/">Research</a><a href="/blog/">Writing</a><a href="/projects/">Projects</a><a href="/privacy/">Privacy</a></nav>
