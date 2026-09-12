@@ -283,8 +283,8 @@ const Home: React.FC<HomeProps> = ({ onSelectProject, onOpenContact }) => {
                         <button onClick={onOpenContact} className="btn-primary">
                             Start a project <ArrowRight size={14} />
                         </button>
-                        <a href="mailto:hello@aegntic.com" className="nav-link flex items-center gap-2">
-                            <Mail size={14} /> hello@aegntic.com
+                        <a href="mailto:hello@aegntic.ai" className="nav-link flex items-center gap-2">
+                            <Mail size={14} /> hello@aegntic.ai
                         </a>
                     </div>
                 </section>

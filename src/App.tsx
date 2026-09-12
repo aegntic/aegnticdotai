@@ -167,7 +167,7 @@ const App: React.FC = () => {
                             {[
                                 { type: 'GitHub', value: 'github.com/aegntic', href: 'https://github.com/aegntic' },
                                 { type: 'Twitter', value: '@aegntic_ai', href: 'https://twitter.com/aegntic_ai' },
-                                { type: 'Email', value: 'hello@aegntic.com', href: 'mailto:hello@aegntic.com' },
+                                { type: 'Email', value: 'hello@aegntic.ai', href: 'mailto:hello@aegntic.ai' },
                             ].map((method, idx) => (
                                 <a key={idx} href={method.href} target={method.type !== 'Email' ? '_blank' : undefined} rel="noopener noreferrer" className="group block">
                                     <div className="text-sm mb-1" style={{ color: 'var(--color-text-tertiary)' }}>{method.type}</div>

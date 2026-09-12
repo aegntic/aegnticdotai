@@ -4,9 +4,7 @@ import {readFileSync} from 'node:fs';
 // Stable content version prevents a cached menu stylesheet from surviving a release.
 const assetVersions = ['premium-nav.css','premium-nav.js','journey.css','journey.js','shared-footer.css'].map(file => [file, createHash('sha256').update(readFileSync(new URL(`../public/${file}`, import.meta.url))).digest('hex').slice(0,12)]);
 
-const descriptions = {home:'Start with the work.',systems:'Connect the workflow.',agents:'Give work an operator.',plugins:'Add a new ability.',products:'Tools, ready to use.',contact:'Bring the next idea.'};
-
-// Static links remain usable without JavaScript; motion progressively enhances them.
+// One static, no-JavaScript footer for every public page.
 export function sharedFooter() {
   return `<footer class="ae-site-footer" aria-label="aegntic footer">
   <div class="ae-site-footer__signature">
@@ -16,7 +14,7 @@ export function sharedFooter() {
     </a>
     <div class="ae-site-footer__voice"><p>Unlimited Insight.<br>Zero Knowledge.</p><p class="ae-site-footer__triad">iii / unltd; insight : : innovation : : integrity : : iv / zero knowledge</p><a href="/#contact" data-enquiry="Something else">Work with me <span aria-hidden="true">↗</span></a></div>
   </div>
-  <div class="ae-footer-navigation"><nav class="ae-site-footer__links" aria-label="Footer navigation">${Object.entries(descriptions).map(([key,description]) => `<div class="ae-footer-item"><a class="ae-menu__link" data-footer-key="${key}" aria-describedby="ae-footer-description-${key}" href="${key === 'home' ? '/' : key === 'contact' ? '/#contact' : `/${key}/`}">/${key}</a><span id="ae-footer-description-${key}" class="ae-footer-description-accessible">${description}</span><span class="ae-footer-description" aria-hidden="true"></span></div>`).join('')}</nav></div>
+  <div class="ae-footer-navigation"><nav class="ae-site-footer__links" aria-label="Footer navigation">${['home','systems','agents','plugins','products','contact'].map(key => `<a class="ae-menu__link" data-footer-key="${key}" href="${key === 'home' ? '/' : key === 'contact' ? '/#contact' : `/${key}/`}">/${key}</a>`).join('')}</nav></div>
   <nav class="ae-site-footer__secondary" aria-label="More from aegntic"><a href="/research/">Research</a><a href="/blog/">Writing</a><a href="/projects/">Projects</a><a href="/privacy/">Privacy</a></nav>
   <div class="ae-site-footer__colophon"><span>aegntic.ai</span><span>© ${new Date().getFullYear()} Mattae Cooper</span><a href="https://github.com/aegntic">GitHub <span aria-hidden="true">↗</span></a></div>
 </footer>`;
@@ -26,8 +24,6 @@ export function withSharedFooter(html) {
   if (/http-equiv="refresh"/i.test(html)) return html;
   // Incumbent pages have one page footer, never an article-level footer.
   html = html.replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/gi, '');
-  // Self-hosted GSAP (public/vendor/gsap/3.13.0) — no runtime CDN dependency, matches the self-hosted-fonts doctrine.
-  if (!html.includes('gsap.min.js')) html = html.replace('</head>', '<script defer src="/vendor/gsap/3.13.0/gsap.min.js"></script>\n</head>');
   if (!/href="\/shared-footer\.css(?:\?[^\"]*)?"/.test(html)) html = html.replace('</head>', '<link rel="stylesheet" href="/shared-footer.css">\n</head>');
   for (const [file, version] of assetVersions) {
     const pattern = new RegExp('((?:href|src)=")/' + file.replace('.', '\\.') + '(?:\\?[^\"]*)?"', 'g');

@@ -39,7 +39,7 @@ test('saves the full enquiry before notifying the fixed owner address', async t 
     assert.equal(url, `https://api.cloudflare.com/client/v4/accounts/${'a'.repeat(32)}/email/sending/send`);
     assert.equal(options.headers.Authorization, 'Bearer local-test-token');
     notification = JSON.parse(options.body);
-    return emailResponse({delivered:['hello@aegntic.com']});
+    return emailResponse({delivered:['hello@aegntic.ai']});
   });
   const response = await submit({...valid, subject:'Untrusted subject', to:'attacker@example.com', name:'  Local test  '});
   assert.equal(response.status, 200);
@@ -54,7 +54,7 @@ test('saves the full enquiry before notifying the fixed owner address', async t 
   assert.equal(record.status, 'new');
   assert.equal(record.notification_status, 'sent');
   assert.ok(record.created_at > 0);
-  assert.equal(notification.to, 'hello@aegntic.com');
+  assert.equal(notification.to, 'hello@aegntic.ai');
   assert.deepEqual(notification.from, {address:'leads@aegntic.ai', name:'aegntic enquiries'});
   assert.equal(notification.reply_to, 'local-test@example.com');
   assert.match(notification.text, /A labelled local enquiry/);
@@ -122,7 +122,7 @@ for (const [name, headers, expected] of [
 test('escapes user content in notification HTML while preserving the plain text enquiry', async t => {
   const {submit} = fixture(t);
   let notification;
-  t.mock.method(globalThis, 'fetch', async (_url, options) => {notification = JSON.parse(options.body);return emailResponse({queued:['hello@aegntic.com']});});
+  t.mock.method(globalThis, 'fetch', async (_url, options) => {notification = JSON.parse(options.body);return emailResponse({queued:['hello@aegntic.ai']});});
   await submit({...valid, message:'<img src=x onerror=alert(1)> & project notes'});
   assert.ok(notification, 'notification must be attempted after storage');
   assert.doesNotMatch(notification.html, /<img/);
@@ -132,7 +132,7 @@ test('escapes user content in notification HTML while preserving the plain text 
 
 test('distinguishes queued mail from delivered mail', async t => {
   const {sql, submit} = fixture(t);
-  t.mock.method(globalThis, 'fetch', async () => emailResponse({queued:['hello@aegntic.com']}));
+  t.mock.method(globalThis, 'fetch', async () => emailResponse({queued:['hello@aegntic.ai']}));
   assert.equal((await submit()).status, 200);
   assert.equal(sql.prepare('SELECT * FROM messages').get().notification_status, 'queued');
 });
@@ -140,7 +140,7 @@ test('distinguishes queued mail from delivered mail', async t => {
 for (const [name, fail] of [
   ['HTTP failure', async () => Response.json({success:false, errors:[{code:10103, message:'private-provider-detail'}]}, {status:401})],
   ['network failure', async () => {throw new Error('private-provider-detail');}],
-  ['permanent bounce', async () => emailResponse({permanent_bounces:['hello@aegntic.com']})],
+  ['permanent bounce', async () => emailResponse({permanent_bounces:['hello@aegntic.ai']})],
   ['empty delivery result', async () => emailResponse({})],
   ['unparseable response', async () => new Response('private-provider-detail')]
 ]) test(`keeps the enquiry and confirms receipt after ${name}`, async t => {
@@ -189,7 +189,7 @@ test('notification-status write failure does not invalidate an already stored en
   const {sql, submit} = fixture(t);
   sql.exec("CREATE TRIGGER fail_update BEFORE UPDATE ON messages BEGIN SELECT RAISE(FAIL, 'private-db-detail'); END;");
   t.mock.method(console, 'error', () => {});
-  t.mock.method(globalThis, 'fetch', async () => emailResponse({delivered:['hello@aegntic.com']}));
+  t.mock.method(globalThis, 'fetch', async () => emailResponse({delivered:['hello@aegntic.ai']}));
   assert.equal((await submit()).status, 200);
   assert.equal(sql.prepare('SELECT * FROM messages').get().notification_status, 'pending');
 });
@@ -213,7 +213,7 @@ test('the additive migration preserves historical content without inventing noti
 for (const [service, offer] of [['Workflow automation','workflow-automation'], ['Internal tool','internal-tool'], ['Something else','something-else']]) {
   test(`accepts ${service} with an omitted optional URL and Unicode message`, async t => {
     const {sql, submit} = fixture(t);
-    t.mock.method(globalThis, 'fetch', async () => emailResponse({delivered:['hello@aegntic.com']}));
+    t.mock.method(globalThis, 'fetch', async () => emailResponse({delivered:['hello@aegntic.ai']}));
     const response = await submit({...valid, service, offer_key:offer, system_url:undefined, message:'请帮我连接这些工作流程，并保留明确的人工审核。'});
     assert.equal(response.status, 200);
     const record = sql.prepare('SELECT * FROM messages').get();
@@ -234,7 +234,7 @@ test('an email timeout confirms durable receipt within the browser retry window'
   const {sql, submit} = fixture(t);
   t.mock.method(console, 'error', () => {});
   t.mock.method(globalThis, 'fetch', (_url, options) => new Promise((resolve, reject) => {
-    const late = setTimeout(() => resolve(emailResponse({delivered:['hello@aegntic.com']})), 12000);
+    const late = setTimeout(() => resolve(emailResponse({delivered:['hello@aegntic.ai']})), 12000);
     options.signal.addEventListener('abort', () => {clearTimeout(late);reject(options.signal.reason);}, {once:true});
   }));
   const started = Date.now();
@@ -245,7 +245,7 @@ test('an email timeout confirms durable receipt within the browser retry window'
 
 test('a retry of the same submission returns receipt without another row or email', async t => {
   const {sql, submit} = fixture(t);
-  t.mock.method(globalThis, 'fetch', async () => emailResponse({delivered:['hello@aegntic.com']}));
+  t.mock.method(globalThis, 'fetch', async () => emailResponse({delivered:['hello@aegntic.ai']}));
   assert.equal((await submit()).status, 200);
   assert.equal((await submit()).status, 200);
   assert.equal(sql.prepare('SELECT count(*) AS n FROM messages').get().n, 1);
@@ -254,7 +254,7 @@ test('a retry of the same submission returns receipt without another row or emai
 
 test('a concurrent retry cannot double-send the same saved submission', async t => {
   const {sql, submit} = fixture(t);
-  t.mock.method(globalThis, 'fetch', async () => emailResponse({queued:['hello@aegntic.com']}));
+  t.mock.method(globalThis, 'fetch', async () => emailResponse({queued:['hello@aegntic.ai']}));
   const replies = await Promise.all([submit(), submit()]);
   assert.deepEqual(replies.map(response => response.status), [200, 200]);
   assert.equal(sql.prepare('SELECT count(*) AS n FROM messages').get().n, 1);
@@ -263,7 +263,7 @@ test('a concurrent retry cannot double-send the same saved submission', async t 
 
 test('the same submission key cannot acknowledge different message content', async t => {
   const {sql, submit} = fixture(t);
-  t.mock.method(globalThis, 'fetch', async () => emailResponse({delivered:['hello@aegntic.com']}));
+  t.mock.method(globalThis, 'fetch', async () => emailResponse({delivered:['hello@aegntic.ai']}));
   await submit();
   assert.equal((await submit({...valid, message:'This is a different project and must not be silently discarded.'})).status, 409);
   assert.equal(sql.prepare('SELECT * FROM messages').get().message, valid.message);
