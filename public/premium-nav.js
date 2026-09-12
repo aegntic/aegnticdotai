@@ -90,7 +90,6 @@
     enquiryStyle.href = '/enquiry.css';
     document.head.append(enquiryStyle);
     let active = 'home';
-    let touchPreview = 'home';
     const path = location.pathname;
     const routeKey = /^\/(systems|cognitive-os)/.test(path)?'systems':path.startsWith('/agents')?'agents':/^\/(plugins|skills)/.test(path)?'plugins':/^\/(products|audits)/.test(path)?'products':path==='/'&&location.hash==='#contact'?'contact':'home';
     links.forEach(link => {if (link.dataset.aeMenuKey === routeKey) link.setAttribute('aria-current','page');});
@@ -128,7 +127,6 @@
         inertBefore.clear();
       }
       if (open) activate(active);
-      if (open) touchPreview = active;
       if (open) links.find(link => link.dataset.aeMenuKey === active)?.focus({preventScroll:true});
     }
 
@@ -159,29 +157,55 @@
       const key = link.dataset.aeMenuKey;
       link.addEventListener('mouseenter', () => activate(key));
       link.addEventListener('focus', () => activate(key));
-      link.addEventListener('click', event => {
-        if (!matchMedia('(hover:none), (pointer:coarse)').matches || touchPreview === key) return;
-        event.preventDefault();
-        touchPreview = key;
-        activate(key);
-      });
     });
     panels.forEach(panel => {
       const carousel = panel.querySelector('.ae-menu__carousel');
       carousel.addEventListener('keydown', event => {
         if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
         event.preventDefault();
-        carousel.scrollBy({left:(event.key === 'ArrowRight' ? 1 : -1) * carousel.clientWidth * .72,behavior:reduced.matches?'instant':'smooth'});
+        carousel.scrollBy({left:(event.key === 'ArrowRight' ? 1 : -1) * carousel.clientWidth * .72,behavior:'instant'});
       });
     });
 
     activate(routeKey);
 
     // Compact footer index; no second carousel or two-tap navigation.
-    document.querySelectorAll('[data-footer-key]').forEach(link => {
+    const footerLinks = [...document.querySelectorAll('[data-footer-key]')];
+    const footerNavigation = document.querySelector('.ae-footer-navigation');
+    let footerTween;
+    let highlightedFooter;
+    function highlightFooter(link, animate = true) {
+      if (!link || (highlightedFooter === link && animate)) return;
+      footerTween?.kill();
+      highlightedFooter = link;
+      footerLinks.forEach(item => {
+        item.classList.toggle('is-active', item === link);
+        item.parentElement.querySelector('.ae-footer-description').textContent = '';
+      });
+      const output = link.parentElement.querySelector('.ae-footer-description');
+      const text = document.getElementById(link.getAttribute('aria-describedby')).textContent;
+      if (!animate || reduced.matches || !window.gsap) {output.textContent = text; return;}
+      const progress = {characters:0};
+      footerTween = window.gsap.to(progress, {characters:text.length, duration:.6, ease:'none',
+        onUpdate:() => {output.textContent = text.slice(0, Math.floor(progress.characters));},
+        onComplete:() => {output.textContent = text;}
+      });
+    }
+    footerLinks.forEach(link => {
       const current = link.dataset.footerKey === routeKey;
-      link.classList.toggle('is-active', current);
       if (current) link.setAttribute('aria-current', 'page');
+      link.addEventListener('mouseenter', () => highlightFooter(link));
+      link.addEventListener('focus', () => highlightFooter(link, false));
+    });
+    const currentFooter = footerLinks.find(link => link.dataset.footerKey === routeKey);
+    highlightFooter(currentFooter, false);
+    footerNavigation?.addEventListener('mouseleave', () => highlightFooter(footerLinks.find(link => link === document.activeElement) || currentFooter));
+    footerNavigation?.addEventListener('focusout', event => {
+      if (!footerNavigation.contains(event.relatedTarget)) highlightFooter(currentFooter);
+    });
+    reduced.addEventListener('change', () => highlightFooter(highlightedFooter, false));
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) highlightFooter(highlightedFooter, false);
     });
     trigger.setAttribute('aria-label', 'Menu');
 

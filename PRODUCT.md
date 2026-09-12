@@ -34,3 +34,6 @@ Final control/footer preference: the menu button must remain stationary, includi
 ## Authority and conversion
 
 Authority comes from inspectable work, precise descriptions, maintained destinations, and a clear accountable person. Success means visitors understand what fits their problem and can enquire without leaving the page. No unique-user or conversion uplift claim is currently supported by evidence.
+# Footer interaction refinement — 2026-09-06
+
+Keep the compact six-link footer index. Its selected link uses the global menu's red-dash width animation and easing. Hover or keyboard focus types one short grey description with GSAP; reserved description space prevents vertical movement. Reduced motion and unavailable GSAP show the complete description immediately. Screen readers receive the complete description, never letter-by-letter announcements. Do not change the header dropdown or reintroduce footer cards.

@@ -1,0 +1,5 @@
+dist/
+dist-*/
+.check-*/
+*.zip
+node_modules/

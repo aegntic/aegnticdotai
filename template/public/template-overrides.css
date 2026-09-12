@@ -1,0 +1,21 @@
+/* Project-specific refinements belong here. node sync.mjs never overwrites this file. */
+[hidden]{display:none!important}
+.ae-menu__stage::before{content:attr(data-brand)}
+.template-flat-mark>img:first-child,.template-flat-mark .ae-site-footer__flat{opacity:1;transform:none}
+.template-flat-mark:hover>img:first-child,.template-flat-mark:hover .ae-site-footer__flat{opacity:1;transform:none}
+.template-wordmark{font:500 18px/1 var(--ae-font-display);letter-spacing:-.055em;color:var(--ae-ink)}
+.ae-global-mark:has(.template-wordmark){width:auto;min-width:48px}
+.ae-site-footer__mark:has(.template-wordmark){display:flex;align-items:center;width:min(42vw,340px)}
+.ae-site-footer__mark .template-wordmark{font-size:clamp(32px,5vw,72px);overflow-wrap:anywhere}
+.mark-text{font-size:clamp(28px,3vw,45px);text-align:center;padding:20px;overflow-wrap:anywhere}
+.template-fallback{position:relative;z-index:10;display:flex;gap:16px;flex-wrap:wrap;padding:96px 8% 0;font-size:14px}
+.template-fallback a{padding:10px 0;text-decoration:underline;text-underline-offset:4px}
+.ae-enhanced .template-fallback{display:none}
+.ae-site-footer .ae-footer-description{white-space:normal;height:auto;min-height:20px;max-width:min(75vw,48ch)}
+.ae-site-footer .ae-footer-item{padding-bottom:4px}
+.product-object .product-mark{color:var(--ae-ink)}
+.world-copy h1,.world-copy h2,.world-ghost,.product-mark,.world-disclosure summary{font-family:var(--ae-font-display)}
+.world-label,.micro,.access-signature{font-family:var(--ae-font-body)}
+.ae-keyboard .journey-page *,body.ae-keyboard *{scroll-behavior:auto!important}
+body[data-motion='false'] *,body[data-motion='false'] *::before,body[data-motion='false'] *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html:has(body[data-motion='false']){scroll-behavior:auto}
