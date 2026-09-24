@@ -136,6 +136,7 @@ function shell({
     </div>
     <div class="footer-copy">&copy; ${new Date().getFullYear()} Mattae Cooper · aegntic.ai</div>
   </footer>
+  <script src="/aegntic-join-popup.js" defer></script>
 </body>
 </html>
 `;
