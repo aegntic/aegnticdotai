@@ -1,7 +1,7 @@
 ---
 title: 'Claude-Flow: Enterprise AI Agent Orchestration'
 description: 'Building an enterprise-grade system for coordinating multiple AI agents. Performance monitoring, swarm intelligence, and real-time dashboards.'
-pubDate: 'Aug 10 2024'
+pubDate: 'Aug 1 2025'
 heroImage: '../../assets/blog-placeholder-4.jpg'
 tags: ['Claude-Flow', 'AI', 'orchestration', 'enterprise', 'agents']
 ---
@@ -12,7 +12,7 @@ When you have one AI agent, you manage tasks.
 
 When you have dozens, you need orchestration.
 
-Claude-Flow is our enterprise system for coordinating multiple AI agents in complex workflows.
+Claude-Flow is the open-source orchestration framework created by rUv Cohen that we adopted as the backbone of our enterprise system for coordinating multiple AI agents in complex workflows.
 
 ## The Problem at Scale
 
@@ -354,3 +354,4 @@ AI APIs are expensive. Without visibility, budgets explode.
 ---
 
 *Claude-Flow provides the foundation for enterprise AI operations. For the multi-agent methodology, see [Ultra Swarm](/blog/ultra-swarm-multi-agent-problem-solving).*
+

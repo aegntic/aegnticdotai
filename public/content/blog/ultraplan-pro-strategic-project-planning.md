@@ -1,7 +1,7 @@
 ---
 title: 'UltraPlan Pro: Strategic Project Planning for Complex Initiatives'
 description: 'A complete framework for planning complex projects with milestones, risk assessment, and execution phases. Transform chaos into structured progress.'
-pubDate: 'Dec 19 2024'
+pubDate: 'Jun 26 2025'
 heroImage: '../../assets/blog-placeholder-2.jpg'
 tags: ['project-planning', 'methodology', 'productivity', 'UltraPlan']
 ---
@@ -193,3 +193,4 @@ Even when plans change (and they will), the planning process ensures you can ada
 ---
 
 *UltraPlan Pro is part of the Aegntic framework collection. Start planning your next project with confidence.*
+

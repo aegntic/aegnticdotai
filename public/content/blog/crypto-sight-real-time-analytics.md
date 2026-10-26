@@ -1,7 +1,7 @@
 ---
 title: 'Crypto-Sight: Building a Real-Time Analytics Platform'
 description: 'Architecture and development of Crypto-Sight - a real-time cryptocurrency analytics platform with streaming data, complex visualization, and multi-source aggregation.'
-pubDate: 'Jul 25 2024'
+pubDate: 'May 31 2026'
 heroImage: '../../assets/blog-placeholder-5.jpg'
 tags: ['crypto', 'analytics', 'real-time', 'development', 'data-visualization']
 ---
@@ -283,3 +283,4 @@ Crypto-Sight was identified as a strong hackathon candidate for:
 ---
 
 *Crypto-Sight demonstrates real-time data handling at scale. For related analytics work, see [n8n Automation](/blog/n8n-automation-at-scale).*
+

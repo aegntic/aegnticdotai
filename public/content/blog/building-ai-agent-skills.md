@@ -1,7 +1,7 @@
 ---
 title: 'Building Reusable AI Agent Skills: A Complete Guide'
 description: 'Learn how to create, structure, and manage reusable skills for AI agents. From emerging patterns to formalized capabilities.'
-pubDate: 'Dec 19 2024'
+pubDate: 'Jul 24 2026'
 heroImage: '../../assets/blog-placeholder-5.jpg'
 tags: ['AI', 'skills', 'prompt-engineering', 'automation', 'agents']
 ---
@@ -270,3 +270,4 @@ If yes, consider capturing it as a skill. Over time, your skill library becomes 
 ---
 
 *Skills are part of the Aegntic framework collection. For debugging skills, see [FPEF](/blog/fpef-debugging-framework). For planning skills, explore [UltraPlan Pro](/blog/ultraplan-pro-strategic-project-planning).*
+

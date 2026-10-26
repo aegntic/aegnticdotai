@@ -1,7 +1,7 @@
 ---
 title: 'Supabase for AI Applications: Real-Time, Vector Search, and Auth'
 description: 'Using Supabase as the database backbone for AI applications. PostgreSQL power, pgvector for embeddings, real-time subscriptions, and built-in auth.'
-pubDate: 'Jun 25 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-2.jpg'
 tags: ['supabase', 'database', 'postgres', 'vector-search', 'AI']
 ---
@@ -386,3 +386,4 @@ on document_chunks (document_id, chunk_index);
 ---
 
 *Supabase powers our data layer. For vector search applications, see [ElastranAI](/blog/elastranai-elastic-ai-assistant).*
+

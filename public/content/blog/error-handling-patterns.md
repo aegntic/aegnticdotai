@@ -1,7 +1,7 @@
 ---
 title: 'Error Handling That Helps: Designing Recoverable Failures'
 description: 'Error messages should guide recovery, not just announce failure. Patterns for helpful error handling in AI applications.'
-pubDate: 'May 15 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-2.jpg'
 tags: ['error-handling', 'UX', 'development', 'patterns', 'AI']
 ---
@@ -381,3 +381,4 @@ describe('Error Handling', () => {
 ---
 
 *Good error handling is essential for reliable AI systems. For the methodologies we use to debug issues, see [FPEF Debugging Framework](/blog/fpef-debugging-framework).*
+

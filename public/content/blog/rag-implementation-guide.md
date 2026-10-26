@@ -1,7 +1,7 @@
 ---
 title: 'RAG Implementation Guide: Retrieval-Augmented Generation Done Right'
 description: 'Building effective RAG systems. Chunking strategies, embedding selection, retrieval optimization, and quality measurement.'
-pubDate: 'Apr 05 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-4.jpg'
 tags: ['RAG', 'embeddings', 'AI', 'architecture', 'search']
 ---
@@ -177,3 +177,4 @@ def evaluate_rag(test_set: list[dict]) -> dict:
 ---
 
 *RAG is central to knowledge-augmented AI. See [ElastranAI](/blog/elastranai-elastic-ai-assistant) for our implementation.*
+

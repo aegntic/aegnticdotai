@@ -1,7 +1,7 @@
 ---
 title: 'Angle Generation for Ebooks: Premium vs Starter Positioning'
 description: 'How to create distinct angles for the same topic. Transform one framework into two ebooks with different value propositions.'
-pubDate: 'Sep 22 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['ebooks', 'marketing', 'positioning', 'content-strategy', 'copywriting']
 ---
@@ -227,3 +227,4 @@ Different mental models require different messaging.
 ---
 
 *Angle generation is part of our content production framework. For the full workflow, see [Agent Neo](/blog/agent-neo-autonomous-ebook-generation). For quality validation, see [Quality Criteria Framework](/blog/quality-criteria-framework).*
+

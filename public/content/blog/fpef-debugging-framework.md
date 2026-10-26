@@ -1,7 +1,7 @@
 ---
 title: 'The FPEF Framework: A Systematic Approach to Debugging Complex Systems'
 description: 'Learn the Find-Prove-Evidence-Fix methodology used by senior engineers to debug complex bugs systematically instead of relying on trial and error.'
-pubDate: 'Dec 19 2024'
+pubDate: 'Nov 14 2025'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['debugging', 'methodology', 'engineering', 'FPEF']
 ---
@@ -184,3 +184,4 @@ The discipline pays off. You'll solve problems faster, with more confidence, and
 ---
 
 *FPEF is part of the Aegntic framework collection. For more engineering methodologies, explore [UltraPlan Pro](/blog/ultraplan-pro-strategic-project-planning) for project planning and [Ultra Swarm](/blog/ultra-swarm-multi-agent-problem-solving) for complex decision-making.*
+

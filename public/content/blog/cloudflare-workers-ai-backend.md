@@ -1,7 +1,7 @@
 ---
 title: 'Cloudflare Workers as AI Backend: Why We Chose Edge Computing'
 description: 'The architecture decision behind using Cloudflare Workers for AI workloads. Edge computing advantages, deployment patterns, and performance insights.'
-pubDate: 'Jun 20 2024'
+pubDate: 'Apr 15 2025'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['cloudflare', 'edge-computing', 'architecture', 'deployment', 'AI']
 ---
@@ -262,3 +262,4 @@ Unlike traditional cloud, there are no surprise bills from cold starts or idle c
 ---
 
 *Cloudflare Workers powers our edge infrastructure. For the services built on this platform, see [MCP Server Collection](/blog/mcp-server-collection).*
+

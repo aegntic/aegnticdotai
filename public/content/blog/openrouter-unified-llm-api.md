@@ -1,7 +1,7 @@
 ---
 title: 'OpenRouter: One API for All LLMs'
 description: 'How we use OpenRouter to access Claude, GPT-4, Gemini, and dozens of other models through a single API. Cost optimization and model selection strategies.'
-pubDate: 'May 25 2024'
+pubDate: 'Aug 22 2026'
 heroImage: '../../assets/blog-placeholder-5.jpg'
 tags: ['openrouter', 'LLMs', 'API', 'AI', 'integration']
 ---
@@ -302,3 +302,4 @@ Easy to try new models without new integrations.
 ---
 
 *OpenRouter is central to our AI infrastructure. For how we orchestrate model selection, see [MCP Revolution](/blog/mcp-revolution-orchestrating-ai-services).*
+

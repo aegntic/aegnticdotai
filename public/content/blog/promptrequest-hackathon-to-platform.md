@@ -1,7 +1,7 @@
 ---
 title: 'PromptRequest: From Hackathon Project to Full Platform'
 description: 'The evolution of PromptRequest - a prompting system that grew from hackathon entry to feature-complete platform for prompt engineering and management.'
-pubDate: 'Sep 25 2024'
+pubDate: 'Oct 22 2025'
 heroImage: '../../assets/blog-placeholder-2.jpg'
 tags: ['PromptRequest', 'prompts', 'hackathon', 'development', 'AI-tools']
 ---
@@ -282,3 +282,4 @@ Without measurement, prompt changes are guesswork. With metrics, they're enginee
 ---
 
 *PromptRequest demonstrates how hackathon projects can evolve into platforms. For related development tools, see [MCP orchestration](/blog/mcp-revolution-orchestrating-ai-services).*
+

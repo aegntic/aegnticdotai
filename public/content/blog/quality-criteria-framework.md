@@ -1,7 +1,7 @@
 ---
 title: 'The Quality Criteria Framework: Ensuring Ebook Excellence'
 description: 'How we score and validate AI-generated ebooks. A 7-dimension quality framework that ensures every output meets professional standards.'
-pubDate: 'Sep 20 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-2.jpg'
 tags: ['quality', 'ebooks', 'framework', 'content-generation', 'standards']
 ---
@@ -261,3 +261,4 @@ Since implementing the framework:
 ---
 
 *The Quality Framework ensures every ebook meets professional standards. For the full generation workflow, see [Agent Neo](/blog/agent-neo-autonomous-ebook-generation).*
+

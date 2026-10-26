@@ -1,7 +1,7 @@
 ---
 title: 'Testing AI Applications: Strategies for Non-Deterministic Systems'
 description: 'How to test systems where outputs vary. Property-based testing, fuzzy matching, and quality thresholds for AI-powered features.'
-pubDate: 'May 10 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['testing', 'AI', 'quality', 'development', 'patterns']
 ---
@@ -328,3 +328,4 @@ async function validateModelUpdate(
 ---
 
 *Testing is essential for reliable AI systems. For quality frameworks, see [Quality Criteria Framework](/blog/quality-criteria-framework).*
+

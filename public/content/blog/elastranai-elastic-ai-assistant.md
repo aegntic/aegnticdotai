@@ -1,7 +1,7 @@
 ---
 title: 'ElastranAI: Building an Elastic-Powered AI Assistant'
 description: 'The development story of ElastranAI - an AI assistant with native Elasticsearch integration for semantic search and intelligent document retrieval.'
-pubDate: 'Jul 15 2024'
+pubDate: 'Oct 20 2025'
 heroImage: '../../assets/blog-placeholder-4.jpg'
 tags: ['ElastranAI', 'elasticsearch', 'AI', 'semantic-search', 'development']
 ---
@@ -248,3 +248,4 @@ Every 100ms of search latency reduces user satisfaction. We optimized aggressive
 ---
 
 *ElastranAI represents our approach to knowledge-augmented AI. For related technologies, see [MCP orchestration](/blog/mcp-revolution-orchestrating-ai-services) and [Universal Knowledge Synthesizer](/blog/universal-knowledge-synthesizer).*
+

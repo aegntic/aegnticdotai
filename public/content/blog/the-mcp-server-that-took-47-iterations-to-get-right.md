@@ -1,14 +1,14 @@
 ---
 title: 'The MCP Server That Took 47 Iterations to Get Right'
 description: 'The brutal technical journey of building our flagship MCP server. 46 failures, 1 breakthrough, and the lessons that shaped our entire MCP infrastructure.'
-pubDate: '2024-06-12'
+pubDate: '2025-03-26'
 heroImage: '../../assets/blog-placeholder-4.jpg'
 tags: ['MCP', 'technical-deep-dive', 'iteration', 'server-development', 'infrastructure']
 ---
 
 # The MCP Server That Took 47 Iterations to Get Right
 
-**June 12th, 2024. 11:52pm.**
+**March 26th, 2025. 11:52pm.**
 
 I was staring at commit 47a8f3d2, watching our MCP server pass the integration test suite for the first time without a single failure. 47 iterations. 46 spectacular failures. 1 breakthrough that changed everything.
 

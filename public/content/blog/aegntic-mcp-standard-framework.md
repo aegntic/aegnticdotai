@@ -1,7 +1,7 @@
 ---
 title: 'The Aegntic MCP Standard Framework: Building Production-Ready MCP Servers'
 description: 'A comprehensive framework for building MCP servers with modern auth, cloud-first design, auto-documentation, and integrated analytics.'
-pubDate: 'Jul 30 2024'
+pubDate: 'Mar 26 2025'
 heroImage: '../../assets/blog-placeholder-5.jpg'
 tags: ['MCP', 'framework', 'standards', 'development', 'architecture']
 ---
@@ -375,3 +375,4 @@ export const server = createServer({
 ---
 
 *The Aegntic MCP Standard powers our server collection. For examples, see [MCP Server Collection](/blog/mcp-server-collection).*
+

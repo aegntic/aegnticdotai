@@ -1,14 +1,14 @@
 ---
 title: 'The 45-Minute Ebook Factory: Building Autonomous Content Systems'
 description: 'How we built a complete autonomous system that generates premium dual-track ebooks in 45 minutes with 85+ quality scores, visual assets, and marketing copy.'
-pubDate: '2024-10-21'
+pubDate: '2025-12-16'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['Agent-Neo', 'automation', 'RIPSEC', 'content-factory', 'autonomous-systems']
 ---
 
 # The 45-Minute Ebook Factory: Building Autonomous Content Systems
 
-October 21st, 2024. I watched as Agent Neo completed another autonomous run: 38 minutes from topic input to two complete, quality-scored ebooks with 50+ visual assets and landing page copy.
+December 16th, 2025. I watched as Agent Neo completed another autonomous run: 38 minutes from topic input to two complete, quality-scored ebooks with 50+ visual assets and landing page copy.
 
 What used to take 17-34 hours now happens in under 45 minutes. Not just faster—better.
 
@@ -16,7 +16,7 @@ This is the story of how we built a complete autonomous content generation syste
 
 ## The Problem That Started It All
 
-September 4th, 2024. 11:47pm. I was staring at a backlog of 12 technical topics that needed to be turned into premium content. Each one would require:
+December 4th, 2025. 11:47pm. I was staring at a backlog of 12 technical topics that needed to be turned into premium content. Each one would require:
 
 - **Research**: 4-8 hours of digging into documentation and use cases
 - **Writing**: 8-16 hours of crafting actionable content
@@ -353,3 +353,4 @@ The question is no longer "can AI write good content?" but "how will we use unli
 ---
 
 *For the business strategy behind content automation, see [Economics of Zero-Cost AI](/blog/economics-zero-cost-ai-40-platforms-2-cents-hour/).*
+

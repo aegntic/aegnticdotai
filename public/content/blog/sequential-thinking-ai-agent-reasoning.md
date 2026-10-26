@@ -1,7 +1,7 @@
 ---
 title: 'Sequential Thinking: How AI Agents Reason Through Complex Problems'
 description: 'Inside the sequential thinking MCP server. How structured reasoning chains produce better outcomes for complex decisions and analysis.'
-pubDate: 'Aug 05 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['AI', 'reasoning', 'sequential-thinking', 'MCP', 'problem-solving']
 ---
@@ -275,3 +275,4 @@ Explicit reasoning provides:
 ---
 
 *Sequential Thinking is part of our MCP ecosystem. Learn more about [MCP architecture](/blog/mcp-revolution-orchestrating-ai-services) or explore [the full methodology toolkit](/blog/fpef-debugging-framework).*
+

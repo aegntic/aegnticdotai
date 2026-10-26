@@ -1,7 +1,7 @@
 ---
 title: 'Introducing Mem:RE - The Future of AI Memory'
 description: 'Memory meets request. How we are building persistent, queryable AI memory that transforms how agents learn and remember across sessions.'
-pubDate: 'Nov 20 2024'
+pubDate: 'Aug 13 2025'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['Memre', 'AI', 'memory', 'agents', 'future-hindsight']
 ---
@@ -226,3 +226,4 @@ Mem:RE is currently in private beta. We're working with select teams to refine t
 ---
 
 *Mem:RE is part of the Aegntic Future Hindsight collection. Learn about [the broader ecosystem](/blog/building-40-platform-ai-ecosystem) or explore [our founding vision](/blog/why-we-built-aegntic).*
+

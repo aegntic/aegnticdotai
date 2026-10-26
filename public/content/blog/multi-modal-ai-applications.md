@@ -1,7 +1,7 @@
 ---
 title: 'Multi-Modal AI: Images, Audio, and Video with LLMs'
 description: 'Building applications that understand multiple content types. Vision models, audio processing, and unified multi-modal workflows.'
-pubDate: 'Mar 20 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-2.jpg'
 tags: ['multi-modal', 'vision', 'audio', 'AI', 'LLMs']
 ---
@@ -183,3 +183,4 @@ async function multiModalSearch(query: string, collection: MultiModalCollection)
 ---
 
 *Multi-modal capabilities power our content processing. See [Protocol Flow](/blog/protocol-flow-video-processing) for video automation.*
+

@@ -1,7 +1,7 @@
 ---
 title: 'MCP Server Collection: 7+ Connectors Ready for Integration'
 description: 'Building a library of reusable MCP servers. From GitHub to Notion to n8n - connectors that work out of the box.'
-pubDate: 'Sep 01 2024'
+pubDate: 'Aug 6 2025'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['MCP', 'connectors', 'integration', 'development', 'tools']
 ---
@@ -374,3 +374,4 @@ Breaking changes in dependencies cause cascading failures.
 ---
 
 *The MCP Server Collection is part of our integration infrastructure. For the orchestration layer, see [MCP Revolution](/blog/mcp-revolution-orchestrating-ai-services).*
+

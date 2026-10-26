@@ -1,14 +1,14 @@
 ---
 title: 'Why We Deleted 125 Blog Posts and Started Over: The Quality Revolution'
 description: 'The brutal decision to delete most of our content library, the costly mistake that led to quality standards, and how we built a 9/10+ content factory.'
-pubDate: '2024-12-19'
+pubDate: '2026-06-26'
 heroImage: '../../assets/blog-placeholder-5.jpg'
 tags: ['content-quality', 'strategy', 'quality-standards', '9-10-club', 'content-revolution']
 ---
 
 # Why We Deleted 125 Blog Posts and Started Over: The Quality Revolution
 
-**December 19th, 2024. 11:47pm.**
+**June 26th, 2026. 11:47pm.**
 
 I was staring at our blog analytics, feeling a familiar sinking feeling in my stomach. 165 blog posts published. 40,000+ hours of collective effort. And what did we have to show for it?
 
@@ -28,7 +28,7 @@ This is the story of why we chose quality over quantity, how we built a system t
 Our content metrics told a story we didn't want to admit:
 
 ```
-Content Library Analysis (December 2024):
+Content Library Analysis (June 2026):
 ├── Total Posts: 165
 ├── Average Word Count: 1,247 words
 ├── Average Engagement Rate: 1.2% (industry: 2.8%)

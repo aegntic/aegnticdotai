@@ -1,7 +1,7 @@
 ---
 title: 'Ultra Swarm: Multi-Agent Problem Solving for Complex Decisions'
 description: 'Simulate multiple expert perspectives to analyze problems from every angle. The Ultra Swarm methodology brings Architect, Coder, Tester, and Reviewer viewpoints to every decision.'
-pubDate: 'Dec 19 2024'
+pubDate: 'Mar 12 2026'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['AI', 'decision-making', 'multi-agent', 'swarm-intelligence', 'Ultra Swarm']
 ---
@@ -261,3 +261,4 @@ Even a lightweight application of Ultra Swarm improves decision quality signific
 ---
 
 *Ultra Swarm is part of the Aegntic framework collection. Make better decisions by considering every angle.*
+

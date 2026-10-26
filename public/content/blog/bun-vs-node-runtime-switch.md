@@ -1,7 +1,7 @@
 ---
 title: 'Bun vs Node: Why We Switched Our Runtime'
 description: 'The decision to switch from Node.js to Bun. Performance benchmarks, compatibility testing, and lessons from the migration.'
-pubDate: 'Jun 01 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['bun', 'nodejs', 'javascript', 'performance', 'runtime']
 ---
@@ -262,3 +262,4 @@ const module = await import(`./dynamic/${name}`);
 ---
 
 *Bun powers our development workflow. For the full tech stack, see [Building a Platform Ecosystem](/blog/building-40-platform-ai-ecosystem).*
+

@@ -1,7 +1,7 @@
 ---
 title: 'Python uv: The Modern Python Package Manager We Needed'
 description: 'Why we switched to Astral uv for Python dependency management. Speed benchmarks, workflow improvements, and migration guide.'
-pubDate: 'May 20 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-4.jpg'
 tags: ['python', 'uv', 'package-management', 'rust', 'toolchain']
 ---
@@ -334,3 +334,4 @@ uv run mypy .
 ---
 
 *uv is our standard Python package manager. For the full toolchain, see [our ecosystem architecture](/blog/building-40-platform-ai-ecosystem).*
+

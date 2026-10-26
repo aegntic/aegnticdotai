@@ -1,7 +1,7 @@
 ---
 title: 'The AI Operating System: Why We Built Aegntic'
 description: 'Our founding vision for an AI ecosystem that makes development faster. The journey from idea to a growing platform ecosystem.'
-pubDate: 'Jan 15 2024'
+pubDate: 'Jan 14 2025'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['aegntic', 'AI', 'vision', 'founding-story']
 ---
@@ -67,3 +67,4 @@ The companies that master AI orchestration will define the next decade of produc
 ---
 
 *This is the first in our "Building Aegntic" series, documenting the journey from vision to reality.*
+

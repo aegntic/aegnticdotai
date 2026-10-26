@@ -1,7 +1,7 @@
 ---
 title: 'Economics of Zero-Cost AI: Running AI Platforms Cheaply'
 description: 'How we run AI platforms with near-zero marginal operational costs. The math, infrastructure, and business model that makes sustainable AI possible.'
-pubDate: 'Nov 5 2024'
+pubDate: 'Aug 22 2026'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['economics', 'infrastructure', 'scalability', 'business-model', 'AI']
 ---

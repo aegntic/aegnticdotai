@@ -1,7 +1,7 @@
 ---
 title: 'Codebuff: Building an AI-Powered Code Editor'
 description: 'The development story of Codebuff - a code editor with native AI integration, real-time collaboration, and intelligent code generation.'
-pubDate: 'Jul 05 2024'
+pubDate: 'Sep 11 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['Codebuff', 'code-editor', 'AI', 'development', 'tools']
 ---
@@ -262,3 +262,4 @@ Feedback from accept/reject/edit dramatically improves outputs over time.
 ---
 
 *Codebuff represents our vision for AI-native development tools. For related projects, see [ElastranAI](/blog/elastranai-elastic-ai-assistant) for search-augmented AI.*
+

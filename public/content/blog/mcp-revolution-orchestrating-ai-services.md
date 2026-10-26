@@ -1,7 +1,7 @@
 ---
 title: 'The MCP Revolution: Orchestrating AI Services at Scale'
 description: 'How Model Context Protocol servers are changing AI integration. A deep dive into the architecture that makes multi-model orchestration seamless.'
-pubDate: 'Mar 05 2024'
+pubDate: 'Mar 26 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['MCP', 'AI', 'architecture', 'integration', 'orchestration']
 ---
@@ -211,3 +211,4 @@ The teams that adopt MCP now will have architectural advantages for years to com
 ---
 
 *Part 3 of the "Building Aegntic" series. Next: [Agent Neo: Autonomous Ebook Generation](/blog/agent-neo-autonomous-ebook-generation)*
+

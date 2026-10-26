@@ -1,7 +1,7 @@
 ---
 title: 'AI-Human Symbiosis: The Path to Augmented Intelligence'
 description: 'Not AI vs humans. AI with humans. Exploring the symbiotic relationship between artificial and human intelligence that defines the Aegntic approach.'
-pubDate: 'Dec 01 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-2.jpg'
 tags: ['AI', 'philosophy', 'human-AI', 'symbiosis', 'future']
 ---
@@ -150,3 +150,4 @@ The relationship is symbiotic. Both sides contribute. Both sides benefit.
 ---
 
 *This philosophy underlies everything we build at Aegntic. Explore [our founding vision](/blog/why-we-built-aegntic).*
+

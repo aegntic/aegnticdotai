@@ -1,7 +1,7 @@
 ---
 title: 'The Aegntic Growth Story'
 description: 'Building Aegntic. From a single idea to an interconnected ecosystem of tools. Lessons, mistakes, and what we would do differently.'
-pubDate: 'Dec 15 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['Aegntic', 'growth', 'startup', 'personal-journey', 'retrospective']
 ---
@@ -14,7 +14,7 @@ Today, it's a growing ecosystem of interconnected tools.
 
 This is the story of that journey.
 
-## The Beginning (January 2024)
+## The Beginning (January 2025)
 
 ### The Problem We Saw
 
@@ -38,7 +38,7 @@ We bet that:
 
 Every bet paid off.
 
-## Phase 1: Foundation (Q1 2024)
+## Phase 1: Foundation (Q1 2025)
 
 ### What We Built
 
@@ -60,7 +60,7 @@ Ours was "time from idea to working prototype." Everything we built had to reduc
 - Underestimated documentation needs
 - Assumed users would read instructions
 
-## Phase 2: Expansion (Q2 2024)
+## Phase 2: Expansion (Q2 2025)
 
 ### What We Built
 
@@ -96,7 +96,7 @@ We started documenting everything. Not for users—for ourselves in 3 months.
 - Integration debt accumulated
 - Monitoring gaps caused silent failures
 
-## Phase 3: Consolidation (Q3 2024)
+## Phase 3: Consolidation (Q3 2025)
 
 ### What We Built
 
@@ -130,7 +130,7 @@ SSO, audit logs, and compliance aren't exciting. They're essential for paying cu
 - Some tech debt required rewrites
 - Underestimated enterprise requirements
 
-## Phase 4: Scale (Q4 2024)
+## Phase 4: Scale (Q4 2025)
 
 ### What We Built
 
@@ -240,3 +240,4 @@ Aegntic becomes the operating system for AI development:
 ---
 
 *This retrospective reflects the journey of building Aegntic. For where we started, see [Why We Built Aegntic](/blog/why-we-built-aegntic). For where we're going, see [The AI Developer Tools Opportunity](/blog/415-billion-ai-developer-tools).*
+

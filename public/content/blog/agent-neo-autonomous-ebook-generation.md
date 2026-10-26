@@ -1,7 +1,7 @@
 ---
 title: 'Agent Neo: How We Automated Ebook Generation in 45 Minutes'
 description: 'The complete workflow for autonomous dual-track ebook creation. From topic input to 2,300-word ebooks with quality scoring and visual generation prompts.'
-pubDate: 'Apr 12 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-4.jpg'
 tags: ['automation', 'ebooks', 'Agent-Neo', 'content-generation', 'workflow']
 ---
@@ -218,3 +218,4 @@ To run Agent Neo in your workflow:
 ---
 
 *Part 4 of the "Building Aegntic" series. Previous: [The MCP Revolution](/blog/mcp-revolution-orchestrating-ai-services). Next: [The Philosophy of No Shortcuts](/blog/philosophy-of-no-shortcuts)*
+

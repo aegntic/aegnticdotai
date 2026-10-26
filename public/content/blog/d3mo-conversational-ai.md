@@ -1,7 +1,7 @@
 ---
 title: 'D3MO: Building a Conversational AI Interface That Feels Natural'
 description: 'The design and development process behind D3MO - a conversational AI system focused on natural interaction patterns and contextual understanding.'
-pubDate: 'Aug 01 2024'
+pubDate: 'Oct 3 2025'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['D3MO', 'AI', 'conversational-UI', 'development', 'UX']
 ---
@@ -264,3 +264,4 @@ Context tracking isn't a feature—it's the foundation of natural conversation.
 ---
 
 *D3MO represents our approach to AI interaction design.*
+

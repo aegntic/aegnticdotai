@@ -1,14 +1,14 @@
 ---
 title: 'Prologue: How We Built Self-Discovering AI Agent Onboarding'
 description: 'The complete story of building Prologue, the universal MCP discovery system that reduced AI agent setup from 3 hours to 8 minutes across 10+ platforms with 100,000+ lines of code.'
-pubDate: '2024-10-18'
+pubDate: 'Apr 6 2026'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['Prologue', 'MCP', 'product-story', 'AI-onboarding', 'discovery-system']
 ---
 
 # Prologue: How We Built Self-Discovering AI Agent Onboarding
 
-**October 18th, 2024. 2:23pm.**
+**April 6th, 2026. 2:23pm.**
 
 I was watching Prologue complete its 147th successful cross-platform integration. What started as a simple MCP server discovery tool had evolved into something much more significant: a universal AI agent onboarding system that worked seamlessly across Claude, Auggie AI, TunaCode, Gemini, and emerging platforms I hadn't even heard of yet.
 

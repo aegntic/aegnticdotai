@@ -1,7 +1,7 @@
 ---
 title: 'Observability for AI Systems: Logging, Metrics, and Traces'
 description: 'Monitoring AI applications in production. What to log, which metrics matter, and how to debug when things go wrong.'
-pubDate: 'Mar 15 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['observability', 'monitoring', 'logging', 'production', 'AI']
 ---
@@ -234,3 +234,4 @@ groups:
 ---
 
 *Observability is non-negotiable in production. See [Claude-Flow](/blog/claude-flow-enterprise-orchestration) for enterprise monitoring.*
+

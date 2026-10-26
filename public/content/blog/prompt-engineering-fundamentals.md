@@ -1,7 +1,7 @@
 ---
 title: 'Prompt Engineering Fundamentals: From Basics to Production'
 description: 'Essential prompt engineering patterns. Structure, context management, and techniques that consistently produce better outputs.'
-pubDate: 'Apr 10 2024'
+pubDate: 'Mar 5 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['prompts', 'AI', 'fundamentals', 'patterns', 'LLMs']
 ---
@@ -139,3 +139,4 @@ Aim for 90%+ pass rate before production.
 ---
 
 *Prompt engineering is foundational. See [PromptRequest](/blog/promptrequest-hackathon-to-platform) for our prompt management system.*
+

@@ -1,7 +1,7 @@
 ---
 title: 'TUI Design: Building Terminal Interfaces That Developers Love'
 description: 'Principles and patterns for creating beautiful, functional terminal user interfaces. Rich formatting, real-time updates, and cross-platform compatibility.'
-pubDate: 'Aug 25 2024'
+pubDate: 'Jun 5 2025'
 heroImage: '../../assets/blog-placeholder-4.jpg'
 tags: ['TUI', 'terminal', 'UI-design', 'development', 'CLI']
 ---
@@ -317,3 +317,4 @@ Show available shortcuts, ideally in a help panel.
 ---
 
 *TUI design is essential for developer tools. For applications, see [Prologue MCP Discovery](/blog/birth-of-prologue-mcp-discovery).*
+

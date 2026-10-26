@@ -1,14 +1,14 @@
 ---
 title: 'The RIPSEC Framework: Psychology-Optimized Content That Converts'
 description: 'The complete story of how RIPSEC achieved 40-60% conversion rates through psychological optimization. Real data, split testing, and the framework that transforms content into conversion machines.'
-pubDate: '2024-09-15'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['RIPSEC', 'content-framework', 'conversion-optimization', 'psychology', 'framework']
 ---
 
 # The RIPSEC Framework: Psychology-Optimized Content That Converts
 
-**September 15th, 2024. 2:37am.**
+**December 16th, 2025. 2:37am.**
 
 I was staring at our conversion analytics dashboard, unable to believe what I was seeing. The A/B test results were unequivocal:
 
@@ -29,7 +29,7 @@ This is the complete story of RIPSEC—how we discovered the psychology behind c
 I was reviewing our content analytics and discovered something disturbing:
 
 ```
-Content Performance Analysis (Q2 2024):
+Content Performance Analysis (Q4 2025):
 ├── Total content published: 47 pieces
 ├── Average read time: 3:42 (above industry average)
 ├── Social shares: 127 per piece (good)

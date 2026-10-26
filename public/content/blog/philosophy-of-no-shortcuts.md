@@ -1,7 +1,7 @@
 ---
 title: 'The Philosophy of No Shortcuts: Building for Excellence'
 description: 'Why we never fall back to simplicity. How we do anything is how we do everything—a manifesto for building technology that creates the future.'
-pubDate: 'May 08 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-5.jpg'
 tags: ['philosophy', 'culture', 'excellence', 'principles', 'aegntic']
 ---
@@ -123,3 +123,4 @@ We're building for a different standard.
 - [Why We Built Aegntic](/blog/why-we-built-aegntic) — The founding vision
 - [FPEF Debugging Framework](/blog/fpef-debugging-framework) — How we systematically solve problems
 - [UltraPlan Pro](/blog/ultraplan-pro-strategic-project-planning) — How we plan for excellence
+

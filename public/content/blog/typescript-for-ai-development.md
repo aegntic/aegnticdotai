@@ -1,7 +1,7 @@
 ---
 title: 'TypeScript for AI Development: Type Safety Meets LLMs'
 description: 'Why TypeScript is our primary language for AI applications. Type safety, better tooling, and patterns that prevent common mistakes.'
-pubDate: 'Apr 15 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-2.jpg'
 tags: ['typescript', 'development', 'AI', 'patterns', 'tooling']
 ---
@@ -124,3 +124,4 @@ Strict mode catches the bugs that matter.
 ---
 
 *TypeScript is foundational to our development. See [Bun vs Node](/blog/bun-vs-node-runtime-switch) for our runtime choice.*
+

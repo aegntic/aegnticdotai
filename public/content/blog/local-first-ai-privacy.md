@@ -1,7 +1,7 @@
 ---
 title: 'Local-First AI: Privacy Without Compromise'
 description: 'Why we built for local-first. Running AI locally, keeping data private, and still delivering enterprise features.'
-pubDate: 'Apr 20 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['privacy', 'local-first', 'AI', 'architecture', 'enterprise']
 ---
@@ -144,3 +144,4 @@ async function smartRoute(prompt: string, data: Data) {
 ---
 
 *Local-first is core to our architecture. See [Building a Platform Ecosystem](/blog/building-40-platform-ai-ecosystem) for the full infrastructure.*
+

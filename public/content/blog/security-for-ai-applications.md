@@ -1,7 +1,7 @@
 ---
 title: 'Security for AI Applications: Protecting Models, Data, and Users'
 description: 'Security considerations specific to AI applications. Prompt injection, data poisoning, model extraction, and defensive strategies.'
-pubDate: 'May 05 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-4.jpg'
 tags: ['security', 'AI', 'privacy', 'development', 'enterprise']
 ---
@@ -399,3 +399,4 @@ async function processWithAudit(req: Request): Promise<Response> {
 ---
 
 *Security is non-negotiable for AI applications. For related infrastructure, see [Cloudflare Workers](/blog/cloudflare-workers-ai-backend) and [Supabase security](/blog/supabase-for-ai-applications).*
+

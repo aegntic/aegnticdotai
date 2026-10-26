@@ -1,7 +1,7 @@
 ---
 title: 'Building an AI Platform Ecosystem: Architecture Lessons Learned'
 description: 'How we scaled from one project to an interconnected ecosystem of platforms. Modular architecture, shared infrastructure, and the principles that made it work.'
-pubDate: 'Jul 20 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-2.jpg'
 tags: ['architecture', 'ecosystem', 'scaling', 'AI', 'infrastructure']
 ---
@@ -210,3 +210,4 @@ Each new platform is easier than the one before it.
 ---
 
 *This ecosystem approach is fundamental to how we build. Learn more about [MCP orchestration](/blog/mcp-revolution-orchestrating-ai-services) or explore [our founding vision](/blog/why-we-built-aegntic).*
+

@@ -1,7 +1,7 @@
 ---
 title: 'The RIPSEC Framework: How to Structure Compelling Ebooks and Content'
 description: 'A proven 6-section formula for ebooks that maximize reader engagement and conversion: Rapport, Introduction, Problem, Solution, Empowerment, Celebrate.'
-pubDate: 'Dec 19 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-4.jpg'
 tags: ['content-creation', 'ebook', 'writing', 'framework', 'RIPSEC']
 ---
@@ -268,3 +268,4 @@ The structure works because it mirrors how people make decisions: understand, le
 ---
 
 *RIPSEC is part of the Aegntic content framework collection. For technical methodologies, explore [FPEF](/blog/fpef-debugging-framework) for debugging and [UltraPlan Pro](/blog/ultraplan-pro-strategic-project-planning) for project planning.*
+

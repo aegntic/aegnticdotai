@@ -1,14 +1,14 @@
 ---
 title: 'Mem:RE: Building AI Memory That Actually Persists'
 description: 'The complete product story of how we built Mem:RE, the persistent AI memory system that enables cross-session learning, institutional knowledge, and future-hindsight capabilities with 94% accuracy.'
-pubDate: '2024-09-25'
+pubDate: 'Aug 13 2025'
 heroImage: '../../assets/blog-placeholder-2.jpg'
 tags: ['Memre', 'AI-memory', 'persistence', 'product-story', 'future-hindsight']
 ---
 
 # Mem:RE: Building AI Memory That Actually Persists
 
-**September 25th, 2024. 1:23am.**
+**August 13th, 2025. 1:23am.**
 
 I was watching Sarah, our lead developer, debug a complex distributed system issue. She was explaining the problem to ChatGPT, going into detail about architecture decisions and previous debugging sessions.
 
@@ -735,7 +735,7 @@ Team coding standards evolution:
 
 ## The Future of AI Memory
 
-### Phase 4: Team Memory Spaces (December 2024)
+### Phase 4: Team Memory Spaces (December 2025)
 
 We're implementing shared memory spaces that enable:
 

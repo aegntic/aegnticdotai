@@ -1,7 +1,7 @@
 ---
 title: 'Streaming LLM Responses: Real-Time AI Output'
 description: 'Implementing streaming for AI responses. Server-sent events, WebSockets, and client-side handling for responsive UX.'
-pubDate: 'Apr 01 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-5.jpg'
 tags: ['streaming', 'LLMs', 'real-time', 'development', 'UX']
 ---
@@ -207,3 +207,4 @@ async function* robustStream(prompt: string) {
 ---
 
 *Streaming improves AI UX significantly. See [D3MO](/blog/d3mo-conversational-ai) for our conversational interface.*
+

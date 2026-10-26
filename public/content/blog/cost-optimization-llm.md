@@ -1,7 +1,7 @@
 ---
 title: 'Cost Optimization for LLM Applications: Spending Wisely on AI'
 description: 'Strategies to reduce AI API costs. Model selection, caching, prompt optimization, and intelligent routing.'
-pubDate: 'Mar 25 2024'
+pubDate: 'Mar 25 2026'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['cost', 'optimization', 'LLMs', 'architecture', 'business']
 ---
@@ -211,3 +211,4 @@ After optimization:
 ---
 
 *Cost optimization is essential at scale. See [OpenRouter](/blog/openrouter-unified-llm-api) for unified model access.*
+

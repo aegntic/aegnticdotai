@@ -1,7 +1,7 @@
 ---
 title: 'n8n Automation at Scale: Building Modular AI Workflows'
 description: 'How we use n8n for modular, expandable automation. From simple triggers to complex multi-step AI pipelines that handle real production workloads.'
-pubDate: 'Oct 15 2024'
+pubDate: 'Dec 16 2025'
 heroImage: '../../assets/blog-placeholder-5.jpg'
 tags: ['n8n', 'automation', 'workflow', 'integration', 'AI-pipelines']
 ---
@@ -265,3 +265,4 @@ High-volume: accumulate items, process in batches for efficiency.
 ---
 
 *n8n is a key component of our automation infrastructure. Learn about [MCP integration](/blog/mcp-revolution-orchestrating-ai-services) or explore [our overall architecture](/blog/building-40-platform-ai-ecosystem).*
+

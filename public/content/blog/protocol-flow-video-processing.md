@@ -1,7 +1,7 @@
 ---
 title: 'Protocol Flow: AI-Powered Video Processing at Scale'
 description: 'Building an intelligent video processing pipeline. Scene detection, storyboard generation, workflow automation with n8n and Kdenlive integration.'
-pubDate: 'Aug 20 2024'
+pubDate: 'Aug 2 2026'
 heroImage: '../../assets/blog-placeholder-3.jpg'
 tags: ['video-processing', 'AI', 'automation', 'n8n', 'workflow']
 ---
@@ -265,3 +265,4 @@ Processing videos in batches is more efficient than one-at-a-time, especially fo
 ---
 
 *Protocol Flow represents our approach to media automation. For the underlying infrastructure, see [n8n Automation at Scale](/blog/n8n-automation-at-scale).*
+
