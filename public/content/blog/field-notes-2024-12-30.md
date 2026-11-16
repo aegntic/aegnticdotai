@@ -1,7 +1,7 @@
 ---
 title: "Another model. What can we actually do with it?"
 description: "DeepSeek V3 arrived on 26 December. Start with a job it might make easier."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2024-12-30
 tags: ["Field Notes", "Retrospective"]
 ---

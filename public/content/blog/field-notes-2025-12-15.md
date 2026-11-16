@@ -1,7 +1,7 @@
 ---
 title: "Nice formatting can hide a bad answer"
 description: "GPT-5.2 was announced on 11 December, with professional work and artifacts prominent in the release. It's easy to see why polished spreadsheets, slides and documents get attention. They look finished."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-12-15"
 tags: ["Field Notes", "Retrospective"]
 ---

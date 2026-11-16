@@ -1,7 +1,7 @@
 ---
 title: "Where did that answer come from?"
 description: "Deep research made multi-step investigation more visible. Its claims still need checking."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-02-03
 tags: ["Field Notes", "Retrospective"]
 ---

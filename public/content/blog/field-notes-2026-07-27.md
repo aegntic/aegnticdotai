@@ -1,7 +1,7 @@
 ---
 title: "Leave a checkpoint someone can open"
 description: "Long-running work needs saved results between the start and the final report."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-07-27
 tags: ["Field Notes", "Retrospective"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Give the small model a complete small job"
 description: "Haiku 4.5 arrived on 15 October. That makes model routing interesting, but I wouldn't start by replacing every expensive call with a cheaper one."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-10-20"
 tags: ["Field Notes", "Retrospective"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Which document is actually current?"
 description: "A larger context window can hold more contradictory material."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-03-09
 tags: ["Field Notes", "Retrospective"]
 ---

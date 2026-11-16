@@ -1,7 +1,7 @@
 ---
 title: "Show every example"
 description: "The design brief wanted visible effects, reduced-motion support and a real performance check."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-06-02
 tags: ["Field Notes", "Retrospective"]
 ---

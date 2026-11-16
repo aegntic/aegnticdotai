@@ -1,7 +1,7 @@
 ---
 title: "Keep the difficult examples"
 description: "Start with work that exposes a failure, then compare the models."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-01-05
 tags: ["Field Notes", "Retrospective"]
 ---

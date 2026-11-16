@@ -1,7 +1,7 @@
 ---
 title: "No, that is still the same announcement"
 description: "The LLM.deals brief called for automatic news and blog updates. That raises an immediate problem: ten sites can repeat one announcement and look like ten stories to a careless pipeline."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-09-08"
 tags: ["Field Notes", "Retrospective"]
 ---

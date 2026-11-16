@@ -1,7 +1,7 @@
 ---
 title: "Leave the missing field empty"
 description: "Lightweight extraction should not invent completeness."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-10-12
 tags: ["Field Notes", "Retrospective"]
 ---

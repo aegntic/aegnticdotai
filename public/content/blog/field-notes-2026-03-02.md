@@ -1,7 +1,7 @@
 ---
 title: "Reconnect to the work"
 description: "A restored socket should recover the task, not just restart the animation."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-03-02
 tags: ["Field Notes", "Retrospective"]
 ---

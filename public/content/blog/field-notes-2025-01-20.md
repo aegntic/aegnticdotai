@@ -1,7 +1,7 @@
 ---
 title: "Run the awkward version of the demo"
 description: "A clean example shows possibility. Messy inputs show where the work remains."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-01-20
 tags: ["Field Notes", "Retrospective"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "A price without its conditions is barely a price"
 description: "An AI directory that lists “cheap” next to a tool hasn't done the comparison yet."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-09-15"
 tags: ["Field Notes", "Retrospective"]
 ---

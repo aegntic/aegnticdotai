@@ -1,7 +1,7 @@
 ---
 title: "The handoff should fit on one screen"
 description: "A transcript can contain everything and still be a terrible place to resume a task."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-10-06"
 tags: ["Field Notes", "Retrospective"]
 ---

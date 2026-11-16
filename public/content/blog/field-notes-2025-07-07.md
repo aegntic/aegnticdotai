@@ -1,7 +1,7 @@
 ---
 title: "The build passed. The header is still covering the article."
 description: "Gemini CLI landed on 25 June. AI in the terminal makes sense to me: the files, commands and tests are already there. Moving between a chat window and the actual project is mostly friction."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-07-07"
 tags: ["Field Notes", "Retrospective"]
 ---

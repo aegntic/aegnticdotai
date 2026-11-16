@@ -1,7 +1,7 @@
 ---
 title: "Explain it without making people feel behind"
 description: "The June AEGNTIC brief wanted technical depth that newcomers could follow."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-06-09
 tags: ["Field Notes", "Retrospective"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Flat and lifeless is still flat and lifeless"
 description: "The personal site needed a story and better assets, not more technical copy."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-09-28
 tags: ["Field Notes", "Retrospective"]
 ---

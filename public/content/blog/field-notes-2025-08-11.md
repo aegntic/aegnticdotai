@@ -1,7 +1,7 @@
 ---
 title: "Can it run here, and can it actually do anything?"
 description: "OpenAI released gpt-oss on 5 August and GPT-5 on 7 August. On 9 August, my questions were about local Ollama models that could work with terminal tools, then about the new gpt-oss models."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-08-11"
 tags: ["Field Notes", "Retrospective"]
 ---

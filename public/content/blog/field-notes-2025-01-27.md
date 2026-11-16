@@ -1,7 +1,7 @@
 ---
 title: "The browser has the final say"
 description: "R1 and Operator put reasoning and execution beside each other."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-01-27
 tags: ["Field Notes", "Retrospective"]
 ---

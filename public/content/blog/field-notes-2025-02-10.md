@@ -1,7 +1,7 @@
 ---
 title: "A link should take you to the evidence"
 description: "Source links need to support the sentence beside them."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-02-10
 tags: ["Field Notes", "Retrospective"]
 ---

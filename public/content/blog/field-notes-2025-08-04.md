@@ -1,7 +1,7 @@
 ---
 title: "Actually, use the other one"
 description: "Long tasks get corrected halfway through. That's normal. Someone remembers a constraint, changes an account, or decides the first option wasn't right after all."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-08-04"
 tags: ["Field Notes", "Retrospective"]
 ---

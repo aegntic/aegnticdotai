@@ -1,7 +1,7 @@
 ---
 title: "Can another worker finish this?"
 description: "Save enough state that an interrupted task can be resumed without guesswork."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-02-16
 tags: ["Field Notes", "Retrospective"]
 ---

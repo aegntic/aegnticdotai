@@ -1,7 +1,7 @@
 ---
 title: "Give the coding agent a usable project"
 description: "Claude Code arrived alongside another week of model releases. The repository still needs to explain itself."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-03-03
 tags: ["Field Notes", "Retrospective"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Remember the correction too"
 description: "Personal context needs dates, scope and a way to fix it."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-02-02
 tags: ["Field Notes", "Retrospective"]
 ---

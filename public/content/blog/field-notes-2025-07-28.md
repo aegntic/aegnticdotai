@@ -1,7 +1,7 @@
 ---
 title: "The page is not your boss"
 description: "ChatGPT agent arrived on 17 July, bringing research and browser actions into one workflow. That puts a lot of ordinary-looking buttons between a request and its consequences."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-07-28"
 tags: ["Field Notes", "Retrospective"]
 ---

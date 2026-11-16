@@ -1,7 +1,7 @@
 ---
 title: "Leave enough information to resume"
 description: "Longer assignments need checkpoints that describe actual state."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-05-26
 tags: ["Field Notes", "Retrospective"]
 ---

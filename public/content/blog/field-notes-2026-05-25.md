@@ -1,7 +1,7 @@
 ---
 title: "Ask at the consequential part"
 description: "Routine choices should not become a stream of approval requests."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-05-25
 tags: ["Field Notes", "Retrospective"]
 ---

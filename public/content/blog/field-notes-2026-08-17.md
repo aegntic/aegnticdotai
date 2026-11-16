@@ -1,7 +1,7 @@
 ---
 title: "The release calendar is not the roadmap"
 description: "Test a new model when there is a reason to change the working system."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-08-17
 tags: ["Field Notes", "Retrospective"]
 ---

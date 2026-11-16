@@ -1,7 +1,7 @@
 ---
 title: "Give it the outcome, then let it work"
 description: "A clear brief should remove questions rather than generate more of them."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-07-06
 tags: ["Field Notes", "Retrospective"]
 ---

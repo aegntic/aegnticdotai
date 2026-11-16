@@ -1,7 +1,7 @@
 ---
 title: "Change the background. Keep the product."
 description: "Image edits need a check on everything that was meant to stay untouched."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-01-12
 tags: ["Field Notes", "Retrospective"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Have the checkout ready"
 description: "The video workflow brief asked the agent to handle preparation and make the remaining handoff small."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-05-05
 tags: ["Field Notes", "Retrospective"]
 ---

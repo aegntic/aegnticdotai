@@ -1,7 +1,7 @@
 ---
 title: "Build the path before the platform"
 description: "Add infrastructure when a real task needs it."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-06-23
 tags: ["Field Notes", "Retrospective"]
 ---

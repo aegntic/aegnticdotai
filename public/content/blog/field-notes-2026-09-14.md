@@ -1,7 +1,7 @@
 ---
 title: "Turn one threat into a test"
 description: "A report should lead to a specific check in the application."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-09-14
 tags: ["Field Notes", "Retrospective"]
 ---

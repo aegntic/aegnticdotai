@@ -1,7 +1,7 @@
 ---
 title: "Watch what people keep deleting"
 description: "Repeated edits are evidence about the default model."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-10-05
 tags: ["Field Notes", "Retrospective"]
 ---

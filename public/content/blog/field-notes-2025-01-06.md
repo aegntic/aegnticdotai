@@ -1,7 +1,7 @@
 ---
 title: "Cheap tokens, expensive interruptions"
 description: "Compare the cost of a finished task, including the repairs."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-01-06
 tags: ["Field Notes", "Retrospective"]
 ---

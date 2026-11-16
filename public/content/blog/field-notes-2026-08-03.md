@@ -1,7 +1,7 @@
 ---
 title: "The scene moved"
 description: "Physical actions need current observations and a reliable stop."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-08-03
 tags: ["Field Notes", "Retrospective"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Start with the sitemap"
 description: "April planning asked how the AEGNTIC site should fit together."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-04-14
 tags: ["Field Notes", "Retrospective"]
 ---

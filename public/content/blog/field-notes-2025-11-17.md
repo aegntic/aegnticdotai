@@ -1,7 +1,7 @@
 ---
 title: "A quiet week is allowed"
 description: "There isn't a new release behind this entry. The source carried forward here is October's Haiku 4.5 announcement."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-11-17"
 tags: ["Field Notes", "Retrospective"]
 ---

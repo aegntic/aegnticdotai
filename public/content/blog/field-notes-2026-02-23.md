@@ -1,7 +1,7 @@
 ---
 title: "Stop using the flagship for string formatting"
 description: "Split the workload before deciding which model should handle it."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-02-23
 tags: ["Field Notes", "Retrospective"]
 ---

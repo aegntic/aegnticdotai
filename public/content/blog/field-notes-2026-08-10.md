@@ -1,7 +1,7 @@
 ---
 title: "Test it with the tools attached"
 description: "A model evaluation does not cover every application built around it."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-08-10
 tags: ["Field Notes", "Retrospective"]
 ---

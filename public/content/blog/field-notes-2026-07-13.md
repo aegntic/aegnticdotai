@@ -1,7 +1,7 @@
 ---
 title: "Route by the cost of being wrong"
 description: "Model selection should account for consequence as well as request size."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-07-13
 tags: ["Field Notes", "Retrospective"]
 ---

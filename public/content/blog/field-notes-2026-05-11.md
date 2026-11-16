@@ -1,7 +1,7 @@
 ---
 title: "What happens on the second webhook?"
 description: "Deduplicate events before they produce duplicate actions."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-05-11
 tags: ["Field Notes", "Retrospective"]
 ---

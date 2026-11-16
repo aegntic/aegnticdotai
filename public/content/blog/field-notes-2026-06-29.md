@@ -1,7 +1,7 @@
 ---
 title: "We are already in a project"
 description: "The Signal brief needed working files, not another explanation of where to build them."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-06-29
 tags: ["Field Notes", "Retrospective"]
 ---

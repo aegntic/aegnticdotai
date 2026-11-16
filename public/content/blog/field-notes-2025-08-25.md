@@ -1,7 +1,7 @@
 ---
 title: "Same request shape. Different behaviour."
 description: "DeepSeek-V3.1 arrived on 21 August. A familiar API makes trying another model much easier. It doesn't make migration a one-line engineering decision."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-08-25"
 tags: ["Field Notes", "Retrospective"]
 ---

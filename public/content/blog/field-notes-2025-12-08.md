@@ -1,7 +1,7 @@
 ---
 title: "Send the result, not a tour of the session"
 description: "A task can take hours and still deserve a short handoff."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-12-08"
 tags: ["Field Notes", "Retrospective"]
 ---

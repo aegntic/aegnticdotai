@@ -1,7 +1,7 @@
 ---
 title: "Give it a shell. Give it a job."
 description: "Gemini CLI's June release raises a fairly ordinary question with fairly large consequences: what exactly did we give the agent permission to do?"
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-07-14"
 tags: ["Field Notes", "Retrospective"]
 ---

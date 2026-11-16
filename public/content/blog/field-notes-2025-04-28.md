@@ -1,7 +1,7 @@
 ---
 title: "Research, tools and a reason to come back"
 description: "The April site concept joined products, writing, email updates and a three-dimensional visual direction."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-04-28
 tags: ["Field Notes", "Retrospective"]
 ---

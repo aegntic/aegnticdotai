@@ -1,7 +1,7 @@
 ---
 title: "Make the project portable between assistants"
 description: "Gemini CLI adds another reason to keep instructions and checks in the repository."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-06-30
 tags: ["Field Notes", "Retrospective"]
 ---

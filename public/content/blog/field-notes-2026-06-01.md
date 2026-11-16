@@ -1,7 +1,7 @@
 ---
 title: "Finish the existing job first"
 description: "A stronger model can remove friction without expanding the brief."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-06-01
 tags: ["Field Notes", "Retrospective"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Use the SDK. Keep responsibility for the job."
 description: "Anthropic introduced Sonnet 4.5 and the Claude Agent SDK on 29 September. Reusing maintained infrastructure is much more appealing than building another tool loop from scratch."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-09-29"
 tags: ["Field Notes", "Retrospective"]
 ---

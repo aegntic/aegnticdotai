@@ -1,7 +1,7 @@
 ---
 title: "The preview became somebody’s daily tool"
 description: "Dependency records should include the experiments people now rely on."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-05-04
 tags: ["Field Notes", "Retrospective"]
 ---

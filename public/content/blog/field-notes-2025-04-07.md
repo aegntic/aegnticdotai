@@ -1,7 +1,7 @@
 ---
 title: "Shrink the preview before approving it"
 description: "The full-size generation window is a flattering place to judge a small asset."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-04-07
 tags: ["Field Notes", "Retrospective"]
 ---

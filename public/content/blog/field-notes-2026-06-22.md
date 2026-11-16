@@ -1,7 +1,7 @@
 ---
 title: "Put the address in writing"
 description: "Voice answers need somewhere to leave the details."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-06-22
 tags: ["Field Notes", "Retrospective"]
 ---

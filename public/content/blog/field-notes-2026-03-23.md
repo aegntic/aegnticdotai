@@ -1,7 +1,7 @@
 ---
 title: "Give the small model a small job"
 description: "Bound the task and include the cost of escalation."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-03-23
 tags: ["Field Notes", "Retrospective"]
 ---

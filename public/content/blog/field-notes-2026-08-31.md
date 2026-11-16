@@ -1,7 +1,7 @@
 ---
 title: "What is worth keeping from a work session?"
 description: "The capture idea starts with selecting moments, not accumulating footage."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-08-31
 tags: ["Field Notes", "Retrospective"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Keep the decisions. Drop the origin myth."
 description: "The year's announcements are easy to list. The project history is less tidy, which makes it more interesting."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-12-29"
 tags: ["Field Notes", "Retrospective"]
 ---

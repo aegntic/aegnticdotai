@@ -1,7 +1,7 @@
 ---
 title: "Open the thing you just made"
 description: "Markdown isn't the PDF. Source code isn't the page. The exported result is where the person encounters the work."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-12-22"
 tags: ["Field Notes", "Retrospective"]
 ---

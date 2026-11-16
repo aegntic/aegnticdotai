@@ -1,7 +1,7 @@
 ---
 title: "Keep the old route reachable"
 description: "Know what reverting a model upgrade will actually restore."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-04-20
 tags: ["Field Notes", "Retrospective"]
 ---

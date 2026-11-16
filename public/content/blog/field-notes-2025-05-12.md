@@ -1,7 +1,7 @@
 ---
 title: "Accept the idea. Set up the project."
 description: "The May workflow request connected research, documentation, project setup and a shared app identity."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-05-12
 tags: ["Field Notes", "Retrospective"]
 ---

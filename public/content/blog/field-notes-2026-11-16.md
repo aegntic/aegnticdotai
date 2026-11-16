@@ -1,7 +1,7 @@
 ---
 title: "Link the proven parts"
 description: "Build the missing piece after checking what already works."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-11-16
 tags: ["Field Notes", "Retrospective"]
 ---

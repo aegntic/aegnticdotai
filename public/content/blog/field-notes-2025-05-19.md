@@ -1,7 +1,7 @@
 ---
 title: "What would make this coding task finished?"
 description: "The Codex preview makes the acceptance criteria worth writing down."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-05-19
 tags: ["Field Notes", "Retrospective"]
 ---

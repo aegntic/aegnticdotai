@@ -1,7 +1,7 @@
 ---
 title: "How do these projects actually fit together?"
 description: "On 28 November, I was trying to restructure how AEGNTIC, AE Limited, Prompt Fail and the other projects worked together, then make that understandable on a website."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-12-01"
 tags: ["Field Notes", "Retrospective"]
 ---

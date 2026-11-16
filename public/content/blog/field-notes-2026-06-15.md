@@ -1,7 +1,7 @@
 ---
 title: "Keep the suspension in the timeline"
 description: "A launch announcement alone does not describe availability for the whole week."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-06-15
 tags: ["Field Notes", "Retrospective"]
 ---

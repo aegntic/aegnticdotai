@@ -1,7 +1,7 @@
 ---
 title: "What does success mean in this tool?"
 description: "A timeout and a rejected request need different recovery paths."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-03-24
 tags: ["Field Notes", "Retrospective"]
 ---

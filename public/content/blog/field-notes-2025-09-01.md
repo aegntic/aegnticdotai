@@ -1,7 +1,7 @@
 ---
 title: "LLM.deals needs to save someone a decision"
 description: "On 1 September, I asked for LLM.deals as a directory: Angular, automatic updates, a news feed and blog creation. That was the brief. It wasn't a claim that all of it already worked."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-09-01"
 tags: ["Field Notes", "Retrospective"]
 ---

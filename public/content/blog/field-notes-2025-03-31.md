@@ -1,7 +1,7 @@
 ---
 title: "Change this bit. Keep the rest."
 description: "Image editing needs an explicit list of what stays unchanged."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-03-31
 tags: ["Field Notes", "Retrospective"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Five agents, one unfinished task"
 description: "Parallel work needs ownership at the point where the pieces come together."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-02-09
 tags: ["Field Notes", "Retrospective"]
 ---

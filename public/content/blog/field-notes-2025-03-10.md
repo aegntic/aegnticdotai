@@ -1,7 +1,7 @@
 ---
 title: "Some tasks should just be quick"
 description: "Spend extra reasoning on ambiguity and costly mistakes."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-03-10
 tags: ["Field Notes", "Retrospective"]
 ---

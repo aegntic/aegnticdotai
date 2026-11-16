@@ -1,7 +1,7 @@
 ---
 title: "Be creative. Keep the essence."
 description: "The earlier two-hand logo brief remains a constraint on new image tools."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-11-09
 tags: ["Field Notes", "Retrospective"]
 ---

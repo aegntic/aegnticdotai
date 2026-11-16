@@ -1,7 +1,7 @@
 ---
 title: "The plan has to change when the evidence does"
 description: "o3 and o4-mini arrived on 16 April. Tool results still need to steer the next action."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-04-21
 tags: ["Field Notes", "Retrospective"]
 ---

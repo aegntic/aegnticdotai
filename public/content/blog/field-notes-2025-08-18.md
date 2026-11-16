@@ -1,7 +1,7 @@
 ---
 title: "Put the new model in the old project"
 description: "GPT-5 was announced on 7 August. The obvious thing to do next is try it. The less obvious thing is to resist making the test unusually easy."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-08-18"
 tags: ["Field Notes", "Retrospective"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Which test passed?"
 description: "A green result needs a named behaviour behind it."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-06-16
 tags: ["Field Notes", "Retrospective"]
 ---

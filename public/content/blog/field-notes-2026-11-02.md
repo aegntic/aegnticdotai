@@ -1,7 +1,7 @@
 ---
 title: "Give me the diff and the checks"
 description: "Coding work should arrive ready to review."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-11-02
 tags: ["Field Notes", "Retrospective"]
 ---

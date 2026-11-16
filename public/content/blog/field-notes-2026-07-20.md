@@ -1,7 +1,7 @@
 ---
 title: "Find what we decided"
 description: "Returning five old chats can leave the original question unanswered."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-07-20
 tags: ["Field Notes", "Retrospective"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "The blog generator needs a reason to write"
 description: "Automatic blog creation was part of the directory brief. I don't want that to mean a machine producing articles because Tuesday arrived."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-09-22"
 tags: ["Field Notes", "Retrospective"]
 ---

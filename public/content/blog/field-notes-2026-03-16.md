@@ -1,7 +1,7 @@
 ---
 title: "The shot looks good. Does it cut?"
 description: "Generated footage still has to work inside an edit."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-03-16
 tags: ["Field Notes", "Retrospective"]
 ---

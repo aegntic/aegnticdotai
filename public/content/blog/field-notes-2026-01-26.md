@@ -1,7 +1,7 @@
 ---
 title: "What did latest change?"
 description: "A moving model alias can change the product without a code deployment."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-01-26
 tags: ["Field Notes", "Retrospective"]
 ---

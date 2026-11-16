@@ -1,7 +1,7 @@
 ---
 title: "Cheap calls. Expensive afternoon."
 description: "The API bill doesn't include the time spent fixing the output."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-10-27"
 tags: ["Field Notes", "Retrospective"]
 ---

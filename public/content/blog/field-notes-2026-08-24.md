@@ -1,7 +1,7 @@
 ---
 title: "Look underneath HARPA"
 description: "The research brief was about mechanisms worth adapting."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-08-24
 tags: ["Field Notes", "Retrospective"]
 ---

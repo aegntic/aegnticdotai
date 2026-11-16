@@ -1,7 +1,7 @@
 ---
 title: "Enough research. What are we trying next?"
 description: "A research brief should make the next experiment easier to choose."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-02-24
 tags: ["Field Notes", "Retrospective"]
 ---

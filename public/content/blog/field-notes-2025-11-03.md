@@ -1,7 +1,7 @@
 ---
 title: "Don't make the fallback start from nothing"
 description: "Model routing creates a handoff problem. When the first model can't finish, what exactly does the next one receive?"
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-11-03"
 tags: ["Field Notes", "Retrospective"]
 ---

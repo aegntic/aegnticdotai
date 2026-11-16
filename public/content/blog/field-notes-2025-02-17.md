@@ -1,7 +1,7 @@
 ---
 title: "Stop asking me about every click"
 description: "Browser agents need a clear scope and a sensible point to interrupt."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-02-17
 tags: ["Field Notes", "Retrospective"]
 ---

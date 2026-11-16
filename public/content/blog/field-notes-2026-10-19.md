@@ -1,7 +1,7 @@
 ---
 title: "Keep the old tests in the new evaluation"
 description: "A generation change should not erase the tasks the application already depends on."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-10-19
 tags: ["Field Notes", "Retrospective"]
 ---

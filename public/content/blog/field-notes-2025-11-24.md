@@ -1,7 +1,7 @@
 ---
 title: "Keep the project usable outside the agent IDE"
 description: "Gemini 3 and Antigravity arrived on 18 November; Opus 4.5 followed on 24 November. More of the development experience was being organised around agents."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-11-24"
 tags: ["Field Notes", "Retrospective"]
 ---

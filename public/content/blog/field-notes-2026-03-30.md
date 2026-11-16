@@ -1,7 +1,7 @@
 ---
 title: "The dispatcher does not need to be a town hall"
 description: "clawREFORM needed clear technical names underneath its city analogy."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-03-30
 tags: ["Field Notes", "Retrospective"]
 ---

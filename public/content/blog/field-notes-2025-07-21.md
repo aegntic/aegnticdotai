@@ -1,7 +1,7 @@
 ---
 title: "The portfolio should survive the app that inspired it"
 description: "On 19 July, I brought in a VisualMind map of the AEGNTIC GitHub profile and asked to turn it into a portfolio. Then I added the part that mattered: it shouldn't depend on that app continuing to exist."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-07-21"
 tags: ["Field Notes", "Retrospective"]
 ---

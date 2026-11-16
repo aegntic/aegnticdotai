@@ -1,7 +1,7 @@
 ---
 title: "Show the finding and the fix"
 description: "A security report should leave a maintainer with something they can verify."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-04-13
 tags: ["Field Notes", "Retrospective"]
 ---

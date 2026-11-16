@@ -1,7 +1,7 @@
 ---
 title: "Search for the skills"
 description: "The October correction was simple: find the existing work first."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-10-26
 tags: ["Field Notes", "Retrospective"]
 ---

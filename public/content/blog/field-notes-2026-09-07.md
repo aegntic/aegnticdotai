@@ -1,7 +1,7 @@
 ---
 title: "What owns the desktop agent?"
 description: "The Hermes investigation carries forward a question about runtime responsibilities."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-09-07
 tags: ["Field Notes", "Retrospective"]
 ---

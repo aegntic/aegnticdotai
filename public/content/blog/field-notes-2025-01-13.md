@@ -1,7 +1,7 @@
 ---
 title: "Looks real. Does it behave properly?"
 description: "NVIDIA Cosmos puts the difference between a convincing scene and a dependable system in view."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-01-13
 tags: ["Field Notes", "Retrospective"]
 ---

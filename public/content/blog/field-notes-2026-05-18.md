@@ -1,7 +1,7 @@
 ---
 title: "The laptop still has to be awake"
 description: "Remote access needs to say where the work is actually running."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2026-05-18
 tags: ["Field Notes", "Retrospective"]
 ---

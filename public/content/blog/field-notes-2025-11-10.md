@@ -1,7 +1,7 @@
 ---
 title: "The test has to be capable of failing"
 description: "A file existing is a very low bar for a successful task."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-11-10"
 tags: ["Field Notes", "Retrospective"]
 ---

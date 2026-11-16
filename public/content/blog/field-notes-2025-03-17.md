@@ -1,7 +1,7 @@
 ---
 title: "Connect a few tools properly"
 description: "The Responses API, Agents SDK and Gemma 3 arrived in the same week."
-pubDate: 2026-11-16
+pubDate: 2026-11-17
 retrospectiveDate: 2025-03-17
 tags: ["Field Notes", "Retrospective"]
 ---

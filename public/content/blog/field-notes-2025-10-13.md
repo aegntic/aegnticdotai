@@ -1,7 +1,7 @@
 ---
 title: "Six agents editing one header is not a strategy"
 description: "Parallelism is useful when the work separates cleanly. It gets messy when the split is just “give another agent something to do”."
-pubDate: "2026-11-16"
+pubDate: 2026-11-17
 retrospectiveDate: "2025-10-13"
 tags: ["Field Notes", "Retrospective"]
 ---
