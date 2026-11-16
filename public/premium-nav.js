@@ -180,10 +180,13 @@
       highlightedFooter = link;
       footerLinks.forEach(item => {
         item.classList.toggle('is-active', item === link);
-        item.parentElement.querySelector('.ae-footer-description').textContent = '';
+        const description = item.parentElement.querySelector('.ae-footer-description');
+        if (description) description.textContent = '';
       });
       const output = link.parentElement.querySelector('.ae-footer-description');
-      const text = document.getElementById(link.getAttribute('aria-describedby')).textContent;
+      const source = document.getElementById(link.getAttribute('aria-describedby'));
+      if (!output || !source) return;
+      const text = source.textContent;
       if (!animate || reduced.matches || !window.gsap) {output.textContent = text; return;}
       const progress = {characters:0};
       footerTween = window.gsap.to(progress, {characters:text.length, duration:.6, ease:'none',
@@ -240,7 +243,7 @@
       document.body.classList.toggle('ae-header-hidden', !show);
     }
     function measureHeader() {
-      document.documentElement.style.setProperty('--ae-header-height', `${Math.ceil(nav.offsetHeight)}px`);
+      document.documentElement.style.setProperty('--ae-header-height', `${Math.ceil(nav.getBoundingClientRect().height)}px`);
     }
     function updateHeader() {
       frame = 0;
