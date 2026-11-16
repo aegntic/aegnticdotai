@@ -209,27 +209,76 @@
     });
     trigger.setAttribute('aria-label', 'Menu');
 
-    // Measure against the fixed, untransformed logo footprint to prevent oscillation.
-    let collisionFrame = 0;
-    function avoidCopy() {
-      collisionFrame = 0;
-      if (mark.matches(':focus-within') || trigger.getAttribute('aria-expanded') === 'true') {mark.classList.remove('is-retreated');return;}
-      const nav = document.querySelector('.ae-global-nav');
-      const style = getComputedStyle(nav);
-      const left = parseFloat(style.paddingLeft);
-      const top = parseFloat(style.paddingTop);
-      const bottom = top + mark.offsetHeight + 22;
-      const right = left + mark.offsetWidth + 20;
-      const collision = [...document.querySelectorAll('main h1,main h2,.world-ghost,.world-label')].some(element => {
-        const rect = element.getBoundingClientRect();
-        return rect.bottom > top - 15 && rect.top < bottom && rect.left < right && rect.right > left;
-      });
-      mark.classList.toggle('is-retreated', collision && scrollY > 40);
+    // Blog reading gets its own scroll viewport: the revealed header occupies
+    // separate layout space rather than covering the article underneath it.
+    const nav = document.querySelector('.ae-global-nav');
+    const readingPage = /^\/blog(?:\/|$)/.test(location.pathname);
+    let scroller = window;
+    let viewport;
+    if (readingPage) {
+      viewport = document.createElement('div');
+      viewport.className = 'ae-reading-viewport';
+      viewport.setAttribute('tabindex', '0');
+      viewport.setAttribute('aria-label', 'Writing content');
+      [...document.body.children].filter(element =>
+        element !== nav && element !== menu &&
+        !['SCRIPT', 'STYLE', 'LINK', 'DIALOG'].includes(element.tagName)
+      ).forEach(element => viewport.append(element));
+      document.body.append(viewport);
+      document.body.classList.add('ae-reading-layout');
+      scroller = viewport;
     }
-    window.addEventListener('scroll', () => {if (!collisionFrame) collisionFrame = requestAnimationFrame(avoidCopy);}, {passive:true});
-    window.addEventListener('resize', avoidCopy, {passive:true});
-    mark.addEventListener('focus', () => mark.classList.remove('is-retreated'));
-    avoidCopy();
+    const scrollPosition = () => Math.max(0, readingPage ? viewport.scrollTop : window.scrollY);
+    let lastPosition = scrollPosition();
+    let direction = 0;
+    let distance = 0;
+    let frame = 0;
+    let layoutUntil = 0;
+    function showHeader(show) {
+      if (readingPage && nav.classList.contains('is-hidden') === show) layoutUntil = performance.now() + (reduced.matches ? 0 : 240);
+      nav.classList.toggle('is-hidden', !show);
+      document.body.classList.toggle('ae-header-hidden', !show);
+    }
+    function measureHeader() {
+      document.documentElement.style.setProperty('--ae-header-height', `${Math.ceil(nav.offsetHeight)}px`);
+    }
+    function updateHeader() {
+      frame = 0;
+      const position = scrollPosition();
+      const delta = position - lastPosition;
+      lastPosition = position;
+      if (position <= 8 || trigger.getAttribute('aria-expanded') === 'true' || (document.body.classList.contains('ae-keyboard') && nav.contains(document.activeElement))) {
+        direction = 0;
+        distance = 0;
+        showHeader(true);
+        return;
+      }
+      // Resizing a bottom-pinned viewport can clamp scrollTop; it is not user intent.
+      if (readingPage && performance.now() < layoutUntil) return;
+      if (!delta) return;
+      const nextDirection = Math.sign(delta);
+      distance = nextDirection === direction ? distance + Math.abs(delta) : Math.abs(delta);
+      direction = nextDirection;
+      if (distance >= 8) {showHeader(direction < 0);distance = 0;}
+    }
+    scroller.addEventListener('scroll', () => {if (!frame) frame = requestAnimationFrame(updateHeader);}, {passive:true});
+    nav.addEventListener('focusin', () => showHeader(true));
+    trigger.addEventListener('click', () => showHeader(true));
+    window.addEventListener('resize', measureHeader, {passive:true});
+    if (typeof ResizeObserver !== 'undefined') new ResizeObserver(measureHeader).observe(nav);
+    measureHeader();
+    if (readingPage) {
+      // Hash navigation remains within the reading viewport, including initial links.
+      const scrollToHash = () => {
+        if (!location.hash) return;
+        let id;
+        try {id = decodeURIComponent(location.hash.slice(1));} catch {return;}
+        document.getElementById(id)?.scrollIntoView({block:'start'});
+      };
+      window.addEventListener('hashchange', scrollToHash);
+      requestAnimationFrame(scrollToHash);
+    }
+    updateHeader();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount, {once:true}); else mount();
