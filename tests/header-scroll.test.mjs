@@ -6,7 +6,7 @@ import vm from 'node:vm';
 const source = readFileSync(new URL('../public/premium-nav.js', import.meta.url), 'utf8');
 const controller = source.slice(source.indexOf('    // Blog reading'), source.lastIndexOf('\n  }'));
 function fixture(path = '/blog/example/') {
-  const element = tag => ({tagName:tag,children:[],offsetHeight:94,scrollTop:0,listeners:{},attrs:{},classList:{values:new Set(),contains(v){return this.values.has(v);},toggle(v,on){on?this.values.add(v):this.values.delete(v);},add(v){this.values.add(v);}},append(el){this.children.push(el);},setAttribute(k,v){this.attrs[k]=v;},addEventListener(k,f){this.listeners[k]=f;},contains(el){return this.children.includes(el);}});
+  const element = tag => ({tagName:tag,children:[],offsetHeight:94,scrollTop:0,listeners:{},attrs:{},classList:{values:new Set(),contains(v){return this.values.has(v);},toggle(v,on){if(on){this.values.add(v);}else{this.values.delete(v);}},add(v){this.values.add(v);}},append(el){this.children.push(el);},setAttribute(k,v){this.attrs[k]=v;},addEventListener(k,f){this.listeners[k]=f;},contains(el){return this.children.includes(el);}});
   const nav=element('HEADER'),menu=element('NAV'),main=element('MAIN'),footer=element('FOOTER'),script=element('SCRIPT'),dialog=element('DIALOG'),trigger=element('BUTTON');
   nav.children.push(trigger);
   const body=element('BODY');body.children=[nav,menu,main,footer,script,dialog];
