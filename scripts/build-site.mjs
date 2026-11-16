@@ -19,6 +19,7 @@ import { fileURLToPath } from 'node:url';
 import { buildCatalogues } from './build-catalogues.mjs';
 import { syncSharedShell } from './sync-shared-shell.mjs';
 import { withSharedFooter } from './shared-footer.mjs';
+import { retrospectiveDate, archiveDateLabel, postOrder } from './blog-dates.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -159,9 +160,11 @@ function loadPosts() {
     const description = meta.description || '';
     const tags = parseTags(meta.tags || '');
     const date = parseDate(meta.pubDate || '');
-    return { slug, title, description, tags, date, pubDate: meta.pubDate || '', body, raw };
+    const retrospective = retrospectiveDate(meta.retrospectiveDate);
+    if (retrospective && (!date || retrospective > date)) throw new Error(`Invalid publication date for ${slug}`);
+    return { slug, title, description, tags, date, retrospective, pubDate: meta.pubDate || '', body, raw };
   });
-  posts.sort((a, b) => (b.date?.getTime() || 0) - (a.date?.getTime() || 0));
+  posts.sort(postOrder);
   return posts;
 }
 
@@ -178,8 +181,10 @@ function cleanGenerated() {
 }
 
 function buildBlog(posts) {
-  // index
-  const items = posts
+  const archive = posts.filter(p => p.retrospective);
+  const currentPosts = posts.filter(p => !p.retrospective);
+  // Retrospective reconstructions have their own discoverable collection.
+  const items = currentPosts
     .map(
       (p) => `<a class="list-item" href="/blog/${esc(p.slug)}/" data-tags="${esc(p.tags.join(','))}">
   <div class="list-title">${esc(p.title)}</div>
@@ -195,7 +200,7 @@ function buildBlog(posts) {
     )
     .join('\n');
 
-  const allTags = [...new Set(posts.flatMap((p) => p.tags))].sort((a, b) =>
+  const allTags = [...new Set(currentPosts.flatMap((p) => p.tags))].sort((a, b) =>
     a.localeCompare(b),
   );
   const filters = [
@@ -212,8 +217,9 @@ function buildBlog(posts) {
   <div class="hero-mini">
     <div class="eyebrow">Writing</div>
     <h1 class="page-title">Blog</h1>
-    <p class="page-desc">${posts.length} posts on agents, MCP, architecture, shipping systems, and the Aegntic stack. Full text, no JS required.</p>
+    <p class="page-desc">${currentPosts.length} posts on agents, MCP, architecture, shipping systems, and the Aegntic stack. Full text, no JS required.</p>
   </div>
+  ${archive.length ? `<section aria-labelledby="field-notes-heading" style="margin:2rem 0;padding:1.5rem;border:1px solid var(--rule);border-radius:1rem"><div class="eyebrow">Retrospective collection</div><h2 id="field-notes-heading"><a href="/blog/field-notes/">Weekly field notes</a></h2><p>${archive.length} reconstructed weeks of AI developments and working notes. Historical weeks are context dates, not original publication dates.</p><a class="btn-ghost btn" href="/blog/field-notes/">Browse the weekly archive →</a></section>` : ''}
   <div class="filters" id="filters">${filters}</div>
   <div class="list" id="post-list">${items}</div>
 </main>
@@ -248,7 +254,14 @@ function buildBlog(posts) {
     }),
   );
 
+  if (archive.length) {
+    const years = [...new Set(archive.map(p => p.retrospective.getUTCFullYear()))];
+    const sections = years.map(year => `<section id="year-${year}" aria-labelledby="heading-${year}"><h2 id="heading-${year}">${year}</h2><div class="list">${archive.filter(p => p.retrospective.getUTCFullYear() === year).map(p => `<a class="list-item" href="/blog/${esc(p.slug)}/"><div class="eyebrow">Week of <time datetime="${p.retrospective.toISOString().slice(0,10)}">${esc(archiveDateLabel(p.retrospective))}</time></div><div class="list-title">${esc(p.title)}</div><p>${esc(p.description)}</p><div class="list-meta">Retrospective · Published <time datetime="${p.date.toISOString().slice(0,10)}">${esc(archiveDateLabel(p.date))}</time></div></a>`).join('')}</div></section>`).join('');
+    write(join(OUT, 'blog/field-notes/index.html'), shell({title:'Weekly field notes — aegntic.ai',description:'A clearly labelled retrospective weekly archive of AI developments and working notes.',canonical:`${SITE}/blog/field-notes/`,body:`<main class="page"><a class="back" href="/blog/">← Blog</a><header class="hero-mini"><div class="eyebrow">Retrospective collection</div><h1 class="page-title">Field notes</h1><p class="page-desc">${archive.length} weekly reconstructions. “Week of” is the historical context; “Published” records the publication date. These were not published contemporaneously. Each entry distinguishes sourced developments from retrospective analysis.</p></header><nav aria-label="Browse archive by year" class="filters">${years.map(year => `<a class="filter" href="#year-${year}">${year}</a>`).join('')}</nav>${sections}</main>`,active:'blog'}));
+  }
+
   for (const p of posts) {
+    if (process.argv.includes('--archive-only') && !p.retrospective) continue;
     let html;
     try {
       html = mdToHtml(p.body);
@@ -261,7 +274,8 @@ function buildBlog(posts) {
     const body = `<main class="page">
   <a class="back" href="/blog/">← Blog</a>
   <article class="prose">
-    <div class="eyebrow">${p.date ? esc(formatDate(p.date)) : 'Essay'}</div>
+    <div class="eyebrow">${p.retrospective ? `Week of <time datetime="${p.retrospective.toISOString().slice(0,10)}">${esc(archiveDateLabel(p.retrospective))}</time>` : p.date ? esc(formatDate(p.date)) : 'Essay'}</div>
+    ${p.retrospective ? `<p class="retrospective-meta">Retrospective reconstruction · Published <time datetime="${p.date.toISOString().slice(0,10)}">${esc(archiveDateLabel(p.date))}</time> · <a href="/blog/field-notes/">Weekly archive</a></p>` : ''}
     <h1>${esc(p.title)}</h1>
     ${p.description ? `<p><em>${esc(p.description)}</em></p>` : ''}
     <div class="card-tags" style="margin:0 0 1.75rem">${p.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div>
@@ -299,6 +313,7 @@ function buildBlog(posts) {
 }
 
 function buildResearch(posts) {
+  posts = posts.filter(p => !p.retrospective);
   // Research = technical archive; same posts, research framing. Prefer agent/MCP/architecture tags first.
   const weight = (p) => {
     const t = p.tags.map((x) => x.toLowerCase());
@@ -479,6 +494,7 @@ function buildSitemap(posts, projects) {
     ['/projects/', '0.9', 'weekly'],
     ['/research/', '0.9', 'weekly'],
     ['/blog/', '0.9', 'weekly'],
+    ...(posts.some(p => p.retrospective) ? [['/blog/field-notes/', '0.8', 'weekly']] : []),
     ['/skills/', '0.8', 'monthly'],
     ['/about/', '0.6', 'monthly'],
     ...projects.map((p) => [`/projects/${p.slug}/`, '0.7', 'monthly']),
@@ -504,7 +520,7 @@ function buildLlms(posts, projects) {
   const projectLines = projects
     .map((p) => `- ${p.title} — ${p.summary} (${SITE}/projects/${p.slug}/)`)
     .join('\n');
-  const postLines = posts
+  const postLines = posts.filter(p => !p.retrospective)
     .slice(0, 40)
     .map((p) => `- ${p.title} (${SITE}/blog/${p.slug}/)`)
     .join('\n');
@@ -525,7 +541,7 @@ ${projectLines}
 
 ## Research & blog
 Full archive: ${SITE}/research/ and ${SITE}/blog/
-${postLines}${more}
+${postLines}${more}${posts.some(p => p.retrospective) ? `\nRetrospective weekly collection (historical context dates, not contemporaneous publication): ${SITE}/blog/field-notes/\n` : ''}
 ## Contact
 - Email: hello@aegntic.ai
 - GitHub: https://github.com/aegntic
@@ -569,7 +585,40 @@ function ensureAssets() {
   }
 }
 
+function buildArchiveOnly() {
+  execFileSync('pandoc', ['-v'], {stdio:'ignore'});
+  const posts = loadPosts();
+  const archive = posts.filter(p => p.retrospective);
+  if (!archive.length) throw new Error('No retrospective content available');
+  const indexPath = join(OUT, 'blog/index.html');
+  const existingIndex = readFileSync(indexPath, 'utf8');
+  buildBlog(posts);
+  const generatedIndex = readFileSync(indexPath, 'utf8');
+  const collectionCard = generatedIndex.match(/<section aria-labelledby="field-notes-heading"[\s\S]*?<\/section>/)?.[0];
+  if (!collectionCard) throw new Error('Missing archive discovery card');
+  const updatedIndex = existingIndex.includes('aria-labelledby="field-notes-heading"')
+    ? existingIndex.replace(/<section aria-labelledby="field-notes-heading"[\s\S]*?<\/section>/, collectionCard)
+    : existingIndex.replace('<div class="filters" id="filters">', `${collectionCard}\n  <div class="filters" id="filters">`);
+  if (!updatedIndex.includes('aria-labelledby="field-notes-heading"')) throw new Error('No insertion point for archive discovery');
+  write(indexPath, updatedIndex);
+  for (const slug of ['', 'field-notes/', ...archive.map(p => `${p.slug}/`)]) {
+    const path = join(OUT, 'blog', slug, 'index.html');
+    write(path, withSharedFooter(readFileSync(path, 'utf8')));
+  }
+  const sitemapPath = join(OUT, 'sitemap.xml');
+  let sitemap = readFileSync(sitemapPath, 'utf8');
+  const urls = ['/blog/field-notes/', ...archive.map(p => `/blog/${p.slug}/`)];
+  const added = urls.filter(path => !sitemap.includes(`<loc>${SITE}${path}</loc>`)).map(path => `  <url><loc>${SITE}${path}</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>`).join('\n');
+  if (added) sitemap = sitemap.replace('</urlset>', `${added}\n</urlset>`);
+  write(sitemapPath, sitemap);
+  const llmsPath = join(OUT, 'llms.txt');
+  const llms = readFileSync(llmsPath, 'utf8');
+  if (!llms.includes(`${SITE}/blog/field-notes/`)) write(llmsPath, `${llms}\n## Retrospective weekly collection\nHistorical context dates, not contemporaneous publication: ${SITE}/blog/field-notes/\n`);
+  console.log(`built retrospective collection: ${archive.length} articles; existing pages preserved`);
+}
+
 function main() {
+  if (process.argv.includes('--archive-only')) {buildArchiveOnly();return;}
   const homePath = join(ROOT, 'index.html');
   const homeSource = readFileSync(homePath, 'utf8');
   const home = withSharedFooter(homeSource);
