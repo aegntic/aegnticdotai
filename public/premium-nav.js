@@ -231,6 +231,35 @@
       document.body.classList.add('ae-reading-layout');
       scroller = viewport;
     }
+    // Non-blog pages retain window scrolling for ScrollTrigger. Their painted
+    // content viewport starts at the moving header edge, never behind it.
+    const contentRegions = readingPage ? [] : [...document.querySelectorAll('main, body > footer')];
+    let clearanceFrame = 0;
+    let clearanceUntil = 0;
+    function updateClearance() {
+      clearanceFrame = 0;
+      const edge = Math.max(0, nav.getBoundingClientRect().bottom);
+      contentRegions.forEach(region => {
+        const top = Math.max(0, edge - region.getBoundingClientRect().top);
+        region.style.clipPath = `inset(${top}px 0 0 0)`;
+      });
+      if (performance.now() < clearanceUntil) clearanceFrame = requestAnimationFrame(updateClearance);
+    }
+    function refreshClearance() {
+      if (readingPage) return;
+      clearanceUntil = performance.now() + (reduced.matches ? 0 : 260);
+      if (!clearanceFrame) clearanceFrame = requestAnimationFrame(updateClearance);
+    }
+    if (!readingPage) {
+      document.addEventListener('focusin', event => {
+        const target = event.target;
+        if (!contentRegions.some(region => region.contains(target))) return;
+        const edge = Math.max(0, nav.getBoundingClientRect().bottom);
+        const top = target.getBoundingClientRect().top;
+        if (top < edge + 8) window.scrollBy({top:top - edge - 8, behavior:'instant'});
+        refreshClearance();
+      });
+    }
     const scrollPosition = () => Math.max(0, readingPage ? viewport.scrollTop : window.scrollY);
     let lastPosition = scrollPosition();
     let direction = 0;
@@ -241,12 +270,15 @@
       if (readingPage && nav.classList.contains('is-hidden') === show) layoutUntil = performance.now() + (reduced.matches ? 0 : 240);
       nav.classList.toggle('is-hidden', !show);
       document.body.classList.toggle('ae-header-hidden', !show);
+      refreshClearance();
     }
     function measureHeader() {
       document.documentElement.style.setProperty('--ae-header-height', `${Math.ceil(nav.getBoundingClientRect().height)}px`);
+      refreshClearance();
     }
     function updateHeader() {
       frame = 0;
+      refreshClearance();
       const position = scrollPosition();
       const delta = position - lastPosition;
       lastPosition = position;
