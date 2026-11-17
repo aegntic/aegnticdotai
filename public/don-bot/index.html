@@ -6,27 +6,27 @@
   <!-- MANDATORY: Declare dark color-scheme in head to prevent initial white flash (FOUC) -->
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#090c11">
-  <title>Don-Bot Ultra — Tiny Software Factory · Build in Public | aegntic.ai</title>
-  <meta name="description" content="Don-Bot Ultra: an open-source Tiny Software Factory with a Lead Orchestrator, 4 durable specialists, SQLite WAL crash recovery, 300ms Jev judgment gates, and a 3-pane liquid interface. Watch the build in public at don.aegntic.ai.">
+  <title>Don-Bot — Tiny Software Factory · Build in Public | aegntic.ai</title>
+  <meta name="description" content="Don-Bot: an open-source Tiny Software Factory with a Lead Orchestrator, 4 durable specialists, SQLite WAL crash recovery, 300ms Jev judgment gates, and a 3-pane liquid interface. Watch the build in public at don.aegntic.ai.">
   <link rel="canonical" href="https://don.aegntic.ai/">
 
   <!-- Open Graph / Social Cards -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aegntic.ai">
   <meta property="og:url" content="https://don.aegntic.ai/">
-  <meta property="og:title" content="Don-Bot Ultra — One Lead. Four Specialists. Zero Babysitting.">
+  <meta property="og:title" content="Don-Bot — One Lead. Four Specialists. Zero Babysitting.">
   <meta property="og:description" content="An open-source Tiny Software Factory on a crash-proof SQLite WAL spine, 300ms Jev judgment gates, blind credential vaulting, and a 3-pane liquid interface. Watch us build in public.">
   <meta property="og:image" content="https://aegntic.ai/don-bot/cards/og-don-bot.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Don-Bot Ultra Tiny Software Factory architecture overview card">
+  <meta property="og:image:alt" content="Don-Bot Tiny Software Factory architecture overview card">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@aegntic_ai">
   <meta name="twitter:creator" content="@aegntic_ai">
-  <meta name="twitter:title" content="Don-Bot Ultra — One Lead. Four Specialists. Zero Babysitting.">
-  <meta name="twitter:description" content="We're building Don-Bot Ultra in public: Lead Orchestrator + 4 specialists, SQLite WAL durable spine, 300ms Jev gates, top-down Verifier, and a 3-pane liquid UI.">
+  <meta name="twitter:title" content="Don-Bot — One Lead. Four Specialists. Zero Babysitting.">
+  <meta name="twitter:description" content="We're building Don-Bot in public: Lead Orchestrator + 4 specialists, SQLite WAL durable spine, 300ms Jev gates, top-down Verifier, and a 3-pane liquid UI.">
   <meta name="twitter:image" content="https://aegntic.ai/don-bot/cards/og-don-bot.png">
 
   <link rel="preload" href="/fonts/don-mark.woff2" as="font" type="font/woff2" crossorigin>
@@ -135,19 +135,19 @@
       color: #ffffff;
     }
 
-    /* Harmonize injected aegntic.ai global nav & footer with dark form + Blue Neon ae. mark */
+    /* Harmonize injected aegntic.ai global nav & footer with dark form + Layered Cutout ae. mark */
     .ae-global-mark {
       width: 3.65rem !important;
-      height: 3.1rem !important;
-      background: url('/don-bot/ae-neon-blue.png') center / contain no-repeat;
-      filter: drop-shadow(0 0 12px rgba(56, 232, 255, 0.48));
+      height: 2.55rem !important;
+      background: url('/don-bot/ae-cutout-logo.png') center / contain no-repeat;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.75));
     }
     .ae-global-mark > img {
       opacity: 0 !important;
     }
     .ae-site-footer__mark {
-      background: url('/don-bot/ae-neon-blue.png') center / contain no-repeat;
-      filter: drop-shadow(0 0 28px rgba(56, 232, 255, 0.4));
+      background: url('/don-bot/ae-cutout-logo.png') center / contain no-repeat;
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.75));
     }
     .ae-site-footer__mark > img {
       opacity: 0 !important;
@@ -286,7 +286,7 @@
     /* World Section Layout */
     .don-world {
       position: relative;
-      padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem);
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem) clamp(4rem, 8vw, 7rem) clamp(3.25rem, 5.5vw, 5.25rem);
       border-bottom: 1px solid var(--ae-line);
       background: var(--ae-bg);
       overflow: hidden;
@@ -316,6 +316,38 @@
       pointer-events: none;
       user-select: none;
       z-index: 1;
+    }
+
+    .world-siderail {
+      position: absolute;
+      left: clamp(0.85rem, 1.8vw, 1.75rem);
+      top: clamp(4rem, 8vw, 7rem);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+      font-weight: 600;
+      z-index: 3;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 760px) {
+      .don-world {
+        padding: clamp(3rem, 6vw, 4.5rem) 1.25rem;
+      }
+      .world-siderail {
+        position: static;
+        writing-mode: horizontal-tb;
+        transform: none;
+        margin-bottom: 1.25rem;
+        white-space: normal;
+      }
     }
 
     .world-eyebrow {
@@ -1088,7 +1120,7 @@
   </style>
 </head>
 <body class="don-dark-theme">
-  <header class="don-subbar" aria-label="Don-Bot Ultra subdomain navigation">
+  <header class="don-subbar" aria-label="Don-Bot subdomain navigation">
     <a class="don-brand" href="/">
       <span class="don-brand-label"><span class="don-mark" style="font-size:1.05em">don</span>.aegntic.ai // build in public</span>
     </a>
@@ -1105,11 +1137,11 @@
     <!-- 00 // ACCESS (HERO & BUILD IN PUBLIC SUBSCRIBE) -->
     <section class="don-world" id="access" aria-labelledby="hero-heading">
       <div class="world-ghost don-mark" aria-hidden="true">DON.</div>
+      <div class="world-siderail">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span>00 // ACCESS · TINY SOFTWARE FACTORY · OPEN BUILD LOG</span>
+      </div>
       <div class="don-container">
-        <div class="world-eyebrow">
-          <span class="live-dot" aria-hidden="true"></span>
-          <span>00 // ACCESS · TINY SOFTWARE FACTORY · OPEN BUILD LOG</span>
-        </div>
 
         <div class="hero-grid">
           <div>
@@ -1119,7 +1151,7 @@
               <em>Zero babysitting.</em>
             </h1>
             <p class="hero-lead">
-              <strong class="don-mark" style="font-size:1.08em;color:#ffffff">Don-Bot</strong> <strong>Ultra</strong> is our open-source Tiny Software Factory built on a crash-proof SQLite WAL spine. Instead of brittle single-agent loops or 50-agent swarm chaos, one Lead Orchestrator coordinates four durable specialists with 300ms System-One judgment gates, an un-promptable sibling Verifier, and a 3-pane liquid interface.
+              <strong class="don-mark" style="font-size:1.08em;color:#ffffff">Don-Bot</strong> is our open-source Tiny Software Factory built on a crash-proof SQLite WAL spine. Instead of brittle single-agent loops or 50-agent swarm chaos, one Lead Orchestrator coordinates four durable specialists with 300ms System-One judgment gates, an un-promptable sibling Verifier, and a 3-pane liquid interface.
             </p>
 
             <div class="telemetry-grid" role="list" aria-label="Key architectural specifications">
@@ -1197,16 +1229,16 @@
     <!-- 01 // THE ARCHITECTURE (SOFT PUBLIC DETAILS) -->
     <section class="don-world don-world--alt" id="architecture" aria-labelledby="arch-heading">
       <div class="world-ghost" aria-hidden="true">01</div>
+      <div class="world-siderail">01 // PUBLIC ARCHITECTURAL BLUEPRINT</div>
       <div class="don-container">
         <div class="section-header">
-          <div class="world-eyebrow">01 // PUBLIC ARCHITECTURAL BLUEPRINT</div>
           <h2 class="section-title" id="arch-heading">Built to run for hours while you stay near the loop.</h2>
           <p class="section-sub">
             In the loop, you prompt and babysit. Near the loop, a small durable team debates, builds, and verifies before escalating only high-leverage decisions to your inbox.
           </p>
         </div>
 
-        <div class="pillar-tabs" role="tablist" aria-label="Don-Bot Ultra Architectural Pillars">
+        <div class="pillar-tabs" role="tablist" aria-label="Don-Bot Architectural Pillars">
           <button type="button" class="pillar-tab" role="tab" id="tab-team" aria-selected="true" aria-controls="pillar-panel" data-pillar="team">
             <span class="num">01 // TOPOLOGY</span>
             <span class="lbl">Lead + 4 Specialists</span>
@@ -1229,7 +1261,7 @@
           <div id="pillar-copy">
             <h3>1 Lead Orchestrator + 4 Durable Specialists</h3>
             <p>
-              Instead of spawning 50 ephemeral subagents that burn tokens and overwrite each other's files, Don-Bot Ultra runs a persistent 5-agent roster over SQLite message rooms. Before writing code, the team conducts a 3-round architectural negotiation and autonomously tunes its own Core 4 parameters.
+              Instead of spawning 50 ephemeral subagents that burn tokens and overwrite each other's files, Don-Bot runs a persistent 5-agent roster over SQLite message rooms. Before writing code, the team conducts a 3-round architectural negotiation and autonomously tunes its own Core 4 parameters.
             </p>
             <ul class="spec-list">
               <li><strong>Social Contract Before Code:</strong> Specialists agree on contracts, schemas, and file boundaries in a room before taking a single-writer lease.</li>
@@ -1255,10 +1287,10 @@
     <!-- 02 // 3-PANE LIQUID INTERFACE -->
     <section class="don-world" id="interface" aria-labelledby="ui-heading">
       <div class="world-ghost" aria-hidden="true">02</div>
+      <div class="world-siderail">02 // LIQUID SOFTWARE INTERFACE · 100% AGENTIC ACCESS PARITY</div>
       <div class="don-container">
         <div class="ui-toolbar">
           <div class="section-header" style="margin-bottom:0">
-            <div class="world-eyebrow">02 // LIQUID SOFTWARE INTERFACE · 100% AGENTIC ACCESS PARITY</div>
             <h2 class="section-title" id="ui-heading">Lists on the left. Focus in the center. Durable team on the right.</h2>
           </div>
           <button type="button" class="motion-btn" id="motion-toggle">
@@ -1334,9 +1366,9 @@
     <!-- 03 // LIVE BUILD LOG & MILESTONES -->
     <section class="don-world don-world--alt" id="roadmap" aria-labelledby="roadmap-heading">
       <div class="world-ghost" aria-hidden="true">03</div>
+      <div class="world-siderail">03 // BUILD IN PUBLIC TRACKER</div>
       <div class="don-container">
         <div class="section-header">
-          <div class="world-eyebrow">03 // BUILD IN PUBLIC TRACKER</div>
           <h2 class="section-title" id="roadmap-heading">Five architectural slices. Shipped in the open.</h2>
           <p class="section-sub">
             Follow the repository or clone the starter branch to inspect each harness extension as it lands.
@@ -1400,9 +1432,9 @@
 
     <!-- 04 // PRESS & SOCIAL TEASER KIT -->
     <section class="don-world" id="teaser-kit" aria-labelledby="kit-heading">
+      <div class="world-siderail">04 // PRESS &amp; SOCIAL TEASER KIT</div>
       <div class="don-container">
         <div class="section-header">
-          <div class="world-eyebrow">04 // PRESS &amp; SOCIAL TEASER KIT</div>
           <h2 class="section-title" id="kit-heading">Share the architecture.</h2>
           <p class="section-sub">
             High-contrast architecture cards and ready-to-post build-in-public copy for X, LinkedIn, Telegram, and technical communities.
@@ -1444,7 +1476,7 @@
           </article>
 
           <article class="social-card-item">
-            <img src="/don-bot/cards/og-don-bot.png" alt="OpenGraph Card: Don-Bot Ultra Tiny Software Factory" width="1200" height="630" loading="lazy">
+            <img src="/don-bot/cards/og-don-bot.png" alt="OpenGraph Card: Don-Bot Tiny Software Factory" width="1200" height="630" loading="lazy">
             <div class="social-card-meta">
               <div>
                 <strong>04 // OpenGraph Link Card (1.91:1) + Square (1:1)</strong>
@@ -1456,7 +1488,7 @@
         </div>
 
         <div class="snippet-box">
-          <pre class="snippet-code" id="share-blurb">We're building Don-Bot Ultra in public: a Tiny Software Factory with 1 Lead Orchestrator, 4 durable SQLite-backed specialists, 300ms Jev judgment gates, and a 3-pane liquid UI. Watch the build → https://don.aegntic.ai</pre>
+          <pre class="snippet-code" id="share-blurb">We're building Don-Bot in public: a Tiny Software Factory with 1 Lead Orchestrator, 4 durable SQLite-backed specialists, 300ms Jev judgment gates, and a 3-pane liquid UI. Watch the build → https://don.aegntic.ai</pre>
           <div class="copy-wrap">
             <button type="button" class="copy-trigger" command="--copy" commandfor="share-blurb" data-status="copy-status-share">
               Copy Share Post
@@ -1537,8 +1569,8 @@
             const data = await res.json().catch(() => ({}));
             if (res.ok) {
               const msg = data.status === 'exists'
-                ? 'You are already on the Don-Bot Ultra build dispatch.'
-                : 'You are in. We will notify you as each Don-Bot Ultra milestone lands.';
+                ? 'You are already on the Don-Bot build dispatch.'
+                : 'You are in. We will notify you as each Don-Bot milestone lands.';
               statusBanner.textContent = msg;
               statusBanner.className = 'form-status-banner is-ok';
               statusBanner.hidden = false;
@@ -1563,7 +1595,7 @@
       const PILLARS = {
         team: {
           title: '1 Lead Orchestrator + 4 Durable Specialists',
-          desc: "Instead of spawning 50 ephemeral subagents that burn tokens and overwrite each other's files, Don-Bot Ultra runs a persistent 5-agent roster over SQLite message rooms. Before writing code, the team conducts a 3-round architectural negotiation and autonomously tunes its own Core 4 parameters.",
+          desc: "Instead of spawning 50 ephemeral subagents that burn tokens and overwrite each other's files, Don-Bot runs a persistent 5-agent roster over SQLite message rooms. Before writing code, the team conducts a 3-round architectural negotiation and autonomously tunes its own Core 4 parameters.",
           bullets: [
             '<strong>Social Contract Before Code:</strong> Specialists agree on contracts, schemas, and file boundaries in a room before taking a single-writer lease.',
             '<strong>Autonomous Core 4 Self-Tuning:</strong> Each specialist dynamically downshifts or upgrades its Model, Thinking Effort, Context Window, and Skillset per milestone.',
@@ -1581,7 +1613,7 @@
         },
         spine: {
           title: 'Crash-Proof SQLite WAL Spine & Self-Compaction',
-          desc: 'Every agent turn, tool invocation, and room post is checkpointed inside a local SQLite WAL database. If the process receives SIGKILL mid-tool, Don-Bot Ultra resumes from the exact once() step memo without re-running completed side effects.',
+          desc: 'Every agent turn, tool invocation, and room post is checkpointed inside a local SQLite WAL database. If the process receives SIGKILL mid-tool, Don-Bot resumes from the exact once() step memo without re-running completed side effects.',
           bullets: [
             '<strong>Zero Docker-Postgres Bloat:</strong> Single-binary local SQLite WAL with sqlite-vec embeddings and FTS5 full-text search.',
             '<strong>Proactive Self-Compaction:</strong> A post-turn hook warns the agent at 10% and 20% context usage and enforces a structured note_to_self handoff at 30%.',
@@ -1615,7 +1647,7 @@
         },
         liquid: {
           title: "3-Pane Liquid Interface & Personal 'Me'-Mode Channels",
-          desc: "Work from the 120fps desktop cockpit or steer from your pocket. In Personal 'Me'-Mode, Don-Bot Ultra operates on your own Telegram and WhatsApp sessions with an outbound pacer and 2-zone trust firewall.",
+          desc: "Work from the 120fps desktop cockpit or steer from your pocket. In Personal 'Me'-Mode, Don-Bot operates on your own Telegram and WhatsApp sessions with an outbound pacer and 2-zone trust firewall.",
           bullets: [
             '<strong>3-Pane Cockpit:</strong> Left Lane List, Center Generative UI + live Xvfb screen takeover + run trace waterfall, Right Near-Loop Decision Deck.',
             '<strong>100% Agentic Access Parity:</strong> Every UI control has a matching agent tool; press ~ to jump directly into any specialist lane.',
