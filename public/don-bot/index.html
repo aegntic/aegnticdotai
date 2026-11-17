@@ -33,9 +33,20 @@
   <link rel="preload" href="/fonts/don-display.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/don-bot/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="/don-bot/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/don-bot/favicon-192.png">
+  <link rel="apple-touch-icon" href="/don-bot/apple-touch-icon.png">
   <link rel="stylesheet" href="/premium-nav.css?v=6eadd47a6a11">
   <link rel="stylesheet" href="/shared-footer.css?v=e06640e4a006">
-  <script src="/premium-nav.js?v=39d7db08c7c3" defer></script>
+  <script>
+    // Popover API polyfill only where native support is missing.
+    if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
+      const s = document.createElement('script');
+      s.src = 'https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js';
+      document.head.append(s);
+    }
+  </script>
 
   <style>
     @font-face {
@@ -74,15 +85,21 @@
       --ae-bg-alt: #0c1016;
       --ae-surface: #121822;
       --ae-surface-elevated: #171f2c;
-      --ae-ink: #f7f8f6;
+      --ae-ink: #f3f5f9;
       --ae-muted: #98a2b3;
       --ae-signal: #ff5a1f;
       --ae-signal-deep: #b73512;
-      --ae-emerald: #38e8ff;
+      --ae-ice: #3fc1ff;
       --ae-line: #222a38;
       --ae-line-control: #4e5a6e; /* >= 3:1 non-text contrast against #090c11 / #121822 */
       --scrollbar-track: #090c11;
       --scrollbar-thumb: #687385; /* >= 3:1 contrast against #090c11 */
+      /* Brushed-metal control finish (silver pill, dark bezel, accent rim light) */
+      --metal-face:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0 1px, rgba(0, 0, 0, 0.035) 1px 2px, transparent 2px 3px),
+        linear-gradient(180deg, #f4f6fa 0%, #cdd3dc 20%, #a3abb7 50%, #c5ccd6 80%, #eef1f6 100%);
+      --metal-ink: #10141b;
+      --metal-bezel: #07090d;
       --font-display: 'Don Display', 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -135,16 +152,7 @@
       color: #ffffff;
     }
 
-    /* Harmonize injected aegntic.ai global nav & footer with dark form + Layered Cutout ae. mark */
-    .ae-global-mark {
-      width: 3.65rem !important;
-      height: 2.55rem !important;
-      background: url('/don-bot/ae-cutout-logo.png') center / contain no-repeat;
-      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.75));
-    }
-    .ae-global-mark > img {
-      opacity: 0 !important;
-    }
+    /* Shared footer: Don dark form + layered cutout ae. mark */
     .ae-site-footer__mark {
       background: url('/don-bot/ae-cutout-logo.png') center / contain no-repeat;
       filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.75));
@@ -152,16 +160,283 @@
     .ae-site-footer__mark > img {
       opacity: 0 !important;
     }
-    .ae-page-back {
-      background: rgba(18, 24, 34, 0.92) !important;
-      color: var(--ae-ink) !important;
-      border-color: var(--ae-line-control) !important;
-      backdrop-filter: blur(10px);
+
+    /* ---------- Brushed-metal controls ---------- */
+    .metal-btn {
+      --rim: var(--ae-signal);
+      --rim-glow: rgba(255, 90, 31, 0.32);
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 44px;
+      padding: 0.6rem 1.15rem;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 999px;
+      background: var(--metal-face);
+      color: var(--metal-ink);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+      cursor: pointer;
+      box-shadow:
+        0 0 0 3px var(--metal-bezel),
+        0 0 0 4px color-mix(in oklab, var(--rim) 70%, transparent),
+        0 8px 20px var(--rim-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.32);
+      transition: box-shadow 180ms ease, translate 120ms ease, filter 180ms ease;
     }
-    .ae-menu-trigger {
-      background: var(--ae-surface-elevated) !important;
-      border: 1px solid var(--ae-line-control) !important;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55) !important;
+    .metal-btn::after {
+      /* specular flare */
+      content: '';
+      position: absolute;
+      inset: 2px 14% auto auto;
+      width: 28%;
+      height: 42%;
+      border-radius: 999px;
+      background: radial-gradient(ellipse at 70% 30%, rgba(255, 255, 255, 0.85), transparent 70%);
+      pointer-events: none;
+    }
+    .metal-btn--ice {
+      --rim: var(--ae-ice);
+      --rim-glow: rgba(63, 193, 255, 0.3);
+    }
+    .metal-btn:hover {
+      filter: brightness(1.05);
+      box-shadow:
+        0 0 0 3px var(--metal-bezel),
+        0 0 0 4px var(--rim),
+        0 10px 26px color-mix(in oklab, var(--rim) 45%, transparent),
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .metal-btn:active {
+      translate: 0 1px;
+    }
+    .metal-btn:focus-visible {
+      outline: 2px solid var(--ae-ice);
+      outline-offset: 6px;
+    }
+    @media (forced-colors: active) {
+      .metal-btn {
+        border: 1px solid ButtonText;
+        background: ButtonFace;
+        color: ButtonText;
+      }
+    }
+
+    /* ---------- Don header + dropdown navigation ---------- */
+    .don-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(9, 12, 17, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--ae-line);
+    }
+    .don-header__inner {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0.75rem clamp(1rem, 3vw, 2.5rem);
+    }
+    .don-logo {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--ae-ink);
+    }
+    .don-logo img {
+      width: 58px;
+      height: auto;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7));
+    }
+    .don-brand-label .don-brand-tail { color: inherit; }
+    @media (max-width: 640px) {
+      .don-brand-tail { display: none; }
+      .don-logo img { width: 46px; }
+      .don-header__inner { gap: 0.75rem; }
+    }
+    .don-nav {
+      margin-inline-start: auto;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .don-nav__inline {
+      display: flex;
+      gap: 1.25rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    @media (max-width: 1180px) {
+      .don-nav__inline { display: none; }
+    }
+    .don-nav__inline a {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ae-muted);
+      white-space: nowrap;
+    }
+    .don-nav__inline a:hover,
+    .don-nav__inline a:focus-visible {
+      color: var(--ae-ice);
+    }
+    .menu-button {
+      anchor-name: --don-menu-button;
+      padding-inline: 1rem 0.55rem;
+    }
+    .menu-button__icon {
+      display: inline-grid;
+      gap: 3px;
+      width: 26px;
+      height: 26px;
+      place-content: center;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #2a3240, #0b0e14);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.35);
+    }
+    .menu-button__icon i {
+      display: block;
+      width: 11px;
+      height: 1.5px;
+      border-radius: 2px;
+      background: var(--ae-ice);
+    }
+
+    .don-menu {
+      position: fixed;
+      inset: auto;
+      /* Fallback offset for browsers without anchor positioning */
+      inset-block-start: 4.6rem;
+      inset-block-start: anchor(--don-menu-button bottom);
+      inset-inline-end: clamp(1rem, 3vw, 2.5rem);
+      inline-size: min(92dvw, 23rem);
+      max-block-size: calc(100dvh - 6rem);
+      block-size: fit-content;
+      margin: 0.9rem 0 0;
+      padding: 1.1rem;
+      overflow: auto;
+      color: var(--ae-ink);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 18px;
+      background-color: #10151e;
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 3px),
+        linear-gradient(160deg, #1b2230 0%, #10151e 55%, #0b0f15 100%);
+      box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.7);
+    }
+    .don-menu::backdrop {
+      background: rgba(5, 7, 10, 0.35);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .don-menu {
+        transition: opacity 180ms ease, translate 220ms cubic-bezier(0.16, 1, 0.3, 1), display 220ms, overlay 220ms;
+        transition-behavior: allow-discrete;
+      }
+      .don-menu:not(:is(:popover-open, .\:popover-open)) {
+        opacity: 0;
+        translate: 0 -8px;
+      }
+      @starting-style {
+        .don-menu:is(:popover-open, .\:popover-open) {
+          opacity: 0;
+          translate: 0 -8px;
+        }
+      }
+    }
+    .don-menu__group + .don-menu__group {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .don-menu__label {
+      display: block;
+      margin: 0 0 0.55rem;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ae-muted);
+    }
+    .don-menu ul {
+      display: grid;
+      gap: 0.35rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .don-menu a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-height: 44px;
+      padding: 0.55rem 0.8rem;
+      border-radius: 10px;
+      color: var(--ae-ink);
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 1.02rem;
+      background: linear-gradient(180deg, #070a0f 0%, #0d121a 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    }
+    .don-menu a .n {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--ae-signal);
+      min-width: 1.6rem;
+    }
+    .don-menu a:hover,
+    .don-menu a:focus-visible {
+      border-color: rgba(63, 193, 255, 0.55);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(63, 193, 255, 0.35), 0 0 14px rgba(63, 193, 255, 0.18);
+      outline: none;
+    }
+    .don-menu a[aria-current="page"] {
+      border-color: rgba(255, 90, 31, 0.6);
+    }
+    .don-menu a[aria-current="page"]::after {
+      content: '● here';
+      margin-inline-start: auto;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+    }
+    .don-menu__foot {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .don-menu__foot a {
+      flex: 1;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    @media (forced-colors: active) {
+      .don-menu { border: 1px solid CanvasText; }
+      .don-menu a[aria-current="page"] { outline: 2px solid Highlight; }
     }
     footer.ae-site-footer {
       background: var(--ae-bg) !important;
@@ -312,7 +587,7 @@
       font-weight: 700;
       letter-spacing: -0.08em;
       line-height: 0.8;
-      color: rgba(247, 248, 246, 0.03);
+      color: rgba(243, 245, 249, 0.03);
       pointer-events: none;
       user-select: none;
       z-index: 1;
@@ -552,7 +827,7 @@
     }
 
     .field input:is(:user-valid, .user-valid-fallback) {
-      border-color: var(--ae-emerald);
+      border-color: var(--ae-ice);
     }
 
     .error-msg {
@@ -611,9 +886,9 @@
     }
 
     .form-status-banner.is-ok {
-      background: rgba(56, 232, 255, 0.14);
-      border: 1px solid var(--ae-emerald);
-      color: #7ef0ff;
+      background: rgba(63, 193, 255, 0.14);
+      border: 1px solid var(--ae-ice);
+      color: #9ad9ff;
     }
 
     .watch-links {
@@ -789,7 +1064,7 @@
     }
 
     .spec-diagram .ok {
-      color: var(--ae-emerald);
+      color: var(--ae-ice);
     }
 
     /* Section 02: 3-Pane Liquid Interface Live Mockup */
@@ -886,7 +1161,7 @@
       padding: 0.65rem 0.85rem;
       border-radius: 8px;
       background: #131b26;
-      border-left: 3px solid var(--ae-emerald);
+      border-left: 3px solid var(--ae-ice);
       font-family: var(--font-mono);
       font-size: 0.74rem;
       display: flex;
@@ -1007,7 +1282,7 @@
     .copy-status {
       font-family: var(--font-mono);
       font-size: 0.74rem;
-      color: var(--ae-emerald);
+      color: var(--ae-ice);
       opacity: 0;
       transition: opacity 150ms ease;
       pointer-events: none;
@@ -1117,20 +1392,87 @@
         scroll-behavior: auto !important;
       }
     }
+    /* Brushed-metal finish wins over legacy flat button styles */
+    .metal-btn:is(.btn-submit, .motion-btn, .copy-trigger, .dl-link) {
+      background: var(--metal-face);
+      color: var(--metal-ink);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 999px;
+      box-shadow:
+        0 0 0 3px var(--metal-bezel),
+        0 0 0 4px color-mix(in oklab, var(--rim) 70%, transparent),
+        0 8px 20px var(--rim-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.32);
+    }
+    .metal-btn:is(.btn-submit, .motion-btn, .copy-trigger, .dl-link):is(:hover, :focus-visible) {
+      background: var(--metal-face);
+      color: var(--metal-ink);
+      box-shadow:
+        0 0 0 3px var(--metal-bezel),
+        0 0 0 4px var(--rim),
+        0 10px 26px color-mix(in oklab, var(--rim) 45%, transparent),
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .btn-submit.metal-btn {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 0.35rem;
+    }
+    .snippet-box .metal-btn, .social-card-meta .metal-btn {
+      flex: none;
+    }
   </style>
 </head>
 <body class="don-dark-theme">
-  <header class="don-subbar" aria-label="Don-Bot subdomain navigation">
-    <a class="don-brand" href="/">
-      <span class="don-brand-label"><span class="don-mark" style="font-size:1.05em">don</span>.aegntic.ai // build in public</span>
-    </a>
-    <nav class="don-jump-links" aria-label="Page sections">
-      <a href="#access">00 // Access</a>
-      <a href="#architecture">01 // Architecture</a>
-      <a href="#interface">02 // 3-Pane UI</a>
-      <a href="#roadmap">03 // Build Log</a>
-      <a href="#teaser-kit">04 // Social Kit</a>
-    </nav>
+  <header class="don-header">
+    <div class="don-header__inner">
+      <a class="don-logo" href="https://aegntic.ai/">
+        <img src="/don-bot/ae-cutout-logo.png" width="314" height="207" alt="aegntic home">
+        <span class="don-brand-label"><span class="don-mark" style="font-size:1.05em">DON</span>.aegntic.ai<span class="don-brand-tail"> // build in public</span></span>
+      </a>
+      <nav class="don-nav" aria-label="Primary">
+        <ul class="don-nav__inline">
+          <li><a href="#access">00 // Access</a></li>
+          <li><a href="#architecture">01 // Architecture</a></li>
+          <li><a href="#interface">02 // 3-Pane UI</a></li>
+          <li><a href="#roadmap">03 // Build Log</a></li>
+          <li><a href="#teaser-kit">04 // Social Kit</a></li>
+        </ul>
+        <button class="menu-button metal-btn metal-btn--ice" type="button" popovertarget="don-menu" popovertargetaction="toggle" aria-controls="don-menu">
+          <span>Menu</span>
+          <span class="menu-button__icon" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+        <div id="don-menu" class="don-menu" popover="auto">
+          <div class="don-menu__group">
+            <span class="don-menu__label" id="don-menu-sections">Don-Bot</span>
+            <ul aria-labelledby="don-menu-sections">
+              <li><a href="#access" aria-current="page"><span class="n">00</span>Overview</a></li>
+              <li><a href="#architecture"><span class="n">01</span>Architecture</a></li>
+              <li><a href="#interface"><span class="n">02</span>3-Pane UI</a></li>
+              <li><a href="#roadmap"><span class="n">03</span>Build log</a></li>
+              <li><a href="#teaser-kit"><span class="n">04</span>Social kit</a></li>
+            </ul>
+          </div>
+          <div class="don-menu__group">
+            <span class="don-menu__label" id="don-menu-aegntic">aegntic.ai</span>
+            <ul aria-labelledby="don-menu-aegntic">
+              <li><a href="https://aegntic.ai/"><span class="n">/</span>home</a></li>
+              <li><a href="https://aegntic.ai/systems/"><span class="n">/</span>systems</a></li>
+              <li><a href="https://aegntic.ai/agents/"><span class="n">/</span>agents</a></li>
+              <li><a href="https://aegntic.ai/plugins/"><span class="n">/</span>plugins</a></li>
+              <li><a href="https://aegntic.ai/products/"><span class="n">/</span>products</a></li>
+              <li><a href="https://aegntic.ai/#contact"><span class="n">/</span>contact</a></li>
+            </ul>
+          </div>
+          <div class="don-menu__foot">
+            <a href="https://github.com/aegntic/don-bot" target="_blank" rel="noopener">GitHub ↗<span class="sr-only"> (opens in a new tab)</span></a>
+            <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">@aegntic_ai ↗<span class="sr-only"> (opens in a new tab)</span></a>
+          </div>
+        </div>
+      </nav>
+    </div>
   </header>
 
   <main id="main">
@@ -1209,7 +1551,7 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn-submit" id="watch-submit">
+              <button type="submit" class="btn-submit metal-btn" id="watch-submit">
                 Watch the Build in Public →
               </button>
 
@@ -1293,7 +1635,7 @@
           <div class="section-header" style="margin-bottom:0">
             <h2 class="section-title" id="ui-heading">Lists on the left. Focus in the center. Durable team on the right.</h2>
           </div>
-          <button type="button" class="motion-btn" id="motion-toggle">
+          <button type="button" class="motion-btn metal-btn metal-btn--ice" id="motion-toggle">
             Pause live pulse
           </button>
         </div>
@@ -1327,11 +1669,11 @@
             <div class="l-hdr"><span>02 // CENTER · GEN-UI + LIVE SCREEN + RUN TRACE</span><span>120FPS</span></div>
             <div class="l-bar">
               <span>API KEEPER &rarr; WORKHORSE A · X-HIGH · WRITER-LEASE</span>
-              <span style="color:#38e8ff">$0.018 · 1.4S</span>
+              <span style="color:#3fc1ff">$0.018 · 1.4S</span>
             </div>
             <div class="l-bar">
               <span>PIPELINE FORGE &rarr; 3 SUBAGENTS ($0.15 CAP)</span>
-              <span style="color:#38e8ff">$0.024 · 2.1S</span>
+              <span style="color:#3fc1ff">$0.024 · 2.1S</span>
             </div>
             <div class="l-bar warn">
               <span>CLIENT QA &rarr; SELF-DOWNGRADED TO WORKHORSE B · MEDIUM</span>
@@ -1339,7 +1681,7 @@
             </div>
             <div class="l-bar">
               <span>JEV SYSTEM-ONE PRE-TOOL GATE &rarr; 42 CHECKS EVALUATED</span>
-              <span style="color:#38e8ff">280MS · $0.0007</span>
+              <span style="color:#3fc1ff">280MS · $0.0007</span>
             </div>
           </div>
 
@@ -1348,13 +1690,13 @@
             <div class="l-item is-active">
               <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--ae-signal);margin-bottom:0.35rem">TEAM_ASK DECISION DECK · #1 OF 1</div>
               <strong>Outbound Telegram Group Creation</strong>
-              <small style="color:#d9dcda;margin-top:0.35rem;line-height:1.45">
+              <small style="color:#d6dbe4;margin-top:0.35rem;line-height:1.45">
                 Create supergroup "Factory · BuyerNav" with Forum Topics and file under your "Factories" folder?
               </small>
             </div>
             <div class="l-item">
-              <div style="font-family:var(--font-mono);font-size:0.68rem;color:#38e8ff">LEAD ORCHESTRATOR</div>
-              <small style="color:#d9dcda;margin-top:0.35rem;line-height:1.45">
+              <div style="font-family:var(--font-mono);font-size:0.68rem;color:#3fc1ff">LEAD ORCHESTRATOR</div>
+              <small style="color:#d6dbe4;margin-top:0.35rem;line-height:1.45">
                 3-round architecture debate settled. Answer card #1 here or from your phone whenever you're ready.
               </small>
             </div>
@@ -1421,7 +1763,7 @@
         <div class="snippet-box">
           <pre class="snippet-code" id="clone-cmd">git clone https://github.com/aegntic/don-bot.git &amp;&amp; cd don-bot</pre>
           <div class="copy-wrap">
-            <button type="button" class="copy-trigger" command="--copy" commandfor="clone-cmd" data-status="copy-status-clone">
+            <button type="button" class="copy-trigger metal-btn metal-btn--ice" command="--copy" commandfor="clone-cmd" data-status="copy-status-clone">
               Copy Clone Command
             </button>
             <span id="copy-status-clone" class="copy-status" role="status"></span>
@@ -1449,7 +1791,7 @@
                 <strong>01 // Hero Thesis Card (16:9)</strong>
                 <span>1200 × 675 PNG · Editorial Card</span>
               </div>
-              <a class="dl-link" href="/don-bot/cards/card-01-hero-16x9.png" download="don-bot-01-hero.png">Download PNG</a>
+              <a class="dl-link metal-btn" href="/don-bot/cards/card-01-hero-16x9.png" download="don-bot-01-hero.png">Download PNG</a>
             </div>
           </article>
 
@@ -1460,7 +1802,7 @@
                 <strong>02 // 4-Pillar Architecture Card (16:9)</strong>
                 <span>1200 × 675 PNG · Warm Ink Blueprint</span>
               </div>
-              <a class="dl-link" href="/don-bot/cards/card-02-architecture-16x9.png" download="don-bot-02-architecture.png">Download PNG</a>
+              <a class="dl-link metal-btn" href="/don-bot/cards/card-02-architecture-16x9.png" download="don-bot-02-architecture.png">Download PNG</a>
             </div>
           </article>
 
@@ -1471,7 +1813,7 @@
                 <strong>03 // 3-Pane Liquid UI Card (16:9)</strong>
                 <span>1200 × 675 PNG · Interface Mockup</span>
               </div>
-              <a class="dl-link" href="/don-bot/cards/card-03-liquid-ui-16x9.png" download="don-bot-03-liquid-ui.png">Download PNG</a>
+              <a class="dl-link metal-btn" href="/don-bot/cards/card-03-liquid-ui-16x9.png" download="don-bot-03-liquid-ui.png">Download PNG</a>
             </div>
           </article>
 
@@ -1482,7 +1824,7 @@
                 <strong>04 // OpenGraph Link Card (1.91:1) + Square (1:1)</strong>
                 <span>1200 × 630 OG &amp; <a href="/don-bot/cards/card-04-square-1x1.png" download="don-bot-04-square.png" style="color:var(--ae-signal)">1080 × 1080 Square</a></span>
               </div>
-              <a class="dl-link" href="/don-bot/cards/og-don-bot.png" download="don-bot-og.png">Download OG</a>
+              <a class="dl-link metal-btn" href="/don-bot/cards/og-don-bot.png" download="don-bot-og.png">Download OG</a>
             </div>
           </article>
         </div>
@@ -1490,7 +1832,7 @@
         <div class="snippet-box">
           <pre class="snippet-code" id="share-blurb">We're building Don-Bot in public: a Tiny Software Factory with 1 Lead Orchestrator, 4 durable SQLite-backed specialists, 300ms Jev judgment gates, and a 3-pane liquid UI. Watch the build → https://don.aegntic.ai</pre>
           <div class="copy-wrap">
-            <button type="button" class="copy-trigger" command="--copy" commandfor="share-blurb" data-status="copy-status-share">
+            <button type="button" class="copy-trigger metal-btn metal-btn--ice" command="--copy" commandfor="share-blurb" data-status="copy-status-share">
               Copy Share Post
             </button>
             <span id="copy-status-share" class="copy-status" role="status"></span>
@@ -1502,6 +1844,17 @@
 
   <script>
     (() => {
+      // 0. Dropdown navigation: close after choosing a link (native popover handles Esc / light-dismiss)
+      const donMenu = document.getElementById('don-menu');
+      donMenu?.addEventListener('click', (e) => {
+        if (e.target.closest('a') && typeof donMenu.hidePopover === 'function') donMenu.hidePopover();
+      });
+
+      // Shared footer links are root-relative; send them to the main site from this subdomain.
+      document.querySelectorAll('footer.ae-site-footer a[href^="/"]').forEach((a) => {
+        a.href = 'https://aegntic.ai' + a.getAttribute('href');
+        a.removeAttribute('data-enquiry');
+      });
       // 1. Validate Input After Interaction + Accessible Live Form Submission
       const form = document.getElementById('watch-form');
       const emailInput = document.getElementById('watch-email');
