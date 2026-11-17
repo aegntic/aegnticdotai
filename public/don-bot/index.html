@@ -597,19 +597,47 @@
       position: absolute;
       left: clamp(0.85rem, 1.8vw, 1.75rem);
       top: clamp(4rem, 8vw, 7rem);
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+      font-family: var(--font-mono);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .siderail-head {
       display: inline-flex;
       align-items: center;
-      gap: 0.65rem;
-      font-family: var(--font-mono);
+      gap: 0.35rem;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .siderail-num {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .siderail-slash {
+      color: var(--don-orange);
+      font-size: 0.95rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .siderail-text {
+      writing-mode: vertical-rl;
       font-size: 0.72rem;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--ae-signal);
       font-weight: 600;
-      z-index: 3;
       white-space: nowrap;
+      margin-top: 0.35rem;
     }
 
     @media (max-width: 760px) {
@@ -618,9 +646,15 @@
       }
       .world-siderail {
         position: static;
-        writing-mode: horizontal-tb;
-        transform: none;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.45rem;
         margin-bottom: 1.25rem;
+      }
+      .siderail-text {
+        writing-mode: horizontal-tb;
+        margin-top: 0;
         white-space: normal;
       }
     }
@@ -1480,8 +1514,12 @@
     <section class="don-world" id="access" aria-labelledby="hero-heading">
       <div class="world-ghost don-mark" aria-hidden="true">DON.</div>
       <div class="world-siderail">
-        <span class="live-dot" aria-hidden="true"></span>
-        <span>00 // ACCESS · TINY SOFTWARE FACTORY · OPEN BUILD LOG</span>
+        <div class="siderail-head">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span class="siderail-num">00</span>
+          <span class="siderail-slash">/</span>
+        </div>
+        <div class="siderail-text">ACCESS · TINY SOFTWARE FACTORY · OPEN BUILD LOG</div>
       </div>
       <div class="don-container">
 
@@ -1571,7 +1609,13 @@
     <!-- 01 // THE ARCHITECTURE (SOFT PUBLIC DETAILS) -->
     <section class="don-world don-world--alt" id="architecture" aria-labelledby="arch-heading">
       <div class="world-ghost" aria-hidden="true">01</div>
-      <div class="world-siderail">01 // PUBLIC ARCHITECTURAL BLUEPRINT</div>
+      <div class="world-siderail">
+        <div class="siderail-head">
+          <span class="siderail-num">01</span>
+          <span class="siderail-slash">/</span>
+        </div>
+        <div class="siderail-text">PUBLIC ARCHITECTURAL BLUEPRINT</div>
+      </div>
       <div class="don-container">
         <div class="section-header">
           <h2 class="section-title" id="arch-heading">Built to run for hours while you stay near the loop.</h2>
@@ -1629,7 +1673,13 @@
     <!-- 02 // 3-PANE LIQUID INTERFACE -->
     <section class="don-world" id="interface" aria-labelledby="ui-heading">
       <div class="world-ghost" aria-hidden="true">02</div>
-      <div class="world-siderail">02 // LIQUID SOFTWARE INTERFACE · 100% AGENTIC ACCESS PARITY</div>
+      <div class="world-siderail">
+        <div class="siderail-head">
+          <span class="siderail-num">02</span>
+          <span class="siderail-slash">/</span>
+        </div>
+        <div class="siderail-text">LIQUID SOFTWARE INTERFACE · 100% AGENTIC ACCESS PARITY</div>
+      </div>
       <div class="don-container">
         <div class="ui-toolbar">
           <div class="section-header" style="margin-bottom:0">
@@ -1708,7 +1758,13 @@
     <!-- 03 // LIVE BUILD LOG & MILESTONES -->
     <section class="don-world don-world--alt" id="roadmap" aria-labelledby="roadmap-heading">
       <div class="world-ghost" aria-hidden="true">03</div>
-      <div class="world-siderail">03 // BUILD IN PUBLIC TRACKER</div>
+      <div class="world-siderail">
+        <div class="siderail-head">
+          <span class="siderail-num">03</span>
+          <span class="siderail-slash">/</span>
+        </div>
+        <div class="siderail-text">BUILD IN PUBLIC TRACKER</div>
+      </div>
       <div class="don-container">
         <div class="section-header">
           <h2 class="section-title" id="roadmap-heading">Five architectural slices. Shipped in the open.</h2>
@@ -1774,7 +1830,13 @@
 
     <!-- 04 // PRESS & SOCIAL TEASER KIT -->
     <section class="don-world" id="teaser-kit" aria-labelledby="kit-heading">
-      <div class="world-siderail">04 // PRESS &amp; SOCIAL TEASER KIT</div>
+      <div class="world-siderail">
+        <div class="siderail-head">
+          <span class="siderail-num">04</span>
+          <span class="siderail-slash">/</span>
+        </div>
+        <div class="siderail-text">PRESS &amp; SOCIAL TEASER KIT</div>
+      </div>
       <div class="don-container">
         <div class="section-header">
           <h2 class="section-title" id="kit-heading">Share the architecture.</h2>
