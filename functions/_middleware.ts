@@ -6,7 +6,7 @@ export const onRequest: PagesFunction = async (context) => {
   if (host === 'don.aegntic.ai' || host === 'don-bot.aegntic.ai' || host.startsWith('don.')) {
     const path = url.pathname;
     if (path === '/' || path === '/index.html') {
-      const targetUrl = new URL('/don-bot/index.html', url.origin);
+      const targetUrl = new URL('/don-bot/', url.origin);
       targetUrl.search = url.search;
       return context.env.ASSETS.fetch(new Request(targetUrl.toString(), context.request));
     }
