@@ -135,10 +135,22 @@
       color: #ffffff;
     }
 
-    /* Harmonize injected aegntic.ai global nav & footer with dark form */
-    .ae-global-mark > img:first-child,
-    .ae-global-mark .ae-mark-dimensional {
-      filter: invert(1) brightness(1.15);
+    /* Harmonize injected aegntic.ai global nav & footer with dark form + Blue Neon ae. mark */
+    .ae-global-mark {
+      width: 3.65rem !important;
+      height: 3.1rem !important;
+      background: url('/don-bot/ae-neon-blue.png') center / contain no-repeat;
+      filter: drop-shadow(0 0 12px rgba(56, 232, 255, 0.48));
+    }
+    .ae-global-mark > img {
+      opacity: 0 !important;
+    }
+    .ae-site-footer__mark {
+      background: url('/don-bot/ae-neon-blue.png') center / contain no-repeat;
+      filter: drop-shadow(0 0 28px rgba(56, 232, 255, 0.4));
+    }
+    .ae-site-footer__mark > img {
+      opacity: 0 !important;
     }
     .ae-page-back {
       background: rgba(18, 24, 34, 0.92) !important;
