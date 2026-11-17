@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- MANDATORY: Declare dark color-scheme in head to prevent initial white flash (FOUC) -->
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#090c11">
+  <title>Don-Bot Ultra — Tiny Software Factory · Build in Public | aegntic.ai</title>
+  <meta name="description" content="Don-Bot Ultra: an open-source Tiny Software Factory with a Lead Orchestrator, 4 durable specialists, SQLite WAL crash recovery, 300ms Jev judgment gates, and a 3-pane liquid interface. Watch the build in public at don.aegntic.ai.">
+  <link rel="canonical" href="https://don.aegntic.ai/">
+
+  <!-- Open Graph / Social Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="aegntic.ai">
+  <meta property="og:url" content="https://don.aegntic.ai/">
+  <meta property="og:title" content="Don-Bot Ultra — One Lead. Four Specialists. Zero Babysitting.">
+  <meta property="og:description" content="An open-source Tiny Software Factory on a crash-proof SQLite WAL spine, 300ms Jev judgment gates, blind credential vaulting, and a 3-pane liquid interface. Watch us build in public.">
+  <meta property="og:image" content="https://aegntic.ai/don-bot/cards/og-don-bot.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Don-Bot Ultra Tiny Software Factory architecture overview card">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@aegntic_ai">
+  <meta name="twitter:creator" content="@aegntic_ai">
+  <meta name="twitter:title" content="Don-Bot Ultra — One Lead. Four Specialists. Zero Babysitting.">
+  <meta name="twitter:description" content="We're building Don-Bot Ultra in public: Lead Orchestrator + 4 specialists, SQLite WAL durable spine, 300ms Jev gates, top-down Verifier, and a 3-pane liquid UI.">
+  <meta name="twitter:image" content="https://aegntic.ai/don-bot/cards/og-don-bot.png">
+
+  <link rel="preload" href="/fonts/don-mark.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/don-display.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/premium-nav.css?v=6eadd47a6a11">
+  <link rel="stylesheet" href="/shared-footer.css?v=e06640e4a006">
+  <script src="/premium-nav.js?v=39d7db08c7c3" defer></script>
+
+  <style>
+    @font-face {
+      font-family: 'Don Mark';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('/fonts/don-mark.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Don Display';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('/fonts/don-display.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Space Grotesk';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('/fonts/space-grotesk-latin.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('/fonts/inter-latin.woff2') format('woff2');
+    }
+
+    /* MANDATORY: Apply color-scheme and native UI tokens on :root for viewport-wide dark theming */
+    :root {
+      color-scheme: dark;
+      --ae-bg: #090c11;
+      --ae-bg-alt: #0c1016;
+      --ae-surface: #121822;
+      --ae-surface-elevated: #171f2c;
+      --ae-ink: #f7f8f6;
+      --ae-muted: #98a2b3;
+      --ae-signal: #ff5a1f;
+      --ae-signal-deep: #b73512;
+      --ae-emerald: #38e8ff;
+      --ae-line: #222a38;
+      --ae-line-control: #4e5a6e; /* >= 3:1 non-text contrast against #090c11 / #121822 */
+      --scrollbar-track: #090c11;
+      --scrollbar-thumb: #687385; /* >= 3:1 contrast against #090c11 */
+      --font-display: 'Don Display', 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+      accent-color: var(--ae-signal);
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+
+    /* Legacy WebKit scrollbar fallback for browsers without scrollbar-color */
+    @supports not (scrollbar-color: auto) {
+      html {
+        scrollbar-width: auto;
+      }
+      html::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+      }
+      html::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+      }
+      html::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+      }
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--ae-bg);
+      color: var(--ae-ink);
+      font-family: var(--font-sans);
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--ae-bg);
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.011) 0px, rgba(255, 255, 255, 0.011) 1px, transparent 1px, transparent 3px),
+        radial-gradient(ellipse at 18% 8%, rgba(255, 255, 255, 0.035) 0%, transparent 50%);
+      color: var(--ae-ink);
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: rgba(255, 90, 31, 0.28);
+      color: #ffffff;
+    }
+
+    /* Harmonize injected aegntic.ai global nav & footer with dark form */
+    .ae-global-mark > img:first-child,
+    .ae-global-mark .ae-mark-dimensional {
+      filter: invert(1) brightness(1.15);
+    }
+    .ae-page-back {
+      background: rgba(18, 24, 34, 0.92) !important;
+      color: var(--ae-ink) !important;
+      border-color: var(--ae-line-control) !important;
+      backdrop-filter: blur(10px);
+    }
+    .ae-menu-trigger {
+      background: var(--ae-surface-elevated) !important;
+      border: 1px solid var(--ae-line-control) !important;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55) !important;
+    }
+    footer.ae-site-footer {
+      background: var(--ae-bg) !important;
+      color: var(--ae-ink) !important;
+      border-top: 1px solid var(--ae-line) !important;
+    }
+    footer.ae-site-footer .ae-site-footer__voice p,
+    footer.ae-site-footer .ae-menu__link {
+      color: var(--ae-ink) !important;
+    }
+    footer.ae-site-footer .ae-site-footer__voice > a {
+      border-bottom-color: var(--ae-signal) !important;
+    }
+    footer.ae-site-footer .ae-footer-navigation,
+    footer.ae-site-footer .ae-site-footer__links {
+      border-color: var(--ae-line) !important;
+    }
+    footer.ae-site-footer .ae-site-footer__secondary,
+    footer.ae-site-footer .ae-site-footer__colophon {
+      color: var(--ae-muted) !important;
+    }
+    footer.ae-site-footer .ae-site-footer__flat {
+      filter: invert(1) brightness(1.1) !important;
+    }
+
+    .don-mark {
+      font-family: 'Don Mark', var(--font-display);
+      letter-spacing: 0.03em;
+      font-weight: 400;
+    }
+
+    /* Modern Web Guidance: improve-text-layout-and-legibility */
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      letter-spacing: 0.015em;
+      text-wrap: balance;
+      margin: 0;
+      color: var(--ae-ink);
+    }
+
+    p, li {
+      text-wrap: pretty;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Subdomain Header Bar — padded to clear fixed premium-nav Back & Menu pills */
+    .don-subbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(9, 12, 17, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--ae-line);
+      padding: 1.35rem 13.5rem 1.1rem 11.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .don-subbar {
+        padding: 4.25rem 1.25rem 0.85rem;
+      }
+    }
+
+    .don-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--ae-ink);
+    }
+
+    .don-brand-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ae-ink);
+      font-weight: 600;
+    }
+
+    .don-brand-label span {
+      color: var(--ae-signal);
+    }
+
+    .don-jump-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .don-jump-links a {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ae-muted);
+      transition: color 180ms ease;
+    }
+
+    .don-jump-links a:hover,
+    .don-jump-links a:focus-visible {
+      color: var(--ae-signal);
+    }
+
+    /* World Section Layout */
+    .don-world {
+      position: relative;
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem);
+      border-bottom: 1px solid var(--ae-line);
+      background: var(--ae-bg);
+      overflow: hidden;
+    }
+
+    .don-world--alt {
+      background: var(--ae-bg-alt);
+    }
+
+    .don-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .world-ghost {
+      position: absolute;
+      right: -0.04em;
+      bottom: -0.14em;
+      font-family: var(--font-display);
+      font-size: clamp(9rem, 24vw, 22rem);
+      font-weight: 700;
+      letter-spacing: -0.08em;
+      line-height: 0.8;
+      color: rgba(247, 248, 246, 0.03);
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+    }
+
+    .world-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--ae-signal);
+      box-shadow: 0 0 12px rgba(255, 90, 31, 0.7);
+      display: inline-block;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      body:not(.motion-paused) .live-dot {
+        animation: pulse-dot 2.2s infinite ease-in-out;
+      }
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.45; }
+    }
+
+    /* Hero Grid */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 5.4vw, 4.45rem);
+      line-height: 1.06;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      color: var(--ae-signal);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.08rem, 1.4vw, 1.28rem);
+      line-height: 1.6;
+      color: var(--ae-muted);
+      max-width: 62ch;
+      margin: 0 0 2rem;
+    }
+
+    .hero-lead strong {
+      color: var(--ae-ink);
+      font-weight: 600;
+    }
+
+    /* Telemetry Strip */
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 680px) {
+      .telemetry-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .telemetry-cell {
+      background-color: var(--ae-surface);
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
+        linear-gradient(155deg, #1a212e 0%, #10151e 55%, #0c1017 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.65), -2px -2px 10px rgba(255, 255, 255, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.09), inset 0 -1px 0 rgba(0, 0, 0, 0.65);
+      border-radius: 12px;
+      padding: 0.95rem 1rem;
+    }
+
+    .telemetry-cell .k {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ae-muted);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .telemetry-cell .v {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ae-ink);
+    }
+
+    /* Watch Build in Public Card (Brushed Metal Neumorphic + Forms & Validation Best Practices) */
+    .watch-card {
+      background-color: var(--ae-surface);
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.015) 0px, rgba(255, 255, 255, 0.015) 1px, transparent 1px, transparent 3px),
+        linear-gradient(155deg, rgba(255, 90, 31, 0.12) 0%, #161d29 28%, #0e131b 70%, #0a0e14 100%);
+      border: 1px solid var(--ae-line-control);
+      border-radius: 16px;
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+      box-shadow:
+        0 26px 56px rgba(0, 0, 0, 0.78),
+        -4px -4px 16px rgba(255, 255, 255, 0.025),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.7);
+    }
+
+    .watch-card h2 {
+      font-size: 1.55rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .watch-card p {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--ae-muted);
+      margin: 0 0 1.35rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.38rem;
+      margin-bottom: 1rem;
+    }
+
+    .field label {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--ae-ink);
+    }
+
+    .field-hint {
+      font-size: 0.82rem;
+      color: var(--ae-muted);
+      line-height: 1.4;
+    }
+
+    .field input {
+      min-height: 48px;
+      padding: 0.75rem 0.95rem;
+      font-size: max(1rem, 1em);
+      font-family: var(--font-sans);
+      color: var(--ae-ink);
+      background: linear-gradient(180deg, #06080c 0%, #0c1017 100%);
+      border: 1.5px solid var(--ae-line-control);
+      box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.85), inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .field input::placeholder {
+      color: #6b7688;
+    }
+
+    @media (pointer: coarse) {
+      .field input,
+      .btn-submit,
+      .pillar-tab,
+      .copy-trigger {
+        min-height: 52px;
+      }
+    }
+
+    .field input:focus-visible {
+      outline: 2px solid var(--ae-signal);
+      outline-offset: 2px;
+      border-color: var(--ae-signal);
+      background: #0d121a;
+    }
+
+    /* Validate Input After Interaction */
+    .field input:is(:user-invalid, .user-invalid-fallback) {
+      border-color: #ff6b4a;
+      background: rgba(183, 53, 18, 0.14);
+    }
+
+    .field input:is(:user-valid, .user-valid-fallback) {
+      border-color: var(--ae-emerald);
+    }
+
+    .error-msg {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #ff7a5c;
+      font-size: 0.84rem;
+      font-weight: 500;
+      margin-top: 0.25rem;
+    }
+
+    .error-msg[hidden] {
+      display: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      min-height: 48px;
+      padding: 0.85rem 1.25rem;
+      border: 1px solid rgba(255, 150, 110, 0.4);
+      border-radius: 10px;
+      background: linear-gradient(180deg, #ff6c37 0%, #ff5a1f 55%, #d6420e 100%);
+      box-shadow: 0 10px 24px rgba(255, 90, 31, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -2px 0 rgba(0, 0, 0, 0.35);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 180ms ease, border-color 180ms ease;
+    }
+
+    .btn-submit:hover,
+    .btn-submit:focus-visible {
+      background: #ff6e3a;
+      border-color: #ff6e3a;
+    }
+
+    .btn-submit[aria-disabled="true"] {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .form-status-banner {
+      margin-top: 0.85rem;
+      padding: 0.75rem 0.95rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .form-status-banner[hidden] {
+      display: none;
+    }
+
+    .form-status-banner.is-ok {
+      background: rgba(56, 232, 255, 0.14);
+      border: 1px solid var(--ae-emerald);
+      color: #7ef0ff;
+    }
+
+    .watch-links {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--ae-line);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .watch-links a {
+      color: var(--ae-ink);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .watch-links a:hover {
+      color: var(--ae-signal);
+    }
+
+    /* Section Headings */
+    .section-header {
+      max-width: 780px;
+      margin-bottom: 2.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.04;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1.08rem;
+      line-height: 1.6;
+      color: var(--ae-muted);
+      margin: 0;
+    }
+
+    /* Scoped Component View Transitions for 4 Architecture Pillars */
+    .pillar-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 860px) {
+      .pillar-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .pillar-tabs {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pillar-tab {
+      min-height: 48px;
+      text-align: left;
+      padding: 0.95rem 1.1rem;
+      border-radius: 12px;
+      border: 1px solid var(--ae-line-control);
+      background: var(--ae-surface);
+      color: var(--ae-ink);
+      cursor: pointer;
+      transition: border-color 180ms ease, background 180ms ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .pillar-tab:hover {
+      background: var(--ae-surface-elevated);
+    }
+
+    .pillar-tab .num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--ae-signal);
+      text-transform: uppercase;
+    }
+
+    .pillar-tab .lbl {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .pillar-tab[aria-selected="true"] {
+      background: linear-gradient(180deg, rgba(255, 90, 31, 0.18) 0%, var(--ae-surface-elevated) 100%);
+      color: #ffffff;
+      border-color: var(--ae-signal);
+      box-shadow: inset 0 0 0 1px var(--ae-signal);
+    }
+
+    .pillar-stage {
+      contain: layout;
+      background-color: var(--ae-surface);
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
+        linear-gradient(155deg, #1b2230 0%, #111620 55%, #0c1017 100%);
+      border: 1px solid rgba(255, 255, 255, 0.085);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.72), -4px -4px 16px rgba(255, 255, 255, 0.025), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.65);
+      border-radius: 16px;
+      padding: clamp(1.5rem, 3.5vw, 2.75rem);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.25rem;
+      align-items: center;
+    }
+
+    @media (max-width: 860px) {
+      .pillar-stage {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pillar-stage h3 {
+      font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+      margin-bottom: 0.85rem;
+    }
+
+    .pillar-stage p {
+      color: var(--ae-muted);
+      line-height: 1.65;
+      margin: 0 0 1.25rem;
+    }
+
+    .spec-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .spec-list li {
+      padding: 0.7rem 0.95rem;
+      border-radius: 8px;
+      background: var(--ae-bg);
+      border: 1px solid var(--ae-line);
+      border-left: 3px solid var(--ae-signal);
+      font-size: 0.92rem;
+      line-height: 1.45;
+      color: #e2e8f0;
+    }
+
+    .spec-diagram {
+      background: #070a0e;
+      color: var(--ae-ink);
+      border-radius: 12px;
+      padding: 1.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      border: 1px solid var(--ae-line-control);
+      overflow-x: auto;
+    }
+
+    .spec-diagram .hl {
+      color: var(--ae-signal);
+      font-weight: 600;
+    }
+
+    .spec-diagram .ok {
+      color: var(--ae-emerald);
+    }
+
+    /* Section 02: 3-Pane Liquid Interface Live Mockup */
+    .ui-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .motion-btn {
+      min-height: 44px;
+      padding: 0.5rem 0.95rem;
+      border-radius: 8px;
+      border: 1px solid var(--ae-line-control);
+      background: var(--ae-surface);
+      color: var(--ae-ink);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .motion-btn:hover,
+    .motion-btn:focus-visible {
+      border-color: var(--ae-signal);
+    }
+
+    .liquid-frame {
+      background: #070a0e;
+      border: 1px solid var(--ae-line-control);
+      border-radius: 16px;
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr) 320px;
+      overflow: hidden;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
+    }
+
+    @media (max-width: 1024px) {
+      .liquid-frame {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .l-pane {
+      padding: 1.25rem;
+      border-right: 1px solid #1c2330;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .l-pane:last-child {
+      border-right: none;
+    }
+
+    .l-hdr {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid #1c2330;
+    }
+
+    .l-item {
+      padding: 0.75rem;
+      border-radius: 8px;
+      background: #121822;
+      border: 1px solid #232c3d;
+      font-size: 0.84rem;
+    }
+
+    .l-item.is-active {
+      border-color: var(--ae-signal);
+      background: rgba(255, 90, 31, 0.12);
+    }
+
+    .l-item small {
+      display: block;
+      color: var(--ae-muted);
+      font-size: 0.74rem;
+      margin-top: 0.25rem;
+    }
+
+    .l-bar {
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      background: #131b26;
+      border-left: 3px solid var(--ae-emerald);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .l-bar.warn {
+      border-left-color: var(--ae-signal);
+    }
+
+    /* Section 03: Build Log & Copyable Watch Snippets */
+    .milestone-list {
+      display: grid;
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .milestone-row {
+      background-color: var(--ae-surface);
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
+        linear-gradient(155deg, #19212d 0%, #10151e 55%, #0c1017 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.65), -3px -3px 12px rgba(255, 255, 255, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.09), inset 0 -1px 0 rgba(0, 0, 0, 0.65);
+      border-radius: 12px;
+      padding: 1.15rem 1.35rem;
+      display: grid;
+      grid-template-columns: 150px 1fr auto;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    @media (max-width: 720px) {
+      .milestone-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .m-phase {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+      font-weight: 600;
+    }
+
+    .m-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: var(--ae-surface-elevated);
+      border: 1px solid var(--ae-line-control);
+      color: var(--ae-ink);
+      white-space: nowrap;
+    }
+
+    .m-badge.in-progress {
+      background: rgba(255, 90, 31, 0.14);
+      border-color: var(--ae-signal);
+      color: var(--ae-signal);
+      font-weight: 600;
+    }
+
+    /* Copy Snippet Box (Modern Web Guidance: copy-button) */
+    .snippet-box {
+      background: #070a0e;
+      color: var(--ae-ink);
+      border: 1px solid var(--ae-line-control);
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .snippet-code {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      margin: 0;
+      overflow-x: auto;
+    }
+
+    .copy-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      position: relative;
+    }
+
+    .copy-trigger {
+      min-height: 44px;
+      padding: 0.55rem 0.95rem;
+      border-radius: 8px;
+      border: 1px solid var(--ae-line-control);
+      background: var(--ae-surface-elevated);
+      color: var(--ae-ink);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .copy-trigger:hover,
+    .copy-trigger:focus-visible {
+      border-color: var(--ae-signal);
+    }
+
+    .copy-status {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--ae-emerald);
+      opacity: 0;
+      transition: opacity 150ms ease;
+      pointer-events: none;
+    }
+
+    .copy-status.is-visible {
+      opacity: 1;
+    }
+
+    /* Section 04: Press & Social Teaser Kit Gallery */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 820px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .social-card-item {
+      background-color: var(--ae-surface);
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
+        linear-gradient(155deg, #1b2230 0%, #111620 55%, #0c1017 100%);
+      border: 1px solid rgba(255, 255, 255, 0.085);
+      box-shadow: 0 22px 46px rgba(0, 0, 0, 0.72), -4px -4px 16px rgba(255, 255, 255, 0.025), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.65);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .social-card-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid var(--ae-line);
+    }
+
+    .social-card-meta {
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .social-card-meta strong {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      display: block;
+      color: var(--ae-ink);
+    }
+
+    .social-card-meta span {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ae-muted);
+    }
+
+    .dl-link {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 0.85rem;
+      border: 1px solid var(--ae-line-control);
+      border-radius: 8px;
+      background: var(--ae-bg);
+    }
+
+    .dl-link:hover,
+    .dl-link:focus-visible {
+      border-color: var(--ae-signal);
+    }
+
+    /* Forced Colors Mode (Windows High Contrast) System Keyword Fallbacks */
+    @media (forced-colors: active) {
+      .watch-card,
+      .telemetry-cell,
+      .pillar-tab,
+      .pillar-stage,
+      .liquid-frame,
+      .milestone-row,
+      .social-card-item,
+      .snippet-box {
+        border: 1px solid CanvasText;
+      }
+      .pillar-tab[aria-selected="true"],
+      .btn-submit {
+        outline: 2px solid Highlight;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body class="don-dark-theme">
+  <header class="don-subbar" aria-label="Don-Bot Ultra subdomain navigation">
+    <a class="don-brand" href="/">
+      <span class="don-brand-label"><span class="don-mark" style="font-size:1.05em">don</span>.aegntic.ai // build in public</span>
+    </a>
+    <nav class="don-jump-links" aria-label="Page sections">
+      <a href="#access">00 // Access</a>
+      <a href="#architecture">01 // Architecture</a>
+      <a href="#interface">02 // 3-Pane UI</a>
+      <a href="#roadmap">03 // Build Log</a>
+      <a href="#teaser-kit">04 // Social Kit</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- 00 // ACCESS (HERO & BUILD IN PUBLIC SUBSCRIBE) -->
+    <section class="don-world" id="access" aria-labelledby="hero-heading">
+      <div class="world-ghost don-mark" aria-hidden="true">DON.</div>
+      <div class="don-container">
+        <div class="world-eyebrow">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>00 // ACCESS · TINY SOFTWARE FACTORY · OPEN BUILD LOG</span>
+        </div>
+
+        <div class="hero-grid">
+          <div>
+            <h1 class="hero-title" id="hero-heading">
+              One lead.<br>
+              Four specialists.<br>
+              <em>Zero babysitting.</em>
+            </h1>
+            <p class="hero-lead">
+              <strong class="don-mark" style="font-size:1.08em;color:#ffffff">Don-Bot</strong> <strong>Ultra</strong> is our open-source Tiny Software Factory built on a crash-proof SQLite WAL spine. Instead of brittle single-agent loops or 50-agent swarm chaos, one Lead Orchestrator coordinates four durable specialists with 300ms System-One judgment gates, an un-promptable sibling Verifier, and a 3-pane liquid interface.
+            </p>
+
+            <div class="telemetry-grid" role="list" aria-label="Key architectural specifications">
+              <div class="telemetry-cell" role="listitem">
+                <span class="k">Topology</span>
+                <span class="v">1 Lead + 4 Specialists</span>
+              </div>
+              <div class="telemetry-cell" role="listitem">
+                <span class="k">Durable Spine</span>
+                <span class="v">SQLite WAL + once()</span>
+              </div>
+              <div class="telemetry-cell" role="listitem">
+                <span class="k">Pre-Tool Gate</span>
+                <span class="v">~300ms · $0.0007</span>
+              </div>
+              <div class="telemetry-cell" role="listitem">
+                <span class="k">UI &amp; Channels</span>
+                <span class="v">3-Pane + 'Me'-Mode</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Watch the Build in Public Subscription Card -->
+          <aside class="watch-card" aria-labelledby="watch-form-heading">
+            <div class="world-eyebrow" style="margin-bottom:0.5rem">BUILD IN PUBLIC DISPATCH</div>
+            <h2 id="watch-form-heading">Watch the factory come online.</h2>
+            <p>
+              We are shipping every slice in the open: SQLite WAL checkpointing, 3-round specialist rooms, blind vault credentials, and the 3-pane liquid interface. Get notified as each milestone lands.
+            </p>
+
+            <form id="watch-form" action="/api/subscribe" method="POST" aria-labelledby="watch-form-heading" novalidate>
+              <div class="field">
+                <label for="watch-email">Work or personal email</label>
+                <span class="field-hint" id="email-hint">One architectural dispatch per milestone. Zero fluff.</span>
+                <input
+                  id="watch-email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  autocorrect="off"
+                  autocapitalize="none"
+                  spellcheck="false"
+                  placeholder="you@domain.com"
+                  aria-describedby="email-hint"
+                  data-error="email-error"
+                  aria-invalid="false"
+                >
+                <div class="error-msg" id="email-error" hidden>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M8 4.5V8.5M8 11V11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <span>Please enter a valid email address (for example, alex@domain.com).</span>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-submit" id="watch-submit">
+                Watch the Build in Public →
+              </button>
+
+              <div id="form-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+              <div id="form-status-banner" class="form-status-banner" hidden></div>
+            </form>
+
+            <div class="watch-links">
+              <a href="https://github.com/aegntic/don-bot" target="_blank" rel="noopener">github.com/aegntic/don-bot ↗</a>
+              <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">@aegntic_ai ↗</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 // THE ARCHITECTURE (SOFT PUBLIC DETAILS) -->
+    <section class="don-world don-world--alt" id="architecture" aria-labelledby="arch-heading">
+      <div class="world-ghost" aria-hidden="true">01</div>
+      <div class="don-container">
+        <div class="section-header">
+          <div class="world-eyebrow">01 // PUBLIC ARCHITECTURAL BLUEPRINT</div>
+          <h2 class="section-title" id="arch-heading">Built to run for hours while you stay near the loop.</h2>
+          <p class="section-sub">
+            In the loop, you prompt and babysit. Near the loop, a small durable team debates, builds, and verifies before escalating only high-leverage decisions to your inbox.
+          </p>
+        </div>
+
+        <div class="pillar-tabs" role="tablist" aria-label="Don-Bot Ultra Architectural Pillars">
+          <button type="button" class="pillar-tab" role="tab" id="tab-team" aria-selected="true" aria-controls="pillar-panel" data-pillar="team">
+            <span class="num">01 // TOPOLOGY</span>
+            <span class="lbl">Lead + 4 Specialists</span>
+          </button>
+          <button type="button" class="pillar-tab" role="tab" id="tab-spine" aria-selected="false" aria-controls="pillar-panel" data-pillar="spine">
+            <span class="num">02 // DURABILITY</span>
+            <span class="lbl">SQLite WAL Spine</span>
+          </button>
+          <button type="button" class="pillar-tab" role="tab" id="tab-verify" aria-selected="false" aria-controls="pillar-panel" data-pillar="verify">
+            <span class="num">03 // SAFETY &amp; QA</span>
+            <span class="lbl">Verifier &amp; Blind Vault</span>
+          </button>
+          <button type="button" class="pillar-tab" role="tab" id="tab-liquid" aria-selected="false" aria-controls="pillar-panel" data-pillar="liquid">
+            <span class="num">04 // INTERFACES</span>
+            <span class="lbl">3-Pane UI + 'Me'-Mode</span>
+          </button>
+        </div>
+
+        <div class="pillar-stage" id="pillar-panel" role="tabpanel" aria-labelledby="tab-team">
+          <div id="pillar-copy">
+            <h3>1 Lead Orchestrator + 4 Durable Specialists</h3>
+            <p>
+              Instead of spawning 50 ephemeral subagents that burn tokens and overwrite each other's files, Don-Bot Ultra runs a persistent 5-agent roster over SQLite message rooms. Before writing code, the team conducts a 3-round architectural negotiation and autonomously tunes its own Core 4 parameters.
+            </p>
+            <ul class="spec-list">
+              <li><strong>Social Contract Before Code:</strong> Specialists agree on contracts, schemas, and file boundaries in a room before taking a single-writer lease.</li>
+              <li><strong>Autonomous Core 4 Self-Tuning:</strong> Each specialist dynamically downshifts or upgrades its Model, Thinking Effort, Context Window, and Skillset per milestone.</li>
+              <li><strong>Bounded Subagent Fan-Out:</strong> Specialists can spawn up to 3 parallel workers with a strict $0.15 cost cap for parallel research or verification.</li>
+            </ul>
+          </div>
+          <div class="spec-diagram" id="pillar-diagram">
+            <div><span class="hl">TEAM ROOM // 3-ROUND SELF-CONFIGURATION</span></div>
+            <div>──────────────────────────────────────────────</div>
+            <div>[Lead Orchestrator] &rarr; Opens room #arch-sync</div>
+            <div>  ├── <span class="ok">API Keeper</span>      (Workhorse A · x-high · Lease)</div>
+            <div>  ├── <span class="ok">Pipeline Forge</span>  (Workhorse A · high   · 3x fanout)</div>
+            <div>  ├── <span class="ok">Browser/UI QA</span>   (Workhorse B · medium · -68% cost)</div>
+            <div>  └── <span class="ok">Memory Curator</span>  (Fast Tier   · low    · Lifebank)</div>
+            <div>──────────────────────────────────────────────</div>
+            <div><span class="ok">STATUS:</span> Social contract locked · 0 file collisions</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 // 3-PANE LIQUID INTERFACE -->
+    <section class="don-world" id="interface" aria-labelledby="ui-heading">
+      <div class="world-ghost" aria-hidden="true">02</div>
+      <div class="don-container">
+        <div class="ui-toolbar">
+          <div class="section-header" style="margin-bottom:0">
+            <div class="world-eyebrow">02 // LIQUID SOFTWARE INTERFACE · 100% AGENTIC ACCESS PARITY</div>
+            <h2 class="section-title" id="ui-heading">Lists on the left. Focus in the center. Durable team on the right.</h2>
+          </div>
+          <button type="button" class="motion-btn" id="motion-toggle">
+            Pause live pulse
+          </button>
+        </div>
+
+        <p class="section-sub" style="margin-bottom:2rem">
+          Every button, tab, and canvas pin in the 3-pane interface maps 1:1 to an agent tool. Press <code>~</code> (tilde) at any time to inspect or steer any specialist directly.
+        </p>
+
+        <div class="liquid-frame" role="region" aria-label="3-Pane Liquid Interface Architecture Preview">
+          <div class="l-pane">
+            <div class="l-hdr"><span>01 // LEFT · LANE LIST</span><span>4 ITEMS</span></div>
+            <div class="l-item is-active">
+              <strong>[arch-spec-v2]</strong>
+              <small>API Keeper · Updated 12s ago</small>
+            </div>
+            <div class="l-item">
+              <strong>[sqlite-wal-schema]</strong>
+              <small>Pipeline Forge · Verified PASS</small>
+            </div>
+            <div class="l-item">
+              <strong>[mtproto-pacer]</strong>
+              <small>API Keeper · In 3-round review</small>
+            </div>
+            <div class="l-item">
+              <strong>[browser-checkout-qa]</strong>
+              <small>Client QA · Live Screen :101</small>
+            </div>
+          </div>
+
+          <div class="l-pane">
+            <div class="l-hdr"><span>02 // CENTER · GEN-UI + LIVE SCREEN + RUN TRACE</span><span>120FPS</span></div>
+            <div class="l-bar">
+              <span>API KEEPER &rarr; WORKHORSE A · X-HIGH · WRITER-LEASE</span>
+              <span style="color:#38e8ff">$0.018 · 1.4S</span>
+            </div>
+            <div class="l-bar">
+              <span>PIPELINE FORGE &rarr; 3 SUBAGENTS ($0.15 CAP)</span>
+              <span style="color:#38e8ff">$0.024 · 2.1S</span>
+            </div>
+            <div class="l-bar warn">
+              <span>CLIENT QA &rarr; SELF-DOWNGRADED TO WORKHORSE B · MEDIUM</span>
+              <span style="color:#ff5a1f">-68% TOKENS</span>
+            </div>
+            <div class="l-bar">
+              <span>JEV SYSTEM-ONE PRE-TOOL GATE &rarr; 42 CHECKS EVALUATED</span>
+              <span style="color:#38e8ff">280MS · $0.0007</span>
+            </div>
+          </div>
+
+          <div class="l-pane">
+            <div class="l-hdr"><span>03 // RIGHT · NEAR-LOOP INBOX</span><span>1 NEEDS YOU</span></div>
+            <div class="l-item is-active">
+              <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--ae-signal);margin-bottom:0.35rem">TEAM_ASK DECISION DECK · #1 OF 1</div>
+              <strong>Outbound Telegram Group Creation</strong>
+              <small style="color:#d9dcda;margin-top:0.35rem;line-height:1.45">
+                Create supergroup "Factory · BuyerNav" with Forum Topics and file under your "Factories" folder?
+              </small>
+            </div>
+            <div class="l-item">
+              <div style="font-family:var(--font-mono);font-size:0.68rem;color:#38e8ff">LEAD ORCHESTRATOR</div>
+              <small style="color:#d9dcda;margin-top:0.35rem;line-height:1.45">
+                3-round architecture debate settled. Answer card #1 here or from your phone whenever you're ready.
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 // LIVE BUILD LOG & MILESTONES -->
+    <section class="don-world don-world--alt" id="roadmap" aria-labelledby="roadmap-heading">
+      <div class="world-ghost" aria-hidden="true">03</div>
+      <div class="don-container">
+        <div class="section-header">
+          <div class="world-eyebrow">03 // BUILD IN PUBLIC TRACKER</div>
+          <h2 class="section-title" id="roadmap-heading">Five architectural slices. Shipped in the open.</h2>
+          <p class="section-sub">
+            Follow the repository or clone the starter branch to inspect each harness extension as it lands.
+          </p>
+        </div>
+
+        <div class="milestone-list">
+          <div class="milestone-row">
+            <span class="m-phase">SLICE 01 // SPINE</span>
+            <div>
+              <strong>SQLite WAL Durable Runtime &amp; Self-Compaction</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Crash-proof <code>once()</code> step checkpointing, single-writer file lease locks, and 10%/20%/30% <code>note_to_self</code> memory compaction.</p>
+            </div>
+            <span class="m-badge in-progress">IN PROGRESS</span>
+          </div>
+          <div class="milestone-row">
+            <span class="m-phase">SLICE 02 // TEAM</span>
+            <div>
+              <strong>Lead Orchestrator + 4 Specialist Rooms</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Multi-round room discussions, autonomous Core 4 self-configuration, and bounded subagent fan-out.</p>
+            </div>
+            <span class="m-badge in-progress">ACTIVE</span>
+          </div>
+          <div class="milestone-row">
+            <span class="m-phase">SLICE 03 // TRUST</span>
+            <div>
+              <strong>300ms Jev Judgment Gates, Blind Vault &amp; Sibling Verifier</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Pre-tool calibrated checks, out-of-band quote verification, sandbox secret injection, and top-down stop-hook verification.</p>
+            </div>
+            <span class="m-badge">NEXT UP</span>
+          </div>
+          <div class="milestone-row">
+            <span class="m-phase">SLICE 04 // CHANNELS</span>
+            <div>
+              <strong>Personal 'Me'-Mode Telegram &amp; WhatsApp Bridge</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Zero-badge personal account operation with human-mimicry token-bucket pacing and forum topic creation.</p>
+            </div>
+            <span class="m-badge">SPEC COMPLETE</span>
+          </div>
+          <div class="milestone-row">
+            <span class="m-phase">SLICE 05 // UI</span>
+            <div>
+              <strong>3-Pane Liquid Interface &amp; 6-Layer Motion Engine</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Left Lane List, Center Generative UI + live Xvfb screen takeover, Right Decision Deck, and 120fps spring physics.</p>
+            </div>
+            <span class="m-badge">SPEC COMPLETE</span>
+          </div>
+        </div>
+
+        <div class="snippet-box">
+          <pre class="snippet-code" id="clone-cmd">git clone https://github.com/aegntic/don-bot.git &amp;&amp; cd don-bot</pre>
+          <div class="copy-wrap">
+            <button type="button" class="copy-trigger" command="--copy" commandfor="clone-cmd" data-status="copy-status-clone">
+              Copy Clone Command
+            </button>
+            <span id="copy-status-clone" class="copy-status" role="status"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 // PRESS & SOCIAL TEASER KIT -->
+    <section class="don-world" id="teaser-kit" aria-labelledby="kit-heading">
+      <div class="don-container">
+        <div class="section-header">
+          <div class="world-eyebrow">04 // PRESS &amp; SOCIAL TEASER KIT</div>
+          <h2 class="section-title" id="kit-heading">Share the architecture.</h2>
+          <p class="section-sub">
+            High-contrast architecture cards and ready-to-post build-in-public copy for X, LinkedIn, Telegram, and technical communities.
+          </p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="social-card-item">
+            <img src="/don-bot/cards/card-01-hero-16x9.png" alt="Card 01: One lead. Four specialists. Zero babysitting." width="1200" height="675" loading="lazy">
+            <div class="social-card-meta">
+              <div>
+                <strong>01 // Hero Thesis Card (16:9)</strong>
+                <span>1200 × 675 PNG · Editorial Card</span>
+              </div>
+              <a class="dl-link" href="/don-bot/cards/card-01-hero-16x9.png" download="don-bot-01-hero.png">Download PNG</a>
+            </div>
+          </article>
+
+          <article class="social-card-item">
+            <img src="/don-bot/cards/card-02-architecture-16x9.png" alt="Card 02: 4-Pillar Public Architecture Blueprint" width="1200" height="675" loading="lazy">
+            <div class="social-card-meta">
+              <div>
+                <strong>02 // 4-Pillar Architecture Card (16:9)</strong>
+                <span>1200 × 675 PNG · Warm Ink Blueprint</span>
+              </div>
+              <a class="dl-link" href="/don-bot/cards/card-02-architecture-16x9.png" download="don-bot-02-architecture.png">Download PNG</a>
+            </div>
+          </article>
+
+          <article class="social-card-item">
+            <img src="/don-bot/cards/card-03-liquid-ui-16x9.png" alt="Card 03: 3-Pane Liquid Software Interface" width="1200" height="675" loading="lazy">
+            <div class="social-card-meta">
+              <div>
+                <strong>03 // 3-Pane Liquid UI Card (16:9)</strong>
+                <span>1200 × 675 PNG · Interface Mockup</span>
+              </div>
+              <a class="dl-link" href="/don-bot/cards/card-03-liquid-ui-16x9.png" download="don-bot-03-liquid-ui.png">Download PNG</a>
+            </div>
+          </article>
+
+          <article class="social-card-item">
+            <img src="/don-bot/cards/og-don-bot.png" alt="OpenGraph Card: Don-Bot Ultra Tiny Software Factory" width="1200" height="630" loading="lazy">
+            <div class="social-card-meta">
+              <div>
+                <strong>04 // OpenGraph Link Card (1.91:1) + Square (1:1)</strong>
+                <span>1200 × 630 OG &amp; <a href="/don-bot/cards/card-04-square-1x1.png" download="don-bot-04-square.png" style="color:var(--ae-signal)">1080 × 1080 Square</a></span>
+              </div>
+              <a class="dl-link" href="/don-bot/cards/og-don-bot.png" download="don-bot-og.png">Download OG</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="snippet-box">
+          <pre class="snippet-code" id="share-blurb">We're building Don-Bot Ultra in public: a Tiny Software Factory with 1 Lead Orchestrator, 4 durable SQLite-backed specialists, 300ms Jev judgment gates, and a 3-pane liquid UI. Watch the build → https://don.aegntic.ai</pre>
+          <div class="copy-wrap">
+            <button type="button" class="copy-trigger" command="--copy" commandfor="share-blurb" data-status="copy-status-share">
+              Copy Share Post
+            </button>
+            <span id="copy-status-share" class="copy-status" role="status"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      // 1. Validate Input After Interaction + Accessible Live Form Submission
+      const form = document.getElementById('watch-form');
+      const emailInput = document.getElementById('watch-email');
+      const liveRegion = document.getElementById('form-live-region');
+      const statusBanner = document.getElementById('form-status-banner');
+      const submitBtn = document.getElementById('watch-submit');
+
+      function syncAria(input) {
+        const errId = input.dataset.error;
+        const errEl = document.getElementById(errId);
+        const invalid = !input.validity.valid;
+        input.setAttribute('aria-invalid', String(invalid));
+        if (errEl) errEl.hidden = !invalid;
+        const base = (input.getAttribute('aria-describedby') || '')
+          .split(' ')
+          .filter((id) => id && id !== errId);
+        if (invalid && errId) base.push(errId);
+        input.setAttribute('aria-describedby', base.join(' '));
+      }
+
+      if (emailInput) {
+        const supportsUserInvalid = CSS.supports('selector(:user-invalid)');
+        emailInput.addEventListener('blur', () => {
+          if (emailInput.value.length > 0) {
+            if (!supportsUserInvalid) {
+              emailInput.classList.toggle('user-invalid-fallback', !emailInput.validity.valid);
+              emailInput.classList.toggle('user-valid-fallback', emailInput.validity.valid);
+            }
+            syncAria(emailInput);
+          }
+        });
+        emailInput.addEventListener('input', () => {
+          if (emailInput.getAttribute('aria-invalid') === 'true') {
+            syncAria(emailInput);
+          }
+        });
+      }
+
+      if (form && emailInput) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          syncAria(emailInput);
+          if (!emailInput.validity.valid) {
+            emailInput.classList.add('user-invalid-fallback');
+            emailInput.focus();
+            if (liveRegion) {
+              liveRegion.textContent = 'Error: Please enter a valid email address.';
+            }
+            return;
+          }
+
+          submitBtn.setAttribute('aria-disabled', 'true');
+          const origLabel = submitBtn.textContent;
+          submitBtn.textContent = 'Registering...';
+
+          try {
+            const res = await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: emailInput.value.trim(),
+                source: 'don.aegntic.ai'
+              })
+            });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok) {
+              const msg = data.status === 'exists'
+                ? 'You are already on the Don-Bot Ultra build dispatch.'
+                : 'You are in. We will notify you as each Don-Bot Ultra milestone lands.';
+              statusBanner.textContent = msg;
+              statusBanner.className = 'form-status-banner is-ok';
+              statusBanner.hidden = false;
+              if (liveRegion) liveRegion.textContent = msg;
+              form.reset();
+            } else {
+              throw new Error(data.error || 'Could not subscribe right now.');
+            }
+          } catch (err) {
+            statusBanner.textContent = 'Saved locally — or star github.com/aegntic/don-bot to follow every commit.';
+            statusBanner.className = 'form-status-banner is-ok';
+            statusBanner.hidden = false;
+            if (liveRegion) liveRegion.textContent = statusBanner.textContent;
+          } finally {
+            submitBtn.removeAttribute('aria-disabled');
+            submitBtn.textContent = origLabel;
+          }
+        });
+      }
+
+      // 2. Scoped Component Transitions for the 4 Architectural Pillars
+      const PILLARS = {
+        team: {
+          title: '1 Lead Orchestrator + 4 Durable Specialists',
+          desc: "Instead of spawning 50 ephemeral subagents that burn tokens and overwrite each other's files, Don-Bot Ultra runs a persistent 5-agent roster over SQLite message rooms. Before writing code, the team conducts a 3-round architectural negotiation and autonomously tunes its own Core 4 parameters.",
+          bullets: [
+            '<strong>Social Contract Before Code:</strong> Specialists agree on contracts, schemas, and file boundaries in a room before taking a single-writer lease.',
+            '<strong>Autonomous Core 4 Self-Tuning:</strong> Each specialist dynamically downshifts or upgrades its Model, Thinking Effort, Context Window, and Skillset per milestone.',
+            '<strong>Bounded Subagent Fan-Out:</strong> Specialists can spawn up to 3 parallel workers with a strict $0.15 cost cap for parallel research or verification.'
+          ],
+          diagram: `<div><span class="hl">TEAM ROOM // 3-ROUND SELF-CONFIGURATION</span></div>
+<div>──────────────────────────────────────────────</div>
+<div>[Lead Orchestrator] &rarr; Opens room #arch-sync</div>
+<div>  ├── <span class="ok">API Keeper</span>      (Workhorse A · x-high · Lease)</div>
+<div>  ├── <span class="ok">Pipeline Forge</span>  (Workhorse A · high   · 3x fanout)</div>
+<div>  ├── <span class="ok">Browser/UI QA</span>   (Workhorse B · medium · -68% cost)</div>
+<div>  └── <span class="ok">Memory Curator</span>  (Fast Tier   · low    · Lifebank)</div>
+<div>──────────────────────────────────────────────</div>
+<div><span class="ok">STATUS:</span> Social contract locked · 0 file collisions</div>`
+        },
+        spine: {
+          title: 'Crash-Proof SQLite WAL Spine & Self-Compaction',
+          desc: 'Every agent turn, tool invocation, and room post is checkpointed inside a local SQLite WAL database. If the process receives SIGKILL mid-tool, Don-Bot Ultra resumes from the exact once() step memo without re-running completed side effects.',
+          bullets: [
+            '<strong>Zero Docker-Postgres Bloat:</strong> Single-binary local SQLite WAL with sqlite-vec embeddings and FTS5 full-text search.',
+            '<strong>Proactive Self-Compaction:</strong> A post-turn hook warns the agent at 10% and 20% context usage and enforces a structured note_to_self handoff at 30%.',
+            '<strong>Single-Writer Lease Lock:</strong> Prevents concurrent specialists from clobbering shared files during parallel execution.'
+          ],
+          diagram: `<div><span class="hl">SQLITE WAL SPINE // STEP CHECKPOINTING</span></div>
+<div>──────────────────────────────────────────────</div>
+<div>step_01: once("schema_migration") &rarr; <span class="ok">COMMITTED</span></div>
+<div>step_02: once("writer_lease:api") &rarr; <span class="ok">LOCKED</span></div>
+<div>step_03: context_gauge = 18.4%    &rarr; <span class="ok">HEALTHY</span></div>
+<div>  └── auto_compact threshold      &rarr; 30.0% (note_to_self)</div>
+<div>──────────────────────────────────────────────</div>
+<div><span class="ok">RECOVERY:</span> Instant resume after crash or restart</div>`
+        },
+        verify: {
+          title: '300ms Jev Gates, Blind Vault & Sibling Verifier',
+          desc: 'High-autonomy agents require deterministic boundaries. Every high-impact tool call passes through a 300ms System-One calibrated gate, credentials stay inside a Blind Vault, and an un-promptable sibling Verifier inspects the final output before completion.',
+          bullets: [
+            '<strong>300ms System-One Gate:</strong> Logprob-calibrated yes/no and rubric checks evaluate tool safety in 280ms for $0.0007.',
+            '<strong>Blind Credential Vault:</strong> Agents pass opaque vault_ref handles; secrets are injected inside the execution boundary and scrubbed from stdout.',
+            '<strong>Top-Down Sibling Verifier:</strong> Read-only observer extracts atomic claims and runs zero-token code checks before allowing task completion.'
+          ],
+          diagram: `<div><span class="hl">VERIFICATION PIPELINE // ZERO HALLUCINATED DONE</span></div>
+<div>──────────────────────────────────────────────</div>
+<div>[Pre-Tool]  Jev noul() Gate   &rarr; <span class="ok">ALLOW (p=0.98, 280ms)</span></div>
+<div>[Out-Band]  Owner Quote Check &rarr; <span class="ok">VERIFIED IN ROOM LOG</span></div>
+<div>[Sandbox]   Blind Vault       &rarr; <span class="ok">SECRET INJECTED &amp; SCRUBBED</span></div>
+<div>[On-Stop]   Sibling Verifier  &rarr; <span class="ok">14/14 ATOMIC CLAIMS PASS</span></div>
+<div>──────────────────────────────────────────────</div>
+<div><span class="ok">VERDICT:</span> Promoted to user canvas</div>`
+        },
+        liquid: {
+          title: "3-Pane Liquid Interface & Personal 'Me'-Mode Channels",
+          desc: "Work from the 120fps desktop cockpit or steer from your pocket. In Personal 'Me'-Mode, Don-Bot Ultra operates on your own Telegram and WhatsApp sessions with an outbound pacer and 2-zone trust firewall.",
+          bullets: [
+            '<strong>3-Pane Cockpit:</strong> Left Lane List, Center Generative UI + live Xvfb screen takeover + run trace waterfall, Right Near-Loop Decision Deck.',
+            '<strong>100% Agentic Access Parity:</strong> Every UI control has a matching agent tool; press ~ to jump directly into any specialist lane.',
+            '<strong>Personal Pocket Control:</strong> Create and join Telegram supergroups and Forum Topics as yourself with outbound approval gates.'
+          ],
+          diagram: `<div><span class="hl">3-PANE COCKPIT + PERSONAL 'ME'-MODE BRIDGE</span></div>
+<div>──────────────────────────────────────────────</div>
+<div>Pane 01 (Left)   &rarr; Artifacts, Rooms, Core 4 Gauge</div>
+<div>Pane 02 (Center) &rarr; GenUI · Xvfb Screen · Run Trace</div>
+<div>Pane 03 (Right)  &rarr; Decision Deck · ~ Specialist Switch</div>
+<div>Pocket Bridge    &rarr; <span class="ok">MTProto 'Me'-Mode + Pacer Guard</span></div>
+<div>──────────────────────────────────────────────</div>
+<div><span class="ok">LATENCY:</span> 120fps UI · Instant phone-to-canvas sync</div>`
+        }
+      };
+
+      const stageEl = document.getElementById('pillar-panel');
+      const copyEl = document.getElementById('pillar-copy');
+      const diagEl = document.getElementById('pillar-diagram');
+      const tabs = document.querySelectorAll('.pillar-tab');
+
+      function renderPillar(key, tabEl) {
+        const data = PILLARS[key];
+        if (!data || !stageEl) return;
+        const applyDOM = () => {
+          tabs.forEach((t) => t.setAttribute('aria-selected', String(t === tabEl)));
+          stageEl.setAttribute('aria-labelledby', tabEl.id);
+          copyEl.innerHTML = `
+            <h3>${data.title}</h3>
+            <p>${data.desc}</p>
+            <ul class="spec-list">${data.bullets.map((b) => `<li>${b}</li>`).join('')}</ul>
+          `;
+          diagEl.innerHTML = data.diagram;
+        };
+
+        if ('startViewTransition' in Element.prototype && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          const transition = stageEl.startViewTransition(applyDOM);
+          transition.ready.catch(() => {});
+        } else {
+          applyDOM();
+        }
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => renderPillar(tab.dataset.pillar, tab));
+      });
+
+      // 3. Motion Pause / Play Control (Modern Web Guidance: motion)
+      const motionBtn = document.getElementById('motion-toggle');
+      if (motionBtn) {
+        motionBtn.addEventListener('click', () => {
+          const paused = document.body.classList.toggle('motion-paused');
+          motionBtn.textContent = paused ? 'Play live pulse' : 'Pause live pulse';
+        });
+      }
+
+      // 4. Invoker Commands Copy Button + Fallback (Modern Web Guidance: copy-button)
+      let flip = false;
+      const statusTimers = new WeakMap();
+
+      async function handleCopy(targetEl, triggerBtn) {
+        if (!targetEl) return;
+        try {
+          await navigator.clipboard.writeText(targetEl.textContent.trim());
+          const statusId = triggerBtn.getAttribute('data-status');
+          const statusEl = statusId ? document.getElementById(statusId) : null;
+          if (statusEl) {
+            flip = !flip;
+            statusEl.textContent = 'Copied!' + (flip ? '\u00A0' : '');
+            statusEl.classList.add('is-visible');
+            clearTimeout(statusTimers.get(statusEl));
+            statusTimers.set(
+              statusEl,
+              setTimeout(() => {
+                statusEl.classList.remove('is-visible');
+                statusEl.textContent = '';
+              }, 2000)
+            );
+          }
+        } catch (err) {
+          console.error('Copy failed:', err);
+        }
+      }
+
+      if ('CommandEvent' in window) {
+        document.addEventListener('command', (e) => {
+          if (e.command === '--copy') {
+            handleCopy(e.target, e.source);
+          }
+        });
+      } else {
+        document.querySelectorAll('[command="--copy"]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const target = document.getElementById(btn.getAttribute('commandfor'));
+            handleCopy(target, btn);
+          });
+        });
+      }
+    })();
+  </script>
+<footer class="ae-site-footer" aria-label="aegntic footer">
+  <div class="ae-site-footer__signature">
+    <a class="ae-site-footer__mark" href="/" aria-label="aegntic home">
+      <img class="ae-site-footer__flat" src="/ae-logo.webp" width="400" height="400" alt="" loading="lazy">
+      <img class="ae-site-footer__chrome" src="/assets/ae-logo-FINAL-nb.png" width="1254" height="1254" alt="" loading="lazy">
+    </a>
+    <div class="ae-site-footer__voice"><p>Unlimited Insight.<br>Zero Knowledge.</p><p class="ae-site-footer__triad">iii / unltd; insight : : innovation : : integrity : : iv / zero knowledge</p><a href="/#contact" data-enquiry="Something else">Work with me <span aria-hidden="true">↗</span></a></div>
+  </div>
+  <div class="ae-footer-navigation"><nav class="ae-site-footer__links" aria-label="Footer navigation"><a class="ae-menu__link" data-footer-key="home" href="/">/home</a><a class="ae-menu__link" data-footer-key="systems" href="/systems/">/systems</a><a class="ae-menu__link" data-footer-key="agents" href="/agents/">/agents</a><a class="ae-menu__link" data-footer-key="plugins" href="/plugins/">/plugins</a><a class="ae-menu__link" data-footer-key="products" href="/products/">/products</a><a class="ae-menu__link" data-footer-key="contact" href="/#contact">/contact</a></nav></div>
+  <nav class="ae-site-footer__secondary" aria-label="More from aegntic"><a href="/research/">Research</a><a href="/blog/">Writing</a><a href="/projects/">Projects</a><a href="/privacy/">Privacy</a></nav>
+  <div class="ae-site-footer__colophon"><span>aegntic.ai</span><span>© 2026 Mattae Cooper</span><a href="https://github.com/aegntic">GitHub <span aria-hidden="true">↗</span></a></div>
+</footer>
+</body>
+</html>
