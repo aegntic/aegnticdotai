@@ -6,28 +6,28 @@
   <!-- MANDATORY: Declare dark color-scheme in head to prevent initial white flash (FOUC) -->
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#090c11">
-  <title>Don-Bot — Tiny Software Factory · Build in Public | aegntic.ai</title>
-  <meta name="description" content="Don-Bot: an open-source Tiny Software Factory with a Lead Orchestrator, 4 durable specialists, SQLite WAL crash recovery, 300ms Jev judgment gates, and a 3-pane liquid interface. Watch the build in public at don.aegntic.ai.">
+  <title>Don-Bot — On-the-Run Dark Factory · Build in Public | aegntic.ai</title>
+  <meta name="description" content="Don-Bot: an open-source On-the-Run Dark Factory with a Lead Orchestrator, 4 durable specialists, SQLite WAL crash recovery, 300ms Jev judgment gates, and a 3-pane liquid interface. Watch the build in public at don.aegntic.ai.">
   <link rel="canonical" href="https://don.aegntic.ai/">
 
   <!-- Open Graph / Social Cards -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aegntic.ai">
   <meta property="og:url" content="https://don.aegntic.ai/">
-  <meta property="og:title" content="Don-Bot — One Lead. Four Specialists. Zero Babysitting.">
-  <meta property="og:description" content="An open-source Tiny Software Factory on a crash-proof SQLite WAL spine, 300ms Jev judgment gates, blind credential vaulting, and a 3-pane liquid interface. Watch us build in public.">
-  <meta property="og:image" content="https://aegntic.ai/don-bot/cards/og-don-bot.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Don-Bot Tiny Software Factory architecture overview card">
+  <meta property="og:title" content="Don-Bot — On-the-Run Dark Factory">
+  <meta property="og:description" content="An open-source On-the-Run Dark Factory: Pi Durable, OTRDF, J-JEV Gates, Blind Vault, Telegram &amp; WhatsApp, and a 3-Pane Liquid Interface. Watch us build in public.">
+  <meta property="og:image" content="https://don.aegntic.ai/don-bot/don-bot-evolution-hero.jpg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="428">
+  <meta property="og:image:alt" content="Don-Bot — On-the-Run Dark Factory">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@aegntic_ai">
-  <meta name="twitter:creator" content="@aegntic_ai">
-  <meta name="twitter:title" content="Don-Bot — One Lead. Four Specialists. Zero Babysitting.">
-  <meta name="twitter:description" content="We're building Don-Bot in public: Lead Orchestrator + 4 specialists, SQLite WAL durable spine, 300ms Jev gates, top-down Verifier, and a 3-pane liquid UI.">
-  <meta name="twitter:image" content="https://aegntic.ai/don-bot/cards/og-don-bot.png">
+  <meta name="twitter:site" content="@aegntic">
+  <meta name="twitter:creator" content="@aegntic">
+  <meta name="twitter:title" content="Don-Bot — On-the-Run Dark Factory">
+  <meta name="twitter:description" content="Don-Bot — On-the-Run Dark Factory: Pi Durable, OTRDF, J-JEV Gates, Blind Vault, Telegram &amp; WhatsApp, and a 3-Pane Liquid Interface.">
+  <meta name="twitter:image" content="https://don.aegntic.ai/don-bot/don-bot-evolution-hero.jpg">
 
   <link rel="preload" href="/fonts/don-mark.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/don-display.woff2" as="font" type="font/woff2" crossorigin>
@@ -152,14 +152,7 @@
       color: #ffffff;
     }
 
-    /* Shared footer: Don dark form + layered cutout ae. mark */
-    .ae-site-footer__mark {
-      background: url('/don-bot/ae-cutout-logo.png') center / contain no-repeat;
-      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.75));
-    }
-    .ae-site-footer__mark > img {
-      opacity: 0 !important;
-    }
+    /* Shared footer: Don dark form + premium ae. mark */
 
     /* ---------- Brushed-metal controls ---------- */
     .metal-btn {
@@ -561,10 +554,52 @@
     /* World Section Layout */
     .don-world {
       position: relative;
-      padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem) clamp(4rem, 8vw, 7rem) clamp(3.25rem, 5.5vw, 5.25rem);
+      padding: clamp(5.5rem, 11vw, 9.5rem) clamp(1.5rem, 5.5vw, 4.5rem) clamp(5.5rem, 11vw, 9.5rem) clamp(3.5rem, 6vw, 5.75rem);
       border-bottom: 1px solid var(--ae-line);
       background: var(--ae-bg);
       overflow: hidden;
+    }
+
+    .hero-bleed-reveal {
+      position: absolute;
+      right: -5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(300px, 38vw, 540px);
+      aspect-ratio: 221 / 255;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.44;
+      -webkit-mask-image: radial-gradient(ellipse at 60% 50%, #000 28%, rgba(0, 0, 0, 0.45) 55%, transparent 78%);
+      mask-image: radial-gradient(ellipse at 60% 50%, #000 28%, rgba(0, 0, 0, 0.45) 55%, transparent 78%);
+    }
+
+    .hero-bleed-reveal img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(18px) contrast(1.15) saturate(1.1);
+      display: block;
+    }
+
+    .hero-features-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin: 1.5rem 0 1.85rem;
+    }
+
+    .hero-feature-pill {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ae-ice);
+      background: rgba(63, 193, 255, 0.08);
+      border: 1px solid rgba(63, 193, 255, 0.25);
+      border-radius: 6px;
+      padding: 0.38rem 0.72rem;
     }
 
     .don-world--alt {
@@ -618,7 +653,7 @@
     }
 
     .siderail-slash {
-      color: var(--don-orange);
+      color: #ff5a1f !important;
       font-size: 0.95rem;
       font-weight: 800;
       line-height: 1;
@@ -688,6 +723,160 @@
     }
 
     /* Hero Grid */
+    .pre-hero {
+      position: relative;
+      width: 100%;
+      min-height: clamp(320px, 46vw, 560px);
+      background: #000000;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--ae-line);
+    }
+
+    .pre-hero__stage {
+      position: relative;
+      width: min(100%, 1320px);
+      aspect-ratio: 1024 / 428;
+      display: grid;
+      place-items: center;
+    }
+
+    .pre-hero__img-wrap {
+      position: absolute;
+      inset: 0;
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0px) brightness(1);
+      transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.55s ease;
+    }
+
+    .pre-hero.is-word-active .pre-hero__img-wrap {
+      opacity: 0.07;
+      transform: scale(1.045);
+      filter: blur(6px) brightness(0.45);
+    }
+
+    .pre-hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pre-hero__vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 78%, #000000 100%),
+        linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0) 14%, rgba(0, 0, 0, 0) 86%, #000000 100%);
+    }
+
+    .pre-hero__word {
+      position: relative;
+      z-index: 2;
+      font-family: 'Don Mark', var(--font-display);
+      font-size: clamp(4.5rem, 15vw, 12.5rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #ffffff 0%, #e3e7ee 48%, #98a2b3 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.16)) blur(8px);
+      opacity: 0;
+      transform: scale(0.92);
+      user-select: none;
+      transition:
+        opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.48s ease;
+    }
+
+    .pre-hero.is-word-active .pre-hero__word {
+      opacity: 1;
+      transform: scale(1);
+      filter: drop-shadow(0 0 36px rgba(255, 255, 255, 0.28)) blur(0px);
+    }
+
+    .pre-hero__hud {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 1.25rem 1.25rem 2.25rem;
+      text-align: center;
+    }
+
+    .pre-hero__soon {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+    }
+
+    .pre-hero__countdown {
+      font-family: var(--font-mono);
+      font-size: clamp(1.35rem, 3.4vw, 2.35rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-variant-numeric: tabular-nums;
+      color: #ffffff;
+      text-shadow: 0 0 18px rgba(63, 193, 255, 0.35);
+      background: rgba(12, 16, 22, 0.85);
+      border: 1px solid rgba(63, 193, 255, 0.28);
+      border-radius: 10px;
+      padding: 0.55rem 1.15rem;
+    }
+
+    .pre-hero__countdown span {
+      color: var(--ae-ice);
+    }
+
+    .section-share {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 2.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--ae-line);
+    }
+
+    .section-share__label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ae-muted);
+      margin-right: 0.35rem;
+    }
+
+    .section-share .dl-link {
+      font-size: 0.68rem;
+      padding: 0.42rem 0.75rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pre-hero__img-wrap,
+      .pre-hero__word {
+        transition: none;
+      }
+      .pre-hero__img-wrap { opacity: 0.35; }
+      .pre-hero__word { opacity: 1; filter: none; transform: none; }
+    }
+
     .hero-grid {
       display: grid;
       grid-template-columns: 1.25fr 0.95fr;
@@ -696,9 +885,229 @@
     }
 
     @media (max-width: 960px) {
-      .hero-grid {
+      .pre-hero {
+      position: relative;
+      width: 100%;
+      min-height: clamp(320px, 46vw, 560px);
+      background: #000000;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--ae-line);
+    }
+
+    .pre-hero__stage {
+      position: relative;
+      width: min(100%, 1320px);
+      aspect-ratio: 1024 / 428;
+      display: grid;
+      place-items: center;
+    }
+
+    .pre-hero__img-wrap {
+      position: absolute;
+      inset: 0;
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0px) brightness(1);
+      transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.55s ease;
+    }
+
+    .pre-hero.is-word-active .pre-hero__img-wrap {
+      opacity: 0.07;
+      transform: scale(1.045);
+      filter: blur(6px) brightness(0.45);
+    }
+
+    .pre-hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pre-hero__vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 78%, #000000 100%),
+        linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0) 14%, rgba(0, 0, 0, 0) 86%, #000000 100%);
+    }
+
+    .pre-hero__word {
+      position: relative;
+      z-index: 2;
+      font-family: 'Don Mark', var(--font-display);
+      font-size: clamp(4.5rem, 15vw, 12.5rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #ffffff 0%, #e3e7ee 48%, #98a2b3 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.16)) blur(8px);
+      opacity: 0;
+      transform: scale(0.92);
+      user-select: none;
+      transition:
+        opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.48s ease;
+    }
+
+    .pre-hero.is-word-active .pre-hero__word {
+      opacity: 1;
+      transform: scale(1);
+      filter: drop-shadow(0 0 36px rgba(255, 255, 255, 0.28)) blur(0px);
+    }
+
+    .pre-hero__hud {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 1.25rem 1.25rem 2.25rem;
+      text-align: center;
+    }
+
+    .pre-hero__soon {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+    }
+
+    .pre-hero__countdown {
+      font-family: var(--font-mono);
+      font-size: clamp(1.35rem, 3.4vw, 2.35rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-variant-numeric: tabular-nums;
+      color: #ffffff;
+      text-shadow: 0 0 18px rgba(63, 193, 255, 0.35);
+      background: rgba(12, 16, 22, 0.85);
+      border: 1px solid rgba(63, 193, 255, 0.28);
+      border-radius: 10px;
+      padding: 0.55rem 1.15rem;
+    }
+
+    .pre-hero__countdown span {
+      color: var(--ae-ice);
+    }
+
+    .section-share {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 2.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--ae-line);
+    }
+
+    .section-share__label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ae-muted);
+      margin-right: 0.35rem;
+    }
+
+    .section-share .dl-link {
+      font-size: 0.68rem;
+      padding: 0.42rem 0.75rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pre-hero__img-wrap,
+      .pre-hero__word {
+        transition: none;
+      }
+      .pre-hero__img-wrap { opacity: 0.35; }
+      .pre-hero__word { opacity: 1; filter: none; transform: none; }
+    }
+
+    .hero-grid {
         grid-template-columns: 1fr;
       }
+    }
+
+    .hero-aside-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .hero-reveal {
+      position: relative;
+      border-radius: 14px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(63, 193, 255, 0.45), rgba(255, 90, 31, 0.35) 55%, rgba(255, 255, 255, 0.12));
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 32px rgba(63, 193, 255, 0.12);
+      overflow: hidden;
+    }
+
+    .hero-reveal__inner {
+      position: relative;
+      background: radial-gradient(circle at 50% 35%, #161d29 0%, #090c11 80%);
+      border-radius: 13px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+      padding: 0.85rem 1rem;
+    }
+
+    .hero-reveal__img {
+      width: 112px;
+      height: 128px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      flex-shrink: 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-reveal__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .hero-reveal__tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ae-ice);
+    }
+
+    .hero-reveal__title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+    }
+
+    .hero-reveal__sub {
+      font-size: 0.82rem;
+      color: var(--ae-muted);
+      line-height: 1.4;
     }
 
     .hero-title {
@@ -1497,7 +1906,7 @@
           </div>
           <div class="don-menu__foot">
             <a href="https://github.com/aegntic/don-bot" target="_blank" rel="noopener">GitHub ↗<span class="sr-only"> (opens in a new tab)</span></a>
-            <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">@aegntic_ai ↗<span class="sr-only"> (opens in a new tab)</span></a>
+            <a href="https://x.com/aegntic" target="_blank" rel="noopener">@aegntic ↗<span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         </div>
       </nav>
@@ -1505,25 +1914,51 @@
   </header>
 
   <main id="main">
+    <!-- PRE-00 LANDING HERO -->
+    <section class="pre-hero" id="pre-hero" aria-label="Don-Bot">
+      <div class="pre-hero__stage">
+        <div class="pre-hero__img-wrap">
+          <img class="pre-hero__img" src="/don-bot/don-bot-evolution-hero.jpg" alt="Don-Bot Evolution: Origins, Upgrade, Augment, Arm, Network" width="1024" height="428">
+          <div class="pre-hero__vignette" aria-hidden="true"></div>
+        </div>
+        <div class="pre-hero__word" aria-hidden="true">DON</div>
+      </div>
+      <div class="pre-hero__hud">
+        <div class="pre-hero__soon">COMING SOON</div>
+        <div class="pre-hero__countdown" id="don-countdown" aria-label="Launch countdown">00:00:00:00:<span>00</span></div>
+        <a href="#watch-form" class="metal-btn metal-btn--ice" id="pre-hero-cta">Get Notified and Watch Live Build →</a>
+      </div>
+    </section>
+
     <!-- 00 // ACCESS (HERO & BUILD IN PUBLIC SUBSCRIBE) -->
     <section class="don-world" id="access" aria-labelledby="hero-heading">
       <div class="world-ghost don-mark" aria-hidden="true">DON.</div>
+      <div class="hero-bleed-reveal" aria-hidden="true">
+        <img src="/don-bot/don-bot-final-form.png" alt="">
+      </div>
       <div class="world-siderail">
         <span class="siderail-num"><span class="live-dot" aria-hidden="true"></span>00</span>
         <span class="siderail-slash">/</span>
-        <div class="siderail-text">ACCESS · TINY SOFTWARE FACTORY · OPEN BUILD LOG</div>
+        <div class="siderail-text">ACCESS · ON-THE-RUN DARK FACTORY · PUBLIC BUILD REVEAL</div>
       </div>
       <div class="don-container">
 
         <div class="hero-grid">
           <div>
             <h1 class="hero-title" id="hero-heading">
-              One lead.<br>
-              Four specialists.<br>
-              <em>Zero babysitting.</em>
+              <span class="don-mark" style="color:#ffffff">DON-BOT</span><br>
+              <em>On-the-Run Dark Factory.</em>
             </h1>
+            <div class="hero-features-strip" aria-label="Core capabilities">
+              <span class="hero-feature-pill">Pi Durable</span>
+              <span class="hero-feature-pill">OTRDF</span>
+              <span class="hero-feature-pill">J-JEV Gates</span>
+              <span class="hero-feature-pill">Blind Vault</span>
+              <span class="hero-feature-pill">Telegram &amp; WhatsApp</span>
+              <span class="hero-feature-pill">3-Pane Liquid Interface</span>
+            </div>
             <p class="hero-lead">
-              <strong class="don-mark" style="font-size:1.08em;color:#ffffff">Don-Bot</strong> is our open-source Tiny Software Factory built on a crash-proof SQLite WAL spine. Instead of brittle single-agent loops or 50-agent swarm chaos, one Lead Orchestrator coordinates four durable specialists with 300ms System-One judgment gates, an un-promptable sibling Verifier, and a 3-pane liquid interface.
+              An autonomous software bot built on a crash-proof SQLite WAL spine. One Lead Orchestrator coordinates four durable specialists with 300ms J-JEV System-One judgment gates, blind credential vaulting, native Telegram &amp; WhatsApp channels, and a 3-pane liquid interface—running headless while you stay near the loop.
             </p>
 
             <div class="telemetry-grid" role="list" aria-label="Key architectural specifications">
@@ -1546,54 +1981,7 @@
             </div>
           </div>
 
-          <!-- Watch the Build in Public Subscription Card -->
-          <aside class="watch-card" aria-labelledby="watch-form-heading">
-            <div class="world-eyebrow" style="margin-bottom:0.5rem">BUILD IN PUBLIC DISPATCH</div>
-            <h2 id="watch-form-heading">Watch the factory come online.</h2>
-            <p>
-              We are shipping every slice in the open: SQLite WAL checkpointing, 3-round specialist rooms, blind vault credentials, and the 3-pane liquid interface. Get notified as each milestone lands.
-            </p>
 
-            <form id="watch-form" action="/api/subscribe" method="POST" aria-labelledby="watch-form-heading" novalidate>
-              <div class="field">
-                <label for="watch-email">Work or personal email</label>
-                <span class="field-hint" id="email-hint">One architectural dispatch per milestone. Zero fluff.</span>
-                <input
-                  id="watch-email"
-                  name="email"
-                  type="email"
-                  required
-                  autocomplete="email"
-                  autocorrect="off"
-                  autocapitalize="none"
-                  spellcheck="false"
-                  placeholder="you@domain.com"
-                  aria-describedby="email-hint"
-                  data-error="email-error"
-                  aria-invalid="false"
-                >
-                <div class="error-msg" id="email-error" hidden>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
-                    <path d="M8 4.5V8.5M8 11V11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                  </svg>
-                  <span>Please enter a valid email address (for example, alex@domain.com).</span>
-                </div>
-              </div>
-
-              <button type="submit" class="btn-submit metal-btn" id="watch-submit">
-                Watch the Build in Public →
-              </button>
-
-              <div id="form-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
-              <div id="form-status-banner" class="form-status-banner" hidden></div>
-            </form>
-
-            <div class="watch-links">
-              <a href="https://github.com/aegntic/don-bot" target="_blank" rel="noopener">github.com/aegntic/don-bot ↗</a>
-              <a href="https://x.com/aegntic_ai" target="_blank" rel="noopener">@aegntic_ai ↗</a>
-            </div>
-          </aside>
         </div>
       </div>
     </section>
@@ -1744,6 +2132,59 @@
     </section>
 
     <!-- 03 // LIVE BUILD LOG & MILESTONES -->
+
+    <section class="don-world" id="dispatch" aria-label="Build in Public Dispatch">
+      <div class="don-container" style="max-width:640px;margin:0 auto;">
+        <aside class="watch-card" aria-labelledby="watch-form-heading">
+            <div class="world-eyebrow" style="margin-bottom:0.5rem">BUILD IN PUBLIC DISPATCH</div>
+            <h2 id="watch-form-heading">Watch the factory come online.</h2>
+            <p>
+              We are shipping every slice in the open: SQLite WAL checkpointing, 3-round specialist rooms, blind vault credentials, and the 3-pane liquid interface. Get notified as each milestone lands.
+            </p>
+
+            <form id="watch-form" action="/api/subscribe" method="POST" aria-labelledby="watch-form-heading" novalidate>
+              <div class="field">
+                <label for="watch-email">Work or personal email</label>
+                <span class="field-hint" id="email-hint">One architectural dispatch per milestone. Zero fluff.</span>
+                <input
+                  id="watch-email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  autocorrect="off"
+                  autocapitalize="none"
+                  spellcheck="false"
+                  placeholder="you@domain.com"
+                  aria-describedby="email-hint"
+                  data-error="email-error"
+                  aria-invalid="false"
+                >
+                <div class="error-msg" id="email-error" hidden>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M8 4.5V8.5M8 11V11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <span>Please enter a valid email address (for example, alex@domain.com).</span>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-submit metal-btn" id="watch-submit">
+                Watch the Build in Public →
+              </button>
+
+              <div id="form-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+              <div id="form-status-banner" class="form-status-banner" hidden></div>
+            </form>
+
+            <div class="watch-links">
+              <a href="https://github.com/aegntic/don-bot" target="_blank" rel="noopener">github.com/aegntic/don-bot ↗</a>
+              <a href="https://x.com/aegntic" target="_blank" rel="noopener">@aegntic ↗</a>
+            </div>
+            </aside>
+      </div>
+    </section>
+
     <section class="don-world don-world--alt" id="roadmap" aria-labelledby="roadmap-heading">
       <div class="world-ghost" aria-hidden="true">03</div>
       <div class="world-siderail">
@@ -1831,44 +2272,44 @@
 
         <div class="cards-grid">
           <article class="social-card-item">
-            <img src="/don-bot/cards/card-01-hero-16x9.png" alt="Card 01: One lead. Four specialists. Zero babysitting." width="1200" height="675" loading="lazy">
+            <img src="/don-bot/cards/card-01-hero-16x9.png" alt="Card 01: One lead. Four specialists." width="1200" height="675" loading="lazy">
             <div class="social-card-meta">
               <div>
-                <strong>01 // Hero Thesis Card (16:9)</strong>
-                <span>1200 × 675 PNG · Editorial Card</span>
+                <strong>One lead. Four specialists.</strong>
+                <span>Durable multi-agent orchestration on a crash-proof SQLite WAL spine.</span>
               </div>
               <a class="dl-link metal-btn" href="/don-bot/cards/card-01-hero-16x9.png" download="don-bot-01-hero.png">Download PNG</a>
             </div>
           </article>
 
           <article class="social-card-item">
-            <img src="/don-bot/cards/card-02-architecture-16x9.png" alt="Card 02: 4-Pillar Public Architecture Blueprint" width="1200" height="675" loading="lazy">
+            <img src="/don-bot/cards/card-02-architecture-16x9.png" alt="Card 02: Near the loop, not in it." width="1200" height="675" loading="lazy">
             <div class="social-card-meta">
               <div>
-                <strong>02 // 4-Pillar Architecture Card (16:9)</strong>
-                <span>1200 × 675 PNG · Warm Ink Blueprint</span>
+                <strong>Near the loop, not in it.</strong>
+                <span>Multi-round room debates and 300ms System-One gates before escalating to you.</span>
               </div>
               <a class="dl-link metal-btn" href="/don-bot/cards/card-02-architecture-16x9.png" download="don-bot-02-architecture.png">Download PNG</a>
             </div>
           </article>
 
           <article class="social-card-item">
-            <img src="/don-bot/cards/card-03-liquid-ui-16x9.png" alt="Card 03: 3-Pane Liquid Software Interface" width="1200" height="675" loading="lazy">
+            <img src="/don-bot/cards/card-03-liquid-ui-16x9.png" alt="Card 03: 100% agentic access parity." width="1200" height="675" loading="lazy">
             <div class="social-card-meta">
               <div>
-                <strong>03 // 3-Pane Liquid UI Card (16:9)</strong>
-                <span>1200 × 675 PNG · Interface Mockup</span>
+                <strong>100% agentic access parity.</strong>
+                <span>Every button, tab, and canvas pin maps 1:1 to an agent tool.</span>
               </div>
               <a class="dl-link metal-btn" href="/don-bot/cards/card-03-liquid-ui-16x9.png" download="don-bot-03-liquid-ui.png">Download PNG</a>
             </div>
           </article>
 
           <article class="social-card-item">
-            <img src="/don-bot/cards/og-don-bot.png" alt="OpenGraph Card: Don-Bot Tiny Software Factory" width="1200" height="630" loading="lazy">
+            <img src="/don-bot/cards/og-don-bot.png" alt="Card 04: Shipped in the open." width="1200" height="630" loading="lazy">
             <div class="social-card-meta">
               <div>
-                <strong>04 // OpenGraph Link Card (1.91:1) + Square (1:1)</strong>
-                <span>1200 × 630 OG &amp; <a href="/don-bot/cards/card-04-square-1x1.png" download="don-bot-04-square.png" style="color:var(--ae-signal)">1080 × 1080 Square</a></span>
+                <strong>Shipped in the open.</strong>
+                <span>Five architectural slices from SQLite WAL spine to Command Mode.</span>
               </div>
               <a class="dl-link metal-btn" href="/don-bot/cards/og-don-bot.png" download="don-bot-og.png">Download OG</a>
             </div>
@@ -1876,7 +2317,7 @@
         </div>
 
         <div class="snippet-box">
-          <pre class="snippet-code" id="share-blurb">We're building Don-Bot in public: a Tiny Software Factory with 1 Lead Orchestrator, 4 durable SQLite-backed specialists, 300ms Jev judgment gates, and a 3-pane liquid UI. Watch the build → https://don.aegntic.ai</pre>
+          <pre class="snippet-code" id="share-blurb">DON-BOT — On-the-Run Dark Factory: Pi Durable, OTRDF, J-JEV 300ms Gates, Blind Vault, Telegram &amp; WhatsApp, and a 3-Pane Liquid Interface. Watch the build → https://don.aegntic.ai</pre>
           <div class="copy-wrap">
             <button type="button" class="copy-trigger metal-btn metal-btn--ice" command="--copy" commandfor="share-blurb" data-status="copy-status-share">
               Copy Share Post
@@ -1901,6 +2342,153 @@
         a.href = 'https://aegntic.ai' + a.getAttribute('href');
         a.removeAttribute('data-enquiry');
       });
+      // 0. Pre-00 Dramatic Unpredictable Pulse + Matrix Countdown + CTA Focus
+      const preHero = document.getElementById('pre-hero');
+      const countdownEl = document.getElementById('don-countdown');
+      const preHeroCta = document.getElementById('pre-hero-cta');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (preHero && !reducedMotion) {
+        let wordActive = false;
+        const schedulePulse = () => {
+          const delay = wordActive
+            ? 1700 + Math.floor(Math.random() * 2100)
+            : 2400 + Math.floor(Math.random() * 3400);
+          window.setTimeout(() => {
+            wordActive = !wordActive;
+            preHero.classList.toggle('is-word-active', wordActive);
+            schedulePulse();
+          }, delay);
+        };
+        schedulePulse();
+      }
+
+      if (countdownEl) {
+        const targetTs = new Date('2026-12-01T00:00:00Z').getTime();
+        const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
+        const toRoman = (num) => {
+          if (num <= 0) return 'N';
+          const map = [[50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
+          let res = '';
+          for (const [val, sym] of map) {
+            while (num >= val) { res += sym; num -= val; }
+          }
+          return res;
+        };
+        const matrixGlyphs = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
+        const glyphFor = (n) => matrixGlyphs[Math.abs(n) % matrixGlyphs.length];
+        const randGlyph = () => matrixGlyphs[Math.floor(Math.random() * matrixGlyphs.length)];
+        const glitchStr = (str, prob = 0.04) =>
+          str.split('').map((ch) => (Math.random() < prob ? randGlyph() : ch)).join('');
+        const tickCountdown = () => {
+          const now = Date.now();
+          const diff = Math.max(0, targetTs - now);
+          const dd = Math.floor(diff / 86400000);
+          const hh = Math.floor((diff % 86400000) / 3600000);
+          const mm = Math.floor((diff % 3600000) / 60000);
+          const ss = Math.floor((diff % 60000) / 1000);
+          const ns = Math.floor((diff % 1000) / 10);
+          const ddStr = glitchStr(pad(dd), 0.04);
+          const mmStr = toRoman(mm).replace(/X/g, (ch) => (Math.random() < 0.05 ? randGlyph() : ch));
+          const m1 = glyphFor(ss);
+          const m2 = glyphFor(ns);
+          countdownEl.innerHTML = `${ddStr}:${toRoman(hh)}:${mmStr}:${pad(ss)}:<span>${m1}${pad(ns)}${m2}</span>`;
+          if (!reducedMotion) window.requestAnimationFrame(tickCountdown);
+        };
+        tickCountdown();
+      }
+
+      if (preHeroCta) {
+        preHeroCta.addEventListener('click', (e) => {
+          const targetForm = document.getElementById('watch-form');
+          const targetInput = document.getElementById('watch-email');
+          if (targetForm) {
+            e.preventDefault();
+            targetForm.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+            if (targetInput) window.setTimeout(() => targetInput.focus({ preventScroll: true }), 350);
+          }
+        });
+      }
+
+      // 0b. Selective Share-to-Social Bars for Each Section
+      const sectionShares = [
+        { id: 'access', label: 'Share 00 // Access', text: 'One lead. Four specialists. Zero babysitting. Watch Don-Bot come online →' },
+        { id: 'architecture', label: 'Share 01 // Architecture', text: 'Built on a crash-proof SQLite WAL spine with 300ms System-One gates →' },
+        { id: 'interface', label: 'Share 02 // Liquid UI', text: '3-Pane Liquid Interface with 100% agentic access parity →' },
+        { id: 'roadmap', label: 'Share 03 // Build Log', text: 'Five architectural slices shipped in the open for Don-Bot →' },
+        { id: 'teaser-kit', label: 'Share 04 // Teaser Kit', text: 'Don-Bot On-the-Run Dark Factory press & social teaser kit →' }
+      ];
+      sectionShares.forEach(({ id, label, text }) => {
+        const sec = document.getElementById(id);
+        const container = sec ? sec.querySelector('.don-container') : null;
+        if (!container) return;
+        const url = encodeURIComponent(`https://don.aegntic.ai/#${id}`);
+        const encText = encodeURIComponent(text);
+        const bar = document.createElement('div');
+        bar.className = 'section-share';
+        bar.innerHTML = `
+          <span class="section-share__label">${label}:</span>
+          <a class="dl-link metal-btn" href="https://twitter.com/intent/tweet?text=${encText}&url=${url}" target="_blank" rel="noopener">X ↗</a>
+          <a class="dl-link metal-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=${url}" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="dl-link metal-btn" href="https://www.facebook.com/sharer/sharer.php?u=${url}" target="_blank" rel="noopener">Facebook ↗</a>
+          <a class="dl-link metal-btn" href="https://www.tiktok.com/upload" target="_blank" rel="noopener">TikTok ↗</a>
+          <a class="dl-link metal-btn" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram ↗</a>
+        `;
+        container.appendChild(bar);
+      });
+
+      // 0c. In-page little share pop-up (so visitors don't leave the page)
+      const shareDialog = document.createElement('dialog');
+      shareDialog.id = 'share-popup';
+      shareDialog.style.cssText = 'margin:auto;padding:1.35rem 1.5rem;max-width:440px;width:calc(100% - 2rem);background:#10151e;color:#f3f5f9;border:1px solid rgba(63,193,255,0.32);border-radius:14px;box-shadow:0 24px 64px rgba(0,0,0,0.85);font-family:var(--font-sans);';
+      shareDialog.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:0.85rem;">
+          <strong id="share-popup-title" style="font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:#3fc1ff;">Share Don-Bot</strong>
+          <button type="button" id="share-popup-close" style="background:none;border:1px solid var(--ae-line);color:#98a2b3;border-radius:6px;padding:0.25rem 0.55rem;cursor:pointer;font-size:0.75rem;">Esc</button>
+        </div>
+        <textarea id="share-popup-text" readonly rows="3" style="width:100%;background:#090c11;color:#f3f5f9;border:1px solid var(--ae-line);border-radius:8px;padding:0.7rem;font-family:var(--font-mono);font-size:0.78rem;line-height:1.45;resize:none;margin-bottom:0.9rem;"></textarea>
+        <div style="display:flex;flex-wrap:wrap;gap:0.6rem;align-items:center;justify-content:space-between;">
+          <button type="button" id="share-popup-copy" class="metal-btn metal-btn--ice" style="padding:0.5rem 0.9rem;font-size:0.72rem;">Copy Post &amp; Link</button>
+          <a id="share-popup-ext" href="#" target="_blank" rel="noopener" class="dl-link metal-btn" style="padding:0.5rem 0.9rem;font-size:0.72rem;">Open Platform ↗</a>
+        </div>
+      `;
+      document.body.appendChild(shareDialog);
+
+      const sharePopupTitle = document.getElementById('share-popup-title');
+      const sharePopupText = document.getElementById('share-popup-text');
+      const sharePopupCopy = document.getElementById('share-popup-copy');
+      const sharePopupExt = document.getElementById('share-popup-ext');
+      const sharePopupClose = document.getElementById('share-popup-close');
+
+      if (sharePopupClose) sharePopupClose.addEventListener('click', () => shareDialog.close());
+      shareDialog.addEventListener('click', (e) => {
+        if (e.target === shareDialog) shareDialog.close();
+      });
+      if (sharePopupCopy) {
+        sharePopupCopy.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(sharePopupText.value);
+            sharePopupCopy.textContent = 'Copied!';
+            window.setTimeout(() => { sharePopupCopy.textContent = 'Copy Post & Link'; }, 1600);
+          } catch (_) {}
+        });
+      }
+
+      document.querySelectorAll('.section-share a[href], #teaser-kit .snippet-box a[target="_blank"]').forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const href = link.getAttribute('href') || 'https://don.aegntic.ai';
+          const platform = (link.textContent || 'Social').replace('↗', '').trim();
+          const sec = link.closest('section');
+          const secId = sec && sec.id ? `#${sec.id}` : '';
+          sharePopupTitle.textContent = `Share to ${platform}`;
+          sharePopupText.value = `DON-BOT — On-the-Run Dark Factory: https://don.aegntic.ai/${secId}`;
+          sharePopupExt.href = href;
+          sharePopupExt.textContent = `Open ${platform} ↗`;
+          shareDialog.showModal();
+        });
+      });
+
       // 1. Validate Input After Interaction + Accessible Live Form Submission
       const form = document.getElementById('watch-form');
       const emailInput = document.getElementById('watch-email');
@@ -1940,10 +2528,46 @@
       }
 
       if (form && emailInput) {
+        const PENDING_KEY = 'don_bot_pending_email';
+        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        const showRecoveryBanner = (pendingEmail, reason) => {
+          statusBanner.innerHTML = `
+            <span>${reason} Saved <strong>${pendingEmail.replace(/[<>&"']/g, '')}</strong> locally.</span>
+            <span style="display:inline-flex;gap:0.5rem;margin-left:0.65rem;flex-wrap:wrap;">
+              <button type="button" class="dl-link metal-btn metal-btn--ice" id="watch-retry-btn" style="padding:0.25rem 0.65rem;font-size:0.68rem;">Retry Now</button>
+              <a class="dl-link metal-btn" href="https://github.com/aegntic/don-bot" target="_blank" rel="noopener" style="padding:0.25rem 0.65rem;font-size:0.68rem;">Watch on GitHub ↗</a>
+            </span>
+          `;
+          statusBanner.className = 'form-status-banner is-ok';
+          statusBanner.hidden = false;
+          const retryBtn = document.getElementById('watch-retry-btn');
+          if (retryBtn) {
+            retryBtn.addEventListener('click', () => {
+              emailInput.value = pendingEmail;
+              form.requestSubmit();
+            });
+          }
+        };
+
+        try {
+          const saved = JSON.parse(localStorage.getItem(PENDING_KEY) || 'null');
+          if (saved && saved.email && !emailInput.value) {
+            emailInput.value = saved.email;
+            showRecoveryBanner(saved.email, 'Previous dispatch pending.');
+          }
+        } catch (_) {}
+
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
+          if (submitBtn.getAttribute('aria-disabled') === 'true') return;
+
+          const trimmed = emailInput.value.trim();
+          emailInput.value = trimmed;
           syncAria(emailInput);
-          if (!emailInput.validity.valid) {
+
+          if (!emailInput.validity.valid || !EMAIL_RE.test(trimmed)) {
+            emailInput.setAttribute('aria-invalid', 'true');
             emailInput.classList.add('user-invalid-fallback');
             emailInput.focus();
             if (liveRegion) {
@@ -1956,17 +2580,22 @@
           const origLabel = submitBtn.textContent;
           submitBtn.textContent = 'Registering...';
 
+          const controller = new AbortController();
+          const timer = window.setTimeout(() => controller.abort(), 8000);
+
           try {
             const res = await fetch('/api/subscribe', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
+              signal: controller.signal,
               body: JSON.stringify({
-                email: emailInput.value.trim(),
+                email: trimmed,
                 source: 'don.aegntic.ai'
               })
             });
             const data = await res.json().catch(() => ({}));
             if (res.ok) {
+              try { localStorage.removeItem(PENDING_KEY); } catch (_) {}
               const msg = data.status === 'exists'
                 ? 'You are already on the Don-Bot build dispatch.'
                 : 'You are in. We will notify you as each Don-Bot milestone lands.';
@@ -1976,14 +2605,16 @@
               if (liveRegion) liveRegion.textContent = msg;
               form.reset();
             } else {
-              throw new Error(data.error || 'Could not subscribe right now.');
+              throw new Error(data.error || 'Dispatch endpoint unavailable.');
             }
           } catch (err) {
-            statusBanner.textContent = 'Saved locally — or star github.com/aegntic/don-bot to follow every commit.';
-            statusBanner.className = 'form-status-banner is-ok';
-            statusBanner.hidden = false;
-            if (liveRegion) liveRegion.textContent = statusBanner.textContent;
+            try {
+              localStorage.setItem(PENDING_KEY, JSON.stringify({ email: trimmed, ts: Date.now() }));
+            } catch (_) {}
+            showRecoveryBanner(trimmed, 'Endpoint unreachable —');
+            if (liveRegion) liveRegion.textContent = 'Endpoint unreachable. Email saved locally with retry option.';
           } finally {
+            window.clearTimeout(timer);
             submitBtn.removeAttribute('aria-disabled');
             submitBtn.textContent = origLabel;
           }
@@ -2147,6 +2778,19 @@
       }
     })();
   </script>
+
+    <section class="don-world don-world--alt" id="dispatch-footer" aria-label="Subscribe to Don-Bot Dispatch" style="padding-top:3rem;padding-bottom:3rem;">
+      <div class="don-container" style="max-width:640px;margin:0 auto;">
+        <div class="watch-card" style="padding:1.5rem 1.75rem;">
+          <div class="world-eyebrow" style="margin-bottom:0.4rem">BUILD IN PUBLIC DISPATCH</div>
+          <h2 style="font-size:1.35rem;margin-bottom:0.5rem;">Get notified as each slice lands.</h2>
+          <form class="footer-watch-form" onsubmit="event.preventDefault(); const i=this.querySelector('input'); const b=this.querySelector('button'); if(i&&i.value.trim()){const m=document.getElementById('watch-email'); if(m){m.value=i.value.trim(); document.getElementById('watch-form').requestSubmit(); b.textContent='Sent ✓';}}" style="display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:0.75rem;">
+            <input type="email" required placeholder="you@domain.com" aria-label="Email address" style="flex:1;min-width:200px;">
+            <button type="submit" class="metal-btn metal-btn--orange">Notify Me →</button>
+          </form>
+        </div>
+      </div>
+    </section>
 <footer class="ae-site-footer" aria-label="aegntic footer">
   <div class="ae-site-footer__signature">
     <a class="ae-site-footer__mark" href="/" aria-label="aegntic home">
