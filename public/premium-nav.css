@@ -130,3 +130,17 @@ body.ae-menu-open{overflow:hidden}
   .ae-menu__veil,.ae-menu__shell,.ae-menu__panel,.ae-menu__link,.ae-menu-card,.ae-menu-trigger,.ae-menu-trigger__disc,.ae-menu-trigger__label>span{transition-duration:.01ms!important}
   .ae-menu__shell{transform:none!important}
 }
+
+/* One moving header, with an independent reading viewport on blog routes. */
+:root{--ae-header-height:94px}
+.ae-global-nav{transition:transform .22s var(--ae-ease);will-change:transform}
+.ae-global-nav.is-hidden{transform:translateY(-100%)}
+body.ae-reading-layout{height:100dvh;overflow:hidden}
+.ae-reading-layout .ae-global-nav{background:var(--bg,var(--ae-paper));border-bottom:1px solid var(--ae-line)}
+.ae-reading-viewport{position:fixed;inset:var(--ae-header-height) 0 0;overflow:auto;overscroll-behavior-y:contain;scrollbar-gutter:stable;scroll-padding-top:1rem;transition:top .22s var(--ae-ease)}
+.ae-header-hidden .ae-reading-viewport{top:0}
+.ae-reading-viewport>.page{padding-top:2rem}
+.ae-reading-viewport:focus{outline:none}
+.ae-reading-viewport:focus-visible{outline:2px solid #165bcc;outline-offset:-3px}
+.ae-menu-open .ae-reading-viewport{overflow:hidden}
+@media(prefers-reduced-motion:reduce){.ae-global-nav,.ae-reading-viewport{transition:none!important}}

@@ -82,3 +82,6 @@ Full archive: https://aegntic.ai/research/ and https://aegntic.ai/blog/
 - Blog: https://aegntic.ai/blog/
 - robots: https://aegntic.ai/robots.txt
 - sitemap: https://aegntic.ai/sitemap.xml
+
+## Retrospective weekly collection
+Historical context dates, not contemporaneous publication: https://aegntic.ai/blog/field-notes/

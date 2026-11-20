@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Same request shape. Different behaviour. — aegntic.ai</title>
+  <meta name="description" content="DeepSeek-V3.1 arrived on 21 August. A familiar API makes trying another model much easier. It doesn't make migration a one-line engineering decision.">
+  <link rel="canonical" href="https://aegntic.ai/blog/field-notes-2025-08-25/">
+  <meta name="theme-color" content="#e9eef1">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aegntic.ai/blog/field-notes-2025-08-25/">
+  <meta property="og:title" content="Same request shape. Different behaviour. — aegntic.ai">
+  <meta property="og:description" content="DeepSeek-V3.1 arrived on 21 August. A familiar API makes trying another model much easier. It doesn't make migration a one-line engineering decision.">
+  <meta property="og:image" content="https://aegntic.ai/og-aegntic-skeleton.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Same request shape. Different behaviour. — aegntic.ai">
+  <meta name="twitter:description" content="DeepSeek-V3.1 arrived on 21 August. A familiar API makes trying another model much easier. It doesn't make migration a one-line engineering decision.">
+  <link rel="stylesheet" href="/site.css">
+  <link rel="stylesheet" href="/design-system.css">
+  <link rel="stylesheet" href="/premium-nav.css?v=6eadd47a6a11">
+  <script src="/premium-nav.js?v=39d7db08c7c3" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Same request shape. Different behaviour.","description":"DeepSeek-V3.1 arrived on 21 August. A familiar API makes trying another model much easier. It doesn't make migration a one-line engineering decision.","datePublished":"2026-11-17","author":{"@type":"Person","name":"Mattae Cooper","url":"https://aegntic.ai"},"mainEntityOfPage":"https://aegntic.ai/blog/field-notes-2025-08-25/"}</script>
+<link rel="stylesheet" href="/shared-footer.css?v=e06640e4a006">
+</head>
+<body>
+  <noscript><nav aria-label="Basic navigation"><a href="/">Home</a> · <a href="/products/">Products</a> · <a href="/#contact">Contact</a></nav></noscript>
+  <main class="page">
+  <a class="back" href="/blog/">← Blog</a>
+  <article class="prose">
+    <div class="eyebrow">Week of <time datetime="2025-08-25">Aug 25, 2025</time></div>
+    <p class="retrospective-meta">Retrospective reconstruction · Published <time datetime="2026-11-17">Nov 17, 2026</time> · <a href="/blog/field-notes/">Weekly archive</a></p>
+    <h1>Same request shape. Different behaviour.</h1>
+    <p><em>DeepSeek-V3.1 arrived on 21 August. A familiar API makes trying another model much easier. It doesn't make migration a one-line engineering decision.</em></p>
+    <div class="card-tags" style="margin:0 0 1.75rem"><span class="tag">Field Notes</span><span class="tag">Retrospective</span></div>
+    <blockquote>
+<p>Retrospective field note for 2025-08-25. Reconstructed in November 2026 from dated sources, not originally published on the archive date.</p>
+</blockquote>
+<p>DeepSeek-V3.1 arrived on 21 August. A familiar API makes trying another model much easier. It doesn’t make migration a one-line engineering decision.</p>
+<p>The application is relying on behaviour, not just a request shape. Does the response satisfy the schema? Does the model select the right tool? Does it leave a field empty when the evidence is missing, or fill the gap with something plausible?</p>
+<p>I’d test those expectations outside the provider-specific code. Otherwise the integration quietly defines success as whatever its current model happens to return.</p>
+<p>Retries deserve a separate look. Repeating a read is one thing. Repeating a request that changes an external record can do the action twice. Swapping models shouldn’t accidentally change that boundary.</p>
+<p>Keep the previous route available while the candidate handles representative work. Record the actual model and settings used for each result. Debugging gets unpleasant quickly when “latest” is the only version information left.</p>
+<p>The point of portability is having a choice. It doesn’t require pretending the choices are identical. Hide the repetitive plumbing; keep the evidence needed to explain why a task failed. An abstraction that conceals both isn’t saving much work.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://api-docs.deepseek.com/news/news250821/">DeepSeek-V3.1 · 2025-08-21</a></li>
+</ul>
+
+  </article>
+  <div class="cta-row">
+    <a class="btn-ghost btn" href="/blog/">All posts</a>
+    <a  class="btn" href="/#contact" data-enquiry="Something else">Work with me</a>
+  </div>
+</main>
+
+  <script src="/aegntic-join-popup.js" defer></script>
+<footer class="ae-site-footer" aria-label="aegntic footer">
+  <div class="ae-site-footer__signature">
+    <a class="ae-site-footer__mark" href="/" aria-label="aegntic home">
+      <img class="ae-site-footer__flat" src="/ae-logo.webp" width="400" height="400" alt="" loading="lazy">
+      <img class="ae-site-footer__chrome" src="/assets/ae-logo-FINAL-nb.png" width="1254" height="1254" alt="" loading="lazy">
+    </a>
+    <div class="ae-site-footer__voice"><p>Unlimited Insight.<br>Zero Knowledge.</p><p class="ae-site-footer__triad">iii / unltd; insight : : innovation : : integrity : : iv / zero knowledge</p><a href="/#contact" data-enquiry="Something else">Work with me <span aria-hidden="true">↗</span></a></div>
+  </div>
+  <div class="ae-footer-navigation"><nav class="ae-site-footer__links" aria-label="Footer navigation"><a class="ae-menu__link" data-footer-key="home" href="/">/home</a><a class="ae-menu__link" data-footer-key="systems" href="/systems/">/systems</a><a class="ae-menu__link" data-footer-key="agents" href="/agents/">/agents</a><a class="ae-menu__link" data-footer-key="plugins" href="/plugins/">/plugins</a><a class="ae-menu__link" data-footer-key="products" href="/products/">/products</a><a class="ae-menu__link" data-footer-key="contact" href="/#contact">/contact</a></nav></div>
+  <nav class="ae-site-footer__secondary" aria-label="More from aegntic"><a href="/research/">Research</a><a href="/blog/">Writing</a><a href="/projects/">Projects</a><a href="/privacy/">Privacy</a></nav>
+  <div class="ae-site-footer__colophon"><span>aegntic.ai</span><span>© 2026 Mattae Cooper</span><a href="https://github.com/aegntic">GitHub <span aria-hidden="true">↗</span></a></div>
+</footer>
+</body>
+</html>

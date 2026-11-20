@@ -1,0 +1,2957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- MANDATORY: Declare dark color-scheme in head to prevent initial white flash (FOUC) -->
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#090c11">
+  <title>Don-Bot — On-the-Run Dark Factory · Build in Public | aegntic.ai</title>
+  <meta name="description" content="Don-Bot: an open-source On-the-Run Dark Factory with a Lead Orchestrator, 4 durable specialists, SQLite WAL crash recovery, 300ms Jev judgment gates, and a 3-pane liquid interface. Watch the build in public at don.aegntic.ai.">
+  <link rel="canonical" href="https://don.aegntic.ai/">
+
+  <!-- Open Graph / Social Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="aegntic.ai">
+  <meta property="og:url" content="https://don.aegntic.ai/">
+  <meta property="og:title" content="Don-Bot — On-the-Run Dark Factory">
+  <meta property="og:description" content="An open-source On-the-Run Dark Factory: Pi Durable, OTRDF, J-JEV Gates, Blind Vault, Telegram &amp; WhatsApp, and a 3-Pane Liquid Interface. Watch us build in public.">
+  <meta property="og:image" content="https://don.aegntic.ai/don-bot/don-bot-evolution-hero.jpg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="428">
+  <meta property="og:image:alt" content="Don-Bot — On-the-Run Dark Factory">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@aegntic">
+  <meta name="twitter:creator" content="@aegntic">
+  <meta name="twitter:title" content="Don-Bot — On-the-Run Dark Factory">
+  <meta name="twitter:description" content="Don-Bot — On-the-Run Dark Factory: Pi Durable, OTRDF, J-JEV Gates, Blind Vault, Telegram &amp; WhatsApp, and a 3-Pane Liquid Interface.">
+  <meta name="twitter:image" content="https://don.aegntic.ai/don-bot/don-bot-evolution-hero.jpg">
+
+  <link rel="preload" href="/fonts/don-mark.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/don-display.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/don-bot/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="/don-bot/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/don-bot/favicon-192.png">
+  <link rel="apple-touch-icon" href="/don-bot/apple-touch-icon.png">
+  <link rel="stylesheet" href="/premium-nav.css?v=6eadd47a6a11">
+  <link rel="stylesheet" href="/shared-footer.css?v=e06640e4a006">
+  <script>
+    // Popover API polyfill only where native support is missing.
+    if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
+      const s = document.createElement('script');
+      s.src = 'https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js';
+      document.head.append(s);
+    }
+  </script>
+
+  <style>
+    @font-face {
+      font-family: 'Don Mark';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('/fonts/don-mark.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Don Display';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('/fonts/don-display.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Space Grotesk';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('/fonts/space-grotesk-latin.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('/fonts/inter-latin.woff2') format('woff2');
+    }
+
+    /* MANDATORY: Apply color-scheme and native UI tokens on :root for viewport-wide dark theming */
+    :root {
+      color-scheme: dark;
+      --ae-bg: #090c11;
+      --ae-bg-alt: #0c1016;
+      --ae-surface: #121822;
+      --ae-surface-elevated: #171f2c;
+      --ae-ink: #f3f5f9;
+      --ae-muted: #98a2b3;
+      --ae-signal: #ff5a1f;
+      --ae-signal-deep: #b73512;
+      --ae-ice: #3fc1ff;
+      --ae-line: #222a38;
+      --ae-line-control: #4e5a6e; /* >= 3:1 non-text contrast against #090c11 / #121822 */
+      --scrollbar-track: #090c11;
+      --scrollbar-thumb: #687385; /* >= 3:1 contrast against #090c11 */
+      /* Brushed-metal control finish (silver pill, dark bezel, accent rim light) */
+      --metal-face:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0 1px, rgba(0, 0, 0, 0.035) 1px 2px, transparent 2px 3px),
+        linear-gradient(180deg, #f4f6fa 0%, #cdd3dc 20%, #a3abb7 50%, #c5ccd6 80%, #eef1f6 100%);
+      --metal-ink: #10141b;
+      --metal-bezel: #07090d;
+      --font-display: 'Don Display', 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+      accent-color: var(--ae-signal);
+      scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    }
+
+    /* Legacy WebKit scrollbar fallback for browsers without scrollbar-color */
+    @supports not (scrollbar-color: auto) {
+      html {
+        scrollbar-width: auto;
+      }
+      html::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+      }
+      html::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb);
+      }
+      html::-webkit-scrollbar-track {
+        background: var(--scrollbar-track);
+      }
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--ae-bg);
+      color: var(--ae-ink);
+      font-family: var(--font-sans);
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--ae-bg);
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.011) 0px, rgba(255, 255, 255, 0.011) 1px, transparent 1px, transparent 3px),
+        radial-gradient(ellipse at 18% 8%, rgba(255, 255, 255, 0.035) 0%, transparent 50%);
+      color: var(--ae-ink);
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: rgba(255, 90, 31, 0.28);
+      color: #ffffff;
+    }
+
+    /* Shared footer: Don dark form + premium ae. mark */
+
+    /* ---------- Brushed-metal controls ---------- */
+    .metal-btn {
+      --rim: var(--ae-signal);
+      --rim-glow: rgba(255, 90, 31, 0.32);
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 44px;
+      padding: 0.6rem 1.15rem;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 999px;
+      background: var(--metal-face);
+      color: var(--metal-ink);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+      cursor: pointer;
+      box-shadow:
+        0 0 0 3px var(--metal-bezel),
+        0 0 0 4px color-mix(in oklab, var(--rim) 70%, transparent),
+        0 8px 20px var(--rim-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.32);
+      transition: box-shadow 180ms ease, translate 120ms ease, filter 180ms ease;
+    }
+    .metal-btn::after {
+      /* specular flare */
+      content: '';
+      position: absolute;
+      inset: 2px 14% auto auto;
+      width: 28%;
+      height: 42%;
+      border-radius: 999px;
+      background: radial-gradient(ellipse at 70% 30%, rgba(255, 255, 255, 0.85), transparent 70%);
+      pointer-events: none;
+    }
+    .metal-btn--ice {
+      --rim: var(--ae-ice);
+      --rim-glow: rgba(63, 193, 255, 0.3);
+    }
+    .metal-btn:hover {
+      filter: brightness(1.05);
+      box-shadow:
+        0 0 0 3px var(--metal-bezel),
+        0 0 0 4px var(--rim),
+        0 10px 26px color-mix(in oklab, var(--rim) 45%, transparent),
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .metal-btn:active {
+      translate: 0 1px;
+    }
+    .metal-btn:focus-visible {
+      outline: 2px solid var(--ae-ice);
+      outline-offset: 6px;
+    }
+    @media (forced-colors: active) {
+      .metal-btn {
+        border: 1px solid ButtonText;
+        background: ButtonFace;
+        color: ButtonText;
+      }
+    }
+
+    /* ---------- Don header + dropdown navigation ---------- */
+    .don-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(9, 12, 17, 0.9);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--ae-line);
+    }
+    .don-header__inner {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 0.75rem clamp(1rem, 3vw, 2.5rem);
+    }
+    .don-logo {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--ae-ink);
+    }
+    .don-logo img {
+      width: 58px;
+      height: auto;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7));
+    }
+    .don-brand-label .don-brand-tail { color: inherit; }
+    @media (max-width: 640px) {
+      .don-brand-tail { display: none; }
+      .don-logo img { width: 46px; }
+      .don-header__inner { gap: 0.75rem; }
+    }
+    .don-nav {
+      margin-inline-start: auto;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .don-nav__inline {
+      display: flex;
+      gap: 1.25rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    @media (max-width: 1180px) {
+      .don-nav__inline { display: none; }
+    }
+    .don-nav__inline a {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ae-muted);
+      white-space: nowrap;
+    }
+    .don-nav__inline a:hover,
+    .don-nav__inline a:focus-visible {
+      color: var(--ae-ice);
+    }
+    .menu-button {
+      anchor-name: --don-menu-button;
+      padding-inline: 1rem 0.55rem;
+    }
+    .menu-button__icon {
+      display: inline-grid;
+      gap: 3px;
+      width: 26px;
+      height: 26px;
+      place-content: center;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #2a3240, #0b0e14);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.35);
+    }
+    .menu-button__icon i {
+      display: block;
+      width: 11px;
+      height: 1.5px;
+      border-radius: 2px;
+      background: var(--ae-ice);
+    }
+
+    .don-menu {
+      position: fixed;
+      inset: auto;
+      /* Fallback offset for browsers without anchor positioning */
+      inset-block-start: 4.6rem;
+      inset-block-start: anchor(--don-menu-button bottom);
+      inset-inline-end: clamp(1rem, 3vw, 2.5rem);
+      inline-size: min(92dvw, 23rem);
+      max-block-size: calc(100dvh - 6rem);
+      block-size: fit-content;
+      margin: 0.9rem 0 0;
+      padding: 1.1rem;
+      overflow: auto;
+      color: var(--ae-ink);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 18px;
+      background-color: #10151e;
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.016) 0 1px, transparent 1px 3px),
+        linear-gradient(160deg, #1b2230 0%, #10151e 55%, #0b0f15 100%);
+      box-shadow:
+        0 28px 60px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.7);
+    }
+    .don-menu::backdrop {
+      background: rgba(5, 7, 10, 0.35);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .don-menu {
+        transition: opacity 180ms ease, translate 220ms cubic-bezier(0.16, 1, 0.3, 1), display 220ms, overlay 220ms;
+        transition-behavior: allow-discrete;
+      }
+      .don-menu:not(:is(:popover-open, .\:popover-open)) {
+        opacity: 0;
+        translate: 0 -8px;
+      }
+      @starting-style {
+        .don-menu:is(:popover-open, .\:popover-open) {
+          opacity: 0;
+          translate: 0 -8px;
+        }
+      }
+    }
+    .don-menu__group + .don-menu__group {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .don-menu__label {
+      display: block;
+      margin: 0 0 0.55rem;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ae-muted);
+    }
+    .don-menu ul {
+      display: grid;
+      gap: 0.35rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .don-menu a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-height: 44px;
+      padding: 0.55rem 0.8rem;
+      border-radius: 10px;
+      color: var(--ae-ink);
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 1.02rem;
+      background: linear-gradient(180deg, #070a0f 0%, #0d121a 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+    }
+    .don-menu a .n {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--ae-signal);
+      min-width: 1.6rem;
+    }
+    .don-menu a:hover,
+    .don-menu a:focus-visible {
+      border-color: rgba(63, 193, 255, 0.55);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(63, 193, 255, 0.35), 0 0 14px rgba(63, 193, 255, 0.18);
+      outline: none;
+    }
+    .don-menu a[aria-current="location"] {
+      border-color: rgba(255, 90, 31, 0.6);
+    }
+    .don-menu a[aria-current="location"]::after {
+      content: '● here';
+      margin-inline-start: auto;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+    }
+    .don-menu__foot {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .don-menu__foot a {
+      flex: 1;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    @media (forced-colors: active) {
+      .don-menu { border: 1px solid CanvasText; }
+      .don-menu a[aria-current="location"] { outline: 2px solid Highlight; }
+    }
+    footer.ae-site-footer {
+      background: var(--ae-bg) !important;
+      color: var(--ae-ink) !important;
+      border-top: 1px solid var(--ae-line) !important;
+    }
+    footer.ae-site-footer .ae-site-footer__voice p,
+    footer.ae-site-footer .ae-menu__link {
+      color: var(--ae-ink) !important;
+    }
+    footer.ae-site-footer .ae-site-footer__voice > a {
+      border-bottom-color: var(--ae-signal) !important;
+    }
+    footer.ae-site-footer .ae-footer-navigation,
+    footer.ae-site-footer .ae-site-footer__links {
+      border-color: var(--ae-line) !important;
+    }
+    footer.ae-site-footer .ae-site-footer__secondary,
+    footer.ae-site-footer .ae-site-footer__colophon {
+      color: var(--ae-muted) !important;
+    }
+    footer.ae-site-footer .ae-site-footer__flat {
+      filter: invert(1) brightness(1.1) !important;
+    }
+
+    .don-mark {
+      font-family: 'Don Mark', var(--font-display);
+      letter-spacing: 0.03em;
+      font-weight: 400;
+    }
+
+    /* Modern Web Guidance: improve-text-layout-and-legibility */
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      letter-spacing: 0.015em;
+      text-wrap: balance;
+      margin: 0;
+      color: var(--ae-ink);
+    }
+
+    p, li {
+      text-wrap: pretty;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Subdomain Header Bar — padded to clear fixed premium-nav Back & Menu pills */
+    .don-subbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(9, 12, 17, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--ae-line);
+      padding: 1.35rem 13.5rem 1.1rem 11.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .don-subbar {
+        padding: 4.25rem 1.25rem 0.85rem;
+      }
+    }
+
+    .don-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--ae-ink);
+    }
+
+    .don-brand-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ae-ink);
+      font-weight: 600;
+    }
+
+    .don-brand-label span {
+      color: var(--ae-signal);
+    }
+
+    .don-jump-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .don-jump-links a {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ae-muted);
+      transition: color 180ms ease;
+    }
+
+    .don-jump-links a:hover,
+    .don-jump-links a:focus-visible {
+      color: var(--ae-signal);
+    }
+
+    /* World Section Layout */
+    .don-world {
+      position: relative;
+      padding: clamp(5.5rem, 11vw, 9.5rem) clamp(1.5rem, 5.5vw, 4.5rem) clamp(5.5rem, 11vw, 9.5rem) clamp(3.5rem, 6vw, 5.75rem);
+      border-bottom: 1px solid var(--ae-line);
+      background: var(--ae-bg);
+      overflow: hidden;
+    }
+
+    .hero-bleed-reveal {
+      position: absolute;
+      right: -5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(300px, 38vw, 540px);
+      aspect-ratio: 221 / 255;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.44;
+      -webkit-mask-image: radial-gradient(ellipse at 60% 50%, #000 28%, rgba(0, 0, 0, 0.45) 55%, transparent 78%);
+      mask-image: radial-gradient(ellipse at 60% 50%, #000 28%, rgba(0, 0, 0, 0.45) 55%, transparent 78%);
+    }
+
+    .hero-bleed-reveal img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(18px) contrast(1.15) saturate(1.1);
+      display: block;
+    }
+
+    .hero-features-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin: 1.5rem 0 1.85rem;
+    }
+
+    .hero-feature-pill {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ae-ice);
+      background: rgba(63, 193, 255, 0.08);
+      border: 1px solid rgba(63, 193, 255, 0.25);
+      border-radius: 6px;
+      padding: 0.38rem 0.72rem;
+    }
+
+    .don-world--alt {
+      background: var(--ae-bg-alt);
+    }
+
+    .don-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .world-ghost {
+      position: absolute;
+      right: -0.04em;
+      bottom: -0.14em;
+      font-family: var(--font-display);
+      font-size: clamp(9rem, 24vw, 22rem);
+      font-weight: 700;
+      letter-spacing: -0.08em;
+      line-height: 0.8;
+      color: rgba(243, 245, 249, 0.03);
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+    }
+
+    .world-siderail {
+      position: absolute;
+      left: clamp(0.85rem, 1.8vw, 1.75rem);
+      top: clamp(4rem, 8vw, 7rem);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+      font-family: var(--font-mono);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .siderail-num {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .siderail-slash {
+      color: #ff5a1f !important;
+      font-size: 0.95rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .siderail-text {
+      writing-mode: vertical-rl;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-weight: 600;
+      white-space: nowrap;
+      margin-top: 0.25rem;
+    }
+
+    @media (max-width: 760px) {
+      .don-world {
+        padding: clamp(3rem, 6vw, 4.5rem) 1.25rem;
+      }
+      .world-siderail {
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin-bottom: 1.25rem;
+      }
+      .siderail-text {
+        writing-mode: horizontal-tb;
+        margin-top: 0;
+        white-space: normal;
+      }
+    }
+
+    .world-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--ae-signal);
+      box-shadow: 0 0 12px rgba(255, 90, 31, 0.7);
+      display: inline-block;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      body:not(.motion-paused) .live-dot {
+        animation: pulse-dot 2.2s infinite ease-in-out;
+      }
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.45; }
+    }
+
+    /* Hero Grid */
+    .pre-hero {
+      position: relative;
+      width: 100%;
+      min-height: clamp(320px, 46vw, 560px);
+      background: #000000;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--ae-line);
+    }
+
+    .pre-hero__stage {
+      position: relative;
+      width: min(100%, 1320px);
+      aspect-ratio: 1024 / 428;
+      display: grid;
+      place-items: center;
+    }
+
+    .pre-hero__img-wrap {
+      position: absolute;
+      inset: 0;
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0px) brightness(1);
+      transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.55s ease;
+    }
+
+    .pre-hero.is-word-active .pre-hero__img-wrap {
+      opacity: 0.07;
+      transform: scale(1.045);
+      filter: blur(6px) brightness(0.45);
+    }
+
+    .pre-hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pre-hero__vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 78%, #000000 100%),
+        linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0) 14%, rgba(0, 0, 0, 0) 86%, #000000 100%);
+    }
+
+    .pre-hero__word {
+      position: relative;
+      z-index: 2;
+      font-family: 'Don Mark', var(--font-display);
+      font-size: clamp(4.5rem, 15vw, 12.5rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #ffffff 0%, #e3e7ee 48%, #98a2b3 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.16)) blur(8px);
+      opacity: 0;
+      transform: scale(0.92);
+      user-select: none;
+      transition:
+        opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.48s ease;
+    }
+
+    .pre-hero.is-word-active .pre-hero__word {
+      opacity: 1;
+      transform: scale(1);
+      filter: drop-shadow(0 0 36px rgba(255, 255, 255, 0.28)) blur(0px);
+    }
+
+    .pre-hero__hud {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 1.25rem 1.25rem 2.25rem;
+      text-align: center;
+    }
+
+    .pre-hero__soon {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+    }
+
+    .pre-hero__countdown {
+      font-family: var(--font-mono);
+      font-size: clamp(1.35rem, 3.4vw, 2.35rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-variant-numeric: tabular-nums;
+      color: #ffffff;
+      text-shadow: 0 0 18px rgba(63, 193, 255, 0.35);
+      background: rgba(12, 16, 22, 0.85);
+      border: 1px solid rgba(63, 193, 255, 0.28);
+      border-radius: 10px;
+      padding: 0.55rem 1.15rem;
+    }
+
+    .pre-hero__countdown span {
+      color: var(--ae-ice);
+    }
+
+    .section-share {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 2.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--ae-line);
+    }
+
+    .section-share__label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ae-muted);
+      margin-right: 0.35rem;
+    }
+
+    .section-share .dl-link {
+      font-size: 0.68rem;
+      padding: 0.42rem 0.75rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pre-hero__img-wrap,
+      .pre-hero__word {
+        transition: none;
+      }
+      .pre-hero__img-wrap { opacity: 0.35; }
+      .pre-hero__word { opacity: 1; filter: none; transform: none; }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
+      .pre-hero {
+      position: relative;
+      width: 100%;
+      min-height: clamp(320px, 46vw, 560px);
+      background: #000000;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--ae-line);
+    }
+
+    .pre-hero__stage {
+      position: relative;
+      width: min(100%, 1320px);
+      aspect-ratio: 1024 / 428;
+      display: grid;
+      place-items: center;
+    }
+
+    .pre-hero__img-wrap {
+      position: absolute;
+      inset: 0;
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0px) brightness(1);
+      transition:
+        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.55s ease;
+    }
+
+    .pre-hero.is-word-active .pre-hero__img-wrap {
+      opacity: 0.07;
+      transform: scale(1.045);
+      filter: blur(6px) brightness(0.45);
+    }
+
+    .pre-hero__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pre-hero__vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 78%, #000000 100%),
+        linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0) 14%, rgba(0, 0, 0, 0) 86%, #000000 100%);
+    }
+
+    .pre-hero__word {
+      position: relative;
+      z-index: 2;
+      font-family: 'Don Mark', var(--font-display);
+      font-size: clamp(4.5rem, 15vw, 12.5rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #ffffff 0%, #e3e7ee 48%, #98a2b3 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.16)) blur(8px);
+      opacity: 0;
+      transform: scale(0.92);
+      user-select: none;
+      transition:
+        opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.48s ease;
+    }
+
+    .pre-hero.is-word-active .pre-hero__word {
+      opacity: 1;
+      transform: scale(1);
+      filter: drop-shadow(0 0 36px rgba(255, 255, 255, 0.28)) blur(0px);
+    }
+
+    .pre-hero__hud {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 1.25rem 1.25rem 2.25rem;
+      text-align: center;
+    }
+
+    .pre-hero__soon {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+    }
+
+    .pre-hero__countdown {
+      font-family: var(--font-mono);
+      font-size: clamp(1.35rem, 3.4vw, 2.35rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-variant-numeric: tabular-nums;
+      color: #ffffff;
+      text-shadow: 0 0 18px rgba(63, 193, 255, 0.35);
+      background: rgba(12, 16, 22, 0.85);
+      border: 1px solid rgba(63, 193, 255, 0.28);
+      border-radius: 10px;
+      padding: 0.55rem 1.15rem;
+    }
+
+    .pre-hero__countdown span {
+      color: var(--ae-ice);
+    }
+
+    .section-share {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+      margin-top: 2.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--ae-line);
+    }
+
+    .section-share__label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ae-muted);
+      margin-right: 0.35rem;
+    }
+
+    .section-share .dl-link {
+      font-size: 0.68rem;
+      padding: 0.42rem 0.75rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pre-hero__img-wrap,
+      .pre-hero__word {
+        transition: none;
+      }
+      .pre-hero__img-wrap { opacity: 0.35; }
+      .pre-hero__word { opacity: 1; filter: none; transform: none; }
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-aside-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .hero-reveal {
+      position: relative;
+      border-radius: 14px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(63, 193, 255, 0.45), rgba(255, 90, 31, 0.35) 55%, rgba(255, 255, 255, 0.12));
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 32px rgba(63, 193, 255, 0.12);
+      overflow: hidden;
+    }
+
+    .hero-reveal__inner {
+      position: relative;
+      background: radial-gradient(circle at 50% 35%, #161d29 0%, #090c11 80%);
+      border-radius: 13px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+      padding: 0.85rem 1rem;
+    }
+
+    .hero-reveal__img {
+      width: 112px;
+      height: 128px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      flex-shrink: 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-reveal__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .hero-reveal__tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ae-ice);
+    }
+
+    .hero-reveal__title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+    }
+
+    .hero-reveal__sub {
+      font-size: 0.82rem;
+      color: var(--ae-muted);
+      line-height: 1.4;
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 5.4vw, 4.45rem);
+      line-height: 1.06;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      color: var(--ae-signal);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.08rem, 1.4vw, 1.28rem);
+      line-height: 1.6;
+      color: var(--ae-muted);
+      max-width: 62ch;
+      margin: 0 0 2rem;
+    }
+
+    .hero-lead strong {
+      color: var(--ae-ink);
+      font-weight: 600;
+    }
+
+    /* Telemetry Strip */
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 680px) {
+      .telemetry-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .telemetry-cell {
+      background-color: var(--ae-surface);
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
+        linear-gradient(155deg, #1a212e 0%, #10151e 55%, #0c1017 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.65), -2px -2px 10px rgba(255, 255, 255, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.09), inset 0 -1px 0 rgba(0, 0, 0, 0.65);
+      border-radius: 12px;
+      padding: 0.95rem 1rem;
+    }
+
+    .telemetry-cell .k {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ae-muted);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .telemetry-cell .v {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ae-ink);
+    }
+
+    /* Watch Build in Public Card (Brushed Metal Neumorphic + Forms & Validation Best Practices) */
+    .watch-card {
+      background-color: var(--ae-surface);
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.015) 0px, rgba(255, 255, 255, 0.015) 1px, transparent 1px, transparent 3px),
+        linear-gradient(155deg, rgba(255, 90, 31, 0.12) 0%, #161d29 28%, #0e131b 70%, #0a0e14 100%);
+      border: 1px solid var(--ae-line-control);
+      border-radius: 16px;
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+      box-shadow:
+        0 26px 56px rgba(0, 0, 0, 0.78),
+        -4px -4px 16px rgba(255, 255, 255, 0.025),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.7);
+    }
+
+    .watch-card h2 {
+      font-size: 1.55rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .watch-card p {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--ae-muted);
+      margin: 0 0 1.35rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.38rem;
+      margin-bottom: 1rem;
+    }
+
+    .field label {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--ae-ink);
+    }
+
+    .field-hint {
+      font-size: 0.82rem;
+      color: var(--ae-muted);
+      line-height: 1.4;
+    }
+
+    .field input {
+      min-height: 48px;
+      padding: 0.75rem 0.95rem;
+      font-size: max(1rem, 1em);
+      font-family: var(--font-sans);
+      color: var(--ae-ink);
+      background: linear-gradient(180deg, #06080c 0%, #0c1017 100%);
+      border: 1.5px solid var(--ae-line-control);
+      box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.85), inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .field input::placeholder {
+      color: #6b7688;
+    }
+
+    @media (pointer: coarse) {
+      .field input,
+      .btn-submit,
+      .pillar-tab,
+      .copy-trigger {
+        min-height: 52px;
+      }
+    }
+
+    .field input:focus-visible {
+      outline: 2px solid var(--ae-signal);
+      outline-offset: 2px;
+      border-color: var(--ae-signal);
+      background: #0d121a;
+    }
+
+    /* Validate Input After Interaction */
+    .field input:is(:user-invalid, .user-invalid-fallback) {
+      border-color: #ff6b4a;
+      background: rgba(183, 53, 18, 0.14);
+    }
+
+    .field input:is(:user-valid, .user-valid-fallback) {
+      border-color: var(--ae-ice);
+    }
+
+    .error-msg {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #ff7a5c;
+      font-size: 0.84rem;
+      font-weight: 500;
+      margin-top: 0.25rem;
+    }
+
+    .error-msg[hidden] {
+      display: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      min-height: 48px;
+      padding: 0.85rem 1.25rem;
+      border: 1px solid rgba(255, 150, 110, 0.4);
+      border-radius: 10px;
+      background: linear-gradient(180deg, #ff6c37 0%, #ff5a1f 55%, #d6420e 100%);
+      box-shadow: 0 10px 24px rgba(255, 90, 31, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -2px 0 rgba(0, 0, 0, 0.35);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 180ms ease, border-color 180ms ease;
+    }
+
+    .btn-submit:hover,
+    .btn-submit:focus-visible {
+      background: #ff6e3a;
+      border-color: #ff6e3a;
+    }
+
+    .btn-submit[aria-disabled="true"] {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .form-status-banner {
+      margin-top: 0.85rem;
+      padding: 0.75rem 0.95rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .form-status-banner[hidden] {
+      display: none;
+    }
+
+    .form-status-banner.is-ok {
+      background: rgba(63, 193, 255, 0.14);
+      border: 1px solid var(--ae-ice);
+      color: #9ad9ff;
+    }
+
+    .watch-links {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid var(--ae-line);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .watch-links a {
+      color: var(--ae-ink);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .watch-links a:hover {
+      color: var(--ae-signal);
+    }
+
+    /* Section Headings */
+    .section-header {
+      max-width: 780px;
+      margin-bottom: 2.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.04;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1.08rem;
+      line-height: 1.6;
+      color: var(--ae-muted);
+      margin: 0;
+    }
+
+    /* Scoped Component View Transitions for 4 Architecture Pillars */
+    .pillar-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 860px) {
+      .pillar-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .pillar-tabs {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pillar-tab {
+      min-height: 48px;
+      text-align: left;
+      padding: 0.95rem 1.1rem;
+      border-radius: 12px;
+      border: 1px solid var(--ae-line-control);
+      background: var(--ae-surface);
+      color: var(--ae-ink);
+      cursor: pointer;
+      transition: border-color 180ms ease, background 180ms ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .pillar-tab:hover {
+      background: var(--ae-surface-elevated);
+    }
+
+    .pillar-tab .num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--ae-signal);
+      text-transform: uppercase;
+    }
+
+    .pillar-tab .lbl {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .pillar-tab[aria-selected="true"] {
+      background: linear-gradient(180deg, rgba(255, 90, 31, 0.18) 0%, var(--ae-surface-elevated) 100%);
+      color: #ffffff;
+      border-color: var(--ae-signal);
+      box-shadow: inset 0 0 0 1px var(--ae-signal);
+    }
+
+    .pillar-stage {
+      contain: layout;
+      background-color: var(--ae-surface);
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
+        linear-gradient(155deg, #1b2230 0%, #111620 55%, #0c1017 100%);
+      border: 1px solid rgba(255, 255, 255, 0.085);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.72), -4px -4px 16px rgba(255, 255, 255, 0.025), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.65);
+      border-radius: 16px;
+      padding: clamp(1.5rem, 3.5vw, 2.75rem);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.25rem;
+      align-items: center;
+    }
+
+    @media (max-width: 860px) {
+      .pillar-stage {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pillar-stage h3 {
+      font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+      margin-bottom: 0.85rem;
+    }
+
+    .pillar-stage p {
+      color: var(--ae-muted);
+      line-height: 1.65;
+      margin: 0 0 1.25rem;
+    }
+
+    .spec-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .spec-list li {
+      padding: 0.7rem 0.95rem;
+      border-radius: 8px;
+      background: var(--ae-bg);
+      border: 1px solid var(--ae-line);
+      border-left: 3px solid var(--ae-signal);
+      font-size: 0.92rem;
+      line-height: 1.45;
+      color: #e2e8f0;
+    }
+
+    .spec-diagram {
+      background: #070a0e;
+      color: var(--ae-ink);
+      border-radius: 12px;
+      padding: 1.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.65;
+      border: 1px solid var(--ae-line-control);
+      overflow-x: auto;
+    }
+
+    .spec-diagram .hl {
+      color: var(--ae-signal);
+      font-weight: 600;
+    }
+
+    .spec-diagram .ok {
+      color: var(--ae-ice);
+    }
+
+    /* Section 02: 3-Pane Liquid Interface Live Mockup */
+    .ui-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .motion-btn {
+      min-height: 44px;
+      padding: 0.5rem 0.95rem;
+      border-radius: 8px;
+      border: 1px solid var(--ae-line-control);
+      background: var(--ae-surface);
+      color: var(--ae-ink);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .motion-btn:hover,
+    .motion-btn:focus-visible {
+      border-color: var(--ae-signal);
+    }
+
+    .liquid-frame {
+      background: #070a0e;
+      border: 1px solid var(--ae-line-control);
+      border-radius: 16px;
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr) 320px;
+      overflow: hidden;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55);
+    }
+
+    @media (max-width: 1024px) {
+      .liquid-frame {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .l-pane {
+      padding: 1.25rem;
+      border-right: 1px solid #1c2330;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .l-pane:last-child {
+      border-right: none;
+    }
+
+    .l-hdr {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid #1c2330;
+    }
+
+    .l-item {
+      padding: 0.75rem;
+      border-radius: 8px;
+      background: #121822;
+      border: 1px solid #232c3d;
+      font-size: 0.84rem;
+    }
+
+    .l-item.is-active {
+      border-color: var(--ae-signal);
+      background: rgba(255, 90, 31, 0.12);
+    }
+
+    .l-item small {
+      display: block;
+      color: var(--ae-muted);
+      font-size: 0.74rem;
+      margin-top: 0.25rem;
+    }
+
+    .l-bar {
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      background: #131b26;
+      border-left: 3px solid var(--ae-ice);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .l-bar.warn {
+      border-left-color: var(--ae-signal);
+    }
+
+    /* Section 03: Build Log & Copyable Watch Snippets */
+    .milestone-list {
+      display: grid;
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .milestone-row {
+      background-color: var(--ae-surface);
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
+        linear-gradient(155deg, #19212d 0%, #10151e 55%, #0c1017 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.65), -3px -3px 12px rgba(255, 255, 255, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.09), inset 0 -1px 0 rgba(0, 0, 0, 0.65);
+      border-radius: 12px;
+      padding: 1.15rem 1.35rem;
+      display: grid;
+      grid-template-columns: 150px 1fr auto;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    @media (max-width: 720px) {
+      .milestone-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .m-phase {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+      font-weight: 600;
+    }
+
+    .m-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: var(--ae-surface-elevated);
+      border: 1px solid var(--ae-line-control);
+      color: var(--ae-ink);
+      white-space: nowrap;
+    }
+
+    .m-badge.in-progress {
+      background: rgba(255, 90, 31, 0.14);
+      border-color: var(--ae-signal);
+      color: var(--ae-signal);
+      font-weight: 600;
+    }
+
+    /* Copy Snippet Box (Modern Web Guidance: copy-button) */
+    .snippet-box {
+      background: #070a0e;
+      color: var(--ae-ink);
+      border: 1px solid var(--ae-line-control);
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .snippet-code {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      margin: 0;
+      overflow-x: auto;
+    }
+
+    .copy-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      position: relative;
+    }
+
+    .copy-trigger {
+      min-height: 44px;
+      padding: 0.55rem 0.95rem;
+      border-radius: 8px;
+      border: 1px solid var(--ae-line-control);
+      background: var(--ae-surface-elevated);
+      color: var(--ae-ink);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .copy-trigger:hover,
+    .copy-trigger:focus-visible {
+      border-color: var(--ae-signal);
+    }
+
+    .copy-status {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--ae-ice);
+      opacity: 0;
+      transition: opacity 150ms ease;
+      pointer-events: none;
+    }
+
+    .copy-status.is-visible {
+      opacity: 1;
+    }
+
+    /* Section 04: Press & Social Teaser Kit Gallery */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 820px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .social-card-item {
+      background-color: var(--ae-surface);
+      background-image:
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
+        linear-gradient(155deg, #1b2230 0%, #111620 55%, #0c1017 100%);
+      border: 1px solid rgba(255, 255, 255, 0.085);
+      box-shadow: 0 22px 46px rgba(0, 0, 0, 0.72), -4px -4px 16px rgba(255, 255, 255, 0.025), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.65);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .social-card-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid var(--ae-line);
+    }
+
+    .social-card-meta {
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .social-card-meta strong {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      display: block;
+      color: var(--ae-ink);
+    }
+
+    .social-card-meta span {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ae-muted);
+    }
+
+    .dl-link {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ae-signal);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 0.85rem;
+      border: 1px solid var(--ae-line-control);
+      border-radius: 8px;
+      background: var(--ae-bg);
+    }
+
+    .dl-link:hover,
+    .dl-link:focus-visible {
+      border-color: var(--ae-signal);
+    }
+
+    /* Forced Colors Mode (Windows High Contrast) System Keyword Fallbacks */
+    @media (forced-colors: active) {
+      .watch-card,
+      .telemetry-cell,
+      .pillar-tab,
+      .pillar-stage,
+      .liquid-frame,
+      .milestone-row,
+      .social-card-item,
+      .snippet-box {
+        border: 1px solid CanvasText;
+      }
+      .pillar-tab[aria-selected="true"],
+      .btn-submit {
+        outline: 2px solid Highlight;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /* Brushed-metal finish wins over legacy flat button styles */
+    .metal-btn:is(.btn-submit, .motion-btn, .copy-trigger, .dl-link) {
+      background: var(--metal-face);
+      color: var(--metal-ink);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 999px;
+      box-shadow:
+        0 0 0 3px var(--metal-bezel),
+        0 0 0 4px color-mix(in oklab, var(--rim) 70%, transparent),
+        0 8px 20px var(--rim-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.32);
+    }
+    .metal-btn:is(.btn-submit, .motion-btn, .copy-trigger, .dl-link):is(:hover, :focus-visible) {
+      background: var(--metal-face);
+      color: var(--metal-ink);
+      box-shadow:
+        0 0 0 3px var(--metal-bezel),
+        0 0 0 4px var(--rim),
+        0 10px 26px color-mix(in oklab, var(--rim) 45%, transparent),
+        inset 0 1px 0 rgba(255, 255, 255, 1),
+        inset 0 -2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .btn-submit.metal-btn {
+      width: 100%;
+      min-height: 52px;
+      margin-top: 0.35rem;
+    }
+    .snippet-box .metal-btn, .social-card-meta .metal-btn {
+      flex: none;
+    }
+    .stage-board {
+      margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(63, 193, 255, 0.4), rgba(255, 90, 31, 0.28) 60%, rgba(255, 255, 255, 0.1));
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+    .stage-board img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 15px 15px 0 0;
+      background: #05070b;
+    }
+    .stage-board figcaption {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem 0.75rem;
+      padding: 1rem 1.25rem;
+      background: #0c1016;
+      border-radius: 0 0 15px 15px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .stage-board__num { color: #ffffff; font-weight: 800; }
+    .stage-board__slash { color: var(--ae-signal); font-weight: 800; }
+    .stage-board__name { color: var(--ae-ice); font-weight: 700; }
+    .stage-board__line { color: var(--ae-muted); text-transform: none; letter-spacing: 0.02em; font-family: var(--font-sans); font-size: 0.9rem; flex-basis: 100%; }
+    /* Share bars: right-aligned glass icon buttons */
+    .section-share {
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-share__label { margin-right: 0.4rem; }
+    .glass-share {
+      position: relative;
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      color: #f3f5f9;
+      background:
+        radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 55%),
+        linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -6px 12px rgba(0, 0, 0, 0.35),
+        0 6px 16px rgba(0, 0, 0, 0.45);
+      -webkit-backdrop-filter: blur(10px) saturate(1.4);
+      backdrop-filter: blur(10px) saturate(1.4);
+      transition: transform 0.18s ease, box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .glass-share svg { width: 18px; height: 18px; fill: currentColor; }
+    .glass-share--instagram svg { fill: none; }
+    .glass-share:hover,
+    .glass-share:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(63, 193, 255, 0.6);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -6px 12px rgba(0, 0, 0, 0.3),
+        0 8px 20px rgba(0, 0, 0, 0.5),
+        0 0 18px rgba(63, 193, 255, 0.35);
+      outline: none;
+    }
+    .glass-share--x:hover, .glass-share--x:focus-visible { color: #ffffff; }
+    .glass-share--linkedin:hover, .glass-share--linkedin:focus-visible { color: #3b8fe8; }
+    .glass-share--facebook:hover, .glass-share--facebook:focus-visible { color: #3d8cf5; }
+    .glass-share--tiktok:hover, .glass-share--tiktok:focus-visible { color: #fe2c55; }
+    .glass-share--instagram:hover, .glass-share--instagram:focus-visible { color: #f0507f; }
+    @media (prefers-reduced-motion: reduce) {
+      .glass-share { transition: none; }
+      .glass-share:hover { transform: none; }
+    }
+  </style>
+</head>
+<body class="don-dark-theme">
+  <header class="don-header">
+    <div class="don-header__inner">
+      <a class="don-logo" href="https://aegntic.ai/">
+        <img src="/don-bot/ae-cutout-logo.png" width="314" height="207" alt="aegntic home">
+        <span class="don-brand-label"><span class="don-mark" style="font-size:1.05em">DON</span>.aegntic.ai<span class="don-brand-tail"> // build in public</span></span>
+      </a>
+      <nav class="don-nav" aria-label="Primary">
+        <ul class="don-nav__inline">
+          <li><a href="#access">00 // Access</a></li>
+          <li><a href="#architecture">01 // Architecture</a></li>
+          <li><a href="#interface">02 // 3-Pane UI</a></li>
+          <li><a href="#roadmap">03 // Build Log</a></li>
+          <li><a href="#teaser-kit">04 // Social Kit</a></li>
+        </ul>
+        <button class="menu-button metal-btn metal-btn--ice" type="button" popovertarget="don-menu" popovertargetaction="toggle" aria-controls="don-menu">
+          <span>Menu</span>
+          <span class="menu-button__icon" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+        <div id="don-menu" class="don-menu" popover="auto">
+          <div class="don-menu__group">
+            <span class="don-menu__label" id="don-menu-sections">Don-Bot</span>
+            <ul aria-labelledby="don-menu-sections">
+              <li><a href="#access" aria-current="location"><span class="n">00</span>Overview</a></li>
+              <li><a href="#architecture"><span class="n">01</span>Architecture</a></li>
+              <li><a href="#interface"><span class="n">02</span>3-Pane UI</a></li>
+              <li><a href="#roadmap"><span class="n">03</span>Build log</a></li>
+              <li><a href="#teaser-kit"><span class="n">04</span>Social kit</a></li>
+            </ul>
+          </div>
+          <div class="don-menu__group">
+            <span class="don-menu__label" id="don-menu-aegntic">aegntic.ai</span>
+            <ul aria-labelledby="don-menu-aegntic">
+              <li><a href="https://aegntic.ai/"><span class="n">/</span>home</a></li>
+              <li><a href="https://aegntic.ai/systems/"><span class="n">/</span>systems</a></li>
+              <li><a href="https://aegntic.ai/agents/"><span class="n">/</span>agents</a></li>
+              <li><a href="https://aegntic.ai/plugins/"><span class="n">/</span>plugins</a></li>
+              <li><a href="https://aegntic.ai/products/"><span class="n">/</span>products</a></li>
+              <li><a href="https://aegntic.ai/#contact"><span class="n">/</span>contact</a></li>
+            </ul>
+          </div>
+          <div class="don-menu__foot">
+            <a href="https://github.com/aegntic/don-bot" target="_blank" rel="noopener">GitHub ↗<span class="sr-only"> (opens in a new tab)</span></a>
+            <a href="https://x.com/aegntic" target="_blank" rel="noopener">@aegntic ↗<span class="sr-only"> (opens in a new tab)</span></a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- PRE-00 LANDING HERO -->
+    <section class="pre-hero" id="pre-hero" aria-label="Don-Bot">
+      <div class="pre-hero__stage">
+        <div class="pre-hero__img-wrap">
+          <img class="pre-hero__img" src="/don-bot/don-bot-evolution-hero.jpg" alt="Don-Bot Evolution: Origins, Upgrade, Augment, Arm, Network" width="1024" height="428">
+          <div class="pre-hero__vignette" aria-hidden="true"></div>
+        </div>
+        <div class="pre-hero__word" aria-hidden="true">DON</div>
+      </div>
+      <div class="pre-hero__hud">
+        <div class="pre-hero__soon">COMING SOON</div>
+        <div class="pre-hero__countdown" id="don-countdown" aria-label="Launch countdown">00:00:00:00:<span>00</span></div>
+        <a href="#watch-form" class="metal-btn metal-btn--ice" id="pre-hero-cta">Get Notified and Watch Live Build →</a>
+      </div>
+    </section>
+
+    <!-- 00 // ACCESS (HERO & BUILD IN PUBLIC SUBSCRIBE) -->
+    <section class="don-world" id="access" aria-labelledby="hero-heading">
+      <div class="world-ghost don-mark" aria-hidden="true">DON.</div>
+      <div class="hero-bleed-reveal" aria-hidden="true">
+        <img src="/don-bot/don-bot-final-form.png" alt="">
+      </div>
+      <div class="world-siderail">
+        <span class="siderail-num"><span class="live-dot" aria-hidden="true"></span>00</span>
+        <span class="siderail-slash">/</span>
+        <div class="siderail-text">ACCESS · ON-THE-RUN DARK FACTORY · PUBLIC BUILD REVEAL</div>
+      </div>
+      <div class="don-container">
+
+        <div class="hero-grid">
+          <div>
+            <h1 class="hero-title" id="hero-heading">
+              <span class="don-mark" style="color:#ffffff">DON-BOT</span><br>
+              <em>On-the-Run Dark Factory.</em>
+            </h1>
+            <div class="hero-features-strip" aria-label="Core capabilities">
+              <span class="hero-feature-pill">Pi Durable</span>
+              <span class="hero-feature-pill">OTRDF</span>
+              <span class="hero-feature-pill">J-JEV Gates</span>
+              <span class="hero-feature-pill">Blind Vault</span>
+              <span class="hero-feature-pill">Telegram &amp; WhatsApp</span>
+              <span class="hero-feature-pill">3-Pane Liquid Interface</span>
+            </div>
+            <p class="hero-lead">
+              An autonomous software bot built on a crash-proof SQLite WAL spine. One Lead Orchestrator coordinates four durable specialists with 300ms J-JEV System-One judgment gates, blind credential vaulting, native Telegram &amp; WhatsApp channels, and a 3-pane liquid interface—running headless while you stay near the loop.
+            </p>
+
+            <div class="telemetry-grid" role="list" aria-label="Key architectural specifications">
+              <div class="telemetry-cell" role="listitem">
+                <span class="k">Topology</span>
+                <span class="v">1 Lead + 4 Specialists</span>
+              </div>
+              <div class="telemetry-cell" role="listitem">
+                <span class="k">Durable Spine</span>
+                <span class="v">SQLite WAL + once()</span>
+              </div>
+              <div class="telemetry-cell" role="listitem">
+                <span class="k">Pre-Tool Gate</span>
+                <span class="v">~300ms · $0.0007</span>
+              </div>
+              <div class="telemetry-cell" role="listitem">
+                <span class="k">UI &amp; Channels</span>
+                <span class="v">3-Pane + 'Me'-Mode</span>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <figure class="stage-board">
+          <img src="/don-bot/storyboards/stage-01.webp" alt="Don-Bot stage 01 Origins: 3x3 turntable storyboard, one full 360 degree rotation" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption><span class="stage-board__num">01</span><span class="stage-board__slash">/</span><span class="stage-board__name">ORIGINS</span><span class="stage-board__line">Base unit. Clean slate. The core boots and the lens finds focus.</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 01 // THE ARCHITECTURE (SOFT PUBLIC DETAILS) -->
+    <section class="don-world don-world--alt" id="architecture" aria-labelledby="arch-heading">
+      <div class="world-ghost" aria-hidden="true">01</div>
+      <div class="world-siderail">
+        <span class="siderail-num">01</span>
+        <span class="siderail-slash">/</span>
+        <div class="siderail-text">PUBLIC ARCHITECTURAL BLUEPRINT</div>
+      </div>
+      <div class="don-container">
+        <div class="section-header">
+          <h2 class="section-title" id="arch-heading">Built to run for hours while you stay near the loop.</h2>
+          <p class="section-sub">
+            In the loop, you prompt and babysit. Near the loop, a small durable team debates, builds, and verifies before escalating only high-leverage decisions to your inbox.
+          </p>
+        </div>
+
+        <div class="pillar-tabs" role="tablist" aria-label="Don-Bot Architectural Pillars">
+          <button type="button" class="pillar-tab" role="tab" id="tab-team" aria-selected="true" aria-controls="pillar-panel" data-pillar="team">
+            <span class="num">01 // TOPOLOGY</span>
+            <span class="lbl">Lead + 4 Specialists</span>
+          </button>
+          <button type="button" class="pillar-tab" role="tab" id="tab-spine" aria-selected="false" aria-controls="pillar-panel" data-pillar="spine">
+            <span class="num">02 // DURABILITY</span>
+            <span class="lbl">SQLite WAL Spine</span>
+          </button>
+          <button type="button" class="pillar-tab" role="tab" id="tab-verify" aria-selected="false" aria-controls="pillar-panel" data-pillar="verify">
+            <span class="num">03 // SAFETY &amp; QA</span>
+            <span class="lbl">Verifier &amp; Blind Vault</span>
+          </button>
+          <button type="button" class="pillar-tab" role="tab" id="tab-liquid" aria-selected="false" aria-controls="pillar-panel" data-pillar="liquid">
+            <span class="num">04 // INTERFACES</span>
+            <span class="lbl">3-Pane UI + 'Me'-Mode</span>
+          </button>
+        </div>
+
+        <div class="pillar-stage" id="pillar-panel" role="tabpanel" aria-labelledby="tab-team">
+          <div id="pillar-copy">
+            <h3>1 Lead Orchestrator + 4 Durable Specialists</h3>
+            <p>
+              Instead of spawning 50 ephemeral subagents that burn tokens and overwrite each other's files, Don-Bot runs a persistent 5-agent roster over SQLite message rooms. Before writing code, the team conducts a 3-round architectural negotiation and autonomously tunes its own Core 4 parameters.
+            </p>
+            <ul class="spec-list">
+              <li><strong>Social Contract Before Code:</strong> Specialists agree on contracts, schemas, and file boundaries in a room before taking a single-writer lease.</li>
+              <li><strong>Autonomous Core 4 Self-Tuning:</strong> Each specialist dynamically downshifts or upgrades its Model, Thinking Effort, Context Window, and Skillset per milestone.</li>
+              <li><strong>Bounded Subagent Fan-Out:</strong> Specialists can spawn up to 3 parallel workers with a strict $0.15 cost cap for parallel research or verification.</li>
+            </ul>
+          </div>
+          <div class="spec-diagram" id="pillar-diagram">
+            <div><span class="hl">TEAM ROOM // 3-ROUND SELF-CONFIGURATION</span></div>
+            <div>──────────────────────────────────────────────</div>
+            <div>[Lead Orchestrator] &rarr; Opens room #arch-sync</div>
+            <div>  ├── <span class="ok">API Keeper</span>      (Workhorse A · x-high · Lease)</div>
+            <div>  ├── <span class="ok">Pipeline Forge</span>  (Workhorse A · high   · 3x fanout)</div>
+            <div>  ├── <span class="ok">Browser/UI QA</span>   (Workhorse B · medium · -68% cost)</div>
+            <div>  └── <span class="ok">Memory Curator</span>  (Fast Tier   · low    · Lifebank)</div>
+            <div>──────────────────────────────────────────────</div>
+            <div><span class="ok">STATUS:</span> Social contract locked · 0 file collisions</div>
+          </div>
+        </div>
+        <figure class="stage-board">
+          <img src="/don-bot/storyboards/stage-02.webp" alt="Don-Bot stage 02 Upgrade: 3x3 turntable storyboard, one full 360 degree rotation" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption><span class="stage-board__num">02</span><span class="stage-board__slash">/</span><span class="stage-board__name">UPGRADE</span><span class="stage-board__line">Modular armor locks on, panel by panel, scanned and sealed.</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 02 // 3-PANE LIQUID INTERFACE -->
+    <section class="don-world" id="interface" aria-labelledby="ui-heading">
+      <div class="world-ghost" aria-hidden="true">02</div>
+      <div class="world-siderail">
+        <span class="siderail-num">02</span>
+        <span class="siderail-slash">/</span>
+        <div class="siderail-text">LIQUID SOFTWARE INTERFACE · 100% AGENTIC ACCESS PARITY</div>
+      </div>
+      <div class="don-container">
+        <div class="ui-toolbar">
+          <div class="section-header" style="margin-bottom:0">
+            <h2 class="section-title" id="ui-heading">Lists on the left. Focus in the center. Durable team on the right.</h2>
+          </div>
+          <button type="button" class="motion-btn metal-btn metal-btn--ice" id="motion-toggle">
+            Pause live pulse
+          </button>
+        </div>
+
+        <p class="section-sub" style="margin-bottom:2rem">
+          Every button, tab, and canvas pin in the 3-pane interface maps 1:1 to an agent tool. Press <code>~</code> (tilde) at any time to inspect or steer any specialist directly.
+        </p>
+
+        <div class="liquid-frame" role="region" aria-label="3-Pane Liquid Interface Architecture Preview">
+          <div class="l-pane">
+            <div class="l-hdr"><span>01 // LEFT · LANE LIST</span><span>4 ITEMS</span></div>
+            <div class="l-item is-active">
+              <strong>[arch-spec-v2]</strong>
+              <small>API Keeper · Updated 12s ago</small>
+            </div>
+            <div class="l-item">
+              <strong>[sqlite-wal-schema]</strong>
+              <small>Pipeline Forge · Verified PASS</small>
+            </div>
+            <div class="l-item">
+              <strong>[mtproto-pacer]</strong>
+              <small>API Keeper · In 3-round review</small>
+            </div>
+            <div class="l-item">
+              <strong>[browser-checkout-qa]</strong>
+              <small>Client QA · Live Screen :101</small>
+            </div>
+          </div>
+
+          <div class="l-pane">
+            <div class="l-hdr"><span>02 // CENTER · GEN-UI + LIVE SCREEN + RUN TRACE</span><span>120FPS</span></div>
+            <div class="l-bar">
+              <span>API KEEPER &rarr; WORKHORSE A · X-HIGH · WRITER-LEASE</span>
+              <span style="color:#3fc1ff">$0.018 · 1.4S</span>
+            </div>
+            <div class="l-bar">
+              <span>PIPELINE FORGE &rarr; 3 SUBAGENTS ($0.15 CAP)</span>
+              <span style="color:#3fc1ff">$0.024 · 2.1S</span>
+            </div>
+            <div class="l-bar warn">
+              <span>CLIENT QA &rarr; SELF-DOWNGRADED TO WORKHORSE B · MEDIUM</span>
+              <span style="color:#ff5a1f">-68% TOKENS</span>
+            </div>
+            <div class="l-bar">
+              <span>JEV SYSTEM-ONE PRE-TOOL GATE &rarr; 42 CHECKS EVALUATED</span>
+              <span style="color:#3fc1ff">280MS · $0.0007</span>
+            </div>
+          </div>
+
+          <div class="l-pane">
+            <div class="l-hdr"><span>03 // RIGHT · NEAR-LOOP INBOX</span><span>1 NEEDS YOU</span></div>
+            <div class="l-item is-active">
+              <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--ae-signal);margin-bottom:0.35rem">TEAM_ASK DECISION DECK · #1 OF 1</div>
+              <strong>Outbound Telegram Group Creation</strong>
+              <small style="color:#d6dbe4;margin-top:0.35rem;line-height:1.45">
+                Create supergroup "Factory · BuyerNav" with Forum Topics and file under your "Factories" folder?
+              </small>
+            </div>
+            <div class="l-item">
+              <div style="font-family:var(--font-mono);font-size:0.68rem;color:#3fc1ff">LEAD ORCHESTRATOR</div>
+              <small style="color:#d6dbe4;margin-top:0.35rem;line-height:1.45">
+                3-round architecture debate settled. Answer card #1 here or from your phone whenever you're ready.
+              </small>
+            </div>
+          </div>
+        </div>
+        <figure class="stage-board">
+          <img src="/don-bot/storyboards/stage-03.webp" alt="Don-Bot stage 03 Augment: 3x3 turntable storyboard, one full 360 degree rotation" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption><span class="stage-board__num">03</span><span class="stage-board__slash">/</span><span class="stage-board__name">AUGMENT</span><span class="stage-board__line">Gold-trimmed plating, a live control core, and claws that extend on command.</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 03 // LIVE BUILD LOG & MILESTONES -->
+
+    <section class="don-world" id="dispatch" aria-label="Build in Public Dispatch">
+      <div class="don-container" style="max-width:640px;margin:0 auto;">
+        <aside class="watch-card" aria-labelledby="watch-form-heading">
+            <div class="world-eyebrow" style="margin-bottom:0.5rem">BUILD IN PUBLIC DISPATCH</div>
+            <h2 id="watch-form-heading">Watch the factory come online.</h2>
+            <p>
+              We are shipping every slice in the open: SQLite WAL checkpointing, 3-round specialist rooms, blind vault credentials, and the 3-pane liquid interface. Get notified as each milestone lands.
+            </p>
+
+            <form id="watch-form" action="/api/subscribe" method="POST" aria-labelledby="watch-form-heading" novalidate>
+              <div class="field">
+                <label for="watch-email">Work or personal email</label>
+                <span class="field-hint" id="email-hint">One architectural dispatch per milestone. Zero fluff.</span>
+                <input
+                  id="watch-email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  autocorrect="off"
+                  autocapitalize="none"
+                  spellcheck="false"
+                  placeholder="you@domain.com"
+                  aria-describedby="email-hint"
+                  data-error="email-error"
+                  aria-invalid="false"
+                >
+                <div class="error-msg" id="email-error" hidden>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M8 4.5V8.5M8 11V11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <span>Please enter a valid email address (for example, alex@domain.com).</span>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-submit metal-btn" id="watch-submit">
+                Watch the Build in Public →
+              </button>
+
+              <div id="form-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+              <div id="form-status-banner" class="form-status-banner" hidden></div>
+            </form>
+
+            <div class="watch-links">
+              <a href="https://github.com/aegntic/don-bot" target="_blank" rel="noopener">github.com/aegntic/don-bot ↗</a>
+              <a href="https://x.com/aegntic" target="_blank" rel="noopener">@aegntic ↗</a>
+            </div>
+            </aside>
+      </div>
+    </section>
+
+    <section class="don-world don-world--alt" id="roadmap" aria-labelledby="roadmap-heading">
+      <div class="world-ghost" aria-hidden="true">03</div>
+      <div class="world-siderail">
+        <span class="siderail-num">03</span>
+        <span class="siderail-slash">/</span>
+        <div class="siderail-text">BUILD IN PUBLIC TRACKER</div>
+      </div>
+      <div class="don-container">
+        <div class="section-header">
+          <h2 class="section-title" id="roadmap-heading">Five architectural slices. Shipped in the open.</h2>
+          <p class="section-sub">
+            Follow the repository or clone the starter branch to inspect each harness extension as it lands.
+          </p>
+        </div>
+
+        <div class="milestone-list">
+          <div class="milestone-row">
+            <span class="m-phase">SLICE 01 // SPINE</span>
+            <div>
+              <strong>SQLite WAL Durable Runtime &amp; Self-Compaction</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Crash-proof <code>once()</code> step checkpointing, single-writer file lease locks, and 10%/20%/30% <code>note_to_self</code> memory compaction.</p>
+            </div>
+            <span class="m-badge in-progress">IN PROGRESS</span>
+          </div>
+          <div class="milestone-row">
+            <span class="m-phase">SLICE 02 // TEAM</span>
+            <div>
+              <strong>Lead Orchestrator + 4 Specialist Rooms</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Multi-round room discussions, autonomous Core 4 self-configuration, and bounded subagent fan-out.</p>
+            </div>
+            <span class="m-badge in-progress">ACTIVE</span>
+          </div>
+          <div class="milestone-row">
+            <span class="m-phase">SLICE 03 // TRUST</span>
+            <div>
+              <strong>300ms Jev Judgment Gates, Blind Vault &amp; Sibling Verifier</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Pre-tool calibrated checks, out-of-band quote verification, sandbox secret injection, and top-down stop-hook verification.</p>
+            </div>
+            <span class="m-badge">NEXT UP</span>
+          </div>
+          <div class="milestone-row">
+            <span class="m-phase">SLICE 04 // CHANNELS</span>
+            <div>
+              <strong>Personal 'Me'-Mode Telegram &amp; WhatsApp Bridge</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Zero-badge personal account operation with human-mimicry token-bucket pacing and forum topic creation.</p>
+            </div>
+            <span class="m-badge">SPEC COMPLETE</span>
+          </div>
+          <div class="milestone-row">
+            <span class="m-phase">SLICE 05 // UI</span>
+            <div>
+              <strong>3-Pane Liquid Interface &amp; 6-Layer Motion Engine</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Left Lane List, Center Generative UI + live Xvfb screen takeover, Right Decision Deck, and 120fps spring physics.</p>
+            </div>
+            <span class="m-badge">SPEC COMPLETE</span>
+          </div>
+        </div>
+
+        <div class="snippet-box">
+          <pre class="snippet-code" id="clone-cmd">git clone https://github.com/aegntic/don-bot.git &amp;&amp; cd don-bot</pre>
+          <div class="copy-wrap">
+            <button type="button" class="copy-trigger metal-btn metal-btn--ice" command="--copy" commandfor="clone-cmd" data-status="copy-status-clone">
+              Copy Clone Command
+            </button>
+            <span id="copy-status-clone" class="copy-status" role="status"></span>
+          </div>
+        </div>
+        <figure class="stage-board">
+          <img src="/don-bot/storyboards/stage-04.webp" alt="Don-Bot stage 04 Arm: 3x3 turntable storyboard, one full 360 degree rotation" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption><span class="stage-board__num">04</span><span class="stage-board__slash">/</span><span class="stage-board__name">ARM</span><span class="stage-board__line">Tactical harness, field kit, and plasma-lit claws. Field ready.</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 04 // PRESS & SOCIAL TEASER KIT -->
+    <section class="don-world" id="teaser-kit" aria-labelledby="kit-heading">
+      <div class="world-siderail">
+        <span class="siderail-num">04</span>
+        <span class="siderail-slash">/</span>
+        <div class="siderail-text">PRESS &amp; SOCIAL TEASER KIT</div>
+      </div>
+      <div class="don-container">
+        <div class="section-header">
+          <h2 class="section-title" id="kit-heading">Share the architecture.</h2>
+          <p class="section-sub">
+            High-contrast architecture cards and ready-to-post build-in-public copy for X, LinkedIn, Telegram, and technical communities.
+          </p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="social-card-item">
+            <img src="/don-bot/cards/card-01-hero-16x9.png" alt="Card 01: One lead. Four specialists." width="1200" height="675" loading="lazy">
+            <div class="social-card-meta">
+              <div>
+                <strong>One lead. Four specialists.</strong>
+                <span>Durable multi-agent orchestration on a crash-proof SQLite WAL spine.</span>
+              </div>
+              <a class="dl-link metal-btn" href="/don-bot/cards/card-01-hero-16x9.png" download="don-bot-01-hero.png">Download PNG</a>
+            </div>
+          </article>
+
+          <article class="social-card-item">
+            <img src="/don-bot/cards/card-02-architecture-16x9.png" alt="Card 02: Near the loop, not in it." width="1200" height="675" loading="lazy">
+            <div class="social-card-meta">
+              <div>
+                <strong>Near the loop, not in it.</strong>
+                <span>Multi-round room debates and 300ms System-One gates before escalating to you.</span>
+              </div>
+              <a class="dl-link metal-btn" href="/don-bot/cards/card-02-architecture-16x9.png" download="don-bot-02-architecture.png">Download PNG</a>
+            </div>
+          </article>
+
+          <article class="social-card-item">
+            <img src="/don-bot/cards/card-03-liquid-ui-16x9.png" alt="Card 03: 100% agentic access parity." width="1200" height="675" loading="lazy">
+            <div class="social-card-meta">
+              <div>
+                <strong>100% agentic access parity.</strong>
+                <span>Every button, tab, and canvas pin maps 1:1 to an agent tool.</span>
+              </div>
+              <a class="dl-link metal-btn" href="/don-bot/cards/card-03-liquid-ui-16x9.png" download="don-bot-03-liquid-ui.png">Download PNG</a>
+            </div>
+          </article>
+
+          <article class="social-card-item">
+            <img src="/don-bot/cards/og-don-bot.png" alt="Card 04: Shipped in the open." width="1200" height="630" loading="lazy">
+            <div class="social-card-meta">
+              <div>
+                <strong>Shipped in the open.</strong>
+                <span>Five architectural slices from SQLite WAL spine to Command Mode.</span>
+              </div>
+              <a class="dl-link metal-btn" href="/don-bot/cards/og-don-bot.png" download="don-bot-og.png">Download OG</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="snippet-box">
+          <pre class="snippet-code" id="share-blurb">DON-BOT — On-the-Run Dark Factory: Pi Durable, OTRDF, J-JEV 300ms Gates, Blind Vault, Telegram &amp; WhatsApp, and a 3-Pane Liquid Interface. Watch the build → https://don.aegntic.ai</pre>
+          <div class="copy-wrap">
+            <button type="button" class="copy-trigger metal-btn metal-btn--ice" command="--copy" commandfor="share-blurb" data-status="copy-status-share">
+              Copy Share Post
+            </button>
+            <span id="copy-status-share" class="copy-status" role="status"></span>
+          </div>
+        </div>
+        <figure class="stage-board">
+          <img src="/don-bot/storyboards/stage-05.webp" alt="Don-Bot stage 05 Network: 3x3 turntable storyboard, one full 360 degree rotation" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption><span class="stage-board__num">05</span><span class="stage-board__slash">/</span><span class="stage-board__name">NETWORK</span><span class="stage-board__line">Antennae rise, holograms bloom, and every node links back to the core.</span></figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      // 0. Dropdown navigation: close after choosing a link (native popover handles Esc / light-dismiss)
+      const donMenu = document.getElementById('don-menu');
+      donMenu?.addEventListener('click', (e) => {
+        if (e.target.closest('a') && typeof donMenu.hidePopover === 'function') donMenu.hidePopover();
+      });
+
+      // Shared footer links are root-relative; send them to the main site from this subdomain.
+      document.querySelectorAll('footer.ae-site-footer a[href^="/"]').forEach((a) => {
+        a.href = 'https://aegntic.ai' + a.getAttribute('href');
+        a.removeAttribute('data-enquiry');
+      });
+      // 0. Pre-00 Dramatic Unpredictable Pulse + Matrix Countdown + CTA Focus
+      const preHero = document.getElementById('pre-hero');
+      const countdownEl = document.getElementById('don-countdown');
+      const preHeroCta = document.getElementById('pre-hero-cta');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (preHero && !reducedMotion) {
+        let wordActive = false;
+        const schedulePulse = () => {
+          const delay = wordActive
+            ? 1700 + Math.floor(Math.random() * 2100)
+            : 2400 + Math.floor(Math.random() * 3400);
+          window.setTimeout(() => {
+            wordActive = !wordActive;
+            preHero.classList.toggle('is-word-active', wordActive);
+            schedulePulse();
+          }, delay);
+        };
+        schedulePulse();
+      }
+
+      if (countdownEl) {
+        const targetTs = new Date('2026-12-01T00:00:00Z').getTime();
+        const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
+        const toRoman = (num) => {
+          if (num <= 0) return 'N';
+          const map = [[50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
+          let res = '';
+          for (const [val, sym] of map) {
+            while (num >= val) { res += sym; num -= val; }
+          }
+          return res;
+        };
+        const matrixGlyphs = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
+        const glyphFor = (n) => matrixGlyphs[Math.abs(n) % matrixGlyphs.length];
+        const randGlyph = () => matrixGlyphs[Math.floor(Math.random() * matrixGlyphs.length)];
+        const glitchStr = (str, prob = 0.04) =>
+          str.split('').map((ch) => (Math.random() < prob ? randGlyph() : ch)).join('');
+        const tickCountdown = () => {
+          const now = Date.now();
+          const diff = Math.max(0, targetTs - now);
+          const dd = Math.floor(diff / 86400000);
+          const hh = Math.floor((diff % 86400000) / 3600000);
+          const mm = Math.floor((diff % 3600000) / 60000);
+          const ss = Math.floor((diff % 60000) / 1000);
+          const ns = Math.floor((diff % 1000) / 10);
+          const ddStr = glitchStr(pad(dd), 0.04);
+          const mmStr = toRoman(mm).replace(/X/g, (ch) => (Math.random() < 0.05 ? randGlyph() : ch));
+          const m1 = glyphFor(ss);
+          const m2 = glyphFor(ns);
+          countdownEl.innerHTML = `${ddStr}:${toRoman(hh)}:${mmStr}:${pad(ss)}:<span>${m1}${pad(ns)}${m2}</span>`;
+          if (!reducedMotion) window.requestAnimationFrame(tickCountdown);
+        };
+        tickCountdown();
+      }
+
+      if (preHeroCta) {
+        preHeroCta.addEventListener('click', (e) => {
+          const targetForm = document.getElementById('watch-form');
+          const targetInput = document.getElementById('watch-email');
+          if (targetForm) {
+            e.preventDefault();
+            targetForm.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+            if (targetInput) window.setTimeout(() => targetInput.focus({ preventScroll: true }), 350);
+          }
+        });
+      }
+
+      // 0b. Selective Share-to-Social Bars for Each Section
+      const sectionShares = [
+        { id: 'access', label: 'Share 00 // Access', text: 'One lead. Four specialists. Zero babysitting. Watch Don-Bot come online →' },
+        { id: 'architecture', label: 'Share 01 // Architecture', text: 'Built on a crash-proof SQLite WAL spine with 300ms System-One gates →' },
+        { id: 'interface', label: 'Share 02 // Liquid UI', text: '3-Pane Liquid Interface with 100% agentic access parity →' },
+        { id: 'roadmap', label: 'Share 03 // Build Log', text: 'Five architectural slices shipped in the open for Don-Bot →' },
+        { id: 'teaser-kit', label: 'Share 04 // Teaser Kit', text: 'Don-Bot On-the-Run Dark Factory press & social teaser kit →' }
+      ];
+      sectionShares.forEach(({ id, label, text }) => {
+        const sec = document.getElementById(id);
+        const container = sec ? sec.querySelector('.don-container') : null;
+        if (!container) return;
+        const url = encodeURIComponent(`https://don.aegntic.ai/#${id}`);
+        const encText = encodeURIComponent(text);
+        const bar = document.createElement('div');
+        bar.className = 'section-share';
+        const ico = {
+          x: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>',
+          linkedin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>',
+          facebook: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>',
+          tiktok: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>',
+          instagram: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/></svg>'
+        };
+        const targets = [
+          ['x', 'X', `https://twitter.com/intent/tweet?text=${encText}&url=${url}`],
+          ['linkedin', 'LinkedIn', `https://www.linkedin.com/sharing/share-offsite/?url=${url}`],
+          ['facebook', 'Facebook', `https://www.facebook.com/sharer/sharer.php?u=${url}`],
+          ['tiktok', 'TikTok', 'https://www.tiktok.com/upload'],
+          ['instagram', 'Instagram', 'https://www.instagram.com/']
+        ];
+        bar.setAttribute('role', 'group');
+        bar.setAttribute('aria-label', label);
+        bar.innerHTML = `<span class="section-share__label">${label}</span>` + targets.map(([key, name, href]) =>
+          `<a class="glass-share glass-share--${key}" href="${href}" target="_blank" rel="noopener" data-platform="${name}" aria-label="Share to ${name}" title="Share to ${name}">${ico[key]}</a>`
+        ).join('');
+        container.appendChild(bar);
+      });
+
+      // 0c. In-page little share pop-up (so visitors don't leave the page)
+      const shareDialog = document.createElement('dialog');
+      shareDialog.id = 'share-popup';
+      shareDialog.style.cssText = 'margin:auto;padding:1.35rem 1.5rem;max-width:440px;width:calc(100% - 2rem);background:#10151e;color:#f3f5f9;border:1px solid rgba(63,193,255,0.32);border-radius:14px;box-shadow:0 24px 64px rgba(0,0,0,0.85);font-family:var(--font-sans);';
+      shareDialog.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:0.85rem;">
+          <strong id="share-popup-title" style="font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:#3fc1ff;">Share Don-Bot</strong>
+          <button type="button" id="share-popup-close" style="background:none;border:1px solid var(--ae-line);color:#98a2b3;border-radius:6px;padding:0.25rem 0.55rem;cursor:pointer;font-size:0.75rem;">Esc</button>
+        </div>
+        <textarea id="share-popup-text" readonly rows="3" style="width:100%;background:#090c11;color:#f3f5f9;border:1px solid var(--ae-line);border-radius:8px;padding:0.7rem;font-family:var(--font-mono);font-size:0.78rem;line-height:1.45;resize:none;margin-bottom:0.9rem;"></textarea>
+        <div style="display:flex;flex-wrap:wrap;gap:0.6rem;align-items:center;justify-content:space-between;">
+          <button type="button" id="share-popup-copy" class="metal-btn metal-btn--ice" style="padding:0.5rem 0.9rem;font-size:0.72rem;">Copy Post &amp; Link</button>
+          <a id="share-popup-ext" href="#" target="_blank" rel="noopener" class="dl-link metal-btn" style="padding:0.5rem 0.9rem;font-size:0.72rem;">Open Platform ↗</a>
+        </div>
+      `;
+      document.body.appendChild(shareDialog);
+
+      const sharePopupTitle = document.getElementById('share-popup-title');
+      const sharePopupText = document.getElementById('share-popup-text');
+      const sharePopupCopy = document.getElementById('share-popup-copy');
+      const sharePopupExt = document.getElementById('share-popup-ext');
+      const sharePopupClose = document.getElementById('share-popup-close');
+
+      if (sharePopupClose) sharePopupClose.addEventListener('click', () => shareDialog.close());
+      shareDialog.addEventListener('click', (e) => {
+        if (e.target === shareDialog) shareDialog.close();
+      });
+      if (sharePopupCopy) {
+        sharePopupCopy.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(sharePopupText.value);
+            sharePopupCopy.textContent = 'Copied!';
+            window.setTimeout(() => { sharePopupCopy.textContent = 'Copy Post & Link'; }, 1600);
+          } catch (_) {}
+        });
+      }
+
+      document.querySelectorAll('.section-share a[href], #teaser-kit .snippet-box a[target="_blank"]').forEach((link) => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const href = link.getAttribute('href') || 'https://don.aegntic.ai';
+          const platform = link.dataset.platform || (link.textContent || 'Social').replace('↗', '').trim();
+          const sec = link.closest('section');
+          const secId = sec && sec.id ? `#${sec.id}` : '';
+          sharePopupTitle.textContent = `Share to ${platform}`;
+          sharePopupText.value = `DON-BOT — On-the-Run Dark Factory: https://don.aegntic.ai/${secId}`;
+          sharePopupExt.href = href;
+          sharePopupExt.textContent = `Open ${platform} ↗`;
+          shareDialog.showModal();
+        });
+      });
+
+      // 1. Validate Input After Interaction + Accessible Live Form Submission
+      const form = document.getElementById('watch-form');
+      const emailInput = document.getElementById('watch-email');
+      const liveRegion = document.getElementById('form-live-region');
+      const statusBanner = document.getElementById('form-status-banner');
+      const submitBtn = document.getElementById('watch-submit');
+
+      function syncAria(input) {
+        const errId = input.dataset.error;
+        const errEl = document.getElementById(errId);
+        const invalid = !input.validity.valid;
+        input.setAttribute('aria-invalid', String(invalid));
+        if (errEl) errEl.hidden = !invalid;
+        const base = (input.getAttribute('aria-describedby') || '')
+          .split(' ')
+          .filter((id) => id && id !== errId);
+        if (invalid && errId) base.push(errId);
+        input.setAttribute('aria-describedby', base.join(' '));
+      }
+
+      if (emailInput) {
+        const supportsUserInvalid = CSS.supports('selector(:user-invalid)');
+        emailInput.addEventListener('blur', () => {
+          if (emailInput.value.length > 0) {
+            if (!supportsUserInvalid) {
+              emailInput.classList.toggle('user-invalid-fallback', !emailInput.validity.valid);
+              emailInput.classList.toggle('user-valid-fallback', emailInput.validity.valid);
+            }
+            syncAria(emailInput);
+          }
+        });
+        emailInput.addEventListener('input', () => {
+          if (emailInput.getAttribute('aria-invalid') === 'true') {
+            syncAria(emailInput);
+          }
+        });
+      }
+
+      if (form && emailInput) {
+        const PENDING_KEY = 'don_bot_pending_email';
+        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        const showRecoveryBanner = (pendingEmail, reason) => {
+          statusBanner.innerHTML = `
+            <span>${reason} Saved <strong>${pendingEmail.replace(/[<>&"']/g, '')}</strong> locally.</span>
+            <span style="display:inline-flex;gap:0.5rem;margin-left:0.65rem;flex-wrap:wrap;">
+              <button type="button" class="dl-link metal-btn metal-btn--ice" id="watch-retry-btn" style="padding:0.25rem 0.65rem;font-size:0.68rem;">Retry Now</button>
+              <a class="dl-link metal-btn" href="https://github.com/aegntic/don-bot" target="_blank" rel="noopener" style="padding:0.25rem 0.65rem;font-size:0.68rem;">Watch on GitHub ↗</a>
+            </span>
+          `;
+          statusBanner.className = 'form-status-banner is-ok';
+          statusBanner.hidden = false;
+          const retryBtn = document.getElementById('watch-retry-btn');
+          if (retryBtn) {
+            retryBtn.addEventListener('click', () => {
+              emailInput.value = pendingEmail;
+              form.requestSubmit();
+            });
+          }
+        };
+
+        try {
+          const saved = JSON.parse(localStorage.getItem(PENDING_KEY) || 'null');
+          if (saved && saved.email && !emailInput.value) {
+            emailInput.value = saved.email;
+            showRecoveryBanner(saved.email, 'Previous dispatch pending.');
+          }
+        } catch (_) {}
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (submitBtn.getAttribute('aria-disabled') === 'true') return;
+
+          const trimmed = emailInput.value.trim();
+          emailInput.value = trimmed;
+          syncAria(emailInput);
+
+          if (!emailInput.validity.valid || !EMAIL_RE.test(trimmed)) {
+            emailInput.setAttribute('aria-invalid', 'true');
+            emailInput.classList.add('user-invalid-fallback');
+            emailInput.focus();
+            if (liveRegion) {
+              liveRegion.textContent = 'Error: Please enter a valid email address.';
+            }
+            return;
+          }
+
+          submitBtn.setAttribute('aria-disabled', 'true');
+          const origLabel = submitBtn.textContent;
+          submitBtn.textContent = 'Registering...';
+
+          const controller = new AbortController();
+          const timer = window.setTimeout(() => controller.abort(), 8000);
+
+          try {
+            const res = await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              signal: controller.signal,
+              body: JSON.stringify({
+                email: trimmed,
+                source: 'don.aegntic.ai'
+              })
+            });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok) {
+              try { localStorage.removeItem(PENDING_KEY); } catch (_) {}
+              const msg = data.status === 'exists'
+                ? 'You are already on the Don-Bot build dispatch.'
+                : 'You are in. We will notify you as each Don-Bot milestone lands.';
+              statusBanner.textContent = msg;
+              statusBanner.className = 'form-status-banner is-ok';
+              statusBanner.hidden = false;
+              if (liveRegion) liveRegion.textContent = msg;
+              form.reset();
+            } else {
+              throw new Error(data.error || 'Dispatch endpoint unavailable.');
+            }
+          } catch (err) {
+            try {
+              localStorage.setItem(PENDING_KEY, JSON.stringify({ email: trimmed, ts: Date.now() }));
+            } catch (_) {}
+            showRecoveryBanner(trimmed, 'Endpoint unreachable —');
+            if (liveRegion) liveRegion.textContent = 'Endpoint unreachable. Email saved locally with retry option.';
+          } finally {
+            window.clearTimeout(timer);
+            submitBtn.removeAttribute('aria-disabled');
+            submitBtn.textContent = origLabel;
+          }
+        });
+      }
+
+      // 2. Scoped Component Transitions for the 4 Architectural Pillars
+      const PILLARS = {
+        team: {
+          title: '1 Lead Orchestrator + 4 Durable Specialists',
+          desc: "Instead of spawning 50 ephemeral subagents that burn tokens and overwrite each other's files, Don-Bot runs a persistent 5-agent roster over SQLite message rooms. Before writing code, the team conducts a 3-round architectural negotiation and autonomously tunes its own Core 4 parameters.",
+          bullets: [
+            '<strong>Social Contract Before Code:</strong> Specialists agree on contracts, schemas, and file boundaries in a room before taking a single-writer lease.',
+            '<strong>Autonomous Core 4 Self-Tuning:</strong> Each specialist dynamically downshifts or upgrades its Model, Thinking Effort, Context Window, and Skillset per milestone.',
+            '<strong>Bounded Subagent Fan-Out:</strong> Specialists can spawn up to 3 parallel workers with a strict $0.15 cost cap for parallel research or verification.'
+          ],
+          diagram: `<div><span class="hl">TEAM ROOM // 3-ROUND SELF-CONFIGURATION</span></div>
+<div>──────────────────────────────────────────────</div>
+<div>[Lead Orchestrator] &rarr; Opens room #arch-sync</div>
+<div>  ├── <span class="ok">API Keeper</span>      (Workhorse A · x-high · Lease)</div>
+<div>  ├── <span class="ok">Pipeline Forge</span>  (Workhorse A · high   · 3x fanout)</div>
+<div>  ├── <span class="ok">Browser/UI QA</span>   (Workhorse B · medium · -68% cost)</div>
+<div>  └── <span class="ok">Memory Curator</span>  (Fast Tier   · low    · Lifebank)</div>
+<div>──────────────────────────────────────────────</div>
+<div><span class="ok">STATUS:</span> Social contract locked · 0 file collisions</div>`
+        },
+        spine: {
+          title: 'Crash-Proof SQLite WAL Spine & Self-Compaction',
+          desc: 'Every agent turn, tool invocation, and room post is checkpointed inside a local SQLite WAL database. If the process receives SIGKILL mid-tool, Don-Bot resumes from the exact once() step memo without re-running completed side effects.',
+          bullets: [
+            '<strong>Zero Docker-Postgres Bloat:</strong> Single-binary local SQLite WAL with sqlite-vec embeddings and FTS5 full-text search.',
+            '<strong>Proactive Self-Compaction:</strong> A post-turn hook warns the agent at 10% and 20% context usage and enforces a structured note_to_self handoff at 30%.',
+            '<strong>Single-Writer Lease Lock:</strong> Prevents concurrent specialists from clobbering shared files during parallel execution.'
+          ],
+          diagram: `<div><span class="hl">SQLITE WAL SPINE // STEP CHECKPOINTING</span></div>
+<div>──────────────────────────────────────────────</div>
+<div>step_01: once("schema_migration") &rarr; <span class="ok">COMMITTED</span></div>
+<div>step_02: once("writer_lease:api") &rarr; <span class="ok">LOCKED</span></div>
+<div>step_03: context_gauge = 18.4%    &rarr; <span class="ok">HEALTHY</span></div>
+<div>  └── auto_compact threshold      &rarr; 30.0% (note_to_self)</div>
+<div>──────────────────────────────────────────────</div>
+<div><span class="ok">RECOVERY:</span> Instant resume after crash or restart</div>`
+        },
+        verify: {
+          title: '300ms Jev Gates, Blind Vault & Sibling Verifier',
+          desc: 'High-autonomy agents require deterministic boundaries. Every high-impact tool call passes through a 300ms System-One calibrated gate, credentials stay inside a Blind Vault, and an un-promptable sibling Verifier inspects the final output before completion.',
+          bullets: [
+            '<strong>300ms System-One Gate:</strong> Logprob-calibrated yes/no and rubric checks evaluate tool safety in 280ms for $0.0007.',
+            '<strong>Blind Credential Vault:</strong> Agents pass opaque vault_ref handles; secrets are injected inside the execution boundary and scrubbed from stdout.',
+            '<strong>Top-Down Sibling Verifier:</strong> Read-only observer extracts atomic claims and runs zero-token code checks before allowing task completion.'
+          ],
+          diagram: `<div><span class="hl">VERIFICATION PIPELINE // ZERO HALLUCINATED DONE</span></div>
+<div>──────────────────────────────────────────────</div>
+<div>[Pre-Tool]  Jev noul() Gate   &rarr; <span class="ok">ALLOW (p=0.98, 280ms)</span></div>
+<div>[Out-Band]  Owner Quote Check &rarr; <span class="ok">VERIFIED IN ROOM LOG</span></div>
+<div>[Sandbox]   Blind Vault       &rarr; <span class="ok">SECRET INJECTED &amp; SCRUBBED</span></div>
+<div>[On-Stop]   Sibling Verifier  &rarr; <span class="ok">14/14 ATOMIC CLAIMS PASS</span></div>
+<div>──────────────────────────────────────────────</div>
+<div><span class="ok">VERDICT:</span> Promoted to user canvas</div>`
+        },
+        liquid: {
+          title: "3-Pane Liquid Interface & Personal 'Me'-Mode Channels",
+          desc: "Work from the 120fps desktop cockpit or steer from your pocket. In Personal 'Me'-Mode, Don-Bot operates on your own Telegram and WhatsApp sessions with an outbound pacer and 2-zone trust firewall.",
+          bullets: [
+            '<strong>3-Pane Cockpit:</strong> Left Lane List, Center Generative UI + live Xvfb screen takeover + run trace waterfall, Right Near-Loop Decision Deck.',
+            '<strong>100% Agentic Access Parity:</strong> Every UI control has a matching agent tool; press ~ to jump directly into any specialist lane.',
+            '<strong>Personal Pocket Control:</strong> Create and join Telegram supergroups and Forum Topics as yourself with outbound approval gates.'
+          ],
+          diagram: `<div><span class="hl">3-PANE COCKPIT + PERSONAL 'ME'-MODE BRIDGE</span></div>
+<div>──────────────────────────────────────────────</div>
+<div>Pane 01 (Left)   &rarr; Artifacts, Rooms, Core 4 Gauge</div>
+<div>Pane 02 (Center) &rarr; GenUI · Xvfb Screen · Run Trace</div>
+<div>Pane 03 (Right)  &rarr; Decision Deck · ~ Specialist Switch</div>
+<div>Pocket Bridge    &rarr; <span class="ok">MTProto 'Me'-Mode + Pacer Guard</span></div>
+<div>──────────────────────────────────────────────</div>
+<div><span class="ok">LATENCY:</span> 120fps UI · Instant phone-to-canvas sync</div>`
+        }
+      };
+
+      const stageEl = document.getElementById('pillar-panel');
+      const copyEl = document.getElementById('pillar-copy');
+      const diagEl = document.getElementById('pillar-diagram');
+      const tabs = document.querySelectorAll('.pillar-tab');
+
+      function renderPillar(key, tabEl) {
+        const data = PILLARS[key];
+        if (!data || !stageEl) return;
+        const applyDOM = () => {
+          tabs.forEach((t) => t.setAttribute('aria-selected', String(t === tabEl)));
+          stageEl.setAttribute('aria-labelledby', tabEl.id);
+          copyEl.innerHTML = `
+            <h3>${data.title}</h3>
+            <p>${data.desc}</p>
+            <ul class="spec-list">${data.bullets.map((b) => `<li>${b}</li>`).join('')}</ul>
+          `;
+          diagEl.innerHTML = data.diagram;
+        };
+
+        if ('startViewTransition' in Element.prototype && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          const transition = stageEl.startViewTransition(applyDOM);
+          transition.ready.catch(() => {});
+        } else {
+          applyDOM();
+        }
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => renderPillar(tab.dataset.pillar, tab));
+      });
+
+      // 3. Motion Pause / Play Control (Modern Web Guidance: motion)
+      const motionBtn = document.getElementById('motion-toggle');
+      if (motionBtn) {
+        motionBtn.addEventListener('click', () => {
+          const paused = document.body.classList.toggle('motion-paused');
+          motionBtn.textContent = paused ? 'Play live pulse' : 'Pause live pulse';
+        });
+      }
+
+      // 4. Invoker Commands Copy Button + Fallback (Modern Web Guidance: copy-button)
+      let flip = false;
+      const statusTimers = new WeakMap();
+
+      async function handleCopy(targetEl, triggerBtn) {
+        if (!targetEl) return;
+        try {
+          await navigator.clipboard.writeText(targetEl.textContent.trim());
+          const statusId = triggerBtn.getAttribute('data-status');
+          const statusEl = statusId ? document.getElementById(statusId) : null;
+          if (statusEl) {
+            flip = !flip;
+            statusEl.textContent = 'Copied!' + (flip ? '\u00A0' : '');
+            statusEl.classList.add('is-visible');
+            clearTimeout(statusTimers.get(statusEl));
+            statusTimers.set(
+              statusEl,
+              setTimeout(() => {
+                statusEl.classList.remove('is-visible');
+                statusEl.textContent = '';
+              }, 2000)
+            );
+          }
+        } catch (err) {
+          console.error('Copy failed:', err);
+        }
+      }
+
+      if ('CommandEvent' in window) {
+        document.addEventListener('command', (e) => {
+          if (e.command === '--copy') {
+            handleCopy(e.target, e.source);
+          }
+        });
+      } else {
+        document.querySelectorAll('[command="--copy"]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const target = document.getElementById(btn.getAttribute('commandfor'));
+            handleCopy(target, btn);
+          });
+        });
+      }
+    })();
+  </script>
+
+    <section class="don-world don-world--alt" id="dispatch-footer" aria-label="Subscribe to Don-Bot Dispatch" style="padding-top:3rem;padding-bottom:3rem;">
+      <div class="don-container" style="max-width:640px;margin:0 auto;">
+        <div class="watch-card" style="padding:1.5rem 1.75rem;">
+          <div class="world-eyebrow" style="margin-bottom:0.4rem">BUILD IN PUBLIC DISPATCH</div>
+          <h2 style="font-size:1.35rem;margin-bottom:0.5rem;">Get notified as each slice lands.</h2>
+          <form class="footer-watch-form" onsubmit="event.preventDefault(); const i=this.querySelector('input'); const b=this.querySelector('button'); if(i&&i.value.trim()){const m=document.getElementById('watch-email'); if(m){m.value=i.value.trim(); document.getElementById('watch-form').requestSubmit(); b.textContent='Sent ✓';}}" style="display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:0.75rem;">
+            <input type="email" required placeholder="you@domain.com" aria-label="Email address" style="flex:1;min-width:200px;">
+            <button type="submit" class="metal-btn metal-btn--orange">Notify Me →</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  <script>
+    // Keep the menu's "here" marker on the section currently in view.
+    (() => {
+      const links = Array.from(document.querySelectorAll('.don-menu a[href^="#"]'));
+      const sections = links
+        .map((a) => document.getElementById(a.getAttribute('href').slice(1)))
+        .filter(Boolean);
+      if (!sections.length) return;
+      let current = null;
+      const setCurrent = (id) => {
+        if (id === current) return;
+        current = id;
+        links.forEach((a) => {
+          if (a.getAttribute('href') === `#${id}`) a.setAttribute('aria-current', 'location');
+          else a.removeAttribute('aria-current');
+        });
+      };
+      const update = () => {
+        const probe = window.innerHeight * 0.35;
+        let active = sections[0].id;
+        for (const sec of sections) {
+          if (sec.getBoundingClientRect().top <= probe) active = sec.id;
+        }
+        setCurrent(active);
+      };
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { update(); ticking = false; });
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      window.addEventListener('hashchange', update);
+      window.addEventListener('load', () => requestAnimationFrame(update));
+      update();
+    })();
+  </script>
+<footer class="ae-site-footer" aria-label="aegntic footer">
+  <div class="ae-site-footer__signature">
+    <a class="ae-site-footer__mark" href="/" aria-label="aegntic home">
+      <img class="ae-site-footer__flat" src="/ae-logo.webp" width="400" height="400" alt="" loading="lazy">
+      <img class="ae-site-footer__chrome" src="/assets/ae-logo-FINAL-nb.png" width="1254" height="1254" alt="" loading="lazy">
+    </a>
+    <div class="ae-site-footer__voice"><p>Unlimited Insight.<br>Zero Knowledge.</p><p class="ae-site-footer__triad">iii / unltd; insight : : innovation : : integrity : : iv / zero knowledge</p><a href="/#contact" data-enquiry="Something else">Work with me <span aria-hidden="true">↗</span></a></div>
+  </div>
+  <div class="ae-footer-navigation"><nav class="ae-site-footer__links" aria-label="Footer navigation"><a class="ae-menu__link" data-footer-key="home" href="/">/home</a><a class="ae-menu__link" data-footer-key="systems" href="/systems/">/systems</a><a class="ae-menu__link" data-footer-key="agents" href="/agents/">/agents</a><a class="ae-menu__link" data-footer-key="plugins" href="/plugins/">/plugins</a><a class="ae-menu__link" data-footer-key="products" href="/products/">/products</a><a class="ae-menu__link" data-footer-key="contact" href="/#contact">/contact</a></nav></div>
+  <nav class="ae-site-footer__secondary" aria-label="More from aegntic"><a href="/research/">Research</a><a href="/blog/">Writing</a><a href="/projects/">Projects</a><a href="/privacy/">Privacy</a></nav>
+  <div class="ae-site-footer__colophon"><span>aegntic.ai</span><span>© 2026 Mattae Cooper</span><a href="https://github.com/aegntic">GitHub <span aria-hidden="true">↗</span></a></div>
+</footer>
+</body>
+</html>
