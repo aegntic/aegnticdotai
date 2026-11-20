@@ -143,7 +143,7 @@ Use this at the end of each call. Score each builder from 1 to 4 in every area, 
 
 **Deal-breakers (automatic fail), whatever the score:** the builder asks for your admin password; they keep keys or accounts in their name; they cannot show how to stop the agent; they will not name who does the work.
 
-A branded downloadable scorecard is coming, so you can use the same sheet off the page. <!-- TODO: scorecard PDF link once Designer delivers -->
+A branded [downloadable scorecard](/downloads/how-to-vet-an-ai-agent-builder-scorecard.pdf) is available, so you can use the same sheet off the page.
 
 Want us to score our own proposal against this checklist? Send your one-page brief through [aegntic.ai](https://aegntic.ai) and we will say honestly whether you need an agent at all. We start with a paid pilot, from US$5,500.
 
