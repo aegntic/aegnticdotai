@@ -5,7 +5,7 @@ pubDate: "Nov 15 2026"
 heroImage: "../../assets/blog-placeholder-1.jpg"
 tags: ['AI', 'agents', 'hiring', 'security']
 slug: "/blog/how-to-vet-an-ai-agent-builder/"
-author: "[AUTHOR: owner to confirm]"
+author: "Mattae Cooper, Lead Architect at aegntic labs"
 status: draft
 draft: true
 published: false
@@ -14,6 +14,8 @@ published: false
 ---
 
 # How to Vet an AI Agent Builder Before You Hire
+
+*Mattae Cooper, Lead Architect at aegntic labs*
 
 > To vet an AI agent builder, ask to see an agent they run in production, then question how it handles access. A good builder gives the agent its own scoped login, puts risky actions behind an approval the agent can't reach, logs every tool call, tests a kill switch and leaves every key in your name.
 
@@ -39,7 +41,7 @@ Hiring managers say the same thing in public threads: asking what broke after de
 
 Also ask whether they have ever told a client not to build an agent. A builder with no such story will overbuild yours. The honest answer is sometimes that a checklist or a simpler script would do.
 
-[CASE STUDY: owner to supply] No project names or results are claimed here until the owner says which work may be named, and with what permission.
+We run Hermes, our own agent fleet, not a system we built for a client. It does scheduled work every day. In September 2026 the processes stayed up, and the scheduled turns failed quietly. The primary model hit a usage limit. The free fallbacks failed too. We found it in per-agent error logs, not on a dashboard. The same day we changed the fallback policy. We did not buy more API credit. That is the kind of story to ask a builder for: what broke after it went live, and how they noticed.
 
 ## Credentials and access: the section most guides skip
 
@@ -64,8 +66,6 @@ Prefer short-lived, scoped keys over permanent all-access keys. That matches NIS
 Watch how they ask for access during the sales process. A builder who asks you to paste an admin password into email or chat will build an agent that handles secrets the same way. Ask for an invite, a vault or a temporary scoped credential. If they call that slow, believe them: they are telling you how they work.
 
 [Our note on security for AI applications](https://aegntic.ai/blog/security-for-ai-applications/) is companion reading here. Access control and audit logs are part of the build, not extras added after the demo.
-
-We will only claim our own credential practice once the owner confirms it. [CREDENTIAL PRACTICE: owner to confirm]
 
 ### Fewer tools, narrower tools
 
@@ -93,7 +93,7 @@ Add spend caps and loop limits so a stuck agent cannot run up a bill overnight. 
 
 A longer page on watching what the agent actually does is planned. <!-- FUTURE PAGE: idea 17, logs, alerts and a tested kill switch -->
 
-[KILL SWITCH AND LOGS IN OUR BUILDS: owner to confirm] We will offer a redacted trace and a stop demo in a pilot only if that is something we can actually show.
+Every aegntic pilot from now on includes a stop demo and a redacted log of a real run.
 
 ## Testing before it touches real customers
 
@@ -115,7 +115,7 @@ If the accounts sit with the builder, leaving means rebuilding. Ownership is not
 
 A freelancer is a fair fit for one narrow workflow you can check yourself. An agency, or an independent senior engineer, is the better fit when the agent will write to production systems or talk to customers.
 
-Do not treat a published rate card as a substitute for that judgement. [PRICE: owner to confirm] aegntic.ai is not publishing a price band in this article.
+Do not treat a published rate card as a substitute for that judgement. Our paid pilots start at US$5,500.
 
 For market context only, [Gigabit's October 2026 AI Services Price Index](https://gigabit.agency/research/ai-services-price-index/) (Gigabit sells these services, and says so) surveyed published prices from 122 firms. Half of those firms publish no price. Of the prices that were published, the median entry price was US$20,000 for a production agent and US$12,000 for a pilot. That is one firm's survey of published figures, not a market rate and not a quote.
 
@@ -143,9 +143,9 @@ Use this at the end of each call. Score each builder from 1 to 4 in every area, 
 
 **Deal-breakers (automatic fail), whatever the score:** the builder asks for your admin password; they keep keys or accounts in their name; they cannot show how to stop the agent; they will not name who does the work.
 
-If you want a downloadable sheet as well as the table above, that is an owner decision. [SCORECARD DOWNLOAD: owner to confirm]
+A branded downloadable scorecard is coming, so you can use the same sheet off the page. <!-- TODO: scorecard PDF link once Designer delivers -->
 
-Want us to score our own proposal against this checklist? Send your one-page brief and we will say honestly whether you need an agent at all. [CONTACT URL: owner to confirm] [ENGAGEMENT MODEL: owner to confirm]
+Want us to score our own proposal against this checklist? Send your one-page brief through [aegntic.ai](https://aegntic.ai) and we will say honestly whether you need an agent at all. We start with a paid pilot, from US$5,500.
 
 ## Red flags that should end the conversation
 
@@ -166,7 +166,7 @@ Write the one-page brief, including the "never without a person" line. Use the s
 
 After you hire, the next job is a careful rollout: one job, its own login, draft-only access and a regular review. A page on that first rollout is planned. <!-- FUTURE PAGE: idea 26, your first AI agent rollout --> A dedicated custom-build page is also planned, and should become the lasting destination for this offer once it exists. <!-- FUTURE PAGE: idea 3, custom AI agent build service page -->
 
-Want us to score our own proposal against this checklist? Send the brief. The useful first answer is sometimes no. [CONTACT URL: owner to confirm]
+Want us to score our own proposal against this checklist? Send the brief through [aegntic.ai](https://aegntic.ai). The useful first answer is sometimes no. We start with a paid pilot, from US$5,500.
 
 ## FAQ
 
@@ -180,7 +180,7 @@ The biggest red flag is a builder who wants your admin password, or who plans to
 
 ### Should I hire a freelancer or an agency to build an AI agent?
 
-Hire a freelancer for one narrow workflow you can check yourself. Choose an agency or an independent senior engineer when the agent will write to production systems or talk to customers. Price is a separate question from the shape of the team, and this page does not publish an aegntic.ai rate.
+Hire a freelancer for one narrow workflow you can check yourself. Choose an agency or an independent senior engineer when the agent will write to production systems or talk to customers. Price is a separate question from the shape of the team. Our paid pilots start at US$5,500, and that starting figure is not a substitute for judging the fit.
 
 ### Who should own the API keys, accounts and code for my AI agent?
 
