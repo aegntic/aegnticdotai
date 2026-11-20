@@ -26,6 +26,7 @@
 
 ## Research & blog
 Full archive: https://aegntic.ai/research/ and https://aegntic.ai/blog/
+- How to Vet an AI Agent Builder Before You Hire (https://aegntic.ai/blog/how-to-vet-an-ai-agent-builder/)
 - Why We Deleted 125 Blog Posts and Started Over: The Quality Revolution (https://aegntic.ai/blog/why-we-deleted-125-blog-posts-and-started-over/)
 - Building Reusable AI Agent Skills: A Complete Guide (https://aegntic.ai/blog/building-ai-agent-skills/)
 - The FPEF Framework: A Systematic Approach to Debugging Complex Systems (https://aegntic.ai/blog/fpef-debugging-framework/)

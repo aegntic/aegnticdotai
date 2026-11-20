@@ -77,6 +77,102 @@ function parseFrontmatter(raw) {
   return { meta, body };
 }
 
+function authorLd(authorField = '') {
+  const person = {
+    '@type': 'Person',
+    name: 'Mattae Cooper',
+    url: SITE,
+  };
+  const raw = String(authorField || '').trim();
+  if (!raw) return person;
+  const comma = raw.indexOf(',');
+  if (comma === -1) {
+    person.name = raw;
+    return person;
+  }
+  person.name = raw.slice(0, comma).trim();
+  const jobTitle = raw.slice(comma + 1).trim();
+  if (jobTitle) person.jobTitle = jobTitle;
+  return person;
+}
+
+function plainFaqText(markdown) {
+  return String(markdown)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 ($2)')
+    .replace(/[*_]{1,3}([^*_]+)[*_]{1,3}/g, '$1')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function extractFaqs(markdown) {
+  const lines = String(markdown).split('\n');
+  const start = lines.findIndex((line) => line.trim() === '## FAQ');
+  if (start === -1) return [];
+  const faqs = [];
+  let question = '';
+  let answer = [];
+  const flush = () => {
+    const text = plainFaqText(answer.join('\n'));
+    if (question && text) faqs.push({ question: plainFaqText(question), text });
+    question = '';
+    answer = [];
+  };
+  for (const line of lines.slice(start + 1)) {
+    if (/^## /.test(line)) break;
+    const heading = line.match(/^###\s+(.+)$/);
+    if (heading) {
+      flush();
+      question = heading[1].trim();
+      continue;
+    }
+    if (question) answer.push(line);
+  }
+  flush();
+  return faqs;
+}
+
+function blogJsonLd(post) {
+  const url = `${SITE}/blog/${post.slug}/`;
+  const posting = {
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description || post.title,
+    datePublished: post.date ? post.date.toISOString().slice(0, 10) : undefined,
+    author: authorLd(post.author),
+    mainEntityOfPage: url,
+  };
+  const faqs = extractFaqs(post.body);
+  if (!faqs.length) {
+    return {
+      '@context': 'https://schema.org',
+      ...posting,
+    };
+  }
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      posting,
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog/` },
+          { '@type': 'ListItem', position: 3, name: post.title, item: url },
+        ],
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: { '@type': 'Answer', text: faq.text },
+        })),
+      },
+    ],
+  };
+}
+
 function mdToHtml(markdown) {
   return execFileSync(
     'pandoc',
@@ -162,7 +258,18 @@ function loadPosts() {
     const date = parseDate(meta.pubDate || '');
     const retrospective = retrospectiveDate(meta.retrospectiveDate);
     if (retrospective && (!date || retrospective > date)) throw new Error(`Invalid publication date for ${slug}`);
-    return { slug, title, description, tags, date, retrospective, pubDate: meta.pubDate || '', body, raw };
+    return {
+      slug,
+      title,
+      description,
+      tags,
+      date,
+      retrospective,
+      pubDate: meta.pubDate || '',
+      author: meta.author || '',
+      body,
+      raw,
+    };
   });
   posts.sort(postOrder);
   return posts;
@@ -294,19 +401,7 @@ function buildBlog(posts) {
         canonical: `${SITE}/blog/${p.slug}/`,
         body,
         active: 'blog',
-        jsonLd: {
-          '@context': 'https://schema.org',
-          '@type': 'BlogPosting',
-          headline: p.title,
-          description: p.description || p.title,
-          datePublished: p.date ? p.date.toISOString().slice(0, 10) : undefined,
-          author: {
-            '@type': 'Person',
-            name: 'Mattae Cooper',
-            url: SITE,
-          },
-          mainEntityOfPage: `${SITE}/blog/${p.slug}/`,
-        },
+        jsonLd: blogJsonLd(p),
       }),
     );
   }
