@@ -1,16 +1,9 @@
 ---
-title: "How to Vet an AI Agent Builder Before You Hire"
-description: "A buyer's checklist for hiring an AI agent builder: production proof, scoped logins, human approval, audit logs, a tested kill switch and who owns the keys."
-pubDate: "Nov 15 2026"
-heroImage: "../../assets/blog-placeholder-1.jpg"
+title: 'How to Vet an AI Agent Builder Before You Hire'
+description: 'A buyer's checklist for hiring an AI agent builder: production proof, scoped logins, human approval, audit logs, a tested kill switch and who owns the keys.'
+pubDate: 'Nov 21 2026'
 tags: ['AI', 'agents', 'hiring', 'security']
-slug: "/blog/how-to-vet-an-ai-agent-builder/"
-author: "Mattae Cooper, Lead Architect at aegntic labs"
-status: draft
-draft: true
-published: false
-# DRAFT ONLY. scripts/build-site.mjs reads public/content/blog/*.md and has no draft flag.
-# This file stays outside that directory so a merge cannot publish, list, or sitemap it.
+author: 'Mattae Cooper, Lead Architect at aegntic labs'
 ---
 
 # How to Vet an AI Agent Builder Before You Hire
