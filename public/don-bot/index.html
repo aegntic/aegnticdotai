@@ -1861,6 +1861,38 @@
     .snippet-box .metal-btn, .social-card-meta .metal-btn {
       flex: none;
     }
+    .stage-board {
+      margin: clamp(2.5rem, 5vw, 4rem) 0 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(63, 193, 255, 0.4), rgba(255, 90, 31, 0.28) 60%, rgba(255, 255, 255, 0.1));
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+    .stage-board img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 15px 15px 0 0;
+      background: #05070b;
+    }
+    .stage-board figcaption {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem 0.75rem;
+      padding: 1rem 1.25rem;
+      background: #0c1016;
+      border-radius: 0 0 15px 15px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .stage-board__num { color: #ffffff; font-weight: 800; }
+    .stage-board__slash { color: var(--ae-signal); font-weight: 800; }
+    .stage-board__name { color: var(--ae-ice); font-weight: 700; }
+    .stage-board__line { color: var(--ae-muted); text-transform: none; letter-spacing: 0.02em; font-family: var(--font-sans); font-size: 0.9rem; flex-basis: 100%; }
   </style>
 </head>
 <body class="don-dark-theme">
@@ -1983,6 +2015,10 @@
 
 
         </div>
+        <figure class="stage-board">
+          <img src="/don-bot/storyboards/stage-01.webp" alt="Don-Bot stage 01 Origins: 3x3 turntable storyboard, one full 360 degree rotation" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption><span class="stage-board__num">01</span><span class="stage-board__slash">/</span><span class="stage-board__name">ORIGINS</span><span class="stage-board__line">Base unit. Clean slate. The core boots and the lens finds focus.</span></figcaption>
+        </figure>
       </div>
     </section>
 
@@ -2045,6 +2081,10 @@
             <div><span class="ok">STATUS:</span> Social contract locked · 0 file collisions</div>
           </div>
         </div>
+        <figure class="stage-board">
+          <img src="/don-bot/storyboards/stage-02.webp" alt="Don-Bot stage 02 Upgrade: 3x3 turntable storyboard, one full 360 degree rotation" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption><span class="stage-board__num">02</span><span class="stage-board__slash">/</span><span class="stage-board__name">UPGRADE</span><span class="stage-board__line">Modular armor locks on, panel by panel, scanned and sealed.</span></figcaption>
+        </figure>
       </div>
     </section>
 
@@ -2128,6 +2168,10 @@
             </div>
           </div>
         </div>
+        <figure class="stage-board">
+          <img src="/don-bot/storyboards/stage-03.webp" alt="Don-Bot stage 03 Augment: 3x3 turntable storyboard, one full 360 degree rotation" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption><span class="stage-board__num">03</span><span class="stage-board__slash">/</span><span class="stage-board__name">AUGMENT</span><span class="stage-board__line">Gold-trimmed plating, a live control core, and claws that extend on command.</span></figcaption>
+        </figure>
       </div>
     </section>
 
@@ -2252,6 +2296,10 @@
             <span id="copy-status-clone" class="copy-status" role="status"></span>
           </div>
         </div>
+        <figure class="stage-board">
+          <img src="/don-bot/storyboards/stage-04.webp" alt="Don-Bot stage 04 Arm: 3x3 turntable storyboard, one full 360 degree rotation" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption><span class="stage-board__num">04</span><span class="stage-board__slash">/</span><span class="stage-board__name">ARM</span><span class="stage-board__line">Tactical harness, field kit, and plasma-lit claws. Field ready.</span></figcaption>
+        </figure>
       </div>
     </section>
 
@@ -2325,6 +2373,10 @@
             <span id="copy-status-share" class="copy-status" role="status"></span>
           </div>
         </div>
+        <figure class="stage-board">
+          <img src="/don-bot/storyboards/stage-05.webp" alt="Don-Bot stage 05 Network: 3x3 turntable storyboard, one full 360 degree rotation" width="1600" height="900" loading="lazy" decoding="async">
+          <figcaption><span class="stage-board__num">05</span><span class="stage-board__slash">/</span><span class="stage-board__name">NETWORK</span><span class="stage-board__line">Antennae rise, holograms bloom, and every node links back to the core.</span></figcaption>
+        </figure>
       </div>
     </section>
   </main>
