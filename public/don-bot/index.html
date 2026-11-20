@@ -402,10 +402,10 @@
       box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(63, 193, 255, 0.35), 0 0 14px rgba(63, 193, 255, 0.18);
       outline: none;
     }
-    .don-menu a[aria-current="page"] {
+    .don-menu a[aria-current="location"] {
       border-color: rgba(255, 90, 31, 0.6);
     }
-    .don-menu a[aria-current="page"]::after {
+    .don-menu a[aria-current="location"]::after {
       content: '● here';
       margin-inline-start: auto;
       font-family: var(--font-mono);
@@ -429,7 +429,7 @@
     }
     @media (forced-colors: active) {
       .don-menu { border: 1px solid CanvasText; }
-      .don-menu a[aria-current="page"] { outline: 2px solid Highlight; }
+      .don-menu a[aria-current="location"] { outline: 2px solid Highlight; }
     }
     footer.ae-site-footer {
       background: var(--ae-bg) !important;
@@ -1918,7 +1918,7 @@
           <div class="don-menu__group">
             <span class="don-menu__label" id="don-menu-sections">Don-Bot</span>
             <ul aria-labelledby="don-menu-sections">
-              <li><a href="#access" aria-current="page"><span class="n">00</span>Overview</a></li>
+              <li><a href="#access" aria-current="location"><span class="n">00</span>Overview</a></li>
               <li><a href="#architecture"><span class="n">01</span>Architecture</a></li>
               <li><a href="#interface"><span class="n">02</span>3-Pane UI</a></li>
               <li><a href="#roadmap"><span class="n">03</span>Build log</a></li>
@@ -2843,6 +2843,44 @@
         </div>
       </div>
     </section>
+
+  <script>
+    // Keep the menu's "here" marker on the section currently in view.
+    (() => {
+      const links = Array.from(document.querySelectorAll('.don-menu a[href^="#"]'));
+      const sections = links
+        .map((a) => document.getElementById(a.getAttribute('href').slice(1)))
+        .filter(Boolean);
+      if (!sections.length) return;
+      let current = null;
+      const setCurrent = (id) => {
+        if (id === current) return;
+        current = id;
+        links.forEach((a) => {
+          if (a.getAttribute('href') === `#${id}`) a.setAttribute('aria-current', 'location');
+          else a.removeAttribute('aria-current');
+        });
+      };
+      const update = () => {
+        const probe = window.innerHeight * 0.35;
+        let active = sections[0].id;
+        for (const sec of sections) {
+          if (sec.getBoundingClientRect().top <= probe) active = sec.id;
+        }
+        setCurrent(active);
+      };
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { update(); ticking = false; });
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      window.addEventListener('hashchange', update);
+      window.addEventListener('load', () => requestAnimationFrame(update));
+      update();
+    })();
+  </script>
 <footer class="ae-site-footer" aria-label="aegntic footer">
   <div class="ae-site-footer__signature">
     <a class="ae-site-footer__mark" href="/" aria-label="aegntic home">
