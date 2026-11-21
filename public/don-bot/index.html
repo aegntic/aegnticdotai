@@ -39,7 +39,7 @@
   <link rel="apple-touch-icon" href="/don-bot/apple-touch-icon.png">
   <link rel="stylesheet" href="/premium-nav.css?v=654771bce0e2">
   <link rel="stylesheet" href="/shared-footer.css?v=e06640e4a006">
-  <script src="/don-bot/neuro-noise.js" defer></script>
+  <script src="/don-bot/neuro-noise.js?v=highp-2" defer></script>
   <script>
     // Popover API polyfill only where native support is missing.
     if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
@@ -149,17 +149,23 @@
 
     .don-neuro-bg {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      height: 100lvh;
       z-index: 0;
       pointer-events: none;
       background: #04060a;
       overflow: hidden;
+      contain: strict;
+      transform: translateZ(0);
     }
     .don-neuro-bg canvas {
       width: 100%;
       height: 100%;
       display: block;
-      opacity: 0.92;
+      opacity: 1;
     }
     .don-neuro-bg.is-fallback {
       background:
@@ -1945,6 +1951,49 @@
       .glass-share { transition: none; }
       .glass-share:hover { transform: none; }
     }
+    @media (max-width: 760px), (hover: none) and (pointer: coarse) {
+      .don-header {
+        background: rgba(7, 10, 16, 0.94);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+      .telemetry-cell,
+      .watch-card,
+      .pillar-stage,
+      .milestone-row,
+      .social-card-item {
+        background-color: rgba(18, 24, 34, 0.94);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+      .stage-board figcaption {
+        background: rgba(12, 16, 22, 0.94);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+      .glass-share {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background:
+          radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 55%),
+          linear-gradient(160deg, rgba(24, 32, 46, 0.92), rgba(12, 17, 25, 0.94));
+      }
+      .neuro-motion-toggle {
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        background:
+          radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0) 58%),
+          linear-gradient(160deg, rgba(16, 22, 32, 0.94), rgba(9, 13, 20, 0.92));
+      }
+      footer.ae-site-footer {
+        background: rgba(6, 9, 15, 0.94) !important;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+      .hero-bleed-reveal img {
+        filter: blur(10px) contrast(1.15) saturate(1.1);
+      }
+    }
   </style>
 </head>
 <body class="don-dark-theme">
@@ -2513,6 +2562,13 @@
       }
 
       let countdownRaf = null;
+      let lastCountdownTick = 0;
+      let countdownInView = true;
+      const countdownPrefix = document.createTextNode('');
+      const countdownAccent = document.createElement('span');
+      if (countdownEl) {
+        countdownEl.replaceChildren(countdownPrefix, countdownAccent);
+      }
       const targetTs = new Date('2026-12-01T00:00:00Z').getTime();
       const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
       const toRoman = (num) => {
@@ -2529,8 +2585,7 @@
       const randGlyph = () => matrixGlyphs[Math.floor(Math.random() * matrixGlyphs.length)];
       const glitchStr = (str, prob = 0.04) =>
         str.split('').map((ch) => (Math.random() < prob ? randGlyph() : ch)).join('');
-      const tickCountdown = () => {
-        countdownRaf = null;
+      const renderCountdown = () => {
         if (!countdownEl) return;
         const now = Date.now();
         const diff = Math.max(0, targetTs - now);
@@ -2543,13 +2598,47 @@
         const mmStr = toRoman(mm).replace(/X/g, (ch) => (Math.random() < 0.05 ? randGlyph() : ch));
         const m1 = glyphFor(ss);
         const m2 = glyphFor(ns);
-        countdownEl.innerHTML = `${ddStr}:${toRoman(hh)}:${mmStr}:${pad(ss)}:<span>${m1}${pad(ns)}${m2}</span>`;
-        if (!isMotionStopped()) {
+        countdownPrefix.nodeValue = `${ddStr}:${toRoman(hh)}:${mmStr}:${pad(ss)}:`;
+        countdownAccent.textContent = `${m1}${pad(ns)}${m2}`;
+        lastCountdownTick = performance.now();
+      };
+      const stopCountdown = () => {
+        if (countdownRaf !== null) {
+          window.cancelAnimationFrame(countdownRaf);
+          countdownRaf = null;
+        }
+      };
+      const tickCountdown = (now) => {
+        countdownRaf = null;
+        if (!countdownEl || document.hidden || !countdownInView || isMotionStopped()) return;
+        if (now - lastCountdownTick >= 60) {
+          renderCountdown();
+        }
+        countdownRaf = window.requestAnimationFrame(tickCountdown);
+      };
+      const startCountdown = (force = false) => {
+        if (!countdownEl) return;
+        if (force) renderCountdown();
+        if (document.hidden || !countdownInView || isMotionStopped()) return;
+        if (countdownRaf === null) {
           countdownRaf = window.requestAnimationFrame(tickCountdown);
         }
       };
       if (countdownEl) {
-        tickCountdown();
+        if ('IntersectionObserver' in window) {
+          const io = new IntersectionObserver((entries) => {
+            const entry = entries[0];
+            countdownInView = Boolean(entry && entry.isIntersecting);
+            if (countdownInView) startCountdown(true);
+            else stopCountdown();
+          }, { threshold: 0.05 });
+          io.observe(preHero || countdownEl);
+        }
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) stopCountdown();
+          else startCountdown(true);
+        });
+        startCountdown(true);
       }
 
       // 0b. Selective Share-to-Social Bars for Each Section
@@ -2898,13 +2987,10 @@
             window.clearTimeout(pulseTimer);
             pulseTimer = null;
           }
-          if (countdownRaf !== null) {
-            window.cancelAnimationFrame(countdownRaf);
-            countdownRaf = null;
-          }
+          stopCountdown();
         } else if (!motionQuery.matches) {
           if (preHero && pulseTimer === null) schedulePulse();
-          if (countdownEl && countdownRaf === null) tickCountdown();
+          if (countdownEl) startCountdown(true);
         }
       };
 
