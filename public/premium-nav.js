@@ -52,7 +52,7 @@
 
   const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const cardMarkup = card => `<a class="ae-menu-card" href="${esc(card[3])}"${card[4] ? ` data-enquiry="${esc(card[4])}"` : ''}><span class="ae-menu-card__meta">${esc(card[0])}</span><span class="ae-menu-card__body"><h3>${esc(card[1])}</h3><p>${esc(card[2])}</p></span></a>`;
-  const panelMarkup = ([key, group]) => `<section class="ae-menu__panel" data-ae-panel="${key}" aria-hidden="true"><div class="ae-menu__panel-head"><div><span class="ae-menu__kicker">${esc(group.kicker)}</span><h2 class="ae-menu__title">${esc(group.title)}</h2></div><span class="ae-menu__count">${String(group.cards.length).padStart(2,'0')} selections</span></div><div class="ae-menu__carousel" role="region" aria-roledescription="carousel" tabindex="0" aria-label="${esc(key)} selections">${group.cards.map(cardMarkup).join('')}</div><p class="ae-menu__hint">Swipe, scroll, or use the arrow keys</p></section>`;
+  const panelMarkup = ([key, group]) => `<section class="ae-menu__panel" data-ae-panel="${key}" aria-hidden="true"><div class="ae-menu__panel-head"><div><span class="ae-menu__kicker">${esc(group.kicker)}</span><h2 class="ae-menu__title">${esc(group.title)}</h2></div><span class="ae-menu__count">${String(group.cards.length).padStart(2,'0')} selections</span></div><div class="ae-menu__carousel" role="region" aria-roledescription="carousel" tabindex="0" aria-label="${esc(key)} selections">${group.cards.map(cardMarkup).join('')}</div><div class="ae-menu__controls"><p class="ae-menu__hint">Swipe, scroll, or use the arrow keys</p><div class="ae-menu__arrows"><button class="ae-menu__arrow" type="button" data-ae-scroll="-1" aria-label="Scroll ${esc(key)} selections left"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="ae-menu__arrow" type="button" data-ae-scroll="1" aria-label="Scroll ${esc(key)} selections right"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div></section>`;
 
   function mount() {
     if (document.querySelector('.ae-global-nav')) return;
@@ -165,6 +165,21 @@
         event.preventDefault();
         carousel.scrollBy({left:(event.key === 'ArrowRight' ? 1 : -1) * carousel.clientWidth * .72,behavior:'instant'});
       });
+      const arrows = [...panel.querySelectorAll('[data-ae-scroll]')];
+      const syncArrows = () => {
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        arrows.forEach(arrow => {
+          const direction = Number(arrow.dataset.aeScroll);
+          arrow.disabled = direction < 0 ? carousel.scrollLeft <= 1 : carousel.scrollLeft >= maxScroll - 1;
+        });
+      };
+      arrows.forEach(arrow => arrow.addEventListener('click', () => {
+        const direction = Number(arrow.dataset.aeScroll);
+        carousel.scrollBy({left: direction * carousel.clientWidth * .72, behavior: 'smooth'});
+      }));
+      carousel.addEventListener('scroll', syncArrows, {passive: true});
+      window.addEventListener('resize', syncArrows);
+      syncArrows();
     });
 
     activate(routeKey);
