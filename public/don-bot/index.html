@@ -39,6 +39,7 @@
   <link rel="apple-touch-icon" href="/don-bot/apple-touch-icon.png">
   <link rel="stylesheet" href="/premium-nav.css?v=6eadd47a6a11">
   <link rel="stylesheet" href="/shared-footer.css?v=e06640e4a006">
+  <script src="/don-bot/neuro-noise.js" defer></script>
   <script>
     // Popover API polyfill only where native support is missing.
     if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
@@ -139,12 +140,81 @@
 
     body {
       margin: 0;
-      background-color: var(--ae-bg);
+      background-color: #04060a;
       background-image:
-        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.011) 0px, rgba(255, 255, 255, 0.011) 1px, transparent 1px, transparent 3px),
-        radial-gradient(ellipse at 18% 8%, rgba(255, 255, 255, 0.035) 0%, transparent 50%);
+        repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.011) 0px, rgba(255, 255, 255, 0.011) 1px, transparent 1px, transparent 3px);
       color: var(--ae-ink);
       overflow-x: hidden;
+    }
+
+    .don-neuro-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: #04060a;
+      overflow: hidden;
+    }
+    .don-neuro-bg canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      opacity: 0.92;
+    }
+    .don-neuro-bg.is-fallback {
+      background:
+        radial-gradient(ellipse at 18% 28%, rgba(71, 166, 255, 0.22) 0%, rgba(18, 44, 82, 0.12) 38%, rgba(4, 6, 10, 0) 70%),
+        radial-gradient(ellipse at 82% 72%, rgba(71, 166, 255, 0.16) 0%, rgba(4, 6, 10, 0) 62%),
+        #04060a;
+    }
+    .don-neuro-bg.is-fallback canvas {
+      display: none;
+    }
+
+    main,
+    #dispatch-footer,
+    footer.ae-site-footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .neuro-motion-toggle {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 45;
+      min-height: 40px;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #f3f5f9;
+      background:
+        radial-gradient(circle at 30% 22%, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0) 58%),
+        linear-gradient(160deg, rgba(16, 22, 32, 0.78), rgba(9, 13, 20, 0.68));
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.32),
+        inset 0 -6px 12px rgba(0, 0, 0, 0.35),
+        0 8px 22px rgba(0, 0, 0, 0.52);
+      -webkit-backdrop-filter: blur(10px) saturate(1.4);
+      backdrop-filter: blur(10px) saturate(1.4);
+      cursor: pointer;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    }
+    .neuro-motion-toggle:hover,
+    .neuro-motion-toggle:focus-visible {
+      border-color: rgba(63, 193, 255, 0.65);
+      color: var(--ae-ice);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.42),
+        inset 0 -6px 12px rgba(0, 0, 0, 0.3),
+        0 8px 24px rgba(0, 0, 0, 0.55),
+        0 0 16px rgba(63, 193, 255, 0.3);
+      outline: none;
     }
 
     ::selection {
@@ -229,7 +299,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(9, 12, 17, 0.9);
+      background: rgba(7, 10, 16, 0.78);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--ae-line);
     }
@@ -432,7 +502,8 @@
       .don-menu a[aria-current="location"] { outline: 2px solid Highlight; }
     }
     footer.ae-site-footer {
-      background: var(--ae-bg) !important;
+      background: rgba(6, 9, 15, 0.76) !important;
+      backdrop-filter: blur(8px);
       color: var(--ae-ink) !important;
       border-top: 1px solid var(--ae-line) !important;
     }
@@ -556,7 +627,7 @@
       position: relative;
       padding: clamp(5.5rem, 11vw, 9.5rem) clamp(1.5rem, 5.5vw, 4.5rem) clamp(5.5rem, 11vw, 9.5rem) clamp(3.5rem, 6vw, 5.75rem);
       border-bottom: 1px solid var(--ae-line);
-      background: var(--ae-bg);
+      background: rgba(6, 9, 15, 0.54);
       overflow: hidden;
     }
 
@@ -603,7 +674,7 @@
     }
 
     .don-world--alt {
-      background: var(--ae-bg-alt);
+      background: rgba(9, 13, 21, 0.64);
     }
 
     .don-container {
@@ -727,7 +798,7 @@
       position: relative;
       width: 100%;
       min-height: clamp(320px, 46vw, 560px);
-      background: #000000;
+      background: rgba(3, 5, 10, 0.28);
       display: grid;
       place-items: center;
       overflow: hidden;
@@ -745,9 +816,13 @@
     .pre-hero__img-wrap {
       position: absolute;
       inset: 0;
-      opacity: 1;
+      opacity: 0.92;
       transform: scale(1);
       filter: blur(0px) brightness(1);
+      -webkit-mask-image:
+        radial-gradient(ellipse 84% 78% at 50% 50%, #000 52%, rgba(0, 0, 0, 0.65) 76%, transparent 98%);
+      mask-image:
+        radial-gradient(ellipse 84% 78% at 50% 50%, #000 52%, rgba(0, 0, 0, 0.65) 76%, transparent 98%);
       transition:
         opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
@@ -755,7 +830,7 @@
     }
 
     .pre-hero.is-word-active .pre-hero__img-wrap {
-      opacity: 0.07;
+      opacity: 0.08;
       transform: scale(1.045);
       filter: blur(6px) brightness(0.45);
     }
@@ -772,8 +847,8 @@
       inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 78%, #000000 100%),
-        linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0) 14%, rgba(0, 0, 0, 0) 86%, #000000 100%);
+        linear-gradient(180deg, rgba(4, 6, 10, 0.55) 0%, rgba(4, 6, 10, 0) 24%, rgba(4, 6, 10, 0) 76%, rgba(4, 6, 10, 0.62) 100%),
+        linear-gradient(90deg, rgba(4, 6, 10, 0.5) 0%, rgba(4, 6, 10, 0) 16%, rgba(4, 6, 10, 0) 84%, rgba(4, 6, 10, 0.5) 100%);
     }
 
     .pre-hero__word {
@@ -885,161 +960,7 @@
     }
 
     @media (max-width: 960px) {
-      .pre-hero {
-      position: relative;
-      width: 100%;
-      min-height: clamp(320px, 46vw, 560px);
-      background: #000000;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      border-bottom: 1px solid var(--ae-line);
-    }
-
-    .pre-hero__stage {
-      position: relative;
-      width: min(100%, 1320px);
-      aspect-ratio: 1024 / 428;
-      display: grid;
-      place-items: center;
-    }
-
-    .pre-hero__img-wrap {
-      position: absolute;
-      inset: 0;
-      opacity: 1;
-      transform: scale(1);
-      filter: blur(0px) brightness(1);
-      transition:
-        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-        filter 0.55s ease;
-    }
-
-    .pre-hero.is-word-active .pre-hero__img-wrap {
-      opacity: 0.07;
-      transform: scale(1.045);
-      filter: blur(6px) brightness(0.45);
-    }
-
-    .pre-hero__img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .pre-hero__vignette {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 78%, #000000 100%),
-        linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0) 14%, rgba(0, 0, 0, 0) 86%, #000000 100%);
-    }
-
-    .pre-hero__word {
-      position: relative;
-      z-index: 2;
-      font-family: 'Don Mark', var(--font-display);
-      font-size: clamp(4.5rem, 15vw, 12.5rem);
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      line-height: 1;
-      text-transform: uppercase;
-      background: linear-gradient(180deg, #ffffff 0%, #e3e7ee 48%, #98a2b3 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      filter: drop-shadow(0 0 28px rgba(255, 255, 255, 0.16)) blur(8px);
-      opacity: 0;
-      transform: scale(0.92);
-      user-select: none;
-      transition:
-        opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-        filter 0.48s ease;
-    }
-
-    .pre-hero.is-word-active .pre-hero__word {
-      opacity: 1;
-      transform: scale(1);
-      filter: drop-shadow(0 0 36px rgba(255, 255, 255, 0.28)) blur(0px);
-    }
-
-    .pre-hero__hud {
-      position: relative;
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.85rem;
-      padding: 1.25rem 1.25rem 2.25rem;
-      text-align: center;
-    }
-
-    .pre-hero__soon {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--ae-signal);
-    }
-
-    .pre-hero__countdown {
-      font-family: var(--font-mono);
-      font-size: clamp(1.35rem, 3.4vw, 2.35rem);
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      font-variant-numeric: tabular-nums;
-      color: #ffffff;
-      text-shadow: 0 0 18px rgba(63, 193, 255, 0.35);
-      background: rgba(12, 16, 22, 0.85);
-      border: 1px solid rgba(63, 193, 255, 0.28);
-      border-radius: 10px;
-      padding: 0.55rem 1.15rem;
-    }
-
-    .pre-hero__countdown span {
-      color: var(--ae-ice);
-    }
-
-    .section-share {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.55rem;
-      margin-top: 2.25rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--ae-line);
-    }
-
-    .section-share__label {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ae-muted);
-      margin-right: 0.35rem;
-    }
-
-    .section-share .dl-link {
-      font-size: 0.68rem;
-      padding: 0.42rem 0.75rem;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .pre-hero__img-wrap,
-      .pre-hero__word {
-        transition: none;
-      }
-      .pre-hero__img-wrap { opacity: 0.35; }
-      .pre-hero__word { opacity: 1; filter: none; transform: none; }
-    }
-
-    .hero-grid {
+      .hero-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -1151,10 +1072,12 @@
     }
 
     .telemetry-cell {
-      background-color: var(--ae-surface);
+      background-color: rgba(18, 24, 34, 0.86);
       background-image:
         repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
-        linear-gradient(155deg, #1a212e 0%, #10151e 55%, #0c1017 100%);
+        linear-gradient(155deg, rgba(26, 33, 46, 0.88) 0%, rgba(16, 21, 30, 0.9) 55%, rgba(12, 16, 23, 0.92) 100%);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 12px 26px rgba(0, 0, 0, 0.65), -2px -2px 10px rgba(255, 255, 255, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.09), inset 0 -1px 0 rgba(0, 0, 0, 0.65);
       border-radius: 12px;
@@ -1180,10 +1103,12 @@
 
     /* Watch Build in Public Card (Brushed Metal Neumorphic + Forms & Validation Best Practices) */
     .watch-card {
-      background-color: var(--ae-surface);
+      background-color: rgba(18, 24, 34, 0.86);
       background-image:
         repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.015) 0px, rgba(255, 255, 255, 0.015) 1px, transparent 1px, transparent 3px),
-        linear-gradient(155deg, rgba(255, 90, 31, 0.12) 0%, #161d29 28%, #0e131b 70%, #0a0e14 100%);
+        linear-gradient(155deg, rgba(255, 90, 31, 0.12) 0%, rgba(22, 29, 41, 0.9) 28%, rgba(14, 19, 27, 0.92) 70%, rgba(10, 14, 20, 0.94) 100%);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
       border: 1px solid var(--ae-line-control);
       border-radius: 16px;
       padding: clamp(1.5rem, 3vw, 2.25rem);
@@ -1434,10 +1359,12 @@
 
     .pillar-stage {
       contain: layout;
-      background-color: var(--ae-surface);
+      background-color: rgba(18, 24, 34, 0.86);
       background-image:
         repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
-        linear-gradient(155deg, #1b2230 0%, #111620 55%, #0c1017 100%);
+        linear-gradient(155deg, rgba(27, 34, 48, 0.88) 0%, rgba(17, 22, 32, 0.9) 55%, rgba(12, 16, 23, 0.92) 100%);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
       border: 1px solid rgba(255, 255, 255, 0.085);
       box-shadow: 0 22px 48px rgba(0, 0, 0, 0.72), -4px -4px 16px rgba(255, 255, 255, 0.025), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.65);
       border-radius: 16px;
@@ -1620,10 +1547,12 @@
     }
 
     .milestone-row {
-      background-color: var(--ae-surface);
+      background-color: rgba(18, 24, 34, 0.86);
       background-image:
         repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
-        linear-gradient(155deg, #19212d 0%, #10151e 55%, #0c1017 100%);
+        linear-gradient(155deg, rgba(25, 33, 45, 0.88) 0%, rgba(16, 21, 30, 0.9) 55%, rgba(12, 16, 23, 0.92) 100%);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 14px 32px rgba(0, 0, 0, 0.65), -3px -3px 12px rgba(255, 255, 255, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.09), inset 0 -1px 0 rgba(0, 0, 0, 0.65);
       border-radius: 12px;
@@ -1745,10 +1674,12 @@
     }
 
     .social-card-item {
-      background-color: var(--ae-surface);
+      background-color: rgba(18, 24, 34, 0.86);
       background-image:
         repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.014) 0px, rgba(255, 255, 255, 0.014) 1px, transparent 1px, transparent 3px),
-        linear-gradient(155deg, #1b2230 0%, #111620 55%, #0c1017 100%);
+        linear-gradient(155deg, rgba(27, 34, 48, 0.88) 0%, rgba(17, 22, 32, 0.9) 55%, rgba(12, 16, 23, 0.92) 100%);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
       border: 1px solid rgba(255, 255, 255, 0.085);
       box-shadow: 0 22px 46px rgba(0, 0, 0, 0.72), -4px -4px 16px rgba(255, 255, 255, 0.025), inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.65);
       border-radius: 14px;
@@ -1882,7 +1813,9 @@
       align-items: baseline;
       gap: 0.5rem 0.75rem;
       padding: 1rem 1.25rem;
-      background: #0c1016;
+      background: rgba(12, 16, 22, 0.88);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
       border-radius: 0 0 15px 15px;
       font-family: var(--font-mono);
       font-size: 0.78rem;
@@ -1945,6 +1878,9 @@
   </style>
 </head>
 <body class="don-dark-theme">
+  <div id="don-neuro-bg" class="don-neuro-bg" aria-hidden="true">
+    <canvas id="don-neuro-canvas"></canvas>
+  </div>
   <header class="don-header">
     <div class="don-header__inner">
       <a class="don-logo" href="https://aegntic.ai/">
@@ -2447,55 +2383,70 @@
       const preHero = document.getElementById('pre-hero');
       const countdownEl = document.getElementById('don-countdown');
       const preHeroCta = document.getElementById('pre-hero-cta');
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const isMotionStopped = () => motionQuery.matches || document.body.classList.contains('motion-paused');
 
-      if (preHero && !reducedMotion) {
-        let wordActive = false;
-        const schedulePulse = () => {
-          const delay = wordActive
-            ? 1700 + Math.floor(Math.random() * 2100)
-            : 2400 + Math.floor(Math.random() * 3400);
-          window.setTimeout(() => {
-            wordActive = !wordActive;
-            preHero.classList.toggle('is-word-active', wordActive);
-            schedulePulse();
-          }, delay);
-        };
+      let pulseTimer = null;
+      let wordActive = false;
+      const schedulePulse = () => {
+        if (!preHero || isMotionStopped()) {
+          pulseTimer = null;
+          return;
+        }
+        const delay = wordActive
+          ? 1700 + Math.floor(Math.random() * 2100)
+          : 2400 + Math.floor(Math.random() * 3400);
+        pulseTimer = window.setTimeout(() => {
+          if (isMotionStopped()) {
+            pulseTimer = null;
+            return;
+          }
+          wordActive = !wordActive;
+          preHero.classList.toggle('is-word-active', wordActive);
+          schedulePulse();
+        }, delay);
+      };
+      if (preHero && !isMotionStopped()) {
         schedulePulse();
       }
 
+      let countdownRaf = null;
+      const targetTs = new Date('2026-12-01T00:00:00Z').getTime();
+      const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
+      const toRoman = (num) => {
+        if (num <= 0) return 'N';
+        const map = [[50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
+        let res = '';
+        for (const [val, sym] of map) {
+          while (num >= val) { res += sym; num -= val; }
+        }
+        return res;
+      };
+      const matrixGlyphs = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
+      const glyphFor = (n) => matrixGlyphs[Math.abs(n) % matrixGlyphs.length];
+      const randGlyph = () => matrixGlyphs[Math.floor(Math.random() * matrixGlyphs.length)];
+      const glitchStr = (str, prob = 0.04) =>
+        str.split('').map((ch) => (Math.random() < prob ? randGlyph() : ch)).join('');
+      const tickCountdown = () => {
+        countdownRaf = null;
+        if (!countdownEl) return;
+        const now = Date.now();
+        const diff = Math.max(0, targetTs - now);
+        const dd = Math.floor(diff / 86400000);
+        const hh = Math.floor((diff % 86400000) / 3600000);
+        const mm = Math.floor((diff % 3600000) / 60000);
+        const ss = Math.floor((diff % 60000) / 1000);
+        const ns = Math.floor((diff % 1000) / 10);
+        const ddStr = glitchStr(pad(dd), 0.04);
+        const mmStr = toRoman(mm).replace(/X/g, (ch) => (Math.random() < 0.05 ? randGlyph() : ch));
+        const m1 = glyphFor(ss);
+        const m2 = glyphFor(ns);
+        countdownEl.innerHTML = `${ddStr}:${toRoman(hh)}:${mmStr}:${pad(ss)}:<span>${m1}${pad(ns)}${m2}</span>`;
+        if (!isMotionStopped()) {
+          countdownRaf = window.requestAnimationFrame(tickCountdown);
+        }
+      };
       if (countdownEl) {
-        const targetTs = new Date('2026-12-01T00:00:00Z').getTime();
-        const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
-        const toRoman = (num) => {
-          if (num <= 0) return 'N';
-          const map = [[50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
-          let res = '';
-          for (const [val, sym] of map) {
-            while (num >= val) { res += sym; num -= val; }
-          }
-          return res;
-        };
-        const matrixGlyphs = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ';
-        const glyphFor = (n) => matrixGlyphs[Math.abs(n) % matrixGlyphs.length];
-        const randGlyph = () => matrixGlyphs[Math.floor(Math.random() * matrixGlyphs.length)];
-        const glitchStr = (str, prob = 0.04) =>
-          str.split('').map((ch) => (Math.random() < prob ? randGlyph() : ch)).join('');
-        const tickCountdown = () => {
-          const now = Date.now();
-          const diff = Math.max(0, targetTs - now);
-          const dd = Math.floor(diff / 86400000);
-          const hh = Math.floor((diff % 86400000) / 3600000);
-          const mm = Math.floor((diff % 3600000) / 60000);
-          const ss = Math.floor((diff % 60000) / 1000);
-          const ns = Math.floor((diff % 1000) / 10);
-          const ddStr = glitchStr(pad(dd), 0.04);
-          const mmStr = toRoman(mm).replace(/X/g, (ch) => (Math.random() < 0.05 ? randGlyph() : ch));
-          const m1 = glyphFor(ss);
-          const m2 = glyphFor(ns);
-          countdownEl.innerHTML = `${ddStr}:${toRoman(hh)}:${mmStr}:${pad(ss)}:<span>${m1}${pad(ns)}${m2}</span>`;
-          if (!reducedMotion) window.requestAnimationFrame(tickCountdown);
-        };
         tickCountdown();
       }
 
@@ -2505,7 +2456,7 @@
           const targetInput = document.getElementById('watch-email');
           if (targetForm) {
             e.preventDefault();
-            targetForm.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+            targetForm.scrollIntoView({ behavior: isMotionStopped() ? 'auto' : 'smooth', block: 'center' });
             if (targetInput) window.setTimeout(() => targetInput.focus({ preventScroll: true }), 350);
           }
         });
@@ -2839,12 +2790,63 @@
 
       // 3. Motion Pause / Play Control (Modern Web Guidance: motion)
       const motionBtn = document.getElementById('motion-toggle');
+      const syncMotionUI = (paused) => {
+        if (motionBtn) motionBtn.textContent = paused ? 'Play live pulse' : 'Pause live pulse';
+        const neuroBtn = document.getElementById('neuro-motion-toggle');
+        if (neuroBtn) neuroBtn.textContent = paused ? 'Play motion' : 'Pause motion';
+        if (paused) {
+          if (pulseTimer !== null) {
+            window.clearTimeout(pulseTimer);
+            pulseTimer = null;
+          }
+          if (countdownRaf !== null) {
+            window.cancelAnimationFrame(countdownRaf);
+            countdownRaf = null;
+          }
+        } else if (!motionQuery.matches) {
+          if (preHero && pulseTimer === null) schedulePulse();
+          if (countdownEl && countdownRaf === null) tickCountdown();
+        }
+      };
+
+      const toggleMotionState = () => {
+        let paused;
+        if (window.donNeuroNoise && typeof window.donNeuroNoise.toggle === 'function') {
+          paused = window.donNeuroNoise.toggle();
+        } else {
+          paused = document.body.classList.toggle('motion-paused');
+          syncMotionUI(paused);
+        }
+        return paused;
+      };
+
       if (motionBtn) {
-        motionBtn.addEventListener('click', () => {
-          const paused = document.body.classList.toggle('motion-paused');
-          motionBtn.textContent = paused ? 'Play live pulse' : 'Pause live pulse';
-        });
+        motionBtn.addEventListener('click', toggleMotionState);
       }
+
+      const initMotionControls = () => {
+        const neuroBtn = document.getElementById('neuro-motion-toggle');
+        if (neuroBtn && !neuroBtn.dataset.bound) {
+          neuroBtn.dataset.bound = '1';
+          neuroBtn.addEventListener('click', toggleMotionState);
+        }
+        const initialPaused = (window.donNeuroNoise && window.donNeuroNoise.isPaused())
+          || document.body.classList.contains('motion-paused')
+          || motionQuery.matches;
+        if (initialPaused) document.body.classList.add('motion-paused');
+        syncMotionUI(initialPaused);
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMotionControls, { once: true });
+      } else {
+        initMotionControls();
+      }
+      syncMotionUI(motionQuery.matches || document.body.classList.contains('motion-paused'));
+
+      window.addEventListener('don-motion-change', (e) => {
+        syncMotionUI(Boolean(e.detail && e.detail.paused));
+      });
 
       // 4. Invoker Commands Copy Button + Fallback (Modern Web Guidance: copy-button)
       let flip = false;
@@ -2941,6 +2943,8 @@
       update();
     })();
   </script>
+
+<button type="button" class="neuro-motion-toggle" id="neuro-motion-toggle">Pause motion</button>
 <footer class="ae-site-footer" aria-label="aegntic footer">
   <div class="ae-site-footer__signature">
     <a class="ae-site-footer__mark" href="/" aria-label="aegntic home">
