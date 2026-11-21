@@ -19,6 +19,7 @@
     agents: {
       href: '/agents/', kicker: 'Purpose-built operators', title: 'Agents with a real job.',
       cards: [
+        ['Autonomous builder', 'Don-Bot', 'Hand off multi-hour builds, recover cleanly from crashes, and approve key moves from Telegram or WhatsApp.', 'https://don.aegntic.ai/'],
         ['Project updates', 'Echo', 'Keeps project evidence separate and prepares updates for your approval.', 'https://echo.aegntic.ai/'],
         ['Evidence', 'veritas-operator', 'Coordinates retrieval, synthesis, and verification as one research pipeline.', '/projects/veritas-operator/'],
         ['Sovereign memory', 'obsidian-indexer', 'Turns local vaults into agent-readable, locally controlled memory.', '/projects/obsidian-indexer/']
@@ -35,6 +36,7 @@
     products: {
       href: '/products/', kicker: 'Clear things you can use', title: 'Products with an outcome.',
       cards: [
+        ['Autonomous builder', 'Don-Bot', 'Slice 01 crash-proof starter drops Dec 1. Watch and test the build in the open.', 'https://don.aegntic.ai/'],
         ['Browser research', 'Tab Harvest', 'Open tabs and transcripts, connected into a knowledge graph.', 'https://github.com/aegntic/tab-harvest'],
         ['Developer ecosystem', 'CLDCDE', 'Tools, patterns, and infrastructure for agentic development.', 'https://cldcde.cc'],
         ['Failure intelligence', 'prompt.fail', 'A public surface for prompt failures and agent edge cases.', 'https://prompt.fail']

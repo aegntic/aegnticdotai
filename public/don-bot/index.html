@@ -888,9 +888,77 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.85rem;
-      padding: 1.25rem 1.25rem 2.25rem;
+      gap: 0.7rem;
+      padding: 0.9rem 1.25rem 1.65rem;
       text-align: center;
+    }
+
+    .pre-hero__deliverable {
+      margin: 0;
+      max-width: 48ch;
+      font-size: 0.88rem;
+      line-height: 1.4;
+      color: #d6dbe4;
+    }
+
+    .pre-hero__form {
+      width: min(100%, 540px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pre-hero__form-row {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      justify-content: center;
+      gap: 0.65rem;
+    }
+
+    .pre-hero__input {
+      flex: 1 1 240px;
+      min-height: 46px;
+      padding: 0.65rem 1.05rem;
+      border-radius: 999px;
+      border: 1px solid rgba(63, 193, 255, 0.36);
+      background: rgba(12, 16, 22, 0.88);
+      color: #f3f5f9;
+      font-family: var(--font-sans);
+      font-size: max(1rem, 1em);
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.75);
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .pre-hero__input::placeholder {
+      color: #7a8599;
+    }
+
+    .pre-hero__input:focus-visible {
+      outline: 2px solid var(--ae-ice);
+      outline-offset: 3px;
+      border-color: var(--ae-ice);
+    }
+
+    .pre-hero__input:is(:user-invalid, .user-invalid-fallback) {
+      border-color: #ff6b4a;
+      background: rgba(183, 53, 18, 0.16);
+    }
+
+    .pre-hero__input:is(:user-valid, .user-valid-fallback) {
+      border-color: var(--ae-ice);
+    }
+
+    .pre-hero__form .error-msg {
+      justify-content: center;
+      margin-top: 0.1rem;
+    }
+
+    .pre-hero__form .form-status-banner {
+      margin-top: 0.25rem;
+      width: 100%;
     }
 
     .pre-hero__soon {
@@ -1945,7 +2013,35 @@
       <div class="pre-hero__hud">
         <div class="pre-hero__soon">COMING SOON</div>
         <div class="pre-hero__countdown" id="don-countdown" aria-label="Launch countdown">00:00:00:00:<span>00</span></div>
-        <a href="#watch-form" class="metal-btn metal-btn--ice" id="pre-hero-cta">Get Notified and Watch Live Build →</a>
+        <p class="pre-hero__deliverable" id="hero-email-hint">Get Slice 01 (crash-proof agent starter + setup guide) in your inbox Dec 1.</p>
+        <form class="pre-hero__form" id="hero-watch-form" action="/api/subscribe" method="POST" novalidate>
+          <div class="pre-hero__form-row">
+            <label for="hero-email" class="sr-only">Email address</label>
+            <input
+              id="hero-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              spellcheck="false"
+              enterkeyhint="done"
+              placeholder="you@domain.com"
+              aria-describedby="hero-email-hint"
+              data-error="hero-email-error"
+              aria-invalid="false"
+              class="pre-hero__input"
+            >
+            <button type="submit" class="metal-btn metal-btn--ice" id="pre-hero-cta">Get Slice 01 Drop →</button>
+          </div>
+          <div class="error-msg" id="hero-email-error" hidden>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M8 4.5V8.5M8 11V11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Enter an email address in the format you@domain.com.</span>
+          </div>
+          <div id="hero-form-status" class="form-status-banner" role="status" aria-live="polite" hidden></div>
+        </form>
       </div>
     </section>
 
@@ -1977,25 +2073,25 @@
               <span class="hero-feature-pill">3-Pane Liquid Interface</span>
             </div>
             <p class="hero-lead">
-              An autonomous software bot built on a crash-proof SQLite WAL spine. One Lead Orchestrator coordinates four durable specialists with 300ms J-JEV System-One judgment gates, blind credential vaulting, native Telegram &amp; WhatsApp channels, and a 3-pane liquid interface—running headless while you stay near the loop.
+              Hand off a real engineering goal before you leave your desk. Wake up to tested code — Don-Bot plans with five focused roles, resumes cleanly after crashes, keeps your secrets out of prompts, and pings you on Telegram or WhatsApp only when a human call matters.
             </p>
 
             <div class="telemetry-grid" role="list" aria-label="Key architectural specifications">
               <div class="telemetry-cell" role="listitem">
-                <span class="k">Topology</span>
+                <span class="k">Team</span>
                 <span class="v">1 Lead + 4 Specialists</span>
               </div>
               <div class="telemetry-cell" role="listitem">
-                <span class="k">Durable Spine</span>
+                <span class="k">Crash Recovery</span>
                 <span class="v">SQLite WAL + once()</span>
               </div>
               <div class="telemetry-cell" role="listitem">
-                <span class="k">Pre-Tool Gate</span>
-                <span class="v">~300ms · $0.0007</span>
+                <span class="k">Safety Check</span>
+                <span class="v">~300ms Pre-Tool Gate</span>
               </div>
               <div class="telemetry-cell" role="listitem">
-                <span class="k">UI &amp; Channels</span>
-                <span class="v">3-Pane + 'Me'-Mode</span>
+                <span class="k">Pocket Control</span>
+                <span class="v">Telegram, WhatsApp &amp; 3-Pane UI</span>
               </div>
             </div>
           </div>
@@ -2167,16 +2263,16 @@
     <section class="don-world" id="dispatch" aria-label="Build in Public Dispatch">
       <div class="don-container" style="max-width:640px;margin:0 auto;">
         <aside class="watch-card" aria-labelledby="watch-form-heading">
-            <div class="world-eyebrow" style="margin-bottom:0.5rem">BUILD IN PUBLIC DISPATCH</div>
-            <h2 id="watch-form-heading">Watch the factory come online.</h2>
+            <div class="world-eyebrow" style="margin-bottom:0.5rem">DEC 1 DROP · SLICE 01 STARTER</div>
+            <h2 id="watch-form-heading">Get Slice 01 in your inbox Dec 1.</h2>
             <p>
-              We are shipping every slice in the open: SQLite WAL checkpointing, 3-round specialist rooms, blind vault credentials, and the 3-pane liquid interface. Get notified as each milestone lands.
+              We'll send the runnable crash-proof agent starter, setup guide, and each new slice as it ships in the open. Zero fluff.
             </p>
 
             <form id="watch-form" action="/api/subscribe" method="POST" aria-labelledby="watch-form-heading" novalidate>
               <div class="field">
                 <label for="watch-email">Work or personal email</label>
-                <span class="field-hint" id="email-hint">One architectural dispatch per milestone. Zero fluff.</span>
+                <span class="field-hint" id="email-hint">Slice 01 starter + one architectural release note per milestone.</span>
                 <input
                   id="watch-email"
                   name="email"
@@ -2186,6 +2282,7 @@
                   autocorrect="off"
                   autocapitalize="none"
                   spellcheck="false"
+                  enterkeyhint="done"
                   placeholder="you@domain.com"
                   aria-describedby="email-hint"
                   data-error="email-error"
@@ -2201,7 +2298,7 @@
               </div>
 
               <button type="submit" class="btn-submit metal-btn" id="watch-submit">
-                Watch the Build in Public →
+                Get Slice 01 Drop →
               </button>
 
               <div id="form-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
@@ -2384,7 +2481,10 @@
       // 0. Pre-00 Dramatic Unpredictable Pulse + Matrix Countdown + CTA Focus
       const preHero = document.getElementById('pre-hero');
       const countdownEl = document.getElementById('don-countdown');
-      const preHeroCta = document.getElementById('pre-hero-cta');
+      const heroForm = document.getElementById('hero-watch-form');
+      const heroEmailInput = document.getElementById('hero-email');
+      const heroStatusBanner = document.getElementById('hero-form-status');
+      const heroSubmitBtn = document.getElementById('pre-hero-cta');
       const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
       const isMotionStopped = () => motionQuery.matches || document.body.classList.contains('motion-paused');
 
@@ -2450,18 +2550,6 @@
       };
       if (countdownEl) {
         tickCountdown();
-      }
-
-      if (preHeroCta) {
-        preHeroCta.addEventListener('click', (e) => {
-          const targetForm = document.getElementById('watch-form');
-          const targetInput = document.getElementById('watch-email');
-          if (targetForm) {
-            e.preventDefault();
-            targetForm.scrollIntoView({ behavior: isMotionStopped() ? 'auto' : 'smooth', block: 'center' });
-            if (targetInput) window.setTimeout(() => targetInput.focus({ preventScroll: true }), 350);
-          }
-        });
       }
 
       // 0b. Selective Share-to-Social Bars for Each Section
@@ -2561,89 +2649,90 @@
       const statusBanner = document.getElementById('form-status-banner');
       const submitBtn = document.getElementById('watch-submit');
 
-      function syncAria(input) {
+      const PENDING_KEY = 'don_bot_pending_email';
+      const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      const supportsUserInvalid = CSS.supports('selector(:user-invalid)');
+
+      function syncAria(input, forceShowInvalid = false) {
         const errId = input.dataset.error;
         const errEl = document.getElementById(errId);
-        const invalid = !input.validity.valid;
+        const trimmed = input.value.trim();
+        const isValid = input.validity.valid && EMAIL_RE.test(trimmed);
+        const invalid = forceShowInvalid ? !isValid : !input.validity.valid;
         input.setAttribute('aria-invalid', String(invalid));
         if (errEl) errEl.hidden = !invalid;
+        if (!supportsUserInvalid || forceShowInvalid || !invalid) {
+          input.classList.toggle('user-invalid-fallback', invalid);
+          input.classList.toggle('user-valid-fallback', !invalid && trimmed.length > 0);
+        }
         const base = (input.getAttribute('aria-describedby') || '')
           .split(' ')
           .filter((id) => id && id !== errId);
         if (invalid && errId) base.push(errId);
         input.setAttribute('aria-describedby', base.join(' '));
+        return isValid;
       }
 
-      if (emailInput) {
-        const supportsUserInvalid = CSS.supports('selector(:user-invalid)');
-        emailInput.addEventListener('blur', () => {
-          if (emailInput.value.length > 0) {
-            if (!supportsUserInvalid) {
-              emailInput.classList.toggle('user-invalid-fallback', !emailInput.validity.valid);
-              emailInput.classList.toggle('user-valid-fallback', emailInput.validity.valid);
-            }
-            syncAria(emailInput);
-          }
-        });
-        emailInput.addEventListener('input', () => {
-          if (emailInput.getAttribute('aria-invalid') === 'true') {
-            syncAria(emailInput);
-          }
-        });
-      }
+      function wireDispatchForm(formEl, emailEl, submitEl, statusEl, liveEl, retryId) {
+        if (!formEl || !emailEl || !submitEl || !statusEl) return;
 
-      if (form && emailInput) {
-        const PENDING_KEY = 'don_bot_pending_email';
-        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        emailEl.addEventListener('blur', () => {
+          if (emailEl.value.length > 0) {
+            syncAria(emailEl, true);
+          }
+        });
+        emailEl.addEventListener('input', () => {
+          if (emailEl.getAttribute('aria-invalid') === 'true') {
+            syncAria(emailEl, true);
+          }
+        });
 
         const showRecoveryBanner = (pendingEmail, reason) => {
-          statusBanner.innerHTML = `
+          statusEl.innerHTML = `
             <span>${reason} Saved <strong>${pendingEmail.replace(/[<>&"']/g, '')}</strong> locally.</span>
             <span style="display:inline-flex;gap:0.5rem;margin-left:0.65rem;flex-wrap:wrap;">
-              <button type="button" class="dl-link metal-btn metal-btn--ice" id="watch-retry-btn" style="padding:0.25rem 0.65rem;font-size:0.68rem;">Retry Now</button>
+              <button type="button" class="dl-link metal-btn metal-btn--ice" id="${retryId}" style="padding:0.25rem 0.65rem;font-size:0.68rem;">Retry Now</button>
               <a class="dl-link metal-btn" href="https://github.com/aegntic/don-bot" target="_blank" rel="noopener" style="padding:0.25rem 0.65rem;font-size:0.68rem;">Watch on GitHub ↗</a>
             </span>
           `;
-          statusBanner.className = 'form-status-banner is-ok';
-          statusBanner.hidden = false;
-          const retryBtn = document.getElementById('watch-retry-btn');
+          statusEl.className = 'form-status-banner is-ok';
+          statusEl.hidden = false;
+          const retryBtn = document.getElementById(retryId);
           if (retryBtn) {
             retryBtn.addEventListener('click', () => {
-              emailInput.value = pendingEmail;
-              form.requestSubmit();
+              emailEl.value = pendingEmail;
+              formEl.requestSubmit();
             });
           }
         };
 
         try {
           const saved = JSON.parse(localStorage.getItem(PENDING_KEY) || 'null');
-          if (saved && saved.email && !emailInput.value) {
-            emailInput.value = saved.email;
+          if (saved && saved.email && !emailEl.value) {
+            emailEl.value = saved.email;
             showRecoveryBanner(saved.email, 'Previous dispatch pending.');
           }
         } catch (_) {}
 
-        form.addEventListener('submit', async (e) => {
+        formEl.addEventListener('submit', async (e) => {
           e.preventDefault();
-          if (submitBtn.getAttribute('aria-disabled') === 'true') return;
+          if (submitEl.getAttribute('aria-disabled') === 'true') return;
 
-          const trimmed = emailInput.value.trim();
-          emailInput.value = trimmed;
-          syncAria(emailInput);
+          const trimmed = emailEl.value.trim();
+          emailEl.value = trimmed;
+          const isValid = syncAria(emailEl, true);
 
-          if (!emailInput.validity.valid || !EMAIL_RE.test(trimmed)) {
-            emailInput.setAttribute('aria-invalid', 'true');
-            emailInput.classList.add('user-invalid-fallback');
-            emailInput.focus();
-            if (liveRegion) {
-              liveRegion.textContent = 'Error: Please enter a valid email address.';
+          if (!isValid) {
+            emailEl.focus();
+            if (liveEl) {
+              liveEl.textContent = 'Error: Please enter a valid email address.';
             }
             return;
           }
 
-          submitBtn.setAttribute('aria-disabled', 'true');
-          const origLabel = submitBtn.textContent;
-          submitBtn.textContent = 'Registering...';
+          submitEl.setAttribute('aria-disabled', 'true');
+          const origLabel = submitEl.textContent;
+          submitEl.textContent = 'Sending...';
 
           const controller = new AbortController();
           const timer = window.setTimeout(() => controller.abort(), 8000);
@@ -2662,13 +2751,18 @@
             if (res.ok) {
               try { localStorage.removeItem(PENDING_KEY); } catch (_) {}
               const msg = data.status === 'exists'
-                ? 'You are already on the Don-Bot build dispatch.'
-                : 'You are in. We will notify you as each Don-Bot milestone lands.';
-              statusBanner.textContent = msg;
-              statusBanner.className = 'form-status-banner is-ok';
-              statusBanner.hidden = false;
-              if (liveRegion) liveRegion.textContent = msg;
-              form.reset();
+                ? 'Already on the list — watch your inbox Dec 1 for Slice 01.'
+                : 'You’re in. Check your inbox for the welcome note — Slice 01 lands Dec 1.';
+              [statusBanner, heroStatusBanner].forEach((banner) => {
+                if (!banner) return;
+                banner.textContent = msg;
+                banner.className = 'form-status-banner is-ok';
+                banner.hidden = false;
+              });
+              if (liveEl) liveEl.textContent = msg;
+              formEl.reset();
+              emailEl.classList.remove('user-invalid-fallback', 'user-valid-fallback');
+              emailEl.setAttribute('aria-invalid', 'false');
             } else {
               throw new Error(data.error || 'Dispatch endpoint unavailable.');
             }
@@ -2677,14 +2771,17 @@
               localStorage.setItem(PENDING_KEY, JSON.stringify({ email: trimmed, ts: Date.now() }));
             } catch (_) {}
             showRecoveryBanner(trimmed, 'Endpoint unreachable —');
-            if (liveRegion) liveRegion.textContent = 'Endpoint unreachable. Email saved locally with retry option.';
+            if (liveEl) liveEl.textContent = 'Endpoint unreachable. Email saved locally with retry option.';
           } finally {
             window.clearTimeout(timer);
-            submitBtn.removeAttribute('aria-disabled');
-            submitBtn.textContent = origLabel;
+            submitEl.removeAttribute('aria-disabled');
+            submitEl.textContent = origLabel;
           }
         });
       }
+
+      wireDispatchForm(heroForm, heroEmailInput, heroSubmitBtn, heroStatusBanner, liveRegion, 'hero-watch-retry-btn');
+      wireDispatchForm(form, emailInput, submitBtn, statusBanner, liveRegion, 'watch-retry-btn');
 
       // 2. Scoped Component Transitions for the 4 Architectural Pillars
       const PILLARS = {
@@ -2898,11 +2995,11 @@
     <section class="don-world don-world--alt" id="dispatch-footer" aria-label="Subscribe to Don-Bot Dispatch" style="padding-top:3rem;padding-bottom:3rem;">
       <div class="don-container" style="max-width:640px;margin:0 auto;">
         <div class="watch-card" style="padding:1.5rem 1.75rem;">
-          <div class="world-eyebrow" style="margin-bottom:0.4rem">BUILD IN PUBLIC DISPATCH</div>
-          <h2 style="font-size:1.35rem;margin-bottom:0.5rem;">Get notified as each slice lands.</h2>
+          <div class="world-eyebrow" style="margin-bottom:0.4rem">DEC 1 DROP · SLICE 01 STARTER</div>
+          <h2 style="font-size:1.35rem;margin-bottom:0.5rem;">Get Slice 01 in your inbox Dec 1.</h2>
           <form class="footer-watch-form" onsubmit="event.preventDefault(); const i=this.querySelector('input'); const b=this.querySelector('button'); if(i&&i.value.trim()){const m=document.getElementById('watch-email'); if(m){m.value=i.value.trim(); document.getElementById('watch-form').requestSubmit(); b.textContent='Sent ✓';}}" style="display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:0.75rem;">
-            <input type="email" required placeholder="you@domain.com" aria-label="Email address" style="flex:1;min-width:200px;">
-            <button type="submit" class="metal-btn metal-btn--orange">Notify Me →</button>
+            <input type="email" required autocomplete="email" spellcheck="false" enterkeyhint="done" placeholder="you@domain.com" aria-label="Email address" style="flex:1;min-width:200px;">
+            <button type="submit" class="metal-btn metal-btn--orange">Get Slice 01 Drop →</button>
           </form>
         </div>
       </div>

@@ -10,6 +10,7 @@ const catalogues = [
     ['Prologue','Discovery and memory','MCP discovery and memory infrastructure.','https://logue.pro']
   ]},
   {key:'agents',number:'02',heading:'Give the work<br>an operator.',description:'A defined task, the right tools and clear limits.',service:'Agent build',cards:[
+    ['Don-Bot','Autonomous builder','Hand off multi-hour engineering builds, recover cleanly from crashes, and approve key moves from Telegram or WhatsApp. Slice 01 drops Dec 1.','https://don.aegntic.ai/'],
     ['Echo','Project updates','Keeps project evidence separate and prepares updates for your approval.','https://echo.aegntic.ai/'],
     ['veritas-operator','Research','A pipeline for retrieval, synthesis and verification.','/projects/veritas-operator/'],
     ['obsidian-indexer','Local memory','Turns local vaults into agent-readable knowledge.','/projects/obsidian-indexer/'],
@@ -22,6 +23,7 @@ const catalogues = [
     ['aegntic MCP','Tool connections','Patterns for creating and managing MCP servers.','https://github.com/aegntic/aegntic-MCP']
   ]},
   {key:'products',number:'04',heading:'Yours to<br>put to work.',description:'Tools and systems you can open, inspect and use.',service:'Internal tool',cards:[
+    ['Don-Bot','Autonomous builder','Hand off multi-hour builds while you step away, approve risky moves from your phone. Slice 01 drops Dec 1.','https://don.aegntic.ai/'],
     ['Echo','Project updates','Turn separate project evidence into written updates and proof reels for approval.','https://echo.aegntic.ai/'],
     ['Tab Harvest','Browser research','Turn open tabs and transcripts into a connected knowledge graph.','https://github.com/aegntic/tab-harvest'],
     ['CLDCDE','Developer ecosystem','A home for Claude Code tooling, extensions and development patterns.','https://cldcde.cc'],

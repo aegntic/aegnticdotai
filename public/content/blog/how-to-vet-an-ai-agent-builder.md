@@ -194,3 +194,7 @@ Yes. A shared password hides the agent's actions inside a person's account, and 
 ### What is a kill switch for an AI agent, and how do I test one?
 
 A kill switch is a way for a person to stop the agent immediately: revoke its access, halt its loop and prevent further tool calls or spend. Ask the builder to demonstrate it during the pilot. Write down how long it took and who could do it. A switch that exists only in a slide deck does not count.
+
+---
+
+**Inspect an open-source build with these guardrails baked in:** [Don-Bot](https://don.aegntic.ai/) uses hidden credential injection instead of shared passwords, fast pre-tool approval gates, local crash recovery, and Telegram or WhatsApp pause checks for anything irreversible. [Get the Dec 1 Slice 01 drop ->](https://don.aegntic.ai/)
