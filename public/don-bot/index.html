@@ -39,7 +39,7 @@
   <link rel="apple-touch-icon" href="/don-bot/apple-touch-icon.png">
   <link rel="stylesheet" href="/premium-nav.css?v=654771bce0e2">
   <link rel="stylesheet" href="/shared-footer.css?v=e06640e4a006">
-  <script src="/don-bot/neuro-noise.js?v=highp-2" defer></script>
+  <script src="/don-bot/neuro-noise.js?v=resilient-3" defer></script>
   <script>
     // Popover API polyfill only where native support is missing.
     if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
@@ -149,8 +149,7 @@
 
     .don-neuro-bg {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100vh;
       height: 100lvh;
@@ -158,7 +157,7 @@
       pointer-events: none;
       background: #04060a;
       overflow: hidden;
-      contain: strict;
+      contain: layout paint;
       transform: translateZ(0);
     }
     .don-neuro-bg canvas {
@@ -167,10 +166,15 @@
       display: block;
       opacity: 1;
     }
+    .don-neuro-bg.is-2d canvas {
+      filter: blur(0.6px);
+      transform: scale(1.015);
+    }
     .don-neuro-bg.is-fallback {
       background:
-        radial-gradient(ellipse at 18% 28%, rgba(71, 166, 255, 0.22) 0%, rgba(18, 44, 82, 0.12) 38%, rgba(4, 6, 10, 0) 70%),
-        radial-gradient(ellipse at 82% 72%, rgba(71, 166, 255, 0.16) 0%, rgba(4, 6, 10, 0) 62%),
+        radial-gradient(ellipse 68% 55% at 14% 24%, rgba(71, 166, 255, 0.44) 0%, rgba(28, 84, 152, 0.22) 38%, rgba(4, 6, 10, 0) 72%),
+        radial-gradient(ellipse 62% 52% at 86% 74%, rgba(71, 166, 255, 0.38) 0%, rgba(18, 52, 102, 0.18) 40%, rgba(4, 6, 10, 0) 68%),
+        radial-gradient(ellipse 46% 36% at 54% 92%, rgba(185, 226, 255, 0.24) 0%, rgba(4, 6, 10, 0) 64%),
         #04060a;
     }
     .don-neuro-bg.is-fallback canvas {
