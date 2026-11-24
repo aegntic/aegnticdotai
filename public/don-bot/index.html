@@ -6,27 +6,27 @@
   <!-- MANDATORY: Declare dark color-scheme in head to prevent initial white flash (FOUC) -->
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#090c11">
-  <title>Don-Bot — On-the-Run Dark Factory · Build in Public | aegntic.ai</title>
-  <meta name="description" content="Don-Bot: an open-source On-the-Run Dark Factory with a Lead Orchestrator, 4 durable specialists, SQLite WAL crash recovery, safeagents + 300ms Jev gates, Telegram 'Me'-Mode, and an A2UI 1.0 3-pane liquid cockpit. Watch the build in public at don.aegntic.ai.">
+  <title>Don-Bot v0.6.0 — On-the-Run Dark Factory · Open Source | aegntic.ai</title>
+  <meta name="description" content="Don-Bot v0.6.0 (Slices 01–06 live): local-first On-the-Run Dark Factory with 1 Lead + 4 worktree specialists, SQLite WAL crash recovery, Rust don-guard, System-One Jev, NVIDIA SkillEvaluator, 1-click OAuth onboarding, Telegram 'Me'-Mode, A2UI 1.0 3-pane cockpit & Meta-Factory fleet.">
   <link rel="canonical" href="https://don.aegntic.ai/">
 
   <!-- Open Graph / Social Cards -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aegntic.ai">
   <meta property="og:url" content="https://don.aegntic.ai/">
-  <meta property="og:title" content="Don-Bot — On-the-Run Dark Factory">
-  <meta property="og:description" content="An open-source On-the-Run Dark Factory: Pi Durable, OTRDF, safeagents + 300ms J-JEV Gates, Blind Vault, Telegram 'Me'-Mode, and an A2UI 1.0 3-Pane Liquid Cockpit. Watch us build in public.">
+  <meta property="og:title" content="Don-Bot v0.6.0 — On-the-Run Dark Factory">
+  <meta property="og:description" content="Open-source v0.6.0 live on GitHub (Slices 01–06): 1 Lead + 4 worktree specialists, SQLite WAL crash recovery, Rust don-guard, System-One Jev, NVIDIA SkillEvaluator, OAuth onboarding, Telegram 'Me'-Mode, A2UI 1.0 cockpit & Meta-Factory.">
   <meta property="og:image" content="https://don.aegntic.ai/don-bot/don-bot-evolution-hero.jpg">
   <meta property="og:image:width" content="1024">
   <meta property="og:image:height" content="428">
-  <meta property="og:image:alt" content="Don-Bot — On-the-Run Dark Factory">
+  <meta property="og:image:alt" content="Don-Bot v0.6.0 — On-the-Run Dark Factory">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@aegntic">
   <meta name="twitter:creator" content="@aegntic">
-  <meta name="twitter:title" content="Don-Bot — On-the-Run Dark Factory">
-  <meta name="twitter:description" content="Don-Bot — On-the-Run Dark Factory: Pi Durable, OTRDF, safeagents + 300ms J-JEV Gates, Blind Vault, Telegram 'Me'-Mode, and an A2UI 1.0 3-Pane Liquid Cockpit.">
+  <meta name="twitter:title" content="Don-Bot v0.6.0 — On-the-Run Dark Factory">
+  <meta name="twitter:description" content="Open-source v0.6.0 live on GitHub (Slices 01–06): Pi Durable SQLite WAL, Rust don-guard, System-One Jev, SkillEvaluator gate, Telegram 'Me'-Mode, A2UI 1.0 Cockpit & Meta-Factory.">
   <meta name="twitter:image" content="https://don.aegntic.ai/don-bot/don-bot-evolution-hero.jpg">
 
   <link rel="preload" href="/fonts/don-mark.woff2" as="font" type="font/woff2" crossorigin>
@@ -998,6 +998,15 @@
       color: var(--ae-ice);
     }
 
+    .pre-hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 0.15rem 0 0.2rem;
+    }
+
     .section-share {
       display: flex;
       flex-wrap: wrap;
@@ -1678,6 +1687,13 @@
       font-weight: 600;
     }
 
+    .m-badge.shipped {
+      background: rgba(63, 193, 255, 0.14);
+      border-color: var(--ae-ice);
+      color: var(--ae-ice);
+      font-weight: 600;
+    }
+
     /* Copy Snippet Box (Modern Web Guidance: copy-button) */
     .snippet-box {
       background: #070a0e;
@@ -2008,7 +2024,7 @@
     <div class="don-header__inner">
       <a class="don-logo" href="https://aegntic.ai/">
         <img src="/don-bot/ae-cutout-logo.png" width="314" height="207" alt="aegntic home">
-        <span class="don-brand-label"><span class="don-mark" style="font-size:1.05em">DON</span>.aegntic.ai<span class="don-brand-tail"> // build in public</span></span>
+        <span class="don-brand-label"><span class="don-mark" style="font-size:1.05em">DON</span>.aegntic.ai<span class="don-brand-tail"> // open source · v0.6.0</span></span>
       </a>
       <nav class="don-nav" aria-label="Primary">
         <ul class="don-nav__inline">
@@ -2064,9 +2080,13 @@
         <div class="pre-hero__word" aria-hidden="true">DON</div>
       </div>
       <div class="pre-hero__hud">
-        <div class="pre-hero__soon">COMING SOON</div>
-        <div class="pre-hero__countdown" id="don-countdown" aria-label="Launch countdown">00:00:00:00:<span>00</span></div>
-        <p class="pre-hero__deliverable" id="hero-email-hint">Get Slice 01 (crash-proof agent starter + setup guide) in your inbox Dec 1.</p>
+        <div class="pre-hero__soon" style="color:var(--ae-ice)">LIVE ON GITHUB · v0.6.0 SHIPPED</div>
+        <div class="pre-hero__countdown" aria-label="Release v0.6.0 status">v0.6.0 // 6 SLICES · <span>56 CI TESTS</span></div>
+        <div class="pre-hero__actions">
+          <a class="metal-btn" href="https://github.com/aegntic/don-bot/releases/tag/v0.6.0" target="_blank" rel="noopener">Release v0.6.0 on GitHub ↗</a>
+          <a class="metal-btn metal-btn--ice" href="#roadmap">Clone &amp; Quickstart ↓</a>
+        </div>
+        <p class="pre-hero__deliverable" id="hero-email-hint">Slices 01–06 are open source now. Drop your email for the setup walkthrough &amp; v0.7+ release dispatches.</p>
         <form class="pre-hero__form" id="hero-watch-form" action="/api/subscribe" method="POST" novalidate>
           <div class="pre-hero__form-row">
             <label for="hero-email" class="sr-only">Email address</label>
@@ -2084,7 +2104,7 @@
               aria-invalid="false"
               class="pre-hero__input"
             >
-            <button type="submit" class="metal-btn metal-btn--ice" id="pre-hero-cta">Get Slice 01 Drop →</button>
+            <button type="submit" class="metal-btn metal-btn--ice" id="pre-hero-cta">Get Release Notes →</button>
           </div>
           <div class="error-msg" id="hero-email-error" hidden>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -2098,7 +2118,7 @@
       </div>
     </section>
 
-    <!-- 00 // ACCESS (HERO & BUILD IN PUBLIC SUBSCRIBE) -->
+    <!-- 00 // ACCESS (HERO & RELEASE OVERVIEW) -->
     <section class="don-world" id="access" aria-labelledby="hero-heading">
       <div class="world-ghost don-mark" aria-hidden="true">DON.</div>
       <div class="hero-bleed-reveal" aria-hidden="true">
@@ -2107,7 +2127,7 @@
       <div class="world-siderail">
         <span class="siderail-num"><span class="live-dot" aria-hidden="true"></span>00</span>
         <span class="siderail-slash">/</span>
-        <div class="siderail-text">ACCESS · ON-THE-RUN DARK FACTORY · PUBLIC BUILD REVEAL</div>
+        <div class="siderail-text">ACCESS · ON-THE-RUN DARK FACTORY · V0.6.0 LIVE</div>
       </div>
       <div class="don-container">
 
@@ -2118,18 +2138,24 @@
               <em>On-the-Run Dark Factory.</em>
             </h1>
             <div class="hero-features-strip" aria-label="Core capabilities">
-              <span class="hero-feature-pill">Pi Durable</span>
-              <span class="hero-feature-pill">OTRDF</span>
-              <span class="hero-feature-pill">safeagents + J-JEV</span>
-              <span class="hero-feature-pill">Blind Vault</span>
+              <span class="hero-feature-pill">Pi Durable + WAL</span>
+              <span class="hero-feature-pill">Rust don-guard</span>
+              <span class="hero-feature-pill">System-One Jev</span>
+              <span class="hero-feature-pill">SkillEvaluator Gate</span>
+              <span class="hero-feature-pill">OAuth + Blind Vault</span>
               <span class="hero-feature-pill">Telegram 'Me'-Mode</span>
               <span class="hero-feature-pill">A2UI 1.0 Cockpit</span>
+              <span class="hero-feature-pill">Meta-Factory Fleet</span>
             </div>
             <p class="hero-lead">
-              Hand off a real engineering goal before you leave your desk. Wake up to tested code — Don-Bot plans with five focused roles, resumes cleanly after crashes, keeps your secrets out of prompts, and pings you on Telegram 'Me'-Mode only when a human call matters.
+              Hand off a real engineering goal before you leave your desk and wake up to verified code. Don-Bot v0.6.0 runs a persistent Lead plus four git-worktree specialists on crash-proof SQLite WAL, guards every tool with Rust <code>don-guard</code> and System-One Jev, and pings your Telegram 'Me'-Mode or A2UI 1.0 cockpit only when a human call matters.
             </p>
 
             <div class="telemetry-grid" role="list" aria-label="Key architectural specifications">
+              <div class="telemetry-cell" role="listitem">
+                <span class="k">Release</span>
+                <span class="v">v0.6.0 (Slices 01–06)</span>
+              </div>
               <div class="telemetry-cell" role="listitem">
                 <span class="k">Team</span>
                 <span class="v">1 Lead + 4 Specialists</span>
@@ -2139,12 +2165,8 @@
                 <span class="v">SQLite WAL + once()</span>
               </div>
               <div class="telemetry-cell" role="listitem">
-                <span class="k">Safety Check</span>
-                <span class="v">safeagents + 300ms Jev</span>
-              </div>
-              <div class="telemetry-cell" role="listitem">
                 <span class="k">Pocket Control</span>
-                <span class="v">Telegram 'Me'-Mode &amp; A2UI 1.0 PWA</span>
+                <span class="v">Telegram 'Me'-Mode &amp; A2UI 1.0</span>
               </div>
             </div>
           </div>
@@ -2170,7 +2192,7 @@
         <div class="section-header">
           <h2 class="section-title" id="arch-heading">Built to run for hours while you stay near the loop.</h2>
           <p class="section-sub">
-            In the loop, you prompt and babysit. Near the loop, a small durable team debates, builds, and verifies before escalating only high-leverage decisions to your inbox.
+            In the loop, you prompt and babysit. Near the loop, a persistent Lead + four worktree specialists debate, build, and verify before escalating only high-leverage DecisionCards to your cockpit or Telegram.
           </p>
         </div>
 
@@ -2185,35 +2207,36 @@
           </button>
           <button type="button" class="pillar-tab" role="tab" id="tab-verify" aria-selected="false" aria-controls="pillar-panel" data-pillar="verify">
             <span class="num">03 // SAFETY &amp; QA</span>
-            <span class="lbl">Verifier &amp; Blind Vault</span>
+            <span class="lbl">don-guard, Jev &amp; Skills</span>
           </button>
           <button type="button" class="pillar-tab" role="tab" id="tab-liquid" aria-selected="false" aria-controls="pillar-panel" data-pillar="liquid">
             <span class="num">04 // INTERFACES</span>
-            <span class="lbl">3-Pane UI + 'Me'-Mode</span>
+            <span class="lbl">A2UI 1.0 + 'Me'-Mode</span>
           </button>
         </div>
 
         <div class="pillar-stage" id="pillar-panel" role="tabpanel" aria-labelledby="tab-team">
           <div id="pillar-copy">
-            <h3>1 Lead Orchestrator + 4 Durable Specialists</h3>
+            <h3>1 Lead Orchestrator + 4 Durable Specialists + Meta-Factory Fleet</h3>
             <p>
-              Instead of spawning 50 ephemeral subagents that burn tokens and overwrite each other's files, Don-Bot runs a persistent 5-agent roster over SQLite message rooms. Single-lane tasks route directly, while multi-lane goals open complexity-gated rooms inside isolated git worktrees behind a serialized writer lease.
+              Instead of spawning 50 ephemeral subagents that burn tokens and overwrite each other's files, Don-Bot runs a persistent 5-agent roster over SQLite message rooms. Multi-lane goals open complexity-gated 3-round consensus rooms in isolated git worktrees behind a serialized writer lease, and Slice 06 spawns isolated child factories from blank templates with 1:1 <code>FactoryOwner</code> stewards.
             </p>
             <ul class="spec-list">
-              <li><strong>Social Contract Before Code:</strong> Specialists agree on contracts, schemas, and file boundaries in complexity-gated rooms before coding in <code>.don/worktrees</code> and merging via a serialized writer lease.</li>
-              <li><strong>4-Tier Vendor-Agnostic Routing:</strong> Architect, Workhorse, Fast, and Gate tiers run cleanly from a single BYOK API key and auto-downshift to Fast at 70% budget burn.</li>
-              <li><strong>Bounded Subagent Fan-Out:</strong> Specialists enforce a strict $0.25 per-subagent cap, $2.00 task breaker, and automatic 2-failure dead-letter cooldown.</li>
+              <li><strong>Social Contract Before Code:</strong> Specialists settle contracts and file boundaries before editing inside <code>.don/worktrees</code> and merging through the atomic Writer Lease.</li>
+              <li><strong>1-Click OAuth &amp; 4-Tier Routing:</strong> Run <code>don login openrouter</code> to seal credentials in encrypted SQLite and unlock all 4 LLM tiers plus live System-One Jev, with automatic Fast-tier downshift at 70% budget burn.</li>
+              <li><strong>Bounded Subagents &amp; Meta-Factory Fleet:</strong> Enforces a $0.25 subagent cap, $2.00 task / $15.00 daily breakers, 2-failure dead-letter cooldowns, and DecisionCard-gated template backports via <code>packages/meta</code>.</li>
             </ul>
           </div>
           <div class="spec-diagram" id="pillar-diagram">
-            <div><span class="hl">TEAM ROOM // COMPLEXITY-GATED WORKTREES</span></div>
-            <div>──────────────────────────────────────────────</div>
+            <div><span class="hl">TEAM ROOM // WORKTREES + META-FACTORY FLEET</span></div>
+            <div>──────────────────────────────────────────────────</div>
             <div>[Lead Orchestrator] &rarr; Routes goal · canWriteCode=false</div>
             <div>  ├── <span class="ok">API Keeper</span>      (Workhorse · .don/worktrees/api)</div>
             <div>  ├── <span class="ok">Pipeline Forge</span>  (Workhorse · $0.25 subagent cap)</div>
             <div>  ├── <span class="ok">Client QA</span>       (Gate Tier · oxc.rs + Verifier)</div>
             <div>  └── <span class="ok">Memory Curator</span>  (Fast Tier · FTS5 provenance)</div>
-            <div>──────────────────────────────────────────────</div>
+            <div>──────────────────────────────────────────────────</div>
+            <div>[Meta-Factory v0.6] &rarr; templates &rarr; owners &rarr; Jev mailbox</div>
             <div><span class="ok">STATUS:</span> Serialized writer lease · 0 merge collisions</div>
           </div>
         </div>
@@ -2230,12 +2253,12 @@
       <div class="world-siderail">
         <span class="siderail-num">02</span>
         <span class="siderail-slash">/</span>
-        <div class="siderail-text">LIQUID SOFTWARE INTERFACE · 100% AGENTIC ACCESS PARITY</div>
+        <div class="siderail-text">A2UI 1.0 COCKPIT · 100% AGENTIC ACCESS PARITY</div>
       </div>
       <div class="don-container">
         <div class="ui-toolbar">
           <div class="section-header" style="margin-bottom:0">
-            <h2 class="section-title" id="ui-heading">Lists on the left. Focus in the center. Durable team on the right.</h2>
+            <h2 class="section-title" id="ui-heading">Lanes on the left. Decision Deck in the center. Sandboxed preview on the right.</h2>
           </div>
           <button type="button" class="motion-btn metal-btn metal-btn--ice" id="motion-toggle">
             Pause live pulse
@@ -2243,63 +2266,63 @@
         </div>
 
         <p class="section-sub" style="margin-bottom:2rem">
-          Every button, tab, and canvas pin in the 3-pane interface maps 1:1 to an agent tool. Press <code>~</code> (tilde) at any time to inspect or steer any specialist directly.
+          Every button, card, and action in the A2UI 1.0 cockpit (<code>don.catalog.v1</code>) maps 1:1 to an authenticated <code>/api/a2ui/action</code> turn lock, while TypeScript macros keep raw diffs and stderr out of model context. Press <code>~</code> (tilde) anytime for Quick Operator Steer, or connect via a single-use 5-minute <code>DON-XXXXXX</code> pairing code.
         </p>
 
-        <div class="liquid-frame" role="region" aria-label="3-Pane Liquid Interface Architecture Preview">
+        <div class="liquid-frame" role="region" aria-label="3-Pane A2UI 1.0 Cockpit Architecture Preview">
           <div class="l-pane">
-            <div class="l-hdr"><span>01 // LEFT · LANE LIST</span><span>4 ITEMS</span></div>
+            <div class="l-hdr"><span>01 // LEFT · LANES &amp; BUDGET</span><span>WAL LIVE</span></div>
             <div class="l-item is-active">
-              <strong>[arch-spec-v2]</strong>
-              <small>API Keeper · Updated 12s ago</small>
+              <strong>[BudgetGauge · $0.48 / $2.00]</strong>
+              <small>70% fast-tier downshift marker armed</small>
             </div>
             <div class="l-item">
-              <strong>[sqlite-wal-schema]</strong>
-              <small>Pipeline Forge · Verified PASS</small>
+              <strong>[WorktreeLane · api-keeper]</strong>
+              <small>.don/worktrees/api · Writer Lease free</small>
             </div>
             <div class="l-item">
-              <strong>[mtproto-pacer]</strong>
-              <small>API Keeper · Complexity-gated review</small>
+              <strong>[RunTimeline · seq #42]</strong>
+              <small>$0.00 LLM SSE cursor · once() replay safe</small>
             </div>
             <div class="l-item">
-              <strong>[browser-checkout-qa]</strong>
-              <small>Client QA · Chromium CDP Stream</small>
+              <strong>[FactoryCard · don-core-v1]</strong>
+              <small>Meta-Factory fleet · Owner healthy</small>
             </div>
           </div>
 
           <div class="l-pane">
-            <div class="l-hdr"><span>02 // CENTER · A2UI 1.0 + CHROMIUM STREAM + RUN TRACE</span><span>SPRING UI</span></div>
+            <div class="l-hdr"><span>02 // CENTER · DECISION DECK &amp; GATES</span><span>don.catalog.v1</span></div>
             <div class="l-bar">
-              <span>API KEEPER &rarr; WORKHORSE · .DON/WORKTREES · WRITER-LEASE</span>
-              <span style="color:#3fc1ff">$0.018 · 1.4S</span>
+              <span>CODEGATECARD &rarr; OXLINT + OXFMT + BUN TEST</span>
+              <span style="color:#3fc1ff">56 PASS · $0.00</span>
             </div>
             <div class="l-bar">
-              <span>PIPELINE FORGE &rarr; BOUNDED SUBAGENTS ($0.25 CAP)</span>
-              <span style="color:#3fc1ff">$0.024 · 2.1S</span>
+              <span>SKILLEVALCARD &rarr; NVIDIA SKILLEVALUATOR (6 HARNESSES)</span>
+              <span style="color:#3fc1ff">SCORE 98/100</span>
             </div>
             <div class="l-bar warn">
               <span>70% BURN DOWNSHIFT &rarr; FAST TIER ENGAGED AUTOMATICALLY</span>
               <span style="color:#ff5a1f">-68% TOKENS</span>
             </div>
             <div class="l-bar">
-              <span>SAFEAGENTS + JEV GATE &rarr; 42 CHECKS EVALUATED</span>
-              <span style="color:#3fc1ff">280MS · $0.0007</span>
+              <span>SYSTEM-ONE JEV + RUST DON-GUARD &rarr; 5 GATES ACTIVE</span>
+              <span style="color:#3fc1ff">45-TREE GBDT</span>
             </div>
           </div>
 
           <div class="l-pane">
-            <div class="l-hdr"><span>03 // RIGHT · NEAR-LOOP INBOX</span><span>1 NEEDS YOU</span></div>
+            <div class="l-hdr"><span>03 // RIGHT · SANDBOX PREVIEW &amp; DECK</span><span>NO-ORIGIN CSP</span></div>
             <div class="l-item is-active">
-              <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--ae-signal);margin-bottom:0.35rem">TEAM_ASK DECISION DECK · #1 OF 1</div>
-              <strong>Outbound Telegram Group Creation</strong>
+              <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--ae-signal);margin-bottom:0.35rem">DECISIONCARD · GIT_PUSH GATE</div>
+              <strong>Approve Signed Release Push to origin/main?</strong>
               <small style="color:#d6dbe4;margin-top:0.35rem;line-height:1.45">
-                Create supergroup "Factory · BuyerNav" with Forum Topics and file under your "Factories" folder?
+                Code Gate green, SkillEvaluator 98/100, diff clean. Approve here in A2UI 1.0 or via Telegram 'Me'-Mode inline button.
               </small>
             </div>
             <div class="l-item">
-              <div style="font-family:var(--font-mono);font-size:0.68rem;color:#3fc1ff">LEAD ORCHESTRATOR</div>
+              <div style="font-family:var(--font-mono);font-size:0.68rem;color:#3fc1ff">ISOLATED PREVIEW · CDP READY</div>
               <small style="color:#d6dbe4;margin-top:0.35rem;line-height:1.45">
-                Complexity-gated room settled. Answer card #1 here or from Telegram whenever you're ready.
+                <code>sandbox="allow-scripts"</code> zero-network iframe + on-demand Chromium CDP screencast with human handback.
               </small>
             </div>
           </div>
@@ -2313,19 +2336,19 @@
 
     <!-- 03 // LIVE BUILD LOG & MILESTONES -->
 
-    <section class="don-world" id="dispatch" aria-label="Build in Public Dispatch">
+    <section class="don-world" id="dispatch" aria-label="Release Dispatch Signup">
       <div class="don-container" style="max-width:640px;margin:0 auto;">
         <aside class="watch-card" aria-labelledby="watch-form-heading">
-            <div class="world-eyebrow" style="margin-bottom:0.5rem">DEC 1 DROP · SLICE 01 STARTER</div>
-            <h2 id="watch-form-heading">Get Slice 01 in your inbox Dec 1.</h2>
+            <div class="world-eyebrow" style="margin-bottom:0.5rem">OPEN SOURCE · v0.6.0 LIVE ON GITHUB</div>
+            <h2 id="watch-form-heading">Get the v0.6.0 walkthrough &amp; release dispatches.</h2>
             <p>
-              We'll send the runnable crash-proof agent starter, setup guide, and each new slice as it ships in the open. Zero fluff.
+              All six slices are live on GitHub right now. Drop your email for the quickstart guide, architectural notes, and v0.7+ drops (bring-your-own email/phone adapters &amp; native companions).
             </p>
 
             <form id="watch-form" action="/api/subscribe" method="POST" aria-labelledby="watch-form-heading" novalidate>
               <div class="field">
                 <label for="watch-email">Work or personal email</label>
-                <span class="field-hint" id="email-hint">Slice 01 starter + one architectural release note per milestone.</span>
+                <span class="field-hint" id="email-hint">Quickstart walkthrough + one architectural release note per major milestone.</span>
                 <input
                   id="watch-email"
                   name="email"
@@ -2351,7 +2374,7 @@
               </div>
 
               <button type="submit" class="btn-submit metal-btn" id="watch-submit">
-                Get Slice 01 Drop →
+                Get Release Notes →
               </button>
 
               <div id="form-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
@@ -2359,6 +2382,7 @@
             </form>
 
             <div class="watch-links">
+              <a href="https://github.com/aegntic/don-bot/releases/tag/v0.6.0" target="_blank" rel="noopener">Release v0.6.0 ↗</a>
               <a href="https://github.com/aegntic/don-bot" target="_blank" rel="noopener">github.com/aegntic/don-bot ↗</a>
               <a href="https://x.com/aegntic" target="_blank" rel="noopener">@aegntic ↗</a>
             </div>
@@ -2371,13 +2395,13 @@
       <div class="world-siderail">
         <span class="siderail-num">03</span>
         <span class="siderail-slash">/</span>
-        <div class="siderail-text">BUILD IN PUBLIC TRACKER</div>
+        <div class="siderail-text">RELEASE LOG · v0.6.0 LIVE ON MAIN</div>
       </div>
       <div class="don-container">
         <div class="section-header">
-          <h2 class="section-title" id="roadmap-heading">Five architectural slices. Shipped in the open.</h2>
+          <h2 class="section-title" id="roadmap-heading">Six architectural slices. Shipped in the open.</h2>
           <p class="section-sub">
-            Follow the repository or clone the starter branch to inspect each harness extension as it lands.
+            All six slices are merged on <code>main</code> in <strong>v0.6.0</strong> with 56 offline CI chaos tests ($0.00 live API cost). Release <code>v0.1.0-slice-01</code> preserves the initial Slice 01 baseline.
           </p>
         </div>
 
@@ -2386,49 +2410,65 @@
             <span class="m-phase">SLICE 01 // SPINE</span>
             <div>
               <strong>SQLite WAL Durable Runtime &amp; Core Team CLI</strong>
-              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">SQLite WAL + <code>once()</code> crash recovery, 10%/20%/30% <code>self_compact</code>, <code>safeagents</code> guard, isolated worktrees + writer lease, <code>oxc.rs</code> code gate, and 5/5 CI chaos tests.</p>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">SQLite WAL + <code>once()</code> crash recovery, 10%/20%/30% <code>self_compact</code>, <code>safeagents</code> guard, isolated worktrees + writer lease, <code>oxc.rs</code> code gate, and baseline CI chaos suite.</p>
             </div>
-            <span class="m-badge in-progress">SHIPPED · v0.1.0</span>
+            <span class="m-badge shipped">SHIPPED · v0.1.0</span>
           </div>
           <div class="milestone-row">
             <span class="m-phase">SLICE 02 // TEAM</span>
             <div>
               <strong>Complexity-Gated Rooms &amp; Sibling Verifier</strong>
-              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Complexity-gated cross-lane negotiation rooms, Top-Down sibling Verifier, subagent privilege stripping, and time-travel replay.</p>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Complexity-gated 3-round cross-lane negotiation rooms, Top-Down sibling Verifier, live worktree feedback loops, subagent privilege stripping, and time-travel replay.</p>
             </div>
-            <span class="m-badge">NEXT UP</span>
+            <span class="m-badge shipped">SHIPPED · v0.6.0</span>
           </div>
           <div class="milestone-row">
             <span class="m-phase">SLICE 03 // TRUST</span>
             <div>
-              <strong>Rust <code>don-guard</code>, 300ms Jev Gates &amp; Blind Vault</strong>
-              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Native Landlock/Seatbelt/JobObject OS sandboxes, <code>zeroize</code> AES-256-GCM Blind Vault, IP-class SSRF firewall, and fail-closed owner-quote gates.</p>
+              <strong>Rust <code>don-guard</code>, System-One Jev &amp; Blind Vault</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Native Landlock/Seatbelt/JobObject OS sandboxes, <code>zeroize</code> AES-256-GCM Blind Vault, live System-One Jev (<code>jev-1.14</code> / OpenRouter + 45-feature GBDT), IP-class SSRF firewall, Shadow Mode &amp; signed rollbacks.</p>
             </div>
-            <span class="m-badge">SPEC COMPLETE</span>
+            <span class="m-badge shipped">SHIPPED · v0.6.0</span>
           </div>
           <div class="milestone-row">
             <span class="m-phase">SLICE 04 // CHANNELS</span>
             <div>
               <strong>Personal 'Me'-Mode Telegram Bridge &amp; Remote Access</strong>
-              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">MTProto Forum Topics with human-mimicry pacing, two-zone outbound firewall, voice notes to Decision Deck buttons, and Tailscale Serve / cloudflared access.</p>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem"><code>@mtcute/bun</code> MTProto Forum Topics + "Factories" folder with human-mimicry pacing, Two-Zone Outbound Firewall, voice notes to Decision Deck buttons, and Tailscale Serve / <code>cloudflared</code> access.</p>
             </div>
-            <span class="m-badge">SPEC COMPLETE</span>
+            <span class="m-badge shipped">SHIPPED · v0.6.0</span>
           </div>
           <div class="milestone-row">
             <span class="m-phase">SLICE 05 // UI</span>
             <div>
-              <strong>A2UI 1.0 Custom Catalog &amp; Spring-Liquid PWA Cockpit</strong>
-              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Left Lane List, Center A2UI 1.0 declarative surfaces + TypeScript macro hydration + on-demand Chromium stream, Right Decision Deck, and spring physics.</p>
+              <strong>OAuth Onboarding, A2UI 1.0 Catalog &amp; 3-Pane PWA Cockpit</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">1-click OAuth onboarding (<code>don onboard</code>, <code>DON-XXXXXX</code> pairing, encrypted SQLite vault), A2UI 1.0 Custom Catalog (<code>don.catalog.v1</code>), TS Macro Hydration, <code>$0.00</code> SSE push, and Chromium CDP stream.</p>
             </div>
-            <span class="m-badge">SPEC COMPLETE</span>
+            <span class="m-badge shipped">SHIPPED · v0.6.0</span>
+          </div>
+          <div class="milestone-row">
+            <span class="m-phase">SLICE 06 // META-FACTORY</span>
+            <div>
+              <strong>Fleet Registry, Verified Template Backports &amp; Jev Mailbox</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Versioned Blank Factory Templates (<code>don-core-v1</code>), Liquid Boundary + NVIDIA SkillEvaluator backport gate, 1:1 <code>FactoryOwner</code> stewards, <code>don_factory_changelogs</code>, and Jev-gated Factory-to-Factory Mailbox.</p>
+            </div>
+            <span class="m-badge shipped">SHIPPED · v0.6.0</span>
+          </div>
+          <div class="milestone-row">
+            <span class="m-phase">NEXT // v0.7+</span>
+            <div>
+              <strong>Bring-Your-Own Agent Identity &amp; Native Companions</strong>
+              <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Opt-in per-instance dedicated agent email (IMAP/SMTP or webhook) &amp; phone/SMS adapters (no hardcoded defaults, Coming Soon slots already in onboarding), plus optional Tauri &amp; SwiftUI/Kotlin companions.</p>
+            </div>
+            <span class="m-badge in-progress">COMING NEXT</span>
           </div>
         </div>
 
         <div class="snippet-box">
-          <pre class="snippet-code" id="clone-cmd">git clone https://github.com/aegntic/don-bot.git &amp;&amp; cd don-bot</pre>
+          <pre class="snippet-code" id="clone-cmd">git clone https://github.com/aegntic/don-bot.git &amp;&amp; cd don-bot &amp;&amp; bun install &amp;&amp; bun run don onboard</pre>
           <div class="copy-wrap">
             <button type="button" class="copy-trigger metal-btn metal-btn--ice" command="--copy" commandfor="clone-cmd" data-status="copy-status-clone">
-              Copy Clone Command
+              Copy Quickstart Command
             </button>
             <span id="copy-status-clone" class="copy-status" role="status"></span>
           </div>
@@ -2451,7 +2491,7 @@
         <div class="section-header">
           <h2 class="section-title" id="kit-heading">Share the architecture.</h2>
           <p class="section-sub">
-            High-contrast architecture cards and ready-to-post build-in-public copy for X, LinkedIn, Telegram, and technical communities.
+            High-contrast architecture cards and ready-to-post copy for X, LinkedIn, Telegram, and technical communities.
           </p>
         </div>
 
@@ -2472,7 +2512,7 @@
             <div class="social-card-meta">
               <div>
                 <strong>Near the loop, not in it.</strong>
-                <span>Multi-round room debates and 300ms System-One gates before escalating to you.</span>
+                <span>Multi-round room debates, Rust don-guard, and System-One Jev gates.</span>
               </div>
               <a class="dl-link metal-btn" href="/don-bot/cards/card-02-architecture-16x9.png" download="don-bot-02-architecture.png">Download PNG</a>
             </div>
@@ -2483,7 +2523,7 @@
             <div class="social-card-meta">
               <div>
                 <strong>100% agentic access parity.</strong>
-                <span>Every button, tab, and canvas pin maps 1:1 to an agent tool.</span>
+                <span>Every button, card, and action maps 1:1 to a turn-locked agent tool.</span>
               </div>
               <a class="dl-link metal-btn" href="/don-bot/cards/card-03-liquid-ui-16x9.png" download="don-bot-03-liquid-ui.png">Download PNG</a>
             </div>
@@ -2494,7 +2534,7 @@
             <div class="social-card-meta">
               <div>
                 <strong>Shipped in the open.</strong>
-                <span>Five architectural slices from SQLite WAL spine to Command Mode.</span>
+                <span>Six architectural slices from SQLite WAL spine to Meta-Factory fleet — live in v0.6.0.</span>
               </div>
               <a class="dl-link metal-btn" href="/don-bot/cards/og-don-bot.png" download="don-bot-og.png">Download OG</a>
             </div>
@@ -2502,7 +2542,7 @@
         </div>
 
         <div class="snippet-box">
-          <pre class="snippet-code" id="share-blurb">DON-BOT — On-the-Run Dark Factory: Pi Durable, OTRDF, safeagents + 300ms J-JEV Gates, Blind Vault, Telegram 'Me'-Mode, and an A2UI 1.0 Liquid Cockpit. Watch the build → https://don.aegntic.ai</pre>
+          <pre class="snippet-code" id="share-blurb">DON-BOT v0.6.0 — On-the-Run Dark Factory is live on GitHub: 1 Lead + 4 worktree specialists, SQLite WAL crash recovery, Rust don-guard, System-One Jev, NVIDIA SkillEvaluator, Telegram 'Me'-Mode, A2UI 1.0 Cockpit &amp; Meta-Factory &rarr; https://don.aegntic.ai</pre>
           <div class="copy-wrap">
             <button type="button" class="copy-trigger metal-btn metal-btn--ice" command="--copy" commandfor="share-blurb" data-status="copy-status-share">
               Copy Share Post
@@ -2647,11 +2687,11 @@
 
       // 0b. Selective Share-to-Social Bars for Each Section
       const sectionShares = [
-        { id: 'access', label: 'Share 00 // Access', text: 'One lead. Four specialists. Zero babysitting. Watch Don-Bot come online →' },
-        { id: 'architecture', label: 'Share 01 // Architecture', text: 'Built on a crash-proof SQLite WAL spine with 300ms System-One gates →' },
-        { id: 'interface', label: 'Share 02 // Liquid UI', text: '3-Pane Liquid Interface with 100% agentic access parity →' },
-        { id: 'roadmap', label: 'Share 03 // Build Log', text: 'Five architectural slices shipped in the open for Don-Bot →' },
-        { id: 'teaser-kit', label: 'Share 04 // Teaser Kit', text: 'Don-Bot On-the-Run Dark Factory press & social teaser kit →' }
+        { id: 'access', label: 'Share 00 // Access', text: 'One lead. Four specialists. Zero babysitting. Don-Bot v0.6.0 is live on GitHub →' },
+        { id: 'architecture', label: 'Share 01 // Architecture', text: 'Built on a crash-proof SQLite WAL spine with Rust don-guard & System-One Jev →' },
+        { id: 'interface', label: 'Share 02 // Liquid UI', text: 'A2UI 1.0 3-Pane Liquid Cockpit with 100% agentic access parity →' },
+        { id: 'roadmap', label: 'Share 03 // Build Log', text: 'Six architectural slices shipped in the open in Don-Bot v0.6.0 →' },
+        { id: 'teaser-kit', label: 'Share 04 // Teaser Kit', text: 'Don-Bot v0.6.0 On-the-Run Dark Factory press & social teaser kit →' }
       ];
       sectionShares.forEach(({ id, label, text }) => {
         const sec = document.getElementById(id);
@@ -2844,8 +2884,8 @@
             if (res.ok) {
               try { localStorage.removeItem(PENDING_KEY); } catch (_) {}
               const msg = data.status === 'exists'
-                ? 'Already on the list — watch your inbox Dec 1 for Slice 01.'
-                : 'You’re in. Check your inbox for the welcome note — Slice 01 lands Dec 1.';
+                ? 'Already on the list — v0.6.0 is live on GitHub now, and you’ll get every new release note.'
+                : 'You’re in. Check your inbox for the v0.6.0 release links and quickstart walkthrough.';
               [statusBanner, heroStatusBanner].forEach((banner) => {
                 if (!banner) return;
                 banner.textContent = msg;
@@ -2879,73 +2919,76 @@
       // 2. Scoped Component Transitions for the 4 Architectural Pillars
       const PILLARS = {
         team: {
-          title: '1 Lead Orchestrator + 4 Durable Specialists',
-          desc: "Instead of spawning 50 ephemeral subagents that burn tokens and overwrite each other's files, Don-Bot runs a persistent 5-agent roster over SQLite message rooms. Single-lane tasks route directly, while multi-lane goals open complexity-gated rooms inside isolated git worktrees behind a serialized writer lease.",
+          title: '1 Lead Orchestrator + 4 Durable Specialists + Meta-Factory Fleet',
+          desc: "Instead of spawning 50 ephemeral subagents that burn tokens and overwrite each other's files, Don-Bot runs a persistent 5-agent roster over SQLite message rooms. Multi-lane goals open complexity-gated 3-round consensus rooms in isolated git worktrees behind a serialized writer lease, and Slice 06 spawns isolated child factories from blank templates with 1:1 <code>FactoryOwner</code> stewards.",
           bullets: [
-            '<strong>Social Contract Before Code:</strong> Specialists agree on contracts, schemas, and file boundaries in complexity-gated rooms before coding in <code>.don/worktrees</code> and merging via a serialized writer lease.',
-            '<strong>4-Tier Vendor-Agnostic Routing:</strong> Architect, Workhorse, Fast, and Gate tiers run cleanly from a single BYOK API key and auto-downshift to Fast at 70% budget burn.',
-            '<strong>Bounded Subagent Fan-Out:</strong> Specialists enforce a strict $0.25 per-subagent cap, $2.00 task breaker, and automatic 2-failure dead-letter cooldown.'
+            '<strong>Social Contract Before Code:</strong> Specialists settle contracts and file boundaries before editing inside <code>.don/worktrees</code> and merging through the atomic Writer Lease.',
+            '<strong>1-Click OAuth &amp; 4-Tier Routing:</strong> Run <code>don login openrouter</code> to seal credentials in encrypted SQLite and unlock all 4 LLM tiers plus live System-One Jev, with automatic Fast-tier downshift at 70% budget burn.',
+            '<strong>Bounded Subagents &amp; Meta-Factory Fleet:</strong> Enforces a $0.25 subagent cap, $2.00 task / $15.00 daily breakers, 2-failure dead-letter cooldowns, and DecisionCard-gated template backports via <code>packages/meta</code>.'
           ],
-          diagram: `<div><span class="hl">TEAM ROOM // COMPLEXITY-GATED WORKTREES</span></div>
-<div>──────────────────────────────────────────────</div>
+          diagram: `<div><span class="hl">TEAM ROOM // WORKTREES + META-FACTORY FLEET</span></div>
+<div>──────────────────────────────────────────────────</div>
 <div>[Lead Orchestrator] &rarr; Routes goal · canWriteCode=false</div>
 <div>  ├── <span class="ok">API Keeper</span>      (Workhorse · .don/worktrees/api)</div>
 <div>  ├── <span class="ok">Pipeline Forge</span>  (Workhorse · $0.25 subagent cap)</div>
 <div>  ├── <span class="ok">Client QA</span>       (Gate Tier · oxc.rs + Verifier)</div>
 <div>  └── <span class="ok">Memory Curator</span>  (Fast Tier · FTS5 provenance)</div>
-<div>──────────────────────────────────────────────</div>
+<div>──────────────────────────────────────────────────</div>
+<div>[Meta-Factory v0.6] &rarr; templates &rarr; owners &rarr; Jev mailbox</div>
 <div><span class="ok">STATUS:</span> Serialized writer lease · 0 merge collisions</div>`
         },
         spine: {
-          title: 'Crash-Proof SQLite WAL Spine & Self-Compaction',
-          desc: 'Every agent turn, tool invocation, and room post is checkpointed inside a local SQLite WAL database. If the process receives SIGKILL mid-tool, Don-Bot resumes from the exact once() step memo without re-running completed side effects.',
+          title: 'Crash-Proof SQLite WAL Spine, Checkpoints & Time-Travel Fork',
+          desc: 'Every agent turn, tool invocation, and room post is checkpointed inside an embedded Bun node:sqlite WAL database backed by pi-durable and chord. After SIGKILL mid-tool, Don-Bot replays completed once() memos cleanly, restores HMAC-signed rollbacks, or forks from any step N.',
           bullets: [
-            '<strong>Zero Docker-Postgres Bloat:</strong> Embedded SQLite WAL (<code>node:sqlite</code>) with FTS5/BM25 quote-anchored memory and provenance checks.',
-            '<strong>Proactive Self-Compaction:</strong> A post-turn hook warns the agent at 10% and 20% context usage and enforces a structured note_to_self handoff at 30%.',
-            '<strong>Worktree Isolation + oxc.rs Gate:</strong> Isolated <code>.don/worktrees</code> merges serialize behind writer-lease and run sub-100ms oxlint + oxfmt checks.'
+            '<strong>Zero Docker-Postgres Bloat:</strong> Embedded <code>node:sqlite</code> WAL with FTS5/BM25 quote-anchored memory and provenance verification.',
+            '<strong>Proactive Self-Compaction:</strong> Post-turn hook warns at 10% and 20% context burn and enforces a structured <code>note_to_self</code> handoff at 30%.',
+            '<strong>Worktrees + Signed Rollbacks:</strong> Serialized <code>.don/worktrees</code> merges backed by <code>oxc.rs</code> sub-100ms checks, HMAC rollback checkpoints, and time-travel step fork.'
           ],
-          diagram: `<div><span class="hl">SQLITE WAL SPINE // STEP CHECKPOINTING</span></div>
-<div>──────────────────────────────────────────────</div>
-<div>step_01: once("schema_migration") &rarr; <span class="ok">COMMITTED</span></div>
+          diagram: `<div><span class="hl">SQLITE WAL SPINE // ONCE() + ROLLBACKS</span></div>
+<div>──────────────────────────────────────────────────</div>
+<div>step_01: once("schema_migration") &rarr; <span class="ok">MEMO COMMITTED</span></div>
 <div>step_02: writer_lease(".don/wt")  &rarr; <span class="ok">LOCKED + OXCGATE</span></div>
-<div>step_03: context_gauge = 18.4%    &rarr; <span class="ok">HEALTHY</span></div>
-<div>  └── auto_compact threshold      &rarr; 30.0% (note_to_self)</div>
-<div>──────────────────────────────────────────────</div>
-<div><span class="ok">RECOVERY:</span> Instant resume after SIGKILL or restart</div>`
+<div>step_03: context_gauge = 18.4%    &rarr; <span class="ok">HEALTHY (30% cap)</span></div>
+<div>step_04: rollback_ref("rb-0879")  &rarr; <span class="ok">HMAC-SHA256 SIGNED</span></div>
+<div>──────────────────────────────────────────────────</div>
+<div><span class="ok">RECOVERY:</span> SIGKILL replay verified · 0 duplicate side effects</div>`
         },
         verify: {
-          title: 'safeagents Firewall, 300ms Jev Gates & Rust Blind Vault',
-          desc: 'High-autonomy agents require deterministic boundaries. Layer 1 safeagents inspects model tool calls before execution, Layer 2 trust-jev checks verbatim owner quotes, secrets live inside the Rust don-guard Blind Vault, and a Top-Down Sibling Verifier checks final outputs.',
+          title: 'Rust don-guard, System-One Jev & NVIDIA SkillEvaluator',
+          desc: 'Layer 1 safeagents inspects model tool calls while Layer 2 System-One Jev (jev-1.14 / OpenRouter + 45-feature GBDT ensemble) gates mutating tools, Verifier semantic stop checks, routing, memory promotion, and external Telegram sends.',
           bullets: [
-            '<strong>Layer 1 + Layer 2 Pre-Tool Firewall:</strong> <code>safeagents</code> blocks host-from-nowhere &amp; injection payloads while 300ms Jev rubric checks verify owner intent.',
-            '<strong>Rust <code>don-guard</code> Blind Vault:</strong> <code>zeroize</code> AES-256-GCM memory wiping, native Landlock/Seatbelt/JobObject sandboxes, and IP-class SSRF blocking.',
-            '<strong>Top-Down Sibling Verifier:</strong> Read-only observer extracts atomic claims and runs zero-token oxc.rs checks before allowing task completion.'
+            '<strong>Rust <code>don-guard</code> &amp; Blind Vault:</strong> Native Landlock / Seatbelt / JobObject sandboxes, <code>zeroize</code> AES-256-GCM credential vault, <code>x-mcp-header</code> injection, and IP-class SSRF blocking.',
+            '<strong>System-One Jev + Shadow Mode:</strong> Live 5-gate Jev evaluation with fail-closed timeout (1500ms) and per-tool permission rules bound to canonical arguments.',
+            '<strong>NVIDIA SkillEvaluator &amp; Sibling Verifier:</strong> Tier 1 static, security, PII, Unicode smuggling, and 6-harness skill checks plus un-promptable Top-Down Verifier + <code>oxc.rs</code> gate.'
           ],
-          diagram: `<div><span class="hl">VERIFICATION PIPELINE // ZERO HALLUCINATED DONE</span></div>
-<div>──────────────────────────────────────────────</div>
-<div>[Layer 1]   safeagents Proxy   &rarr; <span class="ok">0 INJECTIONS (12ms)</span></div>
-<div>[Layer 2]   300ms Jev Gate     &rarr; <span class="ok">OWNER QUOTE VERIFIED</span></div>
-<div>[don-guard] Rust Blind Vault   &rarr; <span class="ok">INJECTED &amp; ZEROIZED</span></div>
-<div>[On-Stop]   Sibling Verifier   &rarr; <span class="ok">OXC + TESTS GREEN</span></div>
-<div>──────────────────────────────────────────────</div>
-<div><span class="ok">VERDICT:</span> Promoted to A2UI 1.0 surface</div>`
+          diagram: `<div><span class="hl">FOUR-LAYER TRUST // FAIL-CLOSED VERIFICATION</span></div>
+<div>──────────────────────────────────────────────────</div>
+<div>[Layer 1]   safeagents Proxy    &rarr; <span class="ok">0 INJECTIONS · SSRF SAFE</span></div>
+<div>[Layer 2]   System-One Jev      &rarr; <span class="ok">5 FACTORY GATES ACTIVE</span></div>
+<div>[don-guard] Rust Blind Vault    &rarr; <span class="ok">SANDBOXED &amp; ZEROIZED</span></div>
+<div>[SkillEval] NVIDIA 6-Harness    &rarr; <span class="ok">98/100 · NO QUARANTINE</span></div>
+<div>[On-Stop]   Sibling Verifier    &rarr; <span class="ok">OXC + JEV STOP CHECK</span></div>
+<div>──────────────────────────────────────────────────</div>
+<div><span class="ok">VERDICT:</span> Ship-ready · git_push gated by DecisionCard</div>`
         },
         liquid: {
-          title: "A2UI 1.0 Spring-Liquid PWA Cockpit & Telegram 'Me'-Mode",
-          desc: "Work from the spring-liquid PWA cockpit powered by A2UI 1.0 or steer from your pocket. Agents never emit HTML or JavaScript—only declarative Custom Catalog cards hydrated on the server by TypeScript macros so raw diffs and logs stay out of model context.",
+          title: "OAuth Onboarding, A2UI 1.0 Cockpit & Telegram 'Me'-Mode",
+          desc: 'Unlock all 4 LLM tiers + System-One Jev in one OAuth login (don onboard / DON-XXXXXX cockpit pairing), steer from the 3-pane A2UI 1.0 PWA or Telegram Forum Topics, and keep raw diffs/stderr out of model context via TypeScript Server-Side Macros.',
           bullets: [
-            '<strong>A2UI 1.0 + Custom Catalog:</strong> Left Lane List, Center A2UI 1.0 declarative surfaces + on-demand Chromium CDP stream + run trace, Right Near-Loop Decision Deck.',
-            '<strong>TypeScript Macro Privacy:</strong> Server-side TypeScript macros hydrate diffs, oxlint errors, and telemetry straight to clients while keeping sensitive data out of LLM prompts.',
-            "<strong>Zero-LLM Push + Telegram 'Me'-Mode:</strong> Local events update cards for $0.00 in model spend and mirror the same DecisionCard approvals to MTProto Forum Topics."
+            '<strong>OAuth-First Onboarding &amp; Pairing:</strong> Built-in PKCE/Device-Code flows, encrypted SQLite <code>VaultCredentialStore</code>, 5-min <code>DON-XXXXXX</code> cockpit pairing, and Coming Soon slots for bring-your-own email/phone identity.',
+            '<strong>A2UI 1.0 + TS Macro Privacy:</strong> Strict <code>don.catalog.v1</code> cards hydrated server-side with zero raw HTML/script execution from agents and on-demand Chromium CDP stream.',
+            "<strong>$0.00 SSE Push + Telegram 'Me'-Mode:</strong> Resumable <code>events.seq</code> push plus <code>@mtcute/bun</code> Forum Topics, Two-Zone Outbound Firewall, voice-note STT, and Tailscale / <code>cloudflared</code> access."
           ],
-          diagram: `<div><span class="hl">A2UI 1.0 COCKPIT + PERSONAL 'ME'-MODE BRIDGE</span></div>
-<div>──────────────────────────────────────────────</div>
-<div>Pane 01 (Left)   &rarr; Worktree Lanes, Budget Gauge, Rooms</div>
-<div>Pane 02 (Center) &rarr; A2UI 1.0 · Chromium Stream · Run Trace</div>
-<div>Pane 03 (Right)  &rarr; Decision Deck · TS Macro Hydration</div>
-<div>Pocket Bridge    &rarr; <span class="ok">MTProto 'Me'-Mode + Pacer Guard</span></div>
-<div>──────────────────────────────────────────────</div>
-<div><span class="ok">LATENCY:</span> Spring UI · Zero-LLM server push sync</div>`
+          diagram: `<div><span class="hl">A2UI 1.0 COCKPIT + PERSONAL 'ME'-MODE</span></div>
+<div>──────────────────────────────────────────────────</div>
+<div>Onboarding       &rarr; <span class="ok">1-Click OpenRouter OAuth + Jev Auto</span></div>
+<div>Pane 01 (Left)   &rarr; BudgetGauge, WorktreeLanes, Fleet Cards</div>
+<div>Pane 02 (Center) &rarr; DecisionDeck, CodeGate, SkillEval, Guard</div>
+<div>Pane 03 (Right)  &rarr; sandbox=&quot;allow-scripts&quot; + CDP + Receipts</div>
+<div>Pocket Bridge    &rarr; <span class="ok">@mtcute/bun 'Me'-Mode + Two-Zone Guard</span></div>
+<div>──────────────────────────────────────────────────</div>
+<div><span class="ok">SYNC:</span> $0.00 LLM SSE push · DON-XXXXXX paired</div>`
         }
       };
 
@@ -3082,14 +3125,14 @@
     })();
   </script>
 
-    <section class="don-world don-world--alt" id="dispatch-footer" aria-label="Subscribe to Don-Bot Dispatch" style="padding-top:3rem;padding-bottom:3rem;">
+    <section class="don-world don-world--alt" id="dispatch-footer" aria-label="Subscribe to Don-Bot Release Notes" style="padding-top:3rem;padding-bottom:3rem;">
       <div class="don-container" style="max-width:640px;margin:0 auto;">
         <div class="watch-card" style="padding:1.5rem 1.75rem;">
-          <div class="world-eyebrow" style="margin-bottom:0.4rem">DEC 1 DROP · SLICE 01 STARTER</div>
-          <h2 style="font-size:1.35rem;margin-bottom:0.5rem;">Get Slice 01 in your inbox Dec 1.</h2>
+          <div class="world-eyebrow" style="margin-bottom:0.4rem">OPEN SOURCE · v0.6.0 LIVE ON GITHUB</div>
+          <h2 style="font-size:1.35rem;margin-bottom:0.5rem;">Get the v0.6.0 walkthrough &amp; release dispatches.</h2>
           <form class="footer-watch-form" onsubmit="event.preventDefault(); const i=this.querySelector('input'); const b=this.querySelector('button'); if(i&&i.value.trim()){const m=document.getElementById('watch-email'); if(m){m.value=i.value.trim(); document.getElementById('watch-form').requestSubmit(); b.textContent='Sent ✓';}}" style="display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:0.75rem;">
             <input type="email" required autocomplete="email" spellcheck="false" enterkeyhint="done" placeholder="you@domain.com" aria-label="Email address" style="flex:1;min-width:200px;">
-            <button type="submit" class="metal-btn metal-btn--orange">Get Slice 01 Drop →</button>
+            <button type="submit" class="metal-btn metal-btn--orange">Get Release Notes →</button>
           </form>
         </div>
       </div>

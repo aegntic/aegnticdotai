@@ -91,19 +91,21 @@ async function notifySubscriberAndOwner(env: Env, email: string, source: string,
 
     const isDon = source.toLowerCase().includes('don');
     const welcomeSubject = isDon
-        ? "You're on the Don-Bot Dec 1 drop (Slice 01 + setup guide)"
+        ? 'Don-Bot v0.6.0 is live — quickstart & release notes'
         : "You're on the aegntic build dispatch";
 
     const welcomeText = isDon
         ? [
-              "You're in for the Don-Bot Slice 01 release on December 1.",
+              'Don-Bot v0.6.0 (Slices 01-06) is live on GitHub right now.',
               '',
-              'What arrives in your inbox when Slice 01 drops:',
-              '- The runnable crash-proof agent starter (resumes from interrupted steps instead of burning tokens twice)',
-              '- Quickstart setup guide and walkthrough',
-              '- Release notes as Slices 02-05 ship in the open',
+              'Get started in under 60 seconds:',
+              '- Latest release: https://github.com/aegntic/don-bot/releases/tag/v0.6.0',
+              '- Quickstart: git clone https://github.com/aegntic/don-bot.git && cd don-bot && bun install && bun run don onboard',
+              '- Zero-cost crash & chaos suite: bun run test:crash && bun run check (56 CI tests)',
+              '- Upcoming v0.7+ drops: bring-your-own agent email/phone identity adapters & native companions',
               '',
-              'Follow the repo or preview the build anytime:',
+              'Follow the repo or open the cockpit walkthrough anytime:',
+              '- Latest Release: https://github.com/aegntic/don-bot/releases/tag/v0.6.0',
               '- Repository: https://github.com/aegntic/don-bot',
               '- Build page: https://don.aegntic.ai/',
               '',
