@@ -6,27 +6,27 @@
   <!-- MANDATORY: Declare dark color-scheme in head to prevent initial white flash (FOUC) -->
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#090c11">
-  <title>Don-Bot v0.6.0 — On-the-Run Dark Factory · Open Source | aegntic.ai</title>
-  <meta name="description" content="Don-Bot v0.6.0 (Slices 01–06 live): local-first On-the-Run Dark Factory with 1 Lead + 4 worktree specialists, SQLite WAL crash recovery, Rust don-guard, System-One Jev, NVIDIA SkillEvaluator, 1-click OAuth onboarding, Telegram 'Me'-Mode, A2UI 1.0 3-pane cockpit & Meta-Factory fleet.">
+  <title>Don-Bot v0.6.0-rc.1 (Pre-Release) — On-the-Run Dark Factory | aegntic.ai</title>
+  <meta name="description" content="Don-Bot v0.6.0-rc.1 (Pre-Release, Slices 01–06): local-first On-the-Run Dark Factory with 1 Lead + 4 worktree specialists, SQLite WAL crash recovery, Rust don-guard, System-One Jev, NVIDIA SkillEvaluator, OAuth onboarding, Telegram 'Me'-Mode, A2UI 1.0 cockpit & Meta-Factory. Try the pre-release and join the v1.0 waitlist.">
   <link rel="canonical" href="https://don.aegntic.ai/">
 
   <!-- Open Graph / Social Cards -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="aegntic.ai">
   <meta property="og:url" content="https://don.aegntic.ai/">
-  <meta property="og:title" content="Don-Bot v0.6.0 — On-the-Run Dark Factory">
-  <meta property="og:description" content="Open-source v0.6.0 live on GitHub (Slices 01–06): 1 Lead + 4 worktree specialists, SQLite WAL crash recovery, Rust don-guard, System-One Jev, NVIDIA SkillEvaluator, OAuth onboarding, Telegram 'Me'-Mode, A2UI 1.0 cockpit & Meta-Factory.">
+  <meta property="og:title" content="Don-Bot v0.6.0-rc.1 (Pre-Release) — On-the-Run Dark Factory">
+  <meta property="og:description" content="Pre-Release v0.6.0-rc.1 on GitHub (Slices 01–06) + v1.0 waitlist open: 1 Lead + 4 worktree specialists, SQLite WAL crash recovery, Rust don-guard, System-One Jev, NVIDIA SkillEvaluator, OAuth onboarding, Telegram 'Me'-Mode, A2UI 1.0 cockpit & Meta-Factory.">
   <meta property="og:image" content="https://don.aegntic.ai/don-bot/don-bot-evolution-hero.jpg">
   <meta property="og:image:width" content="1024">
   <meta property="og:image:height" content="428">
-  <meta property="og:image:alt" content="Don-Bot v0.6.0 — On-the-Run Dark Factory">
+  <meta property="og:image:alt" content="Don-Bot v0.6.0-rc.1 (Pre-Release) — On-the-Run Dark Factory">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@aegntic">
   <meta name="twitter:creator" content="@aegntic">
-  <meta name="twitter:title" content="Don-Bot v0.6.0 — On-the-Run Dark Factory">
-  <meta name="twitter:description" content="Open-source v0.6.0 live on GitHub (Slices 01–06): Pi Durable SQLite WAL, Rust don-guard, System-One Jev, SkillEvaluator gate, Telegram 'Me'-Mode, A2UI 1.0 Cockpit & Meta-Factory.">
+  <meta name="twitter:title" content="Don-Bot v0.6.0-rc.1 (Pre-Release) — On-the-Run Dark Factory">
+  <meta name="twitter:description" content="Pre-Release v0.6.0-rc.1 on GitHub (Slices 01–06) + v1.0 waitlist: Pi Durable SQLite WAL, Rust don-guard, System-One Jev, SkillEvaluator gate, Telegram 'Me'-Mode, A2UI 1.0 Cockpit & Meta-Factory.">
   <meta name="twitter:image" content="https://don.aegntic.ai/don-bot/don-bot-evolution-hero.jpg">
 
   <link rel="preload" href="/fonts/don-mark.woff2" as="font" type="font/woff2" crossorigin>
@@ -333,10 +333,44 @@
       filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7));
     }
     .don-brand-label .don-brand-tail { color: inherit; }
+    .don-prerelease-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.28rem 0.68rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 90, 31, 0.55);
+      background: rgba(255, 90, 31, 0.14);
+      color: #ff7a49;
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+    }
+    .don-prerelease-badge:hover,
+    .don-prerelease-badge:focus-visible {
+      border-color: var(--ae-ice);
+      background: rgba(63, 193, 255, 0.14);
+      color: var(--ae-ice);
+      outline: none;
+    }
+    .don-prerelease-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ae-signal);
+      box-shadow: 0 0 8px rgba(255, 90, 31, 0.8);
+    }
     @media (max-width: 640px) {
       .don-brand-tail { display: none; }
       .don-logo img { width: 46px; }
-      .don-header__inner { gap: 0.75rem; }
+      .don-header__inner { gap: 0.6rem; flex-wrap: wrap; }
+      .don-prerelease-badge { font-size: 0.6rem; padding: 0.24rem 0.55rem; }
     }
     .don-nav {
       margin-inline-start: auto;
@@ -2024,8 +2058,9 @@
     <div class="don-header__inner">
       <a class="don-logo" href="https://aegntic.ai/">
         <img src="/don-bot/ae-cutout-logo.png" width="314" height="207" alt="aegntic home">
-        <span class="don-brand-label"><span class="don-mark" style="font-size:1.05em">DON</span>.aegntic.ai<span class="don-brand-tail"> // open source · v0.6.0</span></span>
+        <span class="don-brand-label"><span class="don-mark" style="font-size:1.05em">DON</span>.aegntic.ai<span class="don-brand-tail"> // pre-release</span></span>
       </a>
+      <a class="don-prerelease-badge" href="https://github.com/aegntic/don-bot/releases/tag/v0.6.0-rc.1" target="_blank" rel="noopener">Pre-Release · v0.6.0-rc.1 ↗</a>
       <nav class="don-nav" aria-label="Primary">
         <ul class="don-nav__inline">
           <li><a href="#access">00 // Access</a></li>
@@ -2080,13 +2115,13 @@
         <div class="pre-hero__word" aria-hidden="true">DON</div>
       </div>
       <div class="pre-hero__hud">
-        <div class="pre-hero__soon" style="color:var(--ae-ice)">LIVE ON GITHUB · v0.6.0 SHIPPED</div>
-        <div class="pre-hero__countdown" aria-label="Release v0.6.0 status">v0.6.0 // 6 SLICES · <span>56 CI TESTS</span></div>
+        <div class="pre-hero__soon" style="color:var(--ae-signal)">PRE-RELEASE · v0.6.0-rc.1 ON GITHUB</div>
+        <div class="pre-hero__countdown" aria-label="Pre-release v0.6.0-rc.1 status">v0.6.0-rc.1 // 6 SLICES · <span>56 CI TESTS</span></div>
         <div class="pre-hero__actions">
-          <a class="metal-btn" href="https://github.com/aegntic/don-bot/releases/tag/v0.6.0" target="_blank" rel="noopener">Release v0.6.0 on GitHub ↗</a>
+          <a class="metal-btn" href="https://github.com/aegntic/don-bot/releases/tag/v0.6.0-rc.1" target="_blank" rel="noopener">Pre-Release v0.6.0-rc.1 ↗</a>
           <a class="metal-btn metal-btn--ice" href="#roadmap">Clone &amp; Quickstart ↓</a>
         </div>
-        <p class="pre-hero__deliverable" id="hero-email-hint">Slices 01–06 are open source now. Drop your email for the setup walkthrough &amp; v0.7+ release dispatches.</p>
+        <p class="pre-hero__deliverable" id="hero-email-hint">Try Pre-Release v0.6.0-rc.1 on GitHub today — or join the waitlist for v1.0 GA, setup walkthroughs, and v0.7+ early access.</p>
         <form class="pre-hero__form" id="hero-watch-form" action="/api/subscribe" method="POST" novalidate>
           <div class="pre-hero__form-row">
             <label for="hero-email" class="sr-only">Email address</label>
@@ -2104,7 +2139,7 @@
               aria-invalid="false"
               class="pre-hero__input"
             >
-            <button type="submit" class="metal-btn metal-btn--ice" id="pre-hero-cta">Get Release Notes →</button>
+            <button type="submit" class="metal-btn metal-btn--ice" id="pre-hero-cta">Join Waitlist →</button>
           </div>
           <div class="error-msg" id="hero-email-error" hidden>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -2127,7 +2162,7 @@
       <div class="world-siderail">
         <span class="siderail-num"><span class="live-dot" aria-hidden="true"></span>00</span>
         <span class="siderail-slash">/</span>
-        <div class="siderail-text">ACCESS · ON-THE-RUN DARK FACTORY · V0.6.0 LIVE</div>
+        <div class="siderail-text">ACCESS · ON-THE-RUN DARK FACTORY · V0.6.0-RC.1 PRE-RELEASE</div>
       </div>
       <div class="don-container">
 
@@ -2148,13 +2183,13 @@
               <span class="hero-feature-pill">Meta-Factory Fleet</span>
             </div>
             <p class="hero-lead">
-              Hand off a real engineering goal before you leave your desk and wake up to verified code. Don-Bot v0.6.0 runs a persistent Lead plus four git-worktree specialists on crash-proof SQLite WAL, guards every tool with Rust <code>don-guard</code> and System-One Jev, and pings your Telegram 'Me'-Mode or A2UI 1.0 cockpit only when a human call matters.
+              Hand off a real engineering goal before you leave your desk and wake up to verified code. Don-Bot v0.6.0-rc.1 (Pre-Release) runs a persistent Lead plus four git-worktree specialists on crash-proof SQLite WAL, guards every tool with Rust <code>don-guard</code> and System-One Jev, and pings your Telegram 'Me'-Mode or A2UI 1.0 cockpit only when a human call matters.
             </p>
 
             <div class="telemetry-grid" role="list" aria-label="Key architectural specifications">
               <div class="telemetry-cell" role="listitem">
-                <span class="k">Release</span>
-                <span class="v">v0.6.0 (Slices 01–06)</span>
+                <span class="k">Pre-Release</span>
+                <span class="v">v0.6.0-rc.1 (Slices 01–06)</span>
               </div>
               <div class="telemetry-cell" role="listitem">
                 <span class="k">Team</span>
@@ -2336,19 +2371,19 @@
 
     <!-- 03 // LIVE BUILD LOG & MILESTONES -->
 
-    <section class="don-world" id="dispatch" aria-label="Release Dispatch Signup">
+    <section class="don-world" id="dispatch" aria-label="Waitlist Signup">
       <div class="don-container" style="max-width:640px;margin:0 auto;">
         <aside class="watch-card" aria-labelledby="watch-form-heading">
-            <div class="world-eyebrow" style="margin-bottom:0.5rem">OPEN SOURCE · v0.6.0 LIVE ON GITHUB</div>
-            <h2 id="watch-form-heading">Get the v0.6.0 walkthrough &amp; release dispatches.</h2>
+            <div class="world-eyebrow" style="margin-bottom:0.5rem">PRE-RELEASE v0.6.0-rc.1 · v1.0 WAITLIST</div>
+            <h2 id="watch-form-heading">Join the Don-Bot v1.0 Waitlist.</h2>
             <p>
-              All six slices are live on GitHub right now. Drop your email for the quickstart guide, architectural notes, and v0.7+ drops (bring-your-own email/phone adapters &amp; native companions).
+              All six slices are live on GitHub in Pre-Release <code>v0.6.0-rc.1</code> right now. Join the waitlist for v1.0 GA, guided walkthroughs, and early access to v0.7+ bring-your-own agent email/phone adapters &amp; native companions.
             </p>
 
             <form id="watch-form" action="/api/subscribe" method="POST" aria-labelledby="watch-form-heading" novalidate>
               <div class="field">
                 <label for="watch-email">Work or personal email</label>
-                <span class="field-hint" id="email-hint">Quickstart walkthrough + one architectural release note per major milestone.</span>
+                <span class="field-hint" id="email-hint">Instant v0.6.0-rc.1 quickstart in your welcome note + waitlist priority for v0.7+ and v1.0 GA.</span>
                 <input
                   id="watch-email"
                   name="email"
@@ -2374,7 +2409,7 @@
               </div>
 
               <button type="submit" class="btn-submit metal-btn" id="watch-submit">
-                Get Release Notes →
+                Join Waitlist →
               </button>
 
               <div id="form-live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
@@ -2382,7 +2417,7 @@
             </form>
 
             <div class="watch-links">
-              <a href="https://github.com/aegntic/don-bot/releases/tag/v0.6.0" target="_blank" rel="noopener">Release v0.6.0 ↗</a>
+              <a href="https://github.com/aegntic/don-bot/releases/tag/v0.6.0-rc.1" target="_blank" rel="noopener">Pre-Release v0.6.0-rc.1 ↗</a>
               <a href="https://github.com/aegntic/don-bot" target="_blank" rel="noopener">github.com/aegntic/don-bot ↗</a>
               <a href="https://x.com/aegntic" target="_blank" rel="noopener">@aegntic ↗</a>
             </div>
@@ -2395,13 +2430,13 @@
       <div class="world-siderail">
         <span class="siderail-num">03</span>
         <span class="siderail-slash">/</span>
-        <div class="siderail-text">RELEASE LOG · v0.6.0 LIVE ON MAIN</div>
+        <div class="siderail-text">RELEASE LOG · v0.6.0-rc.1 PRE-RELEASE</div>
       </div>
       <div class="don-container">
         <div class="section-header">
           <h2 class="section-title" id="roadmap-heading">Six architectural slices. Shipped in the open.</h2>
           <p class="section-sub">
-            All six slices are merged on <code>main</code> in <strong>v0.6.0</strong> with 56 offline CI chaos tests ($0.00 live API cost). Release <code>v0.1.0-slice-01</code> preserves the initial Slice 01 baseline.
+            All six slices are live in Pre-Release <strong>v0.6.0-rc.1</strong> on <code>main</code> with 56 offline CI chaos tests ($0.00 live API cost). Pre-release <code>v0.1.0-slice-01</code> preserves the initial Slice 01 baseline.
           </p>
         </div>
 
@@ -2412,7 +2447,7 @@
               <strong>SQLite WAL Durable Runtime &amp; Core Team CLI</strong>
               <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">SQLite WAL + <code>once()</code> crash recovery, 10%/20%/30% <code>self_compact</code>, <code>safeagents</code> guard, isolated worktrees + writer lease, <code>oxc.rs</code> code gate, and baseline CI chaos suite.</p>
             </div>
-            <span class="m-badge shipped">SHIPPED · v0.1.0</span>
+            <span class="m-badge shipped">BASELINE · v0.1.0</span>
           </div>
           <div class="milestone-row">
             <span class="m-phase">SLICE 02 // TEAM</span>
@@ -2420,7 +2455,7 @@
               <strong>Complexity-Gated Rooms &amp; Sibling Verifier</strong>
               <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Complexity-gated 3-round cross-lane negotiation rooms, Top-Down sibling Verifier, live worktree feedback loops, subagent privilege stripping, and time-travel replay.</p>
             </div>
-            <span class="m-badge shipped">SHIPPED · v0.6.0</span>
+            <span class="m-badge shipped">PRE-RELEASE · rc.1</span>
           </div>
           <div class="milestone-row">
             <span class="m-phase">SLICE 03 // TRUST</span>
@@ -2428,7 +2463,7 @@
               <strong>Rust <code>don-guard</code>, System-One Jev &amp; Blind Vault</strong>
               <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Native Landlock/Seatbelt/JobObject OS sandboxes, <code>zeroize</code> AES-256-GCM Blind Vault, live System-One Jev (<code>jev-1.14</code> / OpenRouter + 45-feature GBDT), IP-class SSRF firewall, Shadow Mode &amp; signed rollbacks.</p>
             </div>
-            <span class="m-badge shipped">SHIPPED · v0.6.0</span>
+            <span class="m-badge shipped">PRE-RELEASE · rc.1</span>
           </div>
           <div class="milestone-row">
             <span class="m-phase">SLICE 04 // CHANNELS</span>
@@ -2436,7 +2471,7 @@
               <strong>Personal 'Me'-Mode Telegram Bridge &amp; Remote Access</strong>
               <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem"><code>@mtcute/bun</code> MTProto Forum Topics + "Factories" folder with human-mimicry pacing, Two-Zone Outbound Firewall, voice notes to Decision Deck buttons, and Tailscale Serve / <code>cloudflared</code> access.</p>
             </div>
-            <span class="m-badge shipped">SHIPPED · v0.6.0</span>
+            <span class="m-badge shipped">PRE-RELEASE · rc.1</span>
           </div>
           <div class="milestone-row">
             <span class="m-phase">SLICE 05 // UI</span>
@@ -2444,7 +2479,7 @@
               <strong>OAuth Onboarding, A2UI 1.0 Catalog &amp; 3-Pane PWA Cockpit</strong>
               <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">1-click OAuth onboarding (<code>don onboard</code>, <code>DON-XXXXXX</code> pairing, encrypted SQLite vault), A2UI 1.0 Custom Catalog (<code>don.catalog.v1</code>), TS Macro Hydration, <code>$0.00</code> SSE push, and Chromium CDP stream.</p>
             </div>
-            <span class="m-badge shipped">SHIPPED · v0.6.0</span>
+            <span class="m-badge shipped">PRE-RELEASE · rc.1</span>
           </div>
           <div class="milestone-row">
             <span class="m-phase">SLICE 06 // META-FACTORY</span>
@@ -2452,15 +2487,15 @@
               <strong>Fleet Registry, Verified Template Backports &amp; Jev Mailbox</strong>
               <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Versioned Blank Factory Templates (<code>don-core-v1</code>), Liquid Boundary + NVIDIA SkillEvaluator backport gate, 1:1 <code>FactoryOwner</code> stewards, <code>don_factory_changelogs</code>, and Jev-gated Factory-to-Factory Mailbox.</p>
             </div>
-            <span class="m-badge shipped">SHIPPED · v0.6.0</span>
+            <span class="m-badge shipped">PRE-RELEASE · rc.1</span>
           </div>
           <div class="milestone-row">
-            <span class="m-phase">NEXT // v0.7+</span>
+            <span class="m-phase">NEXT // v0.7+ &amp; v1.0 GA</span>
             <div>
               <strong>Bring-Your-Own Agent Identity &amp; Native Companions</strong>
               <p style="margin:0.25rem 0 0;color:var(--ae-muted);font-size:0.92rem">Opt-in per-instance dedicated agent email (IMAP/SMTP or webhook) &amp; phone/SMS adapters (no hardcoded defaults, Coming Soon slots already in onboarding), plus optional Tauri &amp; SwiftUI/Kotlin companions.</p>
             </div>
-            <span class="m-badge in-progress">COMING NEXT</span>
+            <span class="m-badge in-progress">WAITLIST OPEN</span>
           </div>
         </div>
 
@@ -2534,7 +2569,7 @@
             <div class="social-card-meta">
               <div>
                 <strong>Shipped in the open.</strong>
-                <span>Six architectural slices from SQLite WAL spine to Meta-Factory fleet — live in v0.6.0.</span>
+                <span>Six architectural slices from SQLite WAL spine to Meta-Factory fleet — Pre-Release v0.6.0-rc.1 + v1.0 Waitlist.</span>
               </div>
               <a class="dl-link metal-btn" href="/don-bot/cards/og-don-bot.png" download="don-bot-og.png">Download OG</a>
             </div>
@@ -2542,7 +2577,7 @@
         </div>
 
         <div class="snippet-box">
-          <pre class="snippet-code" id="share-blurb">DON-BOT v0.6.0 — On-the-Run Dark Factory is live on GitHub: 1 Lead + 4 worktree specialists, SQLite WAL crash recovery, Rust don-guard, System-One Jev, NVIDIA SkillEvaluator, Telegram 'Me'-Mode, A2UI 1.0 Cockpit &amp; Meta-Factory &rarr; https://don.aegntic.ai</pre>
+          <pre class="snippet-code" id="share-blurb">DON-BOT v0.6.0-rc.1 (Pre-Release) — On-the-Run Dark Factory on GitHub: 1 Lead + 4 worktree specialists, SQLite WAL crash recovery, Rust don-guard, System-One Jev, NVIDIA SkillEvaluator, Telegram 'Me'-Mode, A2UI 1.0 Cockpit &amp; Meta-Factory. Try rc.1 or join the v1.0 waitlist &rarr; https://don.aegntic.ai</pre>
           <div class="copy-wrap">
             <button type="button" class="copy-trigger metal-btn metal-btn--ice" command="--copy" commandfor="share-blurb" data-status="copy-status-share">
               Copy Share Post
@@ -2687,11 +2722,11 @@
 
       // 0b. Selective Share-to-Social Bars for Each Section
       const sectionShares = [
-        { id: 'access', label: 'Share 00 // Access', text: 'One lead. Four specialists. Zero babysitting. Don-Bot v0.6.0 is live on GitHub →' },
+        { id: 'access', label: 'Share 00 // Access', text: 'One lead. Four specialists. Zero babysitting. Pre-Release v0.6.0-rc.1 + v1.0 waitlist open →' },
         { id: 'architecture', label: 'Share 01 // Architecture', text: 'Built on a crash-proof SQLite WAL spine with Rust don-guard & System-One Jev →' },
         { id: 'interface', label: 'Share 02 // Liquid UI', text: 'A2UI 1.0 3-Pane Liquid Cockpit with 100% agentic access parity →' },
-        { id: 'roadmap', label: 'Share 03 // Build Log', text: 'Six architectural slices shipped in the open in Don-Bot v0.6.0 →' },
-        { id: 'teaser-kit', label: 'Share 04 // Teaser Kit', text: 'Don-Bot v0.6.0 On-the-Run Dark Factory press & social teaser kit →' }
+        { id: 'roadmap', label: 'Share 03 // Build Log', text: 'Six architectural slices in Pre-Release v0.6.0-rc.1 (v1.0 waitlist open) →' },
+        { id: 'teaser-kit', label: 'Share 04 // Teaser Kit', text: 'Don-Bot v0.6.0-rc.1 (Pre-Release) On-the-Run Dark Factory press & social teaser kit →' }
       ];
       sectionShares.forEach(({ id, label, text }) => {
         const sec = document.getElementById(id);
@@ -2884,8 +2919,8 @@
             if (res.ok) {
               try { localStorage.removeItem(PENDING_KEY); } catch (_) {}
               const msg = data.status === 'exists'
-                ? 'Already on the list — v0.6.0 is live on GitHub now, and you’ll get every new release note.'
-                : 'You’re in. Check your inbox for the v0.6.0 release links and quickstart walkthrough.';
+                ? 'You’re already on the Don-Bot waitlist — try Pre-Release v0.6.0-rc.1 on GitHub anytime, and watch your inbox for v0.7+ & v1.0 GA.'
+                : 'You’re on the Don-Bot waitlist. Check your inbox for the v0.6.0-rc.1 pre-release links and quickstart guide.';
               [statusBanner, heroStatusBanner].forEach((banner) => {
                 if (!banner) return;
                 banner.textContent = msg;
@@ -3125,14 +3160,14 @@
     })();
   </script>
 
-    <section class="don-world don-world--alt" id="dispatch-footer" aria-label="Subscribe to Don-Bot Release Notes" style="padding-top:3rem;padding-bottom:3rem;">
+    <section class="don-world don-world--alt" id="dispatch-footer" aria-label="Join Don-Bot v1.0 Waitlist" style="padding-top:3rem;padding-bottom:3rem;">
       <div class="don-container" style="max-width:640px;margin:0 auto;">
         <div class="watch-card" style="padding:1.5rem 1.75rem;">
-          <div class="world-eyebrow" style="margin-bottom:0.4rem">OPEN SOURCE · v0.6.0 LIVE ON GITHUB</div>
-          <h2 style="font-size:1.35rem;margin-bottom:0.5rem;">Get the v0.6.0 walkthrough &amp; release dispatches.</h2>
-          <form class="footer-watch-form" onsubmit="event.preventDefault(); const i=this.querySelector('input'); const b=this.querySelector('button'); if(i&&i.value.trim()){const m=document.getElementById('watch-email'); if(m){m.value=i.value.trim(); document.getElementById('watch-form').requestSubmit(); b.textContent='Sent ✓';}}" style="display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:0.75rem;">
+          <div class="world-eyebrow" style="margin-bottom:0.4rem">PRE-RELEASE v0.6.0-rc.1 · v1.0 WAITLIST</div>
+          <h2 style="font-size:1.35rem;margin-bottom:0.5rem;">Join the Don-Bot v1.0 Waitlist.</h2>
+          <form class="footer-watch-form" onsubmit="event.preventDefault(); const i=this.querySelector('input'); const b=this.querySelector('button'); if(i&&i.value.trim()){const m=document.getElementById('watch-email'); if(m){m.value=i.value.trim(); document.getElementById('watch-form').requestSubmit(); b.textContent='Joined ✓';}}" style="display:flex;gap:0.65rem;flex-wrap:wrap;margin-top:0.75rem;">
             <input type="email" required autocomplete="email" spellcheck="false" enterkeyhint="done" placeholder="you@domain.com" aria-label="Email address" style="flex:1;min-width:200px;">
-            <button type="submit" class="metal-btn metal-btn--orange">Get Release Notes →</button>
+            <button type="submit" class="metal-btn metal-btn--orange">Join Waitlist →</button>
           </form>
         </div>
       </div>

@@ -91,23 +91,22 @@ async function notifySubscriberAndOwner(env: Env, email: string, source: string,
 
     const isDon = source.toLowerCase().includes('don');
     const welcomeSubject = isDon
-        ? 'Don-Bot v0.6.0 is live — quickstart & release notes'
+        ? "You're on the Don-Bot waitlist (+ Pre-Release v0.6.0-rc.1 quickstart)"
         : "You're on the aegntic build dispatch";
 
     const welcomeText = isDon
         ? [
-              'Don-Bot v0.6.0 (Slices 01-06) is live on GitHub right now.',
+              "You're on the waitlist for Don-Bot v1.0 GA and v0.7+ early access (bring-your-own agent email/phone identity adapters & native companions).",
               '',
-              'Get started in under 60 seconds:',
-              '- Latest release: https://github.com/aegntic/don-bot/releases/tag/v0.6.0',
+              'You do not have to wait to try it — Pre-Release v0.6.0-rc.1 (Slices 01-06) is on GitHub today:',
+              '- Pre-Release v0.6.0-rc.1: https://github.com/aegntic/don-bot/releases/tag/v0.6.0-rc.1',
               '- Quickstart: git clone https://github.com/aegntic/don-bot.git && cd don-bot && bun install && bun run don onboard',
               '- Zero-cost crash & chaos suite: bun run test:crash && bun run check (56 CI tests)',
-              '- Upcoming v0.7+ drops: bring-your-own agent email/phone identity adapters & native companions',
               '',
-              'Follow the repo or open the cockpit walkthrough anytime:',
-              '- Latest Release: https://github.com/aegntic/don-bot/releases/tag/v0.6.0',
+              'Follow the repo or revisit the cockpit walkthrough anytime:',
+              '- Pre-Release v0.6.0-rc.1: https://github.com/aegntic/don-bot/releases/tag/v0.6.0-rc.1',
               '- Repository: https://github.com/aegntic/don-bot',
-              '- Build page: https://don.aegntic.ai/',
+              '- Build page & waitlist: https://don.aegntic.ai/',
               '',
               "Quick question (just hit reply): what's the #1 multi-hour coding or ops task you wish you could hand off overnight?",
               '',
